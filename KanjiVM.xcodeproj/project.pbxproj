@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7EA8880B1AAAB6DF00C6DBB3 /* GlimpseJava.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA8880A1AAAB6DF00C6DBB3 /* GlimpseJava.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7EA888111AAAB6DF00C6DBB3 /* GlimpseJava.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA888051AAAB6DF00C6DBB3 /* GlimpseJava.framework */; };
-		7EA888181AAAB6DF00C6DBB3 /* GlimpseJavaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA888171AAAB6DF00C6DBB3 /* GlimpseJavaTests.swift */; };
+		7EA8880B1AAAB6DF00C6DBB3 /* KanjiVM.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA8880A1AAAB6DF00C6DBB3 /* KanjiVM.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7EA888111AAAB6DF00C6DBB3 /* KanjiVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA888051AAAB6DF00C6DBB3 /* KanjiVM.framework */; };
+		7EA888181AAAB6DF00C6DBB3 /* KanjiVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA888171AAAB6DF00C6DBB3 /* KanjiVMTests.swift */; };
+		7EA8882E1AAAB88800C6DBB3 /* jdk1.8.0_40.jdk in Resources */ = {isa = PBXBuildFile; fileRef = 7EA8882D1AAAB88800C6DBB3 /* jdk1.8.0_40.jdk */; };
+		7EA888301AAAB8B900C6DBB3 /* JVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA8882F1AAAB8B900C6DBB3 /* JVM.swift */; };
+		7EA888351AAAD7C000C6DBB3 /* libjli.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA888341AAAD7C000C6DBB3 /* libjli.dylib */; };
+		7EA888371AAAD7EB00C6DBB3 /* javashim.c in Sources */ = {isa = PBXBuildFile; fileRef = 7EA888361AAAD7EB00C6DBB3 /* javashim.c */; };
+		7EB200531AADFDF900B256B3 /* JavaLang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB200521AADFDF900B256B3 /* JavaLang.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -18,17 +23,22 @@
 			containerPortal = 7EA887FC1AAAB6DF00C6DBB3 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7EA888041AAAB6DF00C6DBB3;
-			remoteInfo = GlimpseJava;
+			remoteInfo = KanjiVM;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7EA888051AAAB6DF00C6DBB3 /* GlimpseJava.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GlimpseJava.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA888051AAAB6DF00C6DBB3 /* KanjiVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA888091AAAB6DF00C6DBB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7EA8880A1AAAB6DF00C6DBB3 /* GlimpseJava.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlimpseJava.h; sourceTree = "<group>"; };
-		7EA888101AAAB6DF00C6DBB3 /* GlimpseJavaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlimpseJavaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EA8880A1AAAB6DF00C6DBB3 /* KanjiVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiVM.h; sourceTree = "<group>"; };
+		7EA888101AAAB6DF00C6DBB3 /* KanjiVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KanjiVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA888161AAAB6DF00C6DBB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7EA888171AAAB6DF00C6DBB3 /* GlimpseJavaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlimpseJavaTests.swift; sourceTree = "<group>"; };
+		7EA888171AAAB6DF00C6DBB3 /* KanjiVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiVMTests.swift; sourceTree = "<group>"; };
+		7EA8882D1AAAB88800C6DBB3 /* jdk1.8.0_40.jdk */ = {isa = PBXFileReference; lastKnownFileType = folder; name = jdk1.8.0_40.jdk; path = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk; sourceTree = "<absolute>"; };
+		7EA8882F1AAAB8B900C6DBB3 /* JVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JVM.swift; sourceTree = "<group>"; };
+		7EA888341AAAD7C000C6DBB3 /* libjli.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjli.dylib; path = /Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/MacOS/libjli.dylib; sourceTree = "<absolute>"; };
+		7EA888361AAAD7EB00C6DBB3 /* javashim.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = javashim.c; sourceTree = "<group>"; };
+		7EB200521AADFDF900B256B3 /* JavaLang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaLang.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA888351AAAD7C000C6DBB3 /* libjli.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA888111AAAB6DF00C6DBB3 /* GlimpseJava.framework in Frameworks */,
+				7EA888111AAAB6DF00C6DBB3 /* KanjiVM.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,8 +64,8 @@
 		7EA887FB1AAAB6DF00C6DBB3 = {
 			isa = PBXGroup;
 			children = (
-				7EA888071AAAB6DF00C6DBB3 /* GlimpseJava */,
-				7EA888141AAAB6DF00C6DBB3 /* GlimpseJavaTests */,
+				7EA888071AAAB6DF00C6DBB3 /* KanjiVM */,
+				7EA888141AAAB6DF00C6DBB3 /* KanjiVMTests */,
 				7EA888061AAAB6DF00C6DBB3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,36 +73,41 @@
 		7EA888061AAAB6DF00C6DBB3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7EA888051AAAB6DF00C6DBB3 /* GlimpseJava.framework */,
-				7EA888101AAAB6DF00C6DBB3 /* GlimpseJavaTests.xctest */,
+				7EA888051AAAB6DF00C6DBB3 /* KanjiVM.framework */,
+				7EA888101AAAB6DF00C6DBB3 /* KanjiVMTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7EA888071AAAB6DF00C6DBB3 /* GlimpseJava */ = {
+		7EA888071AAAB6DF00C6DBB3 /* KanjiVM */ = {
 			isa = PBXGroup;
 			children = (
-				7EA8880A1AAAB6DF00C6DBB3 /* GlimpseJava.h */,
+				7EA8882F1AAAB8B900C6DBB3 /* JVM.swift */,
+				7EB200521AADFDF900B256B3 /* JavaLang.swift */,
+				7EA8880A1AAAB6DF00C6DBB3 /* KanjiVM.h */,
+				7EA888361AAAD7EB00C6DBB3 /* javashim.c */,
 				7EA888081AAAB6DF00C6DBB3 /* Supporting Files */,
 			);
-			path = GlimpseJava;
+			path = KanjiVM;
 			sourceTree = "<group>";
 		};
 		7EA888081AAAB6DF00C6DBB3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7EA888341AAAD7C000C6DBB3 /* libjli.dylib */,
+				7EA8882D1AAAB88800C6DBB3 /* jdk1.8.0_40.jdk */,
 				7EA888091AAAB6DF00C6DBB3 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		7EA888141AAAB6DF00C6DBB3 /* GlimpseJavaTests */ = {
+		7EA888141AAAB6DF00C6DBB3 /* KanjiVMTests */ = {
 			isa = PBXGroup;
 			children = (
-				7EA888171AAAB6DF00C6DBB3 /* GlimpseJavaTests.swift */,
+				7EA888171AAAB6DF00C6DBB3 /* KanjiVMTests.swift */,
 				7EA888151AAAB6DF00C6DBB3 /* Supporting Files */,
 			);
-			path = GlimpseJavaTests;
+			path = KanjiVMTests;
 			sourceTree = "<group>";
 		};
 		7EA888151AAAB6DF00C6DBB3 /* Supporting Files */ = {
@@ -109,16 +125,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA8880B1AAAB6DF00C6DBB3 /* GlimpseJava.h in Headers */,
+				7EA8880B1AAAB6DF00C6DBB3 /* KanjiVM.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		7EA888041AAAB6DF00C6DBB3 /* GlimpseJava */ = {
+		7EA888041AAAB6DF00C6DBB3 /* KanjiVM */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7EA8881B1AAAB6DF00C6DBB3 /* Build configuration list for PBXNativeTarget "GlimpseJava" */;
+			buildConfigurationList = 7EA8881B1AAAB6DF00C6DBB3 /* Build configuration list for PBXNativeTarget "KanjiVM" */;
 			buildPhases = (
 				7EA888001AAAB6DF00C6DBB3 /* Sources */,
 				7EA888011AAAB6DF00C6DBB3 /* Frameworks */,
@@ -129,14 +145,14 @@
 			);
 			dependencies = (
 			);
-			name = GlimpseJava;
-			productName = GlimpseJava;
-			productReference = 7EA888051AAAB6DF00C6DBB3 /* GlimpseJava.framework */;
+			name = KanjiVM;
+			productName = KanjiVM;
+			productReference = 7EA888051AAAB6DF00C6DBB3 /* KanjiVM.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7EA8880F1AAAB6DF00C6DBB3 /* GlimpseJavaTests */ = {
+		7EA8880F1AAAB6DF00C6DBB3 /* KanjiVMTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7EA8881E1AAAB6DF00C6DBB3 /* Build configuration list for PBXNativeTarget "GlimpseJavaTests" */;
+			buildConfigurationList = 7EA8881E1AAAB6DF00C6DBB3 /* Build configuration list for PBXNativeTarget "KanjiVMTests" */;
 			buildPhases = (
 				7EA8880C1AAAB6DF00C6DBB3 /* Sources */,
 				7EA8880D1AAAB6DF00C6DBB3 /* Frameworks */,
@@ -147,9 +163,9 @@
 			dependencies = (
 				7EA888131AAAB6DF00C6DBB3 /* PBXTargetDependency */,
 			);
-			name = GlimpseJavaTests;
-			productName = GlimpseJavaTests;
-			productReference = 7EA888101AAAB6DF00C6DBB3 /* GlimpseJavaTests.xctest */;
+			name = KanjiVMTests;
+			productName = KanjiVMTests;
+			productReference = 7EA888101AAAB6DF00C6DBB3 /* KanjiVMTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -169,7 +185,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7EA887FF1AAAB6DF00C6DBB3 /* Build configuration list for PBXProject "GlimpseJava" */;
+			buildConfigurationList = 7EA887FF1AAAB6DF00C6DBB3 /* Build configuration list for PBXProject "KanjiVM" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -181,8 +197,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7EA888041AAAB6DF00C6DBB3 /* GlimpseJava */,
-				7EA8880F1AAAB6DF00C6DBB3 /* GlimpseJavaTests */,
+				7EA888041AAAB6DF00C6DBB3 /* KanjiVM */,
+				7EA8880F1AAAB6DF00C6DBB3 /* KanjiVMTests */,
 			);
 		};
 /* End PBXProject section */
@@ -192,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA8882E1AAAB88800C6DBB3 /* jdk1.8.0_40.jdk in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,6 +226,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EB200531AADFDF900B256B3 /* JavaLang.swift in Sources */,
+				7EA888371AAAD7EB00C6DBB3 /* javashim.c in Sources */,
+				7EA888301AAAB8B900C6DBB3 /* JVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +236,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7EA888181AAAB6DF00C6DBB3 /* GlimpseJavaTests.swift in Sources */,
+				7EA888181AAAB6DF00C6DBB3 /* KanjiVMTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +245,7 @@
 /* Begin PBXTargetDependency section */
 		7EA888131AAAB6DF00C6DBB3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7EA888041AAAB6DF00C6DBB3 /* GlimpseJava */;
+			target = 7EA888041AAAB6DF00C6DBB3 /* KanjiVM */;
 			targetProxy = 7EA888121AAAB6DF00C6DBB3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -318,32 +338,47 @@
 		7EA8881C1AAAB6DF00C6DBB3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = GlimpseJava/Info.plist;
+				INFOPLIST_FILE = KanjiVM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jli";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/MacOS",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		7EA8881D1AAAB6DF00C6DBB3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = GlimpseJava/Info.plist;
+				INFOPLIST_FILE = KanjiVM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/jdk1.8.0_40.jdk/Contents/Home/jre/lib/jli";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/MacOS",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -361,7 +396,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GlimpseJavaTests/Info.plist;
+				INFOPLIST_FILE = KanjiVMTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -375,7 +410,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = GlimpseJavaTests/Info.plist;
+				INFOPLIST_FILE = KanjiVMTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -384,7 +419,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7EA887FF1AAAB6DF00C6DBB3 /* Build configuration list for PBXProject "GlimpseJava" */ = {
+		7EA887FF1AAAB6DF00C6DBB3 /* Build configuration list for PBXProject "KanjiVM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EA888191AAAB6DF00C6DBB3 /* Debug */,
@@ -393,21 +428,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7EA8881B1AAAB6DF00C6DBB3 /* Build configuration list for PBXNativeTarget "GlimpseJava" */ = {
+		7EA8881B1AAAB6DF00C6DBB3 /* Build configuration list for PBXNativeTarget "KanjiVM" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EA8881C1AAAB6DF00C6DBB3 /* Debug */,
 				7EA8881D1AAAB6DF00C6DBB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		7EA8881E1AAAB6DF00C6DBB3 /* Build configuration list for PBXNativeTarget "GlimpseJavaTests" */ = {
+		7EA8881E1AAAB6DF00C6DBB3 /* Build configuration list for PBXNativeTarget "KanjiVMTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7EA8881F1AAAB6DF00C6DBB3 /* Debug */,
 				7EA888201AAAB6DF00C6DBB3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
