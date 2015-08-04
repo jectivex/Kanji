@@ -8,19 +8,46 @@
 
 import Foundation.NSObjCRuntime // just for NSClassFromString
 
+public struct KanjiException: ErrorType {
+    public let message: String
+    public let className: String
+    public let _domain = "Kanji"
+    public let _code = 0
+}
+
+public enum KanjiErrors : ErrorType, CustomDebugStringConvertible {
+    case Exception(KanjiException)
+    case System
+    case NotFound(String)
+    case General(String)
+
+    public var debugDescription: String {
+        switch self {
+        case .Exception(let ex): return "Exception: \(ex)"
+        case .System: return "System"
+        case .NotFound(let str): return "NotFound: \(str)"
+        case .General(let str): return "General: \(str)"
+        }
+    }
+}
+
 public final class JVM {
-    public static var sharedJVM: JVM? = JVM()
+    /// The singleton shared JVM: it must be manually set once and only once for a process, as JNI does not support mutliple JVMs
+    public static var sharedJVM: JVM! {
+        willSet {
+            if sharedJVM != nil {
+                fatalError("Attempt the set shared JVM once it has been created; multiple JVMs are not supported by JNI")
+            }
+        }
+    }
 
     let jvm: UnsafeMutablePointer<JavaVM>
     let env: UnsafeMutablePointer<JNIEnv>
 
-    /// The list of currently active catch blocks
-    var catchers: [(jthrowable)->Void] = []
-
     /// The static list of module loaders against which dynamic loading will be attempted
     public static var moduleLoaders: [AnyClass] = [JVM.self]
 
-    public init?(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (true, false, false), checkJNI: Bool = true, profile: Bool = false, options: [String] = []) {
+    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (true, false, false), checkJNI: Bool = true, profile: Bool = false, options: [String] = []) throws {
 
         var opts: [String] = []
         if verbose.gc { opts += ["-verbose:gc"] }
@@ -32,9 +59,9 @@ public final class JVM {
         if profile { opts += ["-Xprof"] }
         // if diagnostics { opts += ["-Xdiag"] } // “Unrecognized option: -Xdiag”
         if let maxmemory = maxmemory { opts += ["-Xmx" + maxmemory] } // if too small: “Too small initial heap”
-        if let classpath = classpath { opts += ["-Djava.class.path=" + join(";", classpath)] }
-        if let libpath = libpath { opts += ["-Djava.library.path=" + join(";", libpath)] }
-        if let extpath = extpath { opts += ["-Djava.ext.dirs=" + join(";", extpath)] }
+        if let classpath = classpath { opts += ["-Djava.class.path=" + (":").join(classpath)] }
+        if let libpath = libpath { opts += ["-Djava.library.path=" + (":").join(libpath)] }
+        if let extpath = extpath { opts += ["-Djava.ext.dirs=" + (":").join(extpath)] }
 
         opts += options // tack on any additional options
 
@@ -44,16 +71,15 @@ public final class JVM {
         jargs.version = JNI_VERSION_1_8
         jargs.nOptions = jint(opts.count)
 
-        var jopts = UnsafeMutablePointer<JavaVMOption>.alloc(opts.count)
-        for (i, copt) in enumerate(copts) {
+        let jopts = UnsafeMutablePointer<JavaVMOption>.alloc(opts.count)
+        for (i, copt) in copts.enumerate() {
             jopts[i].optionString = copt.buffer
         }
-
 
         jargs.options = jopts
 
         var pargs: UnsafePointer<JavaVMInitArgs> = withUnsafePointer(&jargs, { $0 })
-        let argcount = JNI_GetDefaultJavaVMInitArgs(&pargs)
+        _ = JNI_GetDefaultJavaVMInitArgs(&pargs)
 
         var pvm = UnsafeMutablePointer<JavaVM>()
         var penv = UnsafeMutablePointer<Void>(JNIEnv())
@@ -63,53 +89,77 @@ public final class JVM {
         self.env = UnsafeMutablePointer<JNIEnv>(penv)
         self.jvm = pvm
 
-        if success != JNI_OK { return nil }
-        assert(success == JNI_OK, "failed to load JVM: \(success)")
+        if success != JNI_OK {
+            throw KanjiErrors.System
+        }
 
-        let version = JNI_GetVersion(env)
-        debugPrintln("created JVM version \(version) with options: \(opts)")
+        debugPrint("created JVM version \(JNI_GetVersion(env)) with options: \(opts)")
     }
 
     deinit {
-        println("destroying JavaVM")
+        print("destroying JavaVM")
         let destroyed = JavaVM_DestroyJavaVM(jvm)
         assert(destroyed == JNI_OK)
     }
 
-    /// Cached Class.getName call; we use this a lot for dynamic object instantiation
-    private lazy var classGetName: jmethodID = {
-        let clscls = self.findClass("java/lang/Class")
-        if self.exceptionCheck() { self.printStackTrace(); self.fatalError("could not load java.lang.Class") }
-        let getName: jmethodID = self.getMethodID(clscls, name: "getName", sig: "()Ljava/lang/String;")
-        if self.exceptionCheck() { self.printStackTrace(); self.fatalError("failed to find method id for class name") }
-        return getName
-        }()
-
-
-    /// Converts the value to nil if an exception occurred
-    private func checked<T>(value: T)->T? {
-        if exceptionCheck() != 0 {
-            let exception = exceptionOccurred()
-            // print it to the console for debugging
-            printStackTrace()
-            exceptionClear() // always clear it for the next run
-
-            // now tell all the exception handlers that an exception happened
-            for catcher in catchers { catcher(exception) }
-
-            return nil // nil indicates a problem
+    /// Create a KanjiException wrapping the current Java exception if it exists and then clear it
+    public func currentException() -> KanjiException? {
+        if !exceptionCheck() {
+            return nil
         }
 
-        return value
+        let throwable = exceptionOccurred()
+        exceptionClear() // immediately clear the exception
+
+        let tclass = self.findClass("java/lang/Throwable")
+        if exceptionCheck() {
+            // TODO: could not find Throwble; need to short-circut
+            fatalError("Could not find throwable class")
+        }
+
+        var msg = "No exception message"
+        do {
+            let getMessage = try invoker(tclass, name: "getMessage", returns: JObjectType("java/lang/String"))(inst: throwable)()
+            if getMessage != nil {
+                msg = String.fromCString(getStringUTFChars(getMessage, isCopy: nil)) ?? "Null exeption message"
+            }
+        } catch {
+            msg = "Could not call getMessage on Throwable"
+        }
+
+        let cclass = self.findClass("java/lang/Class")
+        if exceptionCheck() {
+            // TODO: could not find Throwble; need to short-circut
+            exceptionClear()
+        }
+
+        var nam = "Unknown exception class"
+        do {
+            let cls = try invoker(tclass, name: "getClass", returns: JObjectType("java/lang/Class"))(inst: throwable)()
+            let getName = try invoker(cclass, name: "getName", returns: JObjectType("java/lang/String"))(inst: cls)()
+            if getName != nil {
+                nam = String.fromCString(getStringUTFChars(getName, isCopy: nil)) ?? "Null exeption class name"
+            }
+        } catch {
+            nam = "Could not call getName on Throwable class"
+        }
+
+        let exception = KanjiException(message: msg, className: nam)
+        return exception
     }
 
-    /// Performs the given operation with the specified exception catch clause
-    /// FIXME: Not thread safe!
-    public func try<T>(@autoclosure f: ()->T, catch: (jthrowable)->Void)->T? {
-        catchers += [catch]
-        let value = checked(f())
-        let removed = catchers.removeLast()
-        return value
+    public func throwException() throws {
+        if let ex = currentException() {
+            throw ex
+        }
+    }
+
+    /// Call the given function, throwing an exception if any occurred
+    public func checked<T>(@autoclosure f: () throws -> T) throws -> T {
+        try throwException()
+        let x = try f()
+        try throwException()
+        return x
     }
 
     public func printStackTrace() {
@@ -118,8 +168,12 @@ public final class JVM {
 }
 
 /// Extension on jboolean (i.e., UInt8) that allows it to be treated like a regular bool
-extension jboolean: BooleanType {
+extension jboolean: BooleanType, BooleanLiteralConvertible {
     init<T : BooleanType>(_ value: T) {
+        self = value ? 1 : 0
+    }
+
+    public init(booleanLiteral value: Bool) {
         self = value ? 1 : 0
     }
 
@@ -145,18 +199,94 @@ class CString {
     }
 }
 
+public extension jarray {
+    public func jarrayToArray<T: JPrimitive>() -> [T]? {
+        if self == nil { return nil }
+        return T.getArray(JVM.sharedJVM)(array: self)
+    }
+}
+
+public extension jobject {
+    public func jarrayToArray<T: JavaObject>(type: T.Type) -> [T?]? {
+        if self == nil { return nil }
+        return T.getArray(JVM.sharedJVM)(array: self)
+    }
+}
+
+public extension SequenceType where Self.Generator.Element : JPrimitive {
+    public func arrayToJArray() -> Self.Generator.Element.ArrayType {
+        return Self.Generator.Element.createArray(JVM.sharedJVM)(elements: Array(self))
+    }
+}
+
+public extension SequenceType where Self.Generator.Element : JavaObject {
+    public func arrayToJArray() -> jobjectArray {
+        return Self.Generator.Element.createArray(JVM.sharedJVM)(elements: Array(self).map({ $0 as Self.Generator.Element? }))
+    }
+}
+
+public protocol FlatMappable {
+    typealias T
+    func flatMap<U>(@noescape f: (T) -> U?) -> U?
+}
+
+extension Optional : FlatMappable { }
+
+public extension SequenceType where Self.Generator.Element : FlatMappable, Self.Generator.Element.T : JavaObject {
+    public func arrayToJArray() -> jobjectArray {
+        let elements = Array(self).map({ $0.flatMap({ $0 as Self.Generator.Element.T }) })
+        return Self.Generator.Element.T.createArray(JVM.sharedJVM)(elements: elements)
+    }
+}
+
 public protocol JSig {
-    var sig: String { get }
+    var jsig: String { get }
 }
 
 public protocol JType: JSig {
-    typealias U
+    typealias JNIType
 
-    func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->U
+//    static var jniType : Any { get }
+
+//    static var proto: Self { get }
+    static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> JNIType
+    static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> JNIType
+    static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> JNIType
 }
 
-public struct JObject: JType {
-    public var sig: String { return "L" + className + ";" }
+/// JVoid return type; unlike other primitives (like jboolean), Void cannot be extended
+public struct JVoid: JType {
+    public typealias JNIType = Void
+    public var jsig: String { return "V" }
+    public static let jniType = JVoid()
+
+    private init() {
+    }
+
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> JNIType {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callVoidMethodV(obj, methodID: mid, args: args))
+    }
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> JNIType {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticVoidMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> JNIType {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualVoidMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+}
+
+public struct JObjectType: JType {
+    public typealias JNIType = jobject
+
+    public var jsig: String { return "L" + className + ";" }
     public let className: String
 
     public init() {
@@ -167,639 +297,1332 @@ public struct JObject: JType {
         self.className = className
     }
 
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jobject {
-        return jvm.callObjectMethodV(obj, methodID: mid, args: args)
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> JNIType {
+        // TODO: hide the method name somewhere so we can print it out for debugging
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callObjectMethodV(obj, methodID: mid, args: args))
     }
-    
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> JNIType {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticObjectMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> JNIType {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualObjectMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func callInit(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jobject {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        let obj = try jvm.checked(jvm.newObjectV(cls, methodID: mid, args: args))
+        if obj == nil {
+            throw KanjiErrors.General("constructor returned null")
+        }
+        return obj
+    }
 }
 
 /// A JNI array that contains other elements
 public struct JArray: JType {
-    public var sig: String { return "[" + elementType.sig }
+    public typealias JNIType = jarray
+    public var jsig: String { return "[" + elementType.jsig }
     public let elementType: JSig
 
-    public init(_ elementType: JSig = JObject()) {
+    public init(_ elementType: JSig = JObjectType()) {
         self.elementType = elementType
     }
 
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jobjectArray {
-        return jvm.callObjectMethodV(obj, methodID: mid, args: args)
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> JNIType {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callObjectMethodV(obj, methodID: mid, args: args))
     }
     
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> JNIType {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticObjectMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> JNIType {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualObjectMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
 }
 
-/// An unparameterized JType instance that provides a static singleton `type` property
+/// A primitive that can be used as a JNI return value; the protocol will be implemented by extending the native return values themselves
 public protocol JPrimitive: JType {
-    static var type: Self { get }
+    typealias ArrayType
+
+    static var jniType: JNIType { get }
+    static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> Self
+    static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> Self
+    static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: Self)
+    static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: Self)
+    static func createArray(jvm: JVM)(elements: [Self]) -> ArrayType
+    static func getArray(jvm: JVM)(array: jarray) -> [Self]?
 }
 
-public struct JVoid: JPrimitive {
-    public let sig = "V"
-    public static let type = JVoid()
+extension jboolean: JPrimitive {
+    public typealias ArrayType = jbooleanArray
+    public var jsig: String { return "Z" }
+    public static let jniType = jboolean()
 
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer) {
-        return jvm.callVoidMethodV(obj, methodID: mid, args: args)
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> jboolean {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callBooleanMethodV(obj, methodID: mid, args: args))
+    }
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jboolean {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticBooleanMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> jboolean {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualBooleanMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> jboolean {
+        return jvm.getBooleanField(obj, fieldID: fld)
+    }
+
+    public static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> jboolean {
+        return jvm.getStaticBooleanField(cls, fieldID: fld)
+    }
+
+    public static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: jboolean) {
+        return jvm.setBooleanField(obj, fieldID: fld, val: val)
+    }
+
+    public static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: jboolean) {
+        return jvm.setStaticBooleanField(cls, fieldID: fld, val: val)
+    }
+
+    public static func createArray(jvm: JVM)(elements: [jboolean]) -> ArrayType {
+        let size = jsize(elements.count)
+        let array = jvm.newBooleanArray(size)
+        elements.withUnsafeBufferPointer { ptr in
+            jvm.setBooleanArrayRegion(array, start: jsize(0), len: size, buf: ptr.baseAddress)
+        }
+        return array
+    }
+
+    public static func getArray(jvm: JVM)(array: ArrayType) -> [jboolean]? {
+        if array == nil { return nil }
+        var isCopy: jboolean = jboolean()
+        let src = jvm.getBooleanArrayElements(array, isCopy: &isCopy)
+        var dst: [jboolean] = []
+        for i in 0..<jvm.getArrayLength(array) {
+            dst.append(src[Int(i)])
+        }
+        jvm.releaseBooleanArrayElements(array, elems: src, mode: JNI_ABORT) // do not copy back elements
+        return dst
+    }
+}
+
+extension jbyte: JPrimitive {
+    public var jsig: String { return "B" }
+    public static let jniType = jbyte()
+
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> jbyte {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callByteMethodV(obj, methodID: mid, args: args))
+    }
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jbyte {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticByteMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> jbyte {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualByteMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> jbyte {
+        return jvm.getByteField(obj, fieldID: fld)
+    }
+
+    public static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> jbyte {
+        return jvm.getStaticByteField(cls, fieldID: fld)
+    }
+
+    public static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: jbyte) {
+        return jvm.setByteField(obj, fieldID: fld, val: val)
+    }
+
+    public static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: jbyte) {
+        return jvm.setStaticByteField(cls, fieldID: fld, val: val)
+    }
+
+    public static func createArray(jvm: JVM)(elements: [jbyte]) -> jbyteArray {
+        let size = jsize(elements.count)
+        let array = jvm.newByteArray(size)
+        elements.withUnsafeBufferPointer { ptr in
+            jvm.setByteArrayRegion(array, start: jsize(0), len: size, buf: ptr.baseAddress)
+        }
+        return array
+    }
+
+    public static func getArray(jvm: JVM)(array: jbyteArray) -> [jbyte]? {
+        if array == nil { return nil }
+        var isCopy: jboolean = jboolean()
+        let src = jvm.getByteArrayElements(array, isCopy: &isCopy)
+        var dst: [jbyte] = []
+        for i in 0..<jvm.getArrayLength(array) {
+            dst.append(src[Int(i)])
+        }
+        jvm.releaseByteArrayElements(array, elems: src, mode: JNI_ABORT) // do not copy back elements
+        return dst
+    }
+}
+
+extension jchar: JPrimitive {
+    public var jsig: String { return "C" }
+    public static let jniType = jchar()
+
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> jchar {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callCharMethodV(obj, methodID: mid, args: args))
+    }
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jchar {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticCharMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> jchar {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualCharMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> jchar {
+        return jvm.getCharField(obj, fieldID: fld)
+    }
+
+    public static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> jchar {
+        return jvm.getStaticCharField(cls, fieldID: fld)
+    }
+
+    public static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: jchar) {
+        return jvm.setCharField(obj, fieldID: fld, val: val)
+    }
+
+    public static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: jchar) {
+        return jvm.setStaticCharField(cls, fieldID: fld, val: val)
+    }
+
+    public static func createArray(jvm: JVM)(elements: [jchar]) -> jcharArray {
+        let size = jsize(elements.count)
+        let array = jvm.newCharArray(size)
+        elements.withUnsafeBufferPointer { ptr in
+            jvm.setCharArrayRegion(array, start: jsize(0), len: size, buf: ptr.baseAddress)
+        }
+        return array
+    }
+
+    public static func getArray(jvm: JVM)(array: jcharArray) -> [jchar]? {
+        if array == nil { return nil }
+        var isCopy: jboolean = jboolean()
+        let src = jvm.getCharArrayElements(array, isCopy: &isCopy)
+        var dst: [jchar] = []
+        for i in 0..<jvm.getArrayLength(array) {
+            dst.append(src[Int(i)])
+        }
+        jvm.releaseCharArrayElements(array, elems: src, mode: JNI_ABORT) // do not copy back elements
+        return dst
     }
 
 }
 
-public struct JLong: JPrimitive {
-    public let sig = "J"
-    public static let type = JLong()
+extension jshort: JPrimitive {
+    public var jsig: String { return "S" }
+    public static let jniType = jshort()
 
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jlong {
-        return jvm.callLongMethodV(obj, methodID: mid, args: args)
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> jshort {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callShortMethodV(obj, methodID: mid, args: args))
+    }
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jshort {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticShortMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> jshort {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualShortMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> jshort {
+        return jvm.getShortField(obj, fieldID: fld)
+    }
+
+    public static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> jshort {
+        return jvm.getStaticShortField(cls, fieldID: fld)
+    }
+
+    public static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: jshort) {
+        return jvm.setShortField(obj, fieldID: fld, val: val)
+    }
+
+    public static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: jshort) {
+        return jvm.setStaticShortField(cls, fieldID: fld, val: val)
+    }
+
+    public static func createArray(jvm: JVM)(elements: [jshort]) -> jshortArray {
+        let size = jsize(elements.count)
+        let array = jvm.newShortArray(size)
+        elements.withUnsafeBufferPointer { ptr in
+            jvm.setShortArrayRegion(array, start: jsize(0), len: size, buf: ptr.baseAddress)
+        }
+        return array
+    }
+
+    public static func getArray(jvm: JVM)(array: jshortArray) -> [jshort]? {
+        if array == nil { return nil }
+        var isCopy: jboolean = jboolean()
+        let src = jvm.getShortArrayElements(array, isCopy: &isCopy)
+        var dst: [jshort] = []
+        for i in 0..<jvm.getArrayLength(array) {
+            dst.append(src[Int(i)])
+        }
+        jvm.releaseShortArrayElements(array, elems: src, mode: JNI_ABORT) // do not copy back elements
+        return dst
     }
 
 }
 
-public struct JInt: JPrimitive {
-    public let sig = "I"
-    public static let type = JInt()
+extension jint: JPrimitive {
+    public var jsig: String { return "I" }
+    public static let jniType = jint()
 
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jint {
-        return jvm.callIntMethodV(obj, methodID: mid, args: args)
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> jint {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callIntMethodV(obj, methodID: mid, args: args))
     }
 
-    // TODO: add these to the interface
-    public func callStatic(jvm: JVM, cls: jclass, mid: jmethodID, args: CVaListPointer)->jint {
-        return jvm.callStaticIntMethodV(cls, methodID: mid, args: args)
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jint {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticIntMethodV(cls, methodID: mid, args: args))
     }
 
-    public func field(jvm: JVM, obj: jobject, fld: jfieldID)->jint {
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> jint {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualIntMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> jint {
         return jvm.getIntField(obj, fieldID: fld)
     }
 
-    public func fieldStatic(jvm: JVM, cls: jclass, fld: jfieldID)->jint {
+    public static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> jint {
         return jvm.getStaticIntField(cls, fieldID: fld)
     }
 
-    // TODO: array access here?
-}
-
-public struct JBoolean: JPrimitive {
-    public let sig = "Z"
-    public static let type = JBoolean()
-
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jboolean {
-        return jvm.callBooleanMethodV(obj, methodID: mid, args: args)
+    public static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: jint) {
+        return jvm.setIntField(obj, fieldID: fld, val: val)
     }
 
-}
-
-public struct JByte: JPrimitive {
-    public let sig = "B"
-    public static let type = JByte()
-
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jbyte {
-        return jvm.callByteMethodV(obj, methodID: mid, args: args)
+    public static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: jint) {
+        return jvm.setStaticIntField(cls, fieldID: fld, val: val)
     }
 
-}
-
-public struct JChar: JPrimitive {
-    public let sig = "C"
-    public static let type = JChar()
-
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jchar {
-        return jvm.callCharMethodV(obj, methodID: mid, args: args)
-    }
-
-}
-
-public struct JShort: JPrimitive {
-    public let sig = "S"
-    public static let type = JShort()
-
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jshort {
-        return jvm.callShortMethodV(obj, methodID: mid, args: args)
-    }
-
-}
-
-public struct JFloat: JPrimitive {
-    public let sig = "F"
-    public static let type = JFloat()
-
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jfloat {
-        return jvm.callFloatMethodV(obj, methodID: mid, args: args)
-    }
-
-}
-
-public struct JDouble: JPrimitive {
-    public let sig = "D"
-    public static let type = JDouble()
-
-    public func call(jvm: JVM, obj: jobject, mid: jmethodID, args: CVaListPointer)->jdouble {
-        return jvm.callDoubleMethodV(obj, methodID: mid, args: args)
-    }
-
-}
-
-
-/// Marker interface for all Java objects
-public protocol JavaObject: JSig, Printable, Hashable, Equatable {
-    /// The Java class name for this type
-    static func javaClassName()->String
-
-    /// Instantiate this object by wrapping a pre-existing JNI jobject
-    init(jni: jobject)
-
-    /// Returns the underlying JNI jobject instance
-    var jni: jobject { get }
-}
-
-
-/// Module wrapper instantiation helpers
-public extension JVM {
-
-    /// Constructs this instance with the most-derived known Swift wrapper class
-    public func construct<E: JavaObject>(jni: jobject)->E {
-        // use the list of loaders for relative wrapper instantiation; also add in E's type if it is an Objective-C type
-        // TODO: what if E is a protocol?
-        var loaders = JVM.moduleLoaders
-        if let etype: AnyClass = E.self as? AnyClass { loaders += [etype] }
-
-        // walk up the inheritance hierarchy until we find a class name we know how to instantiate
-        for var jc = getObjectClass(jni); jc != nil; jc = getSuperclass(jc) {
-            if exceptionCheck() { printStackTrace(); fatalError("failed to access class") }
-
-            let clsName = callObjectMethodA(jc, methodID: classGetName, args: nil)
-            if exceptionCheck() { printStackTrace(); fatalError("could not call Class.getName()") }
-
-            if let className = String.fromCString(getStringUTFChars(clsName, isCopy: nil)) {
-
-                // the wrapped class name is simply the package with "." replaced by "$" and prefixed with the available module loaders
-                let wClassName = join("$", split(className, isSeparator: { $0 == "." }))
-
-                for loader in loaders {
-                    if let prefix = split(toString(loader), isSeparator: { $0 == "." }).first {
-                        let moduleWrapper = prefix + "." + wClassName
-
-                        // TODO: it would be nice to instead use objc_getClass so we don't need to have any dependencies on Foundation, but it appears that objc_getClass requires the mangled class names, whereas NSClassFromString automatically demangles for us
-                        if let moduleClass: AnyClass = NSClassFromString(moduleWrapper) {
-                            if let moduleJava = moduleClass as? E.Type {
-                                return moduleJava(jni: jni) // found the wrapper class! construct it with the JNI instance
-                            } else {
-                                // we found the module class, but it wasn't a Java object!
-                                fatalError("local module class «\(moduleClass)» was not an instance of the expected type «\(E.self)»")
-                            }
-                        }
-                    }
-                }
-            }
+    public static func createArray(jvm: JVM)(elements: [jint]) -> jintArray {
+        let size = jsize(elements.count)
+        let array = jvm.newIntArray(size)
+        elements.withUnsafeBufferPointer { ptr in
+            jvm.setIntArrayRegion(array, start: jsize(0), len: size, buf: ptr.baseAddress)
         }
+        return array
+    }
 
-        // fall back to non-dynamic instantiation
-        return E(jni: jni) // TODO: what about protocol/interface types?
+    public static func getArray(jvm: JVM)(array: jintArray) -> [jint]? {
+        if array == nil { return nil }
+        var isCopy: jboolean = jboolean()
+        let src = jvm.getIntArrayElements(array, isCopy: &isCopy)
+        var dst: [jint] = []
+        for i in 0..<jvm.getArrayLength(array) {
+            dst.append(src[Int(i)])
+        }
+        jvm.releaseIntArrayElements(array, elems: src, mode: JNI_ABORT) // do not copy back elements
+        return dst
     }
 
 }
+
+extension jlong: JPrimitive {
+    public var jsig: String { return "J" }
+    public static let jniType = jlong()
+
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> jlong {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callLongMethodV(obj, methodID: mid, args: args))
+    }
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jlong {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticLongMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> jlong {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualLongMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> jlong {
+        return jvm.getLongField(obj, fieldID: fld)
+    }
+
+    public static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> jlong {
+        return jvm.getStaticLongField(cls, fieldID: fld)
+    }
+
+    public static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: jlong) {
+        return jvm.setLongField(obj, fieldID: fld, val: val)
+    }
+
+    public static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: jlong) {
+        return jvm.setStaticLongField(cls, fieldID: fld, val: val)
+    }
+
+    public static func createArray(jvm: JVM)(elements: [jlong]) -> jlongArray {
+        let size = jsize(elements.count)
+        let array = jvm.newLongArray(size)
+        elements.withUnsafeBufferPointer { ptr in
+            jvm.setLongArrayRegion(array, start: jsize(0), len: size, buf: ptr.baseAddress)
+        }
+        return array
+    }
+
+    public static func getArray(jvm: JVM)(array: jlongArray) -> [jlong]? {
+        if array == nil { return nil }
+        var isCopy: jboolean = jboolean()
+        let src = jvm.getLongArrayElements(array, isCopy: &isCopy)
+        var dst: [jlong] = []
+        for i in 0..<jvm.getArrayLength(array) {
+            dst.append(src[Int(i)])
+        }
+        jvm.releaseLongArrayElements(array, elems: src, mode: JNI_ABORT) // do not copy back elements
+        return dst
+    }
+
+}
+
+extension jfloat: JPrimitive {
+    public var jsig: String { return "F" }
+    public static let jniType = jfloat()
+
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> jfloat {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callFloatMethodV(obj, methodID: mid, args: args))
+    }
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jfloat {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticFloatMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> jfloat {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualFloatMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> jfloat {
+        return jvm.getFloatField(obj, fieldID: fld)
+    }
+
+    public static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> jfloat {
+        return jvm.getStaticFloatField(cls, fieldID: fld)
+    }
+
+    public static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: jfloat) {
+        return jvm.setFloatField(obj, fieldID: fld, val: val)
+    }
+
+    public static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: jfloat) {
+        return jvm.setStaticFloatField(cls, fieldID: fld, val: val)
+    }
+
+    public static func createArray(jvm: JVM)(elements: [jfloat]) -> jfloatArray {
+        let size = jsize(elements.count)
+        let array = jvm.newFloatArray(size)
+        elements.withUnsafeBufferPointer { ptr in
+            jvm.setFloatArrayRegion(array, start: jsize(0), len: size, buf: ptr.baseAddress)
+        }
+        return array
+    }
+
+    public static func getArray(jvm: JVM)(array: jfloatArray) -> [jfloat]? {
+        if array == nil { return nil }
+        var isCopy: jboolean = jboolean()
+        let src = jvm.getFloatArrayElements(array, isCopy: &isCopy)
+        var dst: [jfloat] = []
+        for i in 0..<jvm.getArrayLength(array) {
+            dst.append(src[Int(i)])
+        }
+        jvm.releaseFloatArrayElements(array, elems: src, mode: JNI_ABORT) // do not copy back elements
+        return dst
+    }
+
+}
+
+extension jdouble: JPrimitive {
+    public var jsig: String { return "D" }
+    public static let jniType = jdouble()
+
+    public static func call(jvm: JVM)(mid: jmethodID)(obj: jobject)(args: CVaListPointer) throws -> jdouble {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callDoubleMethodV(obj, methodID: mid, args: args))
+    }
+
+    public static func callStatic(jvm: JVM)(mid: jmethodID)(cls: jclass)(args: CVaListPointer) throws -> jdouble {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        return try jvm.checked(jvm.callStaticDoubleMethodV(cls, methodID: mid, args: args))
+    }
+
+    public static func callNonvirtual(jvm: JVM)(mid: jmethodID)(cls: jclass)(obj: jobject)(args: CVaListPointer) throws -> jdouble {
+        if mid == nil { throw KanjiErrors.NotFound("Method") }
+        if cls == nil { throw KanjiErrors.NotFound("Class") }
+        if obj == nil { throw KanjiErrors.NotFound("Object") }
+        return try jvm.checked(jvm.callNonvirtualDoubleMethodV(obj, clazz: cls, methodID: mid, args: args))
+    }
+
+    public static func getField(jvm: JVM)(fld: jfieldID)(obj: jobject) -> jdouble {
+        return jvm.getDoubleField(obj, fieldID: fld)
+    }
+
+    public static func getStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass) -> jdouble {
+        return jvm.getStaticDoubleField(cls, fieldID: fld)
+    }
+
+    public static func setField(jvm: JVM)(fld: jfieldID)(obj: jobject)(val: jdouble) {
+        return jvm.setDoubleField(obj, fieldID: fld, val: val)
+    }
+
+    public static func setStaticField(jvm: JVM)(fld: jfieldID)(cls: jclass)(val: jdouble) {
+        return jvm.setStaticDoubleField(cls, fieldID: fld, val: val)
+    }
+
+    public static func createArray(jvm: JVM)(elements: [jdouble]) -> jdoubleArray {
+        let size = jsize(elements.count)
+        let array = jvm.newDoubleArray(size)
+        elements.withUnsafeBufferPointer { ptr in
+            jvm.setDoubleArrayRegion(array, start: jsize(0), len: size, buf: ptr.baseAddress)
+        }
+        return array
+    }
+
+    public static func getArray(jvm: JVM)(array: jdoubleArray) -> [jdouble]? {
+        if array == nil { return nil }
+        var isCopy: jboolean = jboolean()
+        let src = jvm.getDoubleArrayElements(array, isCopy: &isCopy)
+        var dst: [jdouble] = []
+        for i in 0..<jvm.getArrayLength(array) {
+            dst.append(src[Int(i)])
+        }
+        jvm.releaseDoubleArrayElements(array, elems: src, mode: JNI_ABORT) // do not copy back elements
+        return dst
+    }
+
+}
+
+/// A holder for an underlying `jobject` instance
+public protocol JRef {
+    /// Returns the underlying JNI jobject instance
+    var jobj: jobject { get }
+}
+
+extension jobject : JRef {
+    /// A jobject is itself a JRef
+    public var jobj: jobject { return self }
+
+}
+
+extension JRef {
+
+    /// Perform an operation within a monitor enter/exit block
+    public func synchronized<T>(f: () throws -> T) rethrows -> T {
+        let jvm = JVM.sharedJVM
+        jvm.monitorEnter(jobj)
+        defer { jvm.monitorExit(jobj) }
+        return try f()
+    }
+}
+
+// FIXME: this sort of works, but it doesn't support protocol return types
+///// Module wrapper instantiation helpers
+//public extension JVM {
+//
+//    /// Cached Class.getName call; we use this a lot for dynamic object instantiation
+//    private lazy var classGetName: jmethodID = {
+//        let clscls = self.findClass("java/lang/Class")
+//        if self.exceptionCheck() { self.printStackTrace(); fatalError("could not load java.lang.Class") }
+//        let getName: jmethodID = self.getMethodID(clscls, name: "getName", sig: "()Ljava/lang/String;")
+//        if self.exceptionCheck() { self.printStackTrace(); fatalError("failed to find method id for class name") }
+//        return getName
+//        }()
+//
+//
+//    /// Constructs this instance with the most-derived known Swift wrapper class
+//    public func construct<E: JavaObject>(jobj: jobject) -> E? {
+//        // use the list of loaders for relative wrapper instantiation; also add in E's type if it is an Objective-C type
+//        // TODO: what if E is a protocol?
+//        var loaders = JVM.moduleLoaders
+//        if let etype: AnyClass = E.self as? AnyClass { loaders += [etype] }
+//
+//        // a null object returns nil
+//        if jobj == nil {
+//            return nil
+//        }
+//
+//        // walk up the inheritance hierarchy until we find a class name we know how to instantiate
+//        for var jc = getObjectClass(jobj); jc != nil; jc = getSuperclass(jc) {
+//            if exceptionCheck() { printStackTrace(); fatalError("failed to access class") }
+//
+//            let clsName = callObjectMethodA(jc, methodID: classGetName, args: nil)
+//            if exceptionCheck() { printStackTrace(); fatalError("could not call Class.getName()") }
+//
+//            if let className = String.fromCString(getStringUTFChars(clsName, isCopy: nil)) {
+//
+//                // the wrapped class name is simply the package with "." replaced by "$" and prefixed with the available module loaders
+//                let wClassName = ("$").join(split(className.characters, isSeparator: { $0 == "." }).map({ String($0) }))
+//
+//
+//                for loader in loaders {
+//                    if let prefix = split(String(loader).characters, isSeparator: { $0 == "." }).first {
+//                        let moduleWrapper = String(prefix) + "." + wClassName
+//
+//                        // TODO: it would be nice to instead use objc_getClass so we don't need to have any dependencies on Foundation, but it appears that objc_getClass requires the mangled class names, whereas NSClassFromString automatically demangles for us
+//                        if let moduleClass: AnyClass = NSClassFromString(moduleWrapper) {
+//                            if let moduleJava = moduleClass as? E.Type {
+//                                return moduleJava.init(jobj: jobj) // found the wrapper class! construct it with the JNI instance
+//                            } else {
+//                                // we found the module class, but it wasn't a Java object!
+//                                fatalError("local module class «\(moduleClass)» was not an instance of the expected type «\(E.self)»")
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        // fall back to non-dynamic instantiation
+//        return E(jobj: jobj) // TODO: what about protocol/interface types?
+//    }
+//}
 
 /// JNI Array helpers
-public extension JVM {
+//public extension JVM {
+//
+//    func toArray<E: JavaObject>(count: jsize, _ sarr: [E?])->jobjectArray {
+//        let clazz = findClass(E.javaClassName)
+//        let jarr = newObjectArray(count, clazz: clazz, `init`: nil)
+//        return jarr
+//    }
+//
+//    func fromArray<E: JavaObject>(jarr: jobjectArray)->[E?] {
+//        return (0..<Int(getArrayLength(jarr))).map { i in
+//            self.construct(self.getObjectArrayElement(jarr, index: jsize(i))) // TODO: check for subclass of E
+//        }
+//    }
+//}
 
-    func toArray<E: JavaObject>(sarr: [E])->jobjectArray {
-        let clazz = findClass(E.javaClassName())
-        let jarr = newObjectArray(jsize(sarr.count), clazz: clazz, `init`: nil)
-        return jarr
-    }
 
-    func fromArray<E: JavaObject>(jarr: jobjectArray)->[E] {
-        return (0..<Int(getArrayLength(jarr))).map { i in
-            self.construct(self.getObjectArrayElement(jarr, index: jsize(i))) // TODO: check for subclass of E
-        }
-    }
-
+private enum Result<T> {
+    case Success(T)
+    case Failure(ErrorType)
 }
 
+/// Helper function until the official withVaList function is annotated with `rethrows`
+func withThrowableVaList<R>(args: [CVarArgType], @noescape _ f: CVaListPointer throws -> R) throws -> R {
+    let res: Result<R> = withVaList(args, {
+        do {
+            return .Success(try f($0))
+        } catch {
+            return .Failure(error)
+        }
+    })
+
+    switch res {
+    case .Success(let val): return val
+    case .Failure(let err): throw err
+    }
+}
 
 /// JNI Invocation helpers
 public extension JVM {
     /// Returns the JNI method signature for the given return type and argument types
-    static func jsig<T: JType>(rtype: T, args: [JSig])->String {
-        return "(" + reduce(args, "", { $0 + $1.sig }) + ")" + rtype.sig
+    static func jsig<T: JType>(returns: T, args: [JSig])->String {
+        return "(" + args.reduce("", combine: { $0 + $1.jsig }) + ")" + returns.jsig
     }
 
+    private func methodName(var name: String) -> String {
+        while name.hasPrefix("_") {
+            name = String(dropFirst(name.characters))
+        }
+        while name.hasSuffix("_") {
+            name = String(dropLast(name.characters))
+        }
+
+        return name
+    }
+}
+
+
+public extension JVM {
+
     /// Nullary invoker: creates an invoker closure from a class, method name, return type, and object instance
-    func invoker<T: JType>(cls: jclass, name: String, rtype: T)->(inst: jobject)->()->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: []))
-        assert(exceptionCheck() == 0, "failed to look up nullary method: \(name)")
-        return { inst in { args in self.checked(withVaList([]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType>(cls: jclass, name: String, returns: T)->(inst: JRef)->() throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: []))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Unary invoker: creates an invoker closure from a class, method name, return type, object instance, and single argument
-    func invoker<T: JType, A0: JType where A0.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0))->(inst: jobject)->(A0.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0]))
-        assert(exceptionCheck() == 0, "failed to look up unary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType where A0.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0))->(inst: JRef)->(A0.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Binary invoker: creates an invoker closure from a class, method name, return type, object instance, and 2 arguments
-    func invoker<T: JType, A0: JType, A1: JType where A0.U: CVarArgType, A1.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0, A1))->(inst: jobject)->(A0.U, A1.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0, atype.1]))
-        assert(exceptionCheck() == 0, "failed to look up binary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0, args.1]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1))->(inst: JRef)->(A0.JNIType, A1.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Ternary invoker: creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
-    func invoker<T: JType, A0: JType, A1: JType, A2: JType where A0.U: CVarArgType, A1.U: CVarArgType, A2.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0, A1, A2))->(inst: jobject)->(A0.U, A1.U, A2.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0, atype.1, atype.2]))
-        assert(exceptionCheck() == 0, "failed to look up ternary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0, args.1, args.2]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2))->(inst: JRef)->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Quaternary invoker: creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
-    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.U: CVarArgType, A1.U: CVarArgType, A2.U: CVarArgType, A3.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0, A1, A2, A3))->(inst: jobject)->(A0.U, A1.U, A2.U, A3.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0, atype.1, atype.2, atype.3]))
-        assert(exceptionCheck() == 0, "failed to look up quaternary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0, args.1, args.2, args.3]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3))->(inst: JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Quinary invoker: creates an invoker closure from a class, method name, return type, object instance, and 5 arguments
-    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.U: CVarArgType, A1.U: CVarArgType, A2.U: CVarArgType, A3.U: CVarArgType, A4.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0, A1, A2, A3, A4))->(inst: jobject)->(A0.U, A1.U, A2.U, A3.U, A4.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0, atype.1, atype.2, atype.3, atype.4]))
-        assert(exceptionCheck() == 0, "failed to look up quinary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0, args.1, args.2, args.3, args.4]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4))->(inst: JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Senary invoker: creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
-    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.U: CVarArgType, A1.U: CVarArgType, A2.U: CVarArgType, A3.U: CVarArgType, A4.U: CVarArgType, A5.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0, A1, A2, A3, A4, A5))->(inst: jobject)->(A0.U, A1.U, A2.U, A3.U, A4.U, A5.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0, atype.1, atype.2, atype.3, atype.4, atype.5]))
-        assert(exceptionCheck() == 0, "failed to look up senary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5))->(inst: JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Septenary invoker: creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
-    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.U: CVarArgType, A1.U: CVarArgType, A2.U: CVarArgType, A3.U: CVarArgType, A4.U: CVarArgType, A5.U: CVarArgType, A6.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0, A1, A2, A3, A4, A5, A6))->(inst: jobject)->(A0.U, A1.U, A2.U, A3.U, A4.U, A5.U, A6.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0, atype.1, atype.2, atype.3, atype.4, atype.5, atype.6]))
-        assert(exceptionCheck() == 0, "failed to look up septenary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6))->(inst: JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Octary invoker: creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
-    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.U: CVarArgType, A1.U: CVarArgType, A2.U: CVarArgType, A3.U: CVarArgType, A4.U: CVarArgType, A5.U: CVarArgType, A6.U: CVarArgType, A7.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0, A1, A2, A3, A4, A5, A6, A7))->(inst: jobject)->(A0.U, A1.U, A2.U, A3.U, A4.U, A5.U, A6.U, A7.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0, atype.1, atype.2, atype.3, atype.4, atype.5, atype.6, atype.7]))
-        assert(exceptionCheck() == 0, "failed to look up octary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(inst: JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Nonary invoker: creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
-    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.U: CVarArgType, A1.U: CVarArgType, A2.U: CVarArgType, A3.U: CVarArgType, A4.U: CVarArgType, A5.U: CVarArgType, A6.U: CVarArgType, A7.U: CVarArgType, A8.U: CVarArgType>(cls: jclass, name: String, rtype: T, atype: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(inst: jobject)->(A0.U, A1.U, A2.U, A3.U, A4.U, A5.U, A6.U, A7.U, A8.U)->T.U? {
-        let mid = self.getMethodID(cls, name: name, sig: JVM.jsig(rtype, args: [atype.0, atype.1, atype.2, atype.3, atype.4, atype.5, atype.6, atype.7, atype.8]))
-        assert(exceptionCheck() == 0, "failed to look up nonary method: \(name)")
-        return { inst in { args in self.checked(withVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in rtype.call(self, obj: inst, mid: mid, args: va) }) } }
+    func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(inst: JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> T.JNIType {
+        let mid = self.getMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(self)(mid: mid)
+        return { inst in { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+}
+
+
+
+
+public extension JVM {
+
+    /// Nullary static invoker: creates an invoker closure from a class, method name, return type, and object instance
+    func svoker<T: JType>(cls: jclass, name: String, returns: T)->() throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: []))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([]) { va in try caller(cls: cls)(args: va) })) }
+    }
+
+    /// Unary static invoker: creates an invoker closure from a class, method name, return type, object instance, and single argument
+    func svoker<T: JType, A0: JType where A0.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0))->(A0.JNIType) throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([args]) { va in try caller(cls: cls)(args: va) })) }
+    }
+
+    /// Binary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 2 arguments
+    func svoker<T: JType, A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1))->(A0.JNIType, A1.JNIType) throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1]) { va in try caller(cls: cls)(args: va) })) }
+    }
+
+    /// Ternary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
+    func svoker<T: JType, A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2))->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2]) { va in try caller(cls: cls)(args: va) })) }
+    }
+
+    /// Quaternary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
+    func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3]) { va in try caller(cls: cls)(args: va) })) }
+    }
+
+    /// Senary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
+    func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in try caller(cls: cls)(args: va) })) }
+    }
+
+    /// Septenary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
+    func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in try caller(cls: cls)(args: va) })) }
+    }
+
+    /// Octary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
+    func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in try caller(cls: cls)(args: va) })) }
+    }
+
+    /// Nonary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
+    func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(cls: jclass, name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> T.JNIType {
+        let mid = self.getStaticMethodID(cls, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
+        let ex = currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(self)(mid: mid)
+        return { args in try rethrow(ex, self.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in try caller(cls: cls)(args: va) })) }
+    }
+}
+
+
+internal func methodName(name: String) -> String {
+    var chars = name.characters
+    while chars.first == "_" {
+        chars = dropFirst(name.characters)
+    }
+    while chars.last == "_" {
+        chars = dropLast(name.characters)
+    }
+    if let paren = chars.indexOf("(") {
+        chars = chars[chars.startIndex..<paren]
+    }
+
+    return String(chars)
+}
+
+private func rethrow<T>(ex: KanjiException?, @autoclosure _ f: () throws -> T) throws -> T {
+    if let ex = ex {
+        throw ex
+    }
+    return try f()
+}
+
+
+/// Marker interface for all Java objects
+public protocol JavaObject: JSig, JRef {
+    /// The Java class name for this type
+    static var javaClassName: String { get }
+
+    static var javaClass: jclass { get }
+
+    /// Instantiate this object by wrapping a pre-existing JNI jobject; if the JNI object is nil, the initializer will fail
+    init?(jobj: jobject)
+
+    /// Returns the underlying JNI jclass instance
+    var jcls: jclass { get }
+}
+
+public extension JavaObject {
+    public var jvm: JVM! { return JVM.sharedJVM }
+    public var jcls: jclass { return jvm.getObjectClass(jobj) }
+
+    public static var javaClass: jclass {
+        defer { JVM.sharedJVM.exceptionClear() }
+        return JVM.sharedJVM.findClass(javaClassName)
+    }
+
+    public static var jniType: JObjectType { return JObjectType(javaClassName) }
+
+    public var jsig: String { return JObjectType(typeToJavaClassName(self.dynamicType)).jsig }
+
+    // Need a non-static func invoker() to be able to statically call invoker() for bug #21677702
+    func invoker(nothing: Void) { fatalError() }
+    func svoker(nothing: Void) { fatalError() }
+    func constructor(nothing: Void) { fatalError() }
+
+}
+
+
+/// Returns the default java class name for the given class; converts “KanjiVM.java$util$Date.Type” to "java/util/Date"
+/// Default interface implementations represented with a trailing $ will convert to the interface name; e.g.:
+/// java$util$Set$ -> java/util/Set
+public func typeToJavaClassName<T>(type: T, jsep: String = "/", fsep: Character = "$", trim: Character? = ".", gensep: Character = "<")->String {
+    var raw = Mirror(reflecting: type).description // same as: _stdlib_getDemangledTypeName(type)
+    if let trim = trim { // KanjiVM.java$lang$String.Type -> java$lang$String
+        raw = String(dropFirst(split(raw.characters, isSeparator: { $0 == trim })).first!)
+    }
+
+    // a generic type will show up as: KanjiVM.java$util$LinkedList<KanjiVM.java$util$Date>
+    // so cut off anything after "<"
+    raw = String(split(raw.characters, isSeparator: { $0 == gensep }).first!)
+
+    // interfaces show up like:
+    // KanjiVM.(java$util$Set$ in _AB6308773EA909727AC7DA99C333F370).Type
+    raw = String(split(raw.characters, isSeparator: { $0 == "(" }).last!)
+    raw = String(split(raw.characters, isSeparator: { $0 == " " }).first!)
+
+    // now turn java$lang$String -> java/lang/String
+    let segs = split(raw.characters, isSeparator: { $0 == fsep }).map({ String($0) })
+    let cname = jsep.join(segs)
+
+    return cname
+}
+
+public func objectType<T: JavaObject>(type: T) -> JObjectType {
+    return JObjectType(typeToJavaClassName(type))
+}
+
+public extension SequenceType where Generator.Element: JavaObject {
+    /// Downcast the array to the given element types
+    public func casts<T: JavaObject>() -> [T] {
+        var arr: [T] = []
+        for x in self {
+            if let v: T = x.cast() {
+                arr.append(v)
+            }
+        }
+        return arr
+    }
+}
+
+public extension CollectionType where Generator.Element: JavaObject, Index == Int {
+    public func toJArray(jvm: JVM) -> jobjectArray {
+        let array = jvm.newObjectArray(jsize(count), clazz: Generator.Element.javaClass, `init`: nil)
+        for (i, x) in self.enumerate() {
+            jvm.setObjectArrayElement(array, index: jsize(i), val: x.jobj)
+        }
+        return array
+    }
+}
+
+public extension SequenceType where Generator.Element == Optional<JavaObject> {
+    /// Downcast the array to the given element types
+    public func casts<T: JavaObject>() -> [T] {
+        var arr: [T] = []
+        for x in self {
+            if let x = x {
+                if let v: T = x.cast() {
+                    arr.append(v)
+                }
+            }
+        }
+        return arr
+    }
+}
+
+public extension JavaObject {
+    /// The Java class name for the type (e.g., “java/lang/Object”)
+    public static var javaClassName: String { return typeToJavaClassName(self) }
+
+    /// Cast this instance to another type, returning nil if the cast could not be performed
+    public func cast<T: JavaObject>() -> T? {
+        let jvm = JVM.sharedJVM
+        let jsup = jvm.findClass(T.javaClassName)
+        if jvm.exceptionCheck() {
+            jvm.exceptionClear()
+            return nil
+        }
+        if jsup == nil {
+            return nil
+        }
+        if jvm.isAssignableFrom(jcls, sup: jsup) {
+            return T(jobj: jobj)
+        } else {
+            return nil
+        }
     }
     
 }
 
 
-//protocol JPrimitive : Hashable, Printable, CVarArgType {
-//    typealias ArrayType: Equatable, Hashable, NilLiteralConvertible
-//}
-//
-//
-//protocol JType {
-//    typealias V: JPrimitive
-//
-//    static func getValue(vm: JVM, obj: jobject, fld: jfieldID)->V
-//    static func setValue(vm: JVM, obj: jobject, fid: jfieldID, value: V)
-//
-//    static func getStaticValue(vm: JVM, cls: jclass, fld: jfieldID)->V
-//    static func setStaticValue(vm: JVM, cls: jclass, fid: jfieldID, value: V)
-//}
-//
-//
-//extension jboolean: JPrimitive {
-//    typealias ArrayType = jbooleanArray
-//}
-//
-//
-//struct JBoolean : JType {
-//    typealias V = jboolean
-//
-//    static func getValue(vm: JVM, obj: jobject, fld: jfieldID) -> V {
-//        return vm.getBooleanField(obj, fieldID: fld)
-//    }
-//
-//    static func setValue(vm: JVM, obj: jobject, fid: jfieldID, value: V) {
-//        vm.setBooleanField(obj, fieldID: fid, val: value)
-//    }
-//
-//    static func getStaticValue(vm: JVM, cls: jclass, fld: jfieldID)->V {
-//        return vm.getStaticBooleanField(cls, fieldID: fld)
-//    }
-//
-//    static func setStaticValue(vm: JVM, cls: jclass, fid: jfieldID, value: V) {
-//        vm.setStaticBooleanField(cls, fieldID: fid, value: value)
-//    }
-//
-//}
-//
-//enum JBooleanResult {
-//    case Exception(String)
-//    case Value(JBoolean)
-//}
-//
-//extension jchar: JPrimitive {
-//    typealias ArrayType = jcharArray
-//}
-//
-//struct JChar : JType {
-//    typealias V = jchar
-//
-//    static func getValue(vm: JVM, obj: jobject, fld: jfieldID) -> V {
-//        return vm.getCharField(obj, fieldID: fld)
-//    }
-//
-//    static func setValue(vm: JVM, obj: jobject, fid: jfieldID, value: V) {
-//        vm.setCharField(obj, fieldID: fid, val: value)
-//    }
-//
-//    static func getStaticValue(vm: JVM, cls: jclass, fld: jfieldID)->V {
-//        return vm.getStaticCharField(cls, fieldID: fld)
-//    }
-//
-//    static func setStaticValue(vm: JVM, cls: jclass, fid: jfieldID, value: V) {
-//        vm.setStaticCharField(cls, fieldID: fid, value: value)
-//    }
-//    
-//}
-//
-//enum JCharResult {
-//    case Exception(String)
-//    case Value(JChar)
-//}
-//
-//
-//extension jshort: JPrimitive {
-//    typealias ArrayType = jshortArray
-//}
-//
-//struct JShort : JType {
-//    typealias V = jshort
-//
-//    static func getValue(vm: JVM, obj: jobject, fld: jfieldID) -> V {
-//        return vm.getShortField(obj, fieldID: fld)
-//    }
-//
-//    static func setValue(vm: JVM, obj: jobject, fid: jfieldID, value: V) {
-//        vm.setShortField(obj, fieldID: fid, val: value)
-//    }
-//
-//    static func getStaticValue(vm: JVM, cls: jclass, fld: jfieldID)->V {
-//        return vm.getStaticShortField(cls, fieldID: fld)
-//    }
-//
-//    static func setStaticValue(vm: JVM, cls: jclass, fid: jfieldID, value: V) {
-//        vm.setStaticShortField(cls, fieldID: fid, value: value)
-//    }
-//    
-//}
-//
-//enum JShortResult {
-//    case Exception(String)
-//    case Value(JShort)
-//}
-//
-//extension jint: JPrimitive {
-//    typealias ArrayType = jintArray
-//}
-//
-//struct JInt : JType {
-//    typealias V = jint
-//
-//    static func getValue(vm: JVM, obj: jobject, fld: jfieldID) -> V {
-//        return vm.getIntField(obj, fieldID: fld)
-//    }
-//
-//    static func setValue(vm: JVM, obj: jobject, fid: jfieldID, value: V) {
-//        vm.setIntField(obj, fieldID: fid, val: value)
-//    }
-//
-//    static func getStaticValue(vm: JVM, cls: jclass, fld: jfieldID)->V {
-//        return vm.getStaticIntField(cls, fieldID: fld)
-//    }
-//
-//    static func setStaticValue(vm: JVM, cls: jclass, fid: jfieldID, value: V) {
-//        vm.setStaticIntField(cls, fieldID: fid, value: value)
-//    }
-//    
-//}
-//
-//enum JIntResult {
-//    case Exception(String)
-//    case Value(JInt)
-//}
-//
-//
-//extension jlong: JPrimitive {
-//    typealias ArrayType = jlongArray
-//}
-//
-//struct JLong : JType {
-//    typealias V = jlong
-//
-//    static func getValue(vm: JVM, obj: jobject, fld: jfieldID) -> V {
-//        return vm.getLongField(obj, fieldID: fld)
-//    }
-//
-//    static func setValue(vm: JVM, obj: jobject, fid: jfieldID, value: V) {
-//        vm.setLongField(obj, fieldID: fid, val: value)
-//    }
-//
-//    static func getStaticValue(vm: JVM, cls: jclass, fld: jfieldID)->V {
-//        return vm.getStaticLongField(cls, fieldID: fld)
-//    }
-//
-//    static func setStaticValue(vm: JVM, cls: jclass, fid: jfieldID, value: V) {
-//        vm.setStaticLongField(cls, fieldID: fid, value: value)
-//    }
-//    
-//}
-//
-//enum JLongResult {
-//    case Exception(String)
-//    case Value(JLong)
-//}
-//
-//
-//extension jfloat: JPrimitive {
-//    typealias ArrayType = jfloatArray
-//}
-//
-//struct JFloat : JType {
-//    typealias V = jfloat
-//
-//    static func getValue(vm: JVM, obj: jobject, fld: jfieldID) -> V {
-//        return vm.getFloatField(obj, fieldID: fld)
-//    }
-//
-//    static func setValue(vm: JVM, obj: jobject, fid: jfieldID, value: V) {
-//        vm.setFloatField(obj, fieldID: fid, val: value)
-//    }
-//
-//    static func getStaticValue(vm: JVM, cls: jclass, fld: jfieldID)->V {
-//        return vm.getStaticFloatField(cls, fieldID: fld)
-//    }
-//
-//    static func setStaticValue(vm: JVM, cls: jclass, fid: jfieldID, value: V) {
-//        vm.setStaticFloatField(cls, fieldID: fid, value: value)
-//    }
-//    
-//}
-//
-//enum JFloatResult {
-//    case Exception(String)
-//    case Value(JFloat)
-//}
-//
-//
-//extension jdouble: JPrimitive {
-//    typealias ArrayType = jdoubleArray
-//}
-//
-//struct JDouble : JType {
-//    typealias V = jdouble
-//
-//    static func getValue(vm: JVM, obj: jobject, fld: jfieldID) -> V {
-//        return vm.getDoubleField(obj, fieldID: fld)
-//    }
-//
-//    static func setValue(vm: JVM, obj: jobject, fid: jfieldID, value: V) {
-//        vm.setDoubleField(obj, fieldID: fid, val: value)
-//    }
-//
-//    static func getStaticValue(vm: JVM, cls: jclass, fld: jfieldID)->V {
-//        return vm.getStaticDoubleField(cls, fieldID: fld)
-//    }
-//
-//    static func setStaticValue(vm: JVM, cls: jclass, fid: jfieldID, value: V) {
-//        vm.setStaticDoubleField(cls, fieldID: fid, value: value)
-//    }
-//    
-//}
-//
-//enum JDoubleResult {
-//    case Exception(String)
-//    case Value(JDouble)
-//}
-//
-//
-//struct JField<T: JType> {
-//    let jvm: JVM
-//    let obj: jobject
-//    let fld: jfieldID
-//
-//    func getValue()->T.V {
-//        return T.getValue(jvm, obj: obj, fld: fld)
-//    }
-//
-//    func setValue(value: T.V) {
-//        T.setValue(jvm, obj: obj, fid: fld, value: value)
-//    }
-//}
-//
-//struct JStaticField<T: JType> {
-//    let jvm: JVM
-//    let cls: jclass
-//    let fld: jfieldID
-//
-//    func getValue()->T.V {
-//        return T.getStaticValue(jvm, cls: cls, fld: fld)
-//    }
-//
-//    func setValue(value: T.V) {
-//        T.setStaticValue(jvm, cls: cls, fid: fld, value: value)
-//    }
-//}
-//
-//
-//struct JMethod {
-//    let jvm: JVM
-//    let mth: jmethodID
-//}
-//
-//struct JObject {
-//    let jvm: JVM
-//    let cls: jclass
-//    let obj: jobject
-//}
-//
-//class JavaObject {
-//    let obj: JObject
-//    let ref: jobject
-//
-//    init(obj: JObject) {
-//        self.obj = obj
-//        self.ref = obj.jvm.newGlobalRef(obj.obj)
-//        assert(self.ref != nil, "unable to allocate global reference for object")
-//    }
-//
-//    deinit {
-//        // release the global reference to the instance
-//        obj.jvm.deleteGlobalRef(self.ref)
-//    }
-//}
-//
-//
-//struct java {
-//    struct lang {
-//        class Object: JavaObject {
-//            struct Class {
-//                let jvm: JVM
-//                let cls: jclass
-//                let hashCode: jmethodID
-//
-//                init(jvm: JVM, cls: jclass) {
-//                    self.jvm = jvm
-//                    self.cls = cls
-//                    self.hashCode = jvm.getMethodID(self.cls, name: "hashCode", sig: "()I")
-//                }
-//            }
-//
-//            func toString()->java.lang.String?? {
-//                fatalError("TODO")
-//            }
-//
-//            func equals(other: Object)->jboolean? {
-//                fatalError("TODO")
-//            }
-//
-//            func hashCode()->jint? {
-//                let cls = Class(jvm: obj.jvm, cls: obj.cls)
-//
-//                let code: jint = obj.jvm.callIntMethodA(obj.obj, methodID: cls.hashCode, args: nil)
-//                return obj.jvm.exceptionCheck() != 0 ? nil : code
-//            }
-//
-//            func notify() {
-//                fatalError("TODO")
-//            }
-//
-//            func notifyAll() {
-//                fatalError("TODO")
-//            }
-//
-//        }
-//
-//        final class String : java.lang.Object {
-//
-//        }
-//    }
-//
-//    struct util {
-//        class Date : java.lang.Object {
-//
-//        }
-//    }
-//
-//}
+public extension JavaObject {
+    public static func createArray(jvm: JVM)(elements: [Self?]) -> jobjectArray {
+        let jarr = jvm.newObjectArray(jsize(elements.count), clazz: javaClass, `init`: nil)
+        for (i, e) in elements.enumerate() {
+            jvm.setObjectArrayElement(jarr, index: jsize(i), val: e?.jobj ?? nil)
+        }
+        return jarr
+    }
+
+    static func getArray(jvm: JVM)(array: jobjectArray) -> [Self?]? {
+        if array == nil { return nil }
+        let len = jvm.getArrayLength(array)
+        var arr: [Self?] = []
+        for i in 0..<len {
+            let jobj = jvm.getObjectArrayElement(array, index: i)
+            let inst = Self(jobj: jobj)
+            arr.append(inst)
+        }
+        return arr
+    }
+}
+
+public extension JavaObject {
+
+    /// Nullary invoker: creates an invoker closure from a class, method name, return type, and object instance
+    static func invoker<T: JType>(name: String, returns: T)->(JRef)->() throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: []))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Unary invoker: creates an invoker closure from a class, method name, return type, object instance, and single argument
+    static func invoker<T: JType, A0: JType where A0.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0))->(JRef)->(A0.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Binary invoker: creates an invoker closure from a class, method name, return type, object instance, and 2 arguments
+    static func invoker<T: JType, A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1))->(JRef)->(A0.JNIType, A1.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Ternary invoker: creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
+    static func invoker<T: JType, A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Quaternary invoker: creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
+    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Quinary invoker: creates an invoker closure from a class, method name, return type, object instance, and 5 arguments
+    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Senary invoker: creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
+    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Septenary invoker: creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
+    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Octary invoker: creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
+    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+
+    /// Nonary invoker: creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
+    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.call(jvm)(mid: mid)
+        return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in try caller(obj: inst.jobj)(args: va) })) } }
+    }
+}
 
 
 
+public extension JavaObject {
 
+    /// Nullary static invoker: creates an invoker closure from a class, method name, return type, and object instance
+    static func svoker<T: JType>(name: String, returns: T)->() throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: []))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Unary static invoker: creates an invoker closure from a class, method name, return type, object instance, and single argument
+    static func svoker<T: JType, A0: JType where A0.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0))->(A0.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Binary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 2 arguments
+    static func svoker<T: JType, A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1))->(A0.JNIType, A1.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Ternary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
+    static func svoker<T: JType, A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2))->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Quaternary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
+    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Quinary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 5 arguments
+    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Senary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
+    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Septenary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
+    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Octary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
+    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Nonary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
+    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> T.JNIType {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getStaticMethodID(javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = T.callStatic(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+}
+
+public extension JavaObject {
+
+    /// Nullary constructor: creates an invoker closure from a class, method name, return type, and object instance
+    static func constructor()->() throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: []))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Unary constructor: creates an invoker closure from a class, method name, return type, object instance, and single argument
+    static func constructor<A0: JType where A0.JNIType: CVarArgType>(arguments: (A0))->(A0.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Binary constructor: creates an invoker closure from a class, method name, return type, object instance, and 2 arguments
+    static func constructor<A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(arguments: (A0, A1))->(A0.JNIType, A1.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Ternary constructor: creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
+    static func constructor<A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(arguments: (A0, A1, A2))->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Quaternary constructor: creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
+    static func constructor<A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Quinary constructor: creates an invoker closure from a class, method name, return type, object instance, and 5 arguments
+    static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Senary constructor: creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
+    static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4, A5))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Septenary constructor: creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
+    static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4, A5, A6))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Octary constructor: creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
+    static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+
+    /// Nonary constructor: creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
+    static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> jobject {
+        let jvm = JVM.sharedJVM
+        let mid = jvm.getMethodID(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
+        let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
+        let caller = JObjectType.callInit(jvm)(mid: mid)
+        return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in try caller(cls: javaClass)(args: va) })) }
+    }
+}
 
 
 /// Wrapped JNI functions
@@ -834,7 +1657,7 @@ extension JVM {
         return JNI_NewStringUTF(env, utf)
     }
 
-    public func throw(obj: jthrowable)->jint {
+    public func throwException(obj: jthrowable)->jint {
         return JNI_Throw(env, obj)
     }
 
@@ -851,11 +1674,10 @@ extension JVM {
         return JNI_ThrowNew(env, clazz, msg)
     }
 
-    public func fatalError(msg: cstr)->Void {
-        JNI_FatalError(env, msg)
-    }
-
-
+//    @noreturn public func fatalError(msg: cstr)->Void {
+//        JNI_FatalError(env, msg)
+//        Swift.fatalError("\(msg)")
+//    }
 
     public func fromReflectedMethod(method: jobject)->jmethodID {
         return JNI_FromReflectedMethod(env, method)
@@ -908,7 +1730,7 @@ extension JVM {
         JNI_DeleteLocalRef(env, obj)
     }
 
-    public func isSameObject(obj1: jobject, obj2: jobject)->jboolean {
+    public func isSameObject(obj1: jobject, _ obj2: jobject)->jboolean {
         return JNI_IsSameObject(env, obj1, obj2)
     }
 
@@ -1322,43 +2144,41 @@ extension JVM {
 
 
 
-    public func setStaticObjectField(clazz: jclass, fieldID: jfieldID, value: jobject)->Void {
-        JNI_SetStaticObjectField(env, clazz, fieldID, value)
+    public func setStaticObjectField(clazz: jclass, fieldID: jfieldID, val: jobject)->Void {
+        JNI_SetStaticObjectField(env, clazz, fieldID, val)
     }
 
-    public func setStaticBooleanField(clazz: jclass, fieldID: jfieldID, value: jboolean)->Void {
-        JNI_SetStaticBooleanField(env, clazz, fieldID, value)
+    public func setStaticBooleanField(clazz: jclass, fieldID: jfieldID, val: jboolean)->Void {
+        JNI_SetStaticBooleanField(env, clazz, fieldID, val)
     }
 
-    public func setStaticByteField(clazz: jclass, fieldID: jfieldID, value: jbyte)->Void {
-        JNI_SetStaticByteField(env, clazz, fieldID, value)
+    public func setStaticByteField(clazz: jclass, fieldID: jfieldID, val: jbyte)->Void {
+        JNI_SetStaticByteField(env, clazz, fieldID, val)
     }
 
-    public func setStaticCharField(clazz: jclass, fieldID: jfieldID, value: jchar)->Void {
-        JNI_SetStaticCharField(env, clazz, fieldID, value)
+    public func setStaticCharField(clazz: jclass, fieldID: jfieldID, val: jchar)->Void {
+        JNI_SetStaticCharField(env, clazz, fieldID, val)
     }
 
-    public func setStaticShortField(clazz: jclass, fieldID: jfieldID, value: jshort)->Void {
-        JNI_SetStaticShortField(env, clazz, fieldID, value)
+    public func setStaticShortField(clazz: jclass, fieldID: jfieldID, val: jshort)->Void {
+        JNI_SetStaticShortField(env, clazz, fieldID, val)
     }
 
-    public func setStaticIntField(clazz: jclass, fieldID: jfieldID, value: jint)->Void {
-        JNI_SetStaticIntField(env, clazz, fieldID, value)
+    public func setStaticIntField(clazz: jclass, fieldID: jfieldID, val: jint)->Void {
+        JNI_SetStaticIntField(env, clazz, fieldID, val)
     }
 
-    public func setStaticLongField(clazz: jclass, fieldID: jfieldID, value: jlong)->Void {
-        JNI_SetStaticLongField(env, clazz, fieldID, value)
+    public func setStaticLongField(clazz: jclass, fieldID: jfieldID, val: jlong)->Void {
+        JNI_SetStaticLongField(env, clazz, fieldID, val)
     }
 
-    public func setStaticFloatField(clazz: jclass, fieldID: jfieldID, value: jfloat)->Void {
-        JNI_SetStaticFloatField(env, clazz, fieldID, value)
+    public func setStaticFloatField(clazz: jclass, fieldID: jfieldID, val: jfloat)->Void {
+        JNI_SetStaticFloatField(env, clazz, fieldID, val)
     }
 
-    public func setStaticDoubleField(clazz: jclass, fieldID: jfieldID, value: jdouble)->Void {
-        JNI_SetStaticDoubleField(env, clazz, fieldID, value)
+    public func setStaticDoubleField(clazz: jclass, fieldID: jfieldID, val: jdouble)->Void {
+        JNI_SetStaticDoubleField(env, clazz, fieldID, val)
     }
-
-
 
     public func newString(unicode: UnsafePointer<jchar>, len: jsize)->jstring {
         return JNI_NewString(env, unicode, len)
@@ -1645,11 +2465,8 @@ extension JVM {
     public func getDirectBufferCapacity(buf: jobject)->jlong {
         return JNI_GetDirectBufferCapacity(env, buf)
     }
-    
-    
-    
+
     public func getObjectRefType(obj: jobject)->jobjectRefType {
         return JNI_GetObjectRefType(env, obj)
     }
-    
 }

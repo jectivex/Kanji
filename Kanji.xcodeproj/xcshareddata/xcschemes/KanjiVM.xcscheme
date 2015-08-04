@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0630"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,7 +17,7 @@
                BlueprintIdentifier = "7EA888041AAAB6DF00C6DBB3"
                BuildableName = "KanjiVM.framework"
                BlueprintName = "KanjiVM"
-               ReferencedContainer = "container:KanjiVM.xcodeproj">
+               ReferencedContainer = "container:Kanji.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,16 +31,16 @@
                BlueprintIdentifier = "7EA8880F1AAAB6DF00C6DBB3"
                BuildableName = "KanjiVMTests.xctest"
                BlueprintName = "KanjiVMTests"
-               ReferencedContainer = "container:KanjiVM.xcodeproj">
+               ReferencedContainer = "container:Kanji.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -49,7 +49,7 @@
                BlueprintIdentifier = "7EA8880F1AAAB6DF00C6DBB3"
                BuildableName = "KanjiVMTests.xctest"
                BlueprintName = "KanjiVMTests"
-               ReferencedContainer = "container:KanjiVM.xcodeproj">
+               ReferencedContainer = "container:Kanji.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -59,18 +59,21 @@
             BlueprintIdentifier = "7EA888041AAAB6DF00C6DBB3"
             BuildableName = "KanjiVM.framework"
             BlueprintName = "KanjiVM"
-            ReferencedContainer = "container:KanjiVM.xcodeproj">
+            ReferencedContainer = "container:Kanji.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <MacroExpansion>
          <BuildableReference
@@ -78,17 +81,17 @@
             BlueprintIdentifier = "7EA888041AAAB6DF00C6DBB3"
             BuildableName = "KanjiVM.framework"
             BlueprintName = "KanjiVM"
-            ReferencedContainer = "container:KanjiVM.xcodeproj">
+            ReferencedContainer = "container:Kanji.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
       <MacroExpansion>
          <BuildableReference
@@ -96,7 +99,7 @@
             BlueprintIdentifier = "7EA888041AAAB6DF00C6DBB3"
             BuildableName = "KanjiVM.framework"
             BlueprintName = "KanjiVM"
-            ReferencedContainer = "container:KanjiVM.xcodeproj">
+            ReferencedContainer = "container:Kanji.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

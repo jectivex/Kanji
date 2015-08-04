@@ -1,4 +1,4 @@
-//
+
 //  KanjiVM.h
 //  KanjiVM
 //
