@@ -165,6 +165,89 @@ class KanjiGenTests: XCTestCase {
                 "java.lang.reflect.WeakCache",
                 "java.lang.reflect.WildcardType",
 
+//                "java.time.Clock",
+//                "java.time.DateTimeException",
+//                "java.time.DayOfWeek",
+//                "java.time.Duration",
+//                "java.time.Instant",
+//                "java.time.LocalDate",
+//                "java.time.LocalDateTime",
+//                "java.time.LocalTime",
+//                "java.time.Month",
+//                "java.time.MonthDay",
+//                "java.time.OffsetDateTime",
+//                "java.time.OffsetTime",
+//                "java.time.Period",
+//                "java.time.Ser",
+//                "java.time.Year",
+//                "java.time.YearMonth",
+//                "java.time.ZoneId",
+//                "java.time.ZoneOffset",
+//                "java.time.ZoneRegion",
+//                "java.time.ZonedDateTime",
+//                "java.time.chrono.AbstractChronology",
+//                "java.time.chrono.ChronoLocalDate",
+//                "java.time.chrono.ChronoLocalDateImpl",
+//                "java.time.chrono.ChronoLocalDateTime",
+//                "java.time.chrono.ChronoLocalDateTimeImpl",
+//                "java.time.chrono.ChronoPeriod",
+//                "java.time.chrono.ChronoPeriodImpl",
+//                "java.time.chrono.ChronoZonedDateTime",
+//                "java.time.chrono.ChronoZonedDateTimeImpl",
+//                "java.time.chrono.Chronology",
+//                "java.time.chrono.Era",
+//                "java.time.chrono.HijrahChronology",
+//                "java.time.chrono.HijrahDate",
+//                "java.time.chrono.HijrahEra",
+//                "java.time.chrono.IsoChronology",
+//                "java.time.chrono.IsoEra",
+//                "java.time.chrono.JapaneseChronology",
+//                "java.time.chrono.JapaneseDate",
+//                "java.time.chrono.JapaneseEra",
+//                "java.time.chrono.MinguoChronology",
+//                "java.time.chrono.MinguoDate",
+//                "java.time.chrono.MinguoEra",
+//                "java.time.chrono.Ser",
+//                "java.time.chrono.ThaiBuddhistChronology",
+//                "java.time.chrono.ThaiBuddhistDate",
+//                "java.time.chrono.ThaiBuddhistEra",
+//                "java.time.format.DateTimeFormatter",
+//                "java.time.format.DateTimeFormatterBuilder",
+//                "java.time.format.DateTimeParseContext",
+//                "java.time.format.DateTimeParseException",
+//                "java.time.format.DateTimePrintContext",
+//                "java.time.format.DateTimeTextProvider",
+//                "java.time.format.DecimalStyle",
+//                "java.time.format.FormatStyle",
+//                "java.time.format.Parsed",
+//                "java.time.format.ResolverStyle",
+//                "java.time.format.SignStyle",
+//                "java.time.format.TextStyle",
+//                "java.time.format.ZoneName",
+//                "java.time.temporal.ChronoField",
+//                "java.time.temporal.ChronoUnit",
+//                "java.time.temporal.IsoFields",
+//                "java.time.temporal.JulianFields",
+//                "java.time.temporal.Temporal",
+//                "java.time.temporal.TemporalAccessor",
+//                "java.time.temporal.TemporalAdjuster",
+//                "java.time.temporal.TemporalAdjusters",
+//                "java.time.temporal.TemporalAmount",
+//                "java.time.temporal.TemporalField",
+//                "java.time.temporal.TemporalQueries",
+//                "java.time.temporal.TemporalQuery",
+//                "java.time.temporal.TemporalUnit",
+//                "java.time.temporal.UnsupportedTemporalTypeException",
+//                "java.time.temporal.ValueRange",
+//                "java.time.temporal.WeekFields",
+//                "java.time.zone.Ser",
+//                "java.time.zone.TzdbZoneRulesProvider",
+//                "java.time.zone.ZoneOffsetTransition",
+//                "java.time.zone.ZoneOffsetTransitionRule",
+//                "java.time.zone.ZoneRules",
+//                "java.time.zone.ZoneRulesException",
+//                "java.time.zone.ZoneRulesProvider",
+
                 "java.math.BigDecimal",
                 "java.math.BigInteger",
                 "java.math.BitSieve",
@@ -172,6 +255,42 @@ class KanjiGenTests: XCTestCase {
                 "java.math.MutableBigInteger",
                 "java.math.RoundingMode",
                 "java.math.SignedMutableBigInteger",
+
+                "java.text.Annotation",
+                "java.text.AttributeEntry",
+                "java.text.AttributedCharacterIterator",
+                "java.text.AttributedString",
+                "java.text.Bidi",
+                "java.text.BreakIterator",
+                "java.text.CalendarBuilder",
+                "java.text.CharacterIterator",
+                "java.text.CharacterIteratorFieldDelegate",
+                "java.text.ChoiceFormat",
+                "java.text.CollationElementIterator",
+                "java.text.CollationKey",
+                "java.text.Collator",
+                "java.text.DateFormat",
+                "java.text.DateFormatSymbols",
+                "java.text.DecimalFormat",
+                "java.text.DecimalFormatSymbols",
+                "java.text.DigitList",
+                "java.text.DontCareFieldPosition",
+                "java.text.EntryPair",
+                "java.text.FieldPosition",
+                "java.text.Format",
+                "java.text.MergeCollation",
+                "java.text.MessageFormat",
+                "java.text.Normalizer",
+                "java.text.NumberFormat",
+                "java.text.ParseException",
+                "java.text.ParsePosition",
+                "java.text.PatternEntry",
+                "java.text.RBCollationTables",
+                "java.text.RBTableBuilder",
+                "java.text.RuleBasedCollationKey",
+                "java.text.RuleBasedCollator",
+                "java.text.SimpleDateFormat",
+                "java.text.StringCharacterIterator",
 
                 "java.net.AbstractPlainDatagramSocketImpl",
                 "java.net.AbstractPlainSocketImpl",
@@ -533,13 +652,13 @@ class KanjiGenTests: XCTestCase {
         let sortedClasses = Array(Set(classes)).sort()
         let info = try launchDisassembler(sortedClasses)
         let code = try generateWrappers(info)
-        try compile(code, name: file, dir: __FILE__.stringByDeletingLastPathComponent.stringByAppendingPathComponent("../KanjiLib/"))
+        try compile(code, name: file, dir: ((__FILE__ as NSString).stringByDeletingLastPathComponent as NSString).stringByAppendingPathComponent("../KanjiLib/"))
     }
 
     func compile(code: String, name: String, dir: String) throws {
-        let locpath = dir.stringByAppendingPathComponent(name)
+        let locpath = (dir as NSString).stringByAppendingPathComponent(name)
 
-        let tmppath = NSTemporaryDirectory().stringByAppendingPathComponent(name)
+        let tmppath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(name)
         try code.writeToFile(tmppath, atomically: true, encoding: NSUTF8StringEncoding)
 
         let loccode: String
@@ -554,20 +673,20 @@ class KanjiGenTests: XCTestCase {
         }
 
         let bundle = NSBundle(forClass: JVM.self).executablePath!
-        let frameworkDir = bundle.stringByDeletingLastPathComponent.stringByDeletingLastPathComponent
+        let frameworkDir = ((bundle as NSString).stringByDeletingLastPathComponent as NSString).stringByDeletingLastPathComponent
 
         let args = [
             "/usr/bin/xcrun",
             "-sdk", "macosx10.11",
             "swiftc",
             "-F", frameworkDir,
-            "-o", tmppath.stringByDeletingPathExtension,
+            "-o", (tmppath as NSString).stringByDeletingPathExtension,
             tmppath,
         ]
 
         print(" ".join(args))
 
-        let task = NSTask.launchedTaskWithLaunchPath(args[0], arguments: Array(dropFirst(args)))
+        let task = NSTask.launchedTaskWithLaunchPath(args[0], arguments: Array(args.dropFirst()))
         task.waitUntilExit()
         let status = task.terminationStatus
         if status != 0 {

@@ -299,6 +299,14 @@ public extension java$lang$Object {
                 arr.append(try ob?.createBric(seen + [self.jobj]) ?? nil)
             }
             return .Arr(arr)
+        } else if let date: java$util$Date$ = cast() {
+            // dates are non-standard JSON, but the de-facto standard is to serialize as ISO-8601
+            // TODO: cache simple date format
+            let tz = try java$util$TimeZone.getTimeZone("UTC")
+            let df = try java$text$SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'")
+            try df.setTimeZone(tz)
+            let str = try df.format(date)
+            return .Str(str?.description ?? "")
         } else {
             throw KanjiErrors.General("Could not convert class \(self.dynamicType.javaClassName) «\(self.description)» into Bric")
         }

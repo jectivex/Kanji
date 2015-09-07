@@ -52,7 +52,7 @@ extension String {
     }
 
     func tokens(element: [Character]) -> [String] {
-        return split(self.characters, isSeparator: { element.contains($0) }).map(String.init)
+        return self.characters.split(isSeparator: { element.contains($0) }).map(String.init)
     }
 }
 
@@ -337,7 +337,7 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
             while let c = gen.next() {
                 if c == ";" {
                     let chars = String.CharacterView(chars)
-                    let parts = (split(chars) { $0 == "/" }).map { String($0) }
+                    let parts = (chars.split() { $0 == "/" }).map { String($0) }
                     return .Object(JName(parts: parts, generics: [])) // FIXME: generics are type erased: how to get?
                 } else {
                     chars.append(c)
@@ -917,7 +917,7 @@ func parseDisassembly(output: String) throws -> [JUnit] {
         }
 
         // javap declaration outputs dot-separated names
-        let parts = (split(typeName.characters) { $0 == "." }).map { String($0) }
+        let parts = (typeName.characters.split() { $0 == "." }).map { String($0) }
         return JName(parts: parts, generics: generics)
     }
 

@@ -97,6 +97,10 @@ class KanjiLibTests: XCTestCase {
     func testArrayMethods() {
         do {
             let str: java$lang$String = "abc123"
+
+            let len = try str.length()
+            XCTAssertEqual(len, 6)
+
             guard let chars = try str.toCharArray() else {
                 return XCTFail("Could not create char array")
             }
@@ -108,7 +112,6 @@ class KanjiLibTests: XCTestCase {
                 return XCTFail("Could not create string from array")
             }
             XCTAssertEqual(str2.description, "abc123")
-
         } catch {
             XCTFail(String(error))
         }
@@ -421,119 +424,6 @@ class KanjiLibTests: XCTestCase {
         } catch {
             XCTFail(String(error))
         }
-    }
-
-    func testJDBC() {
-        do {
-            // Derby
-            try jdbcQuery("select * from \"SA\".\"region\" FETCH FIRST 3 ROWS ONLY", driverURL: "jdbc:derby:jar:(/opt/src/glimpse/glimpse/GlimpseServe/scala/target/scala-2.11/classes/derby-foodmart.zip)foodmart", driverClass: "org.apache.derby.jdbc.EmbeddedDriver", driverProps: [:], driverJars: ["file:///Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/db/lib/derby.jar"])
-        } catch {
-            XCTFail(String(error))
-        }
-
-        do {
-            // MySQL
-            try jdbcQuery("select * from country limit 5", driverURL: "jdbc:mysql://datisi.local/sakila", driverClass: "com.mysql.jdbc.Driver", driverProps: ["user": "dataglass", "password": "glassi"], driverJars: ["file:///opt/src/impathic/ext/drivers/sqlline/mysql.jar"])
-        } catch {
-            XCTFail(String(error))
-        }
-
-        do {
-            // PostgreSQL
-            try jdbcQuery("select * from categories", driverURL: "jdbc:postgresql://demo.impathic.com:6666/dvdstore?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory", driverClass: "org.postgresql.Driver", driverProps: ["user": "dataglassdemo", "password": "demoglass"], driverJars: ["file:///opt/src/impathic/ext/drivers/sqlline/postgresql.jar"])
-        } catch {
-            XCTFail(String(error))
-        }
-
-        do {
-            // SQLServer
-            try jdbcQuery("select * from AdventureWorksLT.SalesLT.ProductCategory", driverURL: "jdbc:jtds:sqlserver://demo.impathic.com:2667/AdventureWorksLT", driverClass: "net.sourceforge.jtds.jdbc.Driver", driverProps: ["user": "dataglassdemo", "password": "demoglass"], driverJars: ["file:///opt/src/impathic/ext/drivers/sqlline/jtds.jar"])
-        } catch {
-            XCTFail(String(error))
-        }
-
-        do {
-            // Oracle
-            try jdbcQuery("select * from HR.REGIONS", driverURL: "jdbc:oracle:thin:@demo.impathic.com:2755:dgwarehouse", driverClass: "oracle.jdbc.OracleDriver", driverProps: ["user": "dataglassdemo", "password": "demoglass"], driverJars: ["file:///opt/src/impathic/ext/drivers/sqlline/oracle.jar"])
-        } catch {
-            XCTFail(String(error))
-        }
-
-        // TODO: try out Calcite web tables
-    }
-
-    func jdbcQuery(sql: String, driverURL: String, driverClass: String, driverProps: [String: String], driverJars: [String]) throws {
-        let props = try java$util$Properties()
-        for (key, value) in driverProps {
-            try props.setProperty(java$lang$String(key), java$lang$String(value))
-        }
-
-        var urls: [java$net$URL?] = []
-        for jar in driverJars {
-            urls.append(try java$net$URL(java$lang$String(jar)))
-        }
-        let loader = try java$net$URLClassLoader(urls, nil)
-
-        guard let driverClass = try loader.loadClass(java$lang$String(driverClass)) else {
-            return XCTFail("could not load driver class")
-        }
-
-        guard let driverObject = try driverClass.newInstance() else {
-            return XCTFail("could not instantiate driver class")
-        }
-
-        guard let driver: java$sql$Driver$ = driverObject.cast() else {
-            return XCTFail("could not cast driver class")
-        }
-
-        guard let c = try driver.connect(java$lang$String(driverURL), props) else {
-            return XCTFail("no connection")
-        }
-        defer { do { try c.close() } catch { } }
-
-        guard let dmd = try c.getMetaData() else {
-            return XCTFail("no metadata")
-        }
-
-        let blank: java$lang$String = ""
-        print("Connected to: \(try dmd.getDriverName() ?? blank) \(try dmd.getDriverVersion() ?? blank)")
-
-        func dumpResults(rs: java$sql$ResultSet) throws {
-            guard let rsmd = try rs.getMetaData() else {
-                throw KanjiErrors.General("no metadata")
-            }
-            let count = try rsmd.getColumnCount()
-            var colnames: [java$lang$String] = []
-            for i in 1...count {
-                try colnames.append(rsmd.getColumnName(i) ?? blank)
-            }
-
-
-            while try rs.next() {
-                for i in 1...count {
-                    let ob = try rs.getObject(i)
-                    print("\(colnames[Int(i-1)]): \(ob)")
-                }
-            }
-
-        }
-
-        guard let tables = try dmd.getTables("", "", nil, ["TABLE"]) else {
-            return XCTFail("no tables")
-        }
-        defer { do { try tables.close() } catch { } }
-        try dumpResults(tables)
-
-        guard let stmnt = try c.prepareStatement(java$lang$String(sql)) else {
-            return XCTFail("could not prepare statement")
-        }
-        defer { do { try stmnt.close() } catch { } }
-
-        guard let rs = try stmnt.executeQuery() else {
-            return XCTFail("no query results")
-        }
-        defer { do { try rs.close() } catch { } }
-        try dumpResults(rs)
     }
 
 }
