@@ -15,7 +15,10 @@ import KanjiLib
 class KanjiScriptTests: XCTestCase {
 
     internal static override func initialize() {
-        JVM.sharedJVM = try! JVM()
+        let dir = "/opt/src/scala/scala-2.11.7/lib/"
+        let cp: [String] = (try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(dir).map({ dir + $0 })) ?? []
+        // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
+        JVM.sharedJVM = try! JVM(bootpath: (cp, false))
     }
 
     func testKanjiConversions() {
@@ -48,7 +51,16 @@ class KanjiScriptTests: XCTestCase {
         }
     }
 
-    func testScripting() {
+    func checkeq(value: Bric, file: String = __FILE__, line: UInt = __LINE__, @autoclosure f: () throws -> Bric) {
+        do {
+            let x = try f()
+            XCTAssertEqual(value, x, file: file, line: line)
+        } catch {
+            XCTFail("Error evaluating expression: \(error)", file: file, line: line)
+        }
+    }
+
+    func testNashorn() {
         // TODO: we do not currently support script reference cycles
 //        do {
 //            let ctx = try KanjiScriptContext(engine: "javascript")
@@ -60,17 +72,9 @@ class KanjiScriptTests: XCTestCase {
 //            XCTFail(String(error))
 //        }
 
-        func checkeq(value: Bric, file: String = __FILE__, line: UInt = __LINE__, @autoclosure f: () throws -> Bric) {
-            do {
-                let x = try f()
-                XCTAssertEqual(value, x, file: file, line: line)
-            } catch {
-                XCTFail("Error evaluating expression: \(error)", file: file, line: line)
-            }
-        }
 
         do {
-            let ctx = try KanjiScriptContext()
+            let ctx = try KanjiScriptContext(engine: "javascript")
 
             checkeq(1, f: try ctx.val(ctx.eval("1")))
             checkeq("a", f: try ctx.val(ctx.eval("'a'")))
@@ -96,6 +100,21 @@ class KanjiScriptTests: XCTestCase {
             } catch {
                 XCTFail("wrong exception type: \(error)")
             }
+        } catch {
+            XCTFail(String(error))
+        }
+    }
+
+    func testScala() {
+        do {
+            let ctx = try KanjiScriptContext(engine: "scala")
+            checkeq(1, f: try ctx.val(ctx.eval("1")))
+            checkeq(0.6000000000000001, f: try ctx.val(ctx.eval("0.4+0.2")))
+            checkeq([2,1,3], f: try ctx.val(ctx.eval("List(2,1,3).toArray")))
+            checkeq(["X", "Z"], f: try ctx.val(ctx.eval("List(\"z\", \"y\", \"x\").sorted.filter(_ != \"y\").map(_.toUpperCase).toArray")))
+            try ctx.eval("var x = 123")
+            try ctx.eval("x = x + 1")
+            checkeq(124, f: try ctx.val(ctx.eval("x")))
         } catch {
             XCTFail(String(error))
         }

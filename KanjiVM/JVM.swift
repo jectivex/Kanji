@@ -64,7 +64,7 @@ public final class JVM {
     /// The static list of module loaders against which dynamic loading will be attempted
     public static var moduleLoaders: [AnyClass] = [JVM.self]
 
-    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (true, false, false), checkJNI: Bool = true, profile: Bool = false, options: [String] = []) throws {
+    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (true, false, false), checkJNI: Bool = true, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = []) throws {
 
         var opts: [String] = []
         if verbose.gc { opts += ["-verbose:gc"] }
@@ -73,12 +73,29 @@ public final class JVM {
         if !jit { opts += ["-Xint" /* "-Djava.compiler=NONE" */] }
         if headless { opts += ["-Djava.awt.headless=true"] }
         if checkJNI { opts += ["-Xcheck:jni"] }
+        if reducedSignals { opts += ["-Xrs"] } // signals conflict with native app signal handing
         if profile { opts += ["-Xprof"] }
         // if diagnostics { opts += ["-Xdiag"] } // “Unrecognized option: -Xdiag”
+        if let initmemory = initmemory { opts += ["-Xms" + initmemory] }
         if let maxmemory = maxmemory { opts += ["-Xmx" + maxmemory] } // if too small: “Too small initial heap”
+
+        // this works in JNI, but does not expand classpath wildcards
         if let classpath = classpath { opts += ["-Djava.class.path=" + classpath.joinWithSeparator(":")] }
         if let libpath = libpath { opts += ["-Djava.library.path=" + libpath.joinWithSeparator(":")] }
         if let extpath = extpath { opts += ["-Djava.ext.dirs=" + extpath.joinWithSeparator(":")] }
+
+        if let bootpath = bootpath {
+            var bp = "-Xbootclasspath"
+            if bootpath.prepend == true {
+                bp += "/p"
+            } else if bootpath.prepend == false {
+                bp += "/a"
+            }
+            bp += ":"
+            bp += bootpath.path.joinWithSeparator(":")
+            opts += [bp]
+        }
+
 
         opts += options // tack on any additional options
 

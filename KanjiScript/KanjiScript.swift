@@ -18,7 +18,7 @@ public class KanjiScriptContext : ScriptContext {
 
     public typealias InstanceType = KanjiScriptType
 
-    public init(engine name: String = "nashorn") throws {
+    public init(engine name: String) throws {
         let manager = try javax$script$ScriptEngineManager()
         guard let engine = try manager.getEngineByName(java$lang$String(stringLiteral: name)) else {
             throw KanjiErrors.General("Could not get engine name \(name)")
@@ -307,6 +307,15 @@ public extension java$lang$Object {
             try df.setTimeZone(tz)
             let str = try df.format(date)
             return .Str(str?.description ?? "")
+        } else if let itr: java$lang$Iterable$ = cast() {
+            // we handle iterable last because toArray is probably more optimized
+            var arr: [Bric] = []
+            if let it = try itr.iterator() {
+                while let next = try it.next() {
+                    try arr.append(next.createBric(seen + [self.jobj]))
+                }
+            }
+            return .Arr(arr)
         } else {
             throw KanjiErrors.General("Could not convert class \(self.dynamicType.javaClassName) «\(self.description)» into Bric")
         }
