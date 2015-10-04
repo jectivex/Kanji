@@ -9,7 +9,7 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            scope = "1"
+            scope = "0"
             stopOnStyle = "0">
          </BreakpointContent>
       </BreakpointProxy>
@@ -33,6 +33,12 @@
                   ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
                   <ActionContent
                      consoleCommand = "process handle SIGSEGV -n true -p true -s false">
+                  </ActionContent>
+               </BreakpointActionProxy>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "process handle SIGBUS -n true -p true -s false">
                   </ActionContent>
                </BreakpointActionProxy>
             </Actions>

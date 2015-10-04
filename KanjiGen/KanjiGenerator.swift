@@ -79,7 +79,8 @@ extension NSScanner {
 
     var remainingDesc: String {
         let rem = remainder as String
-        let sub = rem[rem.startIndex..<advance(rem.startIndex, 100, rem.endIndex)]
+        let end = rem.startIndex.advancedBy(100, limit: rem.endIndex)
+        let sub = rem[rem.startIndex..<end]
         return "“" + sub + "”"
     }
 
@@ -148,15 +149,15 @@ struct JName: Hashable, Equatable, CustomDebugStringConvertible {
     let generics: [String]
 
     var javaClassName: String {
-        return (".").join(parts)
+        return parts.joinWithSeparator(".")
     }
 
     var javaInternalName: String {
-        return ("/").join(parts)
+        return parts.joinWithSeparator("/")
     }
 
     var swiftClassName: String {
-        return ("$").join(parts)
+        return parts.joinWithSeparator("$")
     }
 
     var hashValue: Int {
@@ -630,16 +631,16 @@ extension JUnit {
                 // java$lang$Object is special because it holds the jref and jobj fields and handles init/deinit global refs
                 // we can't do this in an extension, and we want java$lang$Object to be the true Swift base class
                 code += "    public let jobj: jobject\n"
-                    + "    private let jref: jobject\n"
+//                    + "    private let jref: jobject\n"
                     + "\n"
                     + "    public required init?(jobj: jobject) {\n"
-                    + "        self.jobj = jobj\n"
-                    + "        self.jref = jobj == nil ? nil : JVM.sharedJVM.newGlobalRef(jobj)\n"
+                    + "        self.jobj = jobj == nil ? nil : JVM.sharedJVM.newGlobalRef(jobj)\n"
+//                    + "        self.jref = jobj == nil ? nil : JVM.sharedJVM.newGlobalRef(jobj)\n"
                     + "        if jobj == nil { return nil }\n"
                     + "    }\n"
                     + "\n"
                     + "    deinit { \n"
-                    + "        if self.jref != nil { JVM.sharedJVM.deleteGlobalRef(self.jref) }\n"
+                    + "        if self.jobj != nil { JVM.sharedJVM.deleteGlobalRef(self.jobj) }\n"
                     + "    }\n"
                     + "\n"
             } else { // if !self.mods.contains(.Abstract) {

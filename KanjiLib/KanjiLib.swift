@@ -12,6 +12,21 @@ extension java$lang$Object : Equatable {
 
 }
 
+public extension JVM {
+    /// Attaches the system class loader as the current thread's context class loader if it is not already set
+    public func initializeThreadLoader() throws {
+        // “Java threads created from JNI code in a non-java thread have null ContextClassloader unless the creator explicitly sets it”; if this is null and we are initializing scala, we will get an NPE or other error
+        if let thread = try java$lang$Thread.currentThread() {
+            if try thread.getContextClassLoader() == nil {
+                if let syscl = try java$lang$ClassLoader.getSystemClassLoader() {
+                    print("initializing context class loader")
+                    try thread.setContextClassLoader(syscl)
+                }
+            }
+        }
+    }
+}
+
 public func == (o1: java$lang$Object, o2: java$lang$Object) -> Bool {
     do {
         let eq = try o1.equals(o2)

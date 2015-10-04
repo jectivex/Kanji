@@ -7264,16 +7264,14 @@ public typealias java$lang$NumberFormatException$ = java$lang$NumberFormatExcept
 
 public class java$lang$Object : JavaObject {
     public let jobj: jobject
-    private let jref: jobject
 
     public required init?(jobj: jobject) {
-        self.jobj = jobj
-        self.jref = jobj == nil ? nil : JVM.sharedJVM.newGlobalRef(jobj)
+        self.jobj = jobj == nil ? nil : JVM.sharedJVM.newGlobalRef(jobj)
         if jobj == nil { return nil }
     }
 
     deinit { 
-        if self.jref != nil { JVM.sharedJVM.deleteGlobalRef(self.jref) }
+        if self.jobj != nil { JVM.sharedJVM.deleteGlobalRef(self.jobj) }
     }
 
     private static let java$lang$Object_init__V = constructor()

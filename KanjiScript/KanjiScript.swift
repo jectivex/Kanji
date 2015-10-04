@@ -30,6 +30,14 @@ public class KanjiScriptContext : ScriptContext {
         fatalError()
     }
 
+    // TODO: swap out the context?
+//    public func reset() {
+//    }
+
+    public func bind(key: String, value: InstanceType.RefType) throws {
+        try self.engine.put(java$lang$String(key), value)
+    }
+
     public func eval(code: InstanceType, this: InstanceType.RefType? = nil, args: InstanceType...) throws -> InstanceType {
         let script: String
         switch code {
@@ -53,8 +61,7 @@ public class KanjiScriptContext : ScriptContext {
         let str = java$lang$String(stringLiteral: script)
 
         // functions can only be invoked on invocale subclases
-        let invocable: javax$script$Invocable$? = engine.cast()
-        if let invocable = invocable where args.count > 0 {
+        if let invocable: javax$script$Invocable$ = engine.cast() where args.count > 0 {
             // let funarg = try deref(.Val(.Str(script)))
             // FIXME: global functions can be invoked directly, but things like "JSON.stringify"; we use this hack to evaluate a ref to the fun
             let fname = "___invokeFunction\(abs(script.hashValue))"

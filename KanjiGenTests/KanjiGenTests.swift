@@ -684,7 +684,7 @@ class KanjiGenTests: XCTestCase {
             tmppath,
         ]
 
-        print(" ".join(args))
+        print(args.joinWithSeparator(" "))
 
         let task = NSTask.launchedTaskWithLaunchPath(args[0], arguments: Array(args.dropFirst()))
         task.waitUntilExit()

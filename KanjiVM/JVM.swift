@@ -49,17 +49,24 @@ public final class JVM {
     let jvm: UnsafeMutablePointer<JavaVM>
 
     var env: UnsafeMutablePointer<JNIEnv> {
-        var penv = UnsafeMutablePointer<Void>(JNIEnv())
-
-        var args = JavaVMAttachArgs()
-        args.version = JVM.jniversion
-
         // FIXME: this may be expensive and is called quite a lot; we should be able to mark a thread as already being attached
-        let success: jint = JavaVM_AttachCurrentThread(self.jvm, &penv, &args)
-        assert(success == JNI_OK, "unable to attach JVM to current thread")
-        return UnsafeMutablePointer<JNIEnv>(penv)
+        return attach()
     }
 
+    public func attach() -> UnsafeMutablePointer<JNIEnv> {
+        var penv = UnsafeMutablePointer<Void>(JNIEnv())
+
+        if JavaVM_GetEnv(self.jvm, &penv, JVM.jniversion) == JNI_OK {
+            return UnsafeMutablePointer<JNIEnv>(penv)
+        }
+
+        let success: jint = NSThread.isMainThread() ? JavaVM_AttachCurrentThreadAsDaemon(self.jvm, &penv, nil) : JavaVM_AttachCurrentThread(self.jvm, &penv, nil)
+        assert(success == JNI_OK, "unable to attach JVM to current thread")
+
+        print("Attaching to: \(NSThread.currentThread()): \(penv)")
+
+        return UnsafeMutablePointer<JNIEnv>(penv)
+    }
 
     /// The static list of module loaders against which dynamic loading will be attempted
     public static var moduleLoaders: [AnyClass] = [JVM.self]
@@ -1252,9 +1259,9 @@ public extension JavaObject {
 //        defer { JVM.sharedJVM.exceptionClear() }
         let cname = javaClassName
         let cls = JVM.sharedJVM.findClass(cname)
-//        if cls == nil {
-//            preconditionFailure("Could not find class for «\(cname)»")
-//        }
+        if cls == nil {
+            preconditionFailure("Could not find class for «\(cname)»")
+        }
         return cls
     }
 
@@ -1354,6 +1361,7 @@ public extension JavaObject {
         if jsup == nil {
             return nil
         }
+
         if jvm.isAssignableFrom(jcls, sup: jsup) {
             return T(jobj: jobj)
         } else {
@@ -1386,114 +1394,109 @@ public extension JavaObject {
     }
 }
 
-public extension JavaObject {
+/// Locates the method with the mangled name, preserving class not found exception
+private func findMethod(cls: jclass, name: String, sig: String) -> jmethodID {
+    let jvm = JVM.sharedJVM
+    if jvm.exceptionCheck() { return nil } // class not found
+    let mid = jvm.getMethodID(cls, name: methodName(name), sig: sig)
+    return mid
+}
 
-    /// Locates the method with the mangled name, preserving class not found exception
-    static func findMethod(name: String, sig: String) -> jmethodID {
-        let jvm = JVM.sharedJVM
-        let cls = javaClass
-        if jvm.exceptionCheck() { return nil } // class not found
-        let mid = jvm.getMethodID(cls, name: methodName(name), sig: sig)
-        return mid
-    }
-
-    /// Locates the method with the mangled name, preserving class not found exception
-    static func findStaticMethod(name: String, sig: String) -> jmethodID {
-        let jvm = JVM.sharedJVM
-        let cls = javaClass
-        if jvm.exceptionCheck() { return nil } // class not found
-        let mid = jvm.getStaticMethodID(cls, name: methodName(name), sig: sig)
-        return mid
-    }
+/// Locates the method with the mangled name, preserving class not found exception
+private func findStaticMethod(cls: jclass, name: String, sig: String) -> jmethodID {
+    let jvm = JVM.sharedJVM
+    if jvm.exceptionCheck() { return nil } // class not found
+    let mid = jvm.getStaticMethodID(cls, name: methodName(name), sig: sig)
+    return mid
 }
 
 public extension JavaObject {
 
     /// Nullary invoker: creates an invoker closure from a class, method name, return type, and object instance
-    static func invoker<T: JType>(name: String, returns: T)->(JRef)->() throws -> T.JNIType {
+    public static func invoker<T: JType>(name: String, cls: jclass = nil, returns: T)->(JRef)->() throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: []))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: []))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Unary invoker: creates an invoker closure from a class, method name, return type, object instance, and single argument
-    static func invoker<T: JType, A0: JType where A0.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0))->(JRef)->(A0.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType where A0.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0))->(JRef)->(A0.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Binary invoker: creates an invoker closure from a class, method name, return type, object instance, and 2 arguments
-    static func invoker<T: JType, A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1))->(JRef)->(A0.JNIType, A1.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1))->(JRef)->(A0.JNIType, A1.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Ternary invoker: creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
-    static func invoker<T: JType, A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Quaternary invoker: creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
-    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Quinary invoker: creates an invoker closure from a class, method name, return type, object instance, and 5 arguments
-    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Senary invoker: creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
-    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4, A5))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Septenary invoker: creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
-    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Octary invoker: creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
-    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in try caller(obj: inst.jobj)(args: va) })) } }
     }
 
     /// Nonary invoker: creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
-    static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> T.JNIType {
+    public static func invoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(JRef)->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
+        let mid = findMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.call(jvm)(mid: mid)
         return { inst in { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in try caller(obj: inst.jobj)(args: va) })) } }
@@ -1505,90 +1508,90 @@ public extension JavaObject {
 public extension JavaObject {
 
     /// Nullary static invoker: creates an invoker closure from a class, method name, return type, and object instance
-    static func svoker<T: JType>(name: String, returns: T)->() throws -> T.JNIType {
+    public static func svoker<T: JType>(name: String, cls: jclass = nil, returns: T)->() throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: []))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: []))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Unary static invoker: creates an invoker closure from a class, method name, return type, object instance, and single argument
-    static func svoker<T: JType, A0: JType where A0.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0))->(A0.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType where A0.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0))->(A0.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Binary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 2 arguments
-    static func svoker<T: JType, A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1))->(A0.JNIType, A1.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1))->(A0.JNIType, A1.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Ternary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
-    static func svoker<T: JType, A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2))->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2))->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Quaternary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
-    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Quinary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 5 arguments
-    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Senary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
-    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4, A5))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Septenary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
-    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Octary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
-    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in try caller(cls: javaClass)(args: va) })) }
     }
 
     /// Nonary static invoker: creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
-    static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(name: String, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> T.JNIType {
+    public static func svoker<T: JType, A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(name: String, cls: jclass = nil, returns: T, arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> T.JNIType {
         let jvm = JVM.sharedJVM
-        let mid = findStaticMethod(name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
+        let mid = findStaticMethod(cls != nil ? cls : javaClass, name: name, sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = T.callStatic(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1600,7 +1603,7 @@ public extension JavaObject {
     /// Nullary constructor: creates an invoker closure from a class, method name, return type, and object instance
     static func constructor()->() throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: []))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: []))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1609,7 +1612,7 @@ public extension JavaObject {
     /// Unary constructor: creates an invoker closure from a class, method name, return type, object instance, and single argument
     static func constructor<A0: JType where A0.JNIType: CVarArgType>(arguments: (A0))->(A0.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1618,7 +1621,7 @@ public extension JavaObject {
     /// Binary constructor: creates an invoker closure from a class, method name, return type, object instance, and 2 arguments
     static func constructor<A0: JType, A1: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType>(arguments: (A0, A1))->(A0.JNIType, A1.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1627,7 +1630,7 @@ public extension JavaObject {
     /// Ternary constructor: creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
     static func constructor<A0: JType, A1: JType, A2: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType>(arguments: (A0, A1, A2))->(A0.JNIType, A1.JNIType, A2.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1636,7 +1639,7 @@ public extension JavaObject {
     /// Quaternary constructor: creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
     static func constructor<A0: JType, A1: JType, A2: JType, A3: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1645,7 +1648,7 @@ public extension JavaObject {
     /// Quinary constructor: creates an invoker closure from a class, method name, return type, object instance, and 5 arguments
     static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1654,7 +1657,7 @@ public extension JavaObject {
     /// Senary constructor: creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
     static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4, A5))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1663,7 +1666,7 @@ public extension JavaObject {
     /// Septenary constructor: creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
     static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4, A5, A6))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1672,7 +1675,7 @@ public extension JavaObject {
     /// Octary constructor: creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
     static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4, A5, A6, A7))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7]) { va in try caller(cls: javaClass)(args: va) })) }
@@ -1681,7 +1684,7 @@ public extension JavaObject {
     /// Nonary constructor: creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
     static func constructor<A0: JType, A1: JType, A2: JType, A3: JType, A4: JType, A5: JType, A6: JType, A7: JType, A8: JType where A0.JNIType: CVarArgType, A1.JNIType: CVarArgType, A2.JNIType: CVarArgType, A3.JNIType: CVarArgType, A4.JNIType: CVarArgType, A5.JNIType: CVarArgType, A6.JNIType: CVarArgType, A7.JNIType: CVarArgType, A8.JNIType: CVarArgType>(arguments: (A0, A1, A2, A3, A4, A5, A6, A7, A8))->(A0.JNIType, A1.JNIType, A2.JNIType, A3.JNIType, A4.JNIType, A5.JNIType, A6.JNIType, A7.JNIType, A8.JNIType) throws -> jobject {
         let jvm = JVM.sharedJVM
-        let mid = findMethod("<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
+        let mid = findMethod(javaClass, name: "<init>", sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
         let ex = jvm.currentException() // cache method not found error and throw it when we try to execute
         let caller = JObjectType.callInit(jvm)(mid: mid)
         return { args in try rethrow(ex, jvm.checked(withThrowableVaList([args.0, args.1, args.2, args.3, args.4, args.5, args.6, args.7, args.8]) { va in try caller(cls: javaClass)(args: va) })) }
