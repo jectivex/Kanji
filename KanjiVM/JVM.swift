@@ -1411,6 +1411,12 @@ private func findStaticMethod(cls: jclass, name: String, sig: String) -> jmethod
 }
 
 public extension JavaObject {
+    public func invokeDynamic<T: JType>(name: String, returns: T) throws -> T.JNIType {
+        return try self.dynamicType.invoker(name, cls: self.jcls, returns: returns)(self)()
+    }
+}
+
+public extension JavaObject {
 
     /// Nullary invoker: creates an invoker closure from a class, method name, return type, and object instance
     public static func invoker<T: JType>(name: String, cls: jclass = nil, returns: T)->(JRef)->() throws -> T.JNIType {
