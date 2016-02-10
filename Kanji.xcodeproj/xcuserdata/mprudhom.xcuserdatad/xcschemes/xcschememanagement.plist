@@ -4,20 +4,35 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>KanjiGen.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
-		</dict>
-		<key>KanjiLib.xcscheme</key>
+		<key>JavaLib.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
-		<key>KanjiScript.xcscheme_^#shared#^_</key>
+		<key>KanjiAvian.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>23</integer>
+		</dict>
+		<key>KanjiGen.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>10</integer>
+		</dict>
+		<key>KanjiLib.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>KanjiScript.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>KanjiTool.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 		<key>KanjiVM.xcscheme_^#shared#^_</key>
 		<dict>
@@ -33,6 +48,11 @@
 			<true/>
 		</dict>
 		<key>7E0E8C2C1B6FA7170003FEC6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E35AE2D1BD7D7C100E93E09</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,12 +77,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>7E89301D1BEEB61B00F245C5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7E8930261BEEB61C00F245C5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>7EA888041AAAB6DF00C6DBB3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>7EA8880F1AAAB6DF00C6DBB3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7EF6C40A1BCEA7DE00309E9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

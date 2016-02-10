@@ -22,6 +22,16 @@ public enum CodegenErrors : ErrorType, CustomDebugStringConvertible {
     }
 }
 
+
+/// The suffix to append to a protocol or stub that is the hollow Swift-side implementation
+/// E.g., when the java side returns a java.util.Set interface, we need a concrete type to wrap on the swift side
+
+private let KanjiImplementationSuffix = "$Stub"
+//private let KanjiImplementationSuffix = "ʹ" // Unicode Character 'MODIFIER LETTER PRIME' (U+02B9)
+//private let KanjiImplementationSuffix = "$Kanji"
+//private let KanjiImplementationSuffix = "$"
+
+
 extension String {
     func trimPrefix(prefix: String, count: Int = 1) -> String? {
         if !hasPrefix(prefix) {
@@ -383,13 +393,14 @@ struct JUnit {
     var mods: JUnit.Mod
     var extends: [JName] = [] // extends is a list because interfaces extend mutliple other interfaces
     var implements: [JName] = []
+    var fields: [JField] = []
     var methods: [JMethod] = []
 
     var swiftName: String {
         return jname.swiftClassName
     }
 
-    var slashName: String {
+    var jniName: String {
         return jname.javaInternalName
     }
 
@@ -423,28 +434,64 @@ struct JUnit {
     }
 }
 
+struct JMod : OptionSetType {
+    let rawValue: Int
+    init(rawValue: Int) { self.rawValue = rawValue }
+    static let Public = JMod(rawValue: 1<<0)
+    static let Private = JMod(rawValue: 1<<1)
+    static let Protected = JMod(rawValue: 1<<2)
+    static let Final = JMod(rawValue: 1<<3)
+    static let Transient = JMod(rawValue: 1<<4)
+    static let Volatile = JMod(rawValue: 1<<5)
+    static let Synchronized = JMod(rawValue: 1<<6)
+    static let Static = JMod(rawValue: 1<<7)
+    static let Native = JMod(rawValue: 1<<8)
+}
+
+struct JField {
+    let fname: String
+    let mods: JMod
+    let type: JType
+
+    init?(decl: String, desc: String, mods: JMod) throws {
+        self.mods = mods
+
+        guard let semicolon = decl.characters.indexOf(";") else {
+            return nil
+        }
+
+        let declReverse = decl[decl.startIndex..<semicolon].characters.reverse()
+        let fieldEndIndex = declReverse.indexOf(" ") ?? declReverse.endIndex
+        self.fname = String(declReverse[declReverse.startIndex..<fieldEndIndex].reverse())
+
+        var dgen = desc.characters.generate()
+        guard let type = try JType.parse(&dgen) else {
+            throw CodegenErrors.ParseError("No field type")
+        }
+
+        self.type = type
+    }
+
+    var referencedClasses: [JType] {
+        var types: [JType] = []
+        for t in [type] {
+            if let classType = t.classType {
+                types.append(classType)
+            }
+        }
+        return types
+    }
+
+}
+
 struct JMethod {
     let fname: String
-    let mods: JMethod.Mod
+    let mods: JMod
     let constructor: Bool
     let arguments: [JType]
     let returnType: JType
 
-    struct Mod : OptionSetType {
-        let rawValue: Int
-        init(rawValue: Int) { self.rawValue = rawValue }
-        static let Public = Mod(rawValue: 1<<0)
-        static let Private = Mod(rawValue: 1<<1)
-        static let Protected = Mod(rawValue: 1<<2)
-        static let Final = Mod(rawValue: 1<<3)
-        static let Transient = Mod(rawValue: 1<<4)
-        static let Volatile = Mod(rawValue: 1<<5)
-        static let Synchronized = Mod(rawValue: 1<<6)
-        static let Static = Mod(rawValue: 1<<7)
-        static let Native = Mod(rawValue: 1<<8)
-    }
-
-    init?(decl: String, desc: String, mods: JMethod.Mod) throws {
+    init?(decl: String, desc: String, mods: JMod) throws {
         self.mods = mods
 
         guard let paren = decl.characters.indexOf("(") else {
@@ -502,16 +549,64 @@ enum CodeGenerationMode {
     case InterfaceExtension
 }
 
+
+//public protocol FooI {
+//    static func cname() -> String
+//}
+//
+//public class Foo1 : FooI {
+//    public class func cname() -> String { return "XXX" }
+//}
+//
+//public class Foo2 : Foo1 {
+//    public class override func cname() -> String { return "YYY" }
+//}
+
+/// Reserved words as per the Swift language guide https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html
+private let reservedWords = Set(["class", "deinit", "enum", "extension", "func", "import", "init", "inout", "internal", "let", "operator", "private", "protocol", "public", "static", "struct", "subscript", "typealias", "var", "break", "case", "continue", "default", "defer", "do", "else", "fallthrough", "for", "guard", "if", "in", "repeat", "return", "switch", "where", "while", "as", "catch", "dynamicType", "false", "is", "nil", "rethrows", "super", "self", "Self", "throw", "throws", "true", "try", "__COLUMN__", "__FILE__", "__FUNCTION__", "__LINE__"])
+
 extension JUnit {
-    func generateWrapper(mode: CodeGenerationMode) throws -> String {
+    func arrayConversionReturn(sub: JType) -> String {
+        var code = ""
+        code += ".jarrayToArray("
+
+        if sub.isObject {
+            code += "\(sub.typeName)\(KanjiImplementationSuffix).self"
+        }
+        code += ")"
+        if sub.isObject {
+            // this is a rotten hack, but gets around failure to automatically convery from [TImpl?]? to [TProto?]?
+            // the ultimate mathod looks something like:
+            // return try java$lang$Class$.java$lang$Class_getTypeParameters__Ajava$lang$reflect$TypeVariable(jobj)().jarrayToArray(java$lang$reflect$TypeVariable$.self)?.map({ $0 as java$lang$reflect$TypeVariable? })
+            code += "?.map({ $0 as \(sub.typeName)? })"
+        }
+        return code
+    }
+
+    func arrayConversionArgument(sub: JType) -> String {
+        if sub.isObject {
+            // the map is necessary because we may have an argument that is an protocol type,
+            // in which case the arrayToJArray() won't work because it needs a concrete implementation
+            // type to instantiate
+            return "?.map({ \(sub.typeName)\(KanjiImplementationSuffix)(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil"
+            //                                code += "?.arrayToJArray() ?? nil"
+        } else {
+            return "?.arrayToJArray() ?? nil"
+        }
+    }
+
+    func generateWrapper(convenience: Bool = true, logger: String->())(mode: CodeGenerationMode) throws -> String {
         let rootObject = JName(parts: ["java", "lang", "Object"], generics: [])
         let isRootObject = jname == rootObject
 
         let decname = self.swiftName
-        let impname = decname + "$"
 
         if case .ClassTypealias = mode {
-            // a classes implementation is merely a typealias
+            let impname = decname + KanjiImplementationSuffix
+            // when we are generating an impl typealias for a class it can be kept private
+            // when it is an interface, we wan't client code to be able to generate a wrapper externally
+//            return (self.mods.contains(.Class) ? "private" : "public") + " typealias \(impname) = \(decname)\n\n"
+            // they should be public as long as external classes should be able to generate code
             return "public typealias \(impname) = \(decname)\n\n"
         }
 
@@ -551,7 +646,7 @@ extension JUnit {
             stub = false
         }
 
-        let typeName = self.swiftName + (stub ? "$" : "")
+        let typeName = self.swiftName + (stub ? KanjiImplementationSuffix : "")
         let implement = (self.mods.contains(.Class) || stub)
 
 
@@ -583,6 +678,14 @@ extension JUnit {
                 extends.append(rootObject)
             }
 
+            // FIXME: also check for superclass conformance, otherwise:
+//            <stdin>:14036:131: error: redundant conformance of 'scala$collection$immutable$List' to protocol 'scala$collection$generic$GenericTraversableTemplate'
+//            public class scala$collection$immutable$List : scala$collection$AbstractSeq, scala$collection$immutable$LinearSeq, scala$Product, scala$collection$generic$GenericTraversableTemplate, scala$collection$LinearSeqOptimized {
+//                ^
+//                <stdin>:14036:14: note: 'scala$collection$immutable$List' inherits conformance to protocol 'scala$collection$generic$GenericTraversableTemplate' from superclass here
+//                public class scala$collection$immutable$List : scala$collection$AbstractSeq, scala$collection$immutable$LinearSeq, scala$Product, scala$collection$generic$GenericTraversableTemplate, scala$collection$LinearSeqOptimized {
+//                    ^
+
             var implements = self.implements
             if stub {
                 implements.insert(jname, atIndex: 0)
@@ -609,8 +712,10 @@ extension JUnit {
 
             for (i, e) in extends.enumerate() {
                 code += i == 0 ? " : " : ", "
+
+                code += e.swiftClassName
                 // we inherit from the implementation class because we may have generated a stub for an unseen impl
-                code += e.swiftClassName + "$"
+//                code += KanjiImplementationSuffix
             }
 
             for (i, e) in implements.enumerate() {
@@ -627,16 +732,28 @@ extension JUnit {
             //            code += "    "
             //            code += "private typealias J = \(typeName)\n\n"
 
+            let over = isRootObject ? "" : " override"
+            code += "    /// Returns the internal JNI name for this class: \"\(self.jniName)\"\n"
+            code += "    public class\(over) func jniName() -> String { return \"\(self.jniName)\" }\n\n"
+
             if isRootObject {
+                let conv = convenience ? "convenience " : ""
+
                 // java$lang$Object is special because it holds the jref and jobj fields and handles init/deinit global refs
                 // we can't do this in an extension, and we want java$lang$Object to be the true Swift base class
                 code += "    public let jobj: jobject\n"
-//                    + "    private let jref: jobject\n"
                     + "\n"
-                    + "    public required init?(jobj: jobject) {\n"
-                    + "        self.jobj = jobj == nil ? nil : JVM.sharedJVM.newGlobalRef(jobj)\n"
-//                    + "        self.jref = jobj == nil ? nil : JVM.sharedJVM.newGlobalRef(jobj)\n"
+                    + "    /// Wraps an existing JNI reference in the given type with a new global reference\n"
+                    + "    public required init?(reference: jobject) {\n"
+                    + "        self.jobj = reference == nil ? nil : JVM.sharedJVM.newGlobalRef(reference)\n"
                     + "        if jobj == nil { return nil }\n"
+                    + "    }\n"
+                    + "\n"
+                    + "    /// Creates this instance by attempting the autoclosure constructor function\n"
+                    + "    public \(conv)init?(@autoclosure constructor: () throws -> jobject) rethrows {\n"
+                    + "        let ref = try constructor()\n"
+                    + "        self.init(reference: ref)\n"
+                    + "        JVM.sharedJVM.deleteLocalRef(ref) // local ref is no longer needed\n"
                     + "    }\n"
                     + "\n"
                     + "    deinit { \n"
@@ -644,14 +761,125 @@ extension JUnit {
                     + "    }\n"
                     + "\n"
             } else { // if !self.mods.contains(.Abstract) {
-                code += "    public required init?(jobj: jobject) { super.init(jobj: jobj) }\n\n"
+                // this used to be required before Swift 2, but now the subclasses inherit the parent
+                //code += "    public required init?(reference: jobject) { super.init(reference: jobj) }\n\n"
             }
         }
 
+        for field in self.fields {
+            if field.type.arrayLevel > 1 {
+                logger("warning: multi-dimensional arrays are not yet supported: \(fields)")
+                continue
+            }
+
+            let propName = field.fname
+
+            if propName.hasPrefix("$") || propName.hasPrefix("_") { // probably a funky Scala method
+                logger("warning: skipping illegal variable name: \(propName)")
+                continue
+            }
+
+            // the type ID is the className__fieldName__ret
+            let fid = decname + "__" + propName + "__" + field.type.typeID
+
+            let isStatic = field.mods.contains(.Static)
+            let isFinal = field.mods.contains(.Final)
+
+            if pdec { // cached field accessor
+                if isStatic {
+                    code += "    private static let \(fid) = \(typeName).saccessor(\"\(propName)\", type: \(field.type.typeCall))\n"
+                } else {
+                    code += "    private static let \(fid) = \(typeName).accessor(\"\(propName)\", type: \(field.type.typeCall))\n"
+                }
+            }
+
+            if mdec || mimp {
+                code += "    "
+
+                if implement { // access modifiers aren't used in protocols
+                    if field.mods.contains(.Public) {
+                        code += "public "
+                    } else if field.mods.contains(.Protected) {
+                        code += "internal "
+                    } else if field.mods.contains(.Private) {
+                        code += "private "
+                    }
+                }
+
+                if isStatic {
+                    code += "static "
+                }
+
+                if reservedWords.contains(propName) {
+                    code += "var `\(propName)`"
+                } else {
+                    code += "var \(propName)"
+                }
+
+                code += ": " + field.type.typeNameOpt
+
+                if !mimp {
+                    if isFinal {
+                        code += " { get }"
+                    } else {
+                        code += " { get set }"
+                    }
+                } else {
+                    code += " {\n"
+
+                    // the getter
+                    code += "        get { "
+                    code += "return "
+                    if field.type.isObject {
+                        code += field.type.typeName + KanjiImplementationSuffix + "(constructor: "
+                    }
+                    if isStatic {
+                        code += "\(typeName)\(KanjiImplementationSuffix).\(fid).getter()"
+                    } else {
+                        code += "\(typeName)\(KanjiImplementationSuffix).\(fid).getter(jobj)"
+                    }
+                    if field.type.isObject {
+                        code += ")"
+                    }
+
+                    if case .Array(let sub) = field.type {
+                        code += arrayConversionReturn(sub)
+                    }
+
+                    code += " }\n"
+
+                    if !isFinal {
+                        // the setter
+                        code += "        set { "
+                        if isStatic {
+                            code += "\(typeName)\(KanjiImplementationSuffix).\(fid).setter("
+                        } else {
+                            code += "\(typeName)\(KanjiImplementationSuffix).\(fid).setter(jobj, "
+                        }
+                        code += "newValue"
+
+                        if field.type.isObject {
+                            code += "?.jobj ?? nil"
+                        } else if case .Array(let sub) = field.type {
+                            code += arrayConversionArgument(sub)
+                        }
+
+                        code += ")"
+
+                        code += " }\n"
+                    }
+                    code += "    }"
+                }
+
+                code += "\n\n"
+            }
+        }
+
+
         for method in self.methods {
 
-            if method.arguments.count > 9 {
-                print("warning: skipping method with too many arguments: \(method)")
+            if method.arguments.count > 22 {
+                logger("warning: skipping method with too many arguments: \(method)")
                 continue
             }
 
@@ -663,11 +891,17 @@ extension JUnit {
             }
 
             if isMultiDimArray {
-                print("warning: multi-dimensional arrays are not yet supported: \(method)")
+                logger("warning: multi-dimensional arrays are not yet supported: \(method)")
                 continue
             }
 
             let funcName = method.constructor ? "init" : method.fname
+
+            if funcName.hasPrefix("$") { // probably a funky Scala method
+                logger("warning: skipping illegal method name: \(funcName)")
+                continue
+            }
+
             // the type ID is the className_funcName_arg0_arg1__ret
             var mid = decname + "_" + funcName
             for a in method.arguments {
@@ -716,11 +950,15 @@ extension JUnit {
                             if superclassName != rootObject { // keep walking up the hierarchy
                                 return try overridden(superclass.extends.first ?? rootObject)
                             }
+//                        } else if superclassName.javaClassName == "java.lang.Object" {
+//                            // Object is a special case: we want to be able to generate subclasses of it without
+//                            // having to always include Object itself
                         } else {
                             // we are mostly able to extend from missing classes except that our overridden methods by the stubs
                             // are not identified; we should be able to implement this by examining all the method
                             // declarations of implemented interfaces
-                            throw CodegenErrors.ParseError("Extension of missing class «\(superclassName.javaClassName)» not yet supported")
+                            logger("warning: extension of missing class «\(superclassName.javaClassName)» by «\(jniName)» not yet supported")
+//                            throw CodegenErrors.ParseError("Extension of missing class «\(superclassName.javaClassName)» not yet supported")
                         }
                         return false
                     }
@@ -754,19 +992,36 @@ extension JUnit {
 
                 if method.constructor {
                     // note that constructors are forced-unwrap since java doesn't have failable constructors: they must throw an exception
-                    code += "convenience init!("
+                    if convenience {
+                        code += "convenience "
+                    }
+                    code += "init!("
                 } else {
                     if method.mods.contains(.Static) {
                         code += "static "
                     }
-                    code += "func \(funcName)("
+
+                    if !method.constructor && reservedWords.contains(funcName) {
+                        if funcName == "init" {
+                            code += "func \(funcName)_(" // FIXME: compiler crash!
+                        } else {
+                            code += "func `\(funcName)`("
+                        }
+                    } else {
+                        code += "func \(funcName)("
+                    }
                 }
 
                 for (i, a) in method.arguments.enumerate() {
                     if i > 0 {
                         code += ", _ "
                     } else if i == 0 && method.constructor {
-                        code += "_ " // first constructor arg is named by default
+                        if case .Some(.Object(let argname)) = method.arguments.first where argname.javaInternalName == "java/lang/Object" && method.arguments.count == 1 && (extends.first?.javaInternalName == "java/lang/RuntimeException" || extends.first?.javaInternalName == "java/lang/Throwable" || extends.first?.javaInternalName == "java/lang/Error" || extends.first?.javaInternalName == "java/lang/Error" ) {
+                            // FIXME special case, otherwise compiler: "error: declaration 'init' cannot override more than one superclass declaration"
+                            code += "object "
+                        } else {
+                            code += "_ " // first constructor arg is named by default
+                        }
                     }
                     code += "a\(i): " + a.typeNameOpt
                 }
@@ -781,19 +1036,24 @@ extension JUnit {
                     code += " {\n"
                     code += "        "
                     if method.constructor {
-                        // radr://22126951: can't do multi-line init when a param may throw an exception
-                        code += "let jobj = try "
+                        // special constructor auto-closure that cleans up local refs
+                        if convenience {
+                            code += "try self.init(constructor: "
+                        } else {
+                            code += "try super.init(constructor: "
+                        }
                     } else {
                         code += "return try "
                         if method.returnType.isObject {
-                            code += method.returnType.typeName + "$(jobj: "
+//                            code += method.returnType.typeName + KanjiImplementationSuffix + "(constructor: "
+                            code += "JVM.sharedJVM.construct("
                         }
                     }
 
                     if method.constructor || method.mods.contains(.Static) {
-                        code += "\(typeName)$.\(mid)("
+                        code += "\(typeName)\(KanjiImplementationSuffix).\(mid)("
                     } else {
-                        code += "\(typeName)$.\(mid)(jobj)("
+                        code += "\(typeName)\(KanjiImplementationSuffix).\(mid)(jobj)("
                     }
 
                     for (i, a) in method.arguments.enumerate() {
@@ -803,45 +1063,24 @@ extension JUnit {
                         case .Object:
                             code += "?.jobj ?? nil"
                         case .Array(let sub):
-                            if sub.isObject {
-                                // the map is necessary because we may have an argument that is an protocol type,
-                                // in which case the arrayToJArray() won't work because it needs a concrete implementation
-                                // type to instantiate
-                                code += "?.map({ \(sub.typeName)$(jobj: $0?.jobj ?? nil) }).arrayToJArray() ?? nil"
-
-                            } else {
-                                code += "?.arrayToJArray() ?? nil"
-                            }
+                            code += arrayConversionArgument(sub)
                         default:
                             break
                         }
                     }
-                    if method.returnType.isObject {
-                        code += ")" // close the function
-                    }
 
                     code += ")"
 
-                    switch method.returnType {
-                    case .Array(let sub):
-                        code += ".jarrayToArray("
-
-                        if sub.isObject {
-                            code += "\(sub.typeName)$.self"
-                        }
+                    if method.constructor {
                         code += ")"
-                        if sub.isObject {
-                            // this is a rotten hack, but gets around failure to automatically convery from [TImpl?]? to [TProto?]?
-                            // the ultimate mathod looks something like:
-                            // return try java$lang$Class$.java$lang$Class_getTypeParameters__Ajava$lang$reflect$TypeVariable(jobj)().jarrayToArray(java$lang$reflect$TypeVariable$.self)?.map({ $0 as java$lang$reflect$TypeVariable? })
-                            code += "?.map({ $0 as \(sub.typeName)? })"
-                        }
-                    default:
-                        break
+                    } else if method.returnType.isObject {
+                        // end of wrapped for JVM.construct
+                        code += ")"
+                        code += " as " + method.returnType.typeName + KanjiImplementationSuffix + "?"
                     }
 
-                    if method.constructor {
-                        code += "\n        self.init(jobj: jobj)"
+                    if case .Array(let sub) = method.returnType {
+                        code += arrayConversionReturn(sub)
                     }
 
                     code += "\n    }\n\n"
@@ -881,13 +1120,14 @@ func getTime() throws -> jlong
 ^
 
 */
-func parseDisassembly(output: String) throws -> [JUnit] {
-    let scanner = NSScanner(string: output)
+func parseDisassemblySegment(logger: String->(), disassembly: String) throws -> (JUnit, String) {
+    let scanner = NSScanner(string: disassembly)
     try scanner.require("Compiled from \"")
 
     let javaFileName = try scanner.scanThrough("\"")
-
-    var unit = JUnit(jname: JName(parts: [], generics: []), mods: JUnit.Mod(), extends: [], implements: [], methods: [])
+    logger("file: \(javaFileName)")
+    
+    var unit = JUnit(jname: JName(parts: [], generics: []), mods: JUnit.Mod(), extends: [], implements: [], fields: [], methods: [])
 
     if scanner.consume("public") { unit.mods.unionInPlace(.Public) }
     if scanner.consume("protected") { unit.mods.unionInPlace(.Protected) }
@@ -953,55 +1193,82 @@ func parseDisassembly(output: String) throws -> [JUnit] {
     try scanner.require("{")
 
 
+    var fields: [JField] = []
     var methods: [JMethod] = []
-
 
     while !scanner.consume("}") {
         if scanner.consume("static {};") { // ignore static init
             try scanner.require("descriptor: ()V")
             continue
         }
-
-        var mods = JMethod.Mod()
-        if scanner.consume("public") { mods.unionInPlace(JMethod.Mod.Public) }
-        if scanner.consume("protected") { mods.unionInPlace(JMethod.Mod.Protected) }
-        if scanner.consume("private") { mods.unionInPlace(JMethod.Mod.Private) }
-        if scanner.consume("transient") { mods.unionInPlace(JMethod.Mod.Transient) }
-        if scanner.consume("synchronized") { mods.unionInPlace(JMethod.Mod.Synchronized) }
-        if scanner.consume("static") { mods.unionInPlace(JMethod.Mod.Static) }
-        if scanner.consume("native") { mods.unionInPlace(JMethod.Mod.Native) } // static native
-        if scanner.consume("final") { mods.unionInPlace(JMethod.Mod.Final) }
+        var mods = JMod()
+        if scanner.consume("public") { mods.unionInPlace(JMod.Public) }
+        if scanner.consume("protected") { mods.unionInPlace(JMod.Protected) }
+        if scanner.consume("private") { mods.unionInPlace(JMod.Private) }
+        if scanner.consume("transient") { mods.unionInPlace(JMod.Transient) }
+        if scanner.consume("synchronized") { mods.unionInPlace(JMod.Synchronized) }
+        if scanner.consume("static") { mods.unionInPlace(JMod.Static) }
+        if scanner.consume("native") { mods.unionInPlace(JMod.Native) } // static native
+        if scanner.consume("final") { mods.unionInPlace(JMod.Final) }
 
         let decl = try scanner.scanTo("\n")
+
 
         try scanner.require("descriptor:")
         let desc = try scanner.scanTo("\n")
 
-        if let method = try JMethod(decl: decl, desc: desc, mods: mods) {
-            methods.append(method)
+        let isMethod = desc.hasPrefix("(")
+
+        if isMethod {
+            if let method = try JMethod(decl: decl, desc: desc, mods: mods) {
+                methods.append(method)
+            }
+        } else {
+            if let field = try JField(decl: decl, desc: desc, mods: mods) {
+                fields.append(field)
+            }
         }
     }
 
+    unit.fields = fields
     unit.methods = methods
-
-    let remainder = scanner.remainder
-    if remainder.length > 10 {
-        let rest = try parseDisassembly(remainder as String)
-        return [unit] + rest
-    } else {
-        return [unit]
-    }
+    return (unit, scanner.remainder as String)
 }
 
-public func generateWrappers(disassembly: String) throws -> String {
-    let units = try parseDisassembly(disassembly)
+func parseDisassembly(logger: String->(), var disassembly: String) throws -> [JUnit] {
+    var units: [JUnit] = []
+    while disassembly.utf16.count > 1 {
+        let (unit, remainder) = try parseDisassemblySegment(logger, disassembly: disassembly)
+        units.append(unit)
+        disassembly = remainder
+    }
+    return units
+}
+
+/// Generate the Kanji wrappers for the underlying javap disassembly
+///
+/// - parameter skipPatterns: regular expression patterns of class names to skip generation
+/// - parameter imports: Swift modules to import into this package
+///
+/// - returns: the Swift code for the wrapper
+public func generateWrappers(disassembly: String, skipPatterns: Set<String> = Set(), imports: [String] = ["KanjiVM"], logger: String->() = { print($0) }) throws -> String {
+    let units = try parseDisassembly(logger, disassembly: disassembly)
 
     var unitMap: [JName: JUnit] = [:]
     for unit in units {
         unitMap[unit.jname] = unit
     }
 
-    var code = "import KanjiVM\n\n"
+    /// Returns true if the given name matches any of the skip patterns
+    func shouldSkip(name: String) -> Bool {
+        return skipPatterns.map({ (pattern: String)->Bool in
+            (name as NSString).rangeOfString(pattern, options: .RegularExpressionSearch).location != NSNotFound
+        }).reduce(false, combine: { $0 || $1 })
+    }
+
+    var code = imports.map({"import " + $0}).joinWithSeparator("\n")
+    code.appendContentsOf("\n")
+    code.appendContentsOf("\n")
 
     var generatedTypes = Set<JType>()
     var referencedTypes = Set<JType>()
@@ -1009,32 +1276,39 @@ public func generateWrappers(disassembly: String) throws -> String {
     let lookup: (JName)->(JUnit?) = { unitMap[$0] }
 
     for unit in units {
-        print("generating type: \(unit.jname.javaClassName)")
-        if unit.mods.contains(.Class) {
-            // a class is all-in one with an implementation typealias
-            code += try unit.generateWrapper(.ClassImplementation(lookup))
-            code += try unit.generateWrapper(.ClassTypealias)
-        } else if unit.mods.contains(.Interface) {
-            // an interface has a protocol with the declarations, a default implementation class with the method caches, and a protocol extension with the method implementations
-            code += try unit.generateWrapper(.InterfaceProtocol)
-            code += try unit.generateWrapper(.InterfaceStub)
-            code += try unit.generateWrapper(.InterfaceExtension)
+        if !shouldSkip(unit.jname.javaClassName) {
+            let gen = unit.generateWrapper(logger: logger)
+            logger("type: \(unit.jname.javaClassName)")
+            if unit.mods.contains(.Class) {
+                // a class is all-in one with an implementation typealias
+                code += try gen(mode: .ClassImplementation(lookup))
+                code += try gen(mode: .ClassTypealias)
+            } else if unit.mods.contains(.Interface) {
+                // an interface has a protocol with the declarations, a default implementation class with the method caches, and a protocol extension with the method implementations
+                code += try gen(mode: .InterfaceProtocol)
+                code += try gen(mode: .InterfaceStub)
+                code += try gen(mode: .InterfaceExtension)
+            }
+
+            generatedTypes.insert(unit.jtype)
+
+            referencedTypes.unionInPlace(unit.referencedClasses)
         }
-
-        generatedTypes.insert(unit.jtype)
-
-        referencedTypes.unionInPlace(unit.referencedClasses)
     }
 
 
     let stubs = referencedTypes.subtract(generatedTypes)
     for stub in stubs {
         if let jname = stub.jname {
-            print("generating stub: \(jname.javaClassName)")
-            let unit = JUnit(jname: jname, mods: JUnit.Mod.Public, extends: [], implements: [], methods: [])
-            code += try unit.generateWrapper(CodeGenerationMode.InterfaceProtocol)
-            code += try unit.generateWrapper(CodeGenerationMode.InterfaceStub)
-//            code += try unit.generateWrapper(CodeGenerationMode.InterfaceExtension)
+            if !shouldSkip(jname.javaClassName) {
+                logger("stub: \(jname.javaClassName)")
+
+                let unit = JUnit(jname: jname, mods: JUnit.Mod.Public, extends: [], implements: [], fields: [], methods: [])
+                let gen = unit.generateWrapper(logger: logger)
+                code += try gen(mode: CodeGenerationMode.InterfaceProtocol)
+                code += try gen(mode: CodeGenerationMode.InterfaceStub)
+    //            code += try gen(mode: CodeGenerationMode.InterfaceExtension)
+            }
         }
     }
 
@@ -1047,7 +1321,11 @@ public func launchDisassembler(types: [String]) throws -> String {
 
     let task = NSTask() // .launchedTaskWithLaunchPath("/usr/bin/javap", arguments: ["-p"] + types)
     task.launchPath = "/usr/bin/javap"
-    task.arguments = ["-s", "-public"] + types
+    // we always include java.lang.Object even if we might skip the generation
+    if !types.contains("java.lang.Object") {
+
+    }
+    task.arguments = ["-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
 
     let pipe = NSPipe()
     task.standardOutput = pipe

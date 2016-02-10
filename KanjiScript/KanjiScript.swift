@@ -10,6 +10,7 @@ import Foundation
 import InterScript
 import KanjiVM
 import KanjiLib
+import JavaLib
 import BricBrac
 
 public class KanjiScriptContext : ScriptContext {
@@ -61,7 +62,7 @@ public class KanjiScriptContext : ScriptContext {
         let str = java$lang$String(stringLiteral: script)
 
         // functions can only be invoked on invocale subclases
-        if let invocable: javax$script$Invocable$ = engine.cast() where args.count > 0 {
+        if let invocable: javax$script$Invocable$Stub = engine.cast() where args.count > 0 {
             // let funarg = try deref(.Val(.Str(script)))
             // FIXME: global functions can be invoked directly, but things like "JSON.stringify"; we use this hack to evaluate a ref to the fun
             let fname = "___invokeFunction\(abs(script.hashValue))"
@@ -116,7 +117,7 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
     public var debugDescription : String {
         switch self {
         case .Val(let bric): return bric.debugDescription
-        case .Ref(let ref, _): return java$lang$Object(jobj: ref.jobj)?.description ?? "nil"
+        case .Ref(let ref, _): return java$lang$Object(reference: ref.jobj)?.description ?? "nil"
         }
     }
     public subscript(key: String) -> KanjiScriptType? {
@@ -261,7 +262,7 @@ public extension java$lang$Object {
     private func createBric(seen: [jobject]) throws -> Bric {
         for x in seen {
             // FIXME: not working, at least for the test case
-            if jvm.isSameObject(self.jobj, x) {
+            if JVM.sharedJVM.isSameObject(self.jobj, x) {
                 throw KanjiErrors.General("Cannot create Bric from structure with cyclic values")
             }
         }
@@ -271,9 +272,9 @@ public extension java$lang$Object {
             return .Bol(try bol.booleanValue() == 0 ? false : true)
         } else if let num : java$lang$Number = cast() {
             return .Num(try num.doubleValue())
-        } else if let str: java$lang$CharSequence$ = cast() {
+        } else if let str: java$lang$CharSequence$Stub = cast() {
             return .Str(str.description)
-        } else if let col: java$util$Collection$ = cast() {
+        } else if let col: java$util$Collection$Stub = cast() {
             var arr: [Bric] = []
             if let values = try col.toArray() {
                 for value in values {
@@ -285,7 +286,7 @@ public extension java$lang$Object {
                 }
             }
             return .Arr(arr)
-        } else if let amp: java$util$Map$ = cast() {
+        } else if let amp: java$util$Map$Stub = cast() {
             var dict: [String: Bric] = [:]
             for key in try amp.keySet()?.toArray([]) ?? [] {
                 if let stringKey : java$lang$String = key?.cast() {
@@ -306,7 +307,7 @@ public extension java$lang$Object {
                 arr.append(try ob?.createBric(seen + [self.jobj]) ?? nil)
             }
             return .Arr(arr)
-        } else if let date: java$util$Date$ = cast() {
+        } else if let date: java$util$Date$Stub = cast() {
             // dates are non-standard JSON, but the de-facto standard is to serialize as ISO-8601
             // TODO: cache simple date format
             let tz = try java$util$TimeZone.getTimeZone("UTC")
@@ -314,7 +315,7 @@ public extension java$lang$Object {
             try df.setTimeZone(tz)
             let str = try df.format(date)
             return .Str(str?.description ?? "")
-        } else if let itr: java$lang$Iterable$ = cast() {
+        } else if let itr: java$lang$Iterable$Stub = cast() {
             // we handle iterable last because toArray is probably more optimized
             var arr: [Bric] = []
             if let it = try itr.iterator() {
