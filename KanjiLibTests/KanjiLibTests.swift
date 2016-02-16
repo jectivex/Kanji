@@ -787,7 +787,7 @@ class KanjiLibTests: XCTestCase {
             var llsize = try ll.size()
             XCTAssertEqual(llsize, 5)
 
-            let asArray = try ll.toArray([])!.map({ $0! })
+            let asArray = try ll.toArray([])!.map(unsafeUnwrap)
             XCTAssertEqual(asArray.count, 5)
 
 //            debugPrint("array: \(asArray)")
