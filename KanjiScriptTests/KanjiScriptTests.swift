@@ -51,7 +51,7 @@ class KanjiScriptTests: XCTestCase {
         }
     }
 
-    func checkeq(value: Bric, file: String = __FILE__, line: UInt = __LINE__, @autoclosure f: () throws -> Bric) {
+    func checkeq(value: Bric, file: StaticString = #file, line: UInt = #line, @autoclosure f: () throws -> Bric) {
         do {
             let x = try f()
             XCTAssertEqual(value, x, file: file, line: line)

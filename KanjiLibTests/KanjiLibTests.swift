@@ -316,10 +316,10 @@ class KanjiLibTests: XCTestCase {
             }
 
             do {
-                print("\(__FUNCTION__): starting from \(NSThread.currentThread())")
-                let runnable = try java$lang$Runnable$Stub.fromBlock { _ in print("\(__FUNCTION__): running from \(NSThread.currentThread())") }
+                print("\(#function): starting from \(NSThread.currentThread())")
+                let runnable = try java$lang$Runnable$Stub.fromBlock { _ in print("\(#function): running from \(NSThread.currentThread())") }
                 try java$lang$Thread(runnable)?.start()
-                print("\(__FUNCTION__): ending from \(NSThread.currentThread())")
+                print("\(#function): ending from \(NSThread.currentThread())")
             }
 
             do {

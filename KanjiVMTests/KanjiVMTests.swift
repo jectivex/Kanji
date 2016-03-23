@@ -27,9 +27,9 @@ class KanjiVMTests: XCTestCase {
 //
 //            let _ = try dyn.dynamicType.invoker("toString", returns: JObjectType("java/lang/String"))(dyn)()
 //            XCTAssertEqual("0x0000000100217b10", toString.debugDescription)
-
-        } catch {
-            XCTFail(String(error))
+//
+//        } catch {
+//            XCTFail(String(error))
         }
     }
 

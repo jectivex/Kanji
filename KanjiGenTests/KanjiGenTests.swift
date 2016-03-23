@@ -27,7 +27,7 @@ class KanjiGenTests: XCTestCase {
 
         let info = try launchDisassembler(uniqueClasses)
         let code = try generateWrappers(info)
-        try compile(code, name: file, dir: ((__FILE__ as NSString).stringByDeletingLastPathComponent as NSString).stringByAppendingPathComponent("../JavaLib/"))
+        try compile(code, name: file, dir: ((#file as NSString).stringByDeletingLastPathComponent as NSString).stringByAppendingPathComponent("../JavaLib/"))
     }
 
     func compile(code: String, name: String, dir: String) throws {

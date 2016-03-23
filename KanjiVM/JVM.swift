@@ -14,7 +14,7 @@ public struct KanjiException: ErrorType {
     public let _domain = "Kanji"
     public let _code = 0
 
-    // TODO: 
+    // TODO:
     // public let cause: KanjiException?
 }
 
@@ -35,6 +35,9 @@ public enum KanjiErrors : ErrorType, CustomDebugStringConvertible {
 }
 
 public typealias JNIEnvPointer = UnsafeMutablePointer<JNIEnv>
+
+private func jnienv() -> JNIEnvPointer { return nil }
+
 
 public final class JVM {
     /// The singleton shared JVM: it must be manually set once and only once for a process, as JNI does not support mutliple JVMs
@@ -62,13 +65,11 @@ public final class JVM {
         let getName: jmethodID = self.getMethodID(clscls, name: "getName", sig: "()Ljava/lang/String;")
         if self.exceptionCheck() { self.printStackTrace(); fatalError("failed to find method id for class name") }
         return getName
-        }()
-
-
+    }()
 
 
     public func attach() -> JNIEnvPointer {
-        var penv = UnsafeMutablePointer<Void>(JNIEnv())
+        var penv = UnsafeMutablePointer<Void>(jnienv())
 
         if JavaVM_GetEnv(self.jvm, &penv, JVM.jniversion) == JNI_OK {
             return JNIEnvPointer(penv)
@@ -136,8 +137,8 @@ public final class JVM {
         var pargs: UnsafePointer<JavaVMInitArgs> = withUnsafePointer(&jargs, { $0 })
         _ = JNI_GetDefaultJavaVMInitArgs(&pargs)
 
-        var pvm = UnsafeMutablePointer<JavaVM>()
-        var penv = UnsafeMutablePointer<Void>(JNIEnv())
+        var pvm: UnsafeMutablePointer<JavaVM> = nil
+        var penv = UnsafeMutablePointer<Void>(jnienv())
 
         let success: jint = JNI_CreateJavaVM(&pvm, &penv, &jargs)
         self.jvm = pvm
@@ -318,7 +319,7 @@ public extension SequenceType where Self.Generator.Element : JavaObject {
 }
 
 public protocol FlatMappable {
-    typealias Wrapped
+    associatedtype Wrapped
     func flatMap<U>(@noescape f: (Wrapped) throws -> U?) rethrows -> U?
 }
 
@@ -336,14 +337,14 @@ public protocol JSig {
 }
 
 public protocol JType: JSig {
-    typealias JNIType
+    associatedtype JNIType
 
     /// Convert the given JNI type to a jvalue
     static func jvalueOf(inst: JNIType) -> jvalue
 
-    static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> JNIType
-    static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> JNIType
-    static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> JNIType
+    static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> JNIType
+    static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> JNIType
+    static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> JNIType
 
 }
 
@@ -360,23 +361,43 @@ public struct JVoid: JType {
         return jvalue()
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> JNIType {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallVoidMethodA(env, obj, mid, $0.baseAddress) }))
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> JNIType {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallVoidMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
+        }
     }
 
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> JNIType {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticVoidMethodA(env, cls, mid, $0.baseAddress) }))
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> JNIType {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticVoidMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
+        }
     }
 
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> JNIType {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualVoidMethodA(env, obj, cls, mid, $0.baseAddress) }))
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> JNIType {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualVoidMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -384,10 +405,10 @@ public struct JVoid: JType {
 public protocol JNominal: JType {
     /// Constructs a blank instance (e.g., zero for numbers, null for objects)
     static func empty() -> JNIType
-    static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> JNIType
-    static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> JNIType
-    static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: JNIType)
-    static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: JNIType)
+    static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> JNIType
+    static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> JNIType
+    static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: JNIType) -> Void
+    static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: JNIType) -> Void
 }
 
 public struct JObjectType: JNominal {
@@ -408,54 +429,100 @@ public struct JObjectType: JNominal {
         return jvalue(l: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> JNIType {
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> JNIType {
         // TODO: hide the method name somewhere so we can print it out for debugging
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallObjectMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> JNIType {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> JNIType {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualObjectMethodA(env, obj, cls,mid, $0.baseAddress) }))
-    }
-
-    public static func callInit(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jobject {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        let obj = try checked(env, JNI_NewObjectA(env, cls, mid, args))
-        if obj == nil {
-            throw KanjiErrors.General("constructor returned null")
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallObjectMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return obj
+    }
+
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> JNIType {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
+        }
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> JNIType {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualObjectMethodA(env, obj, cls,mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func callInit(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jobject {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    let obj = try checked(env, JNI_NewObjectA(env, cls, mid, args))
+                    if obj == nil {
+                        throw KanjiErrors.General("constructor returned null")
+                    }
+                    return obj
+                }
+            }
+        }
     }
 
     public static func empty() -> JNIType {
-        return JNIType()
+        return nil
     }
 
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jobject {
-        return JNI_GetObjectField(env, obj, fld)
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jobject {
+        return { fld in
+            { obj in
+                return JNI_GetObjectField(env, obj, fld)
+            }
+        }
     }
 
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jobject {
-        return JNI_GetStaticObjectField(env, cls, fld)
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jobject {
+        return { fld in
+            { cls in
+                return JNI_GetStaticObjectField(env, cls, fld)
+            }
+        }
     }
 
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jobject) {
-        return JNI_SetObjectField(env, obj, fld, val)
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jobject) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetObjectField(env, obj, fld, val)
+                }
+            }
+        }
     }
 
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jobject) {
-        return JNI_SetStaticObjectField(env, cls, fld, val)
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jobject) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticObjectField(env, cls, fld, val)
+                }
+            }
+        }
     }
 
 }
@@ -474,53 +541,93 @@ public struct JArray: JNominal {
         return jvalue(l: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> JNIType {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallObjectMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-    
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> JNIType {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }))
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> JNIType {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallObjectMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
+        }
     }
 
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> JNIType {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualObjectMethodA(env, obj, cls, mid, $0.baseAddress) }))
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> JNIType {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
+        }
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> JNIType {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualObjectMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
     }
 
     public static func empty() -> JNIType {
-        return JNIType()
+        return nil
     }
 
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jobject {
-        return JNI_GetObjectField(env, obj, fld)
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jobject {
+        return { fld in
+            { obj in
+                return JNI_GetObjectField(env, obj, fld)
+            }
+        }
     }
 
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jobject {
-        return JNI_GetStaticObjectField(env, cls, fld)
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jobject {
+        return { fld in
+            { cls in
+                return JNI_GetStaticObjectField(env, cls, fld)
+            }
+        }
     }
 
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jobject) {
-        return JNI_SetObjectField(env, obj, fld, val)
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jobject) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetObjectField(env, obj, fld, val)
+                }
+            }
+        }
     }
 
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jobject) {
-        return JNI_SetStaticObjectField(env, cls, fld, val)
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jobject) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticObjectField(env, cls, fld, val)
+                }
+            }
+        }
     }
 }
 
 /// A primitive that can be used as a JNI return value; the protocol will be implemented by extending the native return values themselves
 public protocol JPrimitive: JNominal {
-    typealias ArrayType
+    associatedtype ArrayType
 
     static var jniType: JNIType { get }
-    static func createArray(env: JNIEnvPointer)(elements: [Self]) -> ArrayType
-    static func getArray(env: JNIEnvPointer)(array: jarray) -> [Self]?
+    static func createArray(env: JNIEnvPointer) -> (elements: [Self]) -> ArrayType
+    static func getArray(env: JNIEnvPointer) -> (array: jarray) -> [Self]?
     init()
 }
 
@@ -539,60 +646,104 @@ extension jboolean: JPrimitive {
         return jvalue(z: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> jboolean {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallBooleanMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jboolean {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticBooleanMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> jboolean {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualBooleanMethodA(env, obj, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jboolean {
-        return JNI_GetBooleanField(env, obj, fld)
-    }
-
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jboolean {
-        return JNI_GetStaticBooleanField(env, cls, fld)
-    }
-
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jboolean) {
-        return JNI_SetBooleanField(env, obj, fld, val)
-    }
-
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jboolean) {
-        return JNI_SetStaticBooleanField(env, cls, fld, val)
-    }
-
-    public static func createArray(env: JNIEnvPointer)(elements: [jboolean]) -> ArrayType {
-        let size = jsize(elements.count)
-        let array = JNI_NewBooleanArray(env, size)
-        elements.withUnsafeBufferPointer { ptr in
-            JNI_SetBooleanArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> jboolean {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallBooleanMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return array
     }
 
-    public static func getArray(env: JNIEnvPointer)(array: ArrayType) -> [jboolean]? {
-        if array == nil { return nil }
-        var isCopy: jboolean = jboolean()
-        let src = JNI_GetBooleanArrayElements(env, array, &isCopy)
-        var dst: [jboolean] = []
-        for i in 0..<JNI_GetArrayLength(env, array) {
-            dst.append(src[Int(i)])
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jboolean {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticBooleanMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
         }
-        JNI_ReleaseBooleanArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
-        return dst
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> jboolean {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualBooleanMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jboolean {
+        return { fld in
+            { obj in
+                return JNI_GetBooleanField(env, obj, fld)
+            }
+        }
+    }
+
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jboolean {
+        return { fld in
+            { cls in
+                return JNI_GetStaticBooleanField(env, cls, fld)
+            }
+        }
+    }
+
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jboolean) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetBooleanField(env, obj, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jboolean) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticBooleanField(env, cls, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func createArray(env: JNIEnvPointer) -> (elements: [jboolean]) -> ArrayType {
+        return { elements in
+            let size = jsize(elements.count)
+            let array = JNI_NewBooleanArray(env, size)
+            elements.withUnsafeBufferPointer { ptr in
+                JNI_SetBooleanArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+            }
+            return array
+        }
+    }
+
+    public static func getArray(env: JNIEnvPointer) -> (array: ArrayType) -> [jboolean]? {
+        return { array in
+            if array == nil { return nil }
+            var isCopy: jboolean = jboolean()
+            let src = JNI_GetBooleanArrayElements(env, array, &isCopy)
+            var dst: [jboolean] = []
+            for i in 0..<JNI_GetArrayLength(env, array) {
+                dst.append(src[Int(i)])
+            }
+            JNI_ReleaseBooleanArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
+            return dst
+        }
     }
 }
 
@@ -604,60 +755,104 @@ extension jbyte: JPrimitive {
         return jvalue(b: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> jbyte {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallByteMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jbyte {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticByteMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> jbyte {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualByteMethodA(env, obj, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jbyte {
-        return JNI_GetByteField(env, obj, fld)
-    }
-
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jbyte {
-        return JNI_GetStaticByteField(env, cls, fld)
-    }
-
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jbyte) {
-        return JNI_SetByteField(env, obj, fld, val)
-    }
-
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jbyte) {
-        return JNI_SetStaticByteField(env, cls, fld, val)
-    }
-
-    public static func createArray(env: JNIEnvPointer)(elements: [jbyte]) -> jbyteArray {
-        let size = jsize(elements.count)
-        let array = JNI_NewByteArray(env, size)
-        elements.withUnsafeBufferPointer { ptr in
-            JNI_SetByteArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> jbyte {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallByteMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return array
     }
 
-    public static func getArray(env: JNIEnvPointer)(array: jbyteArray) -> [jbyte]? {
-        if array == nil { return nil }
-        var isCopy: jboolean = jboolean()
-        let src = JNI_GetByteArrayElements(env, array, &isCopy)
-        var dst: [jbyte] = []
-        for i in 0..<JNI_GetArrayLength(env, array) {
-            dst.append(src[Int(i)])
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jbyte {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticByteMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
         }
-        JNI_ReleaseByteArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
-        return dst
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> jbyte {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualByteMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jbyte {
+        return { fld in
+            { obj in
+                return JNI_GetByteField(env, obj, fld)
+            }
+        }
+    }
+
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jbyte {
+        return { fld in
+            { cls in
+                return JNI_GetStaticByteField(env, cls, fld)
+            }
+        }
+    }
+
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jbyte) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetByteField(env, obj, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jbyte) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticByteField(env, cls, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func createArray(env: JNIEnvPointer) -> (elements: [jbyte]) -> jbyteArray {
+        return { elements in
+            let size = jsize(elements.count)
+            let array = JNI_NewByteArray(env, size)
+            elements.withUnsafeBufferPointer { ptr in
+                JNI_SetByteArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+            }
+            return array
+        }
+    }
+
+    public static func getArray(env: JNIEnvPointer) -> (array: jbyteArray) -> [jbyte]? {
+        return { array in
+            if array == nil { return nil }
+            var isCopy: jboolean = jboolean()
+            let src = JNI_GetByteArrayElements(env, array, &isCopy)
+            var dst: [jbyte] = []
+            for i in 0..<JNI_GetArrayLength(env, array) {
+                dst.append(src[Int(i)])
+            }
+            JNI_ReleaseByteArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
+            return dst
+        }
     }
 }
 
@@ -669,60 +864,104 @@ extension jchar: JPrimitive {
         return jvalue(c: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> jchar {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallCharMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jchar {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticCharMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> jchar {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualCharMethodA(env, obj, cls,mid, $0.baseAddress) }))
-    }
-
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jchar {
-        return JNI_GetCharField(env, obj, fld)
-    }
-
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jchar {
-        return JNI_GetStaticCharField(env, cls, fld)
-    }
-
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jchar) {
-        return JNI_SetCharField(env, obj, fld, val)
-    }
-
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jchar) {
-        return JNI_SetStaticCharField(env, cls, fld, val)
-    }
-
-    public static func createArray(env: JNIEnvPointer)(elements: [jchar]) -> jcharArray {
-        let size = jsize(elements.count)
-        let array = JNI_NewCharArray(env, size)
-        elements.withUnsafeBufferPointer { ptr in
-            JNI_SetCharArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> jchar {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallCharMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return array
     }
 
-    public static func getArray(env: JNIEnvPointer)(array: jcharArray) -> [jchar]? {
-        if array == nil { return nil }
-        var isCopy: jboolean = jboolean()
-        let src = JNI_GetCharArrayElements(env, array, &isCopy)
-        var dst: [jchar] = []
-        for i in 0..<JNI_GetArrayLength(env, array) {
-            dst.append(src[Int(i)])
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jchar {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticCharMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
         }
-        JNI_ReleaseCharArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
-        return dst
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> jchar {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualCharMethodA(env, obj, cls,mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jchar {
+        return { fld in
+            { obj in
+                return JNI_GetCharField(env, obj, fld)
+            }
+        }
+    }
+
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jchar {
+        return { fld in
+            { cls in
+                return JNI_GetStaticCharField(env, cls, fld)
+            }
+        }
+    }
+
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jchar) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetCharField(env, obj, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jchar) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticCharField(env, cls, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func createArray(env: JNIEnvPointer) -> (elements: [jchar]) -> jcharArray {
+        return { elements in
+            let size = jsize(elements.count)
+            let array = JNI_NewCharArray(env, size)
+            elements.withUnsafeBufferPointer { ptr in
+                JNI_SetCharArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+            }
+            return array
+        }
+    }
+
+    public static func getArray(env: JNIEnvPointer) -> (array: jcharArray) -> [jchar]? {
+        return { array in
+            if array == nil { return nil }
+            var isCopy: jboolean = jboolean()
+            let src = JNI_GetCharArrayElements(env, array, &isCopy)
+            var dst: [jchar] = []
+            for i in 0..<JNI_GetArrayLength(env, array) {
+                dst.append(src[Int(i)])
+            }
+            JNI_ReleaseCharArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
+            return dst
+        }
     }
 
 }
@@ -735,60 +974,104 @@ extension jshort: JPrimitive {
         return jvalue(s: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> jshort {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallShortMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jshort {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticShortMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> jshort {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualShortMethodA(env, obj, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jshort {
-        return JNI_GetShortField(env, obj, fld)
-    }
-
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jshort {
-        return JNI_GetStaticShortField(env, cls, fld)
-    }
-
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jshort) {
-        return JNI_SetShortField(env, obj, fld, val)
-    }
-
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jshort) {
-        return JNI_SetStaticShortField(env, cls, fld, val)
-    }
-
-    public static func createArray(env: JNIEnvPointer)(elements: [jshort]) -> jshortArray {
-        let size = jsize(elements.count)
-        let array = JNI_NewShortArray(env, size)
-        elements.withUnsafeBufferPointer { ptr in
-            JNI_SetShortArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> jshort {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallShortMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return array
     }
 
-    public static func getArray(env: JNIEnvPointer)(array: jshortArray) -> [jshort]? {
-        if array == nil { return nil }
-        var isCopy: jboolean = jboolean()
-        let src = JNI_GetShortArrayElements(env, array, &isCopy)
-        var dst: [jshort] = []
-        for i in 0..<JNI_GetArrayLength(env, array) {
-            dst.append(src[Int(i)])
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jshort {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticShortMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
         }
-        JNI_ReleaseShortArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
-        return dst
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> jshort {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualShortMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jshort {
+        return { fld in
+            { obj in
+                return JNI_GetShortField(env, obj, fld)
+            }
+        }
+    }
+
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jshort {
+        return { fld in
+            { cls in
+                return JNI_GetStaticShortField(env, cls, fld)
+            }
+        }
+    }
+
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jshort) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetShortField(env, obj, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jshort) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticShortField(env, cls, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func createArray(env: JNIEnvPointer) -> (elements: [jshort]) -> jshortArray {
+        return { elements in
+            let size = jsize(elements.count)
+            let array = JNI_NewShortArray(env, size)
+            elements.withUnsafeBufferPointer { ptr in
+                JNI_SetShortArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+            }
+            return array
+        }
+    }
+
+    public static func getArray(env: JNIEnvPointer) -> (array: jshortArray) -> [jshort]? {
+        return { array in
+            if array == nil { return nil }
+            var isCopy: jboolean = jboolean()
+            let src = JNI_GetShortArrayElements(env, array, &isCopy)
+            var dst: [jshort] = []
+            for i in 0..<JNI_GetArrayLength(env, array) {
+                dst.append(src[Int(i)])
+            }
+            JNI_ReleaseShortArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
+            return dst
+        }
     }
 
 }
@@ -801,60 +1084,104 @@ extension jint: JPrimitive {
         return jvalue(i: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> jint {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallIntMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jint {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticIntMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> jint {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualIntMethodA(env, obj, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jint {
-        return JNI_GetIntField(env, obj, fld)
-    }
-
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jint {
-        return JNI_GetStaticIntField(env, cls, fld)
-    }
-
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jint) {
-        return JNI_SetIntField(env, obj, fld, val)
-    }
-
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jint) {
-        return JNI_SetStaticIntField(env, cls, fld, val)
-    }
-
-    public static func createArray(env: JNIEnvPointer)(elements: [jint]) -> jintArray {
-        let size = jsize(elements.count)
-        let array = JNI_NewIntArray(env, size)
-        elements.withUnsafeBufferPointer { ptr in
-            JNI_SetIntArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> jint {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallIntMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return array
     }
 
-    public static func getArray(env: JNIEnvPointer)(array: jintArray) -> [jint]? {
-        if array == nil { return nil }
-        var isCopy: jboolean = jboolean()
-        let src = JNI_GetIntArrayElements(env, array, &isCopy)
-        var dst: [jint] = []
-        for i in 0..<JNI_GetArrayLength(env, array) {
-            dst.append(src[Int(i)])
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jint {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticIntMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
         }
-        JNI_ReleaseIntArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
-        return dst
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> jint {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualIntMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jint {
+        return { fld in
+            { obj in
+                return JNI_GetIntField(env, obj, fld)
+            }
+        }
+    }
+
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jint {
+        return { fld in
+            { cls in
+                return JNI_GetStaticIntField(env, cls, fld)
+            }
+        }
+    }
+
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jint) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetIntField(env, obj, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jint) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticIntField(env, cls, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func createArray(env: JNIEnvPointer) -> (elements: [jint]) -> jintArray {
+        return { elements in
+            let size = jsize(elements.count)
+            let array = JNI_NewIntArray(env, size)
+            elements.withUnsafeBufferPointer { ptr in
+                JNI_SetIntArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+            }
+            return array
+        }
+    }
+
+    public static func getArray(env: JNIEnvPointer) -> (array: jintArray) -> [jint]? {
+        return { array in
+            if array == nil { return nil }
+            var isCopy: jboolean = jboolean()
+            let src = JNI_GetIntArrayElements(env, array, &isCopy)
+            var dst: [jint] = []
+            for i in 0..<JNI_GetArrayLength(env, array) {
+                dst.append(src[Int(i)])
+            }
+            JNI_ReleaseIntArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
+            return dst
+        }
     }
 
 }
@@ -867,60 +1194,104 @@ extension jlong: JPrimitive {
         return jvalue(j: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> jlong {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallLongMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jlong {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticLongMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> jlong {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualLongMethodA(env, obj, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jlong {
-        return JNI_GetLongField(env, obj, fld)
-    }
-
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jlong {
-        return JNI_GetStaticLongField(env, cls, fld)
-    }
-
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jlong) {
-        return JNI_SetLongField(env, obj, fld, val)
-    }
-
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jlong) {
-        return JNI_SetStaticLongField(env, cls, fld, val)
-    }
-
-    public static func createArray(env: JNIEnvPointer)(elements: [jlong]) -> jlongArray {
-        let size = jsize(elements.count)
-        let array = JNI_NewLongArray(env, size)
-        elements.withUnsafeBufferPointer { ptr in
-            JNI_SetLongArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> jlong {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallLongMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return array
     }
 
-    public static func getArray(env: JNIEnvPointer)(array: jlongArray) -> [jlong]? {
-        if array == nil { return nil }
-        var isCopy: jboolean = jboolean()
-        let src = JNI_GetLongArrayElements(env, array, &isCopy)
-        var dst: [jlong] = []
-        for i in 0..<JNI_GetArrayLength(env, array) {
-            dst.append(src[Int(i)])
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jlong {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticLongMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
         }
-        JNI_ReleaseLongArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
-        return dst
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> jlong {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualLongMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jlong {
+        return { fld in
+            { obj in
+                return JNI_GetLongField(env, obj, fld)
+            }
+        }
+    }
+
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jlong {
+        return { fld in
+            { cls in
+                return JNI_GetStaticLongField(env, cls, fld)
+            }
+        }
+    }
+
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jlong) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetLongField(env, obj, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jlong) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticLongField(env, cls, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func createArray(env: JNIEnvPointer) -> (elements: [jlong]) -> jlongArray {
+        return { elements in
+            let size = jsize(elements.count)
+            let array = JNI_NewLongArray(env, size)
+            elements.withUnsafeBufferPointer { ptr in
+                JNI_SetLongArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+            }
+            return array
+        }
+    }
+
+    public static func getArray(env: JNIEnvPointer) -> (array: jlongArray) -> [jlong]? {
+        return { array in
+            if array == nil { return nil }
+            var isCopy: jboolean = jboolean()
+            let src = JNI_GetLongArrayElements(env, array, &isCopy)
+            var dst: [jlong] = []
+            for i in 0..<JNI_GetArrayLength(env, array) {
+                dst.append(src[Int(i)])
+            }
+            JNI_ReleaseLongArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
+            return dst
+        }
     }
 
 }
@@ -933,60 +1304,104 @@ extension jfloat: JPrimitive {
         return jvalue(f: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> jfloat {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallFloatMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jfloat {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticFloatMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> jfloat {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualFloatMethodA(env, obj, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jfloat {
-        return JNI_GetFloatField(env, obj, fld)
-    }
-
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jfloat {
-        return JNI_GetStaticFloatField(env, cls, fld)
-    }
-
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jfloat) {
-        return JNI_SetFloatField(env, obj, fld, val)
-    }
-
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jfloat) {
-        return JNI_SetStaticFloatField(env, cls, fld, val)
-    }
-
-    public static func createArray(env: JNIEnvPointer)(elements: [jfloat]) -> jfloatArray {
-        let size = jsize(elements.count)
-        let array = JNI_NewFloatArray(env, size)
-        elements.withUnsafeBufferPointer { ptr in
-            JNI_SetFloatArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> jfloat {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallFloatMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return array
     }
 
-    public static func getArray(env: JNIEnvPointer)(array: jfloatArray) -> [jfloat]? {
-        if array == nil { return nil }
-        var isCopy: jboolean = jboolean()
-        let src = JNI_GetFloatArrayElements(env, array, &isCopy)
-        var dst: [jfloat] = []
-        for i in 0..<JNI_GetArrayLength(env, array) {
-            dst.append(src[Int(i)])
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jfloat {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticFloatMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
         }
-        JNI_ReleaseFloatArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
-        return dst
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> jfloat {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualFloatMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jfloat {
+        return { fld in
+            { obj in
+                return JNI_GetFloatField(env, obj, fld)
+            }
+        }
+    }
+
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jfloat {
+        return { fld in
+            { cls in
+                return JNI_GetStaticFloatField(env, cls, fld)
+            }
+        }
+    }
+
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jfloat) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetFloatField(env, obj, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jfloat) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticFloatField(env, cls, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func createArray(env: JNIEnvPointer) -> (elements: [jfloat]) -> jfloatArray {
+        return { elements in
+            let size = jsize(elements.count)
+            let array = JNI_NewFloatArray(env, size)
+            elements.withUnsafeBufferPointer { ptr in
+                JNI_SetFloatArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+            }
+            return array
+        }
+    }
+
+    public static func getArray(env: JNIEnvPointer) -> (array: jfloatArray) -> [jfloat]? {
+        return { array in
+            if array == nil { return nil }
+            var isCopy: jboolean = jboolean()
+            let src = JNI_GetFloatArrayElements(env, array, &isCopy)
+            var dst: [jfloat] = []
+            for i in 0..<JNI_GetArrayLength(env, array) {
+                dst.append(src[Int(i)])
+            }
+            JNI_ReleaseFloatArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
+            return dst
+        }
     }
 
 }
@@ -999,60 +1414,104 @@ extension jdouble: JPrimitive {
         return jvalue(d: inst)
     }
 
-    public static func call(mid: jmethodID)(env: JNIEnvPointer)(obj: jobject)(args: [jvalue]) throws -> jdouble {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallDoubleMethodA(env, obj, mid, $0.baseAddress) }))
-    }
-
-    public static func callStatic(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(args: [jvalue]) throws -> jdouble {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticDoubleMethodA(env, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func callNonvirtual(mid: jmethodID)(env: JNIEnvPointer)(cls: jclass)(obj: jobject)(args: [jvalue]) throws -> jdouble {
-        if mid == nil { throw KanjiErrors.NotFound("Method") }
-        if cls == nil { throw KanjiErrors.NotFound("Class") }
-        if obj == nil { throw KanjiErrors.NotFound("Object") }
-        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualDoubleMethodA(env, obj, cls, mid, $0.baseAddress) }))
-    }
-
-    public static func getField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject) -> jdouble {
-        return JNI_GetDoubleField(env, obj, fld)
-    }
-
-    public static func getStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass) -> jdouble {
-        return JNI_GetStaticDoubleField(env, cls, fld)
-    }
-
-    public static func setField(env: JNIEnvPointer)(fld: jfieldID)(obj: jobject)(val: jdouble) {
-        return JNI_SetDoubleField(env, obj, fld, val)
-    }
-
-    public static func setStaticField(env: JNIEnvPointer)(fld: jfieldID)(cls: jclass)(val: jdouble) {
-        return JNI_SetStaticDoubleField(env, cls, fld, val)
-    }
-
-    public static func createArray(env: JNIEnvPointer)(elements: [jdouble]) -> jdoubleArray {
-        let size = jsize(elements.count)
-        let array = JNI_NewDoubleArray(env, size)
-        elements.withUnsafeBufferPointer { ptr in
-            JNI_SetDoubleArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+    public static func call(mid: jmethodID) -> (env: JNIEnvPointer) -> (obj: jobject) -> (args: [jvalue]) throws -> jdouble {
+        return { env in
+            { obj in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallDoubleMethodA(env, obj, mid, $0.baseAddress) }))
+                }
+            }
         }
-        return array
     }
 
-    public static func getArray(env: JNIEnvPointer)(array: jdoubleArray) -> [jdouble]? {
-        if array == nil { return nil }
-        var isCopy: jboolean = jboolean()
-        let src = JNI_GetDoubleArrayElements(env, array, &isCopy)
-        var dst: [jdouble] = []
-        for i in 0..<JNI_GetArrayLength(env, array) {
-            dst.append(src[Int(i)])
+    public static func callStatic(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (args: [jvalue]) throws -> jdouble {
+        return { env in
+            { cls in
+                { args in
+                    if mid == nil { throw KanjiErrors.NotFound("Method") }
+                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticDoubleMethodA(env, cls, mid, $0.baseAddress) }))
+                }
+            }
         }
-        JNI_ReleaseDoubleArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
-        return dst
+    }
+
+    public static func callNonvirtual(mid: jmethodID) -> (env: JNIEnvPointer) -> (cls: jclass) -> (obj: jobject) -> (args: [jvalue]) throws -> jdouble {
+        return { env in
+            { cls in
+                { obj in
+                    { args in
+                        if mid == nil { throw KanjiErrors.NotFound("Method") }
+                        if cls == nil { throw KanjiErrors.NotFound("Class") }
+                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualDoubleMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                    }
+                }
+            }
+        }
+    }
+
+    public static func getField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> jdouble {
+        return { fld in
+            { obj in
+                return JNI_GetDoubleField(env, obj, fld)
+            }
+        }
+    }
+
+    public static func getStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> jdouble {
+        return { fld in
+            { cls in
+                return JNI_GetStaticDoubleField(env, cls, fld)
+            }
+        }
+    }
+
+    public static func setField(env: JNIEnvPointer) -> (fld: jfieldID) -> (obj: jobject) -> (val: jdouble) -> Void {
+        return { fld in
+            { obj in
+                { val in
+                    return JNI_SetDoubleField(env, obj, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func setStaticField(env: JNIEnvPointer) -> (fld: jfieldID) -> (cls: jclass) -> (val: jdouble) -> Void {
+        return { fld in
+            { cls in
+                { val in
+                    return JNI_SetStaticDoubleField(env, cls, fld, val)
+                }
+            }
+        }
+    }
+
+    public static func createArray(env: JNIEnvPointer) -> (elements: [jdouble]) -> jdoubleArray {
+        return { elements in
+            let size = jsize(elements.count)
+            let array = JNI_NewDoubleArray(env, size)
+            elements.withUnsafeBufferPointer { ptr in
+                JNI_SetDoubleArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+            }
+            return array
+        }
+    }
+
+    public static func getArray(env: JNIEnvPointer) -> (array: jdoubleArray) -> [jdouble]? {
+        return { array in
+            if array == nil { return nil }
+            var isCopy: jboolean = jboolean()
+            let src = JNI_GetDoubleArrayElements(env, array, &isCopy)
+            var dst: [jdouble] = []
+            for i in 0..<JNI_GetArrayLength(env, array) {
+                dst.append(src[Int(i)])
+            }
+            JNI_ReleaseDoubleArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
+            return dst
+        }
     }
 
 }
@@ -1073,7 +1532,7 @@ extension jobject {
 
     /// Deletes the given local or global reference
     public func deleteReference(jvm: JVM = JVM.sharedJVM) {
-        // it would probaby be much faster to avoid calling getObjectRefType in the 
+        // it would probaby be much faster to avoid calling getObjectRefType in the
         // init(constructor:) since it is almost always a local ref, but it seems that
         // when the constructor throws an error, the reference is a global for some reason
         let type = jvm.getObjectRefType(self)
@@ -1113,8 +1572,11 @@ public extension JVM {
                 return nil
             }
 
+            var jc = getObjectClass(jobj)
             // walk up the inheritance hierarchy until we find a class name we know how to instantiate
-            for var jc = getObjectClass(jobj); jc != nil; jc = getSuperclass(jc) {
+            while jc != nil {
+                defer { jc = getSuperclass(jc) }
+
                 if exceptionCheck() { printStackTrace(); fatalError("failed to access class") }
 
                 let clsName = callObjectMethodA(jc, methodID: classGetName, args: nil)
@@ -1129,7 +1591,7 @@ public extension JVM {
                     for prefix in loaders {
                         let baseName = String(prefix) + "." + wClassName
                         for moduleWrapper in [baseName + ".Stub", baseName] {
-                            print("#### trying to load: \(moduleWrapper)")
+                            print("trying to load module: \(moduleWrapper)")
 
                             // TODO: it would be nice to instead use objc_getClass so we don't need to have any dependencies on Foundation, but it appears that objc_getClass requires the mangled class names, whereas NSClassFromString automatically demangles for us
                             if let moduleClass: AnyClass = NSClassFromString(moduleWrapper) {
@@ -1200,15 +1662,16 @@ public extension JVM {
         return "(" + args.reduce("", combine: { $0 + $1.jsig }) + ")" + returns.jsig
     }
 
-    private func methodName(var name: String) -> String {
-        while name.hasPrefix("_") {
-            name = String(name.characters.dropFirst())
+    private func methodName(name: String) -> String {
+        var n = name
+        while n.hasPrefix("_") {
+            n = String(n.characters.dropFirst())
         }
-        while name.hasSuffix("_") {
-            name = String(name.characters.dropLast())
+        while n.hasSuffix("_") {
+            n = String(n.characters.dropLast())
         }
 
-        return name
+        return n
     }
 }
 
@@ -1257,9 +1720,9 @@ public extension JavaObject {
     public static var jvm: JVM { return JVM.sharedJVM }
     public var jcls: jclass { return JVM.sharedJVM.getObjectClass(jobj) }
 
-//    @available(*, deprecated=1.0, message="Ignores exception, replace this method")
+    //    @available(*, deprecated=1.0, message="Ignores exception, replace this method")
     public static var javaClass: jclass {
-//        defer { JVM.sharedJVM.exceptionClear() }
+        //        defer { JVM.sharedJVM.exceptionClear() }
         let cname = javaClassName
         let cls = JVM.sharedJVM.findClass(cname)
         if cls == nil {
@@ -1346,7 +1809,7 @@ public extension SequenceType where Generator.Element: JavaObject {
 
 public extension CollectionType where Generator.Element: JavaObject, Index == Int {
     public func toJArray(jvm: JVM) -> jobjectArray {
-        let array = jvm.newObjectArray(jsize(count), clazz: Generator.Element.javaClass, `init`: nil)
+        let array = jvm.newObjectArray(jsize(count), clazz: Generator.Element.javaClass, init: nil)
         for (i, x) in self.enumerate() {
             jvm.setObjectArrayElement(array, index: jsize(i), val: x.jobj)
         }
@@ -1394,29 +1857,33 @@ public extension JavaObject {
             return nil
         }
     }
-    
+
 }
 
 
 public extension JavaObject {
-    public static func createArray(jvm: JVM)(elements: [Self?]) -> jobjectArray {
-        let jarr = jvm.newObjectArray(jsize(elements.count), clazz: javaClass, `init`: nil)
-        for (i, e) in elements.enumerate() {
-            jvm.setObjectArrayElement(jarr, index: jsize(i), val: e?.jobj ?? nil)
+    public static func createArray(jvm: JVM) -> (elements: [Self?]) -> jobjectArray {
+        return { elements in
+            let jarr = jvm.newObjectArray(jsize(elements.count), clazz: javaClass, init: nil)
+            for (i, e) in elements.enumerate() {
+                jvm.setObjectArrayElement(jarr, index: jsize(i), val: e?.jobj ?? nil)
+            }
+            return jarr
         }
-        return jarr
     }
 
-    static func getArray(jvm: JVM)(array: jobjectArray) -> [Self?]? {
-        if array == nil { return nil }
-        let len = jvm.getArrayLength(array)
-        var arr: [Self?] = []
-        for i in 0..<len {
-            let jobj = jvm.getObjectArrayElement(array, index: i)
-            let inst = Self(reference: jobj)
-            arr.append(inst)
+    static func getArray(jvm: JVM) -> (array: jobjectArray) -> [Self?]? {
+        return { array in
+            if array == nil { return nil }
+            let len = jvm.getArrayLength(array)
+            var arr: [Self?] = []
+            for i in 0..<len {
+                let jobj = jvm.getObjectArrayElement(array, index: i)
+                let inst = Self(reference: jobj)
+                arr.append(inst)
+            }
+            return arr
         }
-        return arr
     }
 }
 
@@ -1457,9 +1924,9 @@ extension JVM {
             let ptr: UnsafePointer<jchar> = getStringCritical(jstr, isCopy: &isCopy)
             if ptr == nil { return nil }
             defer { releaseStringCritical(jstr, cstring: ptr) }
-
+            
             let bptr = UnsafeBufferPointer(start: ptr, count: Int(len))
-
+            
             // there's no nice way to create a Swift String from a UTF-16 sequence or pointer;
             // we could bridge to NSString (which does encoding strings as UTF-16) but the native Swift
             // way is probably more correct
@@ -1475,12 +1942,12 @@ extension JVM {
                 case .Error: return nil
                 }
             }
-
+            
             let str = String(view)
             return str
         }
     }
-
+    
     /// Converts the given Swift string to a JNI jstring
     public func toJString(string: String, useTranscode: Bool = false, useNSStringBridge: Bool = true, useUTF8Strings: Bool = false) -> jstring {
         if useTranscode {
@@ -1491,7 +1958,7 @@ extension JVM {
             return buffer.withUnsafeBufferPointer { bptr in
                 return newString(bptr.baseAddress, len: jsize(bptr.count))
             }
-
+            
         } else if useNSStringBridge { // this is by far the fastest way: about 20x faster than UTF-16 conversion via an array
             let nsstring = string as NSString
             let len = nsstring.length
@@ -1510,5 +1977,5 @@ extension JVM {
             }
         }
     }
-
+    
 }
