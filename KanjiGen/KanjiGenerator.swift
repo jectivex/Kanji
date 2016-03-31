@@ -102,7 +102,7 @@ extension NSScanner {
             throw CodegenErrors.ParseError("Expected tokens not found: \(chars) in \(remainingDesc)")
         }
         if consume {
-            scanLocation++
+            scanLocation += 1
         }
         if let out = out {
             return out as String
@@ -537,6 +537,20 @@ struct JMethod {
         }
         return types
     }
+
+    /// Inserts a deferred retain arguments statement so arguments are not released before the end of the statement,
+    /// which can cause a memory crash (especially noted with initializers that throw exceptions)
+    func retainArgumentsStatement() -> String {
+        var code = ""
+        if arguments.isEmpty { return code }
+        code += "        defer { JVM.retainArguments("
+        for (i, _) in arguments.enumerate() {
+            if i > 0 { code += ", " }
+            code += "a\(i)"
+        }
+        code += ") }\n"
+        return code
+    }
 }
 
 
@@ -595,7 +609,13 @@ extension JUnit {
         }
     }
 
-    func generateWrapper(convenience: Bool = true, logger: String->())(mode: CodeGenerationMode) throws -> String {
+    func generateWrapper(convenience: Bool = true, logger: String->()) -> (mode: CodeGenerationMode) throws -> String {
+        return { mode in
+            try self.genwrap(convenience, logger: logger, mode: mode)
+        }
+    }
+
+    private func genwrap(convenience: Bool, logger: String->(), mode: CodeGenerationMode) throws -> String {
         let rootObject = JName(parts: ["java", "lang", "Object"], generics: [])
         let isRootObject = jname == rootObject
 
@@ -1034,6 +1054,10 @@ extension JUnit {
 
                 if mimp {
                     code += " {\n"
+
+                    // doesn't seem to help
+                    // code += method.retainArgumentsStatement()
+
                     code += "        "
                     if method.constructor {
                         // special constructor auto-closure that cleans up local refs
@@ -1144,9 +1168,9 @@ func parseDisassemblySegment(logger: String->(), disassembly: String) throws -> 
             var gcount = 1
             while gcount > 0 {
                 if scanner.consume("<") {
-                    gcount++
+                    gcount += 1
                 } else if scanner.consume(">") {
-                    gcount--
+                    gcount -= 1
                 } else if scanner.consume(",") {
                     // next element
                 } else {
@@ -1235,7 +1259,8 @@ func parseDisassemblySegment(logger: String->(), disassembly: String) throws -> 
     return (unit, scanner.remainder as String)
 }
 
-func parseDisassembly(logger: String->(), var disassembly: String) throws -> [JUnit] {
+func parseDisassembly(logger: String->(), disassembly: String) throws -> [JUnit] {
+    var disassembly = disassembly
     var units: [JUnit] = []
     while disassembly.utf16.count > 1 {
         let (unit, remainder) = try parseDisassemblySegment(logger, disassembly: disassembly)

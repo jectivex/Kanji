@@ -63,14 +63,14 @@ extension java$lang$Object : Hashable {
 
 extension java$lang$Object : CustomStringConvertible {
     public var description : String {
-        do {
-            if let str = try self as? java$lang$String ?? self.toString() {
-                return JVM.sharedJVM.fromJString(str.jobj) ?? "<null>"
+        if let str = try? toString() {
+            if let str = str {
+                return str.toSwiftString() ?? ""
             } else {
-                return "<null>"
+                return ""
             }
-        } catch {
-            return "<error in toString>"
+        } else {
+            return ""
         }
     }
 }
@@ -118,6 +118,11 @@ extension java$lang$String : StringLiteralConvertible {
 
     public convenience init(unicodeScalarLiteral value: String) {
         self.init(value)
+    }
+
+    public func toSwiftString() -> String? {
+        return JVM.sharedJVM.fromJavaString(jobj)
+
     }
 }
 

@@ -107,8 +107,6 @@ extension JVM {
         JNI_DeleteGlobalRef(env, gref)
     }
 
-
-
     public func deleteLocalRef(obj: jobject)->Void {
         JNI_DeleteLocalRef(env, obj)
     }
@@ -116,8 +114,6 @@ extension JVM {
     public func isSameObject(obj1: jobject, _ obj2: jobject)->jboolean {
         return JNI_IsSameObject(env, obj1, obj2)
     }
-
-
 
     public func newLocalRef(ref: jobject)->jobject {
         return JNI_NewLocalRef(env, ref)
@@ -892,6 +888,14 @@ private extension JInvocable {
             print("Kanji Warning: swallowing exception", ex)
         }
         return val
+    }
+
+}
+
+public extension JVM {
+    ///
+    public static func retainArguments(args: Any...) {
+
     }
 }
 

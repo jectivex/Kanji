@@ -9,13 +9,8 @@
 import Foundation.NSObjCRuntime // just for NSClassFromString
 
 public struct KanjiException: ErrorType {
-    public let message: String
+    public let message: String?
     public let className: String
-    public let _domain = "Kanji"
-    public let _code = 0
-
-    // TODO:
-    // public let cause: KanjiException?
 }
 
 public enum KanjiErrors : ErrorType, CustomDebugStringConvertible {
@@ -58,9 +53,13 @@ public final class JVM {
 
     var env: JNIEnvPointer { return attach() }
 
+    internal lazy var classClass: jclass = self.findClass("java/lang/Class")
+    internal lazy var stringClass: jclass = self.findClass("java/lang/String")
+    internal lazy var throwableClass: jclass = self.findClass("java/lang/Throwable")
+
     /// Cached Class.getName call; we use this a lot for dynamic object instantiation
     private lazy var classGetName: jmethodID = {
-        let clscls = self.findClass("java/lang/Class")
+        let clscls = self.classClass
         if self.exceptionCheck() { self.printStackTrace(); fatalError("could not load java.lang.Class") }
         let getName: jmethodID = self.getMethodID(clscls, name: "getName", sig: "()Ljava/lang/String;")
         if self.exceptionCheck() { self.printStackTrace(); fatalError("failed to find method id for class name") }
@@ -147,7 +146,7 @@ public final class JVM {
             throw KanjiErrors.System
         }
 
-        debugPrint("created JVM version \(JNI_GetVersion(env)) with options: \(opts)")
+        print("created JVM version", JNI_GetVersion(env), "with options", opts)
     }
 
     deinit {
@@ -181,39 +180,37 @@ public extension JVM {
 
         let throwable = exceptionOccurred()
         printStackTrace()
-        exceptionClear() // immediately clear the exception
+        defer { exceptionClear() }
 
-        let tclass = self.findClass("java/lang/Throwable")
-        if exceptionCheck() {
-            // TODO: could not find Throwble; need to short-circut
-            fatalError("Could not find throwable class")
+        let tclass = self.throwableClass
+        if exceptionCheck() || tclass == nil {
+            return KanjiException(message: "Could not find throwable class", className: "java.lang.Throwable")
         }
 
-        var msg = "No exception message"
+        var msg: String?
         do {
             let getMessage = try JVM.invoker("getMessage", cls: tclass, returns: JObjectType("java/lang/String"))(throwable)()
             if getMessage != nil {
-                msg = fromJString(getMessage) ?? msg
+                msg = fromJavaString(getMessage) ?? msg
             }
         } catch {
-            msg = "Could not call getMessage on Throwable"
+
         }
 
-        let cclass = self.findClass("java/lang/Class")
-        if exceptionCheck() {
+        let cclass = self.classClass
+        if exceptionCheck() || cclass == nil {
             // TODO: could not find Throwble; need to short-circut
             exceptionClear()
         }
 
-        var nam = "Unknown exception class"
+        var nam = "java.lang.Throwable"
         do {
             let cls = try JVM.invoker("getClass", cls: tclass, returns: JObjectType("java/lang/Class"))(throwable)()
             let getName = try JVM.invoker("getName", cls: cclass, returns: JObjectType("java/lang/String"))(cls)()
             if getName != nil {
-                nam = fromJString(getName) ?? nam
+                nam = fromJavaString(getName) ?? nam
             }
         } catch {
-            nam = "Could not call getName on Throwable class"
         }
 
         let exception = KanjiException(message: msg, className: nam)
@@ -1525,7 +1522,6 @@ public protocol JRef {
 extension jobject : JRef {
     /// A jobject is itself a JRef
     public var jobj: jobject { return self }
-
 }
 
 extension jobject {
@@ -1582,7 +1578,7 @@ public extension JVM {
                 let clsName = callObjectMethodA(jc, methodID: classGetName, args: nil)
                 if exceptionCheck() { printStackTrace(); fatalError("could not call Class.getName()") }
 
-                if let className = fromJString(clsName) {
+                if let className = fromJavaString(clsName) {
 
                     // the wrapped class name is simply the package with "." replaced by "$" and prefixed with the available module loaders
                     let wChars = className.characters.split(isSeparator: { $0 == "." }).map(String.init).joinWithSeparator("$")
@@ -1890,17 +1886,26 @@ public extension JavaObject {
 
 import Foundation
 
+/// which mechanism to use to translate Java UTF16 strings into Swift strings
+private let (useUTF16Init, useTranscode, useNSStringBridge, useUTF8Strings) = (true, false, false, false)
 
 extension JVM {
     /// Converts the given JNI jstring to a Swift string
-    public func fromJString(jstr: jstring, useTranscode: Bool = false, useNSStringBridge: Bool = true, useUTF8Strings: Bool = false) -> String? {
+    public func fromJavaString(jstr: jstring) -> String? {
         if jstr == nil { return nil }
         let len = getStringLength(jstr)
-        if len <= 0 { return "" }
+        if len <= 0 { return "" } // https://bugs.openjdk.java.net/browse/JDK-8145015
 
-        if useTranscode {
+        if useUTF16Init { // new in Swift 2.1
             var isCopy: jboolean = false
             let ptr: UnsafePointer<jchar> = getStringCritical(jstr, isCopy: &isCopy)
+            if ptr == nil { return nil }
+            defer { releaseStringCritical(jstr, cstring: ptr) }
+            return String(utf16CodeUnits: ptr, count: Int(len))
+        } else if useTranscode {
+            var isCopy: jboolean = false
+            let ptr: UnsafePointer<jchar> = getStringCritical(jstr, isCopy: &isCopy)
+            if ptr == nil { return nil }
             defer { releaseStringCritical(jstr, cstring: ptr) }
             let bptr = UnsafeBufferPointer(start: ptr, count: Int(len))
             var view = String.UnicodeScalarView()
@@ -1910,6 +1915,7 @@ extension JVM {
         } else if useNSStringBridge {
             var isCopy: jboolean = false
             let ptr: UnsafePointer<jchar> = getStringCritical(jstr, isCopy: &isCopy)
+            if ptr == nil { return nil }
             defer { releaseStringCritical(jstr, cstring: ptr) }
             return NSString(characters: ptr, length: Int(len)) as String
         } else if useUTF8Strings {
@@ -1917,6 +1923,7 @@ extension JVM {
             // https://en.wikipedia.org/wiki/UTF-8#Modified_UTF-8
             var isCopy: jboolean = false
             let ptr = getStringUTFChars(jstr, isCopy: &isCopy)
+            if ptr == nil { return nil }
             defer { releaseStringUTFChars(jstr, chars: ptr) }
             return String.fromCString(ptr)
         } else {

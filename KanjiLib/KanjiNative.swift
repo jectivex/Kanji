@@ -112,8 +112,8 @@ public extension JVM {
     /// Generates bytecode for a class that implements the listed methods by calling the function pointer to the native block
     /// The instance will contain a single long address member which will be passed to the finalizer
     // FIXME: this almost works; we need to just store some global tables of capturing closures and then release them upon finalization
-    public func createNativeWrapperClass<F: JavaObject>(name: String? = nil, extends: String = "java/lang/Object", interfaces: [String] = [], var methods: [(name: String, sig: String, fptr: UnsafeMutablePointer<Void>, constructor: (jlong)->(), destructor: (jlong)->())], finalizer: @convention(c) (UnsafePointer<JNIEnv>, jclass, jlong) -> ()) throws -> (cls: jclass, constructor: jlong throws -> F) {
-
+    public func createNativeWrapperClass<F: JavaObject>(name: String? = nil, extends: String = "java/lang/Object", interfaces: [String] = [], methods: [(name: String, sig: String, fptr: UnsafeMutablePointer<Void>, constructor: (jlong)->(), destructor: (jlong)->())], finalizer: @convention(c) (UnsafePointer<JNIEnv>, jclass, jlong) -> ()) throws -> (cls: jclass, constructor: jlong throws -> F) {
+        var methods = methods
         let className = name ?? ("$KanjiNativeWrapper\(OSAtomicIncrement32(&kanjiNativeClassCount))")
 
         func generateClassBytes() throws -> [jbyte]? {

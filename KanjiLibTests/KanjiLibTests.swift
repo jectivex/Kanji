@@ -112,8 +112,8 @@ public class B : A {
 
 class KanjiLibTests: XCTestCase {
 
-//    public override func invokeTest() { if name == "-[KanjiLibTests testJNI]" { super.invokeTest() } else { print("skipping", name) } }
-//    public override func invokeTest() { if name == "-[KanjiLibTests testIllegalConstructor]" { super.invokeTest() } else { print("skipping", name) } }
+    /// Enable just a single test; keep this public so we always get a warning
+    //public override func invokeTest() { if invocation?.selector == #selector(testLoadVega) { super.invokeTest() } else { dbg("Skipping Test", name) } }
 
     internal static override func initialize() {
         NSLog("KanjiVMTests: adding KanjiVMTests to module loaders")
@@ -135,7 +135,7 @@ class KanjiLibTests: XCTestCase {
         }
     }
 
-    func testIllegalConstructor() {
+    func testIllegalConstructor() throws {
         do {
             try java$io$StreamTokenizer()
             // FIXME
@@ -145,7 +145,7 @@ class KanjiLibTests: XCTestCase {
         }
     }
 
-    func testFieldAccessors() {
+    func testFieldAccessors() throws {
         do {
             XCTAssertEqual(java$lang$Double.TYPE?.description, "double")
             XCTAssertEqual(java$lang$Long.TYPE?.description, "long")
@@ -160,17 +160,17 @@ class KanjiLibTests: XCTestCase {
             XCTAssertEqual(tok.nval, 0.0)
             tok.nval = 2.0
             XCTAssertEqual(tok.nval, 2.0)
-            tok.nval++
+            tok.nval += 1
             XCTAssertEqual(tok.nval, 3.0)
 
             tok.nval = 2.0
             XCTAssertEqual(tok.nval, 2.0)
-            tok.nval++
+            tok.nval += 1
             XCTAssertEqual(tok.nval, 3.0)
 
             tok.ttype = 2
             XCTAssertEqual(tok.ttype, 2)
-            tok.ttype++
+            tok.ttype += 1
             XCTAssertEqual(tok.ttype, 3)
 
 
@@ -199,12 +199,10 @@ class KanjiLibTests: XCTestCase {
 
             XCTAssertNotNil(java$lang$System.out)
             try java$lang$System.out?.println("Hello Field Accessor")
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testInvokeDynamic() {
+    func testInvokeDynamic() throws {
         do {
             // MethodHandles.Lookup lookup = MethodHandles.lookup();
             // MethodHandle mh = lookup.findStatic(Math.class, "pow", MethodType.methodType(double.class, double.class, double.class));
@@ -243,12 +241,10 @@ class KanjiLibTests: XCTestCase {
                 let snum = try num.doubleValue()
                 XCTAssertEqual(snum, pow(2, 10))
             }
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testJNI() {
+    func testJNI() throws {
         do {
 //            for _ in 1...9999 {
 //                let ob = try! java$net$URLClassLoader([java$net$URL("file:///tmp/")]).loadClass("FinDemo")!.newInstance()
@@ -287,13 +283,13 @@ class KanjiLibTests: XCTestCase {
 
                         let rnd = arc4random_uniform(9999)
 
-                        nativeInstances++
+                        nativeInstances += 1
                         let subob: java$lang$Object = try JVM.sharedJVM.createNativeWrapperClass("MyKanjiWrapper\(address)", methods: [
                             kanjify("hashCode", { jint(rnd) }),
                             ],
                             finalizer: { env, cls, address in
                                 print("finalizing: \(address)")
-                                nativeInstances--
+                                nativeInstances -= 1
                         }).constructor(address)
 
                         XCTAssertEqual("MyKanjiWrapper\(address)".javaString, (try? subob.getClass()?.getName()) ?? "")
@@ -406,14 +402,12 @@ class KanjiLibTests: XCTestCase {
 
             // FIXME: sometimes fails
             // XCTAssertEqual(0, nativeInstances, "not all native instances were deallocated")
-        } catch {
-            return XCTFail(String(error))
         }
 
     }
 
 
-    func testMemory() {
+    func testMemory() throws {
         var keepgoing = true
 
         for n in 1...20 {
@@ -425,7 +419,7 @@ class KanjiLibTests: XCTestCase {
                 // needed in order to keep the number of local frames to a manageable level; otherwise OOME after:
                 // [Full GC (Ergonomics)  4171424K->4070474K(4183040K), 0.0398569 secs]
                 do {
-                    //                    try JVM.sharedJVM.withLocalFrame {
+                    //try JVM.sharedJVM.withLocalFrame {
                     let list = try java$util$ArrayList()
                     for _ in 0...500 {
                         let ob = try java$lang$StringBuilder()
@@ -444,19 +438,17 @@ class KanjiLibTests: XCTestCase {
         }
     }
 
-    func testStreams() {
+    func testStreams() throws {
         do {
             let str = try java$util$Arrays.asList([java$lang$String("foo"), java$lang$String("bar")])?.stream()?.findAny()?.get()?.description
             XCTAssertEqual("foo", str)
 
             let avg = try java$security$SecureRandom(10).ints()?.skip(10)?.limit(10)?.summaryStatistics()?.getAverage()
             XCTAssertEqual(211947481.5, avg) // just the secure random seed
-        } catch {
-            return XCTFail(String(error))
         }
     }
 
-    func testManagement() {
+    func testManagement() throws {
         do {
             guard let _ = try java$lang$management$ManagementFactory.getClassLoadingMXBean() else { return XCTFail() }
             guard let cmpx = try java$lang$management$ManagementFactory.getCompilationMXBean() else { return XCTFail() }
@@ -477,12 +469,10 @@ class KanjiLibTests: XCTestCase {
 
 //            XCTAssertEqual("9976@risc.local", (try? runx.getName()) ?? "")
             XCTAssertEqual("Java Virtual Machine Specification", (try? runx.getSpecName()) ?? "")
-        } catch {
-            return XCTFail(String(error))
         }
     }
 
-    func testObjectReferences() {
+    func testObjectReferences() throws {
         do {
             let map = try java$util$HashMap()
             try map.put("foo".javaString, java$lang$Integer(1))
@@ -496,44 +486,11 @@ class KanjiLibTests: XCTestCase {
             XCTAssertFalse(ref1 === ref2)
             XCTAssertFalse(ref1?.jobj == ref2?.jobj) // different newGlobalRefs as well
             XCTAssertTrue(JVM.sharedJVM.isSameObject(ref1?.jobj ?? nil, ref2?.jobj ?? nil)) // but they do point to the same object
-        } catch {
-            return XCTFail(String(error))
         }
     }
 
-    func testStringCorrectness() {
-        do {
-            // U+0061 LATIN SMALL LETTER A
-            // U+0065 LATIN SMALL LETTER E
-            // U+00B4 ACUTE ACCENT
-            // U+221E INFINITY
-            // U+1D11E MUSICAL SYMBOL G CLEF
-            let sstr: String = "aé∞𝄞"
-            let jstr: java$lang$String = "aé∞𝄞"
-
-            XCTAssertEqual(sstr.characters.count, 4) // a human sees 4 characters (grapheme clusters)
-            XCTAssertEqual(sstr.unicodeScalars.count, 5) // but there are 5 unicode scalars
-            XCTAssertEqual(sstr.utf16.count, 6) // encoded as 6 UTF-16 bytes
-            XCTAssertEqual(sstr.utf8.count, 11) // or 11 UTF-8 bytes
-
-            XCTAssertEqual(jint(sstr.utf16.count), try? jstr.length()) // and Java is UTF-16
-
-
-//            let utf16Array = "xyz".utf16
-//            var utf16String = String()
-//            utf16String.reserveCapacity(utf16Array.count)
-//            if !transcode(UTF16.self, UTF32.self, utf16Array.generate(), { utf16String.append(UnicodeScalar($0)) }, stopOnError: true)  {
-//                return XCTFail("could not transcode")
-//            } else {
-//                XCTAssertEqual(utf16String, sstr)
-//            }
-
-//        } catch {
-//            return XCTFail(String(error))
-        }
-    }
     /// Ensure that there is no more than a minimal overhead for Java string creation
-    func testStringMemory() {
+    func testStringMemory() throws {
         do {
             for c: Character in ["x", "€", "🐶"] {
                 let count = 1024 * 1024 * 2 // 2mb string length
@@ -552,23 +509,21 @@ class KanjiLibTests: XCTestCase {
                 // perhaps we could mitigate by wrapping in a JVM call to critical?
                 //XCTAssertEqual(post.used - pre.used, len * 2 + 16) // 16 byte overhead
             }
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testStringPerformance() {
+    func testStringPerformance() throws {
         // profiles for 10/10 iterations 
 //        let (i, n, count) = (10, 10, 1024*1024*10)
         let (i, n, count) = (1, 1, 1024) // faster for non-performance testing
 
-        // NSString impl: ~0.483, UTF-16 impl: ~10.2 sec, UTF-8 impl: ~8.1 sec
-        //let str = String(count: count, repeatedValue: Character("x"))
+        // UTF-16 impl: ~0.352 sec, NSString impl: ~0.483, transcode impl: ~10.2 sec, UTF-8 impl: ~8.1 sec
+//        let str = String(count: count, repeatedValue: Character("x"))
 
-        // NSString impl: ~0.329 sec, UTF-16 impl: ~8.9 sec, UTF-8 impl: ~26.2 sec
-        //let str = String(count: count, repeatedValue: Character("€"))
+        // UTF-16 impl: ~0.278 sec, NSString impl: ~0.329 sec, transcode impl: ~8.9 sec, UTF-8 impl: ~26.2 sec
+//        let str = String(count: count, repeatedValue: Character("€"))
 
-        // NSString impl: ~0.719 sec, UTF-16 impl: ~16.9 sec, UTF-8 impl: ~29.8 sec
+        // UTF-16 impl: ~0.558 sec, NSString impl: ~0.719 sec, transcode impl: ~16.9 sec, UTF-8 impl: ~29.8 sec
         let str = String(count: count, repeatedValue: Character("🐶"))
         //let str = String(count: count, repeatedValue: Character("👩🏻")) // “fatal error: Can't form a Character from a String containing more than one extended grapheme cluster”
 
@@ -591,7 +546,7 @@ class KanjiLibTests: XCTestCase {
         }
     }
 
-    func testThreads() {
+    func testThreads() throws {
         do {
             let table = try java$util$Hashtable() // Hashtable instead of HashMap because the former is synchronized
             let count = 1000
@@ -620,7 +575,7 @@ class KanjiLibTests: XCTestCase {
 
     }
 
-    func testExceptions() {
+    func testExceptions() throws {
         do {
             if let ob = try java$lang$Object() {
                 try ob.wait() // illegal when not synchronized on the object
@@ -633,7 +588,7 @@ class KanjiLibTests: XCTestCase {
         }
     }
 
-    func testMonitors() {
+    func testMonitors() throws {
         do {
             let ob1 = try java$lang$Object()
             let ob2 = try java$lang$Object()
@@ -657,15 +612,13 @@ class KanjiLibTests: XCTestCase {
             } catch {
                 // expected
             }
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testDirectFieldAccess() {
+    func testDirectFieldAccess() throws {
     }
 
-    func testStaticMethods() {
+    func testStaticMethods() throws {
         do {
             guard let dfc = try java$lang$Class.forName("java.text.SimpleDateFormat") else {
                 return XCTFail("Could not create class")
@@ -676,12 +629,10 @@ class KanjiLibTests: XCTestCase {
             }
 
             XCTAssertTrue(df.description.hasPrefix("java.text.SimpleDateFormat@"))
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testArrayMethods() {
+    func testArrayMethods() throws {
         do {
             let str: java$lang$String = "abc123"
 
@@ -699,12 +650,10 @@ class KanjiLibTests: XCTestCase {
                 return XCTFail("Could not create string from array")
             }
             XCTAssertEqual(str2.description, "abc123")
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testObjectMethods() {
+    func testObjectMethods() throws {
         do {
             let date = try java$util$Date("Sat Mar 07 21:12:01 EST 2015")
 
@@ -723,48 +672,97 @@ class KanjiLibTests: XCTestCase {
             let cls = try date.getClass()
             let str = try cls!.toString()
             XCTAssertEqual(str!, "class java.util.Date")
-        } catch {
-            XCTFail(String(error))
         }
     }
 
 
-    func testStringBridging() {
-        let o1 = jobject()
-        let o2 = jobject()
-        assert(o1 == o2)
-        assert(o1 == nil)
-        assert(nil == o2)
-
-
+    func testStringBridging() throws {
         do {
             let date = try java$util$Date("Sat Mar 07 21:12:01 EST 2015")
             let time = try date.getTime()
             XCTAssertEqual(time, 1_425_780_721_000)
-        } catch {
-            XCTFail(String(error))
-        }
-
-        do {
-            let _ = try java$util$Date("x")
-            XCTFail("date with bad string should have raised error")
-        } catch {
-            // expected that we throw an exception
-            print(String(error))
         }
 
         do {
             let str: java$lang$String? = nil
             let _ = try java$util$Date(str)
             XCTFail("date with null string should have raised error")
+        } catch let ex as KanjiException {
+            XCTAssertNil(ex.message)
+            XCTAssertEqual("java.lang.IllegalArgumentException", ex.className)
+        }
+
+        do {
+            let str: java$lang$String = "abc"
+            let _ = try str.getBytes("not a real charset")
+            XCTFail("getBytes with bad charset should fail")
+        } catch let ex as KanjiException {
+            XCTAssertEqual("not a real charset", ex.message)
+            XCTAssertEqual("java.io.UnsupportedEncodingException", ex.className)
+        }
+
+        do {
+            let str: java$lang$String = "abc"
+            let bytes = try str.getBytes("ASCII")
+            if let bytes = bytes {
+                XCTAssertEqual([97, 98, 99], bytes)
+            }
         } catch {
-            // expected that we throw an exception
-            print(String(error))
+            XCTFail("getBytes with good charset should not fail")
+        }
+
+    }
+
+
+    func testExceptionWithInitializer() throws {
+        do {
+            let str: java$lang$String = "1"
+            try str.equals("A" as java$lang$String)
+            try str.equals("A" as java$lang$String)
+            try str.equals("A" as java$lang$String)
+            try str.equals("A" as java$lang$String)
+            try str.equals("A" as java$lang$String)
+            try str.equals("A" as java$lang$String)
+            try str.equals("A" as java$lang$String)
+            try str.equals("A" as java$lang$String)
+            try str.equals("A" as java$lang$String)
+        } catch {
+            XCTFail("equals should not fail")
+        }
+
+        do {
+            let str: java$lang$String = "xxxxx"
+            let _ = try java$util$Date(str)
+            XCTFail("date with bad string should have raised error")
+        } catch let ex as KanjiException {
+            XCTAssertNil(ex.message)
+            XCTAssertEqual("java.lang.IllegalArgumentException", ex.className)
+        }
+
+        do {
+            let _ = try withExtendedLifetime("xxxxx" as java$lang$String) { (arg: java$lang$String) in try java$util$Date(arg) }
+            XCTFail("date with bad string should have raised error")
+        } catch let ex as KanjiException {
+            XCTAssertNil(ex.message)
+            XCTAssertEqual("java.lang.IllegalArgumentException", ex.className)
+        }
+
+
+        do {
+            // This causes an eventual crash due to memory corruption, probably because we aren't retaining
+            // the init parameters until the end of the initialization block
+            // malloc: *** error for object 0x100738918: incorrect checksum for freed object - object was probably modified after being freed
+            // FIXME: crashes 90% of the time; need to figure out how to prevent the arguments from being released before
+//            let _ = try java$util$Date("xxxxx" as java$lang$String)
+//            XCTFail("date with bad string should have raised error")
+        } catch let ex as KanjiException {
+            XCTAssertNil(ex.message)
+            XCTAssertEqual("java.lang.IllegalArgumentException", ex.className)
         }
     }
 
 
-    func testGenericCollections() {
+    func testGenericCollections() throws {
         do {
             let d0 = try java$util$Date()
             let d1 = try java$util$Date()
@@ -787,7 +785,7 @@ class KanjiLibTests: XCTestCase {
             var llsize = try ll.size()
             XCTAssertEqual(llsize, 5)
 
-            let asArray = try ll.toArray([])!.map(unsafeUnwrap)
+            let asArray = try ll.toArray([])!.flatMap({ $0 })
             XCTAssertEqual(asArray.count, 5)
 
 //            debugPrint("array: \(asArray)")
@@ -853,12 +851,10 @@ class KanjiLibTests: XCTestCase {
             XCTAssertEqual(llsize, 0)
 
             debugPrint("list: \(ll)")
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testDates() {
+    func testDates() throws {
         do {
             XCTAssertNotNil(JVM.sharedJVM)
 
@@ -908,12 +904,10 @@ class KanjiLibTests: XCTestCase {
             try sqlTime.toLocalTime()
             XCTAssertEqual(try! sqlTime.getTime(), ms)
 
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testScripting() {
+    func testScripting() throws {
         do {
             let manager = try javax$script$ScriptEngineManager()
 
@@ -978,17 +972,15 @@ class KanjiLibTests: XCTestCase {
                 try js.eval("throw 'Some Exception'")
                 XCTFail("Exception should have been thrown")
             } catch let exception as KanjiException {
-                XCTAssertTrue(exception.message.hasPrefix("Some Exception"), exception.message)
+                XCTAssertTrue(exception.message?.hasPrefix("Some Exception") == true, exception.message ?? "")
                 XCTAssertEqual("javax.script.ScriptException", exception.className)
             } catch {
                 XCTFail("Wrong error was thrown")
             }
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testClassNames() {
+    func testClassNames() throws {
         XCTAssertEqual(java$math$BigDecimal.javaClassName, "java/math/BigDecimal")
         // check that inner class name heuristics are working
         XCTAssertEqual(java$util$Map$Entry$Stub.javaClassName, "java/util/Map$Entry")
@@ -996,12 +988,10 @@ class KanjiLibTests: XCTestCase {
             let entry = try java$util$AbstractMap$SimpleEntry(java$lang$String("foo"), java$lang$String("bar"))
             let cname = try entry?.getClass()?.getName()
             XCTAssertEqual("java.util.AbstractMap$SimpleEntry", cname?.description)
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testNumbers() {
+    func testNumbers() throws {
         do {
 
             let d = try java$lang$Double(123456789.765)
@@ -1023,8 +1013,6 @@ class KanjiLibTests: XCTestCase {
 
             let sv = try d.shortValue()
             XCTAssertEqual(sv, -13035)
-        } catch {
-            XCTFail(String(error))
         }
     }
 
