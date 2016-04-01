@@ -60,7 +60,7 @@ class KanjiScriptTests: XCTestCase {
         }
     }
 
-    func testNashorn() {
+    func testNashorn() throws {
         // TODO: we do not currently support script reference cycles
 //        do {
 //            let ctx = try KanjiScriptContext(engine: "javascript")
@@ -100,12 +100,10 @@ class KanjiScriptTests: XCTestCase {
             } catch {
                 XCTFail("wrong exception type: \(error)")
             }
-        } catch {
-            XCTFail(String(error))
         }
     }
 
-    func testScala() {
+    func testScala() throws {
         do {
             let ctx = try KanjiScriptContext(engine: "scala")
             checkeq(1, f: try ctx.val(ctx.eval("1")))
@@ -115,8 +113,6 @@ class KanjiScriptTests: XCTestCase {
             try ctx.eval("var x = 123")
             try ctx.eval("x = x + 1")
             checkeq(124, f: try ctx.val(ctx.eval("x")))
-        } catch {
-            XCTFail(String(error))
         }
     }
 

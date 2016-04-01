@@ -11,13 +11,11 @@ import XCTest
 import KanjiVM
 
 class KanjiGenTests: XCTestCase {
-    func testGeneration() {
+    func testGeneration() throws {
         do {
             // see kanjigen.txt for class list and generation info
             let classes = try String(contentsOfURL: NSBundle(forClass: self.dynamicType).URLForResource("JavaLib", withExtension: "knj")!).componentsSeparatedByString("\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
             try gencode(classes, file: "JavaLib.swift")
-        } catch {
-            XCTFail(String(error))
         }
     }
 
