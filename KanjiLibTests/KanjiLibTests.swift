@@ -113,7 +113,7 @@ public class B : A {
 class KanjiLibTests: XCTestCase {
 
     /// Enable just a single test; keep this public so we always get a warning
-    //public override func invokeTest() { if invocation?.selector == #selector(testLoadVega) { super.invokeTest() } else { dbg("Skipping Test", name) } }
+//    public override func invokeTest() { return invocation?.selector == #selector(testExample) ? super.invokeTest() : dbg("skipping", name) }
 
     internal static override func initialize() {
         NSLog("KanjiVMTests: adding KanjiVMTests to module loaders")
