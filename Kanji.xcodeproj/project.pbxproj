@@ -18,6 +18,7 @@
 		7E35AE281BD5724A00E93E09 /* KanjiNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E35AE271BD5724A00E93E09 /* KanjiNative.swift */; };
 		7E35AE311BD7D7C100E93E09 /* JavaLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E35AE301BD7D7C100E93E09 /* JavaLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E35AE3D1BD7D83A00E93E09 /* JavaLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E35AE3C1BD7D83A00E93E09 /* JavaLib.swift */; };
+		7E35FFDD1D242559006B0DE0 /* jre1.8.0_92.jre in Resources */ = {isa = PBXBuildFile; fileRef = 7E35FFDC1D242559006B0DE0 /* jre1.8.0_92.jre */; };
 		7E5ABD971B60483C00F11C77 /* KanjiScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E5ABD961B60483C00F11C77 /* KanjiScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E5ABD9E1B60483C00F11C77 /* KanjiScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5ABD941B60483B00F11C77 /* KanjiScript.framework */; };
 		7E5ABDA31B60483C00F11C77 /* KanjiScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5ABDA21B60483C00F11C77 /* KanjiScriptTests.swift */; };
@@ -28,8 +29,6 @@
 		7E5D8B4A1B66F3260038E02B /* KanjiGen.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E5D8B491B66F3260038E02B /* KanjiGen.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E5D8B511B66F3260038E02B /* KanjiGen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5D8B471B66F3250038E02B /* KanjiGen.framework */; };
 		7E5D8B561B66F3260038E02B /* KanjiGenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5D8B551B66F3260038E02B /* KanjiGenTests.swift */; };
-		7E7D86B41B714A2B00D0F5DC /* jdk1.8.0_51.jdk in Resources */ = {isa = PBXBuildFile; fileRef = 7E7D86B31B714A2B00D0F5DC /* jdk1.8.0_51.jdk */; };
-		7E7D86B61B714A3500D0F5DC /* libjli.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E7D86B51B714A3500D0F5DC /* libjli.dylib */; };
 		7E8930181BEEA82700F245C5 /* JVM+Invokers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8930171BEEA82700F245C5 /* JVM+Invokers.swift */; };
 		7E8930211BEEB61C00F245C5 /* KanjiAvian.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8930201BEEB61C00F245C5 /* KanjiAvian.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E8930281BEEB61C00F245C5 /* KanjiAvian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E89301E1BEEB61B00F245C5 /* KanjiAvian.framework */; };
@@ -179,6 +178,7 @@
 		7E35AE301BD7D7C100E93E09 /* JavaLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JavaLib.h; sourceTree = "<group>"; };
 		7E35AE321BD7D7C200E93E09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E35AE3C1BD7D83A00E93E09 /* JavaLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaLib.swift; sourceTree = "<group>"; };
+		7E35FFDC1D242559006B0DE0 /* jre1.8.0_92.jre */ = {isa = PBXFileReference; lastKnownFileType = folder; path = jre1.8.0_92.jre; sourceTree = "<group>"; };
 		7E5ABD941B60483B00F11C77 /* KanjiScript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiScript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5ABD961B60483C00F11C77 /* KanjiScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiScript.h; sourceTree = "<group>"; };
 		7E5ABD981B60483C00F11C77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,8 +194,6 @@
 		7E5D8B551B66F3260038E02B /* KanjiGenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiGenTests.swift; sourceTree = "<group>"; };
 		7E5D8B571B66F3260038E02B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E6BD2EE1B60476500501450 /* InterScript.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = InterScript.framework; path = "../../../../../Users/mprudhom/Library/Developer/Xcode/DerivedData/GlimpseX-ghxqrskqmvupmtcsazodbvxbtmtv/Build/Products/Debug/InterScript.framework"; sourceTree = "<group>"; };
-		7E7D86B31B714A2B00D0F5DC /* jdk1.8.0_51.jdk */ = {isa = PBXFileReference; lastKnownFileType = folder; name = jdk1.8.0_51.jdk; path = ../../../../../../Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk; sourceTree = "<group>"; };
-		7E7D86B51B714A3500D0F5DC /* libjli.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libjli.dylib; path = /Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/MacOS/libjli.dylib; sourceTree = "<absolute>"; };
 		7E8930171BEEA82700F245C5 /* JVM+Invokers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JVM+Invokers.swift"; sourceTree = "<group>"; };
 		7E89301E1BEEB61B00F245C5 /* KanjiAvian.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiAvian.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E8930201BEEB61C00F245C5 /* KanjiAvian.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiAvian.h; sourceTree = "<group>"; };
@@ -293,7 +291,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E7D86B61B714A3500D0F5DC /* libjli.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,8 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				7EA888091AAAB6DF00C6DBB3 /* Info.plist */,
-				7E7D86B51B714A3500D0F5DC /* libjli.dylib */,
-				7E7D86B31B714A2B00D0F5DC /* jdk1.8.0_51.jdk */,
+				7E35FFDC1D242559006B0DE0 /* jre1.8.0_92.jre */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -914,7 +910,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E7D86B41B714A2B00D0F5DC /* jdk1.8.0_51.jdk in Resources */,
+				7E35FFDD1D242559006B0DE0 /* jre1.8.0_92.jre in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1445,6 +1441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				KANJI_BUNDLE = jre1.8.0_92.jre;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1485,6 +1482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				KANJI_BUNDLE = jre1.8.0_92.jre;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -1507,10 +1505,15 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = KanjiVM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/jdk1.8.0_51.jdk/Contents/Home/jre/lib/jli";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/$(KANJI_BUNDLE)/Contents/MacOS @loader_path/Resources/$(KANJI_BUNDLE)/Contents/Home/lib";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/MacOS",
+					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/Contents/MacOS",
+					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/Contents/Home/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-ljsig",
+					"-ljli",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.glimpse.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1534,10 +1537,15 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = KanjiVM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/jdk1.8.0_51.jdk/Contents/Home/jre/lib/jli";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/$(KANJI_BUNDLE)/Contents/MacOS @loader_path/Resources/$(KANJI_BUNDLE)/Contents/Home/lib";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(LOCAL_LIBRARY_DIR)/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/MacOS",
+					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/Contents/MacOS",
+					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/Contents/Home/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-ljsig",
+					"-ljli",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "io.glimpse.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1673,6 +1681,7 @@
 				7E8930311BEEB61C00F245C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E8930321BEEB61C00F245C5 /* Build configuration list for PBXNativeTarget "KanjiAvianTests" */ = {
 			isa = XCConfigurationList;
@@ -1681,6 +1690,7 @@
 				7E8930341BEEB61C00F245C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7EA887FF1AAAB6DF00C6DBB3 /* Build configuration list for PBXProject "Kanji" */ = {
 			isa = XCConfigurationList;

@@ -8,6 +8,14 @@
 
 import Foundation.NSObjCRuntime // just for NSClassFromString
 
+private func warn(message: String) {
+    print("Kanji Warning:", message)
+}
+
+private func log(message: String) {
+    print("Kanji Log:", message)
+}
+
 public struct KanjiException: ErrorType {
     public let message: String?
     public let className: String
@@ -77,7 +85,7 @@ public final class JVM {
         let success: jint = NSThread.isMainThread() ? JavaVM_AttachCurrentThreadAsDaemon(self.jvm, &penv, nil) : JavaVM_AttachCurrentThread(self.jvm, &penv, nil)
         assert(success == JNI_OK, "unable to attach JVM to current thread")
 
-        print("KanjiVM: attaching to thread: \(NSThread.currentThread()): \(penv)")
+        log("attaching to thread: \(NSThread.currentThread()): \(penv)")
 
         return JNIEnvPointer(penv)
     }
@@ -85,7 +93,22 @@ public final class JVM {
     /// The static list of module loaders against which dynamic loading will be attempted
     public var moduleLoaders: [String] = ["JavaLib"]
 
-    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (true, false, false), checkJNI: Bool = true, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = []) throws {
+    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (true, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = []) throws {
+
+        // signal disabling is accomplished by setting the following for the scheme:
+        // DYLD_INSERT_LIBRARIES=$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/$KANJI_BUNDLE/Contents/Home/lib/libjsig.dylib
+
+        // if the signal library was installed correctly, setting debug.jni=true
+        // wil output:
+        // Info: libjsig is activated, all active signal checking is disabled
+        // Checked JNI functions are being used to validate JNI usage
+        if let preloaded = String.fromCString(getenv("DYLD_INSERT_LIBRARIES")) {
+            if !preloaded.containsString("libjsig.dylib") {
+                warn("environment variable DYLD_INSERT_LIBRARIES does not include libjsig.dylib; signals will not be handled correctly")
+            }
+        } else {
+            warn("environment variable DYLD_INSERT_LIBRARIES was not set to include libjsig.dylib; signals will not be handled correctly")
+        }
 
         var opts: [String] = []
         if verbose.gc { opts += ["-verbose:gc"] }
@@ -146,11 +169,11 @@ public final class JVM {
             throw KanjiErrors.System
         }
 
-        print("created JVM version", JNI_GetVersion(env), "with options", opts)
+        log("created JVM version \(JNI_GetVersion(env)) with options \(opts)")
     }
 
     deinit {
-        print("destroying JavaVM")
+        log("destroying JavaVM")
         let destroyed = JavaVM_DestroyJavaVM(jvm)
         assert(destroyed == JNI_OK)
     }
@@ -1587,19 +1610,19 @@ public extension JVM {
                     for prefix in loaders {
                         let baseName = String(prefix) + "." + wClassName
                         for moduleWrapper in [baseName + ".Stub", baseName] {
-                            print("trying to load module: \(moduleWrapper)")
+                            log("trying to load module: \(moduleWrapper)")
 
                             // TODO: it would be nice to instead use objc_getClass so we don't need to have any dependencies on Foundation, but it appears that objc_getClass requires the mangled class names, whereas NSClassFromString automatically demangles for us
                             if let moduleClass: AnyClass = NSClassFromString(moduleWrapper) {
                                 if let moduleJava = moduleClass as? T.Type {
-                                    print("---- loaded: \(moduleWrapper)")
+                                    log("---- loaded: \(moduleWrapper)")
 
                                     return moduleJava.init(reference: jobj) // found the wrapper class! construct it with the JNI instance
                                 } else {
                                     // we found the module class, but it wasn't a Java object!
                                     // fatal error: local module class «java$util$AbstractList» was not an instance of the expected type «java$util$List$Stub»: file /opt/src/glimpse/glimpse/Kanji/KanjiVM/JVM.swift, line 1045
 
-                                    print("WARNING: local module class «\(moduleClass)» was not an instance of the expected type «\(T.self)»")
+                                    warn("local module class «\(moduleClass)» was not an instance of the expected type «\(T.self)»")
                                 }
                             }
                         }
@@ -1722,7 +1745,7 @@ public extension JavaObject {
         let cname = javaClassName
         let cls = JVM.sharedJVM.findClass(cname)
         if cls == nil {
-            print("Kanji warning: could not find class for «\(cname)»")
+            warn("could not find class for «\(cname)»")
         }
         return cls
     }
@@ -1839,7 +1862,7 @@ public extension JavaObject {
         let jvm = JVM.sharedJVM
         let jsup = jvm.findClass(T.javaClassName)
         if jvm.exceptionCheck() {
-            print("Kanji Warning: cast() to \(T.self) could not find class \(T.javaClassName)")
+            warn("cast() to \(T.self) could not find class \(T.javaClassName)")
             jvm.exceptionClear()
             return nil
         }

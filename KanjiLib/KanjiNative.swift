@@ -18,7 +18,7 @@ import JavaLib
 
 //bin/echo 'final class kanjicls implements java.util.function.Function { @Override public native Object apply(Object value); @Override public native void finalize(); }' > kanjicls.java && javac kanjicls.java && java -cp . jdk.internal.org.objectweb.asm.util.ASMifier kanjicls
 //
-// Local ASM shims are generated with ~/Library/Developer/Xcode/DerivedData/*/Build/Products/Debug/kanjitool -import JavaLib -skip '^java.*' `jar tf /Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home/jre/lib/rt.jar | grep 'jdk/internal/org/objectweb/asm/[A-Z]' | cut -f 1 -d '.' | tr '/' '.'` > /opt/src/glimpse/glimpse/Kanji/KanjiLib/ASMLib.swift
+// Local ASM shims are generated with ~/Library/Developer/Xcode/DerivedData/*/Build/Products/Debug/kanjitool -import JavaLib -skip '^java.*' `jar tf /opt/src/glimpse/glimpse/Kanji/KanjiVM/jre1.8.0_92.jre/Contents/Home/lib/rt.jar | grep 'jdk/internal/org/objectweb/asm/[A-Z]' | cut -f 1 -d '.' | tr '/' '.'` > /opt/src/glimpse/glimpse/Kanji/KanjiLib/ASMLib.swift
 
 
 typealias OpCodes = jdk$internal$org$objectweb$asm$Opcodes$Stub
