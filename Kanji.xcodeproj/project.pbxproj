@@ -18,7 +18,7 @@
 		7E35AE281BD5724A00E93E09 /* KanjiNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E35AE271BD5724A00E93E09 /* KanjiNative.swift */; };
 		7E35AE311BD7D7C100E93E09 /* JavaLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E35AE301BD7D7C100E93E09 /* JavaLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E35AE3D1BD7D83A00E93E09 /* JavaLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E35AE3C1BD7D83A00E93E09 /* JavaLib.swift */; };
-		7E35FFDD1D242559006B0DE0 /* jre1.8.0_92.jre in Resources */ = {isa = PBXBuildFile; fileRef = 7E35FFDC1D242559006B0DE0 /* jre1.8.0_92.jre */; };
+		7E35FFDD1D242559006B0DE0 /* macos.jre in Resources */ = {isa = PBXBuildFile; fileRef = 7E35FFDC1D242559006B0DE0 /* macos.jre */; };
 		7E5ABD971B60483C00F11C77 /* KanjiScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E5ABD961B60483C00F11C77 /* KanjiScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E5ABD9E1B60483C00F11C77 /* KanjiScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5ABD941B60483B00F11C77 /* KanjiScript.framework */; };
 		7E5ABDA31B60483C00F11C77 /* KanjiScriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5ABDA21B60483C00F11C77 /* KanjiScriptTests.swift */; };
@@ -178,7 +178,7 @@
 		7E35AE301BD7D7C100E93E09 /* JavaLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JavaLib.h; sourceTree = "<group>"; };
 		7E35AE321BD7D7C200E93E09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E35AE3C1BD7D83A00E93E09 /* JavaLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaLib.swift; sourceTree = "<group>"; };
-		7E35FFDC1D242559006B0DE0 /* jre1.8.0_92.jre */ = {isa = PBXFileReference; lastKnownFileType = folder; path = jre1.8.0_92.jre; sourceTree = "<group>"; };
+		7E35FFDC1D242559006B0DE0 /* macos.jre */ = {isa = PBXFileReference; lastKnownFileType = folder; path = macos.jre; sourceTree = "<group>"; };
 		7E5ABD941B60483B00F11C77 /* KanjiScript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiScript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5ABD961B60483C00F11C77 /* KanjiScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiScript.h; sourceTree = "<group>"; };
 		7E5ABD981B60483C00F11C77 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -456,7 +456,7 @@
 			isa = PBXGroup;
 			children = (
 				7EA888091AAAB6DF00C6DBB3 /* Info.plist */,
-				7E35FFDC1D242559006B0DE0 /* jre1.8.0_92.jre */,
+				7E35FFDC1D242559006B0DE0 /* macos.jre */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -910,7 +910,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E35FFDD1D242559006B0DE0 /* jre1.8.0_92.jre in Resources */,
+				7E35FFDD1D242559006B0DE0 /* macos.jre in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1441,7 +1441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				KANJI_BUNDLE = jre1.8.0_92.jre;
+				KANJI_BUNDLE = macos.jre;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1482,7 +1482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				KANJI_BUNDLE = jre1.8.0_92.jre;
+				KANJI_BUNDLE = macos.jre;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;

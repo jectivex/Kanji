@@ -421,7 +421,7 @@ class KanjiLibTests: XCTestCase {
                 do {
                     //try JVM.sharedJVM.withLocalFrame {
                     let list = try java$util$ArrayList()
-                    for _ in 0...500 {
+                    for _ in 0...1000 {
                         let ob = try java$lang$StringBuilder()
                         try ob.append(66)
                         for _ in 1...17 { // 2^20 = 1,048,576
