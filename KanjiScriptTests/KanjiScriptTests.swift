@@ -34,10 +34,10 @@ class KanjiScriptTests: XCTestCase {
             [nil],
             [true, false, 1, "xyz", nil],
             [["foo": 1], ["bar": "foo"], false, 1.234, [1, false, nil], "xyz"],
-            ] {
+            ] as [Bric] {
             do {
                 if let obj = try bric.toKanji(JVM.sharedJVM) {
-                    print("Kanji-ized \(bric) to: \(obj)")
+//                    print("Kanji-ized \(bric) to: \(obj)")
 
                     // now convert back to bric and assert equality
                     let rebric = try obj.toBric()
@@ -80,10 +80,14 @@ class KanjiScriptTests: XCTestCase {
             checkeq("a", f: try ctx.val(ctx.eval("'a'")))
             checkeq("0.6000000000000001", f: try ctx.val(ctx.eval(".4+.2+''")))
             checkeq([1, 2, 3], f: try ctx.val(ctx.eval("Java.to([1,2,3])")))
-            checkeq(["0": 1, "1": 2, "2": 3], f: try ctx.val(ctx.eval("[1,2,3]"))) // hmm ... odd ...
             checkeq("/private/tmp/XYZ", f: try ctx.val(ctx.eval("new Packages.java.io.File('XYZ').getAbsolutePath()")))
             checkeq([2,1,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3])")))
             checkeq([1,2,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3]).stream().sorted().toArray()")))
+
+            checkeq([1, 2, 3], f: try ctx.val(ctx.eval("[1,2,3]")))
+//            checkeq(["0": 1, "1": 2, "2": 3], f: try ctx.val(ctx.eval("[1,2,3]"))) // hmm ... odd ...
+
+            checkeq([["a": true], 1, [2, 3.3, false], 3], f: try ctx.val(ctx.eval("[{a: true}, 1, [2, 3.3, false], 3]")))
 
             // FIXME: maps don't seem to work yet
 //            checkeq(["a": 1, "b": true], f: try ctx.val(ctx.eval("Java.to({ 'a': 1, 'b': true })")))

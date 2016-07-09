@@ -22,17 +22,17 @@ public struct KanjiException: ErrorType {
 }
 
 public enum KanjiErrors : ErrorType, CustomDebugStringConvertible {
-    case Exception(KanjiException)
-    case System
-    case NotFound(String)
-    case General(String)
+    case exception(KanjiException)
+    case system
+    case notFound(String)
+    case general(String)
 
     public var debugDescription: String {
         switch self {
-        case .Exception(let ex): return "Exception: \(ex)"
-        case .System: return "System"
-        case .NotFound(let str): return "NotFound: \(str)"
-        case .General(let str): return "General: \(str)"
+        case .exception(let ex): return "Exception: \(ex)"
+        case .system: return "System"
+        case .notFound(let str): return "NotFound: \(str)"
+        case .general(let str): return "General: \(str)"
         }
     }
 }
@@ -166,7 +166,7 @@ public final class JVM {
         self.jvm = pvm
 
         if success != JNI_OK {
-            throw KanjiErrors.System
+            throw KanjiErrors.system
         }
 
         log("created JVM version \(JNI_GetVersion(env)) with options \(opts)")
@@ -385,8 +385,8 @@ public struct JVoid: JType {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallVoidMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -397,8 +397,8 @@ public struct JVoid: JType {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticVoidMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -410,9 +410,9 @@ public struct JVoid: JType {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualVoidMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -454,8 +454,8 @@ public struct JObjectType: JNominal {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallObjectMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -466,8 +466,8 @@ public struct JObjectType: JNominal {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -479,9 +479,9 @@ public struct JObjectType: JNominal {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualObjectMethodA(env, obj, cls,mid, $0.baseAddress) }))
                     }
                 }
@@ -493,11 +493,11 @@ public struct JObjectType: JNominal {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     let obj = try checked(env, JNI_NewObjectA(env, cls, mid, args))
                     if obj == nil {
-                        throw KanjiErrors.General("constructor returned null")
+                        throw KanjiErrors.general("constructor returned null")
                     }
                     return obj
                 }
@@ -565,8 +565,8 @@ public struct JArray: JNominal {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallObjectMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -577,8 +577,8 @@ public struct JArray: JNominal {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -590,9 +590,9 @@ public struct JArray: JNominal {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualObjectMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -670,8 +670,8 @@ extension jboolean: JPrimitive {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallBooleanMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -682,8 +682,8 @@ extension jboolean: JPrimitive {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticBooleanMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -695,9 +695,9 @@ extension jboolean: JPrimitive {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualBooleanMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -779,8 +779,8 @@ extension jbyte: JPrimitive {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallByteMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -791,8 +791,8 @@ extension jbyte: JPrimitive {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticByteMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -804,9 +804,9 @@ extension jbyte: JPrimitive {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualByteMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -888,8 +888,8 @@ extension jchar: JPrimitive {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallCharMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -900,8 +900,8 @@ extension jchar: JPrimitive {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticCharMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -913,9 +913,9 @@ extension jchar: JPrimitive {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualCharMethodA(env, obj, cls,mid, $0.baseAddress) }))
                     }
                 }
@@ -998,8 +998,8 @@ extension jshort: JPrimitive {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallShortMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -1010,8 +1010,8 @@ extension jshort: JPrimitive {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticShortMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -1023,9 +1023,9 @@ extension jshort: JPrimitive {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualShortMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -1108,8 +1108,8 @@ extension jint: JPrimitive {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallIntMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -1120,8 +1120,8 @@ extension jint: JPrimitive {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticIntMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -1133,9 +1133,9 @@ extension jint: JPrimitive {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualIntMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -1218,8 +1218,8 @@ extension jlong: JPrimitive {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallLongMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -1230,8 +1230,8 @@ extension jlong: JPrimitive {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticLongMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -1243,9 +1243,9 @@ extension jlong: JPrimitive {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualLongMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -1328,8 +1328,8 @@ extension jfloat: JPrimitive {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallFloatMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -1340,8 +1340,8 @@ extension jfloat: JPrimitive {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticFloatMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -1353,9 +1353,9 @@ extension jfloat: JPrimitive {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualFloatMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -1438,8 +1438,8 @@ extension jdouble: JPrimitive {
         return { env in
             { obj in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if obj == nil { throw KanjiErrors.NotFound("Object") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if obj == nil { throw KanjiErrors.notFound("Object") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallDoubleMethodA(env, obj, mid, $0.baseAddress) }))
                 }
             }
@@ -1450,8 +1450,8 @@ extension jdouble: JPrimitive {
         return { env in
             { cls in
                 { args in
-                    if mid == nil { throw KanjiErrors.NotFound("Method") }
-                    if cls == nil { throw KanjiErrors.NotFound("Class") }
+                    if mid == nil { throw KanjiErrors.notFound("Method") }
+                    if cls == nil { throw KanjiErrors.notFound("Class") }
                     return try checked(env, args.withUnsafeBufferPointer({ JNI_CallStaticDoubleMethodA(env, cls, mid, $0.baseAddress) }))
                 }
             }
@@ -1463,9 +1463,9 @@ extension jdouble: JPrimitive {
             { cls in
                 { obj in
                     { args in
-                        if mid == nil { throw KanjiErrors.NotFound("Method") }
-                        if cls == nil { throw KanjiErrors.NotFound("Class") }
-                        if obj == nil { throw KanjiErrors.NotFound("Object") }
+                        if mid == nil { throw KanjiErrors.notFound("Method") }
+                        if cls == nil { throw KanjiErrors.notFound("Class") }
+                        if obj == nil { throw KanjiErrors.notFound("Object") }
                         return try checked(env, args.withUnsafeBufferPointer({ JNI_CallNonvirtualDoubleMethodA(env, obj, cls, mid, $0.baseAddress) }))
                     }
                 }
@@ -1654,8 +1654,8 @@ public extension JVM {
 
 
 //private enum Result<T> {
-//    case Success(T)
-//    case Failure(ErrorType)
+//    case success(T)
+//    case failure(ErrorType)
 //}
 //
 ///// Helper function until the official withVaList function is annotated with `rethrows`
@@ -1669,8 +1669,8 @@ public extension JVM {
 //    })
 //
 //    switch res {
-//    case .Success(let val): return val
-//    case .Failure(let err): throw err
+//    case .success(let val): return val
+//    case .failure(let err): throw err
 //    }
 //}
 

@@ -9,15 +9,15 @@
 import Foundation
 
 public enum CodegenErrors : ErrorType, CustomDebugStringConvertible {
-    case JavapError(String)
-    case ParseError(String)
-    case CompileError(String)
+    case javapError(String)
+    case parseError(String)
+    case compileError(String)
 
     public var debugDescription: String {
         switch self {
-        case .JavapError(let str): return "JavapError: \(str)"
-        case .ParseError(let str): return "ParseError: \(str)"
-        case .CompileError(let str): return "CompileError: \(str)"
+        case .javapError(let str): return "javapError: \(str)"
+        case .parseError(let str): return "parseError: \(str)"
+        case .compileError(let str): return "compileError: \(str)"
         }
     }
 }
@@ -78,7 +78,7 @@ extension NSScanner {
 
     func require(str: String) throws {
         if !consume(str) {
-            throw CodegenErrors.ParseError("Expected string not found: “\(str)” in \(remainingDesc)")
+            throw CodegenErrors.parseError("Expected string not found: “\(str)” in \(remainingDesc)")
         }
     }
 
@@ -99,7 +99,7 @@ extension NSScanner {
         let set = NSCharacterSet(charactersInString: str)
         var out: NSString?
         if !scanUpToCharactersFromSet(set, intoString: &out) {
-            throw CodegenErrors.ParseError("Expected tokens not found: \(chars) in \(remainingDesc)")
+            throw CodegenErrors.parseError("Expected tokens not found: \(chars) in \(remainingDesc)")
         }
         if consume {
             scanLocation += 1
@@ -122,12 +122,12 @@ extension NSScanner {
     private func scanUntil(str: String, consume: Bool = true) throws -> String {
         var out: NSString?
         if !scanUpToString(str, intoString: &out) {
-            throw CodegenErrors.ParseError("Expected string not found: “\(str)” in \(remainingDesc)")
+            throw CodegenErrors.parseError("Expected string not found: “\(str)” in \(remainingDesc)")
         }
         if consume {
             let scanned = scanString(str, intoString: nil)
             if !scanned {
-                throw CodegenErrors.ParseError("Expected string not found: “\(str)” in \(remainingDesc)")
+                throw CodegenErrors.parseError("Expected string not found: “\(str)” in \(remainingDesc)")
 //                assert(scanned == true)
             }
         }
@@ -145,7 +145,7 @@ extension NSScanner {
                 return tok
             }
         }
-        throw CodegenErrors.ParseError("No tokens found from: \(tokens)")
+        throw CodegenErrors.parseError("No tokens found from: \(tokens)")
     }
 }
 
@@ -184,60 +184,60 @@ func == (n1: JName, n2: JName) -> Bool {
 }
 
 enum JType: Hashable, Equatable, CustomDebugStringConvertible {
-    case Void
-    case Boolean
-    case Byte
-    case Char
-    case Short
-    case Int
-    case Long
-    case Float
-    case Double
-    case Object(JName)
-    indirect case Array(JType)
+    case void
+    case boolean
+    case byte
+    case char
+    case short
+    case int
+    case long
+    case float
+    case double
+    case object(JName)
+    indirect case array(JType)
 
     var hashValue: Swift.Int {
         switch self {
-        case .Void: return 1
-        case .Boolean: return 2
-        case .Byte: return 3
-        case .Char: return 4
-        case .Short: return 5
-        case .Int: return 6
-        case .Long: return 7
-        case .Float: return 8
-        case .Double: return 9
-        case .Object(let type): return type.hashValue
-        case .Array: return 10
+        case .void: return 1
+        case .boolean: return 2
+        case .byte: return 3
+        case .char: return 4
+        case .short: return 5
+        case .int: return 6
+        case .long: return 7
+        case .float: return 8
+        case .double: return 9
+        case .object(let type): return type.hashValue
+        case .array: return 10
         }
     }
 
     var debugDescription: String {
         switch self {
-        case .Void: return "Void"
-        case .Boolean: return "Boolean"
-        case .Byte: return "Byte"
-        case .Char: return "Char"
-        case .Short: return "Short"
-        case .Int: return "Int"
-        case .Long: return "Long"
-        case .Float: return "Float"
-        case .Double: return "Double"
-        case .Object(let type): return type.debugDescription
-        case .Array(let arr): return "[" + arr.debugDescription + "]"
+        case .void: return "Void"
+        case .boolean: return "Boolean"
+        case .byte: return "Byte"
+        case .char: return "Char"
+        case .short: return "Short"
+        case .int: return "Int"
+        case .long: return "Long"
+        case .float: return "Float"
+        case .double: return "Double"
+        case .object(let type): return type.debugDescription
+        case .array(let arr): return "[" + arr.debugDescription + "]"
         }
     }
 
     var isObject: Bool {
         switch self {
-        case .Object: return true
+        case .object: return true
         default: return false
         }
     }
 
     var isArray: Bool {
         switch self {
-        case .Array: return true
+        case .array: return true
         default: return false
         }
     }
@@ -245,14 +245,14 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
     /// Returns the dimensionality of the array type, or zero if it is not an array
     var arrayLevel: Swift.Int {
         switch self {
-        case .Array(let sub): return 1 + sub.arrayLevel
+        case .array(let sub): return 1 + sub.arrayLevel
         default: return 0
         }
     }
 
     var isVoid: Bool {
         switch self {
-        case .Void: return true
+        case .void: return true
         default: return false
         }
     }
@@ -263,25 +263,25 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
 
     var typeName: String {
         switch self {
-        case .Void: return "Void"
-        case .Boolean: return "jboolean"
-        case .Byte: return "jbyte"
-        case .Char: return "jchar"
-        case .Short: return "jshort"
-        case .Int: return "jint"
-        case .Long: return "jlong"
-        case .Float: return "jfloat"
-        case .Double: return "jdouble"
-        case .Object(let type): return type.swiftClassName
-        case .Array(let arr): return "[" + arr.typeNameOpt + "]"
+        case .void: return "Void"
+        case .boolean: return "jboolean"
+        case .byte: return "jbyte"
+        case .char: return "jchar"
+        case .short: return "jshort"
+        case .int: return "jint"
+        case .long: return "jlong"
+        case .float: return "jfloat"
+        case .double: return "jdouble"
+        case .object(let type): return type.swiftClassName
+        case .array(let arr): return "[" + arr.typeNameOpt + "]"
         }
     }
 
     /// Returns the dot-separated Java class name of this object or array element, or nil if it is void or a primitive
     var jname: JName? {
         switch self {
-        case .Object(let type): return type
-        case .Array(let arr): return arr.jname
+        case .object(let type): return type
+        case .array(let arr): return arr.jname
         default: return nil
         }
     }
@@ -289,8 +289,8 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
     /// Returns the referenced class type: if an object, returns itself, if an array, returns the embedded classType
     var classType: JType? {
         switch self {
-        case .Object: return self
-        case .Array(let arr): return arr.classType
+        case .object: return self
+        case .array(let arr): return arr.classType
         default: return nil
         }
     }
@@ -298,17 +298,17 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
     /// Returns an identifier for the type with characters that can be used in a Swift identifier
     var typeID: String {
         switch self {
-        case .Void: return "V"
-        case .Boolean: return "Z"
-        case .Byte: return "B"
-        case .Char: return "C"
-        case .Short: return "S"
-        case .Int: return "I"
-        case .Long: return "J"
-        case .Float: return "F"
-        case .Double: return "D"
-        case .Object(let type): return type.swiftClassName
-        case .Array(let arr): return "A" + arr.typeID
+        case .void: return "V"
+        case .boolean: return "Z"
+        case .byte: return "B"
+        case .char: return "C"
+        case .short: return "S"
+        case .int: return "I"
+        case .long: return "J"
+        case .float: return "F"
+        case .double: return "D"
+        case .object(let type): return type.swiftClassName
+        case .array(let arr): return "A" + arr.typeID
         }
     }
 
@@ -321,10 +321,10 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
     var typeCall: String {
         let name = typeName
         switch self {
-        case .Void: return "JVoid.jniType"
-        case .Object(let jname):
+        case .void: return "JVoid.jniType"
+        case .object(let jname):
             return "JObjectType(\"\(jname.javaInternalName)\")"
-        case .Array(let sub):
+        case .array(let sub):
             return "JArray(" + sub.typeCall + ")"
 
         default: return name + ".jniType"
@@ -334,52 +334,52 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
     static func parse<G: GeneratorType where G.Element == Character>(inout gen: G) throws -> JType? {
         switch gen.next() {
         case .None: return nil
-        case .Some("V"): return .Void
-        case .Some("Z"): return .Boolean
-        case .Some("B"): return .Byte
-        case .Some("C"): return .Char
-        case .Some("S"): return .Short
-        case .Some("I"): return .Int
-        case .Some("J"): return .Long
-        case .Some("F"): return .Float
-        case .Some("D"): return .Double
+        case .Some("V"): return .void
+        case .Some("Z"): return .boolean
+        case .Some("B"): return .byte
+        case .Some("C"): return .char
+        case .Some("S"): return .short
+        case .Some("I"): return .int
+        case .Some("J"): return .long
+        case .Some("F"): return .float
+        case .Some("D"): return .double
         case .Some("L"):
             var chars: [Character] = []
             while let c = gen.next() {
                 if c == ";" {
                     let chars = String.CharacterView(chars)
                     let parts = (chars.split() { $0 == "/" }).map { String($0) }
-                    return .Object(JName(parts: parts, generics: [])) // FIXME: generics are type erased: how to get?
+                    return .object(JName(parts: parts, generics: [])) // FIXME: generics are type erased: how to get?
                 } else {
                     chars.append(c)
                 }
             }
-            throw CodegenErrors.ParseError("Object type did not end with semi-colon")
+            throw CodegenErrors.parseError("Object type did not end with semi-colon")
         case .Some("["):
             if let sub = try parse(&gen) {
-                return .Array(sub)
+                return .array(sub)
             } else {
-                throw CodegenErrors.ParseError("Array with no embedded type")
+                throw CodegenErrors.parseError("Array with no embedded type")
             }
         default:
-            throw CodegenErrors.ParseError("Invalid character in type signature")
+            throw CodegenErrors.parseError("Invalid character in type signature")
         }
     }
 }
 
 func == (t1: JType, t2: JType) -> Bool {
     switch (t1, t2) {
-    case (.Void, .Void): return true
-    case (.Boolean, .Boolean): return true
-    case (.Byte, .Byte): return true
-    case (.Char, .Char): return true
-    case (.Short, .Short): return true
-    case (.Int, .Int): return true
-    case (.Long, .Long): return true
-    case (.Float, .Float): return true
-    case (.Double, .Double): return true
-    case (.Object(let o1), .Object(let o2)): return o1 == o2
-    case (.Array(let a1), .Array(let a2)): return a1 == a2
+    case (.void, .void): return true
+    case (.boolean, .boolean): return true
+    case (.byte, .byte): return true
+    case (.char, .char): return true
+    case (.short, .short): return true
+    case (.int, .int): return true
+    case (.long, .long): return true
+    case (.float, .float): return true
+    case (.double, .double): return true
+    case (.object(let o1), .object(let o2)): return o1 == o2
+    case (.array(let a1), .array(let a2)): return a1 == a2
     default: return false
     }
 }
@@ -405,7 +405,7 @@ struct JUnit {
     }
 
     var jtype: JType {
-        return JType.Object(jname)
+        return JType.object(jname)
     }
 
     struct Mod : OptionSetType {
@@ -424,7 +424,7 @@ struct JUnit {
         var referencedTypes = Set<JType>()
 
         for name in extends + implements {
-            referencedTypes.insert(JType.Object(name))
+            referencedTypes.insert(JType.object(name))
         }
 
         for method in methods {
@@ -466,7 +466,7 @@ struct JField {
 
         var dgen = desc.characters.generate()
         guard let type = try JType.parse(&dgen) else {
-            throw CodegenErrors.ParseError("No field type")
+            throw CodegenErrors.parseError("No field type")
         }
 
         self.type = type
@@ -505,10 +505,10 @@ struct JMethod {
         self.constructor = fname.characters.indexOf(".") != nil // initializers have dots: public java.lang.String(char[])
 
         guard let openParen = desc.characters.indexOf("(") where openParen == desc.startIndex else {
-            throw CodegenErrors.ParseError("No open paren")
+            throw CodegenErrors.parseError("No open paren")
         }
         guard let closeParen = desc.characters.indexOf(")") else {
-            throw CodegenErrors.ParseError("No close paren")
+            throw CodegenErrors.parseError("No close paren")
         }
 
         let argstr = desc.substringFromIndex(openParen.successor()).substringToIndex(closeParen.predecessor())
@@ -521,7 +521,7 @@ struct JMethod {
         }
         var retg = retstr.characters.generate()
         guard let ret = try JType.parse(&retg) else {
-            throw CodegenErrors.ParseError("No return type")
+            throw CodegenErrors.parseError("No return type")
         }
 
         self.arguments = args
@@ -556,11 +556,11 @@ struct JMethod {
 
 enum CodeGenerationMode {
     /// An implementation with a name lookup for looking up implementations
-    case ClassImplementation((JName)->(JUnit?))
-    case ClassTypealias
-    case InterfaceProtocol
-    case InterfaceStub
-    case InterfaceExtension
+    case classImplementation((JName)->(JUnit?))
+    case classTypealias
+    case interfaceProtocol
+    case interfaceStub
+    case interfaceExtension
 }
 
 
@@ -621,7 +621,7 @@ extension JUnit {
 
         let decname = self.swiftName
 
-        if case .ClassTypealias = mode {
+        if case .classTypealias = mode {
             let impname = decname + KanjiImplementationSuffix
             // when we are generating an impl typealias for a class it can be kept private
             // when it is an interface, we wan't client code to be able to generate a wrapper externally
@@ -637,30 +637,30 @@ extension JUnit {
         let mdec: Bool
         let mimp: Bool
         switch mode {
-        case .ClassImplementation:
+        case .classImplementation:
             pdec = true
             mdec = true
             mimp = true
-        case .ClassTypealias:
+        case .classTypealias:
             pdec = false
             mdec = false
             mimp = false
-        case .InterfaceProtocol:
+        case .interfaceProtocol:
             pdec = false
             mdec = true
             mimp = false
-        case .InterfaceStub:
+        case .interfaceStub:
             pdec = true
             mdec = false
             mimp = false
-        case .InterfaceExtension:
+        case .interfaceExtension:
             pdec = false
             mdec = true
             mimp = true
         }
 
         let stub: Bool
-        if case .InterfaceStub = mode {
+        if case .interfaceStub = mode {
             stub = true
         } else {
             stub = false
@@ -670,7 +670,7 @@ extension JUnit {
         let implement = (self.mods.contains(.Class) || stub)
 
 
-        if case .InterfaceExtension = mode {
+        if case .interfaceExtension = mode {
             code += "public extension \(self.swiftName)"
         } else {
             // FIXME: all types are public
@@ -713,7 +713,7 @@ extension JUnit {
                 implements.append(JName(parts: ["JavaObject"], generics: []))
             }
 
-            if case .ClassImplementation(let lookup) = mode where !isRootObject {
+            if case .classImplementation(let lookup) = mode where !isRootObject {
                 // we need to trim out redundant interface conformances or else we get the swift compiler error:
                 // error: redundant conformance of 'java$lang$StringBuffer' to protocol 'java$lang$CharSequence'
                 func inheritedConformaces(superclassName: JName?) -> Set<JName> {
@@ -862,7 +862,7 @@ extension JUnit {
                         code += ")"
                     }
 
-                    if case .Array(let sub) = field.type {
+                    if case .array(let sub) = field.type {
                         code += arrayConversionReturn(sub)
                     }
 
@@ -880,7 +880,7 @@ extension JUnit {
 
                         if field.type.isObject {
                             code += "?.jobj ?? nil"
-                        } else if case .Array(let sub) = field.type {
+                        } else if case .array(let sub) = field.type {
                             code += arrayConversionArgument(sub)
                         }
 
@@ -956,7 +956,7 @@ extension JUnit {
 
             var methodOverride = false
             if mimp {
-                if case .ClassImplementation(let lookup) = mode where !isRootObject {
+                if case .classImplementation(let lookup) = mode where !isRootObject {
                     func overridden(superclassName: JName) throws -> Bool {
                         if let superclass = lookup(superclassName) {
 
@@ -978,7 +978,7 @@ extension JUnit {
                             // are not identified; we should be able to implement this by examining all the method
                             // declarations of implemented interfaces
                             logger("warning: extension of missing class «\(superclassName.javaClassName)» by «\(jniName)» not yet supported")
-//                            throw CodegenErrors.ParseError("Extension of missing class «\(superclassName.javaClassName)» not yet supported")
+//                            throw CodegenErrors.parseError("Extension of missing class «\(superclassName.javaClassName)» not yet supported")
                         }
                         return false
                     }
@@ -1036,7 +1036,7 @@ extension JUnit {
                     if i > 0 {
                         code += ", _ "
                     } else if i == 0 && method.constructor {
-                        if case .Some(.Object(let argname)) = method.arguments.first where argname.javaInternalName == "java/lang/Object" && method.arguments.count == 1 && (extends.first?.javaInternalName == "java/lang/RuntimeException" || extends.first?.javaInternalName == "java/lang/Throwable" || extends.first?.javaInternalName == "java/lang/Error" || extends.first?.javaInternalName == "java/lang/Error" ) {
+                        if case .Some(.object(let argname)) = method.arguments.first where argname.javaInternalName == "java/lang/Object" && method.arguments.count == 1 && (extends.first?.javaInternalName == "java/lang/RuntimeException" || extends.first?.javaInternalName == "java/lang/Throwable" || extends.first?.javaInternalName == "java/lang/Error" || extends.first?.javaInternalName == "java/lang/Error" ) {
                             // FIXME special case, otherwise compiler: "error: declaration 'init' cannot override more than one superclass declaration"
                             code += "object "
                         } else {
@@ -1084,9 +1084,9 @@ extension JUnit {
                         if i > 0 { code += ", " }
                         code += "a\(i)"
                         switch a {
-                        case .Object:
+                        case .object:
                             code += "?.jobj ?? nil"
-                        case .Array(let sub):
+                        case .array(let sub):
                             code += arrayConversionArgument(sub)
                         default:
                             break
@@ -1103,7 +1103,7 @@ extension JUnit {
                         code += " as " + method.returnType.typeName + KanjiImplementationSuffix + "?"
                     }
 
-                    if case .Array(let sub) = method.returnType {
+                    if case .array(let sub) = method.returnType {
                         code += arrayConversionReturn(sub)
                     }
 
@@ -1306,13 +1306,13 @@ public func generateWrappers(disassembly: String, skipPatterns: Set<String> = Se
             logger("type: \(unit.jname.javaClassName)")
             if unit.mods.contains(.Class) {
                 // a class is all-in one with an implementation typealias
-                code += try gen(mode: .ClassImplementation(lookup))
-                code += try gen(mode: .ClassTypealias)
+                code += try gen(mode: .classImplementation(lookup))
+                code += try gen(mode: .classTypealias)
             } else if unit.mods.contains(.Interface) {
                 // an interface has a protocol with the declarations, a default implementation class with the method caches, and a protocol extension with the method implementations
-                code += try gen(mode: .InterfaceProtocol)
-                code += try gen(mode: .InterfaceStub)
-                code += try gen(mode: .InterfaceExtension)
+                code += try gen(mode: .interfaceProtocol)
+                code += try gen(mode: .interfaceStub)
+                code += try gen(mode: .interfaceExtension)
             }
 
             generatedTypes.insert(unit.jtype)
@@ -1330,8 +1330,8 @@ public func generateWrappers(disassembly: String, skipPatterns: Set<String> = Se
 
                 let unit = JUnit(jname: jname, mods: JUnit.Mod.Public, extends: [], implements: [], fields: [], methods: [])
                 let gen = unit.generateWrapper(logger: logger)
-                code += try gen(mode: CodeGenerationMode.InterfaceProtocol)
-                code += try gen(mode: CodeGenerationMode.InterfaceStub)
+                code += try gen(mode: CodeGenerationMode.interfaceProtocol)
+                code += try gen(mode: CodeGenerationMode.interfaceStub)
     //            code += try gen(mode: CodeGenerationMode.InterfaceExtension)
             }
         }
@@ -1373,12 +1373,12 @@ public func launchDisassembler(types: [String]) throws -> String {
 
     let status = task.terminationStatus
     if status != 0 {
-        throw CodegenErrors.JavapError("Could not execute javap")
+        throw CodegenErrors.javapError("Could not execute javap")
     }
 
     if let str = NSString(data: output, encoding: NSUTF8StringEncoding) {
         return str as String
     } else {
-        throw CodegenErrors.JavapError("No output from javap")
+        throw CodegenErrors.javapError("No output from javap")
     }
 }

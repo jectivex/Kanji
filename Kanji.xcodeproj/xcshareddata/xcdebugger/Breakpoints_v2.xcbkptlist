@@ -35,6 +35,12 @@
                      consoleCommand = "process handle SIGSEGV -n true -p true -s false">
                   </ActionContent>
                </BreakpointActionProxy>
+               <BreakpointActionProxy
+                  ActionExtensionID = "Xcode.BreakpointAction.DebuggerCommand">
+                  <ActionContent
+                     consoleCommand = "process handle SIGBUS -n true -p true -s false">
+                  </ActionContent>
+               </BreakpointActionProxy>
             </Actions>
             <Locations>
             </Locations>

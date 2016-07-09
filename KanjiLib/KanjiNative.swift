@@ -63,7 +63,7 @@ public extension JVM {
         }
 
 
-        guard let bytes = try generateClassBytes() else { throw KanjiErrors.General("Could not create class bytes for dynamic method") }
+        guard let bytes = try generateClassBytes() else { throw KanjiErrors.general("Could not create class bytes for dynamic method") }
 
         //print("loading native class \(className): \(try? loadedClasses())")
         let jcls = bytes.withUnsafeBufferPointer { ptr in
@@ -98,7 +98,7 @@ public extension JVM {
             let job = jvm.newObjectA(jcls, methodID: cid, args: [])
             try jvm.throwException() // defineClass can throw an exception
 
-            guard let impl = F(reference: job) else { throw KanjiErrors.General("Could not instantiate class for dynamic method") }
+            guard let impl = F(reference: job) else { throw KanjiErrors.general("Could not instantiate class for dynamic method") }
 
             // sanity check
             assert(((try? (impl as! java$lang$Object).getClass()?.getName()?.description) ?? "none") == className, "loaded class name was not «\(className)»")
@@ -186,7 +186,7 @@ public extension JVM {
             return try cw.toByteArray();
         }
 
-        guard let bytes = try generateClassBytes() else { throw KanjiErrors.General("Could not create class bytes for dynamic method") }
+        guard let bytes = try generateClassBytes() else { throw KanjiErrors.general("Could not create class bytes for dynamic method") }
 
 
         //print("loading native class \(className): \(try? loadedClasses())")
@@ -233,7 +233,7 @@ public extension JVM {
             let job = jvm.newObjectA(jcls, methodID: cid, args: [jvalue(j: address)])
             try jvm.throwException() // probably no exception, but perhaps OutOfMemoryError
 
-            guard let impl = F(reference: job) else { throw KanjiErrors.General("Could not instantiate class for dynamic method") }
+            guard let impl = F(reference: job) else { throw KanjiErrors.general("Could not instantiate class for dynamic method") }
             jvm.deleteLocalRef(job) // local ref no longer needed
             // sanity check
             assert(((try? (impl as! java$lang$Object).getClass()?.getName()?.description) ?? "none") == className, "loaded class name was not «\(className)»")

@@ -22,7 +22,7 @@ public class KanjiScriptContext : ScriptContext {
     public init(engine name: String) throws {
         let manager = try javax$script$ScriptEngineManager()
         guard let engine = try manager.getEngineByName(java$lang$String(stringLiteral: name)) else {
-            throw KanjiErrors.General("Could not get engine name \(name)")
+            throw KanjiErrors.general("Could not get engine name \(name)")
         }
         self.engine = engine
     }
@@ -39,11 +39,18 @@ public class KanjiScriptContext : ScriptContext {
         try self.engine.put(java$lang$String(key), value)
     }
 
+//    /// Evaluate the code at the given URL; differs from evaluating as a string in that it permits
+//    /// loading separate files with the load() function and errors will point to the
+//    /// correct related file.
+//    public func evalURL(url: NSURL, this: InstanceType.RefType? = nil, args: InstanceType...) throws -> InstanceType {
+//
+//    }
+
     public func eval(code: InstanceType, this: InstanceType.RefType? = nil, args: InstanceType...) throws -> InstanceType {
         let script: String
         switch code {
-        case .Val(.Str(let str)): script = str
-        default: throw KanjiErrors.General("Script can only be a string literal") // TODO: function references
+        case .val(.str(let str)): script = str
+        default: throw KanjiErrors.general("Script can only be a string literal") // TODO: function references
         }
 
         var refargs: [InstanceType.RefType] = []
@@ -52,7 +59,7 @@ public class KanjiScriptContext : ScriptContext {
         }
 
         if let ref = try evaluate(script, this: this, args: refargs) {
-            return .Ref(ref, self)
+            return .ref(ref, self)
         } else {
             return nil
         }
@@ -63,11 +70,11 @@ public class KanjiScriptContext : ScriptContext {
 
         // functions can only be invoked on invocale subclases
         if let invocable: javax$script$Invocable$Stub = engine.cast() where args.count > 0 {
-            // let funarg = try deref(.Val(.Str(script)))
+            // let funarg = try deref(.Val(.str(script)))
             // FIXME: global functions can be invoked directly, but things like "JSON.stringify"; we use this hack to evaluate a ref to the fun
             let fname = "___invokeFunction\(abs(script.hashValue))"
             try evaluate("var \(fname) = \(script);", this: nil, args: [])
-            // #### FIXME: WTF: without this, we get "fatal error: array cannot be bridged from Objective-C"
+            // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
             let args2: [java$lang$Object?]? = args.map({ $0 as java$lang$Object? })
 
             if let this = this {
@@ -82,26 +89,26 @@ public class KanjiScriptContext : ScriptContext {
 
     public func deref(inst: InstanceType) throws -> InstanceType.RefType {
         switch inst {
-        case .Ref(let r, _):
+        case .ref(let r, _):
             return r
-        case .Val(let bric):
+        case .val(let bric):
             if let ob = try bric.toKanji(self.jvm) {
                 return ob
             } else {
-                fatalError()
+                throw KanjiErrors.general("Value could not be converted to Kanji")
             }
         }
     }
 
     public func ref(inst: InstanceType) throws -> InstanceType {
-        return try .Ref(deref(inst), self)
+        return try .ref(deref(inst), self)
     }
 
     public func val(inst: InstanceType) throws -> InstanceType.ValType {
         switch inst {
-        case .Val(let v):
+        case .val(let v):
             return v
-        case .Ref(let r, _):
+        case .ref(let r, _):
             return try r.toBric()
         }
     }
@@ -111,21 +118,22 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
     public typealias ValType = Bric
     public typealias RefType = java$lang$Object
 
-    case Val(Bric)
-    case Ref(RefType, KanjiScriptContext)
+    case val(Bric)
+    case ref(RefType, KanjiScriptContext)
 
     public var debugDescription : String {
         switch self {
-        case .Val(let bric): return bric.debugDescription
-        case .Ref(let ref, _): return java$lang$Object(reference: ref.jobj)?.description ?? "nil"
+        case .val(let bric): return bric.debugDescription
+        case .ref(let ref, _): return java$lang$Object(reference: ref.jobj)?.description ?? "nil"
         }
     }
+
     public subscript(key: String) -> KanjiScriptType? {
         get {
             switch self {
-            case .Val(let bric):
-                return bric[key].flatMap({ .Val($0) })
-            case .Ref: // (let val, let ctx):
+            case .val(let bric):
+                return bric[key].flatMap({ .val($0) })
+            case .ref: // (let val, let ctx):
                 fatalError("TODO")
 //                let pname = JSStringCreateWithUTF8CString(key)
 //                defer { JSStringRelease(pname) }
@@ -143,67 +151,67 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
 
     public var isRef: Bool {
         switch self {
-        case .Ref: return true
-        case .Val: return false
+        case .ref: return true
+        case .val: return false
         }
     }
 
     public var isVal: Bool {
         switch self {
-        case .Ref: return false
-        case .Val: return true
+        case .ref: return false
+        case .val: return true
         }
     }
 
     public var hashValue: Int {
         switch self {
-        case .Val(let x): return x.hashValue
-        case .Ref(let x, _): return x.jobj.hashValue
+        case .val(let x): return x.hashValue
+        case .ref(let x, _): return x.jobj.hashValue
         }
     }
 
     public init(nilLiteral: ()) {
-        self = .Val(nil)
+        self = .val(nil)
     }
 
     public init(integerLiteral value: IntegerLiteralType) {
-        self = .Val(Bric.Num(Double(value)))
+        self = .val(Bric.num(Double(value)))
     }
 
     public init(booleanLiteral value: BooleanLiteralType) {
-        self = .Val(Bric.Bol(value))
+        self = .val(Bric.bol(value))
     }
 
     public init(floatLiteral value: FloatLiteralType) {
-        self = .Val(Bric.Num(value))
+        self = .val(Bric.num(value))
     }
 
     public init(stringLiteral value: StringLiteralType) {
-        self = .Val(Bric.Str(value))
+        self = .val(Bric.str(value))
     }
 
     public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
-        self = .Val(Bric.Str(value))
+        self = .val(Bric.str(value))
     }
 
     public init(unicodeScalarLiteral value: StringLiteralType) {
-        self = .Val(Bric.Str(value))
+        self = .val(Bric.str(value))
     }
 
     public init(arrayLiteral elements: Bric...) {
-        self = .Val(Bric.Arr(elements))
+        self = .val(Bric.arr(elements))
     }
 
     public init(dictionaryLiteral elements: (String, Bric)...) {
-        self = .Val(Bric(object: elements))
+        self = .val(Bric(object: elements))
     }
 }
 
 public func == (bs1: KanjiScriptType, bs2: KanjiScriptType) -> Bool {
     switch (bs1, bs2) {
-    case (.Val(let v1), .Val(let v2)):
+    case (.val(let v1), .val(let v2)):
         return v1 == v2
-    case (.Ref(let r1, let ctx1), .Ref(let r2, let ctx2)):
+    case (.ref(let r1, let ctx1), .ref(let r2, let ctx2)):
         return ctx1.jvm.isSameObject(ctx1.engine.jobj, ctx2.engine.jobj) && ctx1.jvm.isSameObject(r1.jobj, r2.jobj) != 0 ? true : false
     default:
         return false
@@ -220,22 +228,22 @@ public extension Bric {
     /// .Obj->java.util.HashMap
     public func toKanji(vm: JVM) throws -> java$lang$Object? {
         switch self {
-        case .Nul:
+        case .nul:
             return nil
-        case .Num(let n):
+        case .num(let n):
             return try java$lang$Double(n)
-        case .Str(let s):
+        case .str(let s):
             return java$lang$String(s)
-        case .Bol(let b):
+        case .bol(let b):
             return try java$lang$Boolean(b ? true : false)
-        case .Arr(let a):
+        case .arr(let a):
             let arr = try java$util$ArrayList()
             for e in a {
                 let x = try e.toKanji(vm)
                 try arr.add(x)
             }
             return arr
-        case .Obj(let o):
+        case .obj(let o):
             let obj = try java$util$HashMap()
             for (k, v) in o {
                 let kk = java$lang$String(stringLiteral: k)
@@ -259,54 +267,77 @@ public extension java$lang$Object {
         return try createBric([])
     }
 
-    private func createBric(seen: [jobject]) throws -> Bric {
+    private func createBric(seen: Set<jobject>) throws -> Bric {
         for x in seen {
             // FIXME: not working, at least for the test case
             if JVM.sharedJVM.isSameObject(self.jobj, x) {
-                throw KanjiErrors.General("Cannot create Bric from structure with cyclic values")
+                throw KanjiErrors.general("Cannot create Bric from structure with cyclic values")
             }
         }
+
         if self.jobj == nil {
-            return .Nul
+            return .nul
         } else if let bol : java$lang$Boolean = cast() {
-            return .Bol(try bol.booleanValue() == 0 ? false : true)
+            return .bol(try bol.booleanValue() == 0 ? false : true)
         } else if let num : java$lang$Number = cast() {
-            return .Num(try num.doubleValue())
+            return .num(try num.doubleValue())
         } else if let str: java$lang$CharSequence$Stub = cast() {
-            return .Str(str.description)
-        } else if let col: java$util$Collection$Stub = cast() {
+            return .str(str.description)
+        } else if let col: java$util$Collection$Stub = cast() { // any collection converts to an array
             var arr: [Bric] = []
             if let values = try col.toArray() {
                 for value in values {
                     if let value = value {
-                        try arr.append(value.createBric(seen + [self.jobj]))
+                        try arr.append(value.createBric(seen.union([self.jobj])))
                     } else {
                         arr.append(nil)
                     }
                 }
             }
-            return .Arr(arr)
-        } else if let amp: java$util$Map$Stub = cast() {
+            return .arr(arr)
+        } else if let amp: java$util$Map$Stub = cast() { // any map converts to an object
             var dict: [String: Bric] = [:]
             for key in try amp.keySet()?.toArray([]) ?? [] {
                 if let stringKey : java$lang$String = key?.cast() {
                     if let value = try amp.get(stringKey) {
-                        dict[stringKey.description] = try value.createBric(seen + [self.jobj])
+                        dict[stringKey.description] = try value.createBric(seen.union([self.jobj]))
                     }
                 } else {
-                    throw KanjiErrors.General("Map key was not a string: \(key?.dynamicType.javaClassName)")
+                    throw KanjiErrors.general("Map key was not a string: \(key?.dynamicType.javaClassName)")
                 }
             }
-            return .Obj(dict)
+
+            if ((try? getClass()?.getName()) ?? "") == "jdk.nashorn.api.scripting.ScriptObjectMirror" {
+                // “With jdk8u40 onwards, script objects are converted to ScriptObjectMirror whenever script objects are passed to Java layer - even with Object type params or assigned to a Object[] element. Such wrapped mirror instances are automatically unwrapped when execution crosses to script boundary. i.e., say a Java method returns Object type value which happens to be ScriptObjectMirror object, then script caller will see it a ScriptObject instance” -- https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes
+
+                // we could cast to jdk.nashorn.api.scripting.ScriptObjectMirror extends jdk.nashorn.api.scripting.JSObject, 
+                // which has an isArray() method, but the class is non-standard so we'd need to make a separate bridge for it.
+
+                // instead, we'll just check for keys that are in increasing numeric order: {"0": "a", "1": "b", ...}
+                var arr: [Bric] = []
+                arr.reserveCapacity(dict.count)
+                for i in 0..<dict.count {
+                    if let val = dict[String(i)] {
+                        arr.append(val)
+                    } else {
+                        // odd; a key that was not an array index
+                        return .obj(dict)
+                    }
+                }
+                return .arr(arr)
+            }
+            
+
+            return .obj(dict)
         } else if try getClass()?.isArray() == true {
             var arr: [Bric] = []
             let len = try java$lang$reflect$Array.getLength(self)
             arr.reserveCapacity(Int(len))
             for i in 0..<len {
                 let ob = try java$lang$reflect$Array.get(self, i)
-                arr.append(try ob?.createBric(seen + [self.jobj]) ?? nil)
+                arr.append(try ob?.createBric(seen.union([self.jobj])) ?? nil)
             }
-            return .Arr(arr)
+            return .arr(arr)
         } else if let date: java$util$Date$Stub = cast() {
             // dates are non-standard JSON, but the de-facto standard is to serialize as ISO-8601
             // TODO: cache simple date format
@@ -314,18 +345,18 @@ public extension java$lang$Object {
             let df = try java$text$SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'")
             try df.setTimeZone(tz)
             let str = try df.format(date)
-            return .Str(str?.description ?? "")
+            return .str(str?.description ?? "")
         } else if let itr: java$lang$Iterable$Stub = cast() {
             // we handle iterable last because toArray is probably more optimized
             var arr: [Bric] = []
             if let it = try itr.iterator() {
                 while let next = try it.next() {
-                    try arr.append(next.createBric(seen + [self.jobj]))
+                    try arr.append(next.createBric(seen.union([self.jobj])))
                 }
             }
-            return .Arr(arr)
+            return .arr(arr)
         } else {
-            throw KanjiErrors.General("Could not convert class \(self.dynamicType.javaClassName) «\(self.description)» into Bric")
+            throw KanjiErrors.general("Could not convert class \(self.dynamicType.javaClassName) «\(self.description)» into Bric")
         }
     }
 }

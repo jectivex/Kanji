@@ -754,7 +754,10 @@ class KanjiLibTests: XCTestCase {
             // malloc: *** error for object 0x100738918: incorrect checksum for freed object - object was probably modified after being freed
             // FIXME: crashes 90% of the time; need to figure out how to prevent the arguments from being released before
 //            let _ = try java$util$Date("xxxxx" as java$lang$String)
-//            XCTFail("date with bad string should have raised error")
+            try withExtendedLifetime("xxxxx" as java$lang$String) { (str: java$lang$String) in
+                let _ = try java$util$Date(str)
+            }
+            XCTFail("date with bad string should have raised error")
         } catch let ex as KanjiException {
             XCTAssertNil(ex.message)
             XCTAssertEqual("java.lang.IllegalArgumentException", ex.className)

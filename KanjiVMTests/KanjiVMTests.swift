@@ -257,7 +257,7 @@ public protocol KanjiClass {
 //            jvm.exceptionClear()
 //            self.jobj = nil
 //            self.jref = nil
-//            throw KanjiErrors.General("Could not find class «\(self.dynamicType.javaClassName)»")
+//            throw KanjiErrors.general("Could not find class «\(self.dynamicType.javaClassName)»")
 //        }
 //
 //        do {
