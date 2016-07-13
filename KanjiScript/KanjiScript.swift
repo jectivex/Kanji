@@ -70,16 +70,17 @@ public class KanjiScriptContext : ScriptContext {
 
         // functions can only be invoked on invocale subclases
         if let invocable: javax$script$Invocable$Stub = engine.cast() where args.count > 0 {
-            // let funarg = try deref(.Val(.str(script)))
-            // FIXME: global functions can be invoked directly, but things like "JSON.stringify"; we use this hack to evaluate a ref to the fun
-            let fname = "___invokeFunction\(abs(script.hashValue))"
-            try evaluate("var \(fname) = \(script);", this: nil, args: [])
-            // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
             let args2: [java$lang$Object?]? = args.map({ $0 as? java$lang$Object })
 
             if let this = this {
-                return try invocable.invokeMethod(this as? java$lang$Object, java$lang$String(fname), args2)
+                return try invocable.invokeMethod(this as? java$lang$Object, java$lang$String(script), args2)
             } else {
+                // let funarg = try deref(.Val(.str(script)))
+                // FIXME: global functions can be invoked directly, but things like "JSON.stringify"; we use this hack to evaluate a ref to the fun
+                // FIXME: not really downing with this argument; see https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes
+                let fname = "___invokeFunction\(abs(script.hashValue))"
+                try evaluate("var \(fname) = \(script);", this: nil, args: [])
+                // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
                 return try invocable.invokeFunction(java$lang$String(fname), args2)
             }
         }
