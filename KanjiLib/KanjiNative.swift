@@ -311,8 +311,10 @@ public extension java$util$function$Function$Stub {
                 } else {
                     return nil
                 }
-            } catch {
-                // throws the exception through a RuntimeException
+            } catch let jerr as java$lang$Throwable { // throw throwable instances directly
+                JVM.sharedJVM.throwException(jerr.jobj)
+                return nil
+            } catch { // throws all other exceptions via a runtime exception
                 String(error).withCString({ msg in
                     JVM.sharedJVM.throwNew(java$lang$RuntimeException.javaClass, msg: msg)
                 })

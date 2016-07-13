@@ -194,15 +194,14 @@ class KanjiScriptTests: XCTestCase {
 
         // now also test that an exception thrown from native code bubbles back up through java
         do {
-            enum SampleError : ErrorType {
-                case failed(msg: String)
-            }
+            enum SampleError : ErrorType { case failed(msg: String) }
 
             try ctx.eval("callback", args: .ref(java$util$function$Function$Stub.fromClosure { arg in
-                throw SampleError.failed(msg: arg?.description ?? "<<no error message>>")
-                }, ctx), .ref("This should cause an error".javaString, ctx))
+                throw try java$lang$IllegalArgumentException(arg?.cast() as java$lang$String?)
+                }, ctx), .ref("erroneous argument".javaString, ctx))
         } catch let err as KanjiException {
-            XCTAssertTrue(err.message?.containsString("This should cause an error") ?? false, "Bad error: \(err)")
+            XCTAssertEqual(err.message, "erroneous argument")
+            XCTAssertEqual(err.className, "java.lang.IllegalArgumentException")
         }
 
 
