@@ -553,6 +553,15 @@ struct JMethod {
     }
 }
 
+// This is identical to `CodeGenerationMode` except it is public since it is used by the public
+// callback (CodeGenerationMode has a case that uses internal types which we don't want to expose)
+public enum CodeUnitType {
+    case classImplementation
+    case classTypealias
+    case interfaceProtocol
+    case interfaceStub
+    case interfaceExtension
+}
 
 enum CodeGenerationMode {
     /// An implementation with a name lookup for looking up implementations
@@ -1277,6 +1286,18 @@ func parseDisassembly(logger: String->(), disassembly: String) throws -> [JUnit]
 ///
 /// - returns: the Swift code for the wrapper
 public func generateWrappers(disassembly: String, skipPatterns: Set<String> = Set(), imports: [String] = ["KanjiVM"], logger: String->() = { print($0) }) throws -> String {
+
+    var contents = imports.map({"import " + $0}).joinWithSeparator("\n") + "\n\n"
+
+    try generateShims(disassembly, skipPatterns: skipPatterns, logger: logger) { name, mode, code in
+        contents += code
+    }
+
+    return contents
+}
+
+public func generateShims(disassembly: String, skipPatterns: Set<String> = Set(), logger: String->() = { print($0) }, callback: (name: String, type: CodeUnitType, code: String) -> Void) throws {
+
     let units = try parseDisassembly(logger, disassembly: disassembly)
 
     var unitMap: [JName: JUnit] = [:]
@@ -1291,28 +1312,25 @@ public func generateWrappers(disassembly: String, skipPatterns: Set<String> = Se
         }).reduce(false, combine: { $0 || $1 })
     }
 
-    var code = imports.map({"import " + $0}).joinWithSeparator("\n")
-    code.appendContentsOf("\n")
-    code.appendContentsOf("\n")
-
     var generatedTypes = Set<JType>()
     var referencedTypes = Set<JType>()
 
     let lookup: (JName)->(JUnit?) = { unitMap[$0] }
 
     for unit in units {
-        if !shouldSkip(unit.jname.javaClassName) {
+        let name = unit.jname.javaClassName
+        if !shouldSkip(name) {
             let gen = unit.generateWrapper(logger: logger)
-            logger("type: \(unit.jname.javaClassName)")
+            logger("type: \(name)")
             if unit.mods.contains(.Class) {
                 // a class is all-in one with an implementation typealias
-                code += try gen(mode: .classImplementation(lookup))
-                code += try gen(mode: .classTypealias)
+                callback(name: name, type: .classImplementation, code: try gen(mode: .classImplementation(lookup)))
+                callback(name: name, type: .classTypealias, code: try gen(mode: .classTypealias))
             } else if unit.mods.contains(.Interface) {
                 // an interface has a protocol with the declarations, a default implementation class with the method caches, and a protocol extension with the method implementations
-                code += try gen(mode: .interfaceProtocol)
-                code += try gen(mode: .interfaceStub)
-                code += try gen(mode: .interfaceExtension)
+                callback(name: name, type: .interfaceProtocol, code: try gen(mode: .interfaceProtocol))
+                callback(name: name, type: .interfaceStub, code: try gen(mode: .interfaceStub))
+                callback(name: name, type: .interfaceExtension, code: try gen(mode: .interfaceExtension))
             }
 
             generatedTypes.insert(unit.jtype)
@@ -1325,19 +1343,17 @@ public func generateWrappers(disassembly: String, skipPatterns: Set<String> = Se
     let stubs = referencedTypes.subtract(generatedTypes)
     for stub in stubs {
         if let jname = stub.jname {
-            if !shouldSkip(jname.javaClassName) {
-                logger("stub: \(jname.javaClassName)")
+            let name = jname.javaClassName
+            if !shouldSkip(name) {
+                logger("stub: \(name)")
 
                 let unit = JUnit(jname: jname, mods: JUnit.Mod.Public, extends: [], implements: [], fields: [], methods: [])
                 let gen = unit.generateWrapper(logger: logger)
-                code += try gen(mode: CodeGenerationMode.interfaceProtocol)
-                code += try gen(mode: CodeGenerationMode.interfaceStub)
-    //            code += try gen(mode: CodeGenerationMode.InterfaceExtension)
+                callback(name: name, type: .interfaceProtocol, code: try gen(mode: .interfaceProtocol))
+                callback(name: name, type: .interfaceStub, code: try gen(mode: .interfaceStub))
             }
         }
     }
-
-    return code
 }
 
 /// Launched javap and returns the output java type disassembly
