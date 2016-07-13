@@ -144,12 +144,13 @@ class KanjiScriptTests: XCTestCase {
 
         XCTAssertEqual(KanjiScriptTests.testScriptCallbacksValue, nil)
 
-        let str = NSUUID().UUIDString
-        let stringCallbackref = KanjiScriptContext.InstanceType.ref(stringCallback as! java$lang$Object, ctx)
-        let stringref = KanjiScriptContext.InstanceType.ref(str.javaString, ctx)
+        for _ in 0...1000 {
+            let str = NSUUID().UUIDString
+            let stringCallbackref = KanjiScriptContext.InstanceType.ref(stringCallback, ctx)
 
-        try ctx.eval("callback", args: stringCallbackref, stringref)
-        XCTAssertEqual(KanjiScriptTests.testScriptCallbacksValue, str.javaString)
+            try ctx.eval("callback", args: stringCallbackref, .ref(str.javaString, ctx))
+            XCTAssertEqual(KanjiScriptTests.testScriptCallbacksValue, str.javaString)
+        }
     }
 
 }

@@ -36,7 +36,7 @@ public class KanjiScriptContext : ScriptContext {
 //    }
 
     public func bind(key: String, value: InstanceType.RefType) throws {
-        try self.engine.put(java$lang$String(key), value)
+        try self.engine.put(java$lang$String(key), value as? java$lang$Object)
     }
 
 //    /// Evaluate the code at the given URL; differs from evaluating as a string in that it permits
@@ -75,10 +75,10 @@ public class KanjiScriptContext : ScriptContext {
             let fname = "___invokeFunction\(abs(script.hashValue))"
             try evaluate("var \(fname) = \(script);", this: nil, args: [])
             // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
-            let args2: [java$lang$Object?]? = args.map({ $0 as java$lang$Object? })
+            let args2: [java$lang$Object?]? = args.map({ $0 as? java$lang$Object })
 
             if let this = this {
-                return try invocable.invokeMethod(this, java$lang$String(fname), args2)
+                return try invocable.invokeMethod(this as? java$lang$Object, java$lang$String(fname), args2)
             } else {
                 return try invocable.invokeFunction(java$lang$String(fname), args2)
             }
@@ -116,7 +116,7 @@ public class KanjiScriptContext : ScriptContext {
 
 public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
     public typealias ValType = Bric
-    public typealias RefType = java$lang$Object
+    public typealias RefType = JavaObject
 
     case val(Bric)
     case ref(RefType, KanjiScriptContext)
@@ -255,7 +255,7 @@ public extension Bric {
     }
 }
 
-public extension java$lang$Object {
+public extension JavaObject {
     /// Converts this Kanji object to some Bric, with the following conversions:
     /// null->.Nul
     /// java.lang.CharSequence->.Str
@@ -263,6 +263,9 @@ public extension java$lang$Object {
     /// java.lang.Number->.Num
     /// java.util.Collection->.Arr
     /// java.util.Map<String, Object>->.Obj
+    /// 
+    /// Note that JavaObject does not conform to `Bricable` because it can throw an error, whereas `bric()`
+    /// must always succeed.
     public func toBric() throws -> Bric {
         return try createBric([])
     }
@@ -307,7 +310,7 @@ public extension java$lang$Object {
                 }
             }
 
-            if ((try? getClass()?.getName()) ?? "") == "jdk.nashorn.api.scripting.ScriptObjectMirror" {
+            if ((try? (self as? java$lang$Object)?.getClass()?.getName()) ?? "") == "jdk.nashorn.api.scripting.ScriptObjectMirror" {
                 // “With jdk8u40 onwards, script objects are converted to ScriptObjectMirror whenever script objects are passed to Java layer - even with Object type params or assigned to a Object[] element. Such wrapped mirror instances are automatically unwrapped when execution crosses to script boundary. i.e., say a Java method returns Object type value which happens to be ScriptObjectMirror object, then script caller will see it a ScriptObject instance” -- https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes
 
                 // we could cast to jdk.nashorn.api.scripting.ScriptObjectMirror extends jdk.nashorn.api.scripting.JSObject, 
@@ -329,12 +332,13 @@ public extension java$lang$Object {
             
 
             return .obj(dict)
-        } else if try getClass()?.isArray() == true {
+        } else if try (self as? java$lang$Object)?.getClass()?.isArray() == true {
             var arr: [Bric] = []
-            let len = try java$lang$reflect$Array.getLength(self)
+            let job = self as? java$lang$Object
+            let len = try java$lang$reflect$Array.getLength(job)
             arr.reserveCapacity(Int(len))
             for i in 0..<len {
-                let ob = try java$lang$reflect$Array.get(self, i)
+                let ob = try java$lang$reflect$Array.get(job, i)
                 arr.append(try ob?.createBric(seen.union([self.jobj])) ?? nil)
             }
             return .arr(arr)
@@ -363,7 +367,7 @@ public extension java$lang$Object {
             }
             return .arr(arr)
         } else {
-            throw KanjiErrors.general("Could not convert class \(self.dynamicType.javaClassName) «\(self.description)» into Bric")
+            throw KanjiErrors.general("Could not convert class \(self.dynamicType.javaClassName) «\(self)» into Bric")
         }
     }
 }
