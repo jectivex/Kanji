@@ -1347,6 +1347,13 @@ public func generateShims(disassembly: String, skipPatterns: Set<String> = Set()
             if !shouldSkip(name) {
                 logger("stub: \(name)")
 
+                // it would be nicer if we could represent unfound stubs simply is aliases to java.lang.Object,
+                // but some classes would fail to compile if they contain two methods with the same stub signature:
+                // e.g., "MissingType1 get() { }" and "MissingType2 get()" would both fail to compile
+//                let stub = "public typealias \(jname.swiftClassName) = java$lang$Object\n"
+//                + "public typealias \(jname.swiftClassName)$Stub = java$lang$Object\n"
+//                callback(name: name, type: .classTypealias, code: stub)
+
                 let unit = JUnit(jname: jname, mods: JUnit.Mod.Public, extends: [], implements: [], fields: [], methods: [])
                 let gen = unit.generateWrapper(logger: logger)
                 callback(name: name, type: .interfaceProtocol, code: try gen(mode: .interfaceProtocol))
