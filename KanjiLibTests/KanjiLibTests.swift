@@ -16,65 +16,9 @@ import Dispatch
 /// See usage in testJNI
 let abcstring = "abc".javaString
 
-public typealias JavaFunction = java$lang$Object? throws -> java$lang$Object?
-var JavaFunctionLookup: [jint: Any] = [:]
-var JavaFunctionObjectRefs: [jweak: jint] = [:]
-let JavaFunctionSync = dispatch_queue_create("JavaFunctionSync", DISPATCH_QUEUE_CONCURRENT)
-
-public extension java$util$function$Function$Stub {
-    /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock2(finalizer: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> Void = { _ in }, native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jobject) throws -> java$util$function$Function$Stub {
-        return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("apply", "(Ljava/lang/Object;)Ljava/lang/Object;", unsafeBitCast(native, UnsafeMutablePointer<Void>.self)),
-            ("finalize", "()V", unsafeBitCast(finalizer, UnsafeMutablePointer<Void>.self)),
-            ]).constructor()
-    }
-}
-
-public extension java$util$function$Function$Stub {
-    /// Returns an instance of this type where the FunctionalInterface is implemented by a capturing closure
-    /// See `fromBlock`
-    public static func fromClosure(f: JavaFunction) throws -> java$util$function$Function$Stub {
-        // create this instance via a non-capturing block; 
-        // we store the capturing closure globally until the instance is cleaned up
-        let ob = try fromBlock2({ env, this in print("### finalized: \(this) in \(NSThread.currentThread())") }) { env, this, arg in
-            do {
-                guard this != nil else { return nil }
-                let id = try java$lang$System.identityHashCode(java$lang$Object(reference: this))
-
-                var fid: Any?
-                dispatch_barrier_sync(JavaFunctionSync, { fid = JavaFunctionLookup[id] })
-
-                guard let f = fid as? JavaFunction else { return nil }
-                let result = try f(java$lang$Object(reference: arg))
-                guard let resultob = result?.jobj else { return nil }
-
-                // note that since our native peer will get ARC'd when this function returns, we need
-                // to manually create a new local reference to the result
-                //return resultob
-                return JVM.sharedJVM.newLocalRef(resultob)
-            } catch {
-                fatalError("FIXME")
-            }
-        }
-
-        // FIXME: this is never cleaned up!
-        // FIXME: this is not synchronized across threads
-        // FIXME: this assumes that the initialization of the object doesn't invoke the closure itself
-
-        let id = try java$lang$System.identityHashCode(ob)
-        dispatch_barrier_sync(JavaFunctionSync, { JavaFunctionLookup[id] = f })
-        let weakRef = JVM.sharedJVM.newWeakGlobalRef(ob.jobj)
-        dispatch_barrier_sync(JavaFunctionSync, { JavaFunctionObjectRefs[weakRef] = id })
-
-
-        return ob
-    }
-}
-
 
 private var kanjiFunctions: [jlong: ()->jint] = [:]
-private func kanjify(name: String, _ f: ()->jint) -> (name: String, sig: String, fptr: UnsafeMutablePointer<Void>, constructor: (jlong)->(), destructor: (jlong)->()) {
+private func kanjifyTracking(name: String, _ f: ()->jint) -> (name: String, sig: String, fptr: UnsafeMutablePointer<Void>, constructor: (jlong)->(), destructor: (jlong)->()) {
     let cf: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> (jint) = { env, jobj in
         let address = JVM.sharedJVM.nativeAddress(jobj)
         return kanjiFunctions[address]?() ?? 0
@@ -279,29 +223,29 @@ class KanjiLibTests: XCTestCase {
                 XCTAssertEqual(false, try? subob.equals(subob))
             }
 
-            for address in 1...2 {
-                autoreleasepool {
-                    do {
-                        // demonstration of subclassing a base Object with custom native methods and a native finalizer
-
-                        let rnd = arc4random_uniform(9999)
-
-                        nativeInstances += 1
-                        let subob: java$lang$Object = try JVM.sharedJVM.createNativeWrapperClass("MyKanjiWrapper\(address)", methods: [
-                            kanjify("hashCode", { jint(rnd) }),
-                            ],
-                            finalizer: { env, cls, address in
-                                print("finalizing: \(address)")
-                                nativeInstances -= 1
-                        }).constructor(address)
-
-                        XCTAssertEqual("MyKanjiWrapper\(address)".javaString, (try? subob.getClass()?.getName()) ?? "")
-                        XCTAssertEqual(Int(rnd), subob.hashValue) // hashValue defers to the address instance
-                    } catch {
-                        XCTFail(String(error))
-                    }
-                }
-            }
+//            for address in 1...2 {
+//                autoreleasepool {
+//                    do {
+//                        // demonstration of subclassing a base Object with custom native methods and a native finalizer
+//
+//                        let rnd = arc4random_uniform(9999)
+//
+//                        nativeInstances += 1
+//                        let subob: java$lang$Object = try JVM.sharedJVM.createNativeWrapperClass("MyKanjiWrapper\(address)", methods: [
+//                            kanjify("hashCode") { jint(rnd) }
+//                            ],
+//                            finalizer: { env, cls, address in
+//                                print("finalizing: \(address)")
+//                                nativeInstances -= 1
+//                        }).constructor(address)
+//
+//                        XCTAssertEqual("MyKanjiWrapper\(address)".javaString, (try? subob.getClass()?.getName()) ?? "")
+//                        XCTAssertEqual(Int(rnd), subob.hashValue) // hashValue defers to the address instance
+//                    } catch {
+//                        XCTFail(String(error))
+//                    }
+//                }
+//            }
 
 
             do {
@@ -360,32 +304,14 @@ class KanjiLibTests: XCTestCase {
                 XCTAssertEqual(abc, "abc".javaString)
             }
 
-            for _ in 1...200 {
-                let ob = try java$util$function$Function$Stub.fromBlock2({ print("###### finalized \($1)") }) { _ in
-                    return String(count: 1024 * 1024 * 100, repeatedItem: Character("X")).javaString.jobj
-                }
-                try ob.apply(nil)
-
-            }
-
             for i in 1...10 {
-                // this demonstrates using a capturing closure (currently not properly implemented)
+                // this demonstrates using a capturing closure
                 let fun = try java$util$function$Function$Stub.fromClosure {
-                    return ($0!.description + "XYZ").javaString
+                    guard let str = $0?.cast() as java$lang$String? else { return nil }
+                    return (try? str.concat(String(i).javaString)) ?? nil
                 }
 
-                let str = "123xyz#\(i)"
-                let jstr = str.javaString
-                let applied = try fun.apply(jstr)
-
-                let expect = str + "XYZ"
-
-                let className = try applied?.getClass()?.getName()?.description
-                XCTAssertEqual("java.lang.String", className)
-
-                let appliedString = try applied?.toString()
-                XCTAssertEqual(expect, appliedString?.description)
-                XCTAssertEqual(jstr, str.javaString)
+                XCTAssertEqual("abc\(i)", try fun.apply("abc".javaString)?.description)
             }
 
             do {
@@ -461,6 +387,10 @@ class KanjiLibTests: XCTestCase {
             })
             XCTAssertEqual(false, try? block.test("".javaString))
             XCTAssertEqual(true, try? block.test("fwehuifwe".javaString))
+
+            // tests that the default implementations of `or` and `and` work
+            XCTAssertEqual(false, (try? block.or(block)?.or(block)?.test("".javaString)) ?? nil ?? nil)
+            XCTAssertEqual(true, (try? block.and(block)?.and(block)?.test("fwehuifwe".javaString)) ?? nil ?? nil)
         }
 
         // BiPredicate<T,U>

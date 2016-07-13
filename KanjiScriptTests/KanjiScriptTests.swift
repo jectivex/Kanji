@@ -129,29 +129,88 @@ class KanjiScriptTests: XCTestCase {
         XCTAssertEqual(val, reval)
     }
 
-    static var testScriptCallbacksValue: java$lang$Object?
-
+    /// Creates a JavaScript function that invokes the callback argument, and then passes it as a
+    /// native implementation of an java.util.function.Consumer or java.util.function.Function
     func testScriptCallbacks() throws {
         let ctx = try KanjiScriptContext(engine: "nashorn")
         try ctx.eval("function callback(func, value) { func(value); }")
 
-        let stringCallback = try java$util$function$Function$Stub.fromBlock { (jnienv, jobj, jarg) -> jobject in
+        // define native blocks for both a Consumer (returns void) and Function (returns object) instance
+        // and make sure that the Nashorn environment is able to consumer either one the same
+
+        let consumer = try java$util$function$Consumer$Stub.fromBlock { (jnienv, jobj, jarg) in
             if let ob = java$lang$Object(reference: jarg) {
-                KanjiScriptTests.testScriptCallbacksValue = ob
+                let desc = ob.description
+                dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
+                    KanjiScriptTests.testScriptCallbacksValue.insert(desc)
+                }
             }
-            return nil
+        }
+        let consumerRef = KanjiScriptContext.InstanceType.ref(consumer, ctx)
+
+        // uses a capturing closure-based callback
+        let capturedUUID = NSUUID().UUIDString // just to verify that capturing working
+        let function = try java$util$function$Function$Stub.fromClosure { arg in
+            if let desc = arg?.description {
+                dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
+                    KanjiScriptTests.testScriptCallbacksValue.insert(desc)
+                }
+            }
+            return capturedUUID.javaString
         }
 
-        XCTAssertEqual(KanjiScriptTests.testScriptCallbacksValue, nil)
+        XCTAssertEqual((try? function.apply(nil))??.description, capturedUUID)
+        let functionRef = KanjiScriptContext.InstanceType.ref(function, ctx)
 
-        for _ in 0...1000 {
-            let str = NSUUID().UUIDString
-            let stringCallbackref = KanjiScriptContext.InstanceType.ref(stringCallback, ctx)
+        XCTAssertEqual(KanjiScriptTests.testScriptCallbacksValue, [])
+        var callbackStrings = Set<String>()
 
-            try ctx.eval("callback", args: stringCallbackref, .ref(str.javaString, ctx))
-            XCTAssertEqual(KanjiScriptTests.testScriptCallbacksValue, str.javaString)
+        // invoke the callback a bunch of times and verify that it was called back
+        dispatch_apply(1_000, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { _ in
+//        for _ in 0...1_000 {
+            do {
+                let str = NSUUID().UUIDString
+                // randomly use either the Consumer or Function instance
+                let cbref = random() % 2 == 1 ? consumerRef : functionRef
+                try ctx.eval("callback", args: cbref, .ref(str.javaString, ctx))
+                dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
+                    callbackStrings.insert(str)
+                }
+            } catch {
+                XCTFail("error invoking callback")
+            }
         }
+
+        dispatch_sync(KanjiScriptTests.testScriptCallbacksQueue) {
+            XCTAssertEqual(1_000, callbackStrings.count)
+            XCTAssertEqual(1_000, KanjiScriptTests.testScriptCallbacksValue.count)
+            if KanjiScriptTests.testScriptCallbacksValue.count == callbackStrings.count {
+                XCTAssertEqual(callbackStrings, KanjiScriptTests.testScriptCallbacksValue)
+            }
+        }
+
+        KanjiScriptTests.testScriptCallbacksValue.removeAll()
+
+
+        // now also test that an exception thrown from native code bubbles back up through java
+        do {
+            enum SampleError : ErrorType {
+                case failed(msg: String)
+            }
+
+            try ctx.eval("callback", args: .ref(java$util$function$Function$Stub.fromClosure { arg in
+                throw SampleError.failed(msg: arg?.description ?? "<<no error message>>")
+                }, ctx), .ref("This should cause an error".javaString, ctx))
+        } catch let err as KanjiException {
+            XCTAssertTrue(err.message?.containsString("This should cause an error") ?? false, "Bad error: \(err)")
+        }
+
+
     }
+
+    /// Global holder for the `testScriptCallbacks` test
+    static var testScriptCallbacksValue: Set<String> = []
+    static let testScriptCallbacksQueue = dispatch_queue_create("testScriptCallbacksQueue", DISPATCH_QUEUE_SERIAL)
 
 }
 

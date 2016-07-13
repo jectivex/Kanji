@@ -111,8 +111,7 @@ public extension JVM {
 
     /// Generates bytecode for a class that implements the listed methods by calling the function pointer to the native block
     /// The instance will contain a single long address member which will be passed to the finalizer
-    // FIXME: this almost works; we need to just store some global tables of capturing closures and then release them upon finalization
-    public func createNativeWrapperClass<F: JavaObject>(name: String? = nil, extends: String = "java/lang/Object", interfaces: [String] = [], methods: [(name: String, sig: String, fptr: UnsafeMutablePointer<Void>, constructor: (jlong)->(), destructor: (jlong)->())], finalizer: @convention(c) (UnsafePointer<JNIEnv>, jclass, jlong) -> ()) throws -> (cls: jclass, constructor: jlong throws -> F) {
+    public func createNativeWrapperClass<F: JavaObject>(name: String? = nil, extends: String = "java/lang/Object", interfaces: [String] = [], methods: [(name: String, sig: String, fptr: UnsafeMutablePointer<Void>)], finalizer: @convention(c) (UnsafePointer<JNIEnv>, jclass, jlong) -> ()) throws -> (cls: jclass, constructor: jlong throws -> F) {
         var methods = methods
         let className = name ?? ("$KanjiNativeWrapper\(OSAtomicIncrement32(&kanjiNativeClassCount))")
 
@@ -175,7 +174,7 @@ public extension JVM {
                 try mv.visitEnd()
             }
 
-            for (fname, fsig, _, _, _) in methods { // generate the native implementation of the method
+            for (fname, fsig, _) in methods { // generate the native implementation of the method
                 if let mv = try cw.visitMethod(OpCodes.ACC_PUBLIC + OpCodes.ACC_NATIVE, fname.javaString, fsig.javaString, nil, nil) {
                     try mv.visitEnd()
                 }
@@ -201,12 +200,10 @@ public extension JVM {
         methods.append((
             name: "finalizeImpl",
             sig: "(J)V",
-            fptr: unsafeBitCast(finalizer, UnsafeMutablePointer<Void>.self),
-            constructor: { _ in },
-            destructor: { _ in }))
+            fptr: unsafeBitCast(finalizer, UnsafeMutablePointer<Void>.self)))
 
         // now that we have a jclass, we can go ahead and register the natives for the implementation
-        for (fname, fsig, fptr, _, _) in methods {
+        for (fname, fsig, fptr) in methods {
             let cname = NullTerminatedCString(fname)
             let csig = NullTerminatedCString(fsig)
             let method = JNINativeMethod(name: cname.buffer, signature: csig.buffer, fnPtr: fptr)
@@ -222,10 +219,6 @@ public extension JVM {
 
         let jvm = self
         let constructor: jlong throws -> F = { address in
-            for (_, _, _, cstr, _) in methods {
-                cstr(address)
-            }
-
             let cid = jvm.getMethodID(jcls, name: "<init>", sig: "(J)V")
             try jvm.throwException() // needs a constructor
 
@@ -283,13 +276,67 @@ public extension java$util$Comparator$Stub {
 }
 
 public extension java$util$function$Function$Stub {
+    /// The non-capturing form of dynamic function creation
+    public typealias FunctionalBlock = @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jobject
+
+    /// The capturing form of dynamic function creation
+    public typealias FunctionalClosure = java$lang$Object? throws -> java$lang$Object?
+
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jobject) throws -> java$util$function$Function {
+    public static func fromBlock(native: FunctionalBlock) throws -> java$util$function$Function {
         let sig = JVM.jsig(JObjectType(), args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("apply", sig, unsafeBitCast(native, UnsafeMutablePointer<Void>.self))
             ]).constructor() as java$util$function$Function$Stub
     }
+
+    private static var closureIndex: Int64 = 0
+    private static var closures: [jlong : FunctionalClosure] = [:]
+
+    public static func fromClosure(f: FunctionalClosure) throws -> java$util$function$Function {
+
+        let native: FunctionalBlock = { env, obj, arg in
+            let address = JVM.sharedJVM.nativeAddress(obj)
+            guard let f = java$util$function$Function$Stub.closures[address] else {
+                print("Kanji Warning: unable to find native implementation for address: \(address)")
+                return nil
+            }
+
+            do {
+                let ret = try f(java$lang$Object(reference: arg))
+                if let jobj = ret?.jobj {
+                    // we need to pass back a new ref, since when the java object is ARC'd,
+                    // its own reference is immediately dropped
+                    return JVM.sharedJVM.newWeakGlobalRef(jobj)
+                } else {
+                    return nil
+                }
+            } catch {
+                // throws the exception through a RuntimeException
+                String(error).withCString({ msg in
+                    JVM.sharedJVM.throwNew(java$lang$RuntimeException.javaClass, msg: msg)
+                })
+                return nil
+            }
+        }
+
+        let address = jlong(OSAtomicIncrement64(&java$util$function$Function$Stub.closureIndex))
+
+        let sig = JVM.jsig(JObjectType(), args: [JObjectType()])
+
+        let ret = try JVM.sharedJVM.createNativeWrapperClass("KanjiDynamicFunction\(address)", interfaces: [self.jniName()], methods: [
+            ("apply", sig, unsafeBitCast(native, UnsafeMutablePointer<Void>.self))
+            ],
+            finalizer: { env, cls, address in
+                // drop the closure when the java object is garbage collected
+                java$util$function$Function$Stub.closures.removeValueForKey(address)
+        }).constructor(address) as java$util$function$Function$Stub
+
+        java$util$function$Function$Stub.closures[address] = f // remember the closure for later use
+
+        return ret
+    }
+
 }
 
 public extension java$util$function$Consumer$Stub {
