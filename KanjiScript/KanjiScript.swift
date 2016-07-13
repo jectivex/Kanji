@@ -338,14 +338,21 @@ public extension java$lang$Object {
                 arr.append(try ob?.createBric(seen.union([self.jobj])) ?? nil)
             }
             return .arr(arr)
+        } else if let cal: java$util$Calendar$Stub = cast() {
+            let str = try javax$xml$bind$DatatypeConverter.printDateTime(cal)
+            return str.flatMap({ .str($0.description) }) ?? nil
         } else if let date: java$util$Date$Stub = cast() {
             // dates are non-standard JSON, but the de-facto standard is to serialize as ISO-8601
             // TODO: cache simple date format
-            let tz = try java$util$TimeZone.getTimeZone("UTC")
-            let df = try java$text$SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'")
-            try df.setTimeZone(tz)
-            let str = try df.format(date)
-            return .str(str?.description ?? "")
+//            let tz = try java$util$TimeZone.getTimeZone("UTC")
+//            let df = try java$text$SimpleDateFormat("yyyy-MM-dd'T'HH:mm'Z'")
+//            try df.setTimeZone(tz)
+//            let str = try df.format(date)
+//            return .str(str?.description ?? "")
+            let cal = try java$util$Calendar.getInstance()
+            try cal?.setTime(date)
+            let str = try javax$xml$bind$DatatypeConverter.printDateTime(cal)
+            return str.flatMap({ .str($0.description) }) ?? nil
         } else if let itr: java$lang$Iterable$Stub = cast() {
             // we handle iterable last because toArray is probably more optimized
             var arr: [Bric] = []

@@ -113,7 +113,10 @@ public class B : A {
 class KanjiLibTests: XCTestCase {
 
     /// Enable just a single test; keep this public so we always get a warning
-//    public override func invokeTest() { return invocation?.selector == #selector(testExample) ? super.invokeTest() : dbg("skipping", name) }
+    override func invokeTest() {
+//        return invocation?.selector == #selector(testFunctionalInterfaces) ? super.invokeTest() : print("skipping test", name)
+        return super.invokeTest()
+    }
 
     internal static override func initialize() {
         NSLog("KanjiVMTests: adding KanjiVMTests to module loaders")
@@ -387,7 +390,7 @@ class KanjiLibTests: XCTestCase {
 
             do {
                 // take 10-1234, stream them to ints, get the length of the int string, then turn it into a length string
-                let strs = try java$util$Arrays.asList((10...1234).map(java$lang$Integer.init))?.stream()?.mapToInt(java$util$function$ToIntFunction$Stub.fromBlock({ _, _, ob in 1 }))?.mapToObj(java$util$function$IntFunction$Stub.fromBlock({ _, _, _, i in abcstring.jobj }))?.toArray()?.map({ $0?.description ?? "" })
+                let strs = try java$util$Arrays.asList((10...1234).map(java$lang$Integer.init))?.stream()?.mapToInt(java$util$function$ToIntFunction$Stub.fromBlock({ _, _, ob in 1 }))?.mapToObj(java$util$function$IntFunction$Stub.fromBlock({ _, _, i in abcstring.jobj }))?.toArray()?.map({ $0?.description ?? "" })
 
                 /// the number 1000 has 4 characters
     //            XCTAssertEqual(Set(["2", "3", "4"]), Set(strs ?? []))
@@ -406,6 +409,446 @@ class KanjiLibTests: XCTestCase {
 
     }
 
+//    func testFunctionalInterfacesMemory() throws {
+//        while true {
+//            try testFunctionalInterfaces()
+//        }
+//    }
+
+    func testFunctionalInterfaces() throws {
+        // Function<T,R>
+        // Represents a function that accepts one argument and produces a result.
+        do {
+            let block = try java$util$function$Function$Stub.fromBlock({ (jenv, jthis, jarg) in
+                let str = java$lang$String(reference: jarg)
+                globalFobs = [str]
+                let ret = try? str?.concat(str?.toUpperCase()) ?? ""
+                globalRet = ret // FIXME: return values get deleted if we don't keep a reference
+                return ret?.jobj ?? nil
+            })
+            let result = try block.apply("xyz".javaString)
+            XCTAssertEqual("xyzXYZ", result?.description)
+            XCTAssertEqual("xyz", globalFobs.first??.description)
+        }
+
+        // Consumer<T>
+        // Represents an operation that accepts a single input argument and returns no result.
+        do {
+            let block = try java$util$function$Consumer$Stub.fromBlock({ (jenv, jthis, jarg) in
+                globalFobs = [java$lang$Object(reference: jarg)]
+            })
+            try block.accept("abcd".javaString)
+            XCTAssertEqual("abcd", globalFobs.first??.description)
+        }
+
+        // Supplier<T>
+        // Represents a supplier of results.
+        do {
+            let block = try java$util$function$Supplier$Stub.fromBlock({ (jenv, jthis) in
+                globalRet = try? java$lang$Integer(3489732) // FIXME: return values get deleted if we don't keep a reference
+                return globalRet?.jobj ?? nil
+            })
+            let ret = try? block.get()
+            XCTAssertEqual("3489732", ret??.description)
+        }
+
+        // Predicate<T>
+        // Represents a predicate (boolean-valued function) of one argument.
+        do {
+            let block = try java$util$function$Predicate$Stub.fromBlock({
+                let str = java$lang$String(reference: $2)
+                return str == "fwehuifwe" ? true : false
+            })
+            XCTAssertEqual(false, try? block.test("".javaString))
+            XCTAssertEqual(true, try? block.test("fwehuifwe".javaString))
+        }
+
+        // BiPredicate<T,U>
+        // Represents a predicate (boolean-valued function) of two arguments.
+        do {
+            let block = try java$util$function$BiPredicate$Stub.fromBlock({
+                let str1 = java$lang$String(reference: $2)
+                let str2 = java$lang$String(reference: $3)
+                return str1 == "abc" && str2 == "xyz" ? true : false
+            })
+            XCTAssertEqual(false, try? block.test("abc".javaString, "abc".javaString))
+            XCTAssertEqual(true, try? block.test("abc".javaString, "xyz".javaString))
+        }
+
+        // BiConsumer<T,U>
+        // Represents an operation that accepts two input arguments and returns no result.
+        do {
+            let block = try java$util$function$BiConsumer$Stub.fromBlock({
+                let str2 = java$lang$String(reference: $3)
+                globalRet = str2
+            })
+            try block.accept("abc".javaString, "xyz".javaString)
+            XCTAssertEqual("xyz", globalRet?.description)
+        }
+
+        // BiFunction<T,U,R>
+        // Represents a function that accepts two arguments and produces a result.
+        do {
+            let block = try java$util$function$BiFunction$Stub.fromBlock({
+                let str1 = java$lang$String(reference: $2)
+                let str2 = java$lang$String(reference: $3)
+                let str3 = try? str2?.concat(str1?.toUpperCase())
+                globalRet = str3 ?? nil
+                return str3??.jobj ?? nil
+            })
+            try block.apply("abc".javaString, "xyz".javaString)
+            XCTAssertEqual("xyzABC", globalRet?.description)
+        }
+
+
+        /// MARK: BooleanXXX Functions
+
+
+        // BooleanSupplier
+        // Represents a supplier of boolean-valued results.
+        do {
+            let block = try java$util$function$BooleanSupplier$Stub.fromBlock({ (jenv, jthis) -> jboolean in
+                true
+            })
+            XCTAssertEqual(true, try? block.getAsBoolean())
+        }
+
+
+        /// MARK: IntXXX Functions
+
+
+        // IntBinaryOperator
+        // Represents an operation upon two int-valued operands and producing an int-valued result.
+        do {
+            let block = try java$util$function$IntBinaryOperator$Stub.fromBlock({
+                return $2 / $3
+            })
+            let result = try block.applyAsInt(2332, 32)
+            XCTAssertEqual(2332 / 32, result)
+        }
+
+        // IntConsumer
+        // Represents an operation that accepts a single int-valued argument and returns no result.
+        do {
+            let block = try java$util$function$IntConsumer$Stub.fromBlock({ (jenv, jthis, jarg) in
+                globalRet = try? java$lang$Integer(jarg) // FIXME: return values get deleted if we don't keep a reference
+            })
+            try block.accept(772)
+            XCTAssertEqual("772", globalRet?.description)
+        }
+
+        // IntFunction<R>
+        // Represents a function that accepts an int-valued argument and produces a result.
+        do {
+            let block = try java$util$function$IntFunction$Stub.fromBlock({ (jenv, jthis, jarg) -> jobject in
+                let ret = try? java$math$BigInteger(String(jarg + jarg).javaString)
+                globalRet = ret // FIXME: return values get deleted if we don't keep a reference
+                return ret?.jobj ?? nil
+            })
+            let result = try block.apply(123)
+            XCTAssertEqual("246", result?.description)
+        }
+
+        // IntPredicate
+        // Represents a predicate (boolean-valued function) of one int-valued argument.
+        do {
+            let block = try java$util$function$IntPredicate$Stub.fromBlock({ (jenv, jthis, jarg) -> jboolean in
+                return jarg >= 12 ? true : false
+            })
+            XCTAssertEqual(false, try? block.test(10))
+            XCTAssertEqual(false, try? block.test(11))
+            XCTAssertEqual(true, try? block.test(12))
+            XCTAssertEqual(true, try? block.test(13))
+        }
+
+        // IntSupplier
+        // Represents a supplier of int-valued results.
+        do {
+            let block = try java$util$function$IntSupplier$Stub.fromBlock({ (jenv, jthis) -> jint in
+                98632
+            })
+            XCTAssertEqual(98632, try? block.getAsInt())
+        }
+
+        // IntToDoubleFunction
+        // Represents a function that accepts an int-valued argument and produces a double-valued result.
+        do {
+            let block = try java$util$function$IntToDoubleFunction$Stub.fromBlock({ jdouble($2) + 0.01 })
+            XCTAssertEqual(77.01, try? block.applyAsDouble(77))
+        }
+
+        // IntToLongFunction
+        // Represents a function that accepts an int-valued argument and produces a long-valued result.
+        do {
+            let block = try java$util$function$IntToLongFunction$Stub.fromBlock({ jlong($2) * -2 })
+            XCTAssertEqual(-jlong(jint.max) * 2, try? block.applyAsLong(jint.max))
+        }
+
+        // IntUnaryOperator
+        // Represents an operation on a single int-valued operand that produces an int-valued result.
+        do {
+            let block = try java$util$function$IntUnaryOperator$Stub.fromBlock({ -$2 })
+            XCTAssertEqual(jint.min + 1, try? block.applyAsInt(jint.max))
+        }
+
+        // ToIntFunction<T>
+        // Represents a function that produces an int-valued result.
+        do {
+            let block = try java$util$function$ToIntFunction$Stub.fromBlock { _, _, _ in 987 }
+            let result = try block.applyAsInt(nil)
+            XCTAssertEqual(987, result)
+        }
+
+        // ToIntBiFunction<T,U>
+        // Represents a function that accepts two arguments and produces an int-valued result.
+        do {
+            let block = try java$util$function$ToIntBiFunction$Stub.fromBlock {
+                let ret1 = try? java$math$BigInteger(java$lang$String(reference: $2))
+                let ret2 = try? java$math$BigDecimal(java$lang$String(reference: $3))
+                let bi1 = (try? ret1?.intValue() ?? 0) ?? 0
+                let bi2 = (try? ret2?.intValue() ?? 0) ?? 0
+                return bi1 + bi2
+            }
+            let result = try block.applyAsInt("123".javaString, "456".javaString)
+            XCTAssertEqual(579, result)
+        }
+
+        // ObjIntConsumer<T>
+        // Represents an operation that accepts an object-valued and a int-valued argument, and returns no result.
+        do {
+            let block = try java$util$function$ObjIntConsumer$Stub.fromBlock {
+                let str1 = java$lang$String(reference: $2)
+                let str2 = (str1?.description ?? "") + "." + String($3)
+                globalRet = str2.javaString // FIXME: return values get deleted if we don't keep a reference
+            }
+            try block.accept("123".javaString, 21)
+            XCTAssertEqual("123.21", globalRet?.description)
+        }
+
+
+        /// MARK: LongXXX Functions
+
+
+        // LongBinaryOperator
+        // Represents an operation upon two long-valued operands and producing a long-valued result.
+        do {
+            let block = try java$util$function$LongBinaryOperator$Stub.fromBlock({
+                return $2 / $3
+            })
+            let result = try block.applyAsLong(2332, 32)
+            XCTAssertEqual(2332 / 32, result)
+        }
+
+        // LongConsumer
+        // Represents an operation that accepts a single long-valued argument and returns no result.
+        do {
+            let block = try java$util$function$LongConsumer$Stub.fromBlock({ (jenv, jthis, jarg) in
+                globalRet = try? java$lang$Long(jarg) // FIXME: return values get deleted if we don't keep a reference
+            })
+            try block.accept(772)
+            XCTAssertEqual("772", globalRet?.description)
+        }
+
+        // LongFunction<R>
+        // Represents a function that accepts a long-valued argument and produces a result.
+        do {
+            let block = try java$util$function$LongFunction$Stub.fromBlock({ (jenv, jthis, jarg) -> jobject in
+                let ret = try? java$math$BigInteger(String(jarg + jarg).javaString)
+                globalRet = ret // FIXME: return values get deleted if we don't keep a reference
+                return ret?.jobj ?? nil
+            })
+            let result = try block.apply(123)
+            XCTAssertEqual("246", result?.description)
+        }
+
+        // LongPredicate
+        // Represents a predicate (boolean-valued function) of one long-valued argument.
+        do {
+            let block = try java$util$function$LongPredicate$Stub.fromBlock({ (jenv, jthis, jarg) -> jboolean in
+                return jarg >= 12 ? true : false
+            })
+            XCTAssertEqual(false, try? block.test(10))
+            XCTAssertEqual(false, try? block.test(11))
+            XCTAssertEqual(true, try? block.test(12))
+            XCTAssertEqual(true, try? block.test(13))
+        }
+
+        // LongSupplier
+        // Represents a supplier of long-valued results.
+        do {
+            let block = try java$util$function$LongSupplier$Stub.fromBlock({ (jenv, jthis) -> jlong in
+                98632
+            })
+            XCTAssertEqual(98632, try? block.getAsLong())
+        }
+
+        // LongToDoubleFunction
+        // Represents a function that accepts a long-valued argument and produces a double-valued result.
+        do {
+            let block = try java$util$function$LongToDoubleFunction$Stub.fromBlock({ jdouble($2) + 0.01 })
+            XCTAssertEqual(77.01, try? block.applyAsDouble(77))
+        }
+
+        // LongToIntFunction
+        // Represents a function that accepts a long-valued argument and produces an int-valued result.
+        do {
+            let block = try java$util$function$LongToIntFunction$Stub.fromBlock({ jint($2) * -1 })
+            XCTAssertEqual(423 * -1, try? block.applyAsInt(423))
+        }
+
+        // LongUnaryOperator
+        // Represents an operation on a single long-valued operand that produces a long-valued result.
+        do {
+            let block = try java$util$function$LongUnaryOperator$Stub.fromBlock({ -$2 })
+            XCTAssertEqual(jlong.min + 1, try? block.applyAsLong(jlong.max))
+        }
+
+        // ToLongFunction<T>
+        // Represents a function that produces a long-valued result.
+        do {
+            let block = try java$util$function$ToLongFunction$Stub.fromBlock { _, _, _ in 987 }
+            let result = try block.applyAsLong(nil)
+            XCTAssertEqual(987, result)
+        }
+
+        // ToLongBiFunction<T,U>
+        // Represents a function that accepts two arguments and produces a long-valued result.
+        do {
+            let block = try java$util$function$ToLongBiFunction$Stub.fromBlock {
+                let ret1 = try? java$math$BigInteger(java$lang$String(reference: $2))
+                let ret2 = try? java$math$BigDecimal(java$lang$String(reference: $3))
+                let bi1 = (try? ret1?.longValue() ?? 0) ?? 0
+                let bi2 = (try? ret2?.longValue() ?? 0) ?? 0
+                return bi1 + bi2
+            }
+            let result = try block.applyAsLong("123".javaString, "456".javaString)
+            XCTAssertEqual(579, result)
+        }
+
+        // ObjLongConsumer<T>
+        // Represents an operation that accepts an object-valued and a long-valued argument, and returns no result.
+        do {
+            let block = try java$util$function$ObjLongConsumer$Stub.fromBlock {
+                let str1 = java$lang$String(reference: $2)
+                let str2 = (str1?.description ?? "") + "." + String($3)
+                globalRet = str2.javaString // FIXME: return values get deleted if we don't keep a reference
+            }
+            try block.accept("123".javaString, 21)
+            XCTAssertEqual("123.21", globalRet?.description)
+        }
+
+
+        /// MARK: DoubleXXX Functions
+
+
+        // DoubleBinaryOperator
+        // Represents an operation upon two double-valued operands and producing a double-valued result.
+        do {
+            let block = try java$util$function$DoubleBinaryOperator$Stub.fromBlock({
+                return $2 / $3
+            })
+            let result = try block.applyAsDouble(2332, 32)
+            XCTAssertEqual(2332 / 32, result)
+        }
+
+        // DoubleConsumer
+        // Represents an operation that accepts a single double-valued argument and returns no result.
+        do {
+            let block = try java$util$function$DoubleConsumer$Stub.fromBlock({ (jenv, jthis, jarg) in
+                globalRet = try? java$lang$Double(jarg) // FIXME: return values get deleted if we don't keep a reference
+            })
+            try block.accept(45645.1212000000001)
+            XCTAssertEqual("45645.1212", globalRet?.description)
+        }
+
+        // DoubleFunction<R>
+        // Represents a function that accepts a double-valued argument and produces a result.
+        do {
+            let block = try java$util$function$DoubleFunction$Stub.fromBlock({ (jenv, jthis, jarg) -> jobject in
+                let ret = try? java$math$BigDecimal(String(jarg + jarg).javaString)
+                globalRet = ret // FIXME: return values get deleted if we don't keep a reference
+                return ret?.jobj ?? nil
+            })
+            let result = try block.apply(123.4567)
+            XCTAssertEqual("246.9134", result?.description)
+        }
+
+        // DoublePredicate
+        // Represents a predicate (boolean-valued function) of one double-valued argument.
+        do {
+            let block = try java$util$function$DoublePredicate$Stub.fromBlock({ (jenv, jthis, jarg) -> jboolean in
+                return jarg >= 12.0 ? true : false
+            })
+            XCTAssertEqual(false, try? block.test(10))
+            XCTAssertEqual(false, try? block.test(11))
+            XCTAssertEqual(true, try? block.test(12))
+            XCTAssertEqual(true, try? block.test(13))
+        }
+
+        // DoubleSupplier
+        // Represents a supplier of double-valued results.
+        do {
+            let block = try java$util$function$DoubleSupplier$Stub.fromBlock({ (jenv, jthis) -> jdouble in
+                3441.24353420000001
+            })
+            XCTAssertEqual(3441.2435342, try? block.getAsDouble())
+        }
+
+        // DoubleToIntFunction
+        // Represents a function that accepts a double-valued argument and produces an int-valued result.
+        do {
+            let block = try java$util$function$DoubleToIntFunction$Stub.fromBlock({ jint($2) })
+            XCTAssertEqual(77, try? block.applyAsInt(77.987))
+        }
+
+        // DoubleToDoubleFunction
+        // Represents a function that accepts a double-valued argument and produces a long-valued result.
+        do {
+            let block = try java$util$function$DoubleToLongFunction$Stub.fromBlock({ jlong($2) * -1 })
+            XCTAssertEqual(423 * -1, try? block.applyAsLong(423.143))
+        }
+
+        // DoubleUnaryOperator
+        // Represents an operation on a single double-valued operand that produces a double-valued result.
+        do {
+            let block = try java$util$function$DoubleUnaryOperator$Stub.fromBlock({ -$2 })
+            XCTAssertEqual(-232345.134, try? block.applyAsDouble(232345.134))
+        }
+
+        // ToDoubleFunction<T>
+        // Represents a function that produces a double-valued result.
+        do {
+            let block = try java$util$function$ToDoubleFunction$Stub.fromBlock { _, _, _ in 987 }
+            let result = try block.applyAsDouble(nil)
+            XCTAssertEqual(987, result)
+        }
+
+        // ToDoubleBiFunction<T,U>
+        // Represents a function that accepts two arguments and produces a double-valued result.
+        do {
+            let block = try java$util$function$ToDoubleBiFunction$Stub.fromBlock {
+                let ret1 = try? java$math$BigInteger(java$lang$String(reference: $2))
+                let ret2 = try? java$math$BigDecimal(java$lang$String(reference: $3))
+                let bi1 = (try? ret1?.doubleValue() ?? 0) ?? 0
+                let bi2 = (try? ret2?.doubleValue() ?? 0) ?? 0
+                return bi1 + bi2
+            }
+            let result = try block.applyAsDouble("123".javaString, "456".javaString)
+            XCTAssertEqual(579, result)
+        }
+
+        // ObjDoubleConsumer<T>
+        // Represents an operation that accepts an object-valued and a double-valued argument, and returns no result.
+        do {
+            let block = try java$util$function$ObjDoubleConsumer$Stub.fromBlock {
+                let str1 = java$lang$String(reference: $2)
+                let str2 = (str1?.description ?? "") + "." + String($3)
+                globalRet = str2.javaString // FIXME: return values get deleted if we don't keep a reference
+            }
+            try block.accept("123".javaString, 21.543)
+            XCTAssertEqual("123.21.543", globalRet?.description)
+        }
+    }
 
     func testMemory() throws {
         var keepgoing = true
@@ -1021,3 +1464,8 @@ class KanjiLibTests: XCTestCase {
 
 
 }
+
+/// shared object for function interfaces testing
+var globalFobs: [java$lang$Object?] = []
+var globalRet: java$lang$Object? = nil
+

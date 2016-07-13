@@ -10,6 +10,7 @@ import XCTest
 import BricBrac
 import KanjiVM
 import KanjiLib
+import JavaLib
 @testable import KanjiScript
 
 class KanjiScriptTests: XCTestCase {
@@ -108,30 +109,49 @@ class KanjiScriptTests: XCTestCase {
     }
 
     func testScala() throws {
-        do {
-            let ctx = try KanjiScriptContext(engine: "scala")
-            checkeq(1, f: try ctx.val(ctx.eval("1")))
-            checkeq(0.6000000000000001, f: try ctx.val(ctx.eval("0.4+0.2")))
-            checkeq([2,1,3], f: try ctx.val(ctx.eval("List(2,1,3).toArray")))
-            checkeq(["X", "Z"], f: try ctx.val(ctx.eval("List(\"z\", \"y\", \"x\").sorted.filter(_ != \"y\").map(_.toUpperCase).toArray")))
-            try ctx.eval("var x = 123")
-            try ctx.eval("x = x + 1")
-            checkeq(124, f: try ctx.val(ctx.eval("x")))
-        }
+        let ctx = try KanjiScriptContext(engine: "scala")
+        checkeq(1, f: try ctx.val(ctx.eval("1")))
+        checkeq(0.6000000000000001, f: try ctx.val(ctx.eval("0.4+0.2")))
+        checkeq([2,1,3], f: try ctx.val(ctx.eval("List(2,1,3).toArray")))
+        checkeq(["X", "Z"], f: try ctx.val(ctx.eval("List(\"z\", \"y\", \"x\").sorted.filter(_ != \"y\").map(_.toUpperCase).toArray")))
+        try ctx.eval("var x = 123")
+        try ctx.eval("x = x + 1")
+        checkeq(124, f: try ctx.val(ctx.eval("x")))
     }
 
-//    func testScriptRoundTrip() {
-//        do {
-//            typealias Ctx = KanjiScriptContext
-//            let ctx = try Ctx()
-//            var val: Ctx.InstanceType.ValType = ["a": 1, "b": true, "c": 1.23, "d": "str", "e": [1, true, 1.23, "str"]]
-//            val["x"] = val // demonstrates that it is a value type that won't create reference cycles
-//
-//            let reval = try ctx.val(ctx.ref(.Val(val)))
-//            XCTAssertEqual(val, reval)
-//        } catch {
-//            XCTFail(String(error))
-//        }
-//    }
+    func testScriptRoundTrip() throws {
+        typealias Ctx = KanjiScriptContext
+        let ctx = try Ctx(engine: "js")
+        var val: Ctx.InstanceType.ValType = ["a": 1, "b": true, "c": 1.23, "d": "str", "e": [1, true, 1.23, "str"]]
+        val["x"] = val // demonstrates that it is a value type that won't create reference cycles
+
+        let reval = try ctx.val(ctx.ref(.val(val)))
+        XCTAssertEqual(val, reval)
+    }
+
+    static var testScriptCallbacksValue: java$lang$Object?
+
+    func testScriptCallbacks() throws {
+        let ctx = try KanjiScriptContext(engine: "nashorn")
+        try ctx.eval("function callback(func, value) { func(value); }")
+
+        let stringCallback = try java$util$function$Function$Stub.fromBlock { (jnienv, jobj, jarg) -> jobject in
+            if let ob = java$lang$Object(reference: jarg) {
+                KanjiScriptTests.testScriptCallbacksValue = ob
+            }
+            return nil
+        }
+
+        XCTAssertEqual(KanjiScriptTests.testScriptCallbacksValue, nil)
+
+        let str = NSUUID().UUIDString
+        let stringCallbackref = KanjiScriptContext.InstanceType.ref(stringCallback as! java$lang$Object, ctx)
+        let stringref = KanjiScriptContext.InstanceType.ref(str.javaString, ctx)
+
+        try ctx.eval("callback", args: stringCallbackref, stringref)
+        XCTAssertEqual(KanjiScriptTests.testScriptCallbacksValue, str.javaString)
+    }
 
 }
+
+var testScriptCallbacksLastString: String? = nil
