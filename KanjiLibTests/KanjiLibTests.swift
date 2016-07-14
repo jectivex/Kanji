@@ -203,13 +203,19 @@ class KanjiLibTests: XCTestCase {
                 // demonstration of subclassing a base Object with custo native methods
 
                 // static hashCode
-                let hashCode: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> (jint) = { _ in 123 }
+                let hashCode: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> (jint) = { _ in
+                    123
+                }
 
                 // all instances are unequal
-                let equals: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> (jboolean) = { _ in false }
+                let equals: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> (jboolean) = {
+                    JVM.sharedJVM.isSameObject($1, $2) ? false : true // the opposite
+                }
 
                 // toString always returns "abc"
-                let toString: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> (jobject) = { _ in abcstring.jobj }
+                let toString: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> (jobject) = { _ in
+                    abcstring.jobj
+                }
 
                 let subob: java$lang$Object = try JVM.sharedJVM.createNativeClass("MyKanjiClass", methods: [
                     ("hashCode", "()I", kanjiCast(hashCode)),
@@ -221,6 +227,7 @@ class KanjiLibTests: XCTestCase {
                 XCTAssertEqual(123, subob.hashValue) // hashValue defers to hashCode()
                 XCTAssertEqual("abc", subob.description) // description defers to toString()
                 XCTAssertEqual(false, try? subob.equals(subob))
+                XCTAssertEqual(true, try? subob.equals("xxx".javaString)) // opposite of what you would expect
             }
 
 //            for address in 1...2 {
@@ -231,7 +238,7 @@ class KanjiLibTests: XCTestCase {
 //                        let rnd = arc4random_uniform(9999)
 //
 //                        nativeInstances += 1
-//                        let subob: java$lang$Object = try JVM.sharedJVM.createNativeWrapperClass("MyKanjiWrapper\(address)", methods: [
+//                        let subob: java$lang$Object = try JVM.sharedJVM.createNativeAddressableClass("MyKanjiWrapper\(address)", methods: [
 //                            kanjify("hashCode") { jint(rnd) }
 //                            ],
 //                            finalizer: { env, cls, address in

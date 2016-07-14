@@ -15,6 +15,11 @@ import JavaLib
 
 class KanjiScriptTests: XCTestCase {
 
+    override func invokeTest() {
+//        return invocation?.selector == #selector(KanjiScriptTests.testNashorn) ? super.invokeTest() : print("skipping test", name)
+        return super.invokeTest()
+    }
+
     internal static override func initialize() {
         let dir = "/opt/src/scala/scala-2.11.7/lib/"
         let cp: [String] = (try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(dir).map({ dir + $0 })) ?? []
@@ -61,6 +66,22 @@ class KanjiScriptTests: XCTestCase {
         }
     }
 
+    func testBricCycles() {
+        do {
+            let map = try java$util$HashMap()
+            let array = try java$util$ArrayList()
+            try map.put(java$lang$String("foo"), array)
+            try array.add(map)
+
+            XCTAssertEqual(["foo": [nil]], try map.toBric(dropCycles: true)) // drop cycles
+
+            try map.toBric()
+            XCTFail("Should not have been able to bric a cyclic structure")
+        } catch {
+            XCTAssertEqual("General: Cannot create Bric from structure with cyclic values", String(error))
+        }
+    }
+
     func testNashorn() throws {
         // TODO: we do not currently support script reference cycles
 //        do {
@@ -86,24 +107,30 @@ class KanjiScriptTests: XCTestCase {
             checkeq([1,2,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3]).stream().sorted().toArray()")))
 
             checkeq([1, 2, 3], f: try ctx.val(ctx.eval("[1,2,3]")))
-//            checkeq(["0": 1, "1": 2, "2": 3], f: try ctx.val(ctx.eval("[1,2,3]"))) // hmm ... odd ...
 
             checkeq([["a": true], 1, [2, 3.3, false], 3], f: try ctx.val(ctx.eval("[{a: true}, 1, [2, 3.3, false], 3]")))
 
-            // FIXME: maps don't seem to work yet
-//            checkeq(["a": 1, "b": true], f: try ctx.val(ctx.eval("Java.to({ 'a': 1, 'b': true })")))
-//            checkeq(1, f: try ctx.val(ctx.eval("eval", args: 1.1)))
+            //checkeq(["a": 1, "b": true], f: try ctx.val(ctx.eval("Java.to({ 'a': 1, 'b': true })")))
+            checkeq(1.1, f: try ctx.val(ctx.eval("eval", args: 1.1)))
 
             let inst = try ctx.eval("var x = {}; x['a'] = 1; x.x = x; x")
-            do {
-                // FIXME: we don't support cycle detection yet
-                try ctx.eval("JSON.stringify", args: inst)
-                let _ = try ctx.val(inst)
+
+            do { // test cycle detection using JSON.stringify
+                try ctx.eval("stringify", this: ctx.root["JSON"].flatMap(ctx.deref), args: inst)
                 XCTFail("should not have been able to read cyclic data structure")
             } catch let error as KanjiException {
                 XCTAssertEqual("TypeError: JSON.stringify got a cyclic data structure", error.message)
             } catch {
                 XCTFail("wrong exception type: \(error)")
+            }
+
+            do { // test cycle detection using value extraction
+                let _ = try ctx.val(inst)
+                XCTFail("should not have been able to read cyclic data structure")
+            } catch let error as KanjiErrors {
+                XCTAssertEqual("General: Cannot create Bric from structure with cyclic values", error.debugDescription)
+            } catch {
+                XCTFail("wrong exception type: \(error) \(error.dynamicType)")
             }
         }
     }
@@ -150,7 +177,19 @@ class KanjiScriptTests: XCTestCase {
 
         // uses a capturing closure-based callback
         let capturedUUID = NSUUID().UUIDString // just to verify that capturing working
+
+        XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("com/sun/nio/zipfs/ZipCoder"))
+        JVM.sharedJVM.exceptionClear()
+        XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("jdk/nashorn/api/scripting/JSObject"))
+        JVM.sharedJVM.exceptionClear()
+
         let function = try java$util$function$Function$Stub.fromClosure { arg in
+
+            XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("com/sun/nio/zipfs/ZipCoder"))
+            JVM.sharedJVM.exceptionClear()
+            XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("jdk/nashorn/api/scripting/JSObject"))
+            JVM.sharedJVM.exceptionClear()
+
             if let desc = arg?.description {
                 dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
                     KanjiScriptTests.testScriptCallbacksValue.insert(desc)

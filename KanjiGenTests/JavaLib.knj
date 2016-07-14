@@ -1676,3 +1676,15 @@ javax.xml.xpath.XPath
 javax.xml.bind.Binder
 javax.xml.bind.JAXB
 javax.xml.bind.DatatypeConverter
+
+jdk.nashorn.api.scripting.JSObject
+jdk.nashorn.api.scripting.AbstractJSObject
+jdk.nashorn.api.scripting.ScriptObjectMirror
+jdk.nashorn.api.scripting.ClassFilter
+jdk.nashorn.api.scripting.Formatter
+jdk.nashorn.api.scripting.NashornException
+jdk.nashorn.api.scripting.NashornScriptEngine
+jdk.nashorn.api.scripting.NashornScriptEngineFactory
+jdk.nashorn.api.scripting.ScriptUtils
+jdk.nashorn.api.scripting.URLReader
+

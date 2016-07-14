@@ -50,6 +50,14 @@ public final class JVM {
                 fatalError("Attempt the set shared JVM once it has been created; multiple JVMs are not supported by JNI")
             }
         }
+
+        didSet {
+            // eagerly lookup the essential lazy classes
+            assert(sharedJVM.classClass != nil, "unable to lookup java/lang/Class")
+            assert(sharedJVM.stringClass != nil, "unable to lookup java/lang/String")
+            assert(sharedJVM.throwableClass != nil, "unable to lookup java/lang/Throwable")
+            assert(sharedJVM.classGetName != nil, "unable to lookup java/lang/Class.getName")
+        }
     }
 
     private static let jniversion = JNI_VERSION_1_8
@@ -206,8 +214,12 @@ public extension JVM {
         defer { exceptionClear() }
 
         let tclass = self.throwableClass
-        if exceptionCheck() || tclass == nil {
+        if tclass == nil {
             return KanjiException(message: "Could not find throwable class", className: "java.lang.Throwable")
+        }
+
+        if exceptionCheck() {
+            return KanjiException(message: "Exception occurred while throwing exception", className: "java.lang.Throwable")
         }
 
         var msg: String?
@@ -1862,6 +1874,7 @@ public extension JavaObject {
         let jvm = JVM.sharedJVM
         let jsup = jvm.findClass(T.javaClassName)
         if jvm.exceptionCheck() {
+            jvm.printStackTrace()
             warn("cast() to \(T.self) could not find class \(T.javaClassName)")
             jvm.exceptionClear()
             return nil

@@ -28,7 +28,7 @@ public class KanjiScriptContext : ScriptContext {
     }
 
     public var root: InstanceType {
-        fatalError()
+        return (try? eval("this")) ?? .val([:])
     }
 
     // TODO: swap out the context?
@@ -70,18 +70,13 @@ public class KanjiScriptContext : ScriptContext {
 
         // functions can only be invoked on invocale subclases
         if let invocable: javax$script$Invocable$Stub = engine.cast() where args.count > 0 {
+            // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
             let args2: [java$lang$Object?]? = args.map({ $0 as? java$lang$Object })
 
-            if let this = this {
-                return try invocable.invokeMethod(this as? java$lang$Object, java$lang$String(script), args2)
+            if let this = this as? java$lang$Object { // invoke a method on this argument
+                return try invocable.invokeMethod(this, java$lang$String(script), args2)
             } else {
-                // let funarg = try deref(.Val(.str(script)))
-                // FIXME: global functions can be invoked directly, but things like "JSON.stringify"; we use this hack to evaluate a ref to the fun
-                // FIXME: not really downing with this argument; see https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes
-                let fname = "___invokeFunction\(abs(script.hashValue))"
-                try evaluate("var \(fname) = \(script);", this: nil, args: [])
-                // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
-                return try invocable.invokeFunction(java$lang$String(fname), args2)
+                return try invocable.invokeFunction(java$lang$String(script), args2)
             }
         }
 
@@ -134,18 +129,8 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
             switch self {
             case .val(let bric):
                 return bric[key].flatMap({ .val($0) })
-            case .ref: // (let val, let ctx):
-                fatalError("TODO")
-//                let pname = JSStringCreateWithUTF8CString(key)
-//                defer { JSStringRelease(pname) }
-//                var ex: JSValueRef = nil
-//                if !JSValueIsObject(ctx.ctx, val) { return nil }
-//                let obj = JSValueToObject(ctx.ctx, val, &ex)
-//                if ex != nil { return nil }
-//                if obj == nil { return nil }
-//                let propValue = JSObjectGetProperty(ctx.ctx, obj, pname, &ex)
-//                if ex != nil { return nil }
-//                return .Ref(propValue, ctx)
+            case .ref(let val, let ctx):
+                return try? ctx.eval(.val(.str(key)), this: val)
             }
         }
     }
@@ -267,70 +252,85 @@ public extension JavaObject {
     /// 
     /// Note that JavaObject does not conform to `Bricable` because it can throw an error, whereas `bric()`
     /// must always succeed.
-    public func toBric() throws -> Bric {
-        return try createBric([])
+    public func toBric(dropCycles dropCycles: Bool = false) throws -> Bric {
+        return try createBric(dropCycles, seen: [])
     }
 
-    private func createBric(seen: Set<jobject>) throws -> Bric {
+    private func createBric(dropCycles: Bool, seen: Set<jobject>) throws -> Bric {
+        let jobj = self.jobj
+
+        let selfSeen = seen.union([jobj])
+
+        let this = self as! java$lang$Object
+        
         for x in seen {
-            // FIXME: not working, at least for the test case
-            if JVM.sharedJVM.isSameObject(self.jobj, x) {
+            // not working, perhaps because the engine wraps it in jdk.nashorn.api.scripting.ScriptObjectMirror; 
+            // we could probably use jdk.nashorn.api.scripting.ScriptObjectMirror.identical() to test for equality
+            // but that would require making a cover object for it
+            // let eq = JVM.sharedJVM.isSameObject(jobj, x)
+
+            // we need to check equality for each individual item; probably much slower, but the only way
+            let eq = (try this.equals(java$lang$Object(reference: x))) == true
+
+            if eq {
+                if dropCycles {
+                    return nil // we just exclude cycles rather than thowing an error
+                }
                 throw KanjiErrors.general("Cannot create Bric from structure with cyclic values")
             }
         }
 
-        if self.jobj == nil {
+        var ob: JavaObject = self
+
+        typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Stub
+//        typealias ScriptObject = jdk$nashorn$api$scripting$AbstractJSObject
+//        typealias ScriptObject = jdk$nashorn$api$scripting$ScriptObjectMirror
+
+        if JVM.sharedJVM.findClass(ScriptObject.javaClassName) != nil {
+            if let jsobj : ScriptObject = ob.cast() {
+                // “With jdk8u40 onwards, script objects are converted to ScriptObjectMirror whenever script objects are passed to Java layer - even with Object type params or assigned to a Object[] element. Such wrapped mirror instances are automatically unwrapped when execution crosses to script boundary. i.e., say a Java method returns Object type value which happens to be ScriptObjectMirror object, then script caller will see it a ScriptObject instance” -- https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes
+                if try jsobj.isArray() == true {
+                    if let collection = try jsobj.values() {
+                        ob = collection
+                    }
+                }
+            }
+        } else {
+            JVM.sharedJVM.exceptionClear()
+            print("Warning: unable to locate script object: \(ScriptObject.javaClassName)")
+        }
+
+        if jobj == nil {
             return .nul
-        } else if let bol : java$lang$Boolean = cast() {
+        } else if let bol : java$lang$Boolean = ob.cast() {
             return .bol(try bol.booleanValue() == 0 ? false : true)
-        } else if let num : java$lang$Number = cast() {
+        } else if let num : java$lang$Number = ob.cast() {
             return .num(try num.doubleValue())
-        } else if let str: java$lang$CharSequence$Stub = cast() {
+        } else if let str: java$lang$CharSequence$Stub = ob.cast() {
             return .str(str.description)
-        } else if let col: java$util$Collection$Stub = cast() { // any collection converts to an array
+        } else if let col: java$util$Collection$Stub = ob.cast() { // any collection converts to an array
             var arr: [Bric] = []
             if let values = try col.toArray() {
                 for value in values {
                     if let value = value {
-                        try arr.append(value.createBric(seen.union([self.jobj])))
+                        try arr.append(value.createBric(dropCycles, seen: selfSeen))
                     } else {
                         arr.append(nil)
                     }
                 }
             }
             return .arr(arr)
-        } else if let amp: java$util$Map$Stub = cast() { // any map converts to an object
+        } else if let amp: java$util$Map$Stub = ob.cast() { // any map converts to an object
             var dict: [String: Bric] = [:]
             for key in try amp.keySet()?.toArray([]) ?? [] {
                 if let stringKey : java$lang$String = key?.cast() {
                     if let value = try amp.get(stringKey) {
-                        dict[stringKey.description] = try value.createBric(seen.union([self.jobj]))
+                        dict[stringKey.description] = try value.createBric(dropCycles, seen: selfSeen)
                     }
                 } else {
                     throw KanjiErrors.general("Map key was not a string: \(key?.dynamicType.javaClassName)")
                 }
             }
-
-            if ((try? (self as? java$lang$Object)?.getClass()?.getName()) ?? "") == "jdk.nashorn.api.scripting.ScriptObjectMirror" {
-                // “With jdk8u40 onwards, script objects are converted to ScriptObjectMirror whenever script objects are passed to Java layer - even with Object type params or assigned to a Object[] element. Such wrapped mirror instances are automatically unwrapped when execution crosses to script boundary. i.e., say a Java method returns Object type value which happens to be ScriptObjectMirror object, then script caller will see it a ScriptObject instance” -- https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes
-
-                // we could cast to jdk.nashorn.api.scripting.ScriptObjectMirror extends jdk.nashorn.api.scripting.JSObject, 
-                // which has an isArray() method, but the class is non-standard so we'd need to make a separate bridge for it.
-
-                // instead, we'll just check for keys that are in increasing numeric order: {"0": "a", "1": "b", ...}
-                var arr: [Bric] = []
-                arr.reserveCapacity(dict.count)
-                for i in 0..<dict.count {
-                    if let val = dict[String(i)] {
-                        arr.append(val)
-                    } else {
-                        // odd; a key that was not an array index
-                        return .obj(dict)
-                    }
-                }
-                return .arr(arr)
-            }
-            
 
             return .obj(dict)
         } else if try (self as? java$lang$Object)?.getClass()?.isArray() == true {
@@ -340,13 +340,13 @@ public extension JavaObject {
             arr.reserveCapacity(Int(len))
             for i in 0..<len {
                 let ob = try java$lang$reflect$Array.get(job, i)
-                arr.append(try ob?.createBric(seen.union([self.jobj])) ?? nil)
+                arr.append(try ob?.createBric(dropCycles, seen: selfSeen) ?? nil)
             }
             return .arr(arr)
-        } else if let cal: java$util$Calendar$Stub = cast() {
+        } else if let cal: java$util$Calendar$Stub = ob.cast() {
             let str = try javax$xml$bind$DatatypeConverter.printDateTime(cal)
             return str.flatMap({ .str($0.description) }) ?? nil
-        } else if let date: java$util$Date$Stub = cast() {
+        } else if let date: java$util$Date$Stub = ob.cast() {
             // dates are non-standard JSON, but the de-facto standard is to serialize as ISO-8601
             // TODO: cache simple date format
 //            let tz = try java$util$TimeZone.getTimeZone("UTC")
@@ -358,12 +358,12 @@ public extension JavaObject {
             try cal?.setTime(date)
             let str = try javax$xml$bind$DatatypeConverter.printDateTime(cal)
             return str.flatMap({ .str($0.description) }) ?? nil
-        } else if let itr: java$lang$Iterable$Stub = cast() {
+        } else if let itr: java$lang$Iterable$Stub = ob.cast() {
             // we handle iterable last because toArray is probably more optimized
             var arr: [Bric] = []
             if let it = try itr.iterator() {
                 while let next = try it.next() {
-                    try arr.append(next.createBric(seen.union([self.jobj])))
+                    try arr.append(next.createBric(dropCycles, seen: selfSeen))
                 }
             }
             return .arr(arr)
