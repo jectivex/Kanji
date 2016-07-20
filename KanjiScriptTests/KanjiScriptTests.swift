@@ -165,7 +165,7 @@ class KanjiScriptTests: XCTestCase {
         // define native blocks for both a Consumer (returns void) and Function (returns object) instance
         // and make sure that the Nashorn environment is able to consumer either one the same
 
-        let consumer = try java$util$function$Consumer$Stub.fromBlock { (jnienv, jobj, jarg) in
+        let consumer = try java$util$function$Consumer$Impl.fromBlock { (jnienv, jobj, jarg) in
             if let ob = java$lang$Object(reference: jarg) {
                 let desc = ob.description
                 dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
@@ -183,7 +183,7 @@ class KanjiScriptTests: XCTestCase {
         XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("jdk/nashorn/api/scripting/JSObject"))
         JVM.sharedJVM.exceptionClear()
 
-        let function = try java$util$function$Function$Stub.fromClosure { arg in
+        let function = try java$util$function$Function$Impl.fromClosure { arg in
 
             XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("com/sun/nio/zipfs/ZipCoder"))
             JVM.sharedJVM.exceptionClear()
@@ -235,7 +235,7 @@ class KanjiScriptTests: XCTestCase {
         do {
             enum SampleError : ErrorType { case failed(msg: String) }
 
-            try ctx.eval("callback", args: .ref(java$util$function$Function$Stub.fromClosure { arg in
+            try ctx.eval("callback", args: .ref(java$util$function$Function$Impl.fromClosure { arg in
                 throw try java$lang$IllegalArgumentException(arg?.cast() as java$lang$String?)
                 }, ctx), .ref("erroneous argument".javaString, ctx))
         } catch let err as KanjiException {

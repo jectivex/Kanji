@@ -257,17 +257,17 @@ class KanjiLibTests: XCTestCase {
 
             do {
                 // this is just an echo closure function
-                let f = java$util$function$Function$Stub.apply
-                let _ = Mirror(reflecting: f) // java$util$function$Function$Stub -> Optional<java$lang$Object> throws -> Optional<java$lang$Object>
+                let f = java$util$function$Function$Impl.apply
+                let _ = Mirror(reflecting: f) // java$util$function$Function$Impl -> Optional<java$lang$Object> throws -> Optional<java$lang$Object>
 
-                let fun = try java$util$function$Function$Stub.fromBlock { _, _, o in o }
+                let fun = try java$util$function$Function$Impl.fromBlock { _, _, o in o }
                 let applied = try fun.apply("barFoo".javaString)
                 XCTAssertEqual("barFoo".javaString, applied)
             }
 
             do {
                 print("\(#function): starting from \(NSThread.currentThread())")
-                let runnable = try java$lang$Runnable$Stub.fromBlock { _ in print("\(#function): running from \(NSThread.currentThread())") }
+                let runnable = try java$lang$Runnable$Impl.fromBlock { _ in print("\(#function): running from \(NSThread.currentThread())") }
                 try java$lang$Thread(runnable)?.start()
                 print("\(#function): ending from \(NSThread.currentThread())")
             }
@@ -276,7 +276,7 @@ class KanjiLibTests: XCTestCase {
                 // demonstration of native lexical comparison
                 guard let strings = try java$util$Arrays.asList(["foo".javaString, "bar".javaString]) else  { return XCTFail() }
 
-                try java$util$Collections.sort(strings, java$util$Comparator$Stub.fromBlock({ _, _, o1, o2 in
+                try java$util$Collections.sort(strings, java$util$Comparator$Impl.fromBlock({ _, _, o1, o2 in
                     let s1 = java$lang$String(reference: o1)
                     let s2 = java$lang$String(reference: o2)
                     return s1?.description > s2?.description ? 1 : s1?.description < s2?.description ? -1 : 0
@@ -288,8 +288,8 @@ class KanjiLibTests: XCTestCase {
 
             dispatch_apply(999, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { _ in
                 do {
-                    let fun1 = try java$util$function$ToIntFunction$Stub.fromBlock { _ in 999 }
-                    let fun2 = try java$util$function$ToIntFunction$Stub.fromBlock { _ in 2222 }
+                    let fun1 = try java$util$function$ToIntFunction$Impl.fromBlock { _ in 999 }
+                    let fun2 = try java$util$function$ToIntFunction$Impl.fromBlock { _ in 2222 }
 
                     let v1 = try fun1.applyAsInt(nil)
                     let v2 = try fun2.applyAsInt(nil)
@@ -307,13 +307,13 @@ class KanjiLibTests: XCTestCase {
                 // when the closure returns, and so won't survive beyond the call; the only way to make it work
                 // is to reference a global instance inside the test; we can't even reference a local variable
                 // because @convention(c) closures aren't able to do that
-                guard let abc = try java$util$concurrent$Executors.privilegedCallable(java$util$concurrent$Callable$Stub.fromBlock({ _ in abcstring.jobj }))?.call() else { return XCTFail() }
+                guard let abc = try java$util$concurrent$Executors.privilegedCallable(java$util$concurrent$Callable$Impl.fromBlock({ _ in abcstring.jobj }))?.call() else { return XCTFail() }
                 XCTAssertEqual(abc, "abc".javaString)
             }
 
             for i in 1...10 {
                 // this demonstrates using a capturing closure
-                let fun = try java$util$function$Function$Stub.fromClosure {
+                let fun = try java$util$function$Function$Impl.fromClosure {
                     guard let str = $0?.cast() as java$lang$String? else { return nil }
                     return (try? str.concat(String(i).javaString)) ?? nil
                 }
@@ -323,7 +323,7 @@ class KanjiLibTests: XCTestCase {
 
             do {
                 // take 10-1234, stream them to ints, get the length of the int string, then turn it into a length string
-                let strs = try java$util$Arrays.asList((10...1234).map(java$lang$Integer.init))?.stream()?.mapToInt(java$util$function$ToIntFunction$Stub.fromBlock({ _, _, ob in 1 }))?.mapToObj(java$util$function$IntFunction$Stub.fromBlock({ _, _, i in abcstring.jobj }))?.toArray()?.map({ $0?.description ?? "" })
+                let strs = try java$util$Arrays.asList((10...1234).map(java$lang$Integer.init))?.stream()?.mapToInt(java$util$function$ToIntFunction$Impl.fromBlock({ _, _, ob in 1 }))?.mapToObj(java$util$function$IntFunction$Impl.fromBlock({ _, _, i in abcstring.jobj }))?.toArray()?.map({ $0?.description ?? "" })
 
                 /// the number 1000 has 4 characters
     //            XCTAssertEqual(Set(["2", "3", "4"]), Set(strs ?? []))
@@ -352,7 +352,7 @@ class KanjiLibTests: XCTestCase {
         // Function<T,R>
         // Represents a function that accepts one argument and produces a result.
         do {
-            let block = try java$util$function$Function$Stub.fromBlock({ (jenv, jthis, jarg) in
+            let block = try java$util$function$Function$Impl.fromBlock({ (jenv, jthis, jarg) in
                 let str = java$lang$String(reference: jarg)
                 globalFobs = [str]
                 let ret = try? str?.concat(str?.toUpperCase()) ?? ""
@@ -367,7 +367,7 @@ class KanjiLibTests: XCTestCase {
         // Consumer<T>
         // Represents an operation that accepts a single input argument and returns no result.
         do {
-            let block = try java$util$function$Consumer$Stub.fromBlock({ (jenv, jthis, jarg) in
+            let block = try java$util$function$Consumer$Impl.fromBlock({ (jenv, jthis, jarg) in
                 globalFobs = [java$lang$Object(reference: jarg)]
             })
             try block.accept("abcd".javaString)
@@ -377,7 +377,7 @@ class KanjiLibTests: XCTestCase {
         // Supplier<T>
         // Represents a supplier of results.
         do {
-            let block = try java$util$function$Supplier$Stub.fromBlock({ (jenv, jthis) in
+            let block = try java$util$function$Supplier$Impl.fromBlock({ (jenv, jthis) in
                 globalRet = try? java$lang$Integer(3489732) // FIXME: return values get deleted if we don't keep a reference
                 return globalRet?.jobj ?? nil
             })
@@ -388,7 +388,7 @@ class KanjiLibTests: XCTestCase {
         // Predicate<T>
         // Represents a predicate (boolean-valued function) of one argument.
         do {
-            let block = try java$util$function$Predicate$Stub.fromBlock({
+            let block = try java$util$function$Predicate$Impl.fromBlock({
                 let str = java$lang$String(reference: $2)
                 return str == "fwehuifwe" ? true : false
             })
@@ -403,7 +403,7 @@ class KanjiLibTests: XCTestCase {
         // BiPredicate<T,U>
         // Represents a predicate (boolean-valued function) of two arguments.
         do {
-            let block = try java$util$function$BiPredicate$Stub.fromBlock({
+            let block = try java$util$function$BiPredicate$Impl.fromBlock({
                 let str1 = java$lang$String(reference: $2)
                 let str2 = java$lang$String(reference: $3)
                 return str1 == "abc" && str2 == "xyz" ? true : false
@@ -415,7 +415,7 @@ class KanjiLibTests: XCTestCase {
         // BiConsumer<T,U>
         // Represents an operation that accepts two input arguments and returns no result.
         do {
-            let block = try java$util$function$BiConsumer$Stub.fromBlock({
+            let block = try java$util$function$BiConsumer$Impl.fromBlock({
                 let str2 = java$lang$String(reference: $3)
                 globalRet = str2
             })
@@ -426,7 +426,7 @@ class KanjiLibTests: XCTestCase {
         // BiFunction<T,U,R>
         // Represents a function that accepts two arguments and produces a result.
         do {
-            let block = try java$util$function$BiFunction$Stub.fromBlock({
+            let block = try java$util$function$BiFunction$Impl.fromBlock({
                 let str1 = java$lang$String(reference: $2)
                 let str2 = java$lang$String(reference: $3)
                 let str3 = try? str2?.concat(str1?.toUpperCase())
@@ -444,7 +444,7 @@ class KanjiLibTests: XCTestCase {
         // BooleanSupplier
         // Represents a supplier of boolean-valued results.
         do {
-            let block = try java$util$function$BooleanSupplier$Stub.fromBlock({ (jenv, jthis) -> jboolean in
+            let block = try java$util$function$BooleanSupplier$Impl.fromBlock({ (jenv, jthis) -> jboolean in
                 true
             })
             XCTAssertEqual(true, try? block.getAsBoolean())
@@ -457,7 +457,7 @@ class KanjiLibTests: XCTestCase {
         // IntBinaryOperator
         // Represents an operation upon two int-valued operands and producing an int-valued result.
         do {
-            let block = try java$util$function$IntBinaryOperator$Stub.fromBlock({
+            let block = try java$util$function$IntBinaryOperator$Impl.fromBlock({
                 return $2 / $3
             })
             let result = try block.applyAsInt(2332, 32)
@@ -467,7 +467,7 @@ class KanjiLibTests: XCTestCase {
         // IntConsumer
         // Represents an operation that accepts a single int-valued argument and returns no result.
         do {
-            let block = try java$util$function$IntConsumer$Stub.fromBlock({ (jenv, jthis, jarg) in
+            let block = try java$util$function$IntConsumer$Impl.fromBlock({ (jenv, jthis, jarg) in
                 globalRet = try? java$lang$Integer(jarg) // FIXME: return values get deleted if we don't keep a reference
             })
             try block.accept(772)
@@ -477,7 +477,7 @@ class KanjiLibTests: XCTestCase {
         // IntFunction<R>
         // Represents a function that accepts an int-valued argument and produces a result.
         do {
-            let block = try java$util$function$IntFunction$Stub.fromBlock({ (jenv, jthis, jarg) -> jobject in
+            let block = try java$util$function$IntFunction$Impl.fromBlock({ (jenv, jthis, jarg) -> jobject in
                 let ret = try? java$math$BigInteger(String(jarg + jarg).javaString)
                 globalRet = ret // FIXME: return values get deleted if we don't keep a reference
                 return ret?.jobj ?? nil
@@ -489,7 +489,7 @@ class KanjiLibTests: XCTestCase {
         // IntPredicate
         // Represents a predicate (boolean-valued function) of one int-valued argument.
         do {
-            let block = try java$util$function$IntPredicate$Stub.fromBlock({ (jenv, jthis, jarg) -> jboolean in
+            let block = try java$util$function$IntPredicate$Impl.fromBlock({ (jenv, jthis, jarg) -> jboolean in
                 return jarg >= 12 ? true : false
             })
             XCTAssertEqual(false, try? block.test(10))
@@ -501,7 +501,7 @@ class KanjiLibTests: XCTestCase {
         // IntSupplier
         // Represents a supplier of int-valued results.
         do {
-            let block = try java$util$function$IntSupplier$Stub.fromBlock({ (jenv, jthis) -> jint in
+            let block = try java$util$function$IntSupplier$Impl.fromBlock({ (jenv, jthis) -> jint in
                 98632
             })
             XCTAssertEqual(98632, try? block.getAsInt())
@@ -510,28 +510,28 @@ class KanjiLibTests: XCTestCase {
         // IntToDoubleFunction
         // Represents a function that accepts an int-valued argument and produces a double-valued result.
         do {
-            let block = try java$util$function$IntToDoubleFunction$Stub.fromBlock({ jdouble($2) + 0.01 })
+            let block = try java$util$function$IntToDoubleFunction$Impl.fromBlock({ jdouble($2) + 0.01 })
             XCTAssertEqual(77.01, try? block.applyAsDouble(77))
         }
 
         // IntToLongFunction
         // Represents a function that accepts an int-valued argument and produces a long-valued result.
         do {
-            let block = try java$util$function$IntToLongFunction$Stub.fromBlock({ jlong($2) * -2 })
+            let block = try java$util$function$IntToLongFunction$Impl.fromBlock({ jlong($2) * -2 })
             XCTAssertEqual(-jlong(jint.max) * 2, try? block.applyAsLong(jint.max))
         }
 
         // IntUnaryOperator
         // Represents an operation on a single int-valued operand that produces an int-valued result.
         do {
-            let block = try java$util$function$IntUnaryOperator$Stub.fromBlock({ -$2 })
+            let block = try java$util$function$IntUnaryOperator$Impl.fromBlock({ -$2 })
             XCTAssertEqual(jint.min + 1, try? block.applyAsInt(jint.max))
         }
 
         // ToIntFunction<T>
         // Represents a function that produces an int-valued result.
         do {
-            let block = try java$util$function$ToIntFunction$Stub.fromBlock { _, _, _ in 987 }
+            let block = try java$util$function$ToIntFunction$Impl.fromBlock { _, _, _ in 987 }
             let result = try block.applyAsInt(nil)
             XCTAssertEqual(987, result)
         }
@@ -539,7 +539,7 @@ class KanjiLibTests: XCTestCase {
         // ToIntBiFunction<T,U>
         // Represents a function that accepts two arguments and produces an int-valued result.
         do {
-            let block = try java$util$function$ToIntBiFunction$Stub.fromBlock {
+            let block = try java$util$function$ToIntBiFunction$Impl.fromBlock {
                 let ret1 = try? java$math$BigInteger(java$lang$String(reference: $2))
                 let ret2 = try? java$math$BigDecimal(java$lang$String(reference: $3))
                 let bi1 = (try? ret1?.intValue() ?? 0) ?? 0
@@ -553,7 +553,7 @@ class KanjiLibTests: XCTestCase {
         // ObjIntConsumer<T>
         // Represents an operation that accepts an object-valued and a int-valued argument, and returns no result.
         do {
-            let block = try java$util$function$ObjIntConsumer$Stub.fromBlock {
+            let block = try java$util$function$ObjIntConsumer$Impl.fromBlock {
                 let str1 = java$lang$String(reference: $2)
                 let str2 = (str1?.description ?? "") + "." + String($3)
                 globalRet = str2.javaString // FIXME: return values get deleted if we don't keep a reference
@@ -569,7 +569,7 @@ class KanjiLibTests: XCTestCase {
         // LongBinaryOperator
         // Represents an operation upon two long-valued operands and producing a long-valued result.
         do {
-            let block = try java$util$function$LongBinaryOperator$Stub.fromBlock({
+            let block = try java$util$function$LongBinaryOperator$Impl.fromBlock({
                 return $2 / $3
             })
             let result = try block.applyAsLong(2332, 32)
@@ -579,7 +579,7 @@ class KanjiLibTests: XCTestCase {
         // LongConsumer
         // Represents an operation that accepts a single long-valued argument and returns no result.
         do {
-            let block = try java$util$function$LongConsumer$Stub.fromBlock({ (jenv, jthis, jarg) in
+            let block = try java$util$function$LongConsumer$Impl.fromBlock({ (jenv, jthis, jarg) in
                 globalRet = try? java$lang$Long(jarg) // FIXME: return values get deleted if we don't keep a reference
             })
             try block.accept(772)
@@ -589,7 +589,7 @@ class KanjiLibTests: XCTestCase {
         // LongFunction<R>
         // Represents a function that accepts a long-valued argument and produces a result.
         do {
-            let block = try java$util$function$LongFunction$Stub.fromBlock({ (jenv, jthis, jarg) -> jobject in
+            let block = try java$util$function$LongFunction$Impl.fromBlock({ (jenv, jthis, jarg) -> jobject in
                 let ret = try? java$math$BigInteger(String(jarg + jarg).javaString)
                 globalRet = ret // FIXME: return values get deleted if we don't keep a reference
                 return ret?.jobj ?? nil
@@ -601,7 +601,7 @@ class KanjiLibTests: XCTestCase {
         // LongPredicate
         // Represents a predicate (boolean-valued function) of one long-valued argument.
         do {
-            let block = try java$util$function$LongPredicate$Stub.fromBlock({ (jenv, jthis, jarg) -> jboolean in
+            let block = try java$util$function$LongPredicate$Impl.fromBlock({ (jenv, jthis, jarg) -> jboolean in
                 return jarg >= 12 ? true : false
             })
             XCTAssertEqual(false, try? block.test(10))
@@ -613,7 +613,7 @@ class KanjiLibTests: XCTestCase {
         // LongSupplier
         // Represents a supplier of long-valued results.
         do {
-            let block = try java$util$function$LongSupplier$Stub.fromBlock({ (jenv, jthis) -> jlong in
+            let block = try java$util$function$LongSupplier$Impl.fromBlock({ (jenv, jthis) -> jlong in
                 98632
             })
             XCTAssertEqual(98632, try? block.getAsLong())
@@ -622,28 +622,28 @@ class KanjiLibTests: XCTestCase {
         // LongToDoubleFunction
         // Represents a function that accepts a long-valued argument and produces a double-valued result.
         do {
-            let block = try java$util$function$LongToDoubleFunction$Stub.fromBlock({ jdouble($2) + 0.01 })
+            let block = try java$util$function$LongToDoubleFunction$Impl.fromBlock({ jdouble($2) + 0.01 })
             XCTAssertEqual(77.01, try? block.applyAsDouble(77))
         }
 
         // LongToIntFunction
         // Represents a function that accepts a long-valued argument and produces an int-valued result.
         do {
-            let block = try java$util$function$LongToIntFunction$Stub.fromBlock({ jint($2) * -1 })
+            let block = try java$util$function$LongToIntFunction$Impl.fromBlock({ jint($2) * -1 })
             XCTAssertEqual(423 * -1, try? block.applyAsInt(423))
         }
 
         // LongUnaryOperator
         // Represents an operation on a single long-valued operand that produces a long-valued result.
         do {
-            let block = try java$util$function$LongUnaryOperator$Stub.fromBlock({ -$2 })
+            let block = try java$util$function$LongUnaryOperator$Impl.fromBlock({ -$2 })
             XCTAssertEqual(jlong.min + 1, try? block.applyAsLong(jlong.max))
         }
 
         // ToLongFunction<T>
         // Represents a function that produces a long-valued result.
         do {
-            let block = try java$util$function$ToLongFunction$Stub.fromBlock { _, _, _ in 987 }
+            let block = try java$util$function$ToLongFunction$Impl.fromBlock { _, _, _ in 987 }
             let result = try block.applyAsLong(nil)
             XCTAssertEqual(987, result)
         }
@@ -651,7 +651,7 @@ class KanjiLibTests: XCTestCase {
         // ToLongBiFunction<T,U>
         // Represents a function that accepts two arguments and produces a long-valued result.
         do {
-            let block = try java$util$function$ToLongBiFunction$Stub.fromBlock {
+            let block = try java$util$function$ToLongBiFunction$Impl.fromBlock {
                 let ret1 = try? java$math$BigInteger(java$lang$String(reference: $2))
                 let ret2 = try? java$math$BigDecimal(java$lang$String(reference: $3))
                 let bi1 = (try? ret1?.longValue() ?? 0) ?? 0
@@ -665,7 +665,7 @@ class KanjiLibTests: XCTestCase {
         // ObjLongConsumer<T>
         // Represents an operation that accepts an object-valued and a long-valued argument, and returns no result.
         do {
-            let block = try java$util$function$ObjLongConsumer$Stub.fromBlock {
+            let block = try java$util$function$ObjLongConsumer$Impl.fromBlock {
                 let str1 = java$lang$String(reference: $2)
                 let str2 = (str1?.description ?? "") + "." + String($3)
                 globalRet = str2.javaString // FIXME: return values get deleted if we don't keep a reference
@@ -681,7 +681,7 @@ class KanjiLibTests: XCTestCase {
         // DoubleBinaryOperator
         // Represents an operation upon two double-valued operands and producing a double-valued result.
         do {
-            let block = try java$util$function$DoubleBinaryOperator$Stub.fromBlock({
+            let block = try java$util$function$DoubleBinaryOperator$Impl.fromBlock({
                 return $2 / $3
             })
             let result = try block.applyAsDouble(2332, 32)
@@ -691,7 +691,7 @@ class KanjiLibTests: XCTestCase {
         // DoubleConsumer
         // Represents an operation that accepts a single double-valued argument and returns no result.
         do {
-            let block = try java$util$function$DoubleConsumer$Stub.fromBlock({ (jenv, jthis, jarg) in
+            let block = try java$util$function$DoubleConsumer$Impl.fromBlock({ (jenv, jthis, jarg) in
                 globalRet = try? java$lang$Double(jarg) // FIXME: return values get deleted if we don't keep a reference
             })
             try block.accept(45645.1212000000001)
@@ -701,7 +701,7 @@ class KanjiLibTests: XCTestCase {
         // DoubleFunction<R>
         // Represents a function that accepts a double-valued argument and produces a result.
         do {
-            let block = try java$util$function$DoubleFunction$Stub.fromBlock({ (jenv, jthis, jarg) -> jobject in
+            let block = try java$util$function$DoubleFunction$Impl.fromBlock({ (jenv, jthis, jarg) -> jobject in
                 let ret = try? java$math$BigDecimal(String(jarg + jarg).javaString)
                 globalRet = ret // FIXME: return values get deleted if we don't keep a reference
                 return ret?.jobj ?? nil
@@ -713,7 +713,7 @@ class KanjiLibTests: XCTestCase {
         // DoublePredicate
         // Represents a predicate (boolean-valued function) of one double-valued argument.
         do {
-            let block = try java$util$function$DoublePredicate$Stub.fromBlock({ (jenv, jthis, jarg) -> jboolean in
+            let block = try java$util$function$DoublePredicate$Impl.fromBlock({ (jenv, jthis, jarg) -> jboolean in
                 return jarg >= 12.0 ? true : false
             })
             XCTAssertEqual(false, try? block.test(10))
@@ -725,7 +725,7 @@ class KanjiLibTests: XCTestCase {
         // DoubleSupplier
         // Represents a supplier of double-valued results.
         do {
-            let block = try java$util$function$DoubleSupplier$Stub.fromBlock({ (jenv, jthis) -> jdouble in
+            let block = try java$util$function$DoubleSupplier$Impl.fromBlock({ (jenv, jthis) -> jdouble in
                 3441.24353420000001
             })
             XCTAssertEqual(3441.2435342, try? block.getAsDouble())
@@ -734,28 +734,28 @@ class KanjiLibTests: XCTestCase {
         // DoubleToIntFunction
         // Represents a function that accepts a double-valued argument and produces an int-valued result.
         do {
-            let block = try java$util$function$DoubleToIntFunction$Stub.fromBlock({ jint($2) })
+            let block = try java$util$function$DoubleToIntFunction$Impl.fromBlock({ jint($2) })
             XCTAssertEqual(77, try? block.applyAsInt(77.987))
         }
 
         // DoubleToDoubleFunction
         // Represents a function that accepts a double-valued argument and produces a long-valued result.
         do {
-            let block = try java$util$function$DoubleToLongFunction$Stub.fromBlock({ jlong($2) * -1 })
+            let block = try java$util$function$DoubleToLongFunction$Impl.fromBlock({ jlong($2) * -1 })
             XCTAssertEqual(423 * -1, try? block.applyAsLong(423.143))
         }
 
         // DoubleUnaryOperator
         // Represents an operation on a single double-valued operand that produces a double-valued result.
         do {
-            let block = try java$util$function$DoubleUnaryOperator$Stub.fromBlock({ -$2 })
+            let block = try java$util$function$DoubleUnaryOperator$Impl.fromBlock({ -$2 })
             XCTAssertEqual(-232345.134, try? block.applyAsDouble(232345.134))
         }
 
         // ToDoubleFunction<T>
         // Represents a function that produces a double-valued result.
         do {
-            let block = try java$util$function$ToDoubleFunction$Stub.fromBlock { _, _, _ in 987 }
+            let block = try java$util$function$ToDoubleFunction$Impl.fromBlock { _, _, _ in 987 }
             let result = try block.applyAsDouble(nil)
             XCTAssertEqual(987, result)
         }
@@ -763,7 +763,7 @@ class KanjiLibTests: XCTestCase {
         // ToDoubleBiFunction<T,U>
         // Represents a function that accepts two arguments and produces a double-valued result.
         do {
-            let block = try java$util$function$ToDoubleBiFunction$Stub.fromBlock {
+            let block = try java$util$function$ToDoubleBiFunction$Impl.fromBlock {
                 let ret1 = try? java$math$BigInteger(java$lang$String(reference: $2))
                 let ret2 = try? java$math$BigDecimal(java$lang$String(reference: $3))
                 let bi1 = (try? ret1?.doubleValue() ?? 0) ?? 0
@@ -777,7 +777,7 @@ class KanjiLibTests: XCTestCase {
         // ObjDoubleConsumer<T>
         // Represents an operation that accepts an object-valued and a double-valued argument, and returns no result.
         do {
-            let block = try java$util$function$ObjDoubleConsumer$Stub.fromBlock {
+            let block = try java$util$function$ObjDoubleConsumer$Impl.fromBlock {
                 let str1 = java$lang$String(reference: $2)
                 let str2 = (str1?.description ?? "") + "." + String($3)
                 globalRet = str2.javaString // FIXME: return values get deleted if we don't keep a reference
@@ -1366,7 +1366,7 @@ class KanjiLibTests: XCTestCase {
     func testClassNames() throws {
         XCTAssertEqual(java$math$BigDecimal.javaClassName, "java/math/BigDecimal")
         // check that inner class name heuristics are working
-        XCTAssertEqual(java$util$Map$Entry$Stub.javaClassName, "java/util/Map$Entry")
+        XCTAssertEqual(java$util$Map$Entry$Impl.javaClassName, "java/util/Map$Entry")
         do {
             let entry = try java$util$AbstractMap$SimpleEntry(java$lang$String("foo"), java$lang$String("bar"))
             let cname = try entry?.getClass()?.getName()

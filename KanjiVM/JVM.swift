@@ -1632,7 +1632,7 @@ public extension JVM {
                                     return moduleJava.init(reference: jobj) // found the wrapper class! construct it with the JNI instance
                                 } else {
                                     // we found the module class, but it wasn't a Java object!
-                                    // fatal error: local module class «java$util$AbstractList» was not an instance of the expected type «java$util$List$Stub»: file /opt/src/glimpse/glimpse/Kanji/KanjiVM/JVM.swift, line 1045
+                                    // fatal error: local module class «java$util$AbstractList» was not an instance of the expected type «java$util$List$Impl»: file /opt/src/glimpse/glimpse/Kanji/KanjiVM/JVM.swift, line 1045
 
                                     warn("local module class «\(moduleClass)» was not an instance of the expected type «\(T.self)»")
                                 }
@@ -1795,7 +1795,7 @@ public extension JavaObject {
 //    raw = String(raw.characters.split(isSeparator: { $0 == "(" }).last!)
 //    raw = String(raw.characters.split(isSeparator: { $0 == " " }).first!)
 //
-//    if raw.hasSuffix("$Stub") { // trim off stub suffix
+//    if raw.hasSuffix("$Impl") { // trim off stub suffix
 //        raw = String(raw.characters.dropLast(5))
 //    }
 //

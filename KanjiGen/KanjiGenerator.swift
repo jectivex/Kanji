@@ -26,7 +26,8 @@ public enum CodegenErrors : ErrorType, CustomDebugStringConvertible {
 /// The suffix to append to a protocol or stub that is the hollow Swift-side implementation
 /// E.g., when the java side returns a java.util.Set interface, we need a concrete type to wrap on the swift side
 
-private let KanjiImplementationSuffix = "$Stub"
+private let KanjiImplementationSuffix = "$Impl"
+//private let KanjiImplementationSuffix = "$Stub"
 //private let KanjiImplementationSuffix = "ʹ" // Unicode Character 'MODIFIER LETTER PRIME' (U+02B9)
 //private let KanjiImplementationSuffix = "$Kanji"
 //private let KanjiImplementationSuffix = "$"
@@ -1351,7 +1352,7 @@ public func generateShims(disassembly: String, skipPatterns: Set<String> = Set()
                 // but some classes would fail to compile if they contain two methods with the same stub signature:
                 // e.g., "MissingType1 get() { }" and "MissingType2 get()" would both fail to compile
 //                let stub = "public typealias \(jname.swiftClassName) = java$lang$Object\n"
-//                + "public typealias \(jname.swiftClassName)$Stub = java$lang$Object\n"
+//                + "public typealias \(jname.swiftClassName)$Impl = java$lang$Object\n"
 //                callback(name: name, type: .classTypealias, code: stub)
 
                 let unit = JUnit(jname: jname, mods: JUnit.Mod.Public, extends: [], implements: [], fields: [], methods: [])

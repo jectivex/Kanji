@@ -69,7 +69,7 @@ public class KanjiScriptContext : ScriptContext {
         let str = java$lang$String(stringLiteral: script)
 
         // functions can only be invoked on invocale subclases
-        if let invocable: javax$script$Invocable$Stub = engine.cast() where args.count > 0 {
+        if let invocable: javax$script$Invocable$Impl = engine.cast() where args.count > 0 {
             // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
             let args2: [java$lang$Object?]? = args.map({ $0 as? java$lang$Object })
 
@@ -282,7 +282,7 @@ public extension JavaObject {
 
         var ob: JavaObject = self
 
-        typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Stub
+        typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Impl
 //        typealias ScriptObject = jdk$nashorn$api$scripting$AbstractJSObject
 //        typealias ScriptObject = jdk$nashorn$api$scripting$ScriptObjectMirror
 
@@ -306,9 +306,9 @@ public extension JavaObject {
             return .bol(try bol.booleanValue() == 0 ? false : true)
         } else if let num : java$lang$Number = ob.cast() {
             return .num(try num.doubleValue())
-        } else if let str: java$lang$CharSequence$Stub = ob.cast() {
+        } else if let str: java$lang$CharSequence$Impl = ob.cast() {
             return .str(str.description)
-        } else if let col: java$util$Collection$Stub = ob.cast() { // any collection converts to an array
+        } else if let col: java$util$Collection$Impl = ob.cast() { // any collection converts to an array
             var arr: [Bric] = []
             if let values = try col.toArray() {
                 for value in values {
@@ -320,7 +320,7 @@ public extension JavaObject {
                 }
             }
             return .arr(arr)
-        } else if let amp: java$util$Map$Stub = ob.cast() { // any map converts to an object
+        } else if let amp: java$util$Map$Impl = ob.cast() { // any map converts to an object
             var dict: [String: Bric] = [:]
             for key in try amp.keySet()?.toArray([]) ?? [] {
                 if let stringKey : java$lang$String = key?.cast() {
@@ -343,10 +343,10 @@ public extension JavaObject {
                 arr.append(try ob?.createBric(dropCycles, seen: selfSeen) ?? nil)
             }
             return .arr(arr)
-        } else if let cal: java$util$Calendar$Stub = ob.cast() {
+        } else if let cal: java$util$Calendar$Impl = ob.cast() {
             let str = try javax$xml$bind$DatatypeConverter.printDateTime(cal)
             return str.flatMap({ .str($0.description) }) ?? nil
-        } else if let date: java$util$Date$Stub = ob.cast() {
+        } else if let date: java$util$Date$Impl = ob.cast() {
             // dates are non-standard JSON, but the de-facto standard is to serialize as ISO-8601
             // TODO: cache simple date format
 //            let tz = try java$util$TimeZone.getTimeZone("UTC")
@@ -358,7 +358,7 @@ public extension JavaObject {
             try cal?.setTime(date)
             let str = try javax$xml$bind$DatatypeConverter.printDateTime(cal)
             return str.flatMap({ .str($0.description) }) ?? nil
-        } else if let itr: java$lang$Iterable$Stub = ob.cast() {
+        } else if let itr: java$lang$Iterable$Impl = ob.cast() {
             // we handle iterable last because toArray is probably more optimized
             var arr: [Bric] = []
             if let it = try itr.iterator() {
