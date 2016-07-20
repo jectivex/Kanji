@@ -17,7 +17,6 @@
 		7E1438421BD18BBB00B11D75 /* JavaLib.knj in Resources */ = {isa = PBXBuildFile; fileRef = 7E1438411BD18BBB00B11D75 /* JavaLib.knj */; };
 		7E35AE281BD5724A00E93E09 /* KanjiNative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E35AE271BD5724A00E93E09 /* KanjiNative.swift */; };
 		7E35AE311BD7D7C100E93E09 /* JavaLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E35AE301BD7D7C100E93E09 /* JavaLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7E35AE3D1BD7D83A00E93E09 /* JavaLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E35AE3C1BD7D83A00E93E09 /* JavaLib.swift */; };
 		7E35FFDD1D242559006B0DE0 /* macos.jre in Resources */ = {isa = PBXBuildFile; fileRef = 7E35FFDC1D242559006B0DE0 /* macos.jre */; };
 		7E5ABD971B60483C00F11C77 /* KanjiScript.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E5ABD961B60483C00F11C77 /* KanjiScript.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E5ABD9E1B60483C00F11C77 /* KanjiScript.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E5ABD941B60483B00F11C77 /* KanjiScript.framework */; };
@@ -33,6 +32,69 @@
 		7E8930211BEEB61C00F245C5 /* KanjiAvian.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8930201BEEB61C00F245C5 /* KanjiAvian.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E8930281BEEB61C00F245C5 /* KanjiAvian.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E89301E1BEEB61B00F245C5 /* KanjiAvian.framework */; };
 		7E89302D1BEEB61C00F245C5 /* KanjiAvianTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E89302C1BEEB61C00F245C5 /* KanjiAvianTests.swift */; };
+		7E920C901D4001D90044386F /* java.applet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C511D4001D90044386F /* java.applet.swift */; };
+		7E920C911D4001D90044386F /* java.awt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C521D4001D90044386F /* java.awt.swift */; };
+		7E920C921D4001D90044386F /* java.beans.beancontext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C531D4001D90044386F /* java.beans.beancontext.swift */; };
+		7E920C931D4001D90044386F /* java.beans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C541D4001D90044386F /* java.beans.swift */; };
+		7E920C941D4001D90044386F /* java.io.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C551D4001D90044386F /* java.io.swift */; };
+		7E920C951D4001D90044386F /* java.lang.annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C561D4001D90044386F /* java.lang.annotation.swift */; };
+		7E920C961D4001D90044386F /* java.lang.instrument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C571D4001D90044386F /* java.lang.instrument.swift */; };
+		7E920C971D4001D90044386F /* java.lang.invoke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C581D4001D90044386F /* java.lang.invoke.swift */; };
+		7E920C981D4001D90044386F /* java.lang.management.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C591D4001D90044386F /* java.lang.management.swift */; };
+		7E920C991D4001D90044386F /* java.lang.ref.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C5A1D4001D90044386F /* java.lang.ref.swift */; };
+		7E920C9A1D4001D90044386F /* java.lang.reflect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C5B1D4001D90044386F /* java.lang.reflect.swift */; };
+		7E920C9B1D4001D90044386F /* java.lang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C5C1D4001D90044386F /* java.lang.swift */; };
+		7E920C9C1D4001D90044386F /* java.math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C5D1D4001D90044386F /* java.math.swift */; };
+		7E920C9D1D4001D90044386F /* java.net.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C5E1D4001D90044386F /* java.net.swift */; };
+		7E920C9E1D4001D90044386F /* java.nio.channels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C5F1D4001D90044386F /* java.nio.channels.swift */; };
+		7E920C9F1D4001D90044386F /* java.nio.charset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C601D4001D90044386F /* java.nio.charset.swift */; };
+		7E920CA01D4001D90044386F /* java.nio.file.attribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C611D4001D90044386F /* java.nio.file.attribute.swift */; };
+		7E920CA11D4001D90044386F /* java.nio.file.spi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C621D4001D90044386F /* java.nio.file.spi.swift */; };
+		7E920CA21D4001D90044386F /* java.nio.file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C631D4001D90044386F /* java.nio.file.swift */; };
+		7E920CA31D4001D90044386F /* java.nio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C641D4001D90044386F /* java.nio.swift */; };
+		7E920CA41D4001D90044386F /* java.security.acl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C651D4001D90044386F /* java.security.acl.swift */; };
+		7E920CA51D4001D90044386F /* java.security.cert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C661D4001D90044386F /* java.security.cert.swift */; };
+		7E920CA61D4001D90044386F /* java.security.interfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C671D4001D90044386F /* java.security.interfaces.swift */; };
+		7E920CA71D4001D90044386F /* java.security.spec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C681D4001D90044386F /* java.security.spec.swift */; };
+		7E920CA81D4001D90044386F /* java.security.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C691D4001D90044386F /* java.security.swift */; };
+		7E920CA91D4001D90044386F /* java.sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C6A1D4001D90044386F /* java.sql.swift */; };
+		7E920CAA1D4001D90044386F /* java.text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C6B1D4001D90044386F /* java.text.swift */; };
+		7E920CAB1D4001D90044386F /* java.time.chrono.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C6C1D4001D90044386F /* java.time.chrono.swift */; };
+		7E920CAC1D4001D90044386F /* java.time.format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C6D1D4001D90044386F /* java.time.format.swift */; };
+		7E920CAD1D4001D90044386F /* java.time.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C6E1D4001D90044386F /* java.time.swift */; };
+		7E920CAE1D4001D90044386F /* java.time.temporal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C6F1D4001D90044386F /* java.time.temporal.swift */; };
+		7E920CAF1D4001D90044386F /* java.time.zone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C701D4001D90044386F /* java.time.zone.swift */; };
+		7E920CB01D4001D90044386F /* java.util.concurrent.atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C711D4001D90044386F /* java.util.concurrent.atomic.swift */; };
+		7E920CB11D4001D90044386F /* java.util.concurrent.locks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C721D4001D90044386F /* java.util.concurrent.locks.swift */; };
+		7E920CB21D4001D90044386F /* java.util.concurrent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C731D4001D90044386F /* java.util.concurrent.swift */; };
+		7E920CB31D4001D90044386F /* java.util.function.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C741D4001D90044386F /* java.util.function.swift */; };
+		7E920CB41D4001D90044386F /* java.util.jar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C751D4001D90044386F /* java.util.jar.swift */; };
+		7E920CB51D4001D90044386F /* java.util.logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C761D4001D90044386F /* java.util.logging.swift */; };
+		7E920CB61D4001D90044386F /* java.util.prefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C771D4001D90044386F /* java.util.prefs.swift */; };
+		7E920CB71D4001D90044386F /* java.util.regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C781D4001D90044386F /* java.util.regex.swift */; };
+		7E920CB81D4001D90044386F /* java.util.stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C791D4001D90044386F /* java.util.stream.swift */; };
+		7E920CB91D4001D90044386F /* java.util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C7A1D4001D90044386F /* java.util.swift */; };
+		7E920CBA1D4001D90044386F /* java.util.zip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C7B1D4001D90044386F /* java.util.zip.swift */; };
+		7E920CBB1D4001D90044386F /* javax.crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C7C1D4001D90044386F /* javax.crypto.swift */; };
+		7E920CBC1D4001D90044386F /* javax.management.openmbean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C7D1D4001D90044386F /* javax.management.openmbean.swift */; };
+		7E920CBD1D4001D90044386F /* javax.management.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C7E1D4001D90044386F /* javax.management.swift */; };
+		7E920CBE1D4001D90044386F /* javax.script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C7F1D4001D90044386F /* javax.script.swift */; };
+		7E920CBF1D4001D90044386F /* javax.security.auth.callback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C801D4001D90044386F /* javax.security.auth.callback.swift */; };
+		7E920CC01D4001D90044386F /* javax.security.auth.login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C811D4001D90044386F /* javax.security.auth.login.swift */; };
+		7E920CC11D4001D90044386F /* javax.security.auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C821D4001D90044386F /* javax.security.auth.swift */; };
+		7E920CC21D4001D90044386F /* javax.security.auth.x500.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C831D4001D90044386F /* javax.security.auth.x500.swift */; };
+		7E920CC31D4001D90044386F /* javax.xml.bind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C841D4001D90044386F /* javax.xml.bind.swift */; };
+		7E920CC41D4001D90044386F /* javax.xml.namespace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C851D4001D90044386F /* javax.xml.namespace.swift */; };
+		7E920CC51D4001D90044386F /* javax.xml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C861D4001D90044386F /* javax.xml.swift */; };
+		7E920CC61D4001D90044386F /* javax.xml.transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C871D4001D90044386F /* javax.xml.transform.swift */; };
+		7E920CC71D4001D90044386F /* javax.xml.validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C881D4001D90044386F /* javax.xml.validation.swift */; };
+		7E920CC81D4001D90044386F /* javax.xml.xpath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C891D4001D90044386F /* javax.xml.xpath.swift */; };
+		7E920CC91D4001D90044386F /* jdk.nashorn.api.scripting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8A1D4001D90044386F /* jdk.nashorn.api.scripting.swift */; };
+		7E920CCA1D4001D90044386F /* jdk.nashorn.internal.runtime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8B1D4001D90044386F /* jdk.nashorn.internal.runtime.swift */; };
+		7E920CCB1D4001D90044386F /* org.ietf.jgss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8C1D4001D90044386F /* org.ietf.jgss.swift */; };
+		7E920CCC1D4001D90044386F /* org.xml.sax.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8D1D4001D90044386F /* org.xml.sax.ext.swift */; };
+		7E920CCD1D4001D90044386F /* org.xml.sax.helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8E1D4001D90044386F /* org.xml.sax.helpers.swift */; };
+		7E920CCE1D4001D90044386F /* org.xml.sax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8F1D4001D90044386F /* org.xml.sax.swift */; };
 		7EA8880B1AAAB6DF00C6DBB3 /* KanjiVM.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA8880A1AAAB6DF00C6DBB3 /* KanjiVM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EA888111AAAB6DF00C6DBB3 /* KanjiVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA888051AAAB6DF00C6DBB3 /* KanjiVM.framework */; };
 		7EA888181AAAB6DF00C6DBB3 /* KanjiVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA888171AAAB6DF00C6DBB3 /* KanjiVMTests.swift */; };
@@ -177,7 +239,6 @@
 		7E35AE2E1BD7D7C100E93E09 /* JavaLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JavaLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E35AE301BD7D7C100E93E09 /* JavaLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JavaLib.h; sourceTree = "<group>"; };
 		7E35AE321BD7D7C200E93E09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E35AE3C1BD7D83A00E93E09 /* JavaLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaLib.swift; sourceTree = "<group>"; };
 		7E35FFDC1D242559006B0DE0 /* macos.jre */ = {isa = PBXFileReference; lastKnownFileType = folder; path = macos.jre; sourceTree = "<group>"; };
 		7E5ABD941B60483B00F11C77 /* KanjiScript.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiScript.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5ABD961B60483C00F11C77 /* KanjiScript.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiScript.h; sourceTree = "<group>"; };
@@ -201,6 +262,69 @@
 		7E8930271BEEB61C00F245C5 /* KanjiAvianTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KanjiAvianTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E89302C1BEEB61C00F245C5 /* KanjiAvianTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KanjiAvianTests.swift; sourceTree = "<group>"; };
 		7E89302E1BEEB61C00F245C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E920C511D4001D90044386F /* java.applet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.applet.swift; sourceTree = "<group>"; };
+		7E920C521D4001D90044386F /* java.awt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.awt.swift; sourceTree = "<group>"; };
+		7E920C531D4001D90044386F /* java.beans.beancontext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.beans.beancontext.swift; sourceTree = "<group>"; };
+		7E920C541D4001D90044386F /* java.beans.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.beans.swift; sourceTree = "<group>"; };
+		7E920C551D4001D90044386F /* java.io.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.io.swift; sourceTree = "<group>"; };
+		7E920C561D4001D90044386F /* java.lang.annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.lang.annotation.swift; sourceTree = "<group>"; };
+		7E920C571D4001D90044386F /* java.lang.instrument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.lang.instrument.swift; sourceTree = "<group>"; };
+		7E920C581D4001D90044386F /* java.lang.invoke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.lang.invoke.swift; sourceTree = "<group>"; };
+		7E920C591D4001D90044386F /* java.lang.management.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.lang.management.swift; sourceTree = "<group>"; };
+		7E920C5A1D4001D90044386F /* java.lang.ref.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.lang.ref.swift; sourceTree = "<group>"; };
+		7E920C5B1D4001D90044386F /* java.lang.reflect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.lang.reflect.swift; sourceTree = "<group>"; };
+		7E920C5C1D4001D90044386F /* java.lang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.lang.swift; sourceTree = "<group>"; };
+		7E920C5D1D4001D90044386F /* java.math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.math.swift; sourceTree = "<group>"; };
+		7E920C5E1D4001D90044386F /* java.net.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.net.swift; sourceTree = "<group>"; };
+		7E920C5F1D4001D90044386F /* java.nio.channels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.nio.channels.swift; sourceTree = "<group>"; };
+		7E920C601D4001D90044386F /* java.nio.charset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.nio.charset.swift; sourceTree = "<group>"; };
+		7E920C611D4001D90044386F /* java.nio.file.attribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.nio.file.attribute.swift; sourceTree = "<group>"; };
+		7E920C621D4001D90044386F /* java.nio.file.spi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.nio.file.spi.swift; sourceTree = "<group>"; };
+		7E920C631D4001D90044386F /* java.nio.file.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.nio.file.swift; sourceTree = "<group>"; };
+		7E920C641D4001D90044386F /* java.nio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.nio.swift; sourceTree = "<group>"; };
+		7E920C651D4001D90044386F /* java.security.acl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.security.acl.swift; sourceTree = "<group>"; };
+		7E920C661D4001D90044386F /* java.security.cert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.security.cert.swift; sourceTree = "<group>"; };
+		7E920C671D4001D90044386F /* java.security.interfaces.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.security.interfaces.swift; sourceTree = "<group>"; };
+		7E920C681D4001D90044386F /* java.security.spec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.security.spec.swift; sourceTree = "<group>"; };
+		7E920C691D4001D90044386F /* java.security.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.security.swift; sourceTree = "<group>"; };
+		7E920C6A1D4001D90044386F /* java.sql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.sql.swift; sourceTree = "<group>"; };
+		7E920C6B1D4001D90044386F /* java.text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.text.swift; sourceTree = "<group>"; };
+		7E920C6C1D4001D90044386F /* java.time.chrono.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.time.chrono.swift; sourceTree = "<group>"; };
+		7E920C6D1D4001D90044386F /* java.time.format.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.time.format.swift; sourceTree = "<group>"; };
+		7E920C6E1D4001D90044386F /* java.time.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.time.swift; sourceTree = "<group>"; };
+		7E920C6F1D4001D90044386F /* java.time.temporal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.time.temporal.swift; sourceTree = "<group>"; };
+		7E920C701D4001D90044386F /* java.time.zone.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.time.zone.swift; sourceTree = "<group>"; };
+		7E920C711D4001D90044386F /* java.util.concurrent.atomic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.concurrent.atomic.swift; sourceTree = "<group>"; };
+		7E920C721D4001D90044386F /* java.util.concurrent.locks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.concurrent.locks.swift; sourceTree = "<group>"; };
+		7E920C731D4001D90044386F /* java.util.concurrent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.concurrent.swift; sourceTree = "<group>"; };
+		7E920C741D4001D90044386F /* java.util.function.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.function.swift; sourceTree = "<group>"; };
+		7E920C751D4001D90044386F /* java.util.jar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.jar.swift; sourceTree = "<group>"; };
+		7E920C761D4001D90044386F /* java.util.logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.logging.swift; sourceTree = "<group>"; };
+		7E920C771D4001D90044386F /* java.util.prefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.prefs.swift; sourceTree = "<group>"; };
+		7E920C781D4001D90044386F /* java.util.regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.regex.swift; sourceTree = "<group>"; };
+		7E920C791D4001D90044386F /* java.util.stream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.stream.swift; sourceTree = "<group>"; };
+		7E920C7A1D4001D90044386F /* java.util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.swift; sourceTree = "<group>"; };
+		7E920C7B1D4001D90044386F /* java.util.zip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = java.util.zip.swift; sourceTree = "<group>"; };
+		7E920C7C1D4001D90044386F /* javax.crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.crypto.swift; sourceTree = "<group>"; };
+		7E920C7D1D4001D90044386F /* javax.management.openmbean.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.management.openmbean.swift; sourceTree = "<group>"; };
+		7E920C7E1D4001D90044386F /* javax.management.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.management.swift; sourceTree = "<group>"; };
+		7E920C7F1D4001D90044386F /* javax.script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.script.swift; sourceTree = "<group>"; };
+		7E920C801D4001D90044386F /* javax.security.auth.callback.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.security.auth.callback.swift; sourceTree = "<group>"; };
+		7E920C811D4001D90044386F /* javax.security.auth.login.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.security.auth.login.swift; sourceTree = "<group>"; };
+		7E920C821D4001D90044386F /* javax.security.auth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.security.auth.swift; sourceTree = "<group>"; };
+		7E920C831D4001D90044386F /* javax.security.auth.x500.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.security.auth.x500.swift; sourceTree = "<group>"; };
+		7E920C841D4001D90044386F /* javax.xml.bind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.xml.bind.swift; sourceTree = "<group>"; };
+		7E920C851D4001D90044386F /* javax.xml.namespace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.xml.namespace.swift; sourceTree = "<group>"; };
+		7E920C861D4001D90044386F /* javax.xml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.xml.swift; sourceTree = "<group>"; };
+		7E920C871D4001D90044386F /* javax.xml.transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.xml.transform.swift; sourceTree = "<group>"; };
+		7E920C881D4001D90044386F /* javax.xml.validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.xml.validation.swift; sourceTree = "<group>"; };
+		7E920C891D4001D90044386F /* javax.xml.xpath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.xml.xpath.swift; sourceTree = "<group>"; };
+		7E920C8A1D4001D90044386F /* jdk.nashorn.api.scripting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jdk.nashorn.api.scripting.swift; sourceTree = "<group>"; };
+		7E920C8B1D4001D90044386F /* jdk.nashorn.internal.runtime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jdk.nashorn.internal.runtime.swift; sourceTree = "<group>"; };
+		7E920C8C1D4001D90044386F /* org.ietf.jgss.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = org.ietf.jgss.swift; sourceTree = "<group>"; };
+		7E920C8D1D4001D90044386F /* org.xml.sax.ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = org.xml.sax.ext.swift; sourceTree = "<group>"; };
+		7E920C8E1D4001D90044386F /* org.xml.sax.helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = org.xml.sax.helpers.swift; sourceTree = "<group>"; };
+		7E920C8F1D4001D90044386F /* org.xml.sax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = org.xml.sax.swift; sourceTree = "<group>"; };
 		7EA888051AAAB6DF00C6DBB3 /* KanjiVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA888091AAAB6DF00C6DBB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA8880A1AAAB6DF00C6DBB3 /* KanjiVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiVM.h; sourceTree = "<group>"; };
@@ -337,8 +461,70 @@
 			isa = PBXGroup;
 			children = (
 				7E35AE301BD7D7C100E93E09 /* JavaLib.h */,
-				7E35AE3C1BD7D83A00E93E09 /* JavaLib.swift */,
 				7E35AE321BD7D7C200E93E09 /* Info.plist */,
+				7E920C511D4001D90044386F /* java.applet.swift */,
+				7E920C521D4001D90044386F /* java.awt.swift */,
+				7E920C531D4001D90044386F /* java.beans.beancontext.swift */,
+				7E920C541D4001D90044386F /* java.beans.swift */,
+				7E920C551D4001D90044386F /* java.io.swift */,
+				7E920C561D4001D90044386F /* java.lang.annotation.swift */,
+				7E920C571D4001D90044386F /* java.lang.instrument.swift */,
+				7E920C581D4001D90044386F /* java.lang.invoke.swift */,
+				7E920C591D4001D90044386F /* java.lang.management.swift */,
+				7E920C5A1D4001D90044386F /* java.lang.ref.swift */,
+				7E920C5B1D4001D90044386F /* java.lang.reflect.swift */,
+				7E920C5C1D4001D90044386F /* java.lang.swift */,
+				7E920C5D1D4001D90044386F /* java.math.swift */,
+				7E920C5E1D4001D90044386F /* java.net.swift */,
+				7E920C5F1D4001D90044386F /* java.nio.channels.swift */,
+				7E920C601D4001D90044386F /* java.nio.charset.swift */,
+				7E920C611D4001D90044386F /* java.nio.file.attribute.swift */,
+				7E920C621D4001D90044386F /* java.nio.file.spi.swift */,
+				7E920C631D4001D90044386F /* java.nio.file.swift */,
+				7E920C641D4001D90044386F /* java.nio.swift */,
+				7E920C651D4001D90044386F /* java.security.acl.swift */,
+				7E920C661D4001D90044386F /* java.security.cert.swift */,
+				7E920C671D4001D90044386F /* java.security.interfaces.swift */,
+				7E920C681D4001D90044386F /* java.security.spec.swift */,
+				7E920C691D4001D90044386F /* java.security.swift */,
+				7E920C6A1D4001D90044386F /* java.sql.swift */,
+				7E920C6B1D4001D90044386F /* java.text.swift */,
+				7E920C6C1D4001D90044386F /* java.time.chrono.swift */,
+				7E920C6D1D4001D90044386F /* java.time.format.swift */,
+				7E920C6E1D4001D90044386F /* java.time.swift */,
+				7E920C6F1D4001D90044386F /* java.time.temporal.swift */,
+				7E920C701D4001D90044386F /* java.time.zone.swift */,
+				7E920C711D4001D90044386F /* java.util.concurrent.atomic.swift */,
+				7E920C721D4001D90044386F /* java.util.concurrent.locks.swift */,
+				7E920C731D4001D90044386F /* java.util.concurrent.swift */,
+				7E920C741D4001D90044386F /* java.util.function.swift */,
+				7E920C751D4001D90044386F /* java.util.jar.swift */,
+				7E920C761D4001D90044386F /* java.util.logging.swift */,
+				7E920C771D4001D90044386F /* java.util.prefs.swift */,
+				7E920C781D4001D90044386F /* java.util.regex.swift */,
+				7E920C791D4001D90044386F /* java.util.stream.swift */,
+				7E920C7A1D4001D90044386F /* java.util.swift */,
+				7E920C7B1D4001D90044386F /* java.util.zip.swift */,
+				7E920C7C1D4001D90044386F /* javax.crypto.swift */,
+				7E920C7D1D4001D90044386F /* javax.management.openmbean.swift */,
+				7E920C7E1D4001D90044386F /* javax.management.swift */,
+				7E920C7F1D4001D90044386F /* javax.script.swift */,
+				7E920C801D4001D90044386F /* javax.security.auth.callback.swift */,
+				7E920C811D4001D90044386F /* javax.security.auth.login.swift */,
+				7E920C821D4001D90044386F /* javax.security.auth.swift */,
+				7E920C831D4001D90044386F /* javax.security.auth.x500.swift */,
+				7E920C841D4001D90044386F /* javax.xml.bind.swift */,
+				7E920C851D4001D90044386F /* javax.xml.namespace.swift */,
+				7E920C861D4001D90044386F /* javax.xml.swift */,
+				7E920C871D4001D90044386F /* javax.xml.transform.swift */,
+				7E920C881D4001D90044386F /* javax.xml.validation.swift */,
+				7E920C891D4001D90044386F /* javax.xml.xpath.swift */,
+				7E920C8A1D4001D90044386F /* jdk.nashorn.api.scripting.swift */,
+				7E920C8B1D4001D90044386F /* jdk.nashorn.internal.runtime.swift */,
+				7E920C8C1D4001D90044386F /* org.ietf.jgss.swift */,
+				7E920C8D1D4001D90044386F /* org.xml.sax.ext.swift */,
+				7E920C8E1D4001D90044386F /* org.xml.sax.helpers.swift */,
+				7E920C8F1D4001D90044386F /* org.xml.sax.swift */,
 			);
 			path = JavaLib;
 			sourceTree = "<group>";
@@ -771,7 +957,7 @@
 		7EA887FC1AAAB6DF00C6DBB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = io.glimpse;
 				TargetAttributes = {
@@ -946,7 +1132,69 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E35AE3D1BD7D83A00E93E09 /* JavaLib.swift in Sources */,
+				7E920C9E1D4001D90044386F /* java.nio.channels.swift in Sources */,
+				7E920CB31D4001D90044386F /* java.util.function.swift in Sources */,
+				7E920CA91D4001D90044386F /* java.sql.swift in Sources */,
+				7E920CBA1D4001D90044386F /* java.util.zip.swift in Sources */,
+				7E920CA51D4001D90044386F /* java.security.cert.swift in Sources */,
+				7E920C9D1D4001D90044386F /* java.net.swift in Sources */,
+				7E920C931D4001D90044386F /* java.beans.swift in Sources */,
+				7E920CC31D4001D90044386F /* javax.xml.bind.swift in Sources */,
+				7E920CC41D4001D90044386F /* javax.xml.namespace.swift in Sources */,
+				7E920C9A1D4001D90044386F /* java.lang.reflect.swift in Sources */,
+				7E920CAA1D4001D90044386F /* java.text.swift in Sources */,
+				7E920C921D4001D90044386F /* java.beans.beancontext.swift in Sources */,
+				7E920C951D4001D90044386F /* java.lang.annotation.swift in Sources */,
+				7E920CCE1D4001D90044386F /* org.xml.sax.swift in Sources */,
+				7E920CCB1D4001D90044386F /* org.ietf.jgss.swift in Sources */,
+				7E920CB01D4001D90044386F /* java.util.concurrent.atomic.swift in Sources */,
+				7E920C991D4001D90044386F /* java.lang.ref.swift in Sources */,
+				7E920C9C1D4001D90044386F /* java.math.swift in Sources */,
+				7E920CA11D4001D90044386F /* java.nio.file.spi.swift in Sources */,
+				7E920CA21D4001D90044386F /* java.nio.file.swift in Sources */,
+				7E920CC11D4001D90044386F /* javax.security.auth.swift in Sources */,
+				7E920CC91D4001D90044386F /* jdk.nashorn.api.scripting.swift in Sources */,
+				7E920C941D4001D90044386F /* java.io.swift in Sources */,
+				7E920CC81D4001D90044386F /* javax.xml.xpath.swift in Sources */,
+				7E920C981D4001D90044386F /* java.lang.management.swift in Sources */,
+				7E920CB21D4001D90044386F /* java.util.concurrent.swift in Sources */,
+				7E920C901D4001D90044386F /* java.applet.swift in Sources */,
+				7E920CC01D4001D90044386F /* javax.security.auth.login.swift in Sources */,
+				7E920CBC1D4001D90044386F /* javax.management.openmbean.swift in Sources */,
+				7E920C9B1D4001D90044386F /* java.lang.swift in Sources */,
+				7E920CAE1D4001D90044386F /* java.time.temporal.swift in Sources */,
+				7E920CBB1D4001D90044386F /* javax.crypto.swift in Sources */,
+				7E920CBF1D4001D90044386F /* javax.security.auth.callback.swift in Sources */,
+				7E920C971D4001D90044386F /* java.lang.invoke.swift in Sources */,
+				7E920CB11D4001D90044386F /* java.util.concurrent.locks.swift in Sources */,
+				7E920CB71D4001D90044386F /* java.util.regex.swift in Sources */,
+				7E920CB41D4001D90044386F /* java.util.jar.swift in Sources */,
+				7E920C911D4001D90044386F /* java.awt.swift in Sources */,
+				7E920CB51D4001D90044386F /* java.util.logging.swift in Sources */,
+				7E920CBE1D4001D90044386F /* javax.script.swift in Sources */,
+				7E920CAD1D4001D90044386F /* java.time.swift in Sources */,
+				7E920CCD1D4001D90044386F /* org.xml.sax.helpers.swift in Sources */,
+				7E920CCA1D4001D90044386F /* jdk.nashorn.internal.runtime.swift in Sources */,
+				7E920CAB1D4001D90044386F /* java.time.chrono.swift in Sources */,
+				7E920CBD1D4001D90044386F /* javax.management.swift in Sources */,
+				7E920CB61D4001D90044386F /* java.util.prefs.swift in Sources */,
+				7E920CAC1D4001D90044386F /* java.time.format.swift in Sources */,
+				7E920CB81D4001D90044386F /* java.util.stream.swift in Sources */,
+				7E920CC21D4001D90044386F /* javax.security.auth.x500.swift in Sources */,
+				7E920C961D4001D90044386F /* java.lang.instrument.swift in Sources */,
+				7E920CAF1D4001D90044386F /* java.time.zone.swift in Sources */,
+				7E920CCC1D4001D90044386F /* org.xml.sax.ext.swift in Sources */,
+				7E920CA81D4001D90044386F /* java.security.swift in Sources */,
+				7E920C9F1D4001D90044386F /* java.nio.charset.swift in Sources */,
+				7E920CC71D4001D90044386F /* javax.xml.validation.swift in Sources */,
+				7E920CB91D4001D90044386F /* java.util.swift in Sources */,
+				7E920CA61D4001D90044386F /* java.security.interfaces.swift in Sources */,
+				7E920CC51D4001D90044386F /* javax.xml.swift in Sources */,
+				7E920CC61D4001D90044386F /* javax.xml.transform.swift in Sources */,
+				7E920CA71D4001D90044386F /* java.security.spec.swift in Sources */,
+				7E920CA01D4001D90044386F /* java.nio.file.attribute.swift in Sources */,
+				7E920CA41D4001D90044386F /* java.security.acl.swift in Sources */,
+				7E920CA31D4001D90044386F /* java.nio.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

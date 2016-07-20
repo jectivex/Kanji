@@ -80,8 +80,8 @@ if !done {
         print(usage)
     } else {
         let sortedClasses = Array(Set(classes)).sort()
-        let javap = try launchDisassembler(sortedClasses)
-        let code = try generateWrappers(javap, skipPatterns: Set(skips), imports: imports) { log in
+        let javap = try KanjiGen.launchDisassembler(sortedClasses)
+        let code = try KanjiGen.generateWrappers(javap, skipPatterns: Set(skips), imports: imports) { log in
             // there's no native stderr to log to
             Darwin.fputs("kanjitool: \(log)\n", Darwin.__stderrp)
         }

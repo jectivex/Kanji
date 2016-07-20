@@ -1154,255 +1154,257 @@ func getTime() throws -> jlong
 ^
 
 */
-func parseDisassemblySegment(logger: String->(), disassembly: String) throws -> (JUnit, String) {
-    let scanner = NSScanner(string: disassembly)
-    try scanner.require("Compiled from \"")
+public enum KanjiGen {
+    static func parseDisassemblySegment(logger: String->(), disassembly: String) throws -> (JUnit, String) {
+        let scanner = NSScanner(string: disassembly)
+        try scanner.require("Compiled from \"")
 
-    let javaFileName = try scanner.scanThrough("\"")
-    logger("file: \(javaFileName)")
-    
-    var unit = JUnit(jname: JName(parts: [], generics: []), mods: JUnit.Mod(), extends: [], implements: [], fields: [], methods: [])
+        let javaFileName = try scanner.scanThrough("\"")
+        logger("file: \(javaFileName)")
+        
+        var unit = JUnit(jname: JName(parts: [], generics: []), mods: JUnit.Mod(), extends: [], implements: [], fields: [], methods: [])
 
-    if scanner.consume("public") { unit.mods.unionInPlace(.Public) }
-    if scanner.consume("protected") { unit.mods.unionInPlace(.Protected) }
-    if scanner.consume("abstract") { unit.mods.unionInPlace(.Abstract) }
-    if scanner.consume("final") { unit.mods.unionInPlace(.Final) }
-    if scanner.consume("class") { unit.mods.unionInPlace(.Class) }
-    if scanner.consume("interface") { unit.mods.unionInPlace(.Interface) }
+        if scanner.consume("public") { unit.mods.unionInPlace(.Public) }
+        if scanner.consume("protected") { unit.mods.unionInPlace(.Protected) }
+        if scanner.consume("abstract") { unit.mods.unionInPlace(.Abstract) }
+        if scanner.consume("final") { unit.mods.unionInPlace(.Final) }
+        if scanner.consume("class") { unit.mods.unionInPlace(.Class) }
+        if scanner.consume("interface") { unit.mods.unionInPlace(.Interface) }
 
 
-    func scanType() throws -> JName {
-        let typeName = try scanner.scanTo([" ", "<", ","])
-        var generics: [String] = []
-        if scanner.consume("<") {
-            var gcount = 1
-            while gcount > 0 {
-                if scanner.consume("<") {
-                    gcount += 1
-                } else if scanner.consume(">") {
-                    gcount -= 1
-                } else if scanner.consume(",") {
-                    // next element
+        func scanType() throws -> JName {
+            let typeName = try scanner.scanTo([" ", "<", ","])
+            var generics: [String] = []
+            if scanner.consume("<") {
+                var gcount = 1
+                while gcount > 0 {
+                    if scanner.consume("<") {
+                        gcount += 1
+                    } else if scanner.consume(">") {
+                        gcount -= 1
+                    } else if scanner.consume(",") {
+                        // next element
+                    } else {
+                        let gen = try scanner.scanTo([",", ">", "<"], consume: false)
+                        generics.append(gen)
+                        scanner.consume(",")
+                    }
+                }
+            }
+
+            // javap declaration outputs dot-separated names
+            let parts = (typeName.characters.split() { $0 == "." }).map { String($0) }
+            return JName(parts: parts, generics: generics)
+        }
+
+        let type = try scanType()
+
+        if scanner.consume("extends") {
+            while true {
+                let typ = try scanType()
+                if unit.mods.contains(.Interface) {
+                    unit.implements.append(typ)
                 } else {
-                    let gen = try scanner.scanTo([",", ">", "<"], consume: false)
-                    generics.append(gen)
-                    scanner.consume(",")
+                    unit.extends.append(typ)
+                }
+                if !scanner.consume(",") {
+                    break
                 }
             }
         }
 
-        // javap declaration outputs dot-separated names
-        let parts = (typeName.characters.split() { $0 == "." }).map { String($0) }
-        return JName(parts: parts, generics: generics)
-    }
-
-    let type = try scanType()
-
-    if scanner.consume("extends") {
-        while true {
-            let typ = try scanType()
-            if unit.mods.contains(.Interface) {
+        if scanner.consume("implements") {
+            while true {
+                let typ = try scanType()
                 unit.implements.append(typ)
+                if !scanner.consume(",") {
+                    break
+                }
+            }
+        }
+
+        unit.jname = type
+
+        try scanner.require("{")
+
+
+        var fields: [JField] = []
+        var methods: [JMethod] = []
+
+        while !scanner.consume("}") {
+            if scanner.consume("static {};") { // ignore static init
+                try scanner.require("descriptor: ()V")
+                continue
+            }
+            var mods = JMod()
+            if scanner.consume("public") { mods.unionInPlace(JMod.Public) }
+            if scanner.consume("protected") { mods.unionInPlace(JMod.Protected) }
+            if scanner.consume("private") { mods.unionInPlace(JMod.Private) }
+            if scanner.consume("transient") { mods.unionInPlace(JMod.Transient) }
+            if scanner.consume("synchronized") { mods.unionInPlace(JMod.Synchronized) }
+            if scanner.consume("static") { mods.unionInPlace(JMod.Static) }
+            if scanner.consume("native") { mods.unionInPlace(JMod.Native) } // static native
+            if scanner.consume("final") { mods.unionInPlace(JMod.Final) }
+
+            let decl = try scanner.scanTo("\n")
+
+
+            try scanner.require("descriptor:")
+            let desc = try scanner.scanTo("\n")
+
+            let isMethod = desc.hasPrefix("(")
+
+            if isMethod {
+                if let method = try JMethod(decl: decl, desc: desc, mods: mods) {
+                    methods.append(method)
+                }
             } else {
-                unit.extends.append(typ)
-            }
-            if !scanner.consume(",") {
-                break
-            }
-        }
-    }
-
-    if scanner.consume("implements") {
-        while true {
-            let typ = try scanType()
-            unit.implements.append(typ)
-            if !scanner.consume(",") {
-                break
+                if let field = try JField(decl: decl, desc: desc, mods: mods) {
+                    fields.append(field)
+                }
             }
         }
+
+        unit.fields = fields
+        unit.methods = methods
+        return (unit, scanner.remainder as String)
     }
 
-    unit.jname = type
-
-    try scanner.require("{")
-
-
-    var fields: [JField] = []
-    var methods: [JMethod] = []
-
-    while !scanner.consume("}") {
-        if scanner.consume("static {};") { // ignore static init
-            try scanner.require("descriptor: ()V")
-            continue
+    static func parseDisassembly(logger: String->(), disassembly: String) throws -> [JUnit] {
+        var disassembly = disassembly
+        var units: [JUnit] = []
+        while disassembly.utf16.count > 1 {
+            let (unit, remainder) = try parseDisassemblySegment(logger, disassembly: disassembly)
+            units.append(unit)
+            disassembly = remainder
         }
-        var mods = JMod()
-        if scanner.consume("public") { mods.unionInPlace(JMod.Public) }
-        if scanner.consume("protected") { mods.unionInPlace(JMod.Protected) }
-        if scanner.consume("private") { mods.unionInPlace(JMod.Private) }
-        if scanner.consume("transient") { mods.unionInPlace(JMod.Transient) }
-        if scanner.consume("synchronized") { mods.unionInPlace(JMod.Synchronized) }
-        if scanner.consume("static") { mods.unionInPlace(JMod.Static) }
-        if scanner.consume("native") { mods.unionInPlace(JMod.Native) } // static native
-        if scanner.consume("final") { mods.unionInPlace(JMod.Final) }
+        return units
+    }
 
-        let decl = try scanner.scanTo("\n")
+    /// Generate the Kanji wrappers for the underlying javap disassembly
+    ///
+    /// - parameter skipPatterns: regular expression patterns of class names to skip generation
+    /// - parameter imports: Swift modules to import into this package
+    ///
+    /// - returns: the Swift code for the wrapper
+    public static func generateWrappers(disassembly: String, skipPatterns: Set<String> = Set(), imports: [String] = ["KanjiVM"], logger: String->() = { print($0) }) throws -> String {
 
+        var contents = imports.map({"import " + $0}).joinWithSeparator("\n") + "\n\n"
 
-        try scanner.require("descriptor:")
-        let desc = try scanner.scanTo("\n")
-
-        let isMethod = desc.hasPrefix("(")
-
-        if isMethod {
-            if let method = try JMethod(decl: decl, desc: desc, mods: mods) {
-                methods.append(method)
-            }
-        } else {
-            if let field = try JField(decl: decl, desc: desc, mods: mods) {
-                fields.append(field)
-            }
+        try generateShims(disassembly, skipPatterns: skipPatterns, logger: logger) { name, mode, code in
+            contents += code
         }
+
+        return contents
     }
 
-    unit.fields = fields
-    unit.methods = methods
-    return (unit, scanner.remainder as String)
-}
+    public static func generateShims(disassembly: String, skipPatterns: Set<String> = Set(), logger: String->() = { print($0) }, callback: (name: String, type: CodeUnitType, code: String) -> Void) throws {
 
-func parseDisassembly(logger: String->(), disassembly: String) throws -> [JUnit] {
-    var disassembly = disassembly
-    var units: [JUnit] = []
-    while disassembly.utf16.count > 1 {
-        let (unit, remainder) = try parseDisassemblySegment(logger, disassembly: disassembly)
-        units.append(unit)
-        disassembly = remainder
-    }
-    return units
-}
+        let units = try parseDisassembly(logger, disassembly: disassembly)
 
-/// Generate the Kanji wrappers for the underlying javap disassembly
-///
-/// - parameter skipPatterns: regular expression patterns of class names to skip generation
-/// - parameter imports: Swift modules to import into this package
-///
-/// - returns: the Swift code for the wrapper
-public func generateWrappers(disassembly: String, skipPatterns: Set<String> = Set(), imports: [String] = ["KanjiVM"], logger: String->() = { print($0) }) throws -> String {
-
-    var contents = imports.map({"import " + $0}).joinWithSeparator("\n") + "\n\n"
-
-    try generateShims(disassembly, skipPatterns: skipPatterns, logger: logger) { name, mode, code in
-        contents += code
-    }
-
-    return contents
-}
-
-public func generateShims(disassembly: String, skipPatterns: Set<String> = Set(), logger: String->() = { print($0) }, callback: (name: String, type: CodeUnitType, code: String) -> Void) throws {
-
-    let units = try parseDisassembly(logger, disassembly: disassembly)
-
-    var unitMap: [JName: JUnit] = [:]
-    for unit in units {
-        unitMap[unit.jname] = unit
-    }
-
-    /// Returns true if the given name matches any of the skip patterns
-    func shouldSkip(name: String) -> Bool {
-        return skipPatterns.map({ (pattern: String)->Bool in
-            (name as NSString).rangeOfString(pattern, options: .RegularExpressionSearch).location != NSNotFound
-        }).reduce(false, combine: { $0 || $1 })
-    }
-
-    var generatedTypes = Set<JType>()
-    var referencedTypes = Set<JType>()
-
-    let lookup: (JName)->(JUnit?) = { unitMap[$0] }
-
-    for unit in units {
-        let name = unit.jname.javaClassName
-        if !shouldSkip(name) {
-            let gen = unit.generateWrapper(logger: logger)
-            logger("type: \(name)")
-            if unit.mods.contains(.Class) {
-                // a class is all-in one with an implementation typealias
-                callback(name: name, type: .classImplementation, code: try gen(mode: .classImplementation(lookup)))
-                callback(name: name, type: .classTypealias, code: try gen(mode: .classTypealias))
-            } else if unit.mods.contains(.Interface) {
-                // an interface has a protocol with the declarations, a default implementation class with the method caches, and a protocol extension with the method implementations
-                callback(name: name, type: .interfaceProtocol, code: try gen(mode: .interfaceProtocol))
-                callback(name: name, type: .interfaceStub, code: try gen(mode: .interfaceStub))
-                callback(name: name, type: .interfaceExtension, code: try gen(mode: .interfaceExtension))
-            }
-
-            generatedTypes.insert(unit.jtype)
-
-            referencedTypes.unionInPlace(unit.referencedClasses)
+        var unitMap: [JName: JUnit] = [:]
+        for unit in units {
+            unitMap[unit.jname] = unit
         }
-    }
 
+        /// Returns true if the given name matches any of the skip patterns
+        func shouldSkip(name: String) -> Bool {
+            return skipPatterns.map({ (pattern: String)->Bool in
+                (name as NSString).rangeOfString(pattern, options: .RegularExpressionSearch).location != NSNotFound
+            }).reduce(false, combine: { $0 || $1 })
+        }
 
-    let stubs = referencedTypes.subtract(generatedTypes)
-    for stub in stubs {
-        if let jname = stub.jname {
-            let name = jname.javaClassName
+        var generatedTypes = Set<JType>()
+        var referencedTypes = Set<JType>()
+
+        let lookup: (JName)->(JUnit?) = { unitMap[$0] }
+
+        for unit in units {
+            let name = unit.jname.javaClassName
             if !shouldSkip(name) {
-                logger("stub: \(name)")
-
-                // it would be nicer if we could represent unfound stubs simply is aliases to java.lang.Object,
-                // but some classes would fail to compile if they contain two methods with the same stub signature:
-                // e.g., "MissingType1 get() { }" and "MissingType2 get()" would both fail to compile
-//                let stub = "public typealias \(jname.swiftClassName) = java$lang$Object\n"
-//                + "public typealias \(jname.swiftClassName)$Impl = java$lang$Object\n"
-//                callback(name: name, type: .classTypealias, code: stub)
-
-                let unit = JUnit(jname: jname, mods: JUnit.Mod.Public, extends: [], implements: [], fields: [], methods: [])
                 let gen = unit.generateWrapper(logger: logger)
-                callback(name: name, type: .interfaceProtocol, code: try gen(mode: .interfaceProtocol))
-                callback(name: name, type: .interfaceStub, code: try gen(mode: .interfaceStub))
+                logger("type: \(name)")
+                if unit.mods.contains(.Class) {
+                    // a class is all-in one with an implementation typealias
+                    callback(name: name, type: .classImplementation, code: try gen(mode: .classImplementation(lookup)))
+                    callback(name: name, type: .classTypealias, code: try gen(mode: .classTypealias))
+                } else if unit.mods.contains(.Interface) {
+                    // an interface has a protocol with the declarations, a default implementation class with the method caches, and a protocol extension with the method implementations
+                    callback(name: name, type: .interfaceProtocol, code: try gen(mode: .interfaceProtocol))
+                    callback(name: name, type: .interfaceStub, code: try gen(mode: .interfaceStub))
+                    callback(name: name, type: .interfaceExtension, code: try gen(mode: .interfaceExtension))
+                }
+
+                generatedTypes.insert(unit.jtype)
+
+                referencedTypes.unionInPlace(unit.referencedClasses)
+            }
+        }
+
+
+        let stubs = referencedTypes.subtract(generatedTypes)
+        for stub in stubs {
+            if let jname = stub.jname {
+                let name = jname.javaClassName
+                if !shouldSkip(name) {
+                    logger("stub: \(name)")
+
+                    // it would be nicer if we could represent unfound stubs simply is aliases to java.lang.Object,
+                    // but some classes would fail to compile if they contain two methods with the same stub signature:
+                    // e.g., "MissingType1 get() { }" and "MissingType2 get()" would both fail to compile
+    //                let stub = "public typealias \(jname.swiftClassName) = java$lang$Object\n"
+    //                + "public typealias \(jname.swiftClassName)$Impl = java$lang$Object\n"
+    //                callback(name: name, type: .classTypealias, code: stub)
+
+                    let unit = JUnit(jname: jname, mods: JUnit.Mod.Public, extends: [], implements: [], fields: [], methods: [])
+                    let gen = unit.generateWrapper(logger: logger)
+                    callback(name: name, type: .interfaceProtocol, code: try gen(mode: .interfaceProtocol))
+                    callback(name: name, type: .interfaceStub, code: try gen(mode: .interfaceStub))
+                }
             }
         }
     }
-}
 
-/// Launched javap and returns the output java type disassembly
-public func launchDisassembler(types: [String]) throws -> String {
-    // TODO: when the list of types is too long, launch it multiple times and concatinate the results
+    /// Launched javap and returns the output java type disassembly
+    public static func launchDisassembler(types: [String]) throws -> String {
+        // TODO: when the list of types is too long, launch it multiple times and concatinate the results
 
-    let task = NSTask() // .launchedTaskWithLaunchPath("/usr/bin/javap", arguments: ["-p"] + types)
-    task.launchPath = "/usr/bin/javap"
-    // we always include java.lang.Object even if we might skip the generation
-    if !types.contains("java.lang.Object") {
+        let task = NSTask() // .launchedTaskWithLaunchPath("/usr/bin/javap", arguments: ["-p"] + types)
+        task.launchPath = "/usr/bin/javap"
+        // we always include java.lang.Object even if we might skip the generation
+        if !types.contains("java.lang.Object") {
 
-    }
-    task.arguments = ["-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
+        }
+        task.arguments = ["-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
 
-    let pipe = NSPipe()
-    task.standardOutput = pipe
+        let pipe = NSPipe()
+        task.standardOutput = pipe
 
-    let handle = pipe.fileHandleForReading
-    handle.waitForDataInBackgroundAndNotify()
-
-    let output = NSMutableData()
-
-    let observer = NSNotificationCenter.defaultCenter().addObserverForName(NSFileHandleDataAvailableNotification, object: handle, queue: nil) { note in
-        let data = handle.availableData
-        output.appendData(data)
+        let handle = pipe.fileHandleForReading
         handle.waitForDataInBackgroundAndNotify()
-    }
 
-    task.launch()
-    task.waitUntilExit()
+        let output = NSMutableData()
 
-    NSNotificationCenter.defaultCenter().removeObserver(observer)
+        let observer = NSNotificationCenter.defaultCenter().addObserverForName(NSFileHandleDataAvailableNotification, object: handle, queue: nil) { note in
+            let data = handle.availableData
+            output.appendData(data)
+            handle.waitForDataInBackgroundAndNotify()
+        }
 
-    let status = task.terminationStatus
-    if status != 0 {
-        throw CodegenErrors.javapError("Could not execute javap")
-    }
+        task.launch()
+        task.waitUntilExit()
 
-    if let str = NSString(data: output, encoding: NSUTF8StringEncoding) {
-        return str as String
-    } else {
-        throw CodegenErrors.javapError("No output from javap")
+        NSNotificationCenter.defaultCenter().removeObserver(observer)
+
+        let status = task.terminationStatus
+        if status != 0 {
+            throw CodegenErrors.javapError("Could not execute javap")
+        }
+
+        if let str = NSString(data: output, encoding: NSUTF8StringEncoding) {
+            return str as String
+        } else {
+            throw CodegenErrors.javapError("No output from javap")
+        }
     }
 }
