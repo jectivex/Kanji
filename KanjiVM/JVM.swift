@@ -16,9 +16,17 @@ private func log(message: String) {
     print("Kanji Log:", message)
 }
 
-public struct KanjiException: ErrorType {
+public struct KanjiException: ErrorType, CustomStringConvertible, CustomDebugStringConvertible {
     public let message: String?
     public let className: String
+
+    public var description: String {
+        return className + (message.flatMap({ ": " + $0 }) ?? "")
+    }
+
+    public var debugDescription: String {
+        return self.description
+    }
 }
 
 public enum KanjiErrors : ErrorType, CustomDebugStringConvertible {
@@ -758,7 +766,7 @@ extension jboolean: JPrimitive {
             let size = jsize(elements.count)
             let array = JNI_NewBooleanArray(env, size)
             elements.withUnsafeBufferPointer { ptr in
-                JNI_SetBooleanArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+                JNI_SetBooleanArrayRegion(env, array, 0, size, ptr.baseAddress)
             }
             return array
         }
@@ -767,10 +775,13 @@ extension jboolean: JPrimitive {
     public static func getArray(env: JNIEnvPointer) -> (array: ArrayType) -> [jboolean]? {
         return { array in
             if array == nil { return nil }
+            let len = JNI_GetArrayLength(env, array)
+            if len <= 0 { return [] }
             var isCopy: jboolean = jboolean()
             let src = JNI_GetBooleanArrayElements(env, array, &isCopy)
             var dst: [jboolean] = []
-            for i in 0..<JNI_GetArrayLength(env, array) {
+            dst.reserveCapacity(Int(len))
+            for i in 0..<len {
                 dst.append(src[Int(i)])
             }
             JNI_ReleaseBooleanArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
@@ -867,7 +878,7 @@ extension jbyte: JPrimitive {
             let size = jsize(elements.count)
             let array = JNI_NewByteArray(env, size)
             elements.withUnsafeBufferPointer { ptr in
-                JNI_SetByteArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+                JNI_SetByteArrayRegion(env, array, 0, size, ptr.baseAddress)
             }
             return array
         }
@@ -876,13 +887,12 @@ extension jbyte: JPrimitive {
     public static func getArray(env: JNIEnvPointer) -> (array: jbyteArray) -> [jbyte]? {
         return { array in
             if array == nil { return nil }
-            var isCopy: jboolean = jboolean()
-            let src = JNI_GetByteArrayElements(env, array, &isCopy)
-            var dst: [jbyte] = []
-            for i in 0..<JNI_GetArrayLength(env, array) {
-                dst.append(src[Int(i)])
+            let len = JNI_GetArrayLength(env, array)
+            if len <= 0 { return [] }
+            var dst = Array(count: Int(len), repeatedValue: jbyte())
+            dst.withUnsafeMutableBufferPointer { ptr in
+                JNI_GetByteArrayRegion(env, array, 0, len, ptr.baseAddress)
             }
-            JNI_ReleaseByteArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
             return dst
         }
     }
@@ -976,7 +986,7 @@ extension jchar: JPrimitive {
             let size = jsize(elements.count)
             let array = JNI_NewCharArray(env, size)
             elements.withUnsafeBufferPointer { ptr in
-                JNI_SetCharArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+                JNI_SetCharArrayRegion(env, array, 0, size, ptr.baseAddress)
             }
             return array
         }
@@ -985,13 +995,12 @@ extension jchar: JPrimitive {
     public static func getArray(env: JNIEnvPointer) -> (array: jcharArray) -> [jchar]? {
         return { array in
             if array == nil { return nil }
-            var isCopy: jboolean = jboolean()
-            let src = JNI_GetCharArrayElements(env, array, &isCopy)
-            var dst: [jchar] = []
-            for i in 0..<JNI_GetArrayLength(env, array) {
-                dst.append(src[Int(i)])
+            let len = JNI_GetArrayLength(env, array)
+            if len <= 0 { return [] }
+            var dst = Array(count: Int(len), repeatedValue: jchar())
+            dst.withUnsafeMutableBufferPointer { ptr in
+                JNI_GetCharArrayRegion(env, array, 0, len, ptr.baseAddress)
             }
-            JNI_ReleaseCharArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
             return dst
         }
     }
@@ -1086,7 +1095,7 @@ extension jshort: JPrimitive {
             let size = jsize(elements.count)
             let array = JNI_NewShortArray(env, size)
             elements.withUnsafeBufferPointer { ptr in
-                JNI_SetShortArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+                JNI_SetShortArrayRegion(env, array, 0, size, ptr.baseAddress)
             }
             return array
         }
@@ -1095,14 +1104,14 @@ extension jshort: JPrimitive {
     public static func getArray(env: JNIEnvPointer) -> (array: jshortArray) -> [jshort]? {
         return { array in
             if array == nil { return nil }
-            var isCopy: jboolean = jboolean()
-            let src = JNI_GetShortArrayElements(env, array, &isCopy)
-            var dst: [jshort] = []
-            for i in 0..<JNI_GetArrayLength(env, array) {
-                dst.append(src[Int(i)])
+            let len = JNI_GetArrayLength(env, array)
+            if len <= 0 { return [] }
+            var dst = Array(count: Int(len), repeatedValue: jshort())
+            dst.withUnsafeMutableBufferPointer { ptr in
+                JNI_GetShortArrayRegion(env, array, 0, len, ptr.baseAddress)
             }
-            JNI_ReleaseShortArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
             return dst
+
         }
     }
 
@@ -1196,7 +1205,7 @@ extension jint: JPrimitive {
             let size = jsize(elements.count)
             let array = JNI_NewIntArray(env, size)
             elements.withUnsafeBufferPointer { ptr in
-                JNI_SetIntArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+                JNI_SetIntArrayRegion(env, array, 0, size, ptr.baseAddress)
             }
             return array
         }
@@ -1205,14 +1214,14 @@ extension jint: JPrimitive {
     public static func getArray(env: JNIEnvPointer) -> (array: jintArray) -> [jint]? {
         return { array in
             if array == nil { return nil }
-            var isCopy: jboolean = jboolean()
-            let src = JNI_GetIntArrayElements(env, array, &isCopy)
-            var dst: [jint] = []
-            for i in 0..<JNI_GetArrayLength(env, array) {
-                dst.append(src[Int(i)])
+            let len = JNI_GetArrayLength(env, array)
+            if len <= 0 { return [] }
+            var dst = Array(count: Int(len), repeatedValue: jint())
+            dst.withUnsafeMutableBufferPointer { ptr in
+                JNI_GetIntArrayRegion(env, array, 0, len, ptr.baseAddress)
             }
-            JNI_ReleaseIntArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
             return dst
+
         }
     }
 
@@ -1306,7 +1315,7 @@ extension jlong: JPrimitive {
             let size = jsize(elements.count)
             let array = JNI_NewLongArray(env, size)
             elements.withUnsafeBufferPointer { ptr in
-                JNI_SetLongArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+                JNI_SetLongArrayRegion(env, array, 0, size, ptr.baseAddress)
             }
             return array
         }
@@ -1315,14 +1324,14 @@ extension jlong: JPrimitive {
     public static func getArray(env: JNIEnvPointer) -> (array: jlongArray) -> [jlong]? {
         return { array in
             if array == nil { return nil }
-            var isCopy: jboolean = jboolean()
-            let src = JNI_GetLongArrayElements(env, array, &isCopy)
-            var dst: [jlong] = []
-            for i in 0..<JNI_GetArrayLength(env, array) {
-                dst.append(src[Int(i)])
+            let len = JNI_GetArrayLength(env, array)
+            if len <= 0 { return [] }
+            var dst = Array(count: Int(len), repeatedValue: jlong())
+            dst.withUnsafeMutableBufferPointer { ptr in
+                JNI_GetLongArrayRegion(env, array, 0, len, ptr.baseAddress)
             }
-            JNI_ReleaseLongArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
             return dst
+
         }
     }
 
@@ -1416,7 +1425,7 @@ extension jfloat: JPrimitive {
             let size = jsize(elements.count)
             let array = JNI_NewFloatArray(env, size)
             elements.withUnsafeBufferPointer { ptr in
-                JNI_SetFloatArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+                JNI_SetFloatArrayRegion(env, array, 0, size, ptr.baseAddress)
             }
             return array
         }
@@ -1425,14 +1434,14 @@ extension jfloat: JPrimitive {
     public static func getArray(env: JNIEnvPointer) -> (array: jfloatArray) -> [jfloat]? {
         return { array in
             if array == nil { return nil }
-            var isCopy: jboolean = jboolean()
-            let src = JNI_GetFloatArrayElements(env, array, &isCopy)
-            var dst: [jfloat] = []
-            for i in 0..<JNI_GetArrayLength(env, array) {
-                dst.append(src[Int(i)])
+            let len = JNI_GetArrayLength(env, array)
+            if len <= 0 { return [] }
+            var dst = Array(count: Int(len), repeatedValue: jfloat())
+            dst.withUnsafeMutableBufferPointer { ptr in
+                JNI_GetFloatArrayRegion(env, array, 0, len, ptr.baseAddress)
             }
-            JNI_ReleaseFloatArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
             return dst
+
         }
     }
 
@@ -1526,7 +1535,7 @@ extension jdouble: JPrimitive {
             let size = jsize(elements.count)
             let array = JNI_NewDoubleArray(env, size)
             elements.withUnsafeBufferPointer { ptr in
-                JNI_SetDoubleArrayRegion(env, array, jsize(0), size, ptr.baseAddress)
+                JNI_SetDoubleArrayRegion(env, array, 0, size, ptr.baseAddress)
             }
             return array
         }
@@ -1535,14 +1544,14 @@ extension jdouble: JPrimitive {
     public static func getArray(env: JNIEnvPointer) -> (array: jdoubleArray) -> [jdouble]? {
         return { array in
             if array == nil { return nil }
-            var isCopy: jboolean = jboolean()
-            let src = JNI_GetDoubleArrayElements(env, array, &isCopy)
-            var dst: [jdouble] = []
-            for i in 0..<JNI_GetArrayLength(env, array) {
-                dst.append(src[Int(i)])
+            let len = JNI_GetArrayLength(env, array)
+            if len <= 0 { return [] }
+            var dst = Array(count: Int(len), repeatedValue: jdouble())
+            dst.withUnsafeMutableBufferPointer { ptr in
+                JNI_GetDoubleArrayRegion(env, array, 0, len, ptr.baseAddress)
             }
-            JNI_ReleaseDoubleArrayElements(env, array, src, JNI_ABORT) // do not copy back elements
             return dst
+
         }
     }
 

@@ -54,11 +54,20 @@ public class B : A {
     }
 }
 
+public extension JVM {
+    /// Doesn't work because the bytes are released and releases the undelyinng pointer
+//    public func createByteBuffer(bytes: [jbyte]) -> java$nio$ByteBuffer? {
+//        var bytes = bytes
+//        return bytes.withUnsafeMutableBufferPointer { ptr in
+//            java$nio$ByteBuffer(reference: JVM.sharedJVM.newDirectByteBuffer(ptr.baseAddress, capacity: ptr.count))
+//        }
+//    }
+}
 class KanjiLibTests: XCTestCase {
 
     /// Enable just a single test; keep this public so we always get a warning
     override func invokeTest() {
-//        return invocation?.selector == #selector(testFunctionalInterfaces) ? super.invokeTest() : print("skipping test", name)
+//        return invocation?.selector == #selector(testDirectByteBuffers) ? super.invokeTest() : print("skipping test", name)
         return super.invokeTest()
     }
 
@@ -148,6 +157,26 @@ class KanjiLibTests: XCTestCase {
             try java$lang$System.out?.println("Hello Field Accessor")
         }
     }
+
+    func testDirectByteBuffers() throws {
+        var bytes: [jbyte] = [1,5,9,3]
+        let bbuf = bytes.withUnsafeMutableBufferPointer { ptr in
+            java$nio$ByteBuffer(reference: JVM.sharedJVM.newDirectByteBuffer(ptr.baseAddress, capacity: ptr.count))
+        }
+
+        XCTAssertEqual(1, try bbuf?.get(0))
+        XCTAssertEqual(5, try bbuf?.get(1))
+        XCTAssertEqual(9, try bbuf?.get(2))
+        XCTAssertEqual(3, try bbuf?.get(3))
+
+        do {
+            try bbuf?.get(4)
+            XCTFail("get outside of range should fail")
+        } catch let err as KanjiException {
+            XCTAssertEqual("java.lang.IndexOutOfBoundsException", err.className)
+        }
+    }
+
 
     func testInvokeDynamic() throws {
         do {

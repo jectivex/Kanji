@@ -40,6 +40,7 @@ struct UsageError : ErrorType {
 }
 
 var done = false
+var disassembly = false
 var classes: [String] = []
 var skips: [String] = []
 var imports: [String] = ["KanjiVM", "JavaLib"]
@@ -57,6 +58,9 @@ while let arg = args.next() {
         if let imp = args.next() {
             imports.append(imp)
         }
+    case "--":
+        disassembly = true
+
 //    case "-defs":
 //        defsPath = args.next()
 //    case "-maxdirect":
@@ -76,11 +80,23 @@ while let arg = args.next() {
 }
 
 if !done {
-    if classes.isEmpty {
+    var javap: String?
+
+    if disassembly == true {
+        Darwin.fputs("kanjitool: reading javap disassembly from stdin\n", Darwin.__stderrp)
+
+        javap = ""
+        while let line = readLine(stripNewline: false) {
+            javap?.appendContentsOf(line)
+        }
+    } else if classes.isEmpty {
         print(usage)
     } else {
         let sortedClasses = Array(Set(classes)).sort()
-        let javap = try KanjiGen.launchDisassembler(sortedClasses)
+        javap = try KanjiGen.launchDisassembler(sortedClasses)
+    }
+
+    if let javap = javap {
         let code = try KanjiGen.generateWrappers(javap, skipPatterns: Set(skips), imports: imports) { log in
             // there's no native stderr to log to
             Darwin.fputs("kanjitool: \(log)\n", Darwin.__stderrp)

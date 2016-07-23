@@ -1157,11 +1157,13 @@ func getTime() throws -> jlong
 public enum KanjiGen {
     static func parseDisassemblySegment(logger: String->(), disassembly: String) throws -> (JUnit, String) {
         let scanner = NSScanner(string: disassembly)
-        try scanner.require("Compiled from \"")
 
-        let javaFileName = try scanner.scanThrough("\"")
-        logger("file: \(javaFileName)")
-        
+        // sometimes javap outputs "Compiled from FileName.java", sometimes not
+        if scanner.consume("Compiled from \"") {
+            let javaFileName = try scanner.scanThrough("\"")
+            logger("file: \(javaFileName)")
+        }
+
         var unit = JUnit(jname: JName(parts: [], generics: []), mods: JUnit.Mod(), extends: [], implements: [], fields: [], methods: [])
 
         if scanner.consume("public") { unit.mods.unionInPlace(.Public) }

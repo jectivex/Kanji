@@ -133,4 +133,70 @@ public extension String {
     }
 }
 
+public extension java$net$URLClassLoader {
+    /// Creates a URLClassLoader from the list if URLs with the optional parent classloader
+    public static func fromURLs(urls: [NSURL], parent: java$lang$ClassLoader? = nil) throws -> java$net$URLClassLoader {
+        var jurls: [java$net$URL?]? = []
+        for url in urls {
+            try jurls?.append(java$net$URL(url.absoluteString.javaString))
+        }
+        return try java$net$URLClassLoader(jurls, parent)
+    }
+}
+
+public extension java$nio$ByteBuffer {
+    /// Returns this instance as an array of bytes; necessary because array() returns java$lang$Object
+    /// due to lack of Swift's return type covariance.
+    public func asByteArray() throws -> [jbyte] {
+        return try array()?.jobj.jarrayToArray() ?? []
+    }
+}
+
+public extension java$nio$ShortBuffer {
+    /// Returns this instance as an array of shorts; necessary because array() returns java$lang$Object
+    /// due to lack of Swift's return type covariance.
+    public func asShortArray() throws -> [jshort] {
+        return try array()?.jobj.jarrayToArray() ?? []
+    }
+}
+
+public extension java$nio$IntBuffer {
+    /// Returns this instance as an array of ints; necessary because array() returns java$lang$Object
+    /// due to lack of Swift's return type covariance.
+    public func asIntArray() throws -> [jint] {
+        return try array()?.jobj.jarrayToArray() ?? []
+    }
+}
+
+public extension java$nio$LongBuffer {
+    /// Returns this instance as an array of longs; necessary because array() returns java$lang$Object
+    /// due to lack of Swift's return type covariance.
+    public func asLongArray() throws -> [jlong] {
+        return try array()?.jobj.jarrayToArray() ?? []
+    }
+}
+
+public extension java$nio$DoubleBuffer {
+    /// Returns this instance as an array of doubles; necessary because array() returns java$lang$Object
+    /// due to lack of Swift's return type covariance.
+    public func asDoubleArray() throws -> [jdouble] {
+        return try array()?.jobj.jarrayToArray() ?? []
+    }
+}
+
+public extension java$nio$FloatBuffer {
+    /// Returns this instance as an array of floats; necessary because array() returns java$lang$Object
+    /// due to lack of Swift's return type covariance.
+    public func asFloatArray() throws -> [jfloat] {
+        return try array()?.jobj.jarrayToArray() ?? []
+    }
+}
+
+public extension java$nio$CharBuffer {
+    /// Returns this instance as an array of chars; necessary because array() returns java$lang$Object
+    /// due to lack of Swift's return type covariance.
+    public func asCharArray() throws -> [jchar] {
+        return try array()?.jobj.jarrayToArray() ?? []
+    }
+}
 

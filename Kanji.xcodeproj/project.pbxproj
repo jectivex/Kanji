@@ -235,6 +235,7 @@
 		7E0E8C431B6FA85E0003FEC6 /* KanjiLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanjiLib.swift; sourceTree = "<group>"; };
 		7E0E8C451B6FB5AD0003FEC6 /* KanjiGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanjiGenerator.swift; sourceTree = "<group>"; };
 		7E1438411BD18BBB00B11D75 /* JavaLib.knj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = JavaLib.knj; sourceTree = "<group>"; };
+		7E2963B51D41A85200F2D84F /* test.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = test.jar; sourceTree = "<group>"; };
 		7E35AE271BD5724A00E93E09 /* KanjiNative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KanjiNative.swift; sourceTree = "<group>"; };
 		7E35AE2E1BD7D7C100E93E09 /* JavaLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JavaLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E35AE301BD7D7C100E93E09 /* JavaLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JavaLib.h; sourceTree = "<group>"; };
@@ -543,6 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				7E5ABDA21B60483C00F11C77 /* KanjiScriptTests.swift */,
+				7E2963B51D41A85200F2D84F /* test.jar */,
 				7E5ABDA41B60483C00F11C77 /* Info.plist */,
 			);
 			path = KanjiScriptTests;

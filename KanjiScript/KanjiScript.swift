@@ -14,15 +14,32 @@ import JavaLib
 import BricBrac
 
 public class KanjiScriptContext : ScriptContext {
-    public let jvm = JVM.sharedJVM
     public var engine: javax$script$ScriptEngine! // silly requirement that all properties must be initialized before throwing from an initializer
 
     public typealias InstanceType = KanjiScriptType
 
-    public init(engine name: String) throws {
-        let manager = try javax$script$ScriptEngineManager()
+    public init(engine name: String, jars: [NSURL] = []) throws {
+        if JVM.sharedJVM == nil { JVM.sharedJVM = try JVM() }
+        
+        // set and restore the current class loader; when we specify a URL class loader,
+        // script engines like Nashorn will cache the current loader when the initialize
+        // as their app class loader (see NashornScriptEngineFactory.getAppClassLoader())
+        let prevcl = try java$lang$Thread.currentThread()?.getContextClassLoader()
+        defer { _ = try? java$lang$Thread.currentThread()?.setContextClassLoader(prevcl) }
+
+        var loader: java$lang$ClassLoader? = nil
+        if !jars.isEmpty {
+            loader = try java$net$URLClassLoader.fromURLs(jars, parent: prevcl)
+            try java$lang$Thread.currentThread()?.setContextClassLoader(loader)
+        }
+
+//        let engine = try jdk$nashorn$api$scripting$NashornScriptEngineFactory().getScriptEngine(loader)
+//        self.engine = engine
+//        return
+
+        let manager = try javax$script$ScriptEngineManager(loader)
         guard let engine = try manager.getEngineByName(java$lang$String(stringLiteral: name)) else {
-            throw KanjiErrors.general("Could not get engine name \(name)")
+            throw KanjiErrors.general("Could not get engine named \(name)")
         }
         self.engine = engine
     }
@@ -53,10 +70,8 @@ public class KanjiScriptContext : ScriptContext {
         default: throw KanjiErrors.general("Script can only be a string literal") // TODO: function references
         }
 
-        var refargs: [InstanceType.RefType] = []
-        for arg in args { // convert all arguments to references
-            try refargs.append(deref(arg))
-        }
+        
+        let refargs: [InstanceType.RefType] = try args.map(deref) // convert all arguments to references
 
         if let ref = try evaluate(script, this: this, args: refargs) {
             return .ref(ref, self)
@@ -65,11 +80,23 @@ public class KanjiScriptContext : ScriptContext {
         }
     }
 
+    /// Evaluates the script at the given source URL
+    public func read(url: NSURL) throws -> InstanceType {
+        let script = try String(contentsOfURL: url, encoding: NSUTF8StringEncoding)
+
+        let scriptBric = KanjiScriptType.val(Bric.str(script))
+
+        // set the filename in the script context so that relative URLs can be loaded
+        try engine.getContext()?.setAttribute(javax$script$ScriptEngine$Impl.FILENAME, (url.path ?? "").javaString, javax$script$ScriptContext$Impl.ENGINE_SCOPE)
+
+        return try eval(scriptBric)
+    }
+
     private func evaluate(script: String, this: InstanceType.RefType? = nil, args: [InstanceType.RefType]) throws -> InstanceType.RefType? {
         let str = java$lang$String(stringLiteral: script)
 
         // functions can only be invoked on invocale subclases
-        if let invocable: javax$script$Invocable$Impl = engine.cast() where args.count > 0 {
+        if let invocable: javax$script$Invocable$Impl = engine.cast() where !args.isEmpty {
             // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
             let args2: [java$lang$Object?]? = args.map({ $0 as? java$lang$Object })
 
@@ -80,6 +107,10 @@ public class KanjiScriptContext : ScriptContext {
             }
         }
 
+        if !args.isEmpty {
+            throw KanjiErrors.general("Unable to invoke method/function with arguments on a non-invocable script")
+        }
+
         return try engine.eval(str) ?? nil
     }
 
@@ -88,7 +119,7 @@ public class KanjiScriptContext : ScriptContext {
         case .ref(let r, _):
             return r
         case .val(let bric):
-            if let ob = try bric.toKanji(self.jvm) {
+            if let ob = try bric.toKanji(JVM.sharedJVM) {
                 return ob
             } else {
                 throw KanjiErrors.general("Value could not be converted to Kanji")
@@ -198,7 +229,7 @@ public func == (bs1: KanjiScriptType, bs2: KanjiScriptType) -> Bool {
     case (.val(let v1), .val(let v2)):
         return v1 == v2
     case (.ref(let r1, let ctx1), .ref(let r2, let ctx2)):
-        return ctx1.jvm.isSameObject(ctx1.engine.jobj, ctx2.engine.jobj) && ctx1.jvm.isSameObject(r1.jobj, r2.jobj) != 0 ? true : false
+        return JVM.sharedJVM.isSameObject(ctx1.engine.jobj, ctx2.engine.jobj) && JVM.sharedJVM.isSameObject(r1.jobj, r2.jobj) != 0 ? true : false
     default:
         return false
     }

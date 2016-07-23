@@ -16,7 +16,7 @@ import JavaLib
 class KanjiScriptTests: XCTestCase {
 
     override func invokeTest() {
-//        return invocation?.selector == #selector(KanjiScriptTests.testNashorn) ? super.invokeTest() : print("skipping test", name)
+//        return invocation?.selector == #selector(KanjiScriptTests.testScriptClassloader) ? super.invokeTest() : print("skipping test", name)
         return super.invokeTest()
     }
 
@@ -242,9 +242,18 @@ class KanjiScriptTests: XCTestCase {
             XCTAssertEqual(err.message, "erroneous argument")
             XCTAssertEqual(err.className, "java.lang.IllegalArgumentException")
         }
-
-
     }
+
+    func testScriptClassloader() throws {
+        guard let jar = NSURL(fileURLWithPath: #file).URLByDeletingLastPathComponent?.URLByAppendingPathComponent("test.jar") else {
+            return XCTFail("could not load test jar")
+        }
+
+        let ctx = try KanjiScriptContext(engine: "nashorn", jars: [jar])
+        try ctx.eval("new (Java.type('java.util.ArrayList'))();")
+        try ctx.eval("new (Java.type('Foo'))();")
+    }
+
 
     /// Global holder for the `testScriptCallbacks` test
     static var testScriptCallbacksValue: Set<String> = []
