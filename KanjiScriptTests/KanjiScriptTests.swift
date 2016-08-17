@@ -251,7 +251,18 @@ class KanjiScriptTests: XCTestCase {
 
         let ctx = try KanjiScriptContext(engine: "nashorn", jars: [jar])
         try ctx.eval("new (Java.type('java.util.ArrayList'))();")
-        try ctx.eval("new (Java.type('Foo'))();")
+        try ctx.eval("new (Java.type('Foo'))();") // Foo is defined in the test jar
+    }
+
+    func XXXtestScriptRelativeFiles() throws {
+        guard let url = NSURL(fileURLWithPath: #file).URLByDeletingLastPathComponent?.URLByAppendingPathComponent("rel1.js") else {
+            return XCTFail("could not load test jar")
+        }
+
+        let ctx = try KanjiScriptContext(engine: "js");
+        let ret = try ctx.read(url)
+        let retval = try ctx.val(ret)
+        XCTAssertEqual(retval, ["rel1": true, "rel2": true, "rel3": true])
     }
 
 

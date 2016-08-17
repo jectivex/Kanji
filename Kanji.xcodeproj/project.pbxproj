@@ -95,6 +95,9 @@
 		7E920CCC1D4001D90044386F /* org.xml.sax.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8D1D4001D90044386F /* org.xml.sax.ext.swift */; };
 		7E920CCD1D4001D90044386F /* org.xml.sax.helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8E1D4001D90044386F /* org.xml.sax.helpers.swift */; };
 		7E920CCE1D4001D90044386F /* org.xml.sax.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E920C8F1D4001D90044386F /* org.xml.sax.swift */; };
+		7EA4CF101D58FAC300E0D57B /* rel1.js in Resources */ = {isa = PBXBuildFile; fileRef = 7EA4CF0D1D58FAC300E0D57B /* rel1.js */; };
+		7EA4CF111D58FAC300E0D57B /* rel2.js in Resources */ = {isa = PBXBuildFile; fileRef = 7EA4CF0E1D58FAC300E0D57B /* rel2.js */; };
+		7EA4CF121D58FAC300E0D57B /* rel3.js in Resources */ = {isa = PBXBuildFile; fileRef = 7EA4CF0F1D58FAC300E0D57B /* rel3.js */; };
 		7EA8880B1AAAB6DF00C6DBB3 /* KanjiVM.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EA8880A1AAAB6DF00C6DBB3 /* KanjiVM.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7EA888111AAAB6DF00C6DBB3 /* KanjiVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EA888051AAAB6DF00C6DBB3 /* KanjiVM.framework */; };
 		7EA888181AAAB6DF00C6DBB3 /* KanjiVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA888171AAAB6DF00C6DBB3 /* KanjiVMTests.swift */; };
@@ -326,6 +329,9 @@
 		7E920C8D1D4001D90044386F /* org.xml.sax.ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = org.xml.sax.ext.swift; sourceTree = "<group>"; };
 		7E920C8E1D4001D90044386F /* org.xml.sax.helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = org.xml.sax.helpers.swift; sourceTree = "<group>"; };
 		7E920C8F1D4001D90044386F /* org.xml.sax.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = org.xml.sax.swift; sourceTree = "<group>"; };
+		7EA4CF0D1D58FAC300E0D57B /* rel1.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rel1.js; sourceTree = "<group>"; };
+		7EA4CF0E1D58FAC300E0D57B /* rel2.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rel2.js; sourceTree = "<group>"; };
+		7EA4CF0F1D58FAC300E0D57B /* rel3.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = rel3.js; sourceTree = "<group>"; };
 		7EA888051AAAB6DF00C6DBB3 /* KanjiVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA888091AAAB6DF00C6DBB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EA8880A1AAAB6DF00C6DBB3 /* KanjiVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiVM.h; sourceTree = "<group>"; };
@@ -545,6 +551,9 @@
 			children = (
 				7E5ABDA21B60483C00F11C77 /* KanjiScriptTests.swift */,
 				7E2963B51D41A85200F2D84F /* test.jar */,
+				7EA4CF0D1D58FAC300E0D57B /* rel1.js */,
+				7EA4CF0E1D58FAC300E0D57B /* rel2.js */,
+				7EA4CF0F1D58FAC300E0D57B /* rel3.js */,
 				7E5ABDA41B60483C00F11C77 /* Info.plist */,
 			);
 			path = KanjiScriptTests;
@@ -1062,6 +1071,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EA4CF121D58FAC300E0D57B /* rel3.js in Resources */,
+				7EA4CF101D58FAC300E0D57B /* rel1.js in Resources */,
+				7EA4CF111D58FAC300E0D57B /* rel2.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

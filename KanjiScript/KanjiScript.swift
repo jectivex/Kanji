@@ -84,12 +84,11 @@ public class KanjiScriptContext : ScriptContext {
     public func read(url: NSURL) throws -> InstanceType {
         let script = try String(contentsOfURL: url, encoding: NSUTF8StringEncoding)
 
-        let scriptBric = KanjiScriptType.val(Bric.str(script))
-
         // set the filename in the script context so that relative URLs can be loaded
         try engine.getContext()?.setAttribute(javax$script$ScriptEngine$Impl.FILENAME, (url.path ?? "").javaString, javax$script$ScriptContext$Impl.ENGINE_SCOPE)
+        //try engine.put(javax$script$ScriptEngine$Impl.FILENAME, (url.path ?? "").javaString)
 
-        return try eval(scriptBric)
+        return try eval(.val(.str(script)))
     }
 
     private func evaluate(script: String, this: InstanceType.RefType? = nil, args: [InstanceType.RefType]) throws -> InstanceType.RefType? {
