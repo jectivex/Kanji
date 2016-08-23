@@ -27,6 +27,11 @@ public struct KanjiException: ErrorType, CustomStringConvertible, CustomDebugStr
     public var debugDescription: String {
         return self.description
     }
+
+    /// Override _domain so unit tests will print out the message in the error stringification
+    @available(*, deprecated, message="Remove _domain override for Swift 3")
+    public var _domain: String { return description }
+
 }
 
 public enum KanjiErrors : ErrorType, CustomDebugStringConvertible {
