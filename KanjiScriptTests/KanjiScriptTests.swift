@@ -111,12 +111,12 @@ class KanjiScriptTests: XCTestCase {
             checkeq([["a": true], 1, [2, 3.3, false], 3], f: try ctx.val(ctx.eval("[{a: true}, 1, [2, 3.3, false], 3]")))
 
             //checkeq(["a": 1, "b": true], f: try ctx.val(ctx.eval("Java.to({ 'a': 1, 'b': true })")))
-            checkeq(1.1, f: try ctx.val(ctx.eval("eval", args: 1.1)))
+            checkeq(1.1, f: try ctx.val(ctx.eval("eval", args: [1.1])))
 
             let inst = try ctx.eval("var x = {}; x['a'] = 1; x.x = x; x")
 
             do { // test cycle detection using JSON.stringify
-                try ctx.eval("stringify", this: ctx.root["JSON"].flatMap(ctx.deref), args: inst)
+                try ctx.eval("stringify", this: ctx.root.get("JSON").flatMap(ctx.ref), args: [inst])
                 XCTFail("should not have been able to read cyclic data structure")
             } catch let error as KanjiException {
                 XCTAssertEqual("TypeError: JSON.stringify got a cyclic data structure", error.message)
@@ -132,6 +132,18 @@ class KanjiScriptTests: XCTestCase {
             } catch {
                 XCTFail("wrong exception type: \(error) \(error.dynamicType)")
             }
+
+            do { // test combined value and function returns
+                let composite = try ctx.eval("(function() { return { val: [1, 2, 5], fun: (function() { return 'Hello' }) } })();")
+                let val = try composite.get("val").flatMap(ctx.val)
+                XCTAssertEqual([1, 2, 5], val)
+//                let fun = try composite.get("fun").flatMap(ctx.ref)
+//                print("### fun: \(fun)")
+//                XCTAssertNotNil(fun)
+            } catch {
+                XCTFail("should have been able to return a composite instance: \(error)")
+            }
+
         }
     }
 
@@ -152,7 +164,7 @@ class KanjiScriptTests: XCTestCase {
         var val: Ctx.InstanceType.ValType = ["a": 1, "b": true, "c": 1.23, "d": "str", "e": [1, true, 1.23, "str"]]
         val["x"] = val // demonstrates that it is a value type that won't create reference cycles
 
-        let reval = try ctx.val(ctx.ref(.val(val)))
+        let reval = try ctx.val(.ref(ctx.ref(.val(val)), ctx))
         XCTAssertEqual(val, reval)
     }
 
@@ -211,7 +223,7 @@ class KanjiScriptTests: XCTestCase {
                 let str = NSUUID().UUIDString
                 // randomly use either the Consumer or Function instance
                 let cbref = random() % 2 == 1 ? consumerRef : functionRef
-                try ctx.eval("callback", args: cbref, .ref(str.javaString, ctx))
+                try ctx.eval("callback", args: [cbref, .ref(str.javaString, ctx)])
                 dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
                     callbackStrings.insert(str)
                 }
@@ -235,9 +247,9 @@ class KanjiScriptTests: XCTestCase {
         do {
             enum SampleError : ErrorType { case failed(msg: String) }
 
-            try ctx.eval("callback", args: .ref(java$util$function$Function$Impl.fromClosure { arg in
+            try ctx.eval("callback", args: [.ref(java$util$function$Function$Impl.fromClosure { arg in
                 throw try java$lang$IllegalArgumentException(arg?.cast() as java$lang$String?)
-                }, ctx), .ref("erroneous argument".javaString, ctx))
+                }, ctx), .ref("erroneous argument".javaString, ctx)])
         } catch let err as KanjiException {
             XCTAssertEqual(err.message, "erroneous argument")
             XCTAssertEqual(err.className, "java.lang.IllegalArgumentException")

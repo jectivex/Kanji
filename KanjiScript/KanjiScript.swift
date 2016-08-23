@@ -45,7 +45,7 @@ public class KanjiScriptContext : ScriptContext {
     }
 
     public var root: InstanceType {
-        return (try? eval("this")) ?? .val([:])
+        return (try? eval("this")) ?? .val(.nul)
     }
 
     // TODO: swap out the context?
@@ -63,7 +63,7 @@ public class KanjiScriptContext : ScriptContext {
 //
 //    }
 
-    public func eval(code: InstanceType, this: InstanceType.RefType? = nil, args: InstanceType...) throws -> InstanceType {
+    public func eval(code: InstanceType, this: InstanceType.RefType? = nil, args: [InstanceType] = []) throws -> InstanceType {
         let script: String
         switch code {
         case .val(.str(let str)): script = str
@@ -71,7 +71,7 @@ public class KanjiScriptContext : ScriptContext {
         }
 
         
-        let refargs: [InstanceType.RefType] = try args.map(deref) // convert all arguments to references
+        let refargs: [InstanceType.RefType] = try args.map(ref) // convert all arguments to references
 
         if let ref = try evaluate(script, this: this, args: refargs) {
             return .ref(ref, self)
@@ -95,7 +95,7 @@ public class KanjiScriptContext : ScriptContext {
         let str = java$lang$String(stringLiteral: script)
 
         // functions can only be invoked on invocale subclases
-        if let invocable: javax$script$Invocable$Impl = engine.cast() where !args.isEmpty {
+        if let invocable: javax$script$Invocable$Impl = engine.cast() where !args.isEmpty || this != nil {
             // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
             let args2: [java$lang$Object?]? = args.map({ $0 as? java$lang$Object })
 
@@ -113,7 +113,12 @@ public class KanjiScriptContext : ScriptContext {
         return try engine.eval(str) ?? nil
     }
 
+    @available(*, deprecated, message="change over to ref")
     public func deref(inst: InstanceType) throws -> InstanceType.RefType {
+        return try ref(inst)
+    }
+
+    public func ref(inst: InstanceType) throws -> InstanceType.RefType {
         switch inst {
         case .ref(let r, _):
             return r
@@ -124,10 +129,6 @@ public class KanjiScriptContext : ScriptContext {
                 throw KanjiErrors.general("Value could not be converted to Kanji")
             }
         }
-    }
-
-    public func ref(inst: InstanceType) throws -> InstanceType {
-        return try .ref(deref(inst), self)
     }
 
     public func val(inst: InstanceType) throws -> InstanceType.ValType {
@@ -154,14 +155,30 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
         }
     }
 
-    public subscript(key: String) -> KanjiScriptType? {
-        get {
-            switch self {
-            case .val(let bric):
-                return bric[key].flatMap({ .val($0) })
-            case .ref(let val, let ctx):
-                return try? ctx.eval(.val(.str(key)), this: val)
+//    public subscript(key: String) -> KanjiScriptType? {
+//        get {
+//            switch self {
+//            case .val(let bric):
+//                return bric[key].flatMap({ .val($0) })
+//            case .ref(let val, let ctx):
+//                return try? ctx.eval(.val(.str(key)), this: val)
+//            }
+//        }
+//    }
+
+    public func get(key: String) throws -> KanjiScriptType? {
+        switch self {
+        case .val(let bric):
+            return bric[key].flatMap({ .val($0) })
+        case .ref(let ob, let ctx):
+            // there's no good way with the javax.script framework to get a propery of an object
+            if let jsobj : ScriptObject = ob.cast() {
+                return try jsobj.getMember(key.javaString).flatMap({ .ref($0, ctx) })
+            } else {
+                return nil
             }
+//            try ctx.eval("function ___extractPropertyFromObject(ob, key) { return ob[key]; };")
+//            return try ctx.eval("___extractPropertyFromObject", args: [.ref(ob, ctx), .val(.str(key))])
         }
     }
 
@@ -271,6 +288,11 @@ public extension Bric {
     }
 }
 
+typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Impl
+//        typealias ScriptObject = jdk$nashorn$api$scripting$AbstractJSObject
+//        typealias ScriptObject = jdk$nashorn$api$scripting$ScriptObjectMirror
+
+
 public extension JavaObject {
     /// Converts this Kanji object to some Bric, with the following conversions:
     /// null->.Nul
@@ -311,10 +333,6 @@ public extension JavaObject {
         }
 
         var ob: JavaObject = self
-
-        typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Impl
-//        typealias ScriptObject = jdk$nashorn$api$scripting$AbstractJSObject
-//        typealias ScriptObject = jdk$nashorn$api$scripting$ScriptObjectMirror
 
         if JVM.sharedJVM.findClass(ScriptObject.javaClassName) != nil {
             if let jsobj : ScriptObject = ob.cast() {
