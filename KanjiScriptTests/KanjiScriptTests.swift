@@ -102,7 +102,8 @@ class KanjiScriptTests: XCTestCase {
             checkeq("a", f: try ctx.val(ctx.eval("'a'")))
             checkeq("0.6000000000000001", f: try ctx.val(ctx.eval(".4+.2+''")))
             checkeq([1, 2, 3], f: try ctx.val(ctx.eval("Java.to([1,2,3])")))
-            checkeq("/private/tmp/XYZ", f: try ctx.val(ctx.eval("new Packages.java.io.File('XYZ').getAbsolutePath()")))
+            // not true: ~/Library/Developer/Xcode/DerivedData/GIO-testrun/Build/Products/Debug/XYZ"
+            //checkeq("/private/tmp/XYZ", f: try ctx.val(ctx.eval("new Packages.java.io.File('XYZ').getAbsolutePath()")))
             checkeq([2,1,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3])")))
             checkeq([1,2,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3]).stream().sorted().toArray()")))
 
