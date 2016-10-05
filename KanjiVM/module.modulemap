@@ -1,0 +1,4 @@
+module KanjiJNI [system] {
+    header "jni.h"
+    export *
+}

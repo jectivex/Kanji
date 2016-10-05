@@ -14,14 +14,14 @@ class KanjiGenTests: XCTestCase {
     func testGeneration() throws {
         do {
             // see JavaLib.knj for class list and generation info
-            let classes = try String(contentsOfURL: NSBundle(forClass: self.dynamicType).URLForResource("JavaLib", withExtension: "knj")!).componentsSeparatedByString("\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
+            let classes = try String(contentsOf: Bundle(for: type(of: self)).url(forResource: "JavaLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
             try gencode(classes)
         }
     }
 
-    func gencode(classes: [String]) throws {
+    func gencode(_ classes: [String]) throws {
         // de-dupe classes but maintain specified order
-        let uniqueClasses = classes.reduce([], combine: { arr, e in arr.contains(e) ? arr : (arr + [e]) })
+        let uniqueClasses = classes.reduce([], { arr, e in arr.contains(e) ? arr : (arr + [e]) })
 
         let disassembly = try KanjiGen.launchDisassembler(uniqueClasses)
 //        let code = try KanjiGen.generateWrappers(disassembly)
@@ -31,28 +31,28 @@ class KanjiGenTests: XCTestCase {
         let header = "import KanjiVM\n\n"
 
         try KanjiGen.generateShims(disassembly) { name, mode, code in
-            let packname = name.characters.split(isSeparator: { $0 == "." || $0 == "$" }).map(String.init).filter({ $0 == $0.lowercaseString }).joinWithSeparator(".")
+            let packname = name.characters.split(whereSeparator: { $0 == "." || $0 == "$" }).map(String.init).filter({ $0 == $0.lowercased() }).joined(separator: ".")
             var packcode = packages[packname] ?? header
             packcode += code
             packages[packname] = packcode
         }
 
-        try compilePackages(packages, dir: ((#file as NSString).stringByDeletingLastPathComponent as NSString).stringByAppendingPathComponent("../JavaLib/"))
+        try compilePackages(packages, dir: ((#file as NSString).deletingLastPathComponent as NSString).appendingPathComponent("../JavaLib/"))
     }
 
-    func compilePackages(packages: [String : String], dir: String) throws {
+    func compilePackages(_ packages: [String : String], dir: String) throws {
         for (package, code) in packages {
             try compileUnit(code, name: package + ".swift", dir: dir)
         }
     }
 
-    func compileUnit(code: String, name: String, dir: String, test: Bool = false) throws {
-        let locpath = (dir as NSString).stringByAppendingPathComponent(name)
+    func compileUnit(_ code: String, name: String, dir: String, test: Bool = false) throws {
+        let locpath = (dir as NSString).appendingPathComponent(name)
         var status : Int32 = 0
 
         let loccode: String
         do {
-            loccode = try NSString(contentsOfFile: locpath, encoding: NSUTF8StringEncoding) as String
+            loccode = try NSString(contentsOfFile: locpath, encoding: String.Encoding.utf8.rawValue) as String
         } catch {
             loccode = ""
         }
@@ -62,27 +62,26 @@ class KanjiGenTests: XCTestCase {
         }
 
         if test {
-            let tmppath = (NSTemporaryDirectory() as NSString).stringByAppendingPathComponent(name)
-            try code.writeToFile(tmppath, atomically: true, encoding: NSUTF8StringEncoding)
+            let tmppath = (NSTemporaryDirectory() as NSString).appendingPathComponent(name)
+            try code.write(toFile: tmppath, atomically: true, encoding: String.Encoding.utf8)
 
 
-            let bundle = NSBundle(forClass: JVM.self).executablePath!
-            let frameworkDir = ((bundle as NSString).stringByDeletingLastPathComponent as NSString).stringByDeletingLastPathComponent
+            let bundle = Bundle(for: JVM.self).executablePath!
+            let frameworkDir = ((bundle as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent
 
             let args = [
                 "/usr/bin/xcrun",
-                //"-sdk", "macosx10.11",
+                "-sdk", "macosx10.12",
                 "swiftc",
-                "-target", "x86_64-apple-macosx10.11",
-                "-sdk", "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk",
+                "-target", "x86_64-apple-macosx10.12",
                 "-F", frameworkDir,
-                "-o", (tmppath as NSString).stringByDeletingPathExtension,
+                "-o", (tmppath as NSString).deletingPathExtension,
                 tmppath,
                 ]
 
-            print(args.joinWithSeparator(" "))
+            print(args.joined(separator: " "))
 
-            let task = NSTask.launchedTaskWithLaunchPath(args[0], arguments: Array(args.dropFirst()))
+            let task = Process.launchedProcess(launchPath: args[0], arguments: Array(args.dropFirst()))
             task.waitUntilExit()
             status = task.terminationStatus
             if status != 0 {
@@ -92,10 +91,10 @@ class KanjiGenTests: XCTestCase {
 
         if status == 0 {
             if loccode != code { // if the code has changed, then write it to the test
-                if NSFileManager.defaultManager().fileExistsAtPath(locpath) {
-                    try! NSFileManager.defaultManager().trashItemAtURL(NSURL(fileURLWithPath: locpath), resultingItemURL: nil)
+                if FileManager.default.fileExists(atPath: locpath) {
+                    try! FileManager.default.trashItem(at: URL(fileURLWithPath: locpath), resultingItemURL: nil)
                 }
-                try code.writeToFile(locpath, atomically: true, encoding: NSUTF8StringEncoding)
+                try code.write(toFile: locpath, atomically: true, encoding: String.Encoding.utf8)
             }
         }
     }

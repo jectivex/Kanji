@@ -5,12 +5,8 @@
 #
 # This is about 1655 classes and interfaces, and builds to a JavaLib about 37M large
 java.lang.Object
-java.time.chrono.AbstractChronology
-java.time.chrono.HijrahChronology
-java.time.chrono.IsoChronology
-java.time.chrono.JapaneseChronology
-java.time.chrono.MinguoChronology
-java.time.chrono.ThaiBuddhistChronology
+java.lang.System
+java.lang.String
 java.util.AbstractCollection
 java.util.AbstractList
 java.util.AbstractSequentialList
@@ -180,6 +176,12 @@ java.security.SecureClassLoader
 java.net.URLClassLoader
 java.lang.ClassValue
 java.time.Clock
+java.time.chrono.AbstractChronology
+java.time.chrono.HijrahChronology
+java.time.chrono.IsoChronology
+java.time.chrono.JapaneseChronology
+java.time.chrono.MinguoChronology
+java.time.chrono.ThaiBuddhistChronology
 java.nio.charset.CoderResult
 java.security.CodeSigner
 java.security.CodeSource
@@ -612,7 +614,6 @@ java.beans.Expression
 java.util.stream.StreamSupport
 java.io.StreamTokenizer
 java.lang.StrictMath
-java.lang.String
 java.lang.StringBuffer
 java.lang.StringBuilder
 java.lang.AbstractStringBuilder
@@ -620,7 +621,6 @@ java.text.StringCharacterIterator
 java.util.StringJoiner
 java.util.StringTokenizer
 java.lang.invoke.SwitchPoint
-java.lang.System
 java.time.temporal.TemporalAdjusters
 java.time.temporal.TemporalQueries
 java.time.chrono.ThaiBuddhistDate

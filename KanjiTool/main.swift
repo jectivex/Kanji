@@ -14,7 +14,7 @@
 
 import Darwin // for stderr
 
-var args = Process.arguments.generate()
+var args = CommandLine.arguments.makeIterator()
 let cmdname = args.next() ?? "curio"
 
 let usage = [
@@ -28,10 +28,10 @@ let usage = [
 //    "  -import: Additional imports at the top of the generated source",
 //    "  -access: Default access (public, private, internal, or default)",
 //    "  -typetype: Generated type (struct or class)"
-    ].joinWithSeparator("\n")
+    ].joined(separator: "\n")
 
 
-struct UsageError : ErrorType {
+struct UsageError : Error {
     let msg: String
 
     init(_ msg: String) {
@@ -83,23 +83,23 @@ if !done {
     var javap: String?
 
     if disassembly == true {
-        Darwin.fputs("kanjitool: reading javap disassembly from stdin\n", Darwin.__stderrp)
+        _ = Darwin.fputs("kanjitool: reading javap disassembly from stdin\n", Darwin.__stderrp)
 
         javap = ""
-        while let line = readLine(stripNewline: false) {
-            javap?.appendContentsOf(line)
+        while let line = readLine(strippingNewline: false) {
+            javap?.append(line)
         }
     } else if classes.isEmpty {
         print(usage)
     } else {
-        let sortedClasses = Array(Set(classes)).sort()
+        let sortedClasses = Array(Set(classes)).sorted()
         javap = try KanjiGen.launchDisassembler(sortedClasses)
     }
 
     if let javap = javap {
         let code = try KanjiGen.generateWrappers(javap, skipPatterns: Set(skips), imports: imports) { log in
             // there's no native stderr to log to
-            Darwin.fputs("kanjitool: \(log)\n", Darwin.__stderrp)
+            _ = Darwin.fputs("kanjitool: \(log)\n", Darwin.__stderrp)
         }
         print(code)
     }

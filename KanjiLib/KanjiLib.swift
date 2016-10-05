@@ -32,7 +32,7 @@ public extension JVM {
     }
 
     /// Returns a tuple of the heap or non-heap memory being used by the VM
-    public func memoryUsage(heap: Bool) throws -> (used: jlong, committed: jlong, `init`: jlong, max: jlong)? {
+    public func memoryUsage(_ heap: Bool) throws -> (used: jlong, committed: jlong, `init`: jlong, max: jlong)? {
         guard let mmx = try java$lang$management$ManagementFactory.getMemoryMXBean() else { return nil }
         guard let usage = try heap ? mmx.getHeapMemoryUsage() : mmx.getNonHeapMemoryUsage() else { return nil }
         return try (usage.getUsed(), usage.getCommitted(), usage.getInit(), usage.getMax())
@@ -100,10 +100,10 @@ public extension java$lang$Object {
 }
 
 /// Extension of Throwable that permits them to be treated directly as Swift exceptions
-extension java$lang$Throwable : ErrorType {
+extension java$lang$Throwable : Error {
 }
 
-extension java$lang$String : StringLiteralConvertible {
+extension java$lang$String : ExpressibleByStringLiteral {
     public convenience init!(_ string: String) {
         try! self.init(constructor: JVM.sharedJVM.toJString(string))
     }
@@ -135,7 +135,7 @@ public extension String {
 
 public extension java$net$URLClassLoader {
     /// Creates a URLClassLoader from the list if URLs with the optional parent classloader
-    public static func fromURLs(urls: [NSURL], parent: java$lang$ClassLoader? = nil) throws -> java$net$URLClassLoader {
+    public static func fromURLs(_ urls: [URL], parent: java$lang$ClassLoader? = nil) throws -> java$net$URLClassLoader {
         var jurls: [java$net$URL?]? = []
         for url in urls {
             try jurls?.append(java$net$URL(url.absoluteString.javaString))

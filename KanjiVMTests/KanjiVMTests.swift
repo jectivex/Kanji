@@ -17,6 +17,19 @@ class KanjiVMTests: XCTestCase {
         }
     }
 
+    func testSimpleClass() {
+        guard let syscls = JVM.jvm.findClass("java/lang/System") else {
+            return XCTFail("Unable to find System class")
+        }
+
+        guard let ctmmid = JVM.jvm.getStaticMethodID(syscls, name: "currentTimeMillis", sig: "()J") else {
+            return XCTFail("Unable to find currentTimeMillis method")
+        }
+
+        let time = JVM.jvm.callStaticLongMethodA(syscls, methodID: ctmmid, args: nil)
+        XCTAssertNotEqual(0, time)
+    }
+
     func testDynamicObject() {
         do {
             struct KanjiString : KanjiClass { static let className = "java/lang/String" }
@@ -43,7 +56,7 @@ class KanjiVMTests: XCTestCase {
 
                 var str = ""
 
-                str += String(Array(count: 4, repeatedValue: Character(" ")))
+                str += String(Array(repeating: Character(" "), count: 4))
                 switch fname {
                 case "invoker": str += "/// Creates an invoker closure from a class, method name, return type, object instance, and \(i) arguments"
                 case "svoker": str += "/// Creates a static invoker closure from a class, method name, return type, and \(i) arguments"
@@ -52,7 +65,7 @@ class KanjiVMTests: XCTestCase {
                 }
                 str += "\n"
 
-                str += String(Array(count: 4, repeatedValue: Character(" ")))
+                str += String(Array(repeating: Character(" "), count: 4))
                 str += "public static func \(fname)"
 
                 if fname == "constructor" && i == 0 {
@@ -63,7 +76,7 @@ class KanjiVMTests: XCTestCase {
                         str += "T: JType"
                         if i > 0 { str += ", " }
                     }
-                    str += (0..<i).map({ "A\($0): JType" }).joinWithSeparator(", ")
+                    str += (0..<i).map({ "A\($0): JType" }).joined(separator: ", ")
 
 //                    str += i > 0 ? " where " : ""
 //                    str += (0..<i).map({ "A\($0).JNIType: CVarArgType" }).joinWithSeparator(", ")
@@ -75,7 +88,7 @@ class KanjiVMTests: XCTestCase {
                 if i > 0 {
                     str += fname != "constructor" ? ", " : ""
                     str += "arguments: ("
-                    str += (0..<i).map({ "A\($0)" }).joinWithSeparator(", ")
+                    str += (0..<i).map({ "A\($0)" }).joined(separator: ", ")
                     str += ")"
                 }
 
@@ -84,12 +97,12 @@ class KanjiVMTests: XCTestCase {
                 if fname == "invoker" { str += "(JRef)->" }
 
                 str += "("
-                str += (0..<i).map({ "A\($0).JNIType" }).joinWithSeparator(", ")
+                str += (0..<i).map({ "A\($0).JNIType" }).joined(separator: ", ")
                 str += ") throws -> "
                 str += fname == "constructor" ? "jobject": "T.JNIType"
                 str += " { \n"
 
-                str += String(Array(count: 8, repeatedValue: Character(" ")))
+                str += String(Array(repeating: Character(" "), count: 8))
                 str += "let mid = "
                 str += fname == "svoker" ? "findStaticMethod" : "findMethod"
 
@@ -102,31 +115,31 @@ class KanjiVMTests: XCTestCase {
                 str += ", args: ["
 
                 // 1-tuple is special because it is the value directly
-                str += i == 1 ? "arguments" : (0..<i).map({ "arguments.\($0)" }).joinWithSeparator(", ")
+                str += i == 1 ? "arguments" : (0..<i).map({ "arguments.\($0)" }).joined(separator: ", ")
                 str += "]))"
                 str += "\n"
 
-                str += String(Array(count: 8, repeatedValue: Character(" ")))
-                str += "let ex = jvm.currentException()"
+                str += String(Array(repeating: Character(" "), count: 8))
+                str += "let ex = jvm.popException()"
                 str += "\n"
 
-                str += String(Array(count: 8, repeatedValue: Character(" ")))
+                str += String(Array(repeating: Character(" "), count: 8))
                 str += "let caller = " + (fname == "constructor" ? "JObjectType.callInit" : fname == "invoker" ? "T.call" : "T.callStatic") + "(mid)"
                 str += "\n"
 
-                str += String(Array(count: 8, repeatedValue: Character(" ")))
+                str += String(Array(repeating: Character(" "), count: 8))
                 str += "return "
                 str += fname == "invoker" ? "{ inst in " : ""
                 str += "{ args in try rethrow(ex, "
                 str += fname == "invoker" ? "caller(env: jvm.env)(obj: inst.jobj)" : "caller(env: jvm.env)(cls: javaClass)"
                 str += "(args: ["
-                str += i == 1 ? "A0.jvalueOf(args)" : (0..<i).map({ "A\($0).jvalueOf(args.\($0))" }).joinWithSeparator(", ")
+                str += i == 1 ? "A0.jvalueOf(args)" : (0..<i).map({ "A\($0).jvalueOf(args.\($0))" }).joined(separator: ", ")
                 str += "]))"
                 str += "}"
                 str += fname == "invoker" ? "}" : ""
                 str += "\n"
 
-                str += String(Array(count: 4, repeatedValue: Character(" ")))
+                str += String(Array(repeating: Character(" "), count: 4))
                 str += "}"
                 str += "\n"
 
@@ -139,24 +152,15 @@ class KanjiVMTests: XCTestCase {
 }
 
 // a very big string
-let utf16Array = Array(String(count: 9999, repeatedValue: Character("X")).utf16)
+let utf16Array = Array(String(repeating: "X", count: 9999).utf16)
 
 class StringPerformanceTests: XCTestCase {
 
-
-    func testMikeAshStringConversionPerformance() {
-        var str = ""
-        measureBlock {
-            str = String(utf16: utf16Array)!
-        }
-        XCTAssertEqual(Array(str.utf16), utf16Array)
-    }
-
     func testNSStringConversionPerformance() {
         var str = ""
-        measureBlock {
+        measure {
             str = utf16Array.withUnsafeBufferPointer { ptr in
-                NSString(characters: ptr.baseAddress, length: ptr.count) as String
+                NSString(characters: ptr.baseAddress!, length: ptr.count) as String
             }
         }
         XCTAssertEqual(Array(str.utf16), utf16Array)
@@ -165,16 +169,16 @@ class StringPerformanceTests: XCTestCase {
     func testUTF16StringConversion() {
         var str = ""
 
-        measureBlock {
+        measure {
             var string = ""
             var utf16 = UTF16()
-            var gen = utf16Array.generate()
+            var gen = utf16Array.makeIterator()
             var done = false
             while !done {
                 switch utf16.decode(&gen) {
-                case .Result(let val): string.append(val)
-                case .EmptyInput: done = true
-                case .Error: fatalError("bad string")
+                case .scalarValue(let val): string.append(String(val))
+                case .emptyInput: done = true
+                case .error: fatalError("bad string")
                 }
             }
 
@@ -186,30 +190,30 @@ class StringPerformanceTests: XCTestCase {
 }
 
 // Extensions from https://www.mikeash.com/pyblog/friday-qa-2015-11-06-why-is-swifts-string-api-so-hard.html
-extension String {
-    init?<Seq: SequenceType where Seq.Generator.Element == UInt16>(utf16: Seq) {
-        self.init()
-
-        guard transcode(UTF16.self,
-            UTF32.self,
-            utf16.generate(),
-            { self.append(UnicodeScalar($0)) },
-            stopOnError: true)
-            == false else { return nil }
-    }
-
-    init?<Seq: SequenceType where Seq.Generator.Element == UInt8>(utf8: Seq) {
-        self.init()
-
-        guard transcode(UTF8.self,
-            UTF32.self,
-            utf8.generate(),
-            { self.append(UnicodeScalar($0)) },
-            stopOnError: true)
-            == false else { return nil }
-    }
-}
-
+//extension String {
+//    init?<Seq: Sequence>(utf16: Seq) where Seq.Iterator.Element == UInt16 {
+//        self.init()
+//
+//        guard transcode(UTF16.self,
+//            UTF32.self,
+//            utf16.makeIterator(),
+//            { self.append(String(describing: UnicodeScalar($0))) },
+//            stopOnError: true)
+//            == false else { return nil }
+//    }
+//
+//    init?<Seq: Sequence>(utf8: Seq) where Seq.Iterator.Element == UInt8 {
+//        self.init()
+//
+//        guard transcode(UTF8.self,
+//            UTF32.self,
+//            utf8.makeIterator(),
+//            { self.append(String(describing: UnicodeScalar($0))) },
+//            stopOnError: true)
+//            == false else { return nil }
+//    }
+//}
+//
 
 //private protocol SomeKajiInterface : JavaObject {
 //

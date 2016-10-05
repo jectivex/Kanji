@@ -13,12 +13,12 @@ import KanjiLib
 import JavaLib
 import BricBrac
 
-public class KanjiScriptContext : ScriptContext {
-    public var engine: javax$script$ScriptEngine! // silly requirement that all properties must be initialized before throwing from an initializer
+open class KanjiScriptContext : ScriptContext {
+    open var engine: javax$script$ScriptEngine! // silly requirement that all properties must be initialized before throwing from an initializer
 
     public typealias InstanceType = KanjiScriptType
 
-    public init(engine name: String, jars: [NSURL] = []) throws {
+    public init(engine name: String, jars: [URL] = []) throws {
         if JVM.sharedJVM == nil { JVM.sharedJVM = try JVM() }
         
         // set and restore the current class loader; when we specify a URL class loader,
@@ -44,7 +44,7 @@ public class KanjiScriptContext : ScriptContext {
         self.engine = engine
     }
 
-    public var root: InstanceType {
+    open var root: InstanceType {
         return (try? eval("this")) ?? .val(.nul)
     }
 
@@ -52,7 +52,7 @@ public class KanjiScriptContext : ScriptContext {
 //    public func reset() {
 //    }
 
-    public func bind(key: String, value: InstanceType.RefType) throws {
+    open func bind(_ key: String, value: InstanceType.RefType) throws {
         try self.engine.put(java$lang$String(key), value as? java$lang$Object)
     }
 
@@ -63,7 +63,7 @@ public class KanjiScriptContext : ScriptContext {
 //
 //    }
 
-    public func eval(code: InstanceType, this: InstanceType.RefType? = nil, args: [InstanceType] = []) throws -> InstanceType {
+    open func eval(_ code: InstanceType, this: InstanceType.RefType? = nil, args: [InstanceType] = []) throws -> InstanceType {
         let script: String
         switch code {
         case .val(.str(let str)): script = str
@@ -81,8 +81,8 @@ public class KanjiScriptContext : ScriptContext {
     }
 
     /// Evaluates the script at the given source URL
-    public func read(url: NSURL) throws -> InstanceType {
-        let script = try String(contentsOfURL: url, encoding: NSUTF8StringEncoding)
+    open func read(_ url: URL) throws -> InstanceType {
+        let script = try String(contentsOf: url, encoding: String.Encoding.utf8)
 
         // set the filename in the script context so that relative URLs can be loaded
         try engine.getContext()?.setAttribute(javax$script$ScriptEngine$Impl.FILENAME, (url.path ?? "").javaString, javax$script$ScriptContext$Impl.ENGINE_SCOPE)
@@ -91,11 +91,11 @@ public class KanjiScriptContext : ScriptContext {
         return try eval(.val(.str(script)))
     }
 
-    private func evaluate(script: String, this: InstanceType.RefType? = nil, args: [InstanceType.RefType]) throws -> InstanceType.RefType? {
+    fileprivate func evaluate(_ script: String, this: InstanceType.RefType? = nil, args: [InstanceType.RefType]) throws -> InstanceType.RefType? {
         let str = java$lang$String(stringLiteral: script)
 
         // functions can only be invoked on invocale subclases
-        if let invocable: javax$script$Invocable$Impl = engine.cast() where !args.isEmpty || this != nil {
+        if let invocable: javax$script$Invocable$Impl = engine.cast() , !args.isEmpty || this != nil {
             // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
             let args2: [java$lang$Object?]? = args.map({ $0 as? java$lang$Object })
 
@@ -113,12 +113,12 @@ public class KanjiScriptContext : ScriptContext {
         return try engine.eval(str) ?? nil
     }
 
-    @available(*, deprecated, message="change over to ref")
-    public func deref(inst: InstanceType) throws -> InstanceType.RefType {
+    @available(*, deprecated, message: "change over to ref")
+    open func deref(_ inst: InstanceType) throws -> InstanceType.RefType {
         return try ref(inst)
     }
 
-    public func ref(inst: InstanceType) throws -> InstanceType.RefType {
+    open func ref(_ inst: InstanceType) throws -> InstanceType.RefType {
         switch inst {
         case .ref(let r, _):
             return r
@@ -131,7 +131,7 @@ public class KanjiScriptContext : ScriptContext {
         }
     }
 
-    public func val(inst: InstanceType) throws -> InstanceType.ValType {
+    open func val(_ inst: InstanceType) throws -> InstanceType.ValType {
         switch inst {
         case .val(let v):
             return v
@@ -166,7 +166,7 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
 //        }
 //    }
 
-    public func get(key: String) throws -> KanjiScriptType? {
+    public func get(_ key: String) throws -> KanjiScriptType? {
         switch self {
         case .val(let bric):
             return bric[key].flatMap({ .val($0) })
@@ -259,7 +259,7 @@ public extension Bric {
     /// .Num->java.lang.Double
     /// .Arr->java.util.ArrayList
     /// .Obj->java.util.HashMap
-    public func toKanji(vm: JVM) throws -> java$lang$Object? {
+    public func toKanji(_ vm: JVM) throws -> java$lang$Object? {
         switch self {
         case .nul:
             return nil
@@ -304,11 +304,11 @@ public extension JavaObject {
     /// 
     /// Note that JavaObject does not conform to `Bricable` because it can throw an error, whereas `bric()`
     /// must always succeed.
-    public func toBric(dropCycles dropCycles: Bool = false) throws -> Bric {
+    public func toBric(dropCycles: Bool = false) throws -> Bric {
         return try createBric(dropCycles, seen: [])
     }
 
-    private func createBric(dropCycles: Bool, seen: Set<jobject>) throws -> Bric {
+    fileprivate func createBric(_ dropCycles: Bool, seen: Set<jobject>) throws -> Bric {
         let jobj = self.jobj
 
         let selfSeen = seen.union([jobj])
@@ -376,7 +376,7 @@ public extension JavaObject {
                         dict[stringKey.description] = try value.createBric(dropCycles, seen: selfSeen)
                     }
                 } else {
-                    throw KanjiErrors.general("Map key was not a string: \(key?.dynamicType.javaClassName)")
+                    throw KanjiErrors.general("Map key was not a string: \(type(of: key?).javaClassName)")
                 }
             }
 
@@ -416,7 +416,7 @@ public extension JavaObject {
             }
             return .arr(arr)
         } else {
-            throw KanjiErrors.general("Could not convert class \(self.dynamicType.javaClassName) «\(self)» into Bric")
+            throw KanjiErrors.general("Could not convert class \(type(of: self).javaClassName) «\(self)» into Bric")
         }
     }
 }
