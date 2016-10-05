@@ -8,18 +8,18 @@ open class java$util$concurrent$ArrayBlockingQueue : java$util$AbstractQueue, ja
     open class override func jniName() -> String { return "java/util/concurrent/ArrayBlockingQueue" }
 
     fileprivate static let java$util$concurrent$ArrayBlockingQueue_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$ArrayBlockingQueue_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$ArrayBlockingQueue_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$ArrayBlockingQueue_init_I_Z__V = constructor((jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: jint, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$concurrent$ArrayBlockingQueue_init_I_Z__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$concurrent$ArrayBlockingQueue_init_I_Z__V(a0, a1))
     }
 
     fileprivate static let java$util$concurrent$ArrayBlockingQueue_init_I_Z_java$util$Collection__V = constructor((jint.jniType, jboolean.jniType, JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: jint, _ a1: jboolean, _ a2: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$ArrayBlockingQueue_init_I_Z_java$util$Collection__V(a0, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jboolean, _ a2: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$ArrayBlockingQueue_init_I_Z_java$util$Collection__V(a0, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ArrayBlockingQueue_add_java$lang$Object__Z = invoker("add", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -98,13 +98,13 @@ open class java$util$concurrent$ConcurrentLinkedQueue : java$util$AbstractQueue,
     open class override func jniName() -> String { return "java/util/concurrent/ConcurrentLinkedQueue" }
 
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentLinkedQueue_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentLinkedQueue_init__V())
     }
 
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentLinkedQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentLinkedQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_add_java$lang$Object__Z = invoker("add", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -148,13 +148,13 @@ open class java$util$concurrent$DelayQueue : java$util$AbstractQueue, java$util$
     open class override func jniName() -> String { return "java/util/concurrent/DelayQueue" }
 
     fileprivate static let java$util$concurrent$DelayQueue_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$DelayQueue_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$DelayQueue_init__V())
     }
 
     fileprivate static let java$util$concurrent$DelayQueue_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$DelayQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$DelayQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$DelayQueue_add_java$util$concurrent$Delayed__Z = invoker("add", returns: jboolean.jniType, arguments: (JObjectType("java/util/concurrent/Delayed")))
@@ -266,18 +266,18 @@ open class java$util$concurrent$LinkedBlockingDeque : java$util$AbstractQueue, j
     open class override func jniName() -> String { return "java/util/concurrent/LinkedBlockingDeque" }
 
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$LinkedBlockingDeque_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$LinkedBlockingDeque_init__V())
     }
 
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$LinkedBlockingDeque_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$LinkedBlockingDeque_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$LinkedBlockingDeque_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$LinkedBlockingDeque_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_addFirst_java$lang$Object__V = invoker("addFirst", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -483,18 +483,18 @@ open class java$util$concurrent$LinkedBlockingQueue : java$util$AbstractQueue, j
     open class override func jniName() -> String { return "java/util/concurrent/LinkedBlockingQueue" }
 
     fileprivate static let java$util$concurrent$LinkedBlockingQueue_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$LinkedBlockingQueue_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$LinkedBlockingQueue_init__V())
     }
 
     fileprivate static let java$util$concurrent$LinkedBlockingQueue_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$LinkedBlockingQueue_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$LinkedBlockingQueue_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$LinkedBlockingQueue_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$LinkedBlockingQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$LinkedBlockingQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$LinkedBlockingQueue_size__I = invoker("size", returns: jint.jniType)
@@ -577,13 +577,13 @@ open class java$util$concurrent$LinkedTransferQueue : java$util$AbstractQueue, j
     }
 
     fileprivate static let java$util$concurrent$LinkedTransferQueue_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$LinkedTransferQueue_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$LinkedTransferQueue_init__V())
     }
 
     fileprivate static let java$util$concurrent$LinkedTransferQueue_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$LinkedTransferQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$LinkedTransferQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$LinkedTransferQueue_put_java$lang$Object__V = invoker("put", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -679,23 +679,23 @@ open class java$util$concurrent$PriorityBlockingQueue : java$util$AbstractQueue,
     open class override func jniName() -> String { return "java/util/concurrent/PriorityBlockingQueue" }
 
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$PriorityBlockingQueue_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$PriorityBlockingQueue_init__V())
     }
 
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$PriorityBlockingQueue_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$PriorityBlockingQueue_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_init_I_java$util$Comparator__V = constructor((jint.jniType, JObjectType("java/util/Comparator")))
-    public convenience init!(_ a0: jint, _ a1: java$util$Comparator?) throws {
-        try self.init(constructor: I.java$util$concurrent$PriorityBlockingQueue_init_I_java$util$Comparator__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$util$Comparator?) throws {
+        try self.init(creator: I.java$util$concurrent$PriorityBlockingQueue_init_I_java$util$Comparator__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$PriorityBlockingQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$PriorityBlockingQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_add_java$lang$Object__Z = invoker("add", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -779,13 +779,13 @@ open class java$util$concurrent$SynchronousQueue : java$util$AbstractQueue, java
     open class override func jniName() -> String { return "java/util/concurrent/SynchronousQueue" }
 
     fileprivate static let java$util$concurrent$SynchronousQueue_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$SynchronousQueue_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$SynchronousQueue_init__V())
     }
 
     fileprivate static let java$util$concurrent$SynchronousQueue_init_Z__V = constructor((jboolean.jniType))
-    public convenience init!(_ a0: jboolean) throws {
-        try self.init(constructor: I.java$util$concurrent$SynchronousQueue_init_Z__V(a0))
+    public convenience init(_ a0: jboolean) throws {
+        try self.init(creator: I.java$util$concurrent$SynchronousQueue_init_Z__V(a0))
     }
 
     fileprivate static let java$util$concurrent$SynchronousQueue_put_java$lang$Object__V = invoker("put", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -866,23 +866,23 @@ open class java$util$concurrent$ConcurrentSkipListSet : java$util$AbstractSet, j
     open class override func jniName() -> String { return "java/util/concurrent/ConcurrentSkipListSet" }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListSet_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentSkipListSet_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentSkipListSet_init__V())
     }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListSet_init_java$util$Comparator__V = constructor((JObjectType("java/util/Comparator")))
-    public convenience init!(_ a0: java$util$Comparator?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentSkipListSet_init_java$util$Comparator__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Comparator?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentSkipListSet_init_java$util$Comparator__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListSet_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentSkipListSet_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentSkipListSet_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListSet_init_java$util$SortedSet__V = constructor((JObjectType("java/util/SortedSet")))
-    public convenience init!(_ a0: java$util$SortedSet?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentSkipListSet_init_java$util$SortedSet__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$SortedSet?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentSkipListSet_init_java$util$SortedSet__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListSet_clone__java$util$concurrent$ConcurrentSkipListSet = invoker("clone", returns: JObjectType("java/util/concurrent/ConcurrentSkipListSet"))
@@ -1021,13 +1021,13 @@ open class java$util$concurrent$CopyOnWriteArraySet : java$util$AbstractSet, jav
     open class override func jniName() -> String { return "java/util/concurrent/CopyOnWriteArraySet" }
 
     fileprivate static let java$util$concurrent$CopyOnWriteArraySet_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$CopyOnWriteArraySet_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$CopyOnWriteArraySet_init__V())
     }
 
     fileprivate static let java$util$concurrent$CopyOnWriteArraySet_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$CopyOnWriteArraySet_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$CopyOnWriteArraySet_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$CopyOnWriteArraySet_size__I = invoker("size", returns: jint.jniType)
@@ -1071,13 +1071,13 @@ open class java$util$concurrent$ConcurrentLinkedDeque : java$util$AbstractCollec
     open class override func jniName() -> String { return "java/util/concurrent/ConcurrentLinkedDeque" }
 
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentLinkedDeque_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentLinkedDeque_init__V())
     }
 
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentLinkedDeque_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentLinkedDeque_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_addFirst_java$lang$Object__V = invoker("addFirst", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -1217,8 +1217,8 @@ open class java$util$concurrent$AbstractExecutorService : java$lang$Object, java
     open class override func jniName() -> String { return "java/util/concurrent/AbstractExecutorService" }
 
     fileprivate static let java$util$concurrent$AbstractExecutorService_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$AbstractExecutorService_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$AbstractExecutorService_init__V())
     }
 
     fileprivate static let java$util$concurrent$AbstractExecutorService_submit_java$lang$Runnable__java$util$concurrent$Future = invoker("submit", returns: JObjectType("java/util/concurrent/Future"), arguments: (JObjectType("java/lang/Runnable")))
@@ -1273,18 +1273,18 @@ open class java$util$concurrent$ForkJoinPool : java$util$concurrent$AbstractExec
     }
 
     fileprivate static let java$util$concurrent$ForkJoinPool_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ForkJoinPool_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ForkJoinPool_init__V())
     }
 
     fileprivate static let java$util$concurrent$ForkJoinPool_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$ForkJoinPool_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$ForkJoinPool_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$ForkJoinPool_init_I_java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory_java$lang$Thread$UncaughtExceptionHandler_Z__V = constructor((jint.jniType, JObjectType("java/util/concurrent/ForkJoinPool$ForkJoinWorkerThreadFactory"), JObjectType("java/lang/Thread$UncaughtExceptionHandler"), jboolean.jniType))
-    public convenience init!(_ a0: jint, _ a1: java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory?, _ a2: java$lang$Thread$UncaughtExceptionHandler?, _ a3: jboolean) throws {
-        try self.init(constructor: I.java$util$concurrent$ForkJoinPool_init_I_java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory_java$lang$Thread$UncaughtExceptionHandler_Z__V(a0, a1?.jobj ?? nil, a2?.jobj ?? nil, a3))
+    public convenience init(_ a0: jint, _ a1: java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory?, _ a2: java$lang$Thread$UncaughtExceptionHandler?, _ a3: jboolean) throws {
+        try self.init(creator: I.java$util$concurrent$ForkJoinPool_init_I_java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory_java$lang$Thread$UncaughtExceptionHandler_Z__V(a0, a1?.jobj ?? nil, a2?.jobj ?? nil, a3))
     }
 
     fileprivate static let java$util$concurrent$ForkJoinPool_commonPool__java$util$concurrent$ForkJoinPool = svoker("commonPool", returns: JObjectType("java/util/concurrent/ForkJoinPool"))
@@ -1437,23 +1437,23 @@ open class java$util$concurrent$ThreadPoolExecutor : java$util$concurrent$Abstra
     open class override func jniName() -> String { return "java/util/concurrent/ThreadPoolExecutor" }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue__V = constructor((jint.jniType, jint.jniType, jlong.jniType, JObjectType("java/util/concurrent/TimeUnit"), JObjectType("java/util/concurrent/BlockingQueue")))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jlong, _ a3: java$util$concurrent$TimeUnit?, _ a4: java$util$concurrent$BlockingQueue?) throws {
-        try self.init(constructor: I.java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue__V(a0, a1, a2, a3?.jobj ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jlong, _ a3: java$util$concurrent$TimeUnit?, _ a4: java$util$concurrent$BlockingQueue?) throws {
+        try self.init(creator: I.java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue__V(a0, a1, a2, a3?.jobj ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$ThreadFactory__V = constructor((jint.jniType, jint.jniType, jlong.jniType, JObjectType("java/util/concurrent/TimeUnit"), JObjectType("java/util/concurrent/BlockingQueue"), JObjectType("java/util/concurrent/ThreadFactory")))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jlong, _ a3: java$util$concurrent$TimeUnit?, _ a4: java$util$concurrent$BlockingQueue?, _ a5: java$util$concurrent$ThreadFactory?) throws {
-        try self.init(constructor: I.java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$ThreadFactory__V(a0, a1, a2, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jlong, _ a3: java$util$concurrent$TimeUnit?, _ a4: java$util$concurrent$BlockingQueue?, _ a5: java$util$concurrent$ThreadFactory?) throws {
+        try self.init(creator: I.java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$ThreadFactory__V(a0, a1, a2, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$RejectedExecutionHandler__V = constructor((jint.jniType, jint.jniType, jlong.jniType, JObjectType("java/util/concurrent/TimeUnit"), JObjectType("java/util/concurrent/BlockingQueue"), JObjectType("java/util/concurrent/RejectedExecutionHandler")))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jlong, _ a3: java$util$concurrent$TimeUnit?, _ a4: java$util$concurrent$BlockingQueue?, _ a5: java$util$concurrent$RejectedExecutionHandler?) throws {
-        try self.init(constructor: I.java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$RejectedExecutionHandler__V(a0, a1, a2, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jlong, _ a3: java$util$concurrent$TimeUnit?, _ a4: java$util$concurrent$BlockingQueue?, _ a5: java$util$concurrent$RejectedExecutionHandler?) throws {
+        try self.init(creator: I.java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$RejectedExecutionHandler__V(a0, a1, a2, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$ThreadFactory_java$util$concurrent$RejectedExecutionHandler__V = constructor((jint.jniType, jint.jniType, jlong.jniType, JObjectType("java/util/concurrent/TimeUnit"), JObjectType("java/util/concurrent/BlockingQueue"), JObjectType("java/util/concurrent/ThreadFactory"), JObjectType("java/util/concurrent/RejectedExecutionHandler")))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jlong, _ a3: java$util$concurrent$TimeUnit?, _ a4: java$util$concurrent$BlockingQueue?, _ a5: java$util$concurrent$ThreadFactory?, _ a6: java$util$concurrent$RejectedExecutionHandler?) throws {
-        try self.init(constructor: I.java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$ThreadFactory_java$util$concurrent$RejectedExecutionHandler__V(a0, a1, a2, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jlong, _ a3: java$util$concurrent$TimeUnit?, _ a4: java$util$concurrent$BlockingQueue?, _ a5: java$util$concurrent$ThreadFactory?, _ a6: java$util$concurrent$RejectedExecutionHandler?) throws {
+        try self.init(creator: I.java$util$concurrent$ThreadPoolExecutor_init_I_I_J_java$util$concurrent$TimeUnit_java$util$concurrent$BlockingQueue_java$util$concurrent$ThreadFactory_java$util$concurrent$RejectedExecutionHandler__V(a0, a1, a2, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor_execute_java$lang$Runnable__V = invoker("execute", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Runnable")))
@@ -1614,23 +1614,23 @@ open class java$util$concurrent$ScheduledThreadPoolExecutor : java$util$concurre
     open class override func jniName() -> String { return "java/util/concurrent/ScheduledThreadPoolExecutor" }
 
     fileprivate static let java$util$concurrent$ScheduledThreadPoolExecutor_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$ScheduledThreadPoolExecutor_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$ScheduledThreadPoolExecutor_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$ThreadFactory__V = constructor((jint.jniType, JObjectType("java/util/concurrent/ThreadFactory")))
-    public convenience init!(_ a0: jint, _ a1: java$util$concurrent$ThreadFactory?) throws {
-        try self.init(constructor: I.java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$ThreadFactory__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$util$concurrent$ThreadFactory?) throws {
+        try self.init(creator: I.java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$ThreadFactory__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$RejectedExecutionHandler__V = constructor((jint.jniType, JObjectType("java/util/concurrent/RejectedExecutionHandler")))
-    public convenience init!(_ a0: jint, _ a1: java$util$concurrent$RejectedExecutionHandler?) throws {
-        try self.init(constructor: I.java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$RejectedExecutionHandler__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$util$concurrent$RejectedExecutionHandler?) throws {
+        try self.init(creator: I.java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$RejectedExecutionHandler__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$ThreadFactory_java$util$concurrent$RejectedExecutionHandler__V = constructor((jint.jniType, JObjectType("java/util/concurrent/ThreadFactory"), JObjectType("java/util/concurrent/RejectedExecutionHandler")))
-    public convenience init!(_ a0: jint, _ a1: java$util$concurrent$ThreadFactory?, _ a2: java$util$concurrent$RejectedExecutionHandler?) throws {
-        try self.init(constructor: I.java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$ThreadFactory_java$util$concurrent$RejectedExecutionHandler__V(a0, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$util$concurrent$ThreadFactory?, _ a2: java$util$concurrent$RejectedExecutionHandler?) throws {
+        try self.init(creator: I.java$util$concurrent$ScheduledThreadPoolExecutor_init_I_java$util$concurrent$ThreadFactory_java$util$concurrent$RejectedExecutionHandler__V(a0, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ScheduledThreadPoolExecutor_schedule_java$lang$Runnable_J_java$util$concurrent$TimeUnit__java$util$concurrent$ScheduledFuture = invoker("schedule", returns: JObjectType("java/util/concurrent/ScheduledFuture"), arguments: (JObjectType("java/lang/Runnable"), jlong.jniType, JObjectType("java/util/concurrent/TimeUnit")))
@@ -1702,28 +1702,28 @@ open class java$util$concurrent$ConcurrentHashMap : java$util$AbstractMap, java$
     open class override func jniName() -> String { return "java/util/concurrent/ConcurrentHashMap" }
 
     fileprivate static let java$util$concurrent$ConcurrentHashMap_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentHashMap_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentHashMap_init__V())
     }
 
     fileprivate static let java$util$concurrent$ConcurrentHashMap_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentHashMap_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentHashMap_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentHashMap_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentHashMap_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentHashMap_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentHashMap_init_I_F__V = constructor((jint.jniType, jfloat.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentHashMap_init_I_F__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jfloat) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentHashMap_init_I_F__V(a0, a1))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentHashMap_init_I_F_I__V = constructor((jint.jniType, jfloat.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentHashMap_init_I_F_I__V(a0, a1, a2))
+    public convenience init(_ a0: jint, _ a1: jfloat, _ a2: jint) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentHashMap_init_I_F_I__V(a0, a1, a2))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentHashMap_size__I = invoker("size", returns: jint.jniType)
@@ -1999,23 +1999,23 @@ open class java$util$concurrent$ConcurrentSkipListMap : java$util$AbstractMap, j
     open class override func jniName() -> String { return "java/util/concurrent/ConcurrentSkipListMap" }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListMap_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentSkipListMap_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentSkipListMap_init__V())
     }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListMap_init_java$util$Comparator__V = constructor((JObjectType("java/util/Comparator")))
-    public convenience init!(_ a0: java$util$Comparator?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentSkipListMap_init_java$util$Comparator__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Comparator?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentSkipListMap_init_java$util$Comparator__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListMap_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentSkipListMap_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentSkipListMap_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListMap_init_java$util$SortedMap__V = constructor((JObjectType("java/util/SortedMap")))
-    public convenience init!(_ a0: java$util$SortedMap?) throws {
-        try self.init(constructor: I.java$util$concurrent$ConcurrentSkipListMap_init_java$util$SortedMap__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$SortedMap?) throws {
+        try self.init(creator: I.java$util$concurrent$ConcurrentSkipListMap_init_java$util$SortedMap__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ConcurrentSkipListMap_clone__java$util$concurrent$ConcurrentSkipListMap = invoker("clone", returns: JObjectType("java/util/concurrent/ConcurrentSkipListMap"))
@@ -2263,8 +2263,8 @@ open class java$util$concurrent$CompletableFuture : java$lang$Object, java$util$
     open class override func jniName() -> String { return "java/util/concurrent/CompletableFuture" }
 
     fileprivate static let java$util$concurrent$CompletableFuture_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$CompletableFuture_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$CompletableFuture_init__V())
     }
 
     fileprivate static let java$util$concurrent$CompletableFuture_supplyAsync_java$util$function$Supplier__java$util$concurrent$CompletableFuture = svoker("supplyAsync", returns: JObjectType("java/util/concurrent/CompletableFuture"), arguments: (JObjectType("java/util/function/Supplier")))
@@ -2869,18 +2869,18 @@ open class java$util$concurrent$CopyOnWriteArrayList : java$lang$Object, java$ut
     open class override func jniName() -> String { return "java/util/concurrent/CopyOnWriteArrayList" }
 
     fileprivate static let java$util$concurrent$CopyOnWriteArrayList_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$CopyOnWriteArrayList_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$CopyOnWriteArrayList_init__V())
     }
 
     fileprivate static let java$util$concurrent$CopyOnWriteArrayList_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$concurrent$CopyOnWriteArrayList_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$concurrent$CopyOnWriteArrayList_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$CopyOnWriteArrayList_init_Ajava$lang$Object__V = constructor((JArray(JObjectType("java/lang/Object"))))
-    public convenience init!(_ a0: [java$lang$Object?]?) throws {
-        try self.init(constructor: I.java$util$concurrent$CopyOnWriteArrayList_init_Ajava$lang$Object__V(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: [java$lang$Object?]?) throws {
+        try self.init(creator: I.java$util$concurrent$CopyOnWriteArrayList_init_Ajava$lang$Object__V(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$util$concurrent$CopyOnWriteArrayList_size__I = invoker("size", returns: jint.jniType)
@@ -3063,8 +3063,8 @@ open class java$util$concurrent$CountDownLatch : java$lang$Object {
     open class override func jniName() -> String { return "java/util/concurrent/CountDownLatch" }
 
     fileprivate static let java$util$concurrent$CountDownLatch_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$CountDownLatch_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$CountDownLatch_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$CountDownLatch_await__V = invoker("await", returns: JVoid.jniType)
@@ -3100,13 +3100,13 @@ open class java$util$concurrent$CyclicBarrier : java$lang$Object {
     open class override func jniName() -> String { return "java/util/concurrent/CyclicBarrier" }
 
     fileprivate static let java$util$concurrent$CyclicBarrier_init_I_java$lang$Runnable__V = constructor((jint.jniType, JObjectType("java/lang/Runnable")))
-    public convenience init!(_ a0: jint, _ a1: java$lang$Runnable?) throws {
-        try self.init(constructor: I.java$util$concurrent$CyclicBarrier_init_I_java$lang$Runnable__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$lang$Runnable?) throws {
+        try self.init(creator: I.java$util$concurrent$CyclicBarrier_init_I_java$lang$Runnable__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$CyclicBarrier_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$CyclicBarrier_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$CyclicBarrier_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$CyclicBarrier_getParties__I = invoker("getParties", returns: jint.jniType)
@@ -3151,8 +3151,8 @@ open class java$util$concurrent$Exchanger : java$lang$Object {
     open class override func jniName() -> String { return "java/util/concurrent/Exchanger" }
 
     fileprivate static let java$util$concurrent$Exchanger_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$Exchanger_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$Exchanger_init__V())
     }
 
     fileprivate static let java$util$concurrent$Exchanger_exchange_java$lang$Object__java$lang$Object = invoker("exchange", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))
@@ -3177,13 +3177,13 @@ open class java$util$concurrent$ExecutorCompletionService : java$lang$Object, ja
     open class override func jniName() -> String { return "java/util/concurrent/ExecutorCompletionService" }
 
     fileprivate static let java$util$concurrent$ExecutorCompletionService_init_java$util$concurrent$Executor__V = constructor((JObjectType("java/util/concurrent/Executor")))
-    public convenience init!(_ a0: java$util$concurrent$Executor?) throws {
-        try self.init(constructor: I.java$util$concurrent$ExecutorCompletionService_init_java$util$concurrent$Executor__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$concurrent$Executor?) throws {
+        try self.init(creator: I.java$util$concurrent$ExecutorCompletionService_init_java$util$concurrent$Executor__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ExecutorCompletionService_init_java$util$concurrent$Executor_java$util$concurrent$BlockingQueue__V = constructor((JObjectType("java/util/concurrent/Executor"), JObjectType("java/util/concurrent/BlockingQueue")))
-    public convenience init!(_ a0: java$util$concurrent$Executor?, _ a1: java$util$concurrent$BlockingQueue?) throws {
-        try self.init(constructor: I.java$util$concurrent$ExecutorCompletionService_init_java$util$concurrent$Executor_java$util$concurrent$BlockingQueue__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$util$concurrent$Executor?, _ a1: java$util$concurrent$BlockingQueue?) throws {
+        try self.init(creator: I.java$util$concurrent$ExecutorCompletionService_init_java$util$concurrent$Executor_java$util$concurrent$BlockingQueue__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ExecutorCompletionService_submit_java$util$concurrent$Callable__java$util$concurrent$Future = invoker("submit", returns: JObjectType("java/util/concurrent/Future"), arguments: (JObjectType("java/util/concurrent/Callable")))
@@ -3344,8 +3344,8 @@ open class java$util$concurrent$ForkJoinTask : java$lang$Object, java$util$concu
     open class override func jniName() -> String { return "java/util/concurrent/ForkJoinTask" }
 
     fileprivate static let java$util$concurrent$ForkJoinTask_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ForkJoinTask_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ForkJoinTask_init__V())
     }
 
     fileprivate static let java$util$concurrent$ForkJoinTask_fork__java$util$concurrent$ForkJoinTask = invoker("fork", returns: JObjectType("java/util/concurrent/ForkJoinTask"))
@@ -3618,8 +3618,8 @@ open class java$util$concurrent$RecursiveAction : java$util$concurrent$ForkJoinT
     open class override func jniName() -> String { return "java/util/concurrent/RecursiveAction" }
 
     fileprivate static let java$util$concurrent$RecursiveAction_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$RecursiveAction_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$RecursiveAction_init__V())
     }
 
     fileprivate static let java$util$concurrent$RecursiveAction_getRawResult__java$lang$Void = invoker("getRawResult", returns: JObjectType("java/lang/Void"))
@@ -3636,8 +3636,8 @@ open class java$util$concurrent$RecursiveTask : java$util$concurrent$ForkJoinTas
     open class override func jniName() -> String { return "java/util/concurrent/RecursiveTask" }
 
     fileprivate static let java$util$concurrent$RecursiveTask_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$RecursiveTask_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$RecursiveTask_init__V())
     }
 
     fileprivate static let java$util$concurrent$RecursiveTask_getRawResult__java$lang$Object = invoker("getRawResult", returns: JObjectType("java/lang/Object"))
@@ -3653,13 +3653,13 @@ open class java$util$concurrent$FutureTask : java$lang$Object, java$util$concurr
     open class override func jniName() -> String { return "java/util/concurrent/FutureTask" }
 
     fileprivate static let java$util$concurrent$FutureTask_init_java$util$concurrent$Callable__V = constructor((JObjectType("java/util/concurrent/Callable")))
-    public convenience init!(_ a0: java$util$concurrent$Callable?) throws {
-        try self.init(constructor: I.java$util$concurrent$FutureTask_init_java$util$concurrent$Callable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$concurrent$Callable?) throws {
+        try self.init(creator: I.java$util$concurrent$FutureTask_init_java$util$concurrent$Callable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$FutureTask_init_java$lang$Runnable_java$lang$Object__V = constructor((JObjectType("java/lang/Runnable"), JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Runnable?, _ a1: java$lang$Object?) throws {
-        try self.init(constructor: I.java$util$concurrent$FutureTask_init_java$lang$Runnable_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Runnable?, _ a1: java$lang$Object?) throws {
+        try self.init(creator: I.java$util$concurrent$FutureTask_init_java$lang$Runnable_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$FutureTask_isCancelled__Z = invoker("isCancelled", returns: jboolean.jniType)
@@ -3704,23 +3704,23 @@ open class java$util$concurrent$Phaser : java$lang$Object {
     open class override func jniName() -> String { return "java/util/concurrent/Phaser" }
 
     fileprivate static let java$util$concurrent$Phaser_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$Phaser_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$Phaser_init__V())
     }
 
     fileprivate static let java$util$concurrent$Phaser_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$Phaser_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$Phaser_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$Phaser_init_java$util$concurrent$Phaser__V = constructor((JObjectType("java/util/concurrent/Phaser")))
-    public convenience init!(_ a0: java$util$concurrent$Phaser?) throws {
-        try self.init(constructor: I.java$util$concurrent$Phaser_init_java$util$concurrent$Phaser__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$concurrent$Phaser?) throws {
+        try self.init(creator: I.java$util$concurrent$Phaser_init_java$util$concurrent$Phaser__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$Phaser_init_java$util$concurrent$Phaser_I__V = constructor((JObjectType("java/util/concurrent/Phaser"), jint.jniType))
-    public convenience init!(_ a0: java$util$concurrent$Phaser?, _ a1: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$Phaser_init_java$util$concurrent$Phaser_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$util$concurrent$Phaser?, _ a1: jint) throws {
+        try self.init(creator: I.java$util$concurrent$Phaser_init_java$util$concurrent$Phaser_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$concurrent$Phaser_register__I = invoker("register", returns: jint.jniType)
@@ -3877,13 +3877,13 @@ open class java$util$concurrent$Semaphore : java$lang$Object, java$io$Serializab
     open class override func jniName() -> String { return "java/util/concurrent/Semaphore" }
 
     fileprivate static let java$util$concurrent$Semaphore_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$Semaphore_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$Semaphore_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$Semaphore_init_I_Z__V = constructor((jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: jint, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$concurrent$Semaphore_init_I_Z__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$concurrent$Semaphore_init_I_Z__V(a0, a1))
     }
 
     fileprivate static let java$util$concurrent$Semaphore_acquire__V = invoker("acquire", returns: JVoid.jniType)
@@ -3996,8 +3996,8 @@ open class java$util$concurrent$ThreadPoolExecutor$AbortPolicy : java$lang$Objec
     open class override func jniName() -> String { return "java/util/concurrent/ThreadPoolExecutor$AbortPolicy" }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor$AbortPolicy_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ThreadPoolExecutor$AbortPolicy_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ThreadPoolExecutor$AbortPolicy_init__V())
     }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor$AbortPolicy_rejectedExecution_java$lang$Runnable_java$util$concurrent$ThreadPoolExecutor__V = invoker("rejectedExecution", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Runnable"), JObjectType("java/util/concurrent/ThreadPoolExecutor")))
@@ -4017,8 +4017,8 @@ open class java$util$concurrent$ThreadPoolExecutor$CallerRunsPolicy : java$lang$
     open class override func jniName() -> String { return "java/util/concurrent/ThreadPoolExecutor$CallerRunsPolicy" }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor$CallerRunsPolicy_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ThreadPoolExecutor$CallerRunsPolicy_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ThreadPoolExecutor$CallerRunsPolicy_init__V())
     }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor$CallerRunsPolicy_rejectedExecution_java$lang$Runnable_java$util$concurrent$ThreadPoolExecutor__V = invoker("rejectedExecution", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Runnable"), JObjectType("java/util/concurrent/ThreadPoolExecutor")))
@@ -4038,8 +4038,8 @@ open class java$util$concurrent$ThreadPoolExecutor$DiscardOldestPolicy : java$la
     open class override func jniName() -> String { return "java/util/concurrent/ThreadPoolExecutor$DiscardOldestPolicy" }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor$DiscardOldestPolicy_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ThreadPoolExecutor$DiscardOldestPolicy_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ThreadPoolExecutor$DiscardOldestPolicy_init__V())
     }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor$DiscardOldestPolicy_rejectedExecution_java$lang$Runnable_java$util$concurrent$ThreadPoolExecutor__V = invoker("rejectedExecution", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Runnable"), JObjectType("java/util/concurrent/ThreadPoolExecutor")))
@@ -4059,8 +4059,8 @@ open class java$util$concurrent$ThreadPoolExecutor$DiscardPolicy : java$lang$Obj
     open class override func jniName() -> String { return "java/util/concurrent/ThreadPoolExecutor$DiscardPolicy" }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor$DiscardPolicy_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$ThreadPoolExecutor$DiscardPolicy_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$ThreadPoolExecutor$DiscardPolicy_init__V())
     }
 
     fileprivate static let java$util$concurrent$ThreadPoolExecutor$DiscardPolicy_rejectedExecution_java$lang$Runnable_java$util$concurrent$ThreadPoolExecutor__V = invoker("rejectedExecution", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Runnable"), JObjectType("java/util/concurrent/ThreadPoolExecutor")))
@@ -4080,13 +4080,13 @@ open class java$util$concurrent$BrokenBarrierException : java$lang$Exception {
     open class override func jniName() -> String { return "java/util/concurrent/BrokenBarrierException" }
 
     fileprivate static let java$util$concurrent$BrokenBarrierException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$BrokenBarrierException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$BrokenBarrierException_init__V())
     }
 
     fileprivate static let java$util$concurrent$BrokenBarrierException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$concurrent$BrokenBarrierException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$concurrent$BrokenBarrierException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -4101,13 +4101,13 @@ open class java$util$concurrent$ExecutionException : java$lang$Exception {
     open class override func jniName() -> String { return "java/util/concurrent/ExecutionException" }
 
     fileprivate static let java$util$concurrent$ExecutionException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$concurrent$ExecutionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$concurrent$ExecutionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ExecutionException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$concurrent$ExecutionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$concurrent$ExecutionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -4122,13 +4122,13 @@ open class java$util$concurrent$CompletionException : java$lang$RuntimeException
     open class override func jniName() -> String { return "java/util/concurrent/CompletionException" }
 
     fileprivate static let java$util$concurrent$CompletionException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$concurrent$CompletionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$concurrent$CompletionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$CompletionException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$concurrent$CompletionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$concurrent$CompletionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -4143,13 +4143,13 @@ open class java$util$concurrent$CancellationException : java$lang$IllegalStateEx
     open class override func jniName() -> String { return "java/util/concurrent/CancellationException" }
 
     fileprivate static let java$util$concurrent$CancellationException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$CancellationException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$CancellationException_init__V())
     }
 
     fileprivate static let java$util$concurrent$CancellationException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$concurrent$CancellationException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$concurrent$CancellationException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -4164,23 +4164,23 @@ open class java$util$concurrent$RejectedExecutionException : java$lang$RuntimeEx
     open class override func jniName() -> String { return "java/util/concurrent/RejectedExecutionException" }
 
     fileprivate static let java$util$concurrent$RejectedExecutionException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$RejectedExecutionException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$RejectedExecutionException_init__V())
     }
 
     fileprivate static let java$util$concurrent$RejectedExecutionException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$concurrent$RejectedExecutionException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$concurrent$RejectedExecutionException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$RejectedExecutionException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$concurrent$RejectedExecutionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$concurrent$RejectedExecutionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$RejectedExecutionException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$concurrent$RejectedExecutionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$concurrent$RejectedExecutionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -4195,13 +4195,13 @@ open class java$util$concurrent$TimeoutException : java$lang$Exception {
     open class override func jniName() -> String { return "java/util/concurrent/TimeoutException" }
 
     fileprivate static let java$util$concurrent$TimeoutException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$TimeoutException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$TimeoutException_init__V())
     }
 
     fileprivate static let java$util$concurrent$TimeoutException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$concurrent$TimeoutException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$concurrent$TimeoutException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }

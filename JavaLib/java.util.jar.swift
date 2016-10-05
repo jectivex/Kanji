@@ -8,18 +8,18 @@ open class java$util$jar$Attributes : java$lang$Object, java$util$Map, java$lang
     open class override func jniName() -> String { return "java/util/jar/Attributes" }
 
     fileprivate static let java$util$jar$Attributes_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$jar$Attributes_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$jar$Attributes_init__V())
     }
 
     fileprivate static let java$util$jar$Attributes_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$jar$Attributes_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$jar$Attributes_init_I__V(a0))
     }
 
     fileprivate static let java$util$jar$Attributes_init_java$util$jar$Attributes__V = constructor((JObjectType("java/util/jar/Attributes")))
-    public convenience init!(_ a0: java$util$jar$Attributes?) throws {
-        try self.init(constructor: I.java$util$jar$Attributes_init_java$util$jar$Attributes__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$jar$Attributes?) throws {
+        try self.init(creator: I.java$util$jar$Attributes_init_java$util$jar$Attributes__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$Attributes_get_java$lang$Object__java$lang$Object = invoker("get", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))
@@ -201,8 +201,8 @@ open class java$util$jar$Attributes$Name : java$lang$Object {
     }
 
     fileprivate static let java$util$jar$Attributes$Name_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$jar$Attributes$Name_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$jar$Attributes$Name_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$Attributes$Name_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -220,13 +220,13 @@ open class java$util$jar$JarInputStream : java$util$zip$ZipInputStream {
     open class override func jniName() -> String { return "java/util/jar/JarInputStream" }
 
     fileprivate static let java$util$jar$JarInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$util$jar$JarInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$util$jar$JarInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$JarInputStream_init_java$io$InputStream_Z__V = constructor((JObjectType("java/io/InputStream"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$jar$JarInputStream_init_java$io$InputStream_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$jar$JarInputStream_init_java$io$InputStream_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$jar$JarInputStream_getManifest__java$util$jar$Manifest = invoker("getManifest", returns: JObjectType("java/util/jar/Manifest"))
@@ -253,18 +253,18 @@ open class java$util$jar$Manifest : java$lang$Object, java$lang$Cloneable {
     open class override func jniName() -> String { return "java/util/jar/Manifest" }
 
     fileprivate static let java$util$jar$Manifest_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$jar$Manifest_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$jar$Manifest_init__V())
     }
 
     fileprivate static let java$util$jar$Manifest_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$util$jar$Manifest_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$util$jar$Manifest_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$Manifest_init_java$util$jar$Manifest__V = constructor((JObjectType("java/util/jar/Manifest")))
-    public convenience init!(_ a0: java$util$jar$Manifest?) throws {
-        try self.init(constructor: I.java$util$jar$Manifest_init_java$util$jar$Manifest__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$jar$Manifest?) throws {
+        try self.init(creator: I.java$util$jar$Manifest_init_java$util$jar$Manifest__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$Manifest_getMainAttributes__java$util$jar$Attributes = invoker("getMainAttributes", returns: JObjectType("java/util/jar/Attributes"))
@@ -316,13 +316,13 @@ open class java$util$jar$JarOutputStream : java$util$zip$ZipOutputStream {
     open class override func jniName() -> String { return "java/util/jar/JarOutputStream" }
 
     fileprivate static let java$util$jar$JarOutputStream_init_java$io$OutputStream_java$util$jar$Manifest__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/jar/Manifest")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$jar$Manifest?) throws {
-        try self.init(constructor: I.java$util$jar$JarOutputStream_init_java$io$OutputStream_java$util$jar$Manifest__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$jar$Manifest?) throws {
+        try self.init(creator: I.java$util$jar$JarOutputStream_init_java$io$OutputStream_java$util$jar$Manifest__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$JarOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$util$jar$JarOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$util$jar$JarOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$JarOutputStream_putNextEntry_java$util$zip$ZipEntry__V = invoker("putNextEntry", returns: JVoid.jniType, arguments: (JObjectType("java/util/zip/ZipEntry")))
@@ -359,13 +359,13 @@ open class java$util$jar$JarException : java$util$zip$ZipException {
     open class override func jniName() -> String { return "java/util/jar/JarException" }
 
     fileprivate static let java$util$jar$JarException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$jar$JarException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$jar$JarException_init__V())
     }
 
     fileprivate static let java$util$jar$JarException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$jar$JarException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$jar$JarException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -380,18 +380,18 @@ open class java$util$jar$JarEntry : java$util$zip$ZipEntry {
     open class override func jniName() -> String { return "java/util/jar/JarEntry" }
 
     fileprivate static let java$util$jar$JarEntry_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$jar$JarEntry_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$jar$JarEntry_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$JarEntry_init_java$util$zip$ZipEntry__V = constructor((JObjectType("java/util/zip/ZipEntry")))
-    public convenience init!(_ a0: java$util$zip$ZipEntry?) throws {
-        try self.init(constructor: I.java$util$jar$JarEntry_init_java$util$zip$ZipEntry__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$zip$ZipEntry?) throws {
+        try self.init(creator: I.java$util$jar$JarEntry_init_java$util$zip$ZipEntry__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$JarEntry_init_java$util$jar$JarEntry__V = constructor((JObjectType("java/util/jar/JarEntry")))
-    public convenience init!(_ a0: java$util$jar$JarEntry?) throws {
-        try self.init(constructor: I.java$util$jar$JarEntry_init_java$util$jar$JarEntry__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$jar$JarEntry?) throws {
+        try self.init(creator: I.java$util$jar$JarEntry_init_java$util$jar$JarEntry__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$JarEntry_getAttributes__java$util$jar$Attributes = invoker("getAttributes", returns: JObjectType("java/util/jar/Attributes"))
@@ -426,28 +426,28 @@ open class java$util$jar$JarFile : java$util$zip$ZipFile {
     }
 
     fileprivate static let java$util$jar$JarFile_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$jar$JarFile_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$jar$JarFile_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$JarFile_init_java$lang$String_Z__V = constructor((JObjectType("java/lang/String"), jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$jar$JarFile_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$jar$JarFile_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$jar$JarFile_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$util$jar$JarFile_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$util$jar$JarFile_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$jar$JarFile_init_java$io$File_Z__V = constructor((JObjectType("java/io/File"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$File?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$jar$JarFile_init_java$io$File_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$File?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$jar$JarFile_init_java$io$File_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$jar$JarFile_init_java$io$File_Z_I__V = constructor((JObjectType("java/io/File"), jboolean.jniType, jint.jniType))
-    public convenience init!(_ a0: java$io$File?, _ a1: jboolean, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$jar$JarFile_init_java$io$File_Z_I__V(a0?.jobj ?? nil, a1, a2))
+    public convenience init(_ a0: java$io$File?, _ a1: jboolean, _ a2: jint) throws {
+        try self.init(creator: I.java$util$jar$JarFile_init_java$io$File_Z_I__V(a0?.jobj ?? nil, a1, a2))
     }
 
     fileprivate static let java$util$jar$JarFile_getManifest__java$util$jar$Manifest = invoker("getManifest", returns: JObjectType("java/util/jar/Manifest"))

@@ -8,13 +8,13 @@ open class org$xml$sax$helpers$AttributeListImpl : java$lang$Object, org$xml$sax
     open class override func jniName() -> String { return "org/xml/sax/helpers/AttributeListImpl" }
 
     fileprivate static let org$xml$sax$helpers$AttributeListImpl_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$helpers$AttributeListImpl_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$helpers$AttributeListImpl_init__V())
     }
 
     fileprivate static let org$xml$sax$helpers$AttributeListImpl_init_org$xml$sax$AttributeList__V = constructor((JObjectType("org/xml/sax/AttributeList")))
-    public convenience init!(_ a0: org$xml$sax$AttributeList?) throws {
-        try self.init(constructor: I.org$xml$sax$helpers$AttributeListImpl_init_org$xml$sax$AttributeList__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$AttributeList?) throws {
+        try self.init(creator: I.org$xml$sax$helpers$AttributeListImpl_init_org$xml$sax$AttributeList__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$helpers$AttributeListImpl_setAttributeList_org$xml$sax$AttributeList__V = invoker("setAttributeList", returns: JVoid.jniType, arguments: (JObjectType("org/xml/sax/AttributeList")))
@@ -79,13 +79,13 @@ open class org$xml$sax$helpers$AttributesImpl : java$lang$Object, org$xml$sax$At
     open class override func jniName() -> String { return "org/xml/sax/helpers/AttributesImpl" }
 
     fileprivate static let org$xml$sax$helpers$AttributesImpl_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$helpers$AttributesImpl_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$helpers$AttributesImpl_init__V())
     }
 
     fileprivate static let org$xml$sax$helpers$AttributesImpl_init_org$xml$sax$Attributes__V = constructor((JObjectType("org/xml/sax/Attributes")))
-    public convenience init!(_ a0: org$xml$sax$Attributes?) throws {
-        try self.init(constructor: I.org$xml$sax$helpers$AttributesImpl_init_org$xml$sax$Attributes__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$Attributes?) throws {
+        try self.init(creator: I.org$xml$sax$helpers$AttributesImpl_init_org$xml$sax$Attributes__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$helpers$AttributesImpl_getLength__I = invoker("getLength", returns: jint.jniType)
@@ -210,8 +210,8 @@ open class org$xml$sax$helpers$DefaultHandler : java$lang$Object, org$xml$sax$En
     open class override func jniName() -> String { return "org/xml/sax/helpers/DefaultHandler" }
 
     fileprivate static let org$xml$sax$helpers$DefaultHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$helpers$DefaultHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$helpers$DefaultHandler_init__V())
     }
 
     fileprivate static let org$xml$sax$helpers$DefaultHandler_resolveEntity_java$lang$String_java$lang$String__org$xml$sax$InputSource = invoker("resolveEntity", returns: JObjectType("org/xml/sax/InputSource"), arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String")))
@@ -311,13 +311,13 @@ open class org$xml$sax$helpers$LocatorImpl : java$lang$Object, org$xml$sax$Locat
     open class override func jniName() -> String { return "org/xml/sax/helpers/LocatorImpl" }
 
     fileprivate static let org$xml$sax$helpers$LocatorImpl_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$helpers$LocatorImpl_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$helpers$LocatorImpl_init__V())
     }
 
     fileprivate static let org$xml$sax$helpers$LocatorImpl_init_org$xml$sax$Locator__V = constructor((JObjectType("org/xml/sax/Locator")))
-    public convenience init!(_ a0: org$xml$sax$Locator?) throws {
-        try self.init(constructor: I.org$xml$sax$helpers$LocatorImpl_init_org$xml$sax$Locator__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$Locator?) throws {
+        try self.init(creator: I.org$xml$sax$helpers$LocatorImpl_init_org$xml$sax$Locator__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$helpers$LocatorImpl_getPublicId__java$lang$String = invoker("getPublicId", returns: JObjectType("java/lang/String"))
@@ -382,8 +382,8 @@ open class org$xml$sax$helpers$NamespaceSupport : java$lang$Object {
     }
 
     fileprivate static let org$xml$sax$helpers$NamespaceSupport_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$helpers$NamespaceSupport_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$helpers$NamespaceSupport_init__V())
     }
 
     fileprivate static let org$xml$sax$helpers$NamespaceSupport_reset__V = invoker("reset", returns: JVoid.jniType)
@@ -458,13 +458,13 @@ open class org$xml$sax$helpers$ParserAdapter : java$lang$Object, org$xml$sax$XML
     open class override func jniName() -> String { return "org/xml/sax/helpers/ParserAdapter" }
 
     fileprivate static let org$xml$sax$helpers$ParserAdapter_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$helpers$ParserAdapter_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$helpers$ParserAdapter_init__V())
     }
 
     fileprivate static let org$xml$sax$helpers$ParserAdapter_init_org$xml$sax$Parser__V = constructor((JObjectType("org/xml/sax/Parser")))
-    public convenience init!(_ a0: org$xml$sax$Parser?) throws {
-        try self.init(constructor: I.org$xml$sax$helpers$ParserAdapter_init_org$xml$sax$Parser__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$Parser?) throws {
+        try self.init(creator: I.org$xml$sax$helpers$ParserAdapter_init_org$xml$sax$Parser__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$helpers$ParserAdapter_setFeature_java$lang$String_Z__V = invoker("setFeature", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), jboolean.jniType))
@@ -610,13 +610,13 @@ open class org$xml$sax$helpers$XMLFilterImpl : java$lang$Object, org$xml$sax$XML
     open class override func jniName() -> String { return "org/xml/sax/helpers/XMLFilterImpl" }
 
     fileprivate static let org$xml$sax$helpers$XMLFilterImpl_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$helpers$XMLFilterImpl_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$helpers$XMLFilterImpl_init__V())
     }
 
     fileprivate static let org$xml$sax$helpers$XMLFilterImpl_init_org$xml$sax$XMLReader__V = constructor((JObjectType("org/xml/sax/XMLReader")))
-    public convenience init!(_ a0: org$xml$sax$XMLReader?) throws {
-        try self.init(constructor: I.org$xml$sax$helpers$XMLFilterImpl_init_org$xml$sax$XMLReader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$XMLReader?) throws {
+        try self.init(creator: I.org$xml$sax$helpers$XMLFilterImpl_init_org$xml$sax$XMLReader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$helpers$XMLFilterImpl_setParent_org$xml$sax$XMLReader__V = invoker("setParent", returns: JVoid.jniType, arguments: (JObjectType("org/xml/sax/XMLReader")))
@@ -796,13 +796,13 @@ open class org$xml$sax$helpers$XMLReaderAdapter : java$lang$Object, org$xml$sax$
     open class override func jniName() -> String { return "org/xml/sax/helpers/XMLReaderAdapter" }
 
     fileprivate static let org$xml$sax$helpers$XMLReaderAdapter_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$helpers$XMLReaderAdapter_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$helpers$XMLReaderAdapter_init__V())
     }
 
     fileprivate static let org$xml$sax$helpers$XMLReaderAdapter_init_org$xml$sax$XMLReader__V = constructor((JObjectType("org/xml/sax/XMLReader")))
-    public convenience init!(_ a0: org$xml$sax$XMLReader?) throws {
-        try self.init(constructor: I.org$xml$sax$helpers$XMLReaderAdapter_init_org$xml$sax$XMLReader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$XMLReader?) throws {
+        try self.init(creator: I.org$xml$sax$helpers$XMLReaderAdapter_init_org$xml$sax$XMLReader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$helpers$XMLReaderAdapter_setLocale_java$util$Locale__V = invoker("setLocale", returns: JVoid.jniType, arguments: (JObjectType("java/util/Locale")))

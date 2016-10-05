@@ -111,47 +111,47 @@ class KanjiLibTests: XCTestCase {
             XCTAssertEqual(java$io$StreamTokenizer.TT_WORD, -3)
             let tok = try java$io$StreamTokenizer(java$io$StringReader(""))
 
-            XCTAssertEqual(try! tok?.getClass()?.getName(), "java.io.StreamTokenizer")
+            XCTAssertEqual(try! tok.getClass()?.getName(), "java.io.StreamTokenizer")
 
-            XCTAssertEqual(tok?.nval, 0.0)
-            tok?.nval = 2.0
-            XCTAssertEqual(tok?.nval, 2.0)
-            tok?.nval += 1
-            XCTAssertEqual(tok?.nval, 3.0)
+            XCTAssertEqual(tok.nval, 0.0)
+            tok.nval = 2.0
+            XCTAssertEqual(tok.nval, 2.0)
+            tok.nval += 1
+            XCTAssertEqual(tok.nval, 3.0)
 
-            tok?.nval = 2.0
-            XCTAssertEqual(tok?.nval, 2.0)
-            tok?.nval += 1
-            XCTAssertEqual(tok?.nval, 3.0)
+            tok.nval = 2.0
+            XCTAssertEqual(tok.nval, 2.0)
+            tok.nval += 1
+            XCTAssertEqual(tok.nval, 3.0)
 
-            tok?.ttype = 2
-            XCTAssertEqual(tok?.ttype, 2)
-            tok?.ttype += 1
-            XCTAssertEqual(tok?.ttype, 3)
+            tok.ttype = 2
+            XCTAssertEqual(tok.ttype, 2)
+            tok.ttype += 1
+            XCTAssertEqual(tok.ttype, 3)
 
 
-            XCTAssertEqual(tok?.sval, nil)
-            tok?.sval = "Foo"
-            XCTAssertEqual(tok?.sval, "Foo")
-            tok?.sval = nil
-            XCTAssertEqual(tok?.sval, nil)
+            XCTAssertEqual(tok.sval, nil)
+            tok.sval = "Foo"
+            XCTAssertEqual(tok.sval, "Foo")
+            tok.sval = nil
+            XCTAssertEqual(tok.sval, nil)
 
 
             let props = try java$sql$DriverPropertyInfo("foo", "bar")
 
-            XCTAssertEqual(props?.name, "foo")
-            XCTAssertEqual(props?.value, "bar")
+            XCTAssertEqual(props.name, "foo")
+            XCTAssertEqual(props.value, "bar")
 
-            XCTAssertEqual(props?.required, false)
-            props?.required = true
-            XCTAssertEqual(props?.required, true)
-            props?.required = false
-            XCTAssertEqual(props?.required, false)
+            XCTAssertEqual(props.required, false)
+            props.required = true
+            XCTAssertEqual(props.required, true)
+            props.required = false
+            XCTAssertEqual(props.required, false)
 
-            props?.name = "FooBar"
-            XCTAssertEqual(props?.name, "FooBar")
-            props?.name = nil
-            XCTAssertEqual(props?.name, nil)
+            props.name = "FooBar"
+            XCTAssertEqual(props.name, "FooBar")
+            props.name = nil
+            XCTAssertEqual(props.name, nil)
 
             XCTAssertNotNil(java$lang$System.out)
             try java$lang$System.out?.println("Hello Field Accessor")
@@ -170,7 +170,7 @@ class KanjiLibTests: XCTestCase {
         XCTAssertEqual(3, try bbuf?.get(3))
 
         do {
-            try bbuf?.get(4)
+            _ = try bbuf?.get(4)
             XCTFail("get outside of range should fail")
         } catch let err as KanjiException {
             XCTAssertEqual("java.lang.IndexOutOfBoundsException", err.className)
@@ -297,7 +297,7 @@ class KanjiLibTests: XCTestCase {
             do {
                 print("\(#function): starting from \(Thread.current)")
                 let runnable = try java$lang$Runnable$Impl.fromBlock { _ in print("\(#function): running from \(Thread.current)") }
-                try java$lang$Thread(runnable)?.start()
+                try java$lang$Thread(runnable).start()
                 print("\(#function): ending from \(Thread.current)")
             }
 
@@ -832,11 +832,11 @@ class KanjiLibTests: XCTestCase {
                     let list = try java$util$ArrayList()
                     for _ in 0...1000 {
                         let ob = try java$lang$StringBuilder()
-                        _ = try ob?.append(66)
+                        _ = try ob.append(66)
                         for _ in 1...17 { // 2^20 = 1,048,576
-                            let _: java$lang$AbstractStringBuilder? = try ob?.append(ob as? java$lang$CharSequence)
+                            let _: java$lang$AbstractStringBuilder? = try ob.append(ob as java$lang$CharSequence)
                         }
-                        _ = try list?.add(ob)
+                        _ = try list.add(ob)
                     }
                     //                    }
                 } catch {
@@ -884,9 +884,9 @@ class KanjiLibTests: XCTestCase {
     func testObjectReferences() throws {
         do {
             let map = try java$util$HashMap()
-            _ = try map?.put("foo".javaString, java$lang$Integer(1))
-            let ref1 = try map?.get("foo".javaString)
-            let ref2 = try map?.get("foo".javaString)
+            _ = try map.put("foo".javaString, java$lang$Integer(1))
+            let ref1 = try map.get("foo".javaString)
+            let ref2 = try map.get("foo".javaString)
             XCTAssertNotNil(ref1)
             XCTAssertNotNil(ref2)
             XCTAssertEqual(ref1, ref2)
@@ -961,13 +961,13 @@ class KanjiLibTests: XCTestCase {
             let count = 1000
             DispatchQueue.concurrentPerform(iterations: count) { n in
                 do {
-                    _ = try table?.put(java$lang$Long(n), java$lang$String("\(count)"))
+                    _ = try table.put(java$lang$Long(n), java$lang$String("\(count)"))
                 } catch {
                     return XCTFail(String(describing: error))
                 }
             }
 
-            let size = try table?.size()
+            let size = try table.size()
             XCTAssertEqual(jint(count), size)
         } catch {
             return XCTFail(String(describing: error))
@@ -976,7 +976,7 @@ class KanjiLibTests: XCTestCase {
         DispatchQueue.concurrentPerform(iterations: 999) { _ in
             do {
                 let hm = try java$util$HashMap()
-                try hm?.put(java$lang$String("X"), java$util$TreeMap())
+                _ = try hm.put(java$lang$String("X"), java$util$TreeMap())
             } catch {
                 return XCTFail(String(describing: error))
             }
@@ -986,9 +986,8 @@ class KanjiLibTests: XCTestCase {
 
     func testExceptions() throws {
         do {
-            if let ob = try java$lang$Object() {
-                try ob.wait() // illegal when not synchronized on the object
-            }
+            let ob = try java$lang$Object()
+            try ob.wait() // illegal when not synchronized on the object
             XCTFail("Should have thrown an java.lang.IllegalMonitorStateException")
         } catch let ex as KanjiException {
             XCTAssertEqual(ex.className, "java.lang.IllegalMonitorStateException")
@@ -1001,13 +1000,13 @@ class KanjiLibTests: XCTestCase {
         do {
             let ob1 = try java$lang$Object()
             let ob2 = try java$lang$Object()
-            try ob1?.synchronized {
-                try ob2?.synchronized {
-                    try ob1?.synchronized {
-                        try ob2?.synchronized {
-                            try ob1?.synchronized {
-                                try ob2?.synchronized {
-                                    try ob1?.notifyAll()
+            try ob1.synchronized {
+                try ob2.synchronized {
+                    try ob1.synchronized {
+                        try ob2.synchronized {
+                            try ob1.synchronized {
+                                try ob2.synchronized {
+                                    try ob1.notifyAll()
                                 }
                             }
                         }
@@ -1016,7 +1015,7 @@ class KanjiLibTests: XCTestCase {
             }
 
             do {
-                try ob1?.notifyAll()
+                try ob1.notifyAll()
                 XCTFail("Unlocked object should have thrown exception")
             } catch {
                 // expected
@@ -1057,9 +1056,7 @@ class KanjiLibTests: XCTestCase {
             XCTAssertEqual([97, 98, 99, 49, 50, 51], chars)
 
             let chars2: [jchar] = [97, 98, 99, 49, 50, 51]
-            guard let str2 = try java$lang$String(chars2) else {
-                return XCTFail("Could not create string from array")
-            }
+            let str2 = try java$lang$String(chars2)
             XCTAssertEqual(str2.description, "abc123")
         }
     }
@@ -1068,7 +1065,7 @@ class KanjiLibTests: XCTestCase {
         do {
             let date = try java$util$Date("Sat Mar 07 21:12:01 EST 2015")
 
-            let date2 = try date?.clone()
+            let date2 = try date.clone()
 
             XCTAssertTrue(date == date2)
             XCTAssertFalse(date != date2)
@@ -1076,11 +1073,11 @@ class KanjiLibTests: XCTestCase {
             XCTAssertFalse(date === date2)
             XCTAssertTrue(date !== date2)
 
-            let hc1 = try date?.hashCode()
+            let hc1 = try date.hashCode()
             let hc2 = try date2!.hashCode()
             XCTAssertTrue(hc1 == hc2)
 
-            let cls = try date?.getClass()
+            let cls = try date.getClass()
             let str = try cls!.toString()
             XCTAssertEqual(str!, "class java.util.Date")
         }
@@ -1090,7 +1087,7 @@ class KanjiLibTests: XCTestCase {
     func testStringBridging() throws {
         do {
             let date = try java$util$Date("Sat Mar 07 21:12:01 EST 2015")
-            let time = try date?.getTime()
+            let time = try date.getTime()
             XCTAssertEqual(time, 1_425_780_721_000)
         }
 
@@ -1184,10 +1181,10 @@ class KanjiLibTests: XCTestCase {
             let d3 = try java$sql$Date(jint(1), jint(2), jint(3))
             let d4 = try java$sql$Time(jlong(123456))
 
-            let fromArray: [java$util$Date] = [d0!, d1!, d2!, d3!, d4!]
+            let fromArray: [java$util$Date] = [d0, d1, d2, d3, d4]
 
             let ll = try java$util$LinkedList()
-            for d in fromArray { try ll?.add(d) }
+            for d in fromArray { _ = try ll.add(d) }
 
 //            XCTAssertEqual(5, (ll.casts() as [java$lang$Object]).count)
 //            XCTAssertEqual(5, (ll.casts() as [java$util$Date]).count)
@@ -1196,10 +1193,10 @@ class KanjiLibTests: XCTestCase {
 //            XCTAssertEqual(1, (ll.casts() as [java$sql$Time]).count)
 
 //            debugPrint("list: \(ll)")
-            var llsize = try ll?.size()
+            var llsize = try ll.size()
             XCTAssertEqual(llsize, 5)
 
-            let asArray = try ll?.toArray([])?.flatMap({ $0 })
+            let asArray = try ll.toArray([])?.flatMap({ $0 })
             XCTAssertEqual(asArray?.count, 5)
 
 //            debugPrint("array: \(asArray)")
@@ -1219,9 +1216,9 @@ class KanjiLibTests: XCTestCase {
                 XCTAssertEqual(1, (asArray.casts() as [java$sql$Time]).count)
             }
 
-            let _ = try ll?.removeLast()
+            let _ = try ll.removeLast()
 //            debugPrint("removed: \(d)")
-            llsize = try ll?.size()
+            llsize = try ll.size()
             XCTAssertEqual(llsize, 4)
 
             /*
@@ -1262,8 +1259,8 @@ class KanjiLibTests: XCTestCase {
             let times = d.map { $0.time })
             */
 
-            try ll?.clear()
-            llsize = try ll?.size()
+            try ll.clear()
+            llsize = try ll.size()
             XCTAssertEqual(llsize, 0)
 
             debugPrint("list: \(ll)")
@@ -1275,27 +1272,27 @@ class KanjiLibTests: XCTestCase {
             XCTAssertNotNil(JVM.sharedJVM)
 
             let date = try java$util$Date()
-            let desc = try date?.toString()
+            let desc = try date.toString()
             XCTAssertNotNil(desc)
 
             XCTAssertTrue(date == date)
 
             let date2 = try java$util$Date()
 
-            dump(date?.description)
+            dump(date.description)
 
-            let time = try date?.getTime() ?? 0
+            let time = try date.getTime()
             // make sure the Java clock agrees with the Cocoa clock
             XCTAssertEqualWithAccuracy(Double(time) / 1000, Date().timeIntervalSince1970, accuracy: 2.0)
 
             XCTAssertTrue(date != date2) // two separate dates should not be equal...
-            try date2?.setTime(time)
+            try date2.setTime(time)
             XCTAssertTrue(date == date2) // ...unless they have the exact same time
 
             let ms = 1_425_780_721_000
 
-            try date?.setTime(ms)
-            dump(date?.description)
+            try date.setTime(ms)
+            dump(date.description)
 
             let date3 = try java$util$Date(ms)
             XCTAssertTrue(date == date3)
@@ -1309,16 +1306,17 @@ class KanjiLibTests: XCTestCase {
             let sqlDate = try java$sql$Date(ms)
             let sqlTime = try java$sql$Time(ms)
             let sqlTimestamp = try java$sql$Timestamp(ms)
+            XCTAssertNotNil(sqlTimestamp)
 
             // java$util$Date has full precision, whereas java.sql.Date just has the year/month/day
-            XCTAssertEqual(try? sqlDate?.toString() ?? "", "2015-03-07")
+            XCTAssertEqual(try? sqlDate.toString() ?? "", "2015-03-07")
             // FIXME: only works when I am in EST!
-//            XCTAssertEqual(try? date?.toString() ?? "", "Sat Mar 07 21:12:01 EST 2015")
-//            XCTAssertEqual(try? sqlTime?.toString() ?? "", "21:12:01")
-//            XCTAssertEqual(try? sqlTimestamp?.toString() ?? "", "2015-03-07 21:12:01.0")
+//            XCTAssertEqual(try? date.toString() ?? "", "Sat Mar 07 21:12:01 EST 2015")
+//            XCTAssertEqual(try? sqlTime.toString() ?? "", "21:12:01")
+//            XCTAssertEqual(try? sqlTimestamp.toString() ?? "", "2015-03-07 21:12:01.0")
 
-            _ = try sqlTime?.toLocalTime()
-            XCTAssertEqual(try! sqlTime?.getTime(), ms)
+            _ = try sqlTime.toLocalTime()
+            XCTAssertEqual(try! sqlTime.getTime(), ms)
 
         }
     }
@@ -1327,10 +1325,10 @@ class KanjiLibTests: XCTestCase {
         do {
             let manager = try javax$script$ScriptEngineManager()
 
-            let badeng = try manager?.getEngineByName("Bad Engine")
+            let badeng = try manager.getEngineByName("Bad Engine")
             XCTAssertTrue(badeng == nil)
 
-            guard let js = try manager?.getEngineByName("javascript") else {
+            guard let js = try manager.getEngineByName("javascript") else {
                 return XCTFail("Got back null when getting engine")
             }
 
@@ -1385,7 +1383,7 @@ class KanjiLibTests: XCTestCase {
 //            let val3 = try js.eval("JSON.stringify(Java.from(java.lang.System.getProperties()))") // TypeError: Can only convert Java arrays and lists to JavaScript arrays. Cannot convert object of type java.util.Properties. in <eval> at line number 1
 
             do {
-                try js.eval("throw 'Some Exception'")
+                _ = try js.eval("throw 'Some Exception'")
                 XCTFail("Exception should have been thrown")
             } catch let exception as KanjiException {
                 XCTAssertTrue(exception.message?.hasPrefix("Some Exception") == true, exception.message ?? "")
@@ -1402,7 +1400,7 @@ class KanjiLibTests: XCTestCase {
         XCTAssertEqual(java$util$Map$Entry$Impl.javaClassName, "java/util/Map$Entry")
         do {
             let entry = try java$util$AbstractMap$SimpleEntry(java$lang$String("foo"), java$lang$String("bar"))
-            let cname = try entry?.getClass()?.getName()
+            let cname = try entry.getClass()?.getName()
             XCTAssertEqual("java.util.AbstractMap$SimpleEntry", cname?.description)
         }
     }
@@ -1412,22 +1410,22 @@ class KanjiLibTests: XCTestCase {
 
             let d = try java$lang$Double(123456789.765)
 
-            let dv = try d?.doubleValue()
+            let dv = try d.doubleValue()
             XCTAssertEqual(dv, 123456789.765)
 
-            let fv = try d?.floatValue()
+            let fv = try d.floatValue()
             XCTAssertEqual(fv, 123456789.765)
 
-            let iv = try d?.intValue()
+            let iv = try d.intValue()
             XCTAssertEqual(iv, 123456789)
 
-            let lv = try d?.longValue()
+            let lv = try d.longValue()
             XCTAssertEqual(lv, 123456789)
 
-            let bv = try d?.byteValue()
+            let bv = try d.byteValue()
             XCTAssertEqual(bv, 21)
 
-            let sv = try d?.shortValue()
+            let sv = try d.shortValue()
             XCTAssertEqual(sv, -13035)
         }
     }

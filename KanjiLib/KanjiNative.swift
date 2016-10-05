@@ -18,7 +18,7 @@ import JavaLib
 
 //bin/echo 'final class kanjicls implements java.util.function.Function { @Override public native Object apply(Object value); @Override public native void finalize(); }' > kanjicls.java && javac kanjicls.java && java -cp . jdk.internal.org.objectweb.asm.util.ASMifier kanjicls
 //
-// Local ASM shims are generated with ~/Library/Developer/Xcode/DerivedData/*/Build/Products/Debug/kanjitool -import JavaLib -skip '^java.*' `jar tf /opt/src/glimpse/glimpse/Kanji/KanjiVM/macos.jre/Contents/Home/lib/rt.jar | grep 'jdk/internal/org/objectweb/asm/[A-Z]' | cut -f 1 -d '.' | tr '/' '.'` > /opt/src/glimpse/glimpse/Kanji/KanjiLib/ASMLib.swift
+// Local ASM shims are generated with: ~/Library/Developer/Xcode/DerivedData/*/Build/Products/Debug/kanjitool -import JavaLib -skip '^java.*' `jar tf /opt/src/glimpse/GIO/Kanji/KanjiVM/macos.jre/Contents/Home/lib/rt.jar | grep 'jdk/internal/org/objectweb/asm/[A-Z]' | cut -f 1 -d '.' | tr '/' '.'` > /opt/src/glimpse/GIO/Kanji/KanjiLib/ASMLib.swift
 
 
 typealias OpCodes = jdk$internal$org$objectweb$asm$Opcodes$Impl
@@ -35,9 +35,7 @@ public extension JVM {
         func generateClassBytes() throws -> [jbyte]? {
             // Create the bytecode for the class implementation of the native method, which can be seen using:
             //bin/echo 'class kanjicls implements java.util.function.Function { public native Object apply(Object value); }' > kanjicls.java && javac kanjicls.java && java -cp . jdk.internal.org.objectweb.asm.util.ASMifier kanjicls
-            guard let cw = try jdk$internal$org$objectweb$asm$ClassWriter(0) else {
-                return nil
-            }
+            let cw = try jdk$internal$org$objectweb$asm$ClassWriter(0)
 
             // note that we make the class implementation final since we won't ever be subclassing it
             try cw.visit(52, (final ? OpCodes.ACC_FINAL : 0) + OpCodes.ACC_PUBLIC + OpCodes.ACC_SUPER, className.javaString, nil, extends.javaString, interfaces.map({ $0.javaString }))
@@ -156,9 +154,9 @@ public extension JVM {
     /// Generates bytecode for a class that implements the listed methods by calling the function pointer to the native block
     public func createNativeClass<F: JavaObject>(_ name: String? = nil, extends: String = "java/lang/Object", interfaces: [String] = [], methods: [MethodSignature]) throws -> (cls: jclass, constructor: () throws -> F) {
 
+        // TODO: de-deprecate with atomics; https://openradar.appspot.com/27161329
         let className = name ?? ("$KanjiNativeClass\(OSAtomicIncrement32(&kanjiNativeClassCount))")
         let jcls = try generateClass(className, addressable: false, final: false, extends: extends, interfaces: interfaces, methods: methods)
-        assert(jcls != nil)
 
         try registerNativeMethods(jcls, methods: methods)
 
@@ -188,10 +186,10 @@ public extension JVM {
     /// closure to implement any native cleanup that needs to occur
     public func createNativeAddressableClass<F: JavaObject>(_ name: String? = nil, extends: String = "java/lang/Object", interfaces: [String] = [], methods: [MethodSignature], finalizer: @convention(c) (UnsafePointer<JNIEnv>, jclass, jlong) -> ()) throws -> (cls: jclass, constructor: (jlong) throws -> F) {
         var methods = methods
+        // TODO: de-deprecate with atomics; https://openradar.appspot.com/27161329
         let className = name ?? ("$KanjiNativeWrapper\(OSAtomicIncrement32(&kanjiNativeClassCount))")
 
         let jcls = try generateClass(className, addressable: true, final: true, extends: extends, interfaces: interfaces, methods: methods)
-        assert(jcls != nil)
 
         methods.append((
             name: "finalizeImpl",
@@ -313,13 +311,14 @@ extension java$util$function$Function$Impl {
                 JVM.sharedJVM.throwException(jerr.jobj)
                 return nil
             } catch { // throws all other exceptions via a runtime exception
-                String(describing: error).withCString({ msg in
+                _ = String(describing: error).withCString({ msg in
                     JVM.sharedJVM.throwNew(java$lang$RuntimeException.javaClass, msg: msg)
                 })
                 return nil
             }
         }
 
+        // TODO: de-deprecate with atomics; https://openradar.appspot.com/27161329
         let address = jlong(OSAtomicIncrement64(&java$util$function$Function$Impl.closureIndex))
 
         let sig = JVM.jsig(JObjectType(), args: [JObjectType()])

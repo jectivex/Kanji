@@ -533,13 +533,13 @@ public final class java$nio$file$LinkPermission : java$security$BasicPermission 
     open class override func jniName() -> String { return "java/nio/file/LinkPermission" }
 
     fileprivate static let java$nio$file$LinkPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$LinkPermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$LinkPermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$LinkPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$LinkPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$LinkPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -616,13 +616,13 @@ open class java$nio$file$FileSystemException : java$io$IOException {
     open class override func jniName() -> String { return "java/nio/file/FileSystemException" }
 
     fileprivate static let java$nio$file$FileSystemException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$FileSystemException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$FileSystemException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$FileSystemException_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$FileSystemException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$FileSystemException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$FileSystemException_getFile__java$lang$String = invoker("getFile", returns: JObjectType("java/lang/String"))
@@ -653,13 +653,13 @@ open class java$nio$file$AccessDeniedException : java$nio$file$FileSystemExcepti
     open class override func jniName() -> String { return "java/nio/file/AccessDeniedException" }
 
     fileprivate static let java$nio$file$AccessDeniedException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$AccessDeniedException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$AccessDeniedException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$AccessDeniedException_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$AccessDeniedException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$AccessDeniedException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
 }
@@ -674,8 +674,8 @@ open class java$nio$file$AtomicMoveNotSupportedException : java$nio$file$FileSys
     open class override func jniName() -> String { return "java/nio/file/AtomicMoveNotSupportedException" }
 
     fileprivate static let java$nio$file$AtomicMoveNotSupportedException_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$AtomicMoveNotSupportedException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$AtomicMoveNotSupportedException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
 }
@@ -690,8 +690,8 @@ open class java$nio$file$DirectoryNotEmptyException : java$nio$file$FileSystemEx
     open class override func jniName() -> String { return "java/nio/file/DirectoryNotEmptyException" }
 
     fileprivate static let java$nio$file$DirectoryNotEmptyException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$DirectoryNotEmptyException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$DirectoryNotEmptyException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -706,13 +706,13 @@ open class java$nio$file$FileAlreadyExistsException : java$nio$file$FileSystemEx
     open class override func jniName() -> String { return "java/nio/file/FileAlreadyExistsException" }
 
     fileprivate static let java$nio$file$FileAlreadyExistsException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$FileAlreadyExistsException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$FileAlreadyExistsException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$FileAlreadyExistsException_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$FileAlreadyExistsException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$FileAlreadyExistsException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
 }
@@ -727,8 +727,8 @@ open class java$nio$file$FileSystemLoopException : java$nio$file$FileSystemExcep
     open class override func jniName() -> String { return "java/nio/file/FileSystemLoopException" }
 
     fileprivate static let java$nio$file$FileSystemLoopException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$FileSystemLoopException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$FileSystemLoopException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -743,13 +743,13 @@ open class java$nio$file$NoSuchFileException : java$nio$file$FileSystemException
     open class override func jniName() -> String { return "java/nio/file/NoSuchFileException" }
 
     fileprivate static let java$nio$file$NoSuchFileException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$NoSuchFileException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$NoSuchFileException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$NoSuchFileException_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$NoSuchFileException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$NoSuchFileException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
 }
@@ -764,8 +764,8 @@ open class java$nio$file$NotDirectoryException : java$nio$file$FileSystemExcepti
     open class override func jniName() -> String { return "java/nio/file/NotDirectoryException" }
 
     fileprivate static let java$nio$file$NotDirectoryException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$NotDirectoryException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$NotDirectoryException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -780,13 +780,13 @@ open class java$nio$file$NotLinkException : java$nio$file$FileSystemException {
     open class override func jniName() -> String { return "java/nio/file/NotLinkException" }
 
     fileprivate static let java$nio$file$NotLinkException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$NotLinkException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$NotLinkException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$NotLinkException_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$NotLinkException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$NotLinkException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
 }
@@ -801,8 +801,8 @@ public final class java$nio$file$DirectoryIteratorException : java$util$Concurre
     open class override func jniName() -> String { return "java/nio/file/DirectoryIteratorException" }
 
     fileprivate static let java$nio$file$DirectoryIteratorException_init_java$io$IOException__V = constructor((JObjectType("java/io/IOException")))
-    public convenience init!(_ a0: java$io$IOException?) throws {
-        try self.init(constructor: I.java$nio$file$DirectoryIteratorException_init_java$io$IOException__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$IOException?) throws {
+        try self.init(creator: I.java$nio$file$DirectoryIteratorException_init_java$io$IOException__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$DirectoryIteratorException_getCause__java$io$IOException = invoker("getCause", returns: JObjectType("java/io/IOException"))
@@ -819,13 +819,13 @@ open class java$nio$file$FileSystemAlreadyExistsException : java$lang$RuntimeExc
     open class override func jniName() -> String { return "java/nio/file/FileSystemAlreadyExistsException" }
 
     fileprivate static let java$nio$file$FileSystemAlreadyExistsException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$file$FileSystemAlreadyExistsException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$file$FileSystemAlreadyExistsException_init__V())
     }
 
     fileprivate static let java$nio$file$FileSystemAlreadyExistsException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$FileSystemAlreadyExistsException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$FileSystemAlreadyExistsException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -840,13 +840,13 @@ open class java$nio$file$FileSystemNotFoundException : java$lang$RuntimeExceptio
     open class override func jniName() -> String { return "java/nio/file/FileSystemNotFoundException" }
 
     fileprivate static let java$nio$file$FileSystemNotFoundException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$file$FileSystemNotFoundException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$file$FileSystemNotFoundException_init__V())
     }
 
     fileprivate static let java$nio$file$FileSystemNotFoundException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$FileSystemNotFoundException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$FileSystemNotFoundException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -861,13 +861,13 @@ open class java$nio$file$InvalidPathException : java$lang$IllegalArgumentExcepti
     open class override func jniName() -> String { return "java/nio/file/InvalidPathException" }
 
     fileprivate static let java$nio$file$InvalidPathException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$nio$file$InvalidPathException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$nio$file$InvalidPathException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$nio$file$InvalidPathException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$InvalidPathException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$InvalidPathException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$InvalidPathException_getInput__java$lang$String = invoker("getInput", returns: JObjectType("java/lang/String"))
@@ -898,13 +898,13 @@ open class java$nio$file$ProviderMismatchException : java$lang$IllegalArgumentEx
     open class override func jniName() -> String { return "java/nio/file/ProviderMismatchException" }
 
     fileprivate static let java$nio$file$ProviderMismatchException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$file$ProviderMismatchException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$file$ProviderMismatchException_init__V())
     }
 
     fileprivate static let java$nio$file$ProviderMismatchException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$ProviderMismatchException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$ProviderMismatchException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -919,8 +919,8 @@ open class java$nio$file$ClosedDirectoryStreamException : java$lang$IllegalState
     open class override func jniName() -> String { return "java/nio/file/ClosedDirectoryStreamException" }
 
     fileprivate static let java$nio$file$ClosedDirectoryStreamException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$file$ClosedDirectoryStreamException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$file$ClosedDirectoryStreamException_init__V())
     }
 
 }
@@ -935,8 +935,8 @@ open class java$nio$file$ClosedFileSystemException : java$lang$IllegalStateExcep
     open class override func jniName() -> String { return "java/nio/file/ClosedFileSystemException" }
 
     fileprivate static let java$nio$file$ClosedFileSystemException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$file$ClosedFileSystemException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$file$ClosedFileSystemException_init__V())
     }
 
 }
@@ -951,8 +951,8 @@ open class java$nio$file$ClosedWatchServiceException : java$lang$IllegalStateExc
     open class override func jniName() -> String { return "java/nio/file/ClosedWatchServiceException" }
 
     fileprivate static let java$nio$file$ClosedWatchServiceException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$file$ClosedWatchServiceException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$file$ClosedWatchServiceException_init__V())
     }
 
 }
@@ -967,13 +967,13 @@ open class java$nio$file$ProviderNotFoundException : java$lang$RuntimeException 
     open class override func jniName() -> String { return "java/nio/file/ProviderNotFoundException" }
 
     fileprivate static let java$nio$file$ProviderNotFoundException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$file$ProviderNotFoundException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$file$ProviderNotFoundException_init__V())
     }
 
     fileprivate static let java$nio$file$ProviderNotFoundException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$ProviderNotFoundException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$ProviderNotFoundException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -988,8 +988,8 @@ open class java$nio$file$ReadOnlyFileSystemException : java$lang$UnsupportedOper
     open class override func jniName() -> String { return "java/nio/file/ReadOnlyFileSystemException" }
 
     fileprivate static let java$nio$file$ReadOnlyFileSystemException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$file$ReadOnlyFileSystemException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$file$ReadOnlyFileSystemException_init__V())
     }
 
 }

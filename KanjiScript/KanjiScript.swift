@@ -85,7 +85,7 @@ open class KanjiScriptContext : ScriptContext {
         let script = try String(contentsOf: url, encoding: String.Encoding.utf8)
 
         // set the filename in the script context so that relative URLs can be loaded
-        try engine.getContext()?.setAttribute(javax$script$ScriptEngine$Impl.FILENAME, (url.path ?? "").javaString, javax$script$ScriptContext$Impl.ENGINE_SCOPE)
+        try engine.getContext()?.setAttribute(javax$script$ScriptEngine$Impl.FILENAME, url.path.javaString, javax$script$ScriptContext$Impl.ENGINE_SCOPE)
         //try engine.put(javax$script$ScriptEngine$Impl.FILENAME, (url.path ?? "").javaString)
 
         return try eval(.val(.str(script)))
@@ -245,7 +245,7 @@ public func == (bs1: KanjiScriptType, bs2: KanjiScriptType) -> Bool {
     case (.val(let v1), .val(let v2)):
         return v1 == v2
     case (.ref(let r1, let ctx1), .ref(let r2, let ctx2)):
-        return JVM.sharedJVM.isSameObject(ctx1.engine.jobj, ctx2.engine.jobj) && JVM.sharedJVM.isSameObject(r1.jobj, r2.jobj) != 0 ? true : false
+        return JVM.sharedJVM.isSameObject(ctx1.engine.jobj, ctx2.engine.jobj) == true && JVM.sharedJVM.isSameObject(r1.jobj, r2.jobj) == true ? true : false
     default:
         return false
     }
@@ -273,7 +273,7 @@ public extension Bric {
             let arr = try java$util$ArrayList()
             for e in a {
                 let x = try e.toKanji(vm)
-                try arr.add(x)
+                _ = try arr.add(x)
             }
             return arr
         case .obj(let o):
@@ -281,7 +281,7 @@ public extension Bric {
             for (k, v) in o {
                 let kk = java$lang$String(stringLiteral: k)
                 let kv = try v.toKanji(vm)
-                try obj.put(kk, kv)
+                _ = try obj.put(kk, kv)
             }
             return obj
         }
@@ -348,9 +348,7 @@ public extension JavaObject {
             print("Warning: unable to locate script object: \(ScriptObject.javaClassName)")
         }
 
-        if jobj == nil {
-            return .nul
-        } else if let bol : java$lang$Boolean = ob.cast() {
+        if let bol : java$lang$Boolean = ob.cast() {
             return .bol(try bol.booleanValue() == 0 ? false : true)
         } else if let num : java$lang$Number = ob.cast() {
             return .num(try num.doubleValue())
@@ -376,7 +374,7 @@ public extension JavaObject {
                         dict[stringKey.description] = try value.createBric(dropCycles, seen: selfSeen)
                     }
                 } else {
-                    throw KanjiErrors.general("Map key was not a string: \(type(of: key?).javaClassName)")
+                    throw KanjiErrors.general("Map key was not a string: \(type(of: key))")
                 }
             }
 

@@ -2892,13 +2892,13 @@ open class java$time$DateTimeException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/time/DateTimeException" }
 
     fileprivate static let java$time$DateTimeException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$time$DateTimeException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$time$DateTimeException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$time$DateTimeException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$time$DateTimeException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$time$DateTimeException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }

@@ -8,8 +8,8 @@ open class java$beans$Beans : java$lang$Object {
     open class override func jniName() -> String { return "java/beans/Beans" }
 
     fileprivate static let java$beans$Beans_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$Beans_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$Beans_init__V())
     }
 
     fileprivate static let java$beans$Beans_instantiate_java$lang$ClassLoader_java$lang$String__java$lang$Object = svoker("instantiate", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/ClassLoader"), JObjectType("java/lang/String")))
@@ -69,8 +69,8 @@ open class java$beans$Encoder : java$lang$Object {
     open class override func jniName() -> String { return "java/beans/Encoder" }
 
     fileprivate static let java$beans$Encoder_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$Encoder_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$Encoder_init__V())
     }
 
     fileprivate static let java$beans$Encoder_setExceptionListener_java$beans$ExceptionListener__V = invoker("setExceptionListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/ExceptionListener")))
@@ -125,13 +125,13 @@ open class java$beans$XMLEncoder : java$beans$Encoder, java$lang$AutoCloseable {
     open class override func jniName() -> String { return "java/beans/XMLEncoder" }
 
     fileprivate static let java$beans$XMLEncoder_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$beans$XMLEncoder_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$beans$XMLEncoder_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$XMLEncoder_init_java$io$OutputStream_java$lang$String_Z_I__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/lang/String"), jboolean.jniType, jint.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$lang$String?, _ a2: jboolean, _ a3: jint) throws {
-        try self.init(constructor: I.java$beans$XMLEncoder_init_java$io$OutputStream_java$lang$String_Z_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$lang$String?, _ a2: jboolean, _ a3: jint) throws {
+        try self.init(creator: I.java$beans$XMLEncoder_init_java$io$OutputStream_java$lang$String_Z_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
     }
 
     fileprivate static let java$beans$XMLEncoder_setOwner_java$lang$Object__V = invoker("setOwner", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -173,8 +173,8 @@ open class java$beans$EventHandler : java$lang$Object, java$lang$reflect$Invocat
     open class override func jniName() -> String { return "java/beans/EventHandler" }
 
     fileprivate static let java$beans$EventHandler_init_java$lang$Object_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?) throws {
-        try self.init(constructor: I.java$beans$EventHandler_init_java$lang$Object_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?) throws {
+        try self.init(creator: I.java$beans$EventHandler_init_java$lang$Object_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$EventHandler_getTarget__java$lang$Object = invoker("getTarget", returns: JObjectType("java/lang/Object"))
@@ -229,8 +229,8 @@ open class java$beans$PropertyChangeListenerProxy : java$util$EventListenerProxy
     open class override func jniName() -> String { return "java/beans/PropertyChangeListenerProxy" }
 
     fileprivate static let java$beans$PropertyChangeListenerProxy_init_java$lang$String_java$beans$PropertyChangeListener__V = constructor((JObjectType("java/lang/String"), JObjectType("java/beans/PropertyChangeListener")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$beans$PropertyChangeListener?) throws {
-        try self.init(constructor: I.java$beans$PropertyChangeListenerProxy_init_java$lang$String_java$beans$PropertyChangeListener__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$beans$PropertyChangeListener?) throws {
+        try self.init(creator: I.java$beans$PropertyChangeListenerProxy_init_java$lang$String_java$beans$PropertyChangeListener__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$PropertyChangeListenerProxy_propertyChange_java$beans$PropertyChangeEvent__V = invoker("propertyChange", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeEvent")))
@@ -255,8 +255,8 @@ open class java$beans$VetoableChangeListenerProxy : java$util$EventListenerProxy
     open class override func jniName() -> String { return "java/beans/VetoableChangeListenerProxy" }
 
     fileprivate static let java$beans$VetoableChangeListenerProxy_init_java$lang$String_java$beans$VetoableChangeListener__V = constructor((JObjectType("java/lang/String"), JObjectType("java/beans/VetoableChangeListener")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$beans$VetoableChangeListener?) throws {
-        try self.init(constructor: I.java$beans$VetoableChangeListenerProxy_init_java$lang$String_java$beans$VetoableChangeListener__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$beans$VetoableChangeListener?) throws {
+        try self.init(creator: I.java$beans$VetoableChangeListenerProxy_init_java$lang$String_java$beans$VetoableChangeListener__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$VetoableChangeListenerProxy_vetoableChange_java$beans$PropertyChangeEvent__V = invoker("vetoableChange", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeEvent")))
@@ -281,8 +281,8 @@ open class java$beans$PropertyChangeEvent : java$util$EventObject {
     open class override func jniName() -> String { return "java/beans/PropertyChangeEvent" }
 
     fileprivate static let java$beans$PropertyChangeEvent_init_java$lang$Object_java$lang$String_java$lang$Object_java$lang$Object__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/String"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: java$lang$Object?, _ a3: java$lang$Object?) throws {
-        try self.init(constructor: I.java$beans$PropertyChangeEvent_init_java$lang$Object_java$lang$String_java$lang$Object_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: java$lang$Object?, _ a3: java$lang$Object?) throws {
+        try self.init(creator: I.java$beans$PropertyChangeEvent_init_java$lang$Object_java$lang$String_java$lang$Object_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$PropertyChangeEvent_getPropertyName__java$lang$String = invoker("getPropertyName", returns: JObjectType("java/lang/String"))
@@ -323,8 +323,8 @@ open class java$beans$IndexedPropertyChangeEvent : java$beans$PropertyChangeEven
     open class override func jniName() -> String { return "java/beans/IndexedPropertyChangeEvent" }
 
     fileprivate static let java$beans$IndexedPropertyChangeEvent_init_java$lang$Object_java$lang$String_java$lang$Object_java$lang$Object_I__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/String"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), jint.jniType))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: jint) throws {
-        try self.init(constructor: I.java$beans$IndexedPropertyChangeEvent_init_java$lang$Object_java$lang$String_java$lang$Object_java$lang$Object_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: jint) throws {
+        try self.init(creator: I.java$beans$IndexedPropertyChangeEvent_init_java$lang$Object_java$lang$String_java$lang$Object_java$lang$Object_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4))
     }
 
     fileprivate static let java$beans$IndexedPropertyChangeEvent_getIndex__I = invoker("getIndex", returns: jint.jniType)
@@ -344,8 +344,8 @@ open class java$beans$FeatureDescriptor : java$lang$Object {
     open class override func jniName() -> String { return "java/beans/FeatureDescriptor" }
 
     fileprivate static let java$beans$FeatureDescriptor_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$FeatureDescriptor_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$FeatureDescriptor_init__V())
     }
 
     fileprivate static let java$beans$FeatureDescriptor_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
@@ -436,13 +436,13 @@ open class java$beans$BeanDescriptor : java$beans$FeatureDescriptor {
     open class override func jniName() -> String { return "java/beans/BeanDescriptor" }
 
     fileprivate static let java$beans$BeanDescriptor_init_java$lang$Class__V = constructor((JObjectType("java/lang/Class")))
-    public convenience init!(_ a0: java$lang$Class?) throws {
-        try self.init(constructor: I.java$beans$BeanDescriptor_init_java$lang$Class__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Class?) throws {
+        try self.init(creator: I.java$beans$BeanDescriptor_init_java$lang$Class__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$BeanDescriptor_init_java$lang$Class_java$lang$Class__V = constructor((JObjectType("java/lang/Class"), JObjectType("java/lang/Class")))
-    public convenience init!(_ a0: java$lang$Class?, _ a1: java$lang$Class?) throws {
-        try self.init(constructor: I.java$beans$BeanDescriptor_init_java$lang$Class_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Class?, _ a1: java$lang$Class?) throws {
+        try self.init(creator: I.java$beans$BeanDescriptor_init_java$lang$Class_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$BeanDescriptor_getBeanClass__java$lang$Class = invoker("getBeanClass", returns: JObjectType("java/lang/Class"))
@@ -467,33 +467,33 @@ open class java$beans$EventSetDescriptor : java$beans$FeatureDescriptor {
     open class override func jniName() -> String { return "java/beans/EventSetDescriptor" }
 
     fileprivate static let java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_java$lang$String__V = constructor((JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?, _ a3: java$lang$String?) throws {
-        try self.init(constructor: I.java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?, _ a3: java$lang$String?) throws {
+        try self.init(creator: I.java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_Ajava$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JArray(JObjectType("java/lang/String")), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?, _ a3: [java$lang$String?]?, _ a4: java$lang$String?, _ a5: java$lang$String?) throws {
-        try self.init(constructor: I.java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_Ajava$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$lang$String$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?, _ a3: [java$lang$String?]?, _ a4: java$lang$String?, _ a5: java$lang$String?) throws {
+        try self.init(creator: I.java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_Ajava$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$lang$String$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_Ajava$lang$String_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JArray(JObjectType("java/lang/String")), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?, _ a3: [java$lang$String?]?, _ a4: java$lang$String?, _ a5: java$lang$String?, _ a6: java$lang$String?) throws {
-        try self.init(constructor: I.java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_Ajava$lang$String_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$lang$String$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?, _ a3: [java$lang$String?]?, _ a4: java$lang$String?, _ a5: java$lang$String?, _ a6: java$lang$String?) throws {
+        try self.init(creator: I.java$beans$EventSetDescriptor_init_java$lang$Class_java$lang$String_java$lang$Class_Ajava$lang$String_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$lang$String$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JArray(JObjectType("java/lang/reflect/Method")), JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/reflect/Method")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: [java$lang$reflect$Method?]?, _ a3: java$lang$reflect$Method?, _ a4: java$lang$reflect$Method?) throws {
-        try self.init(constructor: I.java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$lang$reflect$Method$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: [java$lang$reflect$Method?]?, _ a3: java$lang$reflect$Method?, _ a4: java$lang$reflect$Method?) throws {
+        try self.init(creator: I.java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$lang$reflect$Method$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JArray(JObjectType("java/lang/reflect/Method")), JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/reflect/Method")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: [java$lang$reflect$Method?]?, _ a3: java$lang$reflect$Method?, _ a4: java$lang$reflect$Method?, _ a5: java$lang$reflect$Method?) throws {
-        try self.init(constructor: I.java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$lang$reflect$Method$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: [java$lang$reflect$Method?]?, _ a3: java$lang$reflect$Method?, _ a4: java$lang$reflect$Method?, _ a5: java$lang$reflect$Method?) throws {
+        try self.init(creator: I.java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$lang$reflect$Method$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$beans$MethodDescriptor_java$lang$reflect$Method_java$lang$reflect$Method__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JArray(JObjectType("java/beans/MethodDescriptor")), JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/reflect/Method")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: [java$beans$MethodDescriptor?]?, _ a3: java$lang$reflect$Method?, _ a4: java$lang$reflect$Method?) throws {
-        try self.init(constructor: I.java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$beans$MethodDescriptor_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$beans$MethodDescriptor$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: [java$beans$MethodDescriptor?]?, _ a3: java$lang$reflect$Method?, _ a4: java$lang$reflect$Method?) throws {
+        try self.init(creator: I.java$beans$EventSetDescriptor_init_java$lang$String_java$lang$Class_Ajava$beans$MethodDescriptor_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$beans$MethodDescriptor$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$EventSetDescriptor_getListenerType__java$lang$Class = invoker("getListenerType", returns: JObjectType("java/lang/Class"))
@@ -558,13 +558,13 @@ open class java$beans$MethodDescriptor : java$beans$FeatureDescriptor {
     open class override func jniName() -> String { return "java/beans/MethodDescriptor" }
 
     fileprivate static let java$beans$MethodDescriptor_init_java$lang$reflect$Method__V = constructor((JObjectType("java/lang/reflect/Method")))
-    public convenience init!(_ a0: java$lang$reflect$Method?) throws {
-        try self.init(constructor: I.java$beans$MethodDescriptor_init_java$lang$reflect$Method__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$reflect$Method?) throws {
+        try self.init(creator: I.java$beans$MethodDescriptor_init_java$lang$reflect$Method__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$MethodDescriptor_init_java$lang$reflect$Method_Ajava$beans$ParameterDescriptor__V = constructor((JObjectType("java/lang/reflect/Method"), JArray(JObjectType("java/beans/ParameterDescriptor"))))
-    public convenience init!(_ a0: java$lang$reflect$Method?, _ a1: [java$beans$ParameterDescriptor?]?) throws {
-        try self.init(constructor: I.java$beans$MethodDescriptor_init_java$lang$reflect$Method_Ajava$beans$ParameterDescriptor__V(a0?.jobj ?? nil, a1?.map({ java$beans$ParameterDescriptor$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$reflect$Method?, _ a1: [java$beans$ParameterDescriptor?]?) throws {
+        try self.init(creator: I.java$beans$MethodDescriptor_init_java$lang$reflect$Method_Ajava$beans$ParameterDescriptor__V(a0?.jobj ?? nil, a1?.map({ java$beans$ParameterDescriptor$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$beans$MethodDescriptor_getMethod__java$lang$reflect$Method = invoker("getMethod", returns: JObjectType("java/lang/reflect/Method"))
@@ -589,8 +589,8 @@ open class java$beans$ParameterDescriptor : java$beans$FeatureDescriptor {
     open class override func jniName() -> String { return "java/beans/ParameterDescriptor" }
 
     fileprivate static let java$beans$ParameterDescriptor_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$ParameterDescriptor_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$ParameterDescriptor_init__V())
     }
 
 }
@@ -605,18 +605,18 @@ open class java$beans$PropertyDescriptor : java$beans$FeatureDescriptor {
     open class override func jniName() -> String { return "java/beans/PropertyDescriptor" }
 
     fileprivate static let java$beans$PropertyDescriptor_init_java$lang$String_java$lang$Class__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?) throws {
-        try self.init(constructor: I.java$beans$PropertyDescriptor_init_java$lang$String_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?) throws {
+        try self.init(creator: I.java$beans$PropertyDescriptor_init_java$lang$String_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$PropertyDescriptor_init_java$lang$String_java$lang$Class_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: java$lang$String?, _ a3: java$lang$String?) throws {
-        try self.init(constructor: I.java$beans$PropertyDescriptor_init_java$lang$String_java$lang$Class_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: java$lang$String?, _ a3: java$lang$String?) throws {
+        try self.init(creator: I.java$beans$PropertyDescriptor_init_java$lang$String_java$lang$Class_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$PropertyDescriptor_init_java$lang$String_java$lang$reflect$Method_java$lang$reflect$Method__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/reflect/Method")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$reflect$Method?, _ a2: java$lang$reflect$Method?) throws {
-        try self.init(constructor: I.java$beans$PropertyDescriptor_init_java$lang$String_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$reflect$Method?, _ a2: java$lang$reflect$Method?) throws {
+        try self.init(creator: I.java$beans$PropertyDescriptor_init_java$lang$String_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$PropertyDescriptor_getPropertyType__java$lang$Class = invoker("getPropertyType", returns: JObjectType("java/lang/Class"))
@@ -693,18 +693,18 @@ open class java$beans$IndexedPropertyDescriptor : java$beans$PropertyDescriptor 
     open class override func jniName() -> String { return "java/beans/IndexedPropertyDescriptor" }
 
     fileprivate static let java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$Class__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?) throws {
-        try self.init(constructor: I.java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?) throws {
+        try self.init(creator: I.java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$Class_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$lang$String?, _ a5: java$lang$String?) throws {
-        try self.init(constructor: I.java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$Class_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$lang$String?, _ a5: java$lang$String?) throws {
+        try self.init(creator: I.java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$Class_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/reflect/Method")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$reflect$Method?, _ a2: java$lang$reflect$Method?, _ a3: java$lang$reflect$Method?, _ a4: java$lang$reflect$Method?) throws {
-        try self.init(constructor: I.java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$reflect$Method?, _ a2: java$lang$reflect$Method?, _ a3: java$lang$reflect$Method?, _ a4: java$lang$reflect$Method?) throws {
+        try self.init(creator: I.java$beans$IndexedPropertyDescriptor_init_java$lang$String_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method_java$lang$reflect$Method__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$IndexedPropertyDescriptor_getIndexedReadMethod__java$lang$reflect$Method = invoker("getIndexedReadMethod", returns: JObjectType("java/lang/reflect/Method"))
@@ -817,8 +817,8 @@ open class java$beans$PersistenceDelegate : java$lang$Object {
     open class override func jniName() -> String { return "java/beans/PersistenceDelegate" }
 
     fileprivate static let java$beans$PersistenceDelegate_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$PersistenceDelegate_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$PersistenceDelegate_init__V())
     }
 
     fileprivate static let java$beans$PersistenceDelegate_writeObject_java$lang$Object_java$beans$Encoder__V = invoker("writeObject", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object"), JObjectType("java/beans/Encoder")))
@@ -838,13 +838,13 @@ open class java$beans$DefaultPersistenceDelegate : java$beans$PersistenceDelegat
     open class override func jniName() -> String { return "java/beans/DefaultPersistenceDelegate" }
 
     fileprivate static let java$beans$DefaultPersistenceDelegate_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$DefaultPersistenceDelegate_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$DefaultPersistenceDelegate_init__V())
     }
 
     fileprivate static let java$beans$DefaultPersistenceDelegate_init_Ajava$lang$String__V = constructor((JArray(JObjectType("java/lang/String"))))
-    public convenience init!(_ a0: [java$lang$String?]?) throws {
-        try self.init(constructor: I.java$beans$DefaultPersistenceDelegate_init_Ajava$lang$String__V(a0?.map({ java$lang$String$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: [java$lang$String?]?) throws {
+        try self.init(creator: I.java$beans$DefaultPersistenceDelegate_init_Ajava$lang$String__V(a0?.map({ java$lang$String$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
 }
@@ -859,8 +859,8 @@ open class java$beans$PropertyChangeSupport : java$lang$Object, java$io$Serializ
     open class override func jniName() -> String { return "java/beans/PropertyChangeSupport" }
 
     fileprivate static let java$beans$PropertyChangeSupport_init_java$lang$Object__V = constructor((JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?) throws {
-        try self.init(constructor: I.java$beans$PropertyChangeSupport_init_java$lang$Object__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?) throws {
+        try self.init(creator: I.java$beans$PropertyChangeSupport_init_java$lang$Object__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$PropertyChangeSupport_addPropertyChangeListener_java$beans$PropertyChangeListener__V = invoker("addPropertyChangeListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeListener")))
@@ -945,8 +945,8 @@ open class java$beans$PropertyEditorManager : java$lang$Object {
     open class override func jniName() -> String { return "java/beans/PropertyEditorManager" }
 
     fileprivate static let java$beans$PropertyEditorManager_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$PropertyEditorManager_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$PropertyEditorManager_init__V())
     }
 
     fileprivate static let java$beans$PropertyEditorManager_registerEditor_java$lang$Class_java$lang$Class__V = svoker("registerEditor", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/Class")))
@@ -981,13 +981,13 @@ open class java$beans$PropertyEditorSupport : java$lang$Object, java$beans$Prope
     open class override func jniName() -> String { return "java/beans/PropertyEditorSupport" }
 
     fileprivate static let java$beans$PropertyEditorSupport_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$PropertyEditorSupport_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$PropertyEditorSupport_init__V())
     }
 
     fileprivate static let java$beans$PropertyEditorSupport_init_java$lang$Object__V = constructor((JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?) throws {
-        try self.init(constructor: I.java$beans$PropertyEditorSupport_init_java$lang$Object__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?) throws {
+        try self.init(creator: I.java$beans$PropertyEditorSupport_init_java$lang$Object__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$PropertyEditorSupport_getSource__java$lang$Object = invoker("getSource", returns: JObjectType("java/lang/Object"))
@@ -1077,8 +1077,8 @@ open class java$beans$SimpleBeanInfo : java$lang$Object, java$beans$BeanInfo {
     open class override func jniName() -> String { return "java/beans/SimpleBeanInfo" }
 
     fileprivate static let java$beans$SimpleBeanInfo_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$SimpleBeanInfo_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$SimpleBeanInfo_init__V())
     }
 
     fileprivate static let java$beans$SimpleBeanInfo_getBeanDescriptor__java$beans$BeanDescriptor = invoker("getBeanDescriptor", returns: JObjectType("java/beans/BeanDescriptor"))
@@ -1138,8 +1138,8 @@ open class java$beans$Statement : java$lang$Object {
     open class override func jniName() -> String { return "java/beans/Statement" }
 
     fileprivate static let java$beans$Statement_init_java$lang$Object_java$lang$String_Ajava$lang$Object__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/String"), JArray(JObjectType("java/lang/Object"))))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: [java$lang$Object?]?) throws {
-        try self.init(constructor: I.java$beans$Statement_init_java$lang$Object_java$lang$String_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: [java$lang$Object?]?) throws {
+        try self.init(creator: I.java$beans$Statement_init_java$lang$Object_java$lang$String_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$beans$Statement_getTarget__java$lang$Object = invoker("getTarget", returns: JObjectType("java/lang/Object"))
@@ -1175,13 +1175,13 @@ open class java$beans$Expression : java$beans$Statement {
     open class override func jniName() -> String { return "java/beans/Expression" }
 
     fileprivate static let java$beans$Expression_init_java$lang$Object_java$lang$String_Ajava$lang$Object__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/String"), JArray(JObjectType("java/lang/Object"))))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: [java$lang$Object?]?) throws {
-        try self.init(constructor: I.java$beans$Expression_init_java$lang$Object_java$lang$String_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$String?, _ a2: [java$lang$Object?]?) throws {
+        try self.init(creator: I.java$beans$Expression_init_java$lang$Object_java$lang$String_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$beans$Expression_init_java$lang$Object_java$lang$Object_java$lang$String_Ajava$lang$Object__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/String"), JArray(JObjectType("java/lang/Object"))))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$String?, _ a3: [java$lang$Object?]?) throws {
-        try self.init(constructor: I.java$beans$Expression_init_java$lang$Object_java$lang$Object_java$lang$String_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$String?, _ a3: [java$lang$Object?]?) throws {
+        try self.init(creator: I.java$beans$Expression_init_java$lang$Object_java$lang$Object_java$lang$String_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$beans$Expression_execute__V = invoker("execute", returns: JVoid.jniType)
@@ -1208,8 +1208,8 @@ open class java$beans$IntrospectionException : java$lang$Exception {
     open class override func jniName() -> String { return "java/beans/IntrospectionException" }
 
     fileprivate static let java$beans$IntrospectionException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$beans$IntrospectionException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$beans$IntrospectionException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -1224,8 +1224,8 @@ open class java$beans$PropertyVetoException : java$lang$Exception {
     open class override func jniName() -> String { return "java/beans/PropertyVetoException" }
 
     fileprivate static let java$beans$PropertyVetoException_init_java$lang$String_java$beans$PropertyChangeEvent__V = constructor((JObjectType("java/lang/String"), JObjectType("java/beans/PropertyChangeEvent")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$beans$PropertyChangeEvent?) throws {
-        try self.init(constructor: I.java$beans$PropertyVetoException_init_java$lang$String_java$beans$PropertyChangeEvent__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$beans$PropertyChangeEvent?) throws {
+        try self.init(creator: I.java$beans$PropertyVetoException_init_java$lang$String_java$beans$PropertyChangeEvent__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$PropertyVetoException_getPropertyChangeEvent__java$beans$PropertyChangeEvent = invoker("getPropertyChangeEvent", returns: JObjectType("java/beans/PropertyChangeEvent"))
@@ -1245,8 +1245,8 @@ open class java$beans$VetoableChangeSupport : java$lang$Object, java$io$Serializ
     open class override func jniName() -> String { return "java/beans/VetoableChangeSupport" }
 
     fileprivate static let java$beans$VetoableChangeSupport_init_java$lang$Object__V = constructor((JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?) throws {
-        try self.init(constructor: I.java$beans$VetoableChangeSupport_init_java$lang$Object__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?) throws {
+        try self.init(creator: I.java$beans$VetoableChangeSupport_init_java$lang$Object__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$VetoableChangeSupport_addVetoableChangeListener_java$beans$VetoableChangeListener__V = invoker("addVetoableChangeListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/VetoableChangeListener")))
@@ -1316,28 +1316,28 @@ open class java$beans$XMLDecoder : java$lang$Object, java$lang$AutoCloseable {
     open class override func jniName() -> String { return "java/beans/XMLDecoder" }
 
     fileprivate static let java$beans$XMLDecoder_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$beans$XMLDecoder_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$beans$XMLDecoder_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$lang$Object?) throws {
-        try self.init(constructor: I.java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$lang$Object?) throws {
+        try self.init(creator: I.java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object_java$beans$ExceptionListener__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/lang/Object"), JObjectType("java/beans/ExceptionListener")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$lang$Object?, _ a2: java$beans$ExceptionListener?) throws {
-        try self.init(constructor: I.java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object_java$beans$ExceptionListener__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$lang$Object?, _ a2: java$beans$ExceptionListener?) throws {
+        try self.init(creator: I.java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object_java$beans$ExceptionListener__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object_java$beans$ExceptionListener_java$lang$ClassLoader__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/lang/Object"), JObjectType("java/beans/ExceptionListener"), JObjectType("java/lang/ClassLoader")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$lang$Object?, _ a2: java$beans$ExceptionListener?, _ a3: java$lang$ClassLoader?) throws {
-        try self.init(constructor: I.java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object_java$beans$ExceptionListener_java$lang$ClassLoader__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$lang$Object?, _ a2: java$beans$ExceptionListener?, _ a3: java$lang$ClassLoader?) throws {
+        try self.init(creator: I.java$beans$XMLDecoder_init_java$io$InputStream_java$lang$Object_java$beans$ExceptionListener_java$lang$ClassLoader__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$XMLDecoder_init_org$xml$sax$InputSource__V = constructor((JObjectType("org/xml/sax/InputSource")))
-    public convenience init!(_ a0: org$xml$sax$InputSource?) throws {
-        try self.init(constructor: I.java$beans$XMLDecoder_init_org$xml$sax$InputSource__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$InputSource?) throws {
+        try self.init(creator: I.java$beans$XMLDecoder_init_org$xml$sax$InputSource__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$XMLDecoder_close__V = invoker("close", returns: JVoid.jniType)

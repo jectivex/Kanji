@@ -40,8 +40,8 @@ open class java$lang$ref$PhantomReference : java$lang$ref$Reference {
 
     fileprivate static let java$lang$ref$PhantomReference_get__java$lang$Object = invoker("get", returns: JObjectType("java/lang/Object"))
     fileprivate static let java$lang$ref$PhantomReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/ref/ReferenceQueue")))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$ref$ReferenceQueue?) throws {
-        try self.init(constructor: I.java$lang$ref$PhantomReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$ref$ReferenceQueue?) throws {
+        try self.init(creator: I.java$lang$ref$PhantomReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -56,13 +56,13 @@ open class java$lang$ref$SoftReference : java$lang$ref$Reference {
     open class override func jniName() -> String { return "java/lang/ref/SoftReference" }
 
     fileprivate static let java$lang$ref$SoftReference_init_java$lang$Object__V = constructor((JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?) throws {
-        try self.init(constructor: I.java$lang$ref$SoftReference_init_java$lang$Object__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?) throws {
+        try self.init(creator: I.java$lang$ref$SoftReference_init_java$lang$Object__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$ref$SoftReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/ref/ReferenceQueue")))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$ref$ReferenceQueue?) throws {
-        try self.init(constructor: I.java$lang$ref$SoftReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$ref$ReferenceQueue?) throws {
+        try self.init(creator: I.java$lang$ref$SoftReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$ref$SoftReference_get__java$lang$Object = invoker("get", returns: JObjectType("java/lang/Object"))
@@ -78,13 +78,13 @@ open class java$lang$ref$WeakReference : java$lang$ref$Reference {
     open class override func jniName() -> String { return "java/lang/ref/WeakReference" }
 
     fileprivate static let java$lang$ref$WeakReference_init_java$lang$Object__V = constructor((JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?) throws {
-        try self.init(constructor: I.java$lang$ref$WeakReference_init_java$lang$Object__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?) throws {
+        try self.init(creator: I.java$lang$ref$WeakReference_init_java$lang$Object__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$ref$WeakReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/ref/ReferenceQueue")))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$ref$ReferenceQueue?) throws {
-        try self.init(constructor: I.java$lang$ref$WeakReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$ref$ReferenceQueue?) throws {
+        try self.init(creator: I.java$lang$ref$WeakReference_init_java$lang$Object_java$lang$ref$ReferenceQueue__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -99,8 +99,8 @@ open class java$lang$ref$ReferenceQueue : java$lang$Object {
     open class override func jniName() -> String { return "java/lang/ref/ReferenceQueue" }
 
     fileprivate static let java$lang$ref$ReferenceQueue_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$ref$ReferenceQueue_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$ref$ReferenceQueue_init__V())
     }
 
     fileprivate static let java$lang$ref$ReferenceQueue_poll__java$lang$ref$Reference = invoker("poll", returns: JObjectType("java/lang/ref/Reference"))

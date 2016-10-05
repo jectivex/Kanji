@@ -8,8 +8,8 @@ open class javax$xml$bind$Binder : java$lang$Object {
     open class override func jniName() -> String { return "javax/xml/bind/Binder" }
 
     fileprivate static let javax$xml$bind$Binder_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.javax$xml$bind$Binder_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.javax$xml$bind$Binder_init__V())
     }
 
     fileprivate static let javax$xml$bind$Binder_unmarshal_java$lang$Object__java$lang$Object = invoker("unmarshal", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))

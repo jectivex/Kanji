@@ -140,8 +140,8 @@ open class jdk$nashorn$api$scripting$AbstractJSObject : java$lang$Object, jdk$na
     open class override func jniName() -> String { return "jdk/nashorn/api/scripting/AbstractJSObject" }
 
     fileprivate static let jdk$nashorn$api$scripting$AbstractJSObject_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.jdk$nashorn$api$scripting$AbstractJSObject_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.jdk$nashorn$api$scripting$AbstractJSObject_init__V())
     }
 
     fileprivate static let jdk$nashorn$api$scripting$AbstractJSObject_call_java$lang$Object_Ajava$lang$Object__java$lang$Object = invoker("call", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JArray(JObjectType("java/lang/Object"))))
@@ -600,8 +600,8 @@ public final class jdk$nashorn$api$scripting$NashornScriptEngineFactory : java$l
     open class override func jniName() -> String { return "jdk/nashorn/api/scripting/NashornScriptEngineFactory" }
 
     fileprivate static let jdk$nashorn$api$scripting$NashornScriptEngineFactory_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.jdk$nashorn$api$scripting$NashornScriptEngineFactory_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.jdk$nashorn$api$scripting$NashornScriptEngineFactory_init__V())
     }
 
     fileprivate static let jdk$nashorn$api$scripting$NashornScriptEngineFactory_getEngineName__java$lang$String = invoker("getEngineName", returns: JObjectType("java/lang/String"))
@@ -752,18 +752,18 @@ public final class jdk$nashorn$api$scripting$URLReader : java$io$Reader {
     open class override func jniName() -> String { return "jdk/nashorn/api/scripting/URLReader" }
 
     fileprivate static let jdk$nashorn$api$scripting$URLReader_init_java$net$URL__V = constructor((JObjectType("java/net/URL")))
-    public convenience init!(_ a0: java$net$URL?) throws {
-        try self.init(constructor: I.jdk$nashorn$api$scripting$URLReader_init_java$net$URL__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$net$URL?) throws {
+        try self.init(creator: I.jdk$nashorn$api$scripting$URLReader_init_java$net$URL__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let jdk$nashorn$api$scripting$URLReader_init_java$net$URL_java$lang$String__V = constructor((JObjectType("java/net/URL"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$net$URL?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.jdk$nashorn$api$scripting$URLReader_init_java$net$URL_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$net$URL?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.jdk$nashorn$api$scripting$URLReader_init_java$net$URL_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let jdk$nashorn$api$scripting$URLReader_init_java$net$URL_java$nio$charset$Charset__V = constructor((JObjectType("java/net/URL"), JObjectType("java/nio/charset/Charset")))
-    public convenience init!(_ a0: java$net$URL?, _ a1: java$nio$charset$Charset?) throws {
-        try self.init(constructor: I.jdk$nashorn$api$scripting$URLReader_init_java$net$URL_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$net$URL?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.jdk$nashorn$api$scripting$URLReader_init_java$net$URL_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let jdk$nashorn$api$scripting$URLReader_read_AC_I_I__I = invoker("read", returns: jint.jniType, arguments: (JArray(jchar.jniType), jint.jniType, jint.jniType))

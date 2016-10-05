@@ -253,8 +253,8 @@ open class java$util$concurrent$locks$AbstractQueuedLongSynchronizer$ConditionOb
     open class override func jniName() -> String { return "java/util/concurrent/locks/AbstractQueuedLongSynchronizer$ConditionObject" }
 
     fileprivate static let java$util$concurrent$locks$AbstractQueuedLongSynchronizer$ConditionObject_init_java$util$concurrent$locks$AbstractQueuedLongSynchronizer__V = constructor((JObjectType("java/util/concurrent/locks/AbstractQueuedLongSynchronizer")))
-    public convenience init!(_ a0: java$util$concurrent$locks$AbstractQueuedLongSynchronizer?) throws {
-        try self.init(constructor: I.java$util$concurrent$locks$AbstractQueuedLongSynchronizer$ConditionObject_init_java$util$concurrent$locks$AbstractQueuedLongSynchronizer__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$concurrent$locks$AbstractQueuedLongSynchronizer?) throws {
+        try self.init(creator: I.java$util$concurrent$locks$AbstractQueuedLongSynchronizer$ConditionObject_init_java$util$concurrent$locks$AbstractQueuedLongSynchronizer__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$locks$AbstractQueuedLongSynchronizer$ConditionObject_signal__V = invoker("signal", returns: JVoid.jniType)
@@ -304,8 +304,8 @@ open class java$util$concurrent$locks$AbstractQueuedSynchronizer$ConditionObject
     open class override func jniName() -> String { return "java/util/concurrent/locks/AbstractQueuedSynchronizer$ConditionObject" }
 
     fileprivate static let java$util$concurrent$locks$AbstractQueuedSynchronizer$ConditionObject_init_java$util$concurrent$locks$AbstractQueuedSynchronizer__V = constructor((JObjectType("java/util/concurrent/locks/AbstractQueuedSynchronizer")))
-    public convenience init!(_ a0: java$util$concurrent$locks$AbstractQueuedSynchronizer?) throws {
-        try self.init(constructor: I.java$util$concurrent$locks$AbstractQueuedSynchronizer$ConditionObject_init_java$util$concurrent$locks$AbstractQueuedSynchronizer__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$concurrent$locks$AbstractQueuedSynchronizer?) throws {
+        try self.init(creator: I.java$util$concurrent$locks$AbstractQueuedSynchronizer$ConditionObject_init_java$util$concurrent$locks$AbstractQueuedSynchronizer__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$locks$AbstractQueuedSynchronizer$ConditionObject_signal__V = invoker("signal", returns: JVoid.jniType)
@@ -406,13 +406,13 @@ open class java$util$concurrent$locks$ReentrantLock : java$lang$Object, java$uti
     open class override func jniName() -> String { return "java/util/concurrent/locks/ReentrantLock" }
 
     fileprivate static let java$util$concurrent$locks$ReentrantLock_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$locks$ReentrantLock_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$locks$ReentrantLock_init__V())
     }
 
     fileprivate static let java$util$concurrent$locks$ReentrantLock_init_Z__V = constructor((jboolean.jniType))
-    public convenience init!(_ a0: jboolean) throws {
-        try self.init(constructor: I.java$util$concurrent$locks$ReentrantLock_init_Z__V(a0))
+    public convenience init(_ a0: jboolean) throws {
+        try self.init(creator: I.java$util$concurrent$locks$ReentrantLock_init_Z__V(a0))
     }
 
     fileprivate static let java$util$concurrent$locks$ReentrantLock_lock__V = invoker("lock", returns: JVoid.jniType)
@@ -503,13 +503,13 @@ open class java$util$concurrent$locks$ReentrantReadWriteLock : java$lang$Object,
     open class override func jniName() -> String { return "java/util/concurrent/locks/ReentrantReadWriteLock" }
 
     fileprivate static let java$util$concurrent$locks$ReentrantReadWriteLock_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$locks$ReentrantReadWriteLock_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$locks$ReentrantReadWriteLock_init__V())
     }
 
     fileprivate static let java$util$concurrent$locks$ReentrantReadWriteLock_init_Z__V = constructor((jboolean.jniType))
-    public convenience init!(_ a0: jboolean) throws {
-        try self.init(constructor: I.java$util$concurrent$locks$ReentrantReadWriteLock_init_Z__V(a0))
+    public convenience init(_ a0: jboolean) throws {
+        try self.init(creator: I.java$util$concurrent$locks$ReentrantReadWriteLock_init_Z__V(a0))
     }
 
     fileprivate static let java$util$concurrent$locks$ReentrantReadWriteLock_writeLock__java$util$concurrent$locks$ReentrantReadWriteLock$WriteLock = invoker("writeLock", returns: JObjectType("java/util/concurrent/locks/ReentrantReadWriteLock$WriteLock"))
@@ -694,8 +694,8 @@ open class java$util$concurrent$locks$StampedLock : java$lang$Object, java$io$Se
     open class override func jniName() -> String { return "java/util/concurrent/locks/StampedLock" }
 
     fileprivate static let java$util$concurrent$locks$StampedLock_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$locks$StampedLock_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$locks$StampedLock_init__V())
     }
 
     fileprivate static let java$util$concurrent$locks$StampedLock_writeLock__J = invoker("writeLock", returns: jlong.jniType)

@@ -8,8 +8,8 @@ public final class java$lang$instrument$ClassDefinition : java$lang$Object {
     open class override func jniName() -> String { return "java/lang/instrument/ClassDefinition" }
 
     fileprivate static let java$lang$instrument$ClassDefinition_init_java$lang$Class_AB__V = constructor((JObjectType("java/lang/Class"), JArray(jbyte.jniType)))
-    public convenience init!(_ a0: java$lang$Class?, _ a1: [jbyte]?) throws {
-        try self.init(constructor: I.java$lang$instrument$ClassDefinition_init_java$lang$Class_AB__V(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$Class?, _ a1: [jbyte]?) throws {
+        try self.init(creator: I.java$lang$instrument$ClassDefinition_init_java$lang$Class_AB__V(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$lang$instrument$ClassDefinition_getDefinitionClass__java$lang$Class = invoker("getDefinitionClass", returns: JObjectType("java/lang/Class"))
@@ -34,13 +34,13 @@ open class java$lang$instrument$IllegalClassFormatException : java$lang$Exceptio
     open class override func jniName() -> String { return "java/lang/instrument/IllegalClassFormatException" }
 
     fileprivate static let java$lang$instrument$IllegalClassFormatException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$instrument$IllegalClassFormatException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$instrument$IllegalClassFormatException_init__V())
     }
 
     fileprivate static let java$lang$instrument$IllegalClassFormatException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$instrument$IllegalClassFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$instrument$IllegalClassFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -55,13 +55,13 @@ open class java$lang$instrument$UnmodifiableClassException : java$lang$Exception
     open class override func jniName() -> String { return "java/lang/instrument/UnmodifiableClassException" }
 
     fileprivate static let java$lang$instrument$UnmodifiableClassException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$instrument$UnmodifiableClassException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$instrument$UnmodifiableClassException_init__V())
     }
 
     fileprivate static let java$lang$instrument$UnmodifiableClassException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$instrument$UnmodifiableClassException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$instrument$UnmodifiableClassException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }

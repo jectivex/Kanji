@@ -590,8 +590,8 @@ open class java$lang$reflect$Modifier : java$lang$Object {
     }
 
     fileprivate static let java$lang$reflect$Modifier_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$reflect$Modifier_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$reflect$Modifier_init__V())
     }
 
     fileprivate static let java$lang$reflect$Modifier_isPublic_I__Z = svoker("isPublic", returns: jboolean.jniType, arguments: (jint.jniType))
@@ -795,13 +795,13 @@ public final class java$lang$reflect$ReflectPermission : java$security$BasicPerm
     open class override func jniName() -> String { return "java/lang/reflect/ReflectPermission" }
 
     fileprivate static let java$lang$reflect$ReflectPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$reflect$ReflectPermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$reflect$ReflectPermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$reflect$ReflectPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$reflect$ReflectPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$reflect$ReflectPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -847,13 +847,13 @@ open class java$lang$reflect$GenericSignatureFormatError : java$lang$ClassFormat
     open class override func jniName() -> String { return "java/lang/reflect/GenericSignatureFormatError" }
 
     fileprivate static let java$lang$reflect$GenericSignatureFormatError_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$reflect$GenericSignatureFormatError_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$reflect$GenericSignatureFormatError_init__V())
     }
 
     fileprivate static let java$lang$reflect$GenericSignatureFormatError_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$reflect$GenericSignatureFormatError_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$reflect$GenericSignatureFormatError_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -868,13 +868,13 @@ open class java$lang$reflect$InvocationTargetException : java$lang$ReflectiveOpe
     open class override func jniName() -> String { return "java/lang/reflect/InvocationTargetException" }
 
     fileprivate static let java$lang$reflect$InvocationTargetException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$lang$reflect$InvocationTargetException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$lang$reflect$InvocationTargetException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$reflect$InvocationTargetException_init_java$lang$Throwable_java$lang$String__V = constructor((JObjectType("java/lang/Throwable"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$Throwable?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$reflect$InvocationTargetException_init_java$lang$Throwable_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$reflect$InvocationTargetException_init_java$lang$Throwable_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$reflect$InvocationTargetException_getTargetException__java$lang$Throwable = invoker("getTargetException", returns: JObjectType("java/lang/Throwable"))
@@ -895,8 +895,8 @@ open class java$lang$reflect$MalformedParameterizedTypeException : java$lang$Run
     open class override func jniName() -> String { return "java/lang/reflect/MalformedParameterizedTypeException" }
 
     fileprivate static let java$lang$reflect$MalformedParameterizedTypeException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$reflect$MalformedParameterizedTypeException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$reflect$MalformedParameterizedTypeException_init__V())
     }
 
 }
@@ -911,13 +911,13 @@ open class java$lang$reflect$MalformedParametersException : java$lang$RuntimeExc
     open class override func jniName() -> String { return "java/lang/reflect/MalformedParametersException" }
 
     fileprivate static let java$lang$reflect$MalformedParametersException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$reflect$MalformedParametersException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$reflect$MalformedParametersException_init__V())
     }
 
     fileprivate static let java$lang$reflect$MalformedParametersException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$reflect$MalformedParametersException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$reflect$MalformedParametersException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -932,13 +932,13 @@ open class java$lang$reflect$UndeclaredThrowableException : java$lang$RuntimeExc
     open class override func jniName() -> String { return "java/lang/reflect/UndeclaredThrowableException" }
 
     fileprivate static let java$lang$reflect$UndeclaredThrowableException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$lang$reflect$UndeclaredThrowableException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$lang$reflect$UndeclaredThrowableException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$reflect$UndeclaredThrowableException_init_java$lang$Throwable_java$lang$String__V = constructor((JObjectType("java/lang/Throwable"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$Throwable?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$reflect$UndeclaredThrowableException_init_java$lang$Throwable_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$reflect$UndeclaredThrowableException_init_java$lang$Throwable_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$reflect$UndeclaredThrowableException_getUndeclaredThrowable__java$lang$Throwable = invoker("getUndeclaredThrowable", returns: JObjectType("java/lang/Throwable"))

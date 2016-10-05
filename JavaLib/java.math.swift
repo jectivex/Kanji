@@ -28,18 +28,18 @@ public final class java$math$MathContext : java$lang$Object, java$io$Serializabl
     }
 
     fileprivate static let java$math$MathContext_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$math$MathContext_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$math$MathContext_init_I__V(a0))
     }
 
     fileprivate static let java$math$MathContext_init_I_java$math$RoundingMode__V = constructor((jint.jniType, JObjectType("java/math/RoundingMode")))
-    public convenience init!(_ a0: jint, _ a1: java$math$RoundingMode?) throws {
-        try self.init(constructor: I.java$math$MathContext_init_I_java$math$RoundingMode__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$math$RoundingMode?) throws {
+        try self.init(creator: I.java$math$MathContext_init_I_java$math$RoundingMode__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$math$MathContext_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$math$MathContext_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$math$MathContext_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$math$MathContext_getPrecision__I = invoker("getPrecision", returns: jint.jniType)
@@ -122,83 +122,83 @@ open class java$math$BigDecimal : java$lang$Number, java$lang$Comparable {
     }
 
     fileprivate static let java$math$BigDecimal_init_AC_I_I__V = constructor((JArray(jchar.jniType), jint.jniType, jint.jniType))
-    public convenience init!(_ a0: [jchar]?, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_AC_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
+    public convenience init(_ a0: [jchar]?, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_AC_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
     }
 
     fileprivate static let java$math$BigDecimal_init_AC_I_I_java$math$MathContext__V = constructor((JArray(jchar.jniType), jint.jniType, jint.jniType, JObjectType("java/math/MathContext")))
-    public convenience init!(_ a0: [jchar]?, _ a1: jint, _ a2: jint, _ a3: java$math$MathContext?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_AC_I_I_java$math$MathContext__V(a0?.arrayToJArray() ?? nil, a1, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: [jchar]?, _ a1: jint, _ a2: jint, _ a3: java$math$MathContext?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_AC_I_I_java$math$MathContext__V(a0?.arrayToJArray() ?? nil, a1, a2, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_AC__V = constructor((JArray(jchar.jniType)))
-    public convenience init!(_ a0: [jchar]?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_AC__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jchar]?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_AC__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_AC_java$math$MathContext__V = constructor((JArray(jchar.jniType), JObjectType("java/math/MathContext")))
-    public convenience init!(_ a0: [jchar]?, _ a1: java$math$MathContext?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_AC_java$math$MathContext__V(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: [jchar]?, _ a1: java$math$MathContext?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_AC_java$math$MathContext__V(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_java$lang$String_java$math$MathContext__V = constructor((JObjectType("java/lang/String"), JObjectType("java/math/MathContext")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$math$MathContext?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_java$lang$String_java$math$MathContext__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$math$MathContext?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_java$lang$String_java$math$MathContext__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_D__V = constructor((jdouble.jniType))
-    public convenience init!(_ a0: jdouble) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_D__V(a0))
+    public convenience init(_ a0: jdouble) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_D__V(a0))
     }
 
     fileprivate static let java$math$BigDecimal_init_D_java$math$MathContext__V = constructor((jdouble.jniType, JObjectType("java/math/MathContext")))
-    public convenience init!(_ a0: jdouble, _ a1: java$math$MathContext?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_D_java$math$MathContext__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jdouble, _ a1: java$math$MathContext?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_D_java$math$MathContext__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_java$math$BigInteger__V = constructor((JObjectType("java/math/BigInteger")))
-    public convenience init!(_ a0: java$math$BigInteger?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_java$math$BigInteger__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$math$BigInteger?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_java$math$BigInteger__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_java$math$BigInteger_java$math$MathContext__V = constructor((JObjectType("java/math/BigInteger"), JObjectType("java/math/MathContext")))
-    public convenience init!(_ a0: java$math$BigInteger?, _ a1: java$math$MathContext?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_java$math$BigInteger_java$math$MathContext__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$math$BigInteger?, _ a1: java$math$MathContext?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_java$math$BigInteger_java$math$MathContext__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_java$math$BigInteger_I__V = constructor((JObjectType("java/math/BigInteger"), jint.jniType))
-    public convenience init!(_ a0: java$math$BigInteger?, _ a1: jint) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_java$math$BigInteger_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$math$BigInteger?, _ a1: jint) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_java$math$BigInteger_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$math$BigDecimal_init_java$math$BigInteger_I_java$math$MathContext__V = constructor((JObjectType("java/math/BigInteger"), jint.jniType, JObjectType("java/math/MathContext")))
-    public convenience init!(_ a0: java$math$BigInteger?, _ a1: jint, _ a2: java$math$MathContext?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_java$math$BigInteger_I_java$math$MathContext__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$math$BigInteger?, _ a1: jint, _ a2: java$math$MathContext?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_java$math$BigInteger_I_java$math$MathContext__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_I__V(a0))
     }
 
     fileprivate static let java$math$BigDecimal_init_I_java$math$MathContext__V = constructor((jint.jniType, JObjectType("java/math/MathContext")))
-    public convenience init!(_ a0: jint, _ a1: java$math$MathContext?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_I_java$math$MathContext__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$math$MathContext?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_I_java$math$MathContext__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_init_J__V = constructor((jlong.jniType))
-    public convenience init!(_ a0: jlong) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_J__V(a0))
+    public convenience init(_ a0: jlong) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_J__V(a0))
     }
 
     fileprivate static let java$math$BigDecimal_init_J_java$math$MathContext__V = constructor((jlong.jniType, JObjectType("java/math/MathContext")))
-    public convenience init!(_ a0: jlong, _ a1: java$math$MathContext?) throws {
-        try self.init(constructor: I.java$math$BigDecimal_init_J_java$math$MathContext__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jlong, _ a1: java$math$MathContext?) throws {
+        try self.init(creator: I.java$math$BigDecimal_init_J_java$math$MathContext__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigDecimal_valueOf_J_I__java$math$BigDecimal = svoker("valueOf", returns: JObjectType("java/math/BigDecimal"), arguments: (jlong.jniType, jint.jniType))
@@ -505,33 +505,33 @@ open class java$math$BigInteger : java$lang$Number, java$lang$Comparable {
     }
 
     fileprivate static let java$math$BigInteger_init_AB__V = constructor((JArray(jbyte.jniType)))
-    public convenience init!(_ a0: [jbyte]?) throws {
-        try self.init(constructor: I.java$math$BigInteger_init_AB__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jbyte]?) throws {
+        try self.init(creator: I.java$math$BigInteger_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$math$BigInteger_init_I_AB__V = constructor((jint.jniType, JArray(jbyte.jniType)))
-    public convenience init!(_ a0: jint, _ a1: [jbyte]?) throws {
-        try self.init(constructor: I.java$math$BigInteger_init_I_AB__V(a0, a1?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: jint, _ a1: [jbyte]?) throws {
+        try self.init(creator: I.java$math$BigInteger_init_I_AB__V(a0, a1?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$math$BigInteger_init_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint) throws {
-        try self.init(constructor: I.java$math$BigInteger_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint) throws {
+        try self.init(creator: I.java$math$BigInteger_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$math$BigInteger_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$math$BigInteger_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$math$BigInteger_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigInteger_init_I_java$util$Random__V = constructor((jint.jniType, JObjectType("java/util/Random")))
-    public convenience init!(_ a0: jint, _ a1: java$util$Random?) throws {
-        try self.init(constructor: I.java$math$BigInteger_init_I_java$util$Random__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$util$Random?) throws {
+        try self.init(creator: I.java$math$BigInteger_init_I_java$util$Random__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigInteger_init_I_I_java$util$Random__V = constructor((jint.jniType, jint.jniType, JObjectType("java/util/Random")))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: java$util$Random?) throws {
-        try self.init(constructor: I.java$math$BigInteger_init_I_I_java$util$Random__V(a0, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: java$util$Random?) throws {
+        try self.init(creator: I.java$math$BigInteger_init_I_I_java$util$Random__V(a0, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$math$BigInteger_probablePrime_I_java$util$Random__java$math$BigInteger = svoker("probablePrime", returns: JObjectType("java/math/BigInteger"), arguments: (jint.jniType, JObjectType("java/util/Random")))

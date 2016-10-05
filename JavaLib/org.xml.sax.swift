@@ -8,8 +8,8 @@ open class org$xml$sax$HandlerBase : java$lang$Object, org$xml$sax$EntityResolve
     open class override func jniName() -> String { return "org/xml/sax/HandlerBase" }
 
     fileprivate static let org$xml$sax$HandlerBase_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$HandlerBase_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$HandlerBase_init__V())
     }
 
     fileprivate static let org$xml$sax$HandlerBase_resolveEntity_java$lang$String_java$lang$String__org$xml$sax$InputSource = invoker("resolveEntity", returns: JObjectType("org/xml/sax/InputSource"), arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String")))
@@ -94,23 +94,23 @@ open class org$xml$sax$InputSource : java$lang$Object {
     open class override func jniName() -> String { return "org/xml/sax/InputSource" }
 
     fileprivate static let org$xml$sax$InputSource_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$InputSource_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$InputSource_init__V())
     }
 
     fileprivate static let org$xml$sax$InputSource_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.org$xml$sax$InputSource_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.org$xml$sax$InputSource_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$InputSource_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.org$xml$sax$InputSource_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.org$xml$sax$InputSource_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$InputSource_init_java$io$Reader__V = constructor((JObjectType("java/io/Reader")))
-    public convenience init!(_ a0: java$io$Reader?) throws {
-        try self.init(constructor: I.org$xml$sax$InputSource_init_java$io$Reader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Reader?) throws {
+        try self.init(creator: I.org$xml$sax$InputSource_init_java$io$Reader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$InputSource_setPublicId_java$lang$String__V = invoker("setPublicId", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String")))
@@ -175,23 +175,23 @@ open class org$xml$sax$SAXException : java$lang$Exception {
     open class override func jniName() -> String { return "org/xml/sax/SAXException" }
 
     fileprivate static let org$xml$sax$SAXException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$SAXException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$SAXException_init__V())
     }
 
     fileprivate static let org$xml$sax$SAXException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.org$xml$sax$SAXException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.org$xml$sax$SAXException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$SAXException_init_java$lang$Exception__V = constructor((JObjectType("java/lang/Exception")))
-    public convenience init!(_ a0: java$lang$Exception?) throws {
-        try self.init(constructor: I.org$xml$sax$SAXException_init_java$lang$Exception__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Exception?) throws {
+        try self.init(creator: I.org$xml$sax$SAXException_init_java$lang$Exception__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$SAXException_init_java$lang$String_java$lang$Exception__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Exception")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Exception?) throws {
-        try self.init(constructor: I.org$xml$sax$SAXException_init_java$lang$String_java$lang$Exception__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Exception?) throws {
+        try self.init(creator: I.org$xml$sax$SAXException_init_java$lang$String_java$lang$Exception__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$SAXException_getMessage__java$lang$String = invoker("getMessage", returns: JObjectType("java/lang/String"))
@@ -214,13 +214,13 @@ open class org$xml$sax$SAXNotRecognizedException : org$xml$sax$SAXException {
     open class override func jniName() -> String { return "org/xml/sax/SAXNotRecognizedException" }
 
     fileprivate static let org$xml$sax$SAXNotRecognizedException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$SAXNotRecognizedException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$SAXNotRecognizedException_init__V())
     }
 
     fileprivate static let org$xml$sax$SAXNotRecognizedException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.org$xml$sax$SAXNotRecognizedException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.org$xml$sax$SAXNotRecognizedException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -235,13 +235,13 @@ open class org$xml$sax$SAXNotSupportedException : org$xml$sax$SAXException {
     open class override func jniName() -> String { return "org/xml/sax/SAXNotSupportedException" }
 
     fileprivate static let org$xml$sax$SAXNotSupportedException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$SAXNotSupportedException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$SAXNotSupportedException_init__V())
     }
 
     fileprivate static let org$xml$sax$SAXNotSupportedException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.org$xml$sax$SAXNotSupportedException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.org$xml$sax$SAXNotSupportedException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -256,23 +256,23 @@ open class org$xml$sax$SAXParseException : org$xml$sax$SAXException {
     open class override func jniName() -> String { return "org/xml/sax/SAXParseException" }
 
     fileprivate static let org$xml$sax$SAXParseException_init_java$lang$String_org$xml$sax$Locator__V = constructor((JObjectType("java/lang/String"), JObjectType("org/xml/sax/Locator")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: org$xml$sax$Locator?) throws {
-        try self.init(constructor: I.org$xml$sax$SAXParseException_init_java$lang$String_org$xml$sax$Locator__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: org$xml$sax$Locator?) throws {
+        try self.init(creator: I.org$xml$sax$SAXParseException_init_java$lang$String_org$xml$sax$Locator__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$SAXParseException_init_java$lang$String_org$xml$sax$Locator_java$lang$Exception__V = constructor((JObjectType("java/lang/String"), JObjectType("org/xml/sax/Locator"), JObjectType("java/lang/Exception")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: org$xml$sax$Locator?, _ a2: java$lang$Exception?) throws {
-        try self.init(constructor: I.org$xml$sax$SAXParseException_init_java$lang$String_org$xml$sax$Locator_java$lang$Exception__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: org$xml$sax$Locator?, _ a2: java$lang$Exception?) throws {
+        try self.init(creator: I.org$xml$sax$SAXParseException_init_java$lang$String_org$xml$sax$Locator_java$lang$Exception__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$SAXParseException_init_java$lang$String_java$lang$String_java$lang$String_I_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: jint, _ a4: jint) throws {
-        try self.init(constructor: I.org$xml$sax$SAXParseException_init_java$lang$String_java$lang$String_java$lang$String_I_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: jint, _ a4: jint) throws {
+        try self.init(creator: I.org$xml$sax$SAXParseException_init_java$lang$String_java$lang$String_java$lang$String_I_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4))
     }
 
     fileprivate static let org$xml$sax$SAXParseException_init_java$lang$String_java$lang$String_java$lang$String_I_I_java$lang$Exception__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, jint.jniType, JObjectType("java/lang/Exception")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: jint, _ a4: jint, _ a5: java$lang$Exception?) throws {
-        try self.init(constructor: I.org$xml$sax$SAXParseException_init_java$lang$String_java$lang$String_java$lang$String_I_I_java$lang$Exception__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4, a5?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: jint, _ a4: jint, _ a5: java$lang$Exception?) throws {
+        try self.init(creator: I.org$xml$sax$SAXParseException_init_java$lang$String_java$lang$String_java$lang$String_I_I_java$lang$Exception__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4, a5?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$SAXParseException_getPublicId__java$lang$String = invoker("getPublicId", returns: JObjectType("java/lang/String"))

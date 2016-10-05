@@ -250,8 +250,8 @@ public final class java$time$format$DateTimeFormatterBuilder : java$lang$Object 
     }
 
     fileprivate static let java$time$format$DateTimeFormatterBuilder_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$time$format$DateTimeFormatterBuilder_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$time$format$DateTimeFormatterBuilder_init__V())
     }
 
     fileprivate static let java$time$format$DateTimeFormatterBuilder_parseCaseSensitive__java$time$format$DateTimeFormatterBuilder = invoker("parseCaseSensitive", returns: JObjectType("java/time/format/DateTimeFormatterBuilder"))
@@ -530,13 +530,13 @@ open class java$time$format$DateTimeParseException : java$time$DateTimeException
     open class override func jniName() -> String { return "java/time/format/DateTimeParseException" }
 
     fileprivate static let java$time$format$DateTimeParseException_init_java$lang$String_java$lang$CharSequence_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/CharSequence"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$CharSequence?, _ a2: jint) throws {
-        try self.init(constructor: I.java$time$format$DateTimeParseException_init_java$lang$String_java$lang$CharSequence_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$CharSequence?, _ a2: jint) throws {
+        try self.init(creator: I.java$time$format$DateTimeParseException_init_java$lang$String_java$lang$CharSequence_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$time$format$DateTimeParseException_init_java$lang$String_java$lang$CharSequence_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/CharSequence"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$CharSequence?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$time$format$DateTimeParseException_init_java$lang$String_java$lang$CharSequence_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$CharSequence?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$time$format$DateTimeParseException_init_java$lang$String_java$lang$CharSequence_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$time$format$DateTimeParseException_getParsedString__java$lang$String = invoker("getParsedString", returns: JObjectType("java/lang/String"))

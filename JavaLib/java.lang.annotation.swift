@@ -8,18 +8,18 @@ open class java$lang$annotation$AnnotationFormatError : java$lang$Error {
     open class override func jniName() -> String { return "java/lang/annotation/AnnotationFormatError" }
 
     fileprivate static let java$lang$annotation$AnnotationFormatError_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$annotation$AnnotationFormatError_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$annotation$AnnotationFormatError_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$annotation$AnnotationFormatError_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$lang$annotation$AnnotationFormatError_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$lang$annotation$AnnotationFormatError_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$annotation$AnnotationFormatError_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$lang$annotation$AnnotationFormatError_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$lang$annotation$AnnotationFormatError_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -34,8 +34,8 @@ open class java$lang$annotation$AnnotationTypeMismatchException : java$lang$Runt
     open class override func jniName() -> String { return "java/lang/annotation/AnnotationTypeMismatchException" }
 
     fileprivate static let java$lang$annotation$AnnotationTypeMismatchException_init_java$lang$reflect$Method_java$lang$String__V = constructor((JObjectType("java/lang/reflect/Method"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$reflect$Method?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$annotation$AnnotationTypeMismatchException_init_java$lang$reflect$Method_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$reflect$Method?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$annotation$AnnotationTypeMismatchException_init_java$lang$reflect$Method_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$annotation$AnnotationTypeMismatchException_element__java$lang$reflect$Method = invoker("element", returns: JObjectType("java/lang/reflect/Method"))
@@ -60,8 +60,8 @@ open class java$lang$annotation$IncompleteAnnotationException : java$lang$Runtim
     open class override func jniName() -> String { return "java/lang/annotation/IncompleteAnnotationException" }
 
     fileprivate static let java$lang$annotation$IncompleteAnnotationException_init_java$lang$Class_java$lang$String__V = constructor((JObjectType("java/lang/Class"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$Class?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$annotation$IncompleteAnnotationException_init_java$lang$Class_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Class?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$annotation$IncompleteAnnotationException_init_java$lang$Class_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$annotation$IncompleteAnnotationException_annotationType__java$lang$Class = invoker("annotationType", returns: JObjectType("java/lang/Class"))

@@ -8,8 +8,8 @@ open class java$util$zip$Adler32 : java$lang$Object, java$util$zip$Checksum {
     open class override func jniName() -> String { return "java/util/zip/Adler32" }
 
     fileprivate static let java$util$zip$Adler32_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$zip$Adler32_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$zip$Adler32_init__V())
     }
 
     fileprivate static let java$util$zip$Adler32_update_I__V = invoker("update", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -54,8 +54,8 @@ open class java$util$zip$CRC32 : java$lang$Object, java$util$zip$Checksum {
     open class override func jniName() -> String { return "java/util/zip/CRC32" }
 
     fileprivate static let java$util$zip$CRC32_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$zip$CRC32_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$zip$CRC32_init__V())
     }
 
     fileprivate static let java$util$zip$CRC32_update_I__V = invoker("update", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -155,18 +155,18 @@ open class java$util$zip$Deflater : java$lang$Object {
     }
 
     fileprivate static let java$util$zip$Deflater_init_I_Z__V = constructor((jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: jint, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$zip$Deflater_init_I_Z__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$zip$Deflater_init_I_Z__V(a0, a1))
     }
 
     fileprivate static let java$util$zip$Deflater_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$zip$Deflater_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$zip$Deflater_init_I__V(a0))
     }
 
     fileprivate static let java$util$zip$Deflater_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$zip$Deflater_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$zip$Deflater_init__V())
     }
 
     fileprivate static let java$util$zip$Deflater_setInput_AB_I_I__V = invoker("setInput", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType))
@@ -276,13 +276,13 @@ open class java$util$zip$Inflater : java$lang$Object {
     open class override func jniName() -> String { return "java/util/zip/Inflater" }
 
     fileprivate static let java$util$zip$Inflater_init_Z__V = constructor((jboolean.jniType))
-    public convenience init!(_ a0: jboolean) throws {
-        try self.init(constructor: I.java$util$zip$Inflater_init_Z__V(a0))
+    public convenience init(_ a0: jboolean) throws {
+        try self.init(creator: I.java$util$zip$Inflater_init_Z__V(a0))
     }
 
     fileprivate static let java$util$zip$Inflater_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$zip$Inflater_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$zip$Inflater_init__V())
     }
 
     fileprivate static let java$util$zip$Inflater_setInput_AB_I_I__V = invoker("setInput", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType))
@@ -382,8 +382,8 @@ open class java$util$zip$CheckedInputStream : java$io$FilterInputStream {
     open class override func jniName() -> String { return "java/util/zip/CheckedInputStream" }
 
     fileprivate static let java$util$zip$CheckedInputStream_init_java$io$InputStream_java$util$zip$Checksum__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/util/zip/Checksum")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$util$zip$Checksum?) throws {
-        try self.init(constructor: I.java$util$zip$CheckedInputStream_init_java$io$InputStream_java$util$zip$Checksum__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$util$zip$Checksum?) throws {
+        try self.init(creator: I.java$util$zip$CheckedInputStream_init_java$io$InputStream_java$util$zip$Checksum__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$CheckedInputStream_read__I = invoker("read", returns: jint.jniType)
@@ -406,18 +406,18 @@ open class java$util$zip$DeflaterInputStream : java$io$FilterInputStream {
     open class override func jniName() -> String { return "java/util/zip/DeflaterInputStream" }
 
     fileprivate static let java$util$zip$DeflaterInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$util$zip$DeflaterInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$DeflaterInputStream_init_java$io$InputStream_java$util$zip$Deflater__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/util/zip/Deflater")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$util$zip$Deflater?) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterInputStream_init_java$io$InputStream_java$util$zip$Deflater__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$util$zip$Deflater?) throws {
+        try self.init(creator: I.java$util$zip$DeflaterInputStream_init_java$io$InputStream_java$util$zip$Deflater__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$DeflaterInputStream_init_java$io$InputStream_java$util$zip$Deflater_I__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/util/zip/Deflater"), jint.jniType))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$util$zip$Deflater?, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterInputStream_init_java$io$InputStream_java$util$zip$Deflater_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$util$zip$Deflater?, _ a2: jint) throws {
+        try self.init(creator: I.java$util$zip$DeflaterInputStream_init_java$io$InputStream_java$util$zip$Deflater_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$util$zip$DeflaterInputStream_close__V = invoker("close", returns: JVoid.jniType)
@@ -440,18 +440,18 @@ open class java$util$zip$InflaterInputStream : java$io$FilterInputStream {
     open class override func jniName() -> String { return "java/util/zip/InflaterInputStream" }
 
     fileprivate static let java$util$zip$InflaterInputStream_init_java$io$InputStream_java$util$zip$Inflater_I__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/util/zip/Inflater"), jint.jniType))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$util$zip$Inflater?, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$zip$InflaterInputStream_init_java$io$InputStream_java$util$zip$Inflater_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$util$zip$Inflater?, _ a2: jint) throws {
+        try self.init(creator: I.java$util$zip$InflaterInputStream_init_java$io$InputStream_java$util$zip$Inflater_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$util$zip$InflaterInputStream_init_java$io$InputStream_java$util$zip$Inflater__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/util/zip/Inflater")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$util$zip$Inflater?) throws {
-        try self.init(constructor: I.java$util$zip$InflaterInputStream_init_java$io$InputStream_java$util$zip$Inflater__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$util$zip$Inflater?) throws {
+        try self.init(creator: I.java$util$zip$InflaterInputStream_init_java$io$InputStream_java$util$zip$Inflater__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$InflaterInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$util$zip$InflaterInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$util$zip$InflaterInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$InflaterInputStream_read__I = invoker("read", returns: jint.jniType)
@@ -479,13 +479,13 @@ open class java$util$zip$GZIPInputStream : java$util$zip$InflaterInputStream {
     }
 
     fileprivate static let java$util$zip$GZIPInputStream_init_java$io$InputStream_I__V = constructor((JObjectType("java/io/InputStream"), jint.jniType))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: jint) throws {
-        try self.init(constructor: I.java$util$zip$GZIPInputStream_init_java$io$InputStream_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: jint) throws {
+        try self.init(creator: I.java$util$zip$GZIPInputStream_init_java$io$InputStream_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$zip$GZIPInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$util$zip$GZIPInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$util$zip$GZIPInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$GZIPInputStream_read_AB_I_I__I = invoker("read", returns: jint.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType))
@@ -502,13 +502,13 @@ open class java$util$zip$ZipInputStream : java$util$zip$InflaterInputStream, jav
     open class override func jniName() -> String { return "java/util/zip/ZipInputStream" }
 
     fileprivate static let java$util$zip$ZipInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$util$zip$ZipInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$util$zip$ZipInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipInputStream_init_java$io$InputStream_java$nio$charset$Charset__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/nio/charset/Charset")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$nio$charset$Charset?) throws {
-        try self.init(constructor: I.java$util$zip$ZipInputStream_init_java$io$InputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$zip$ZipInputStream_init_java$io$InputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipInputStream_getNextEntry__java$util$zip$ZipEntry = invoker("getNextEntry", returns: JObjectType("java/util/zip/ZipEntry"))
@@ -537,8 +537,8 @@ open class java$util$zip$CheckedOutputStream : java$io$FilterOutputStream {
     open class override func jniName() -> String { return "java/util/zip/CheckedOutputStream" }
 
     fileprivate static let java$util$zip$CheckedOutputStream_init_java$io$OutputStream_java$util$zip$Checksum__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/zip/Checksum")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Checksum?) throws {
-        try self.init(constructor: I.java$util$zip$CheckedOutputStream_init_java$io$OutputStream_java$util$zip$Checksum__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Checksum?) throws {
+        try self.init(creator: I.java$util$zip$CheckedOutputStream_init_java$io$OutputStream_java$util$zip$Checksum__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$CheckedOutputStream_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -560,33 +560,33 @@ open class java$util$zip$DeflaterOutputStream : java$io$FilterOutputStream {
     open class override func jniName() -> String { return "java/util/zip/DeflaterOutputStream" }
 
     fileprivate static let java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_I_Z__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/zip/Deflater"), jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Deflater?, _ a2: jint, _ a3: jboolean) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_I_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Deflater?, _ a2: jint, _ a3: jboolean) throws {
+        try self.init(creator: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_I_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
     }
 
     fileprivate static let java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_I__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/zip/Deflater"), jint.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Deflater?, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Deflater?, _ a2: jint) throws {
+        try self.init(creator: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_Z__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/zip/Deflater"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Deflater?, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Deflater?, _ a2: jboolean) throws {
+        try self.init(creator: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/zip/Deflater")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Deflater?) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Deflater?) throws {
+        try self.init(creator: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_java$util$zip$Deflater__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_Z__V = constructor((JObjectType("java/io/OutputStream"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$zip$DeflaterOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$util$zip$DeflaterOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$DeflaterOutputStream_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -610,23 +610,23 @@ open class java$util$zip$GZIPOutputStream : java$util$zip$DeflaterOutputStream {
     open class override func jniName() -> String { return "java/util/zip/GZIPOutputStream" }
 
     fileprivate static let java$util$zip$GZIPOutputStream_init_java$io$OutputStream_I__V = constructor((JObjectType("java/io/OutputStream"), jint.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: jint) throws {
-        try self.init(constructor: I.java$util$zip$GZIPOutputStream_init_java$io$OutputStream_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jint) throws {
+        try self.init(creator: I.java$util$zip$GZIPOutputStream_init_java$io$OutputStream_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$zip$GZIPOutputStream_init_java$io$OutputStream_I_Z__V = constructor((JObjectType("java/io/OutputStream"), jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: jint, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$util$zip$GZIPOutputStream_init_java$io$OutputStream_I_Z__V(a0?.jobj ?? nil, a1, a2))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jint, _ a2: jboolean) throws {
+        try self.init(creator: I.java$util$zip$GZIPOutputStream_init_java$io$OutputStream_I_Z__V(a0?.jobj ?? nil, a1, a2))
     }
 
     fileprivate static let java$util$zip$GZIPOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$util$zip$GZIPOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$util$zip$GZIPOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$GZIPOutputStream_init_java$io$OutputStream_Z__V = constructor((JObjectType("java/io/OutputStream"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$zip$GZIPOutputStream_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$zip$GZIPOutputStream_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$zip$GZIPOutputStream_write_AB_I_I__V = invoker("write", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType))
@@ -653,13 +653,13 @@ open class java$util$zip$ZipOutputStream : java$util$zip$DeflaterOutputStream, j
     }
 
     fileprivate static let java$util$zip$ZipOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$util$zip$ZipOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$util$zip$ZipOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipOutputStream_init_java$io$OutputStream_java$nio$charset$Charset__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/nio/charset/Charset")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$nio$charset$Charset?) throws {
-        try self.init(constructor: I.java$util$zip$ZipOutputStream_init_java$io$OutputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$zip$ZipOutputStream_init_java$io$OutputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipOutputStream_setComment_java$lang$String__V = invoker("setComment", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String")))
@@ -702,18 +702,18 @@ open class java$util$zip$InflaterOutputStream : java$io$FilterOutputStream {
     open class override func jniName() -> String { return "java/util/zip/InflaterOutputStream" }
 
     fileprivate static let java$util$zip$InflaterOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$util$zip$InflaterOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$util$zip$InflaterOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$InflaterOutputStream_init_java$io$OutputStream_java$util$zip$Inflater__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/zip/Inflater")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Inflater?) throws {
-        try self.init(constructor: I.java$util$zip$InflaterOutputStream_init_java$io$OutputStream_java$util$zip$Inflater__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Inflater?) throws {
+        try self.init(creator: I.java$util$zip$InflaterOutputStream_init_java$io$OutputStream_java$util$zip$Inflater__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$InflaterOutputStream_init_java$io$OutputStream_java$util$zip$Inflater_I__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/zip/Inflater"), jint.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Inflater?, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$zip$InflaterOutputStream_init_java$io$OutputStream_java$util$zip$Inflater_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$zip$Inflater?, _ a2: jint) throws {
+        try self.init(creator: I.java$util$zip$InflaterOutputStream_init_java$io$OutputStream_java$util$zip$Inflater_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$util$zip$InflaterOutputStream_close__V = invoker("close", returns: JVoid.jniType)
@@ -737,8 +737,8 @@ open class java$util$zip$ZipError : java$lang$InternalError {
     open class override func jniName() -> String { return "java/util/zip/ZipError" }
 
     fileprivate static let java$util$zip$ZipError_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$zip$ZipError_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$zip$ZipError_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -753,13 +753,13 @@ open class java$util$zip$DataFormatException : java$lang$Exception {
     open class override func jniName() -> String { return "java/util/zip/DataFormatException" }
 
     fileprivate static let java$util$zip$DataFormatException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$zip$DataFormatException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$zip$DataFormatException_init__V())
     }
 
     fileprivate static let java$util$zip$DataFormatException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$zip$DataFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$zip$DataFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -774,13 +774,13 @@ open class java$util$zip$ZipException : java$io$IOException {
     open class override func jniName() -> String { return "java/util/zip/ZipException" }
 
     fileprivate static let java$util$zip$ZipException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$zip$ZipException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$zip$ZipException_init__V())
     }
 
     fileprivate static let java$util$zip$ZipException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$zip$ZipException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$zip$ZipException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -805,13 +805,13 @@ open class java$util$zip$ZipEntry : java$lang$Object, java$util$zip$ZipConstants
     }
 
     fileprivate static let java$util$zip$ZipEntry_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$zip$ZipEntry_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$zip$ZipEntry_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipEntry_init_java$util$zip$ZipEntry__V = constructor((JObjectType("java/util/zip/ZipEntry")))
-    public convenience init!(_ a0: java$util$zip$ZipEntry?) throws {
-        try self.init(constructor: I.java$util$zip$ZipEntry_init_java$util$zip$ZipEntry__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$zip$ZipEntry?) throws {
+        try self.init(creator: I.java$util$zip$ZipEntry_init_java$util$zip$ZipEntry__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipEntry_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
@@ -953,33 +953,33 @@ open class java$util$zip$ZipFile : java$lang$Object, java$util$zip$ZipConstants,
     }
 
     fileprivate static let java$util$zip$ZipFile_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$zip$ZipFile_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$zip$ZipFile_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipFile_init_java$io$File_I__V = constructor((JObjectType("java/io/File"), jint.jniType))
-    public convenience init!(_ a0: java$io$File?, _ a1: jint) throws {
-        try self.init(constructor: I.java$util$zip$ZipFile_init_java$io$File_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$File?, _ a1: jint) throws {
+        try self.init(creator: I.java$util$zip$ZipFile_init_java$io$File_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$zip$ZipFile_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$util$zip$ZipFile_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$util$zip$ZipFile_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipFile_init_java$io$File_I_java$nio$charset$Charset__V = constructor((JObjectType("java/io/File"), jint.jniType, JObjectType("java/nio/charset/Charset")))
-    public convenience init!(_ a0: java$io$File?, _ a1: jint, _ a2: java$nio$charset$Charset?) throws {
-        try self.init(constructor: I.java$util$zip$ZipFile_init_java$io$File_I_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: jint, _ a2: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$zip$ZipFile_init_java$io$File_I_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipFile_init_java$lang$String_java$nio$charset$Charset__V = constructor((JObjectType("java/lang/String"), JObjectType("java/nio/charset/Charset")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$nio$charset$Charset?) throws {
-        try self.init(constructor: I.java$util$zip$ZipFile_init_java$lang$String_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$zip$ZipFile_init_java$lang$String_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipFile_init_java$io$File_java$nio$charset$Charset__V = constructor((JObjectType("java/io/File"), JObjectType("java/nio/charset/Charset")))
-    public convenience init!(_ a0: java$io$File?, _ a1: java$nio$charset$Charset?) throws {
-        try self.init(constructor: I.java$util$zip$ZipFile_init_java$io$File_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$zip$ZipFile_init_java$io$File_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$zip$ZipFile_getComment__java$lang$String = invoker("getComment", returns: JObjectType("java/lang/String"))

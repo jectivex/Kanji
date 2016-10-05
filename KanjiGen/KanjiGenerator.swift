@@ -797,10 +797,17 @@ extension JUnit {
                     + "        self.jobj = ref\n"
                     + "    }\n"
                     + "\n"
-                    + "    /// Creates this instance by attempting the autoclosure constructor function\n"
+                    + "    /// Creates this instance by attempting the optional autoclosure constructor function\n"
                     + "    public \(conv)init?(constructor: @autoclosure () throws -> jobject?) rethrows {\n"
-                    + "        let ref = try constructor()\n"
+                    + "        guard let ref = try constructor() else { return nil }\n"
                     + "        self.init(reference: ref)\n"
+                    + "        JVM.sharedJVM.deleteLocalRef(ref) // local ref is no longer needed\n"
+                    + "    }\n"
+                    + "\n"
+                    + "    /// Creates this instance by attempting the required autoclosure constructor function\n"
+                    + "    public \(conv)init(creator: @autoclosure () throws -> jobject) rethrows {\n"
+                    + "        let ref = try creator()\n"
+                    + "        self.init(reference: ref)!\n"
                     + "        JVM.sharedJVM.deleteLocalRef(ref) // local ref is no longer needed\n"
                     + "    }\n"
                     + "\n"
@@ -1043,7 +1050,7 @@ extension JUnit {
                     if convenience {
                         code += "convenience "
                     }
-                    code += "init!("
+                    code += "init("
                 } else {
                     if method.mods.contains(.Static) {
                         code += "static "
@@ -1093,9 +1100,9 @@ extension JUnit {
                     if method.constructor {
                         // special constructor auto-closure that cleans up local refs
                         if convenience {
-                            code += "try self.init(constructor: "
+                            code += "try self.init(creator: "
                         } else {
-                            code += "try super.init(constructor: "
+                            code += "try super.init(creator: "
                         }
                     } else {
                         code += "return try "
@@ -1127,7 +1134,7 @@ extension JUnit {
                     code += ")"
 
                     if method.constructor {
-                        code += ")"
+                        code += ")" // force-unwrap because a nil reference woukd have thrown an error
                     } else if method.returnType.isObject {
                         // end of wrapped for JVM.construct
                         code += ")"

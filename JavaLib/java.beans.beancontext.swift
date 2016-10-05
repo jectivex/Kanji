@@ -14,13 +14,13 @@ open class java$beans$beancontext$BeanContextChildSupport : java$lang$Object, ja
     }
 
     fileprivate static let java$beans$beancontext$BeanContextChildSupport_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextChildSupport_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextChildSupport_init__V())
     }
 
     fileprivate static let java$beans$beancontext$BeanContextChildSupport_init_java$beans$beancontext$BeanContextChild__V = constructor((JObjectType("java/beans/beancontext/BeanContextChild")))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContextChild?) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextChildSupport_init_java$beans$beancontext$BeanContextChild__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$beans$beancontext$BeanContextChild?) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextChildSupport_init_java$beans$beancontext$BeanContextChild__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextChildSupport_setBeanContext_java$beans$beancontext$BeanContext__V = invoker("setBeanContext", returns: JVoid.jniType, arguments: (JObjectType("java/beans/beancontext/BeanContext")))
@@ -100,28 +100,28 @@ open class java$beans$beancontext$BeanContextSupport : java$beans$beancontext$Be
     open class override func jniName() -> String { return "java/beans/beancontext/BeanContextSupport" }
 
     fileprivate static let java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale_Z_Z__V = constructor((JObjectType("java/beans/beancontext/BeanContext"), JObjectType("java/util/Locale"), jboolean.jniType, jboolean.jniType))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContext?, _ a1: java$util$Locale?, _ a2: jboolean, _ a3: jboolean) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale_Z_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
+    public convenience init(_ a0: java$beans$beancontext$BeanContext?, _ a1: java$util$Locale?, _ a2: jboolean, _ a3: jboolean) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale_Z_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale_Z__V = constructor((JObjectType("java/beans/beancontext/BeanContext"), JObjectType("java/util/Locale"), jboolean.jniType))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContext?, _ a1: java$util$Locale?, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$beans$beancontext$BeanContext?, _ a1: java$util$Locale?, _ a2: jboolean) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale__V = constructor((JObjectType("java/beans/beancontext/BeanContext"), JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContext?, _ a1: java$util$Locale?) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$beans$beancontext$BeanContext?, _ a1: java$util$Locale?) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext__V = constructor((JObjectType("java/beans/beancontext/BeanContext")))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContext?) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$beans$beancontext$BeanContext?) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextSupport_init_java$beans$beancontext$BeanContext__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextSupport_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextSupport_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextSupport_init__V())
     }
 
     fileprivate static let java$beans$beancontext$BeanContextSupport_getBeanContextPeer__java$beans$beancontext$BeanContext = invoker("getBeanContextPeer", returns: JObjectType("java/beans/beancontext/BeanContext"))
@@ -301,28 +301,28 @@ open class java$beans$beancontext$BeanContextServicesSupport : java$beans$beanco
     open class override func jniName() -> String { return "java/beans/beancontext/BeanContextServicesSupport" }
 
     fileprivate static let java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale_Z_Z__V = constructor((JObjectType("java/beans/beancontext/BeanContextServices"), JObjectType("java/util/Locale"), jboolean.jniType, jboolean.jniType))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$util$Locale?, _ a2: jboolean, _ a3: jboolean) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale_Z_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
+    public convenience init(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$util$Locale?, _ a2: jboolean, _ a3: jboolean) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale_Z_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale_Z__V = constructor((JObjectType("java/beans/beancontext/BeanContextServices"), JObjectType("java/util/Locale"), jboolean.jniType))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$util$Locale?, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$util$Locale?, _ a2: jboolean) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale__V = constructor((JObjectType("java/beans/beancontext/BeanContextServices"), JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$util$Locale?) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$util$Locale?) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices__V = constructor((JObjectType("java/beans/beancontext/BeanContextServices")))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContextServices?) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$beans$beancontext$BeanContextServices?) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextServicesSupport_init_java$beans$beancontext$BeanContextServices__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextServicesSupport_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextServicesSupport_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextServicesSupport_init__V())
     }
 
     fileprivate static let java$beans$beancontext$BeanContextServicesSupport_initialize__V = invoker("initialize", returns: JVoid.jniType)
@@ -515,13 +515,13 @@ open class java$beans$beancontext$BeanContextMembershipEvent : java$beans$beanco
     open class override func jniName() -> String { return "java/beans/beancontext/BeanContextMembershipEvent" }
 
     fileprivate static let java$beans$beancontext$BeanContextMembershipEvent_init_java$beans$beancontext$BeanContext_java$util$Collection__V = constructor((JObjectType("java/beans/beancontext/BeanContext"), JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContext?, _ a1: java$util$Collection?) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextMembershipEvent_init_java$beans$beancontext$BeanContext_java$util$Collection__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$beans$beancontext$BeanContext?, _ a1: java$util$Collection?) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextMembershipEvent_init_java$beans$beancontext$BeanContext_java$util$Collection__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextMembershipEvent_init_java$beans$beancontext$BeanContext_Ajava$lang$Object__V = constructor((JObjectType("java/beans/beancontext/BeanContext"), JArray(JObjectType("java/lang/Object"))))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContext?, _ a1: [java$lang$Object?]?) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextMembershipEvent_init_java$beans$beancontext$BeanContext_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$beans$beancontext$BeanContext?, _ a1: [java$lang$Object?]?) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextMembershipEvent_init_java$beans$beancontext$BeanContext_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextMembershipEvent_size__I = invoker("size", returns: jint.jniType)
@@ -556,8 +556,8 @@ open class java$beans$beancontext$BeanContextServiceAvailableEvent : java$beans$
     open class override func jniName() -> String { return "java/beans/beancontext/BeanContextServiceAvailableEvent" }
 
     fileprivate static let java$beans$beancontext$BeanContextServiceAvailableEvent_init_java$beans$beancontext$BeanContextServices_java$lang$Class__V = constructor((JObjectType("java/beans/beancontext/BeanContextServices"), JObjectType("java/lang/Class")))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$lang$Class?) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextServiceAvailableEvent_init_java$beans$beancontext$BeanContextServices_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$lang$Class?) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextServiceAvailableEvent_init_java$beans$beancontext$BeanContextServices_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextServiceAvailableEvent_getSourceAsBeanContextServices__java$beans$beancontext$BeanContextServices = invoker("getSourceAsBeanContextServices", returns: JObjectType("java/beans/beancontext/BeanContextServices"))
@@ -587,8 +587,8 @@ open class java$beans$beancontext$BeanContextServiceRevokedEvent : java$beans$be
     open class override func jniName() -> String { return "java/beans/beancontext/BeanContextServiceRevokedEvent" }
 
     fileprivate static let java$beans$beancontext$BeanContextServiceRevokedEvent_init_java$beans$beancontext$BeanContextServices_java$lang$Class_Z__V = constructor((JObjectType("java/beans/beancontext/BeanContextServices"), JObjectType("java/lang/Class"), jboolean.jniType))
-    public convenience init!(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$lang$Class?, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$beans$beancontext$BeanContextServiceRevokedEvent_init_java$beans$beancontext$BeanContextServices_java$lang$Class_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$beans$beancontext$BeanContextServices?, _ a1: java$lang$Class?, _ a2: jboolean) throws {
+        try self.init(creator: I.java$beans$beancontext$BeanContextServiceRevokedEvent_init_java$beans$beancontext$BeanContextServices_java$lang$Class_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$beans$beancontext$BeanContextServiceRevokedEvent_getSourceAsBeanContextServices__java$beans$beancontext$BeanContextServices = invoker("getSourceAsBeanContextServices", returns: JObjectType("java/beans/beancontext/BeanContextServices"))

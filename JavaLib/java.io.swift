@@ -84,23 +84,23 @@ open class java$io$File : java$lang$Object, java$io$Serializable, java$lang$Comp
     }
 
     fileprivate static let java$io$File_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$File_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$File_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$File_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$File_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$File_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$File_init_java$io$File_java$lang$String__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$File_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$File_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$File_init_java$net$URI__V = constructor((JObjectType("java/net/URI")))
-    public convenience init!(_ a0: java$net$URI?) throws {
-        try self.init(constructor: I.java$io$File_init_java$net$URI__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$net$URI?) throws {
+        try self.init(creator: I.java$io$File_init_java$net$URI__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$File_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
@@ -373,8 +373,8 @@ public final class java$io$FileDescriptor : java$lang$Object {
     }
 
     fileprivate static let java$io$FileDescriptor_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$FileDescriptor_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$FileDescriptor_init__V())
     }
 
     fileprivate static let java$io$FileDescriptor_valid__Z = invoker("valid", returns: jboolean.jniType)
@@ -399,8 +399,8 @@ open class java$io$InputStream : java$lang$Object, java$io$Closeable {
     open class override func jniName() -> String { return "java/io/InputStream" }
 
     fileprivate static let java$io$InputStream_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$InputStream_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$InputStream_init__V())
     }
 
     fileprivate static let java$io$InputStream_read__I = invoker("read", returns: jint.jniType)
@@ -460,13 +460,13 @@ open class java$io$ByteArrayInputStream : java$io$InputStream {
     open class override func jniName() -> String { return "java/io/ByteArrayInputStream" }
 
     fileprivate static let java$io$ByteArrayInputStream_init_AB__V = constructor((JArray(jbyte.jniType)))
-    public convenience init!(_ a0: [jbyte]?) throws {
-        try self.init(constructor: I.java$io$ByteArrayInputStream_init_AB__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jbyte]?) throws {
+        try self.init(creator: I.java$io$ByteArrayInputStream_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$io$ByteArrayInputStream_init_AB_I_I__V = constructor((JArray(jbyte.jniType), jint.jniType, jint.jniType))
-    public convenience init!(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$io$ByteArrayInputStream_init_AB_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
+    public convenience init(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$io$ByteArrayInputStream_init_AB_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
     }
 
     fileprivate static let java$io$ByteArrayInputStream_read__I = invoker("read", returns: jint.jniType)
@@ -489,18 +489,18 @@ open class java$io$FileInputStream : java$io$InputStream {
     open class override func jniName() -> String { return "java/io/FileInputStream" }
 
     fileprivate static let java$io$FileInputStream_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$FileInputStream_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$FileInputStream_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileInputStream_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$io$FileInputStream_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$io$FileInputStream_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileInputStream_init_java$io$FileDescriptor__V = constructor((JObjectType("java/io/FileDescriptor")))
-    public convenience init!(_ a0: java$io$FileDescriptor?) throws {
-        try self.init(constructor: I.java$io$FileInputStream_init_java$io$FileDescriptor__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$FileDescriptor?) throws {
+        try self.init(creator: I.java$io$FileInputStream_init_java$io$FileDescriptor__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileInputStream_read__I = invoker("read", returns: jint.jniType)
@@ -551,13 +551,13 @@ open class java$io$BufferedInputStream : java$io$FilterInputStream {
     open class override func jniName() -> String { return "java/io/BufferedInputStream" }
 
     fileprivate static let java$io$BufferedInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$io$BufferedInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$io$BufferedInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$BufferedInputStream_init_java$io$InputStream_I__V = constructor((JObjectType("java/io/InputStream"), jint.jniType))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$BufferedInputStream_init_java$io$InputStream_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$BufferedInputStream_init_java$io$InputStream_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$BufferedInputStream_read__I = invoker("read", returns: jint.jniType)
@@ -580,8 +580,8 @@ open class java$io$DataInputStream : java$io$FilterInputStream, java$io$DataInpu
     open class override func jniName() -> String { return "java/io/DataInputStream" }
 
     fileprivate static let java$io$DataInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$io$DataInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$io$DataInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$DataInputStream_read_AB__I = invoker("read", returns: jint.jniType, arguments: (JArray(jbyte.jniType)))
@@ -678,8 +678,8 @@ open class java$io$LineNumberInputStream : java$io$FilterInputStream {
     open class override func jniName() -> String { return "java/io/LineNumberInputStream" }
 
     fileprivate static let java$io$LineNumberInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$io$LineNumberInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$io$LineNumberInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$LineNumberInputStream_read__I = invoker("read", returns: jint.jniType)
@@ -710,13 +710,13 @@ open class java$io$PushbackInputStream : java$io$FilterInputStream {
     open class override func jniName() -> String { return "java/io/PushbackInputStream" }
 
     fileprivate static let java$io$PushbackInputStream_init_java$io$InputStream_I__V = constructor((JObjectType("java/io/InputStream"), jint.jniType))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$PushbackInputStream_init_java$io$InputStream_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$PushbackInputStream_init_java$io$InputStream_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$PushbackInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$io$PushbackInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$io$PushbackInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PushbackInputStream_read__I = invoker("read", returns: jint.jniType)
@@ -754,8 +754,8 @@ open class java$io$ObjectInputStream : java$io$InputStream, java$io$ObjectInput,
     open class override func jniName() -> String { return "java/io/ObjectInputStream" }
 
     fileprivate static let java$io$ObjectInputStream_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$io$ObjectInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$io$ObjectInputStream_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$ObjectInputStream_readObject__java$lang$Object = invoker("readObject", returns: JObjectType("java/lang/Object"))
@@ -874,23 +874,23 @@ open class java$io$PipedInputStream : java$io$InputStream {
     open class override func jniName() -> String { return "java/io/PipedInputStream" }
 
     fileprivate static let java$io$PipedInputStream_init_java$io$PipedOutputStream__V = constructor((JObjectType("java/io/PipedOutputStream")))
-    public convenience init!(_ a0: java$io$PipedOutputStream?) throws {
-        try self.init(constructor: I.java$io$PipedInputStream_init_java$io$PipedOutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$PipedOutputStream?) throws {
+        try self.init(creator: I.java$io$PipedInputStream_init_java$io$PipedOutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PipedInputStream_init_java$io$PipedOutputStream_I__V = constructor((JObjectType("java/io/PipedOutputStream"), jint.jniType))
-    public convenience init!(_ a0: java$io$PipedOutputStream?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$PipedInputStream_init_java$io$PipedOutputStream_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$PipedOutputStream?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$PipedInputStream_init_java$io$PipedOutputStream_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$PipedInputStream_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$PipedInputStream_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$PipedInputStream_init__V())
     }
 
     fileprivate static let java$io$PipedInputStream_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$io$PipedInputStream_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$io$PipedInputStream_init_I__V(a0))
     }
 
     fileprivate static let java$io$PipedInputStream_connect_java$io$PipedOutputStream__V = invoker("connect", returns: JVoid.jniType, arguments: (JObjectType("java/io/PipedOutputStream")))
@@ -914,13 +914,13 @@ open class java$io$SequenceInputStream : java$io$InputStream {
     open class override func jniName() -> String { return "java/io/SequenceInputStream" }
 
     fileprivate static let java$io$SequenceInputStream_init_java$util$Enumeration__V = constructor((JObjectType("java/util/Enumeration")))
-    public convenience init!(_ a0: java$util$Enumeration?) throws {
-        try self.init(constructor: I.java$io$SequenceInputStream_init_java$util$Enumeration__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Enumeration?) throws {
+        try self.init(creator: I.java$io$SequenceInputStream_init_java$util$Enumeration__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$SequenceInputStream_init_java$io$InputStream_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$io$SequenceInputStream_init_java$io$InputStream_java$io$InputStream__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$io$InputStream?) throws {
+        try self.init(creator: I.java$io$SequenceInputStream_init_java$io$InputStream_java$io$InputStream__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$SequenceInputStream_available__I = invoker("available", returns: jint.jniType)
@@ -939,8 +939,8 @@ open class java$io$StringBufferInputStream : java$io$InputStream {
     open class override func jniName() -> String { return "java/io/StringBufferInputStream" }
 
     fileprivate static let java$io$StringBufferInputStream_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$StringBufferInputStream_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$StringBufferInputStream_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$StringBufferInputStream_read__I = invoker("read", returns: jint.jniType)
@@ -960,8 +960,8 @@ open class java$io$ObjectInputStream$GetField : java$lang$Object {
     open class override func jniName() -> String { return "java/io/ObjectInputStream$GetField" }
 
     fileprivate static let java$io$ObjectInputStream$GetField_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$ObjectInputStream$GetField_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$ObjectInputStream$GetField_init__V())
     }
 
     fileprivate static let java$io$ObjectInputStream$GetField_getObjectStreamClass__java$io$ObjectStreamClass = invoker("getObjectStreamClass", returns: JObjectType("java/io/ObjectStreamClass"))
@@ -1031,8 +1031,8 @@ open class java$io$ObjectOutputStream$PutField : java$lang$Object {
     open class override func jniName() -> String { return "java/io/ObjectOutputStream$PutField" }
 
     fileprivate static let java$io$ObjectOutputStream$PutField_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$ObjectOutputStream$PutField_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$ObjectOutputStream$PutField_init__V())
     }
 
     fileprivate static let java$io$ObjectOutputStream$PutField_put_java$lang$String_Z__V = invoker("put", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), jboolean.jniType))
@@ -1149,13 +1149,13 @@ open class java$io$ObjectStreamField : java$lang$Object, java$lang$Comparable {
     open class override func jniName() -> String { return "java/io/ObjectStreamField" }
 
     fileprivate static let java$io$ObjectStreamField_init_java$lang$String_java$lang$Class__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?) throws {
-        try self.init(constructor: I.java$io$ObjectStreamField_init_java$lang$String_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?) throws {
+        try self.init(creator: I.java$io$ObjectStreamField_init_java$lang$String_java$lang$Class__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$ObjectStreamField_init_java$lang$String_java$lang$Class_Z__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Class"), jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$io$ObjectStreamField_init_java$lang$String_java$lang$Class_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Class?, _ a2: jboolean) throws {
+        try self.init(creator: I.java$io$ObjectStreamField_init_java$lang$String_java$lang$Class_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$io$ObjectStreamField_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
@@ -1211,8 +1211,8 @@ open class java$io$OutputStream : java$lang$Object, java$io$Closeable, java$io$F
     open class override func jniName() -> String { return "java/io/OutputStream" }
 
     fileprivate static let java$io$OutputStream_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$OutputStream_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$OutputStream_init__V())
     }
 
     fileprivate static let java$io$OutputStream_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -1252,13 +1252,13 @@ open class java$io$ByteArrayOutputStream : java$io$OutputStream {
     open class override func jniName() -> String { return "java/io/ByteArrayOutputStream" }
 
     fileprivate static let java$io$ByteArrayOutputStream_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$ByteArrayOutputStream_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$ByteArrayOutputStream_init__V())
     }
 
     fileprivate static let java$io$ByteArrayOutputStream_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$io$ByteArrayOutputStream_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$io$ByteArrayOutputStream_init_I__V(a0))
     }
 
     fileprivate static let java$io$ByteArrayOutputStream_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -1307,28 +1307,28 @@ open class java$io$FileOutputStream : java$io$OutputStream {
     open class override func jniName() -> String { return "java/io/FileOutputStream" }
 
     fileprivate static let java$io$FileOutputStream_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$FileOutputStream_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$FileOutputStream_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileOutputStream_init_java$lang$String_Z__V = constructor((JObjectType("java/lang/String"), jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$io$FileOutputStream_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$io$FileOutputStream_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$FileOutputStream_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$io$FileOutputStream_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$io$FileOutputStream_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileOutputStream_init_java$io$File_Z__V = constructor((JObjectType("java/io/File"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$File?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$io$FileOutputStream_init_java$io$File_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$File?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$io$FileOutputStream_init_java$io$File_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$FileOutputStream_init_java$io$FileDescriptor__V = constructor((JObjectType("java/io/FileDescriptor")))
-    public convenience init!(_ a0: java$io$FileDescriptor?) throws {
-        try self.init(constructor: I.java$io$FileOutputStream_init_java$io$FileDescriptor__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$FileDescriptor?) throws {
+        try self.init(creator: I.java$io$FileOutputStream_init_java$io$FileDescriptor__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileOutputStream_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -1357,8 +1357,8 @@ open class java$io$FilterOutputStream : java$io$OutputStream {
     open class override func jniName() -> String { return "java/io/FilterOutputStream" }
 
     fileprivate static let java$io$FilterOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$io$FilterOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$io$FilterOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FilterOutputStream_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -1378,13 +1378,13 @@ open class java$io$BufferedOutputStream : java$io$FilterOutputStream {
     open class override func jniName() -> String { return "java/io/BufferedOutputStream" }
 
     fileprivate static let java$io$BufferedOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$io$BufferedOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$io$BufferedOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$BufferedOutputStream_init_java$io$OutputStream_I__V = constructor((JObjectType("java/io/OutputStream"), jint.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$BufferedOutputStream_init_java$io$OutputStream_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$BufferedOutputStream_init_java$io$OutputStream_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$BufferedOutputStream_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -1402,8 +1402,8 @@ open class java$io$DataOutputStream : java$io$FilterOutputStream, java$io$DataOu
     open class override func jniName() -> String { return "java/io/DataOutputStream" }
 
     fileprivate static let java$io$DataOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$io$DataOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$io$DataOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$DataOutputStream_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -1481,38 +1481,38 @@ open class java$io$PrintStream : java$io$FilterOutputStream, java$lang$Appendabl
     open class override func jniName() -> String { return "java/io/PrintStream" }
 
     fileprivate static let java$io$PrintStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$io$PrintStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintStream_init_java$io$OutputStream_Z__V = constructor((JObjectType("java/io/OutputStream"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$io$PrintStream_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$PrintStream_init_java$io$OutputStream_Z_java$lang$String__V = constructor((JObjectType("java/io/OutputStream"), jboolean.jniType, JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: jboolean, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$PrintStream_init_java$io$OutputStream_Z_java$lang$String__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jboolean, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$io$OutputStream_Z_java$lang$String__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintStream_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$PrintStream_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintStream_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$PrintStream_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintStream_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$io$PrintStream_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintStream_init_java$io$File_java$lang$String__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$PrintStream_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintStream_flush__V = invoker("flush", returns: JVoid.jniType)
@@ -1681,8 +1681,8 @@ open class java$io$ObjectOutputStream : java$io$OutputStream, java$io$ObjectOutp
     open class override func jniName() -> String { return "java/io/ObjectOutputStream" }
 
     fileprivate static let java$io$ObjectOutputStream_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$io$ObjectOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$io$ObjectOutputStream_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$ObjectOutputStream_useProtocolVersion_I__V = invoker("useProtocolVersion", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -1792,13 +1792,13 @@ open class java$io$PipedOutputStream : java$io$OutputStream {
     open class override func jniName() -> String { return "java/io/PipedOutputStream" }
 
     fileprivate static let java$io$PipedOutputStream_init_java$io$PipedInputStream__V = constructor((JObjectType("java/io/PipedInputStream")))
-    public convenience init!(_ a0: java$io$PipedInputStream?) throws {
-        try self.init(constructor: I.java$io$PipedOutputStream_init_java$io$PipedInputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$PipedInputStream?) throws {
+        try self.init(creator: I.java$io$PipedOutputStream_init_java$io$PipedInputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PipedOutputStream_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$PipedOutputStream_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$PipedOutputStream_init__V())
     }
 
     fileprivate static let java$io$PipedOutputStream_connect_java$io$PipedInputStream__V = invoker("connect", returns: JVoid.jniType, arguments: (JObjectType("java/io/PipedInputStream")))
@@ -1822,13 +1822,13 @@ public final class java$io$SerializablePermission : java$security$BasicPermissio
     open class override func jniName() -> String { return "java/io/SerializablePermission" }
 
     fileprivate static let java$io$SerializablePermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$SerializablePermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$SerializablePermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$SerializablePermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$SerializablePermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$SerializablePermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -1843,8 +1843,8 @@ public final class java$io$FilePermission : java$security$Permission {
     open class override func jniName() -> String { return "java/io/FilePermission" }
 
     fileprivate static let java$io$FilePermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$FilePermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$FilePermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FilePermission_implies_java$security$Permission__Z = invoker("implies", returns: jboolean.jniType, arguments: (JObjectType("java/security/Permission")))
@@ -1864,13 +1864,13 @@ open class java$io$RandomAccessFile : java$lang$Object, java$io$DataOutput, java
     open class override func jniName() -> String { return "java/io/RandomAccessFile" }
 
     fileprivate static let java$io$RandomAccessFile_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$RandomAccessFile_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$RandomAccessFile_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$RandomAccessFile_init_java$io$File_java$lang$String__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$RandomAccessFile_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$RandomAccessFile_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$RandomAccessFile_getFD__java$io$FileDescriptor = invoker("getFD", returns: JObjectType("java/io/FileDescriptor"))
@@ -2141,13 +2141,13 @@ open class java$io$BufferedReader : java$io$Reader {
     open class override func jniName() -> String { return "java/io/BufferedReader" }
 
     fileprivate static let java$io$BufferedReader_init_java$io$Reader_I__V = constructor((JObjectType("java/io/Reader"), jint.jniType))
-    public convenience init!(_ a0: java$io$Reader?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$BufferedReader_init_java$io$Reader_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$Reader?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$BufferedReader_init_java$io$Reader_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$BufferedReader_init_java$io$Reader__V = constructor((JObjectType("java/io/Reader")))
-    public convenience init!(_ a0: java$io$Reader?) throws {
-        try self.init(constructor: I.java$io$BufferedReader_init_java$io$Reader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Reader?) throws {
+        try self.init(creator: I.java$io$BufferedReader_init_java$io$Reader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$BufferedReader_read__I = invoker("read", returns: jint.jniType)
@@ -2180,13 +2180,13 @@ open class java$io$LineNumberReader : java$io$BufferedReader {
     open class override func jniName() -> String { return "java/io/LineNumberReader" }
 
     fileprivate static let java$io$LineNumberReader_init_java$io$Reader__V = constructor((JObjectType("java/io/Reader")))
-    public convenience init!(_ a0: java$io$Reader?) throws {
-        try self.init(constructor: I.java$io$LineNumberReader_init_java$io$Reader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Reader?) throws {
+        try self.init(creator: I.java$io$LineNumberReader_init_java$io$Reader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$LineNumberReader_init_java$io$Reader_I__V = constructor((JObjectType("java/io/Reader"), jint.jniType))
-    public convenience init!(_ a0: java$io$Reader?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$LineNumberReader_init_java$io$Reader_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$Reader?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$LineNumberReader_init_java$io$Reader_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$LineNumberReader_setLineNumber_I__V = invoker("setLineNumber", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -2217,13 +2217,13 @@ open class java$io$CharArrayReader : java$io$Reader {
     open class override func jniName() -> String { return "java/io/CharArrayReader" }
 
     fileprivate static let java$io$CharArrayReader_init_AC__V = constructor((JArray(jchar.jniType)))
-    public convenience init!(_ a0: [jchar]?) throws {
-        try self.init(constructor: I.java$io$CharArrayReader_init_AC__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jchar]?) throws {
+        try self.init(creator: I.java$io$CharArrayReader_init_AC__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$io$CharArrayReader_init_AC_I_I__V = constructor((JArray(jchar.jniType), jint.jniType, jint.jniType))
-    public convenience init!(_ a0: [jchar]?, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$io$CharArrayReader_init_AC_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
+    public convenience init(_ a0: [jchar]?, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$io$CharArrayReader_init_AC_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
     }
 
     fileprivate static let java$io$CharArrayReader_read__I = invoker("read", returns: jint.jniType)
@@ -2265,13 +2265,13 @@ open class java$io$PushbackReader : java$io$FilterReader {
     open class override func jniName() -> String { return "java/io/PushbackReader" }
 
     fileprivate static let java$io$PushbackReader_init_java$io$Reader_I__V = constructor((JObjectType("java/io/Reader"), jint.jniType))
-    public convenience init!(_ a0: java$io$Reader?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$PushbackReader_init_java$io$Reader_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$Reader?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$PushbackReader_init_java$io$Reader_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$PushbackReader_init_java$io$Reader__V = constructor((JObjectType("java/io/Reader")))
-    public convenience init!(_ a0: java$io$Reader?) throws {
-        try self.init(constructor: I.java$io$PushbackReader_init_java$io$Reader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Reader?) throws {
+        try self.init(creator: I.java$io$PushbackReader_init_java$io$Reader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PushbackReader_read__I = invoker("read", returns: jint.jniType)
@@ -2309,23 +2309,23 @@ open class java$io$InputStreamReader : java$io$Reader {
     open class override func jniName() -> String { return "java/io/InputStreamReader" }
 
     fileprivate static let java$io$InputStreamReader_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$io$InputStreamReader_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$io$InputStreamReader_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$InputStreamReader_init_java$io$InputStream_java$lang$String__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$InputStreamReader_init_java$io$InputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$InputStreamReader_init_java$io$InputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$InputStreamReader_init_java$io$InputStream_java$nio$charset$Charset__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/nio/charset/Charset")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$nio$charset$Charset?) throws {
-        try self.init(constructor: I.java$io$InputStreamReader_init_java$io$InputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$io$InputStreamReader_init_java$io$InputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$InputStreamReader_init_java$io$InputStream_java$nio$charset$CharsetDecoder__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/nio/charset/CharsetDecoder")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$nio$charset$CharsetDecoder?) throws {
-        try self.init(constructor: I.java$io$InputStreamReader_init_java$io$InputStream_java$nio$charset$CharsetDecoder__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$nio$charset$CharsetDecoder?) throws {
+        try self.init(creator: I.java$io$InputStreamReader_init_java$io$InputStream_java$nio$charset$CharsetDecoder__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$InputStreamReader_getEncoding__java$lang$String = invoker("getEncoding", returns: JObjectType("java/lang/String"))
@@ -2349,18 +2349,18 @@ open class java$io$FileReader : java$io$InputStreamReader {
     open class override func jniName() -> String { return "java/io/FileReader" }
 
     fileprivate static let java$io$FileReader_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$FileReader_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$FileReader_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileReader_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$io$FileReader_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$io$FileReader_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileReader_init_java$io$FileDescriptor__V = constructor((JObjectType("java/io/FileDescriptor")))
-    public convenience init!(_ a0: java$io$FileDescriptor?) throws {
-        try self.init(constructor: I.java$io$FileReader_init_java$io$FileDescriptor__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$FileDescriptor?) throws {
+        try self.init(creator: I.java$io$FileReader_init_java$io$FileDescriptor__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2375,23 +2375,23 @@ open class java$io$PipedReader : java$io$Reader {
     open class override func jniName() -> String { return "java/io/PipedReader" }
 
     fileprivate static let java$io$PipedReader_init_java$io$PipedWriter__V = constructor((JObjectType("java/io/PipedWriter")))
-    public convenience init!(_ a0: java$io$PipedWriter?) throws {
-        try self.init(constructor: I.java$io$PipedReader_init_java$io$PipedWriter__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$PipedWriter?) throws {
+        try self.init(creator: I.java$io$PipedReader_init_java$io$PipedWriter__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PipedReader_init_java$io$PipedWriter_I__V = constructor((JObjectType("java/io/PipedWriter"), jint.jniType))
-    public convenience init!(_ a0: java$io$PipedWriter?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$PipedReader_init_java$io$PipedWriter_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$PipedWriter?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$PipedReader_init_java$io$PipedWriter_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$PipedReader_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$PipedReader_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$PipedReader_init__V())
     }
 
     fileprivate static let java$io$PipedReader_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$io$PipedReader_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$io$PipedReader_init_I__V(a0))
     }
 
     fileprivate static let java$io$PipedReader_connect_java$io$PipedWriter__V = invoker("connect", returns: JVoid.jniType, arguments: (JObjectType("java/io/PipedWriter")))
@@ -2415,8 +2415,8 @@ open class java$io$StringReader : java$io$Reader {
     open class override func jniName() -> String { return "java/io/StringReader" }
 
     fileprivate static let java$io$StringReader_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$StringReader_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$StringReader_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$StringReader_read__I = invoker("read", returns: jint.jniType)
@@ -2477,13 +2477,13 @@ open class java$io$StreamTokenizer : java$lang$Object {
     }
 
     fileprivate static let java$io$StreamTokenizer_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$io$StreamTokenizer_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$io$StreamTokenizer_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$StreamTokenizer_init_java$io$Reader__V = constructor((JObjectType("java/io/Reader")))
-    public convenience init!(_ a0: java$io$Reader?) throws {
-        try self.init(constructor: I.java$io$StreamTokenizer_init_java$io$Reader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Reader?) throws {
+        try self.init(creator: I.java$io$StreamTokenizer_init_java$io$Reader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$StreamTokenizer_resetSyntax__V = invoker("resetSyntax", returns: JVoid.jniType)
@@ -2574,8 +2574,8 @@ open class java$io$IOError : java$lang$Error {
     open class override func jniName() -> String { return "java/io/IOError" }
 
     fileprivate static let java$io$IOError_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$io$IOError_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$io$IOError_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2590,23 +2590,23 @@ open class java$io$IOException : java$lang$Exception {
     open class override func jniName() -> String { return "java/io/IOException" }
 
     fileprivate static let java$io$IOException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$IOException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$IOException_init__V())
     }
 
     fileprivate static let java$io$IOException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$IOException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$IOException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$IOException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$io$IOException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$io$IOException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$IOException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$io$IOException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$io$IOException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2621,13 +2621,13 @@ open class java$io$CharConversionException : java$io$IOException {
     open class override func jniName() -> String { return "java/io/CharConversionException" }
 
     fileprivate static let java$io$CharConversionException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$CharConversionException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$CharConversionException_init__V())
     }
 
     fileprivate static let java$io$CharConversionException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$CharConversionException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$CharConversionException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2642,13 +2642,13 @@ open class java$io$EOFException : java$io$IOException {
     open class override func jniName() -> String { return "java/io/EOFException" }
 
     fileprivate static let java$io$EOFException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$EOFException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$EOFException_init__V())
     }
 
     fileprivate static let java$io$EOFException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$EOFException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$EOFException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2663,13 +2663,13 @@ open class java$io$FileNotFoundException : java$io$IOException {
     open class override func jniName() -> String { return "java/io/FileNotFoundException" }
 
     fileprivate static let java$io$FileNotFoundException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$FileNotFoundException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$FileNotFoundException_init__V())
     }
 
     fileprivate static let java$io$FileNotFoundException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$FileNotFoundException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$FileNotFoundException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2690,13 +2690,13 @@ open class java$io$InterruptedIOException : java$io$IOException {
     }
 
     fileprivate static let java$io$InterruptedIOException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$InterruptedIOException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$InterruptedIOException_init__V())
     }
 
     fileprivate static let java$io$InterruptedIOException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$InterruptedIOException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$InterruptedIOException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2728,13 +2728,13 @@ open class java$io$InvalidClassException : java$io$ObjectStreamException {
     }
 
     fileprivate static let java$io$InvalidClassException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$InvalidClassException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$InvalidClassException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$InvalidClassException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$InvalidClassException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$InvalidClassException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$InvalidClassException_getMessage__java$lang$String = invoker("getMessage", returns: JObjectType("java/lang/String"))
@@ -2750,8 +2750,8 @@ open class java$io$InvalidObjectException : java$io$ObjectStreamException {
     open class override func jniName() -> String { return "java/io/InvalidObjectException" }
 
     fileprivate static let java$io$InvalidObjectException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$InvalidObjectException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$InvalidObjectException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2766,13 +2766,13 @@ open class java$io$NotActiveException : java$io$ObjectStreamException {
     open class override func jniName() -> String { return "java/io/NotActiveException" }
 
     fileprivate static let java$io$NotActiveException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$NotActiveException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$NotActiveException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$NotActiveException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$NotActiveException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$NotActiveException_init__V())
     }
 
 }
@@ -2787,13 +2787,13 @@ open class java$io$NotSerializableException : java$io$ObjectStreamException {
     open class override func jniName() -> String { return "java/io/NotSerializableException" }
 
     fileprivate static let java$io$NotSerializableException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$NotSerializableException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$NotSerializableException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$NotSerializableException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$NotSerializableException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$NotSerializableException_init__V())
     }
 
 }
@@ -2831,13 +2831,13 @@ open class java$io$StreamCorruptedException : java$io$ObjectStreamException {
     open class override func jniName() -> String { return "java/io/StreamCorruptedException" }
 
     fileprivate static let java$io$StreamCorruptedException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$StreamCorruptedException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$StreamCorruptedException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$StreamCorruptedException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$StreamCorruptedException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$StreamCorruptedException_init__V())
     }
 
 }
@@ -2858,8 +2858,8 @@ open class java$io$WriteAbortedException : java$io$ObjectStreamException {
     }
 
     fileprivate static let java$io$WriteAbortedException_init_java$lang$String_java$lang$Exception__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Exception")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Exception?) throws {
-        try self.init(constructor: I.java$io$WriteAbortedException_init_java$lang$String_java$lang$Exception__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Exception?) throws {
+        try self.init(creator: I.java$io$WriteAbortedException_init_java$lang$String_java$lang$Exception__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$WriteAbortedException_getMessage__java$lang$String = invoker("getMessage", returns: JObjectType("java/lang/String"))
@@ -2876,8 +2876,8 @@ open class java$io$SyncFailedException : java$io$IOException {
     open class override func jniName() -> String { return "java/io/SyncFailedException" }
 
     fileprivate static let java$io$SyncFailedException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$SyncFailedException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$SyncFailedException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2892,13 +2892,13 @@ open class java$io$UnsupportedEncodingException : java$io$IOException {
     open class override func jniName() -> String { return "java/io/UnsupportedEncodingException" }
 
     fileprivate static let java$io$UnsupportedEncodingException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$UnsupportedEncodingException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$UnsupportedEncodingException_init__V())
     }
 
     fileprivate static let java$io$UnsupportedEncodingException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$UnsupportedEncodingException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$UnsupportedEncodingException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2913,13 +2913,13 @@ open class java$io$UTFDataFormatException : java$io$IOException {
     open class override func jniName() -> String { return "java/io/UTFDataFormatException" }
 
     fileprivate static let java$io$UTFDataFormatException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$UTFDataFormatException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$UTFDataFormatException_init__V())
     }
 
     fileprivate static let java$io$UTFDataFormatException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$UTFDataFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$UTFDataFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2934,13 +2934,13 @@ open class java$io$UncheckedIOException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/io/UncheckedIOException" }
 
     fileprivate static let java$io$UncheckedIOException_init_java$lang$String_java$io$IOException__V = constructor((JObjectType("java/lang/String"), JObjectType("java/io/IOException")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$io$IOException?) throws {
-        try self.init(constructor: I.java$io$UncheckedIOException_init_java$lang$String_java$io$IOException__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$io$IOException?) throws {
+        try self.init(creator: I.java$io$UncheckedIOException_init_java$lang$String_java$io$IOException__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$UncheckedIOException_init_java$io$IOException__V = constructor((JObjectType("java/io/IOException")))
-    public convenience init!(_ a0: java$io$IOException?) throws {
-        try self.init(constructor: I.java$io$UncheckedIOException_init_java$io$IOException__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$IOException?) throws {
+        try self.init(creator: I.java$io$UncheckedIOException_init_java$io$IOException__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$UncheckedIOException_getCause__java$io$IOException = invoker("getCause", returns: JObjectType("java/io/IOException"))
@@ -3033,13 +3033,13 @@ open class java$io$BufferedWriter : java$io$Writer {
     open class override func jniName() -> String { return "java/io/BufferedWriter" }
 
     fileprivate static let java$io$BufferedWriter_init_java$io$Writer__V = constructor((JObjectType("java/io/Writer")))
-    public convenience init!(_ a0: java$io$Writer?) throws {
-        try self.init(constructor: I.java$io$BufferedWriter_init_java$io$Writer__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Writer?) throws {
+        try self.init(creator: I.java$io$BufferedWriter_init_java$io$Writer__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$BufferedWriter_init_java$io$Writer_I__V = constructor((JObjectType("java/io/Writer"), jint.jniType))
-    public convenience init!(_ a0: java$io$Writer?, _ a1: jint) throws {
-        try self.init(constructor: I.java$io$BufferedWriter_init_java$io$Writer_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$Writer?, _ a1: jint) throws {
+        try self.init(creator: I.java$io$BufferedWriter_init_java$io$Writer_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$BufferedWriter_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -3064,13 +3064,13 @@ open class java$io$CharArrayWriter : java$io$Writer {
     open class override func jniName() -> String { return "java/io/CharArrayWriter" }
 
     fileprivate static let java$io$CharArrayWriter_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$CharArrayWriter_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$CharArrayWriter_init__V())
     }
 
     fileprivate static let java$io$CharArrayWriter_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$io$CharArrayWriter_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$io$CharArrayWriter_init_I__V(a0))
     }
 
     fileprivate static let java$io$CharArrayWriter_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -3136,23 +3136,23 @@ open class java$io$OutputStreamWriter : java$io$Writer {
     open class override func jniName() -> String { return "java/io/OutputStreamWriter" }
 
     fileprivate static let java$io$OutputStreamWriter_init_java$io$OutputStream_java$lang$String__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$OutputStreamWriter_init_java$io$OutputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$OutputStreamWriter_init_java$io$OutputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$OutputStreamWriter_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$io$OutputStreamWriter_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$io$OutputStreamWriter_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$OutputStreamWriter_init_java$io$OutputStream_java$nio$charset$Charset__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/nio/charset/Charset")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$nio$charset$Charset?) throws {
-        try self.init(constructor: I.java$io$OutputStreamWriter_init_java$io$OutputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$io$OutputStreamWriter_init_java$io$OutputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$OutputStreamWriter_init_java$io$OutputStream_java$nio$charset$CharsetEncoder__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/nio/charset/CharsetEncoder")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$nio$charset$CharsetEncoder?) throws {
-        try self.init(constructor: I.java$io$OutputStreamWriter_init_java$io$OutputStream_java$nio$charset$CharsetEncoder__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$nio$charset$CharsetEncoder?) throws {
+        try self.init(creator: I.java$io$OutputStreamWriter_init_java$io$OutputStream_java$nio$charset$CharsetEncoder__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$OutputStreamWriter_getEncoding__java$lang$String = invoker("getEncoding", returns: JObjectType("java/lang/String"))
@@ -3177,28 +3177,28 @@ open class java$io$FileWriter : java$io$OutputStreamWriter {
     open class override func jniName() -> String { return "java/io/FileWriter" }
 
     fileprivate static let java$io$FileWriter_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$FileWriter_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$FileWriter_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileWriter_init_java$lang$String_Z__V = constructor((JObjectType("java/lang/String"), jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$io$FileWriter_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$io$FileWriter_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$FileWriter_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$io$FileWriter_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$io$FileWriter_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$FileWriter_init_java$io$File_Z__V = constructor((JObjectType("java/io/File"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$File?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$io$FileWriter_init_java$io$File_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$File?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$io$FileWriter_init_java$io$File_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$FileWriter_init_java$io$FileDescriptor__V = constructor((JObjectType("java/io/FileDescriptor")))
-    public convenience init!(_ a0: java$io$FileDescriptor?) throws {
-        try self.init(constructor: I.java$io$FileWriter_init_java$io$FileDescriptor__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$FileDescriptor?) throws {
+        try self.init(creator: I.java$io$FileWriter_init_java$io$FileDescriptor__V(a0?.jobj ?? nil))
     }
 
 }
@@ -3213,13 +3213,13 @@ open class java$io$PipedWriter : java$io$Writer {
     open class override func jniName() -> String { return "java/io/PipedWriter" }
 
     fileprivate static let java$io$PipedWriter_init_java$io$PipedReader__V = constructor((JObjectType("java/io/PipedReader")))
-    public convenience init!(_ a0: java$io$PipedReader?) throws {
-        try self.init(constructor: I.java$io$PipedWriter_init_java$io$PipedReader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$PipedReader?) throws {
+        try self.init(creator: I.java$io$PipedWriter_init_java$io$PipedReader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PipedWriter_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$PipedWriter_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$PipedWriter_init__V())
     }
 
     fileprivate static let java$io$PipedWriter_connect_java$io$PipedReader__V = invoker("connect", returns: JVoid.jniType, arguments: (JObjectType("java/io/PipedReader")))
@@ -3243,43 +3243,43 @@ open class java$io$PrintWriter : java$io$Writer {
     open class override func jniName() -> String { return "java/io/PrintWriter" }
 
     fileprivate static let java$io$PrintWriter_init_java$io$Writer__V = constructor((JObjectType("java/io/Writer")))
-    public convenience init!(_ a0: java$io$Writer?) throws {
-        try self.init(constructor: I.java$io$PrintWriter_init_java$io$Writer__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Writer?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$io$Writer__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintWriter_init_java$io$Writer_Z__V = constructor((JObjectType("java/io/Writer"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$Writer?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$io$PrintWriter_init_java$io$Writer_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$Writer?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$io$Writer_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$PrintWriter_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$io$PrintWriter_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintWriter_init_java$io$OutputStream_Z__V = constructor((JObjectType("java/io/OutputStream"), jboolean.jniType))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$io$PrintWriter_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$io$PrintWriter_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$PrintWriter_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintWriter_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$PrintWriter_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintWriter_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$io$PrintWriter_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintWriter_init_java$io$File_java$lang$String__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$io$PrintWriter_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintWriter_flush__V = invoker("flush", returns: JVoid.jniType)
@@ -3430,13 +3430,13 @@ open class java$io$StringWriter : java$io$Writer {
     open class override func jniName() -> String { return "java/io/StringWriter" }
 
     fileprivate static let java$io$StringWriter_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$io$StringWriter_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$io$StringWriter_init__V())
     }
 
     fileprivate static let java$io$StringWriter_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$io$StringWriter_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$io$StringWriter_init_I__V(a0))
     }
 
     fileprivate static let java$io$StringWriter_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))

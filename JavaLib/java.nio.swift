@@ -1195,8 +1195,8 @@ open class java$nio$BufferOverflowException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/nio/BufferOverflowException" }
 
     fileprivate static let java$nio$BufferOverflowException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$BufferOverflowException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$BufferOverflowException_init__V())
     }
 
 }
@@ -1211,8 +1211,8 @@ open class java$nio$BufferUnderflowException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/nio/BufferUnderflowException" }
 
     fileprivate static let java$nio$BufferUnderflowException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$BufferUnderflowException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$BufferUnderflowException_init__V())
     }
 
 }
@@ -1227,8 +1227,8 @@ open class java$nio$InvalidMarkException : java$lang$IllegalStateException {
     open class override func jniName() -> String { return "java/nio/InvalidMarkException" }
 
     fileprivate static let java$nio$InvalidMarkException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$InvalidMarkException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$InvalidMarkException_init__V())
     }
 
 }
@@ -1243,8 +1243,8 @@ open class java$nio$ReadOnlyBufferException : java$lang$UnsupportedOperationExce
     open class override func jniName() -> String { return "java/nio/ReadOnlyBufferException" }
 
     fileprivate static let java$nio$ReadOnlyBufferException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$ReadOnlyBufferException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$ReadOnlyBufferException_init__V())
     }
 
 }

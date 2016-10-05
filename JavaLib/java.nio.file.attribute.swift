@@ -178,8 +178,8 @@ open class java$nio$file$attribute$UserPrincipalNotFoundException : java$io$IOEx
     open class override func jniName() -> String { return "java/nio/file/attribute/UserPrincipalNotFoundException" }
 
     fileprivate static let java$nio$file$attribute$UserPrincipalNotFoundException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$file$attribute$UserPrincipalNotFoundException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$file$attribute$UserPrincipalNotFoundException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$file$attribute$UserPrincipalNotFoundException_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))

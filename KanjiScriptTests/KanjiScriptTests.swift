@@ -22,7 +22,7 @@ class KanjiScriptTests: XCTestCase {
 
     internal static override func initialize() {
         let dir = "/opt/src/scala/scala-2.11.7/lib/"
-        let cp: [String] = (try? NSFileManager.defaultManager().contentsOfDirectoryAtPath(dir).map({ dir + $0 })) ?? []
+        let cp: [String] = (try? FileManager.default.contentsOfDirectory(atPath: dir).map({ dir + $0 })) ?? []
         // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
         JVM.sharedJVM = try! JVM(bootpath: (cp, false))
     }
@@ -57,7 +57,7 @@ class KanjiScriptTests: XCTestCase {
         }
     }
 
-    func checkeq(value: Bric, file: StaticString = #file, line: UInt = #line, @autoclosure f: () throws -> Bric) {
+    func checkeq(_ value: Bric, file: StaticString = #file, line: UInt = #line, f: @autoclosure () throws -> Bric) {
         do {
             let x = try f()
             XCTAssertEqual(value, x, file: file, line: line)
@@ -70,15 +70,15 @@ class KanjiScriptTests: XCTestCase {
         do {
             let map = try java$util$HashMap()
             let array = try java$util$ArrayList()
-            try map.put(java$lang$String("foo"), array)
-            try array.add(map)
+            _ = try map.put(java$lang$String("foo"), array)
+            _ = try array.add(map)
 
             XCTAssertEqual(["foo": [nil]], try map.toBric(dropCycles: true)) // drop cycles
 
-            try map.toBric()
+            _ = try map.toBric()
             XCTFail("Should not have been able to bric a cyclic structure")
         } catch {
-            XCTAssertEqual("General: Cannot create Bric from structure with cyclic values", String(error))
+            XCTAssertEqual("General: Cannot create Bric from structure with cyclic values", String(describing: error))
         }
     }
 
@@ -117,7 +117,7 @@ class KanjiScriptTests: XCTestCase {
             let inst = try ctx.eval("var x = {}; x['a'] = 1; x.x = x; x")
 
             do { // test cycle detection using JSON.stringify
-                try ctx.eval("stringify", this: ctx.root.get("JSON").flatMap(ctx.ref), args: [inst])
+                _ = try ctx.eval("stringify", this: ctx.root.get("JSON").flatMap(ctx.ref), args: [inst])
                 XCTFail("should not have been able to read cyclic data structure")
             } catch let error as KanjiException {
                 XCTAssertEqual("TypeError: JSON.stringify got a cyclic data structure", error.message)
@@ -131,7 +131,7 @@ class KanjiScriptTests: XCTestCase {
             } catch let error as KanjiErrors {
                 XCTAssertEqual("General: Cannot create Bric from structure with cyclic values", error.debugDescription)
             } catch {
-                XCTFail("wrong exception type: \(error) \(error.dynamicType)")
+                XCTFail("wrong exception type: \(error) \(type(of: error))")
             }
 
             do { // test combined value and function returns
@@ -154,8 +154,8 @@ class KanjiScriptTests: XCTestCase {
         checkeq(0.6000000000000001, f: try ctx.val(ctx.eval("0.4+0.2")))
         checkeq([2,1,3], f: try ctx.val(ctx.eval("List(2,1,3).toArray")))
         checkeq(["X", "Z"], f: try ctx.val(ctx.eval("List(\"z\", \"y\", \"x\").sorted.filter(_ != \"y\").map(_.toUpperCase).toArray")))
-        try ctx.eval("var x = 123")
-        try ctx.eval("x = x + 1")
+        _ = try ctx.eval("var x = 123")
+        _ = try ctx.eval("x = x + 1")
         checkeq(124, f: try ctx.val(ctx.eval("x")))
     }
 
@@ -173,7 +173,7 @@ class KanjiScriptTests: XCTestCase {
     /// native implementation of an java.util.function.Consumer or java.util.function.Function
     func testScriptCallbacks() throws {
         let ctx = try KanjiScriptContext(engine: "nashorn")
-        try ctx.eval("function callback(func, value) { func(value); }")
+        _ = try ctx.eval("function callback(func, value) { func(value); }")
 
         // define native blocks for both a Consumer (returns void) and Function (returns object) instance
         // and make sure that the Nashorn environment is able to consumer either one the same
@@ -181,7 +181,7 @@ class KanjiScriptTests: XCTestCase {
         let consumer = try java$util$function$Consumer$Impl.fromBlock { (jnienv, jobj, jarg) in
             if let ob = java$lang$Object(reference: jarg) {
                 let desc = ob.description
-                dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
+                KanjiScriptTests.testScriptCallbacksQueue.async() {
                     KanjiScriptTests.testScriptCallbacksValue.insert(desc)
                 }
             }
@@ -189,7 +189,7 @@ class KanjiScriptTests: XCTestCase {
         let consumerRef = KanjiScriptContext.InstanceType.ref(consumer, ctx)
 
         // uses a capturing closure-based callback
-        let capturedUUID = NSUUID().UUIDString // just to verify that capturing working
+        let capturedUUID = NSUUID().uuidString // just to verify that capturing working
 
         XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("com/sun/nio/zipfs/ZipCoder"))
         JVM.sharedJVM.exceptionClear()
@@ -204,7 +204,7 @@ class KanjiScriptTests: XCTestCase {
             JVM.sharedJVM.exceptionClear()
 
             if let desc = arg?.description {
-                dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
+                KanjiScriptTests.testScriptCallbacksQueue.async() {
                     KanjiScriptTests.testScriptCallbacksValue.insert(desc)
                 }
             }
@@ -218,14 +218,14 @@ class KanjiScriptTests: XCTestCase {
         var callbackStrings = Set<String>()
 
         // invoke the callback a bunch of times and verify that it was called back
-        dispatch_apply(1_000, dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) { _ in
+        DispatchQueue.concurrentPerform(iterations: 1_000) { _ in
 //        for _ in 0...1_000 {
             do {
-                let str = NSUUID().UUIDString
+                let str = NSUUID().uuidString
                 // randomly use either the Consumer or Function instance
-                let cbref = random() % 2 == 1 ? consumerRef : functionRef
-                try ctx.eval("callback", args: [cbref, .ref(str.javaString, ctx)])
-                dispatch_async(KanjiScriptTests.testScriptCallbacksQueue) {
+                let cbref = arc4random() % 2 == 1 ? consumerRef : functionRef
+                _ = try ctx.eval("callback", args: [cbref, .ref(str.javaString, ctx)])
+                KanjiScriptTests.testScriptCallbacksQueue.async() {
                     callbackStrings.insert(str)
                 }
             } catch {
@@ -233,7 +233,7 @@ class KanjiScriptTests: XCTestCase {
             }
         }
 
-        dispatch_sync(KanjiScriptTests.testScriptCallbacksQueue) {
+        KanjiScriptTests.testScriptCallbacksQueue.sync() {
             XCTAssertEqual(1_000, callbackStrings.count)
             XCTAssertEqual(1_000, KanjiScriptTests.testScriptCallbacksValue.count)
             if KanjiScriptTests.testScriptCallbacksValue.count == callbackStrings.count {
@@ -246,9 +246,9 @@ class KanjiScriptTests: XCTestCase {
 
         // now also test that an exception thrown from native code bubbles back up through java
         do {
-            enum SampleError : ErrorType { case failed(msg: String) }
+            enum SampleError : Error { case failed(msg: String) }
 
-            try ctx.eval("callback", args: [.ref(java$util$function$Function$Impl.fromClosure { arg in
+            _ = try ctx.eval("callback", args: [.ref(java$util$function$Function$Impl.fromClosure { arg in
                 throw try java$lang$IllegalArgumentException(arg?.cast() as java$lang$String?)
                 }, ctx), .ref("erroneous argument".javaString, ctx)])
         } catch let err as KanjiException {
@@ -258,17 +258,17 @@ class KanjiScriptTests: XCTestCase {
     }
 
     func testScriptClassloader() throws {
-        guard let jar = NSURL(fileURLWithPath: #file).URLByDeletingLastPathComponent?.URLByAppendingPathComponent("test.jar") else {
+        guard let jar = NSURL(fileURLWithPath: #file).deletingLastPathComponent?.appendingPathComponent("test.jar") else {
             return XCTFail("could not load test jar")
         }
 
         let ctx = try KanjiScriptContext(engine: "nashorn", jars: [jar])
-        try ctx.eval("new (Java.type('java.util.ArrayList'))();")
-        try ctx.eval("new (Java.type('Foo'))();") // Foo is defined in the test jar
+        _ = try ctx.eval("new (Java.type('java.util.ArrayList'))();")
+        _ = try ctx.eval("new (Java.type('Foo'))();") // Foo is defined in the test jar
     }
 
     func XXXtestScriptRelativeFiles() throws {
-        guard let url = NSURL(fileURLWithPath: #file).URLByDeletingLastPathComponent?.URLByAppendingPathComponent("rel1.js") else {
+        guard let url = NSURL(fileURLWithPath: #file).deletingLastPathComponent?.appendingPathComponent("rel1.js") else {
             return XCTFail("could not load test jar")
         }
 
@@ -281,7 +281,7 @@ class KanjiScriptTests: XCTestCase {
 
     /// Global holder for the `testScriptCallbacks` test
     static var testScriptCallbacksValue: Set<String> = []
-    static let testScriptCallbacksQueue = dispatch_queue_create("testScriptCallbacksQueue", DISPATCH_QUEUE_SERIAL)
+    static let testScriptCallbacksQueue = DispatchQueue(label: "testScriptCallbacksQueue")
 
 }
 

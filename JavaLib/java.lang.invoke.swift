@@ -39,8 +39,8 @@ open class java$lang$invoke$ConstantCallSite : java$lang$invoke$CallSite {
     open class override func jniName() -> String { return "java/lang/invoke/ConstantCallSite" }
 
     fileprivate static let java$lang$invoke$ConstantCallSite_init_java$lang$invoke$MethodHandle__V = constructor((JObjectType("java/lang/invoke/MethodHandle")))
-    public convenience init!(_ a0: java$lang$invoke$MethodHandle?) throws {
-        try self.init(constructor: I.java$lang$invoke$ConstantCallSite_init_java$lang$invoke$MethodHandle__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$invoke$MethodHandle?) throws {
+        try self.init(creator: I.java$lang$invoke$ConstantCallSite_init_java$lang$invoke$MethodHandle__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$invoke$ConstantCallSite_getTarget__java$lang$invoke$MethodHandle = invoker("getTarget", returns: JObjectType("java/lang/invoke/MethodHandle"))
@@ -58,13 +58,13 @@ open class java$lang$invoke$MutableCallSite : java$lang$invoke$CallSite {
     open class override func jniName() -> String { return "java/lang/invoke/MutableCallSite" }
 
     fileprivate static let java$lang$invoke$MutableCallSite_init_java$lang$invoke$MethodType__V = constructor((JObjectType("java/lang/invoke/MethodType")))
-    public convenience init!(_ a0: java$lang$invoke$MethodType?) throws {
-        try self.init(constructor: I.java$lang$invoke$MutableCallSite_init_java$lang$invoke$MethodType__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$invoke$MethodType?) throws {
+        try self.init(creator: I.java$lang$invoke$MutableCallSite_init_java$lang$invoke$MethodType__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$invoke$MutableCallSite_init_java$lang$invoke$MethodHandle__V = constructor((JObjectType("java/lang/invoke/MethodHandle")))
-    public convenience init!(_ a0: java$lang$invoke$MethodHandle?) throws {
-        try self.init(constructor: I.java$lang$invoke$MutableCallSite_init_java$lang$invoke$MethodHandle__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$invoke$MethodHandle?) throws {
+        try self.init(creator: I.java$lang$invoke$MutableCallSite_init_java$lang$invoke$MethodHandle__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$invoke$MutableCallSite_getTarget__java$lang$invoke$MethodHandle = invoker("getTarget", returns: JObjectType("java/lang/invoke/MethodHandle"))
@@ -87,13 +87,13 @@ open class java$lang$invoke$VolatileCallSite : java$lang$invoke$CallSite {
     open class override func jniName() -> String { return "java/lang/invoke/VolatileCallSite" }
 
     fileprivate static let java$lang$invoke$VolatileCallSite_init_java$lang$invoke$MethodType__V = constructor((JObjectType("java/lang/invoke/MethodType")))
-    public convenience init!(_ a0: java$lang$invoke$MethodType?) throws {
-        try self.init(constructor: I.java$lang$invoke$VolatileCallSite_init_java$lang$invoke$MethodType__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$invoke$MethodType?) throws {
+        try self.init(creator: I.java$lang$invoke$VolatileCallSite_init_java$lang$invoke$MethodType__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$invoke$VolatileCallSite_init_java$lang$invoke$MethodHandle__V = constructor((JObjectType("java/lang/invoke/MethodHandle")))
-    public convenience init!(_ a0: java$lang$invoke$MethodHandle?) throws {
-        try self.init(constructor: I.java$lang$invoke$VolatileCallSite_init_java$lang$invoke$MethodHandle__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$invoke$MethodHandle?) throws {
+        try self.init(creator: I.java$lang$invoke$VolatileCallSite_init_java$lang$invoke$MethodHandle__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$invoke$VolatileCallSite_getTarget__java$lang$invoke$MethodHandle = invoker("getTarget", returns: JObjectType("java/lang/invoke/MethodHandle"))
@@ -126,8 +126,8 @@ open class java$lang$invoke$LambdaMetafactory : java$lang$Object {
     }
 
     fileprivate static let java$lang$invoke$LambdaMetafactory_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$invoke$LambdaMetafactory_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$invoke$LambdaMetafactory_init__V())
     }
 
     fileprivate static let java$lang$invoke$LambdaMetafactory_metafactory_java$lang$invoke$MethodHandles$Lookup_java$lang$String_java$lang$invoke$MethodType_java$lang$invoke$MethodType_java$lang$invoke$MethodHandle_java$lang$invoke$MethodType__java$lang$invoke$CallSite = svoker("metafactory", returns: JObjectType("java/lang/invoke/CallSite"), arguments: (JObjectType("java/lang/invoke/MethodHandles$Lookup"), JObjectType("java/lang/String"), JObjectType("java/lang/invoke/MethodType"), JObjectType("java/lang/invoke/MethodType"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodType")))
@@ -652,8 +652,8 @@ public final class java$lang$invoke$SerializedLambda : java$lang$Object, java$io
     open class override func jniName() -> String { return "java/lang/invoke/SerializedLambda" }
 
     fileprivate static let java$lang$invoke$SerializedLambda_init_java$lang$Class_java$lang$String_java$lang$String_java$lang$String_I_java$lang$String_java$lang$String_java$lang$String_java$lang$String_Ajava$lang$Object__V = constructor((JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JArray(JObjectType("java/lang/Object"))))
-    public convenience init!(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: jint, _ a5: java$lang$String?, _ a6: java$lang$String?, _ a7: java$lang$String?, _ a8: java$lang$String?, _ a9: [java$lang$Object?]?) throws {
-        try self.init(constructor: I.java$lang$invoke$SerializedLambda_init_java$lang$Class_java$lang$String_java$lang$String_java$lang$String_I_java$lang$String_java$lang$String_java$lang$String_java$lang$String_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: jint, _ a5: java$lang$String?, _ a6: java$lang$String?, _ a7: java$lang$String?, _ a8: java$lang$String?, _ a9: [java$lang$Object?]?) throws {
+        try self.init(creator: I.java$lang$invoke$SerializedLambda_init_java$lang$Class_java$lang$String_java$lang$String_java$lang$String_I_java$lang$String_java$lang$String_java$lang$String_java$lang$String_Ajava$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$lang$invoke$SerializedLambda_getCapturingClass__java$lang$String = invoker("getCapturingClass", returns: JObjectType("java/lang/String"))
@@ -724,8 +724,8 @@ open class java$lang$invoke$SwitchPoint : java$lang$Object {
     open class override func jniName() -> String { return "java/lang/invoke/SwitchPoint" }
 
     fileprivate static let java$lang$invoke$SwitchPoint_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$invoke$SwitchPoint_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$invoke$SwitchPoint_init__V())
     }
 
     fileprivate static let java$lang$invoke$SwitchPoint_hasBeenInvalidated__Z = invoker("hasBeenInvalidated", returns: jboolean.jniType)
@@ -755,28 +755,28 @@ open class java$lang$invoke$LambdaConversionException : java$lang$Exception {
     open class override func jniName() -> String { return "java/lang/invoke/LambdaConversionException" }
 
     fileprivate static let java$lang$invoke$LambdaConversionException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$invoke$LambdaConversionException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$invoke$LambdaConversionException_init__V())
     }
 
     fileprivate static let java$lang$invoke$LambdaConversionException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$invoke$LambdaConversionException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$invoke$LambdaConversionException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$invoke$LambdaConversionException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$lang$invoke$LambdaConversionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$lang$invoke$LambdaConversionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$invoke$LambdaConversionException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$lang$invoke$LambdaConversionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$lang$invoke$LambdaConversionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$invoke$LambdaConversionException_init_java$lang$String_java$lang$Throwable_Z_Z__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable"), jboolean.jniType, jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?, _ a2: jboolean, _ a3: jboolean) throws {
-        try self.init(constructor: I.java$lang$invoke$LambdaConversionException_init_java$lang$String_java$lang$Throwable_Z_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?, _ a2: jboolean, _ a3: jboolean) throws {
+        try self.init(creator: I.java$lang$invoke$LambdaConversionException_init_java$lang$String_java$lang$Throwable_Z_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
     }
 
 }
@@ -791,13 +791,13 @@ open class java$lang$invoke$WrongMethodTypeException : java$lang$RuntimeExceptio
     open class override func jniName() -> String { return "java/lang/invoke/WrongMethodTypeException" }
 
     fileprivate static let java$lang$invoke$WrongMethodTypeException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$lang$invoke$WrongMethodTypeException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$lang$invoke$WrongMethodTypeException_init__V())
     }
 
     fileprivate static let java$lang$invoke$WrongMethodTypeException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$invoke$WrongMethodTypeException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$invoke$WrongMethodTypeException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }

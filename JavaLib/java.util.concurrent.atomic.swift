@@ -8,13 +8,13 @@ open class java$util$concurrent$atomic$AtomicBoolean : java$lang$Object, java$io
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicBoolean" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicBoolean_init_Z__V = constructor((jboolean.jniType))
-    public convenience init!(_ a0: jboolean) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicBoolean_init_Z__V(a0))
+    public convenience init(_ a0: jboolean) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicBoolean_init_Z__V(a0))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicBoolean_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicBoolean_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicBoolean_init__V())
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicBoolean_get__Z = invoker("get", returns: jboolean.jniType)
@@ -60,13 +60,13 @@ open class java$util$concurrent$atomic$AtomicIntegerArray : java$lang$Object, ja
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicIntegerArray" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicIntegerArray_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicIntegerArray_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_init_AI__V = constructor((JArray(jint.jniType)))
-    public convenience init!(_ a0: [jint]?) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicIntegerArray_init_AI__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jint]?) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicIntegerArray_init_AI__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_length__I = invoker("length", returns: jint.jniType)
@@ -263,13 +263,13 @@ open class java$util$concurrent$atomic$AtomicLongArray : java$lang$Object, java$
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicLongArray" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicLongArray_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicLongArray_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicLongArray_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicLongArray_init_AJ__V = constructor((JArray(jlong.jniType)))
-    public convenience init!(_ a0: [jlong]?) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicLongArray_init_AJ__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jlong]?) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicLongArray_init_AJ__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicLongArray_length__I = invoker("length", returns: jint.jniType)
@@ -466,8 +466,8 @@ open class java$util$concurrent$atomic$AtomicMarkableReference : java$lang$Objec
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicMarkableReference" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicMarkableReference_init_java$lang$Object_Z__V = constructor((JObjectType("java/lang/Object"), jboolean.jniType))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicMarkableReference_init_java$lang$Object_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$Object?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicMarkableReference_init_java$lang$Object_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicMarkableReference_getReference__java$lang$Object = invoker("getReference", returns: JObjectType("java/lang/Object"))
@@ -517,13 +517,13 @@ open class java$util$concurrent$atomic$AtomicReference : java$lang$Object, java$
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicReference" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicReference_init_java$lang$Object__V = constructor((JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicReference_init_java$lang$Object__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicReference_init_java$lang$Object__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicReference_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicReference_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicReference_init__V())
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicReference_get__java$lang$Object = invoker("get", returns: JObjectType("java/lang/Object"))
@@ -589,13 +589,13 @@ open class java$util$concurrent$atomic$AtomicReferenceArray : java$lang$Object, 
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicReferenceArray" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicReferenceArray_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicReferenceArray_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_init_Ajava$lang$Object__V = constructor((JArray(JObjectType("java/lang/Object"))))
-    public convenience init!(_ a0: [java$lang$Object?]?) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicReferenceArray_init_Ajava$lang$Object__V(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: [java$lang$Object?]?) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicReferenceArray_init_Ajava$lang$Object__V(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_length__I = invoker("length", returns: jint.jniType)
@@ -732,8 +732,8 @@ open class java$util$concurrent$atomic$AtomicStampedReference : java$lang$Object
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicStampedReference" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicStampedReference_init_java$lang$Object_I__V = constructor((JObjectType("java/lang/Object"), jint.jniType))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicStampedReference_init_java$lang$Object_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$Object?, _ a1: jint) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicStampedReference_init_java$lang$Object_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicStampedReference_getReference__java$lang$Object = invoker("getReference", returns: JObjectType("java/lang/Object"))
@@ -794,13 +794,13 @@ open class java$util$concurrent$atomic$AtomicInteger : java$lang$Number {
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicInteger" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicInteger_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicInteger_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicInteger_init_I__V(a0))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicInteger_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicInteger_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicInteger_init__V())
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicInteger_get__I = invoker("get", returns: jint.jniType)
@@ -900,13 +900,13 @@ open class java$util$concurrent$atomic$AtomicLong : java$lang$Number {
     open class override func jniName() -> String { return "java/util/concurrent/atomic/AtomicLong" }
 
     fileprivate static let java$util$concurrent$atomic$AtomicLong_init_J__V = constructor((jlong.jniType))
-    public convenience init!(_ a0: jlong) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicLong_init_J__V(a0))
+    public convenience init(_ a0: jlong) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicLong_init_J__V(a0))
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicLong_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$AtomicLong_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$atomic$AtomicLong_init__V())
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicLong_get__J = invoker("get", returns: jlong.jniType)
@@ -1006,8 +1006,8 @@ open class java$util$concurrent$atomic$DoubleAccumulator : java$util$concurrent$
     open class override func jniName() -> String { return "java/util/concurrent/atomic/DoubleAccumulator" }
 
     fileprivate static let java$util$concurrent$atomic$DoubleAccumulator_init_java$util$function$DoubleBinaryOperator_D__V = constructor((JObjectType("java/util/function/DoubleBinaryOperator"), jdouble.jniType))
-    public convenience init!(_ a0: java$util$function$DoubleBinaryOperator?, _ a1: jdouble) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$DoubleAccumulator_init_java$util$function$DoubleBinaryOperator_D__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$util$function$DoubleBinaryOperator?, _ a1: jdouble) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$DoubleAccumulator_init_java$util$function$DoubleBinaryOperator_D__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$concurrent$atomic$DoubleAccumulator_accumulate_D__V = invoker("accumulate", returns: JVoid.jniType, arguments: (jdouble.jniType))
@@ -1047,8 +1047,8 @@ open class java$util$concurrent$atomic$DoubleAdder : java$util$concurrent$atomic
     open class override func jniName() -> String { return "java/util/concurrent/atomic/DoubleAdder" }
 
     fileprivate static let java$util$concurrent$atomic$DoubleAdder_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$DoubleAdder_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$atomic$DoubleAdder_init__V())
     }
 
     fileprivate static let java$util$concurrent$atomic$DoubleAdder_add_D__V = invoker("add", returns: JVoid.jniType, arguments: (jdouble.jniType))
@@ -1088,8 +1088,8 @@ open class java$util$concurrent$atomic$LongAccumulator : java$util$concurrent$at
     open class override func jniName() -> String { return "java/util/concurrent/atomic/LongAccumulator" }
 
     fileprivate static let java$util$concurrent$atomic$LongAccumulator_init_java$util$function$LongBinaryOperator_J__V = constructor((JObjectType("java/util/function/LongBinaryOperator"), jlong.jniType))
-    public convenience init!(_ a0: java$util$function$LongBinaryOperator?, _ a1: jlong) throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$LongAccumulator_init_java$util$function$LongBinaryOperator_J__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$util$function$LongBinaryOperator?, _ a1: jlong) throws {
+        try self.init(creator: I.java$util$concurrent$atomic$LongAccumulator_init_java$util$function$LongBinaryOperator_J__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$concurrent$atomic$LongAccumulator_accumulate_J__V = invoker("accumulate", returns: JVoid.jniType, arguments: (jlong.jniType))
@@ -1129,8 +1129,8 @@ open class java$util$concurrent$atomic$LongAdder : java$util$concurrent$atomic$S
     open class override func jniName() -> String { return "java/util/concurrent/atomic/LongAdder" }
 
     fileprivate static let java$util$concurrent$atomic$LongAdder_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$concurrent$atomic$LongAdder_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$concurrent$atomic$LongAdder_init__V())
     }
 
     fileprivate static let java$util$concurrent$atomic$LongAdder_add_J__V = invoker("add", returns: JVoid.jniType, arguments: (jlong.jniType))

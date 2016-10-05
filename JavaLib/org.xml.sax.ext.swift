@@ -8,13 +8,13 @@ open class org$xml$sax$ext$Attributes2Impl : org$xml$sax$helpers$AttributesImpl,
     open class override func jniName() -> String { return "org/xml/sax/ext/Attributes2Impl" }
 
     fileprivate static let org$xml$sax$ext$Attributes2Impl_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$ext$Attributes2Impl_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$ext$Attributes2Impl_init__V())
     }
 
     fileprivate static let org$xml$sax$ext$Attributes2Impl_init_org$xml$sax$Attributes__V = constructor((JObjectType("org/xml/sax/Attributes")))
-    public convenience init!(_ a0: org$xml$sax$Attributes?) throws {
-        try self.init(constructor: I.org$xml$sax$ext$Attributes2Impl_init_org$xml$sax$Attributes__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$Attributes?) throws {
+        try self.init(creator: I.org$xml$sax$ext$Attributes2Impl_init_org$xml$sax$Attributes__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$ext$Attributes2Impl_isDeclared_I__Z = invoker("isDeclared", returns: jboolean.jniType, arguments: (jint.jniType))
@@ -72,8 +72,8 @@ open class org$xml$sax$ext$DefaultHandler2 : org$xml$sax$helpers$DefaultHandler,
     open class override func jniName() -> String { return "org/xml/sax/ext/DefaultHandler2" }
 
     fileprivate static let org$xml$sax$ext$DefaultHandler2_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$ext$DefaultHandler2_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$ext$DefaultHandler2_init__V())
     }
 
     fileprivate static let org$xml$sax$ext$DefaultHandler2_startCDATA__V = invoker("startCDATA", returns: JVoid.jniType)
@@ -154,13 +154,13 @@ open class org$xml$sax$ext$Locator2Impl : org$xml$sax$helpers$LocatorImpl, org$x
     open class override func jniName() -> String { return "org/xml/sax/ext/Locator2Impl" }
 
     fileprivate static let org$xml$sax$ext$Locator2Impl_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$xml$sax$ext$Locator2Impl_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$xml$sax$ext$Locator2Impl_init__V())
     }
 
     fileprivate static let org$xml$sax$ext$Locator2Impl_init_org$xml$sax$Locator__V = constructor((JObjectType("org/xml/sax/Locator")))
-    public convenience init!(_ a0: org$xml$sax$Locator?) throws {
-        try self.init(constructor: I.org$xml$sax$ext$Locator2Impl_init_org$xml$sax$Locator__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: org$xml$sax$Locator?) throws {
+        try self.init(creator: I.org$xml$sax$ext$Locator2Impl_init_org$xml$sax$Locator__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$xml$sax$ext$Locator2Impl_getXMLVersion__java$lang$String = invoker("getXMLVersion", returns: JObjectType("java/lang/String"))

@@ -169,13 +169,13 @@ open class java$util$LinkedList : java$util$AbstractSequentialList, java$util$De
     open class override func jniName() -> String { return "java/util/LinkedList" }
 
     fileprivate static let java$util$LinkedList_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$LinkedList_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$LinkedList_init__V())
     }
 
     fileprivate static let java$util$LinkedList_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$LinkedList_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$LinkedList_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$LinkedList_getFirst__java$lang$Object = invoker("getFirst", returns: JObjectType("java/lang/Object"))
@@ -326,18 +326,18 @@ open class java$util$ArrayList : java$util$AbstractList, java$util$RandomAccess,
     open class override func jniName() -> String { return "java/util/ArrayList" }
 
     fileprivate static let java$util$ArrayList_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$ArrayList_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$ArrayList_init_I__V(a0))
     }
 
     fileprivate static let java$util$ArrayList_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$ArrayList_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$ArrayList_init__V())
     }
 
     fileprivate static let java$util$ArrayList_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$ArrayList_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$ArrayList_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$ArrayList_trimToSize__V = invoker("trimToSize", returns: JVoid.jniType)
@@ -414,23 +414,23 @@ open class java$util$Vector : java$util$AbstractList, java$util$RandomAccess, ja
     open class override func jniName() -> String { return "java/util/Vector" }
 
     fileprivate static let java$util$Vector_init_I_I__V = constructor((jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint) throws {
-        try self.init(constructor: I.java$util$Vector_init_I_I__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jint) throws {
+        try self.init(creator: I.java$util$Vector_init_I_I__V(a0, a1))
     }
 
     fileprivate static let java$util$Vector_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$Vector_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$Vector_init_I__V(a0))
     }
 
     fileprivate static let java$util$Vector_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Vector_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Vector_init__V())
     }
 
     fileprivate static let java$util$Vector_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$Vector_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$Vector_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Vector_copyInto_Ajava$lang$Object__V = invoker("copyInto", returns: JVoid.jniType, arguments: (JArray(JObjectType("java/lang/Object"))))
@@ -586,8 +586,8 @@ open class java$util$Stack : java$util$Vector {
     open class override func jniName() -> String { return "java/util/Stack" }
 
     fileprivate static let java$util$Stack_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Stack_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Stack_init__V())
     }
 
     fileprivate static let java$util$Stack_push_java$lang$Object__java$lang$Object = invoker("push", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))
@@ -651,38 +651,38 @@ open class java$util$PriorityQueue : java$util$AbstractQueue, java$io$Serializab
     open class override func jniName() -> String { return "java/util/PriorityQueue" }
 
     fileprivate static let java$util$PriorityQueue_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$PriorityQueue_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$PriorityQueue_init__V())
     }
 
     fileprivate static let java$util$PriorityQueue_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$PriorityQueue_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$PriorityQueue_init_I__V(a0))
     }
 
     fileprivate static let java$util$PriorityQueue_init_java$util$Comparator__V = constructor((JObjectType("java/util/Comparator")))
-    public convenience init!(_ a0: java$util$Comparator?) throws {
-        try self.init(constructor: I.java$util$PriorityQueue_init_java$util$Comparator__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Comparator?) throws {
+        try self.init(creator: I.java$util$PriorityQueue_init_java$util$Comparator__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$PriorityQueue_init_I_java$util$Comparator__V = constructor((jint.jniType, JObjectType("java/util/Comparator")))
-    public convenience init!(_ a0: jint, _ a1: java$util$Comparator?) throws {
-        try self.init(constructor: I.java$util$PriorityQueue_init_I_java$util$Comparator__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$util$Comparator?) throws {
+        try self.init(creator: I.java$util$PriorityQueue_init_I_java$util$Comparator__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$PriorityQueue_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$PriorityQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$PriorityQueue_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$PriorityQueue_init_java$util$PriorityQueue__V = constructor((JObjectType("java/util/PriorityQueue")))
-    public convenience init!(_ a0: java$util$PriorityQueue?) throws {
-        try self.init(constructor: I.java$util$PriorityQueue_init_java$util$PriorityQueue__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$PriorityQueue?) throws {
+        try self.init(creator: I.java$util$PriorityQueue_init_java$util$PriorityQueue__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$PriorityQueue_init_java$util$SortedSet__V = constructor((JObjectType("java/util/SortedSet")))
-    public convenience init!(_ a0: java$util$SortedSet?) throws {
-        try self.init(constructor: I.java$util$PriorityQueue_init_java$util$SortedSet__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$SortedSet?) throws {
+        try self.init(creator: I.java$util$PriorityQueue_init_java$util$SortedSet__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$PriorityQueue_add_java$lang$Object__Z = invoker("add", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -825,23 +825,23 @@ open class java$util$HashSet : java$util$AbstractSet, java$lang$Cloneable, java$
     open class override func jniName() -> String { return "java/util/HashSet" }
 
     fileprivate static let java$util$HashSet_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$HashSet_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$HashSet_init__V())
     }
 
     fileprivate static let java$util$HashSet_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$HashSet_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$HashSet_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$HashSet_init_I_F__V = constructor((jint.jniType, jfloat.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat) throws {
-        try self.init(constructor: I.java$util$HashSet_init_I_F__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jfloat) throws {
+        try self.init(creator: I.java$util$HashSet_init_I_F__V(a0, a1))
     }
 
     fileprivate static let java$util$HashSet_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$HashSet_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$HashSet_init_I__V(a0))
     }
 
     fileprivate static let java$util$HashSet_iterator__java$util$Iterator = invoker("iterator", returns: JObjectType("java/util/Iterator"))
@@ -873,23 +873,23 @@ open class java$util$LinkedHashSet : java$util$HashSet {
     open class override func jniName() -> String { return "java/util/LinkedHashSet" }
 
     fileprivate static let java$util$LinkedHashSet_init_I_F__V = constructor((jint.jniType, jfloat.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat) throws {
-        try self.init(constructor: I.java$util$LinkedHashSet_init_I_F__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jfloat) throws {
+        try self.init(creator: I.java$util$LinkedHashSet_init_I_F__V(a0, a1))
     }
 
     fileprivate static let java$util$LinkedHashSet_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$LinkedHashSet_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$LinkedHashSet_init_I__V(a0))
     }
 
     fileprivate static let java$util$LinkedHashSet_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$LinkedHashSet_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$LinkedHashSet_init__V())
     }
 
     fileprivate static let java$util$LinkedHashSet_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$LinkedHashSet_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$LinkedHashSet_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$LinkedHashSet_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
@@ -905,23 +905,23 @@ open class java$util$TreeSet : java$util$AbstractSet, java$util$NavigableSet, ja
     open class override func jniName() -> String { return "java/util/TreeSet" }
 
     fileprivate static let java$util$TreeSet_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$TreeSet_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$TreeSet_init__V())
     }
 
     fileprivate static let java$util$TreeSet_init_java$util$Comparator__V = constructor((JObjectType("java/util/Comparator")))
-    public convenience init!(_ a0: java$util$Comparator?) throws {
-        try self.init(constructor: I.java$util$TreeSet_init_java$util$Comparator__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Comparator?) throws {
+        try self.init(creator: I.java$util$TreeSet_init_java$util$Comparator__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$TreeSet_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$TreeSet_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$TreeSet_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$TreeSet_init_java$util$SortedSet__V = constructor((JObjectType("java/util/SortedSet")))
-    public convenience init!(_ a0: java$util$SortedSet?) throws {
-        try self.init(constructor: I.java$util$TreeSet_init_java$util$SortedSet__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$SortedSet?) throws {
+        try self.init(creator: I.java$util$TreeSet_init_java$util$SortedSet__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$TreeSet_iterator__java$util$Iterator = invoker("iterator", returns: JObjectType("java/util/Iterator"))
@@ -1039,18 +1039,18 @@ open class java$util$ArrayDeque : java$util$AbstractCollection, java$util$Deque,
     open class override func jniName() -> String { return "java/util/ArrayDeque" }
 
     fileprivate static let java$util$ArrayDeque_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$ArrayDeque_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$ArrayDeque_init__V())
     }
 
     fileprivate static let java$util$ArrayDeque_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$ArrayDeque_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$ArrayDeque_init_I__V(a0))
     }
 
     fileprivate static let java$util$ArrayDeque_init_java$util$Collection__V = constructor((JObjectType("java/util/Collection")))
-    public convenience init!(_ a0: java$util$Collection?) throws {
-        try self.init(constructor: I.java$util$ArrayDeque_init_java$util$Collection__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Collection?) throws {
+        try self.init(creator: I.java$util$ArrayDeque_init_java$util$Collection__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$ArrayDeque_addFirst_java$lang$Object__V = invoker("addFirst", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -1273,18 +1273,18 @@ open class java$util$EnumMap : java$util$AbstractMap, java$io$Serializable, java
     open class override func jniName() -> String { return "java/util/EnumMap" }
 
     fileprivate static let java$util$EnumMap_init_java$lang$Class__V = constructor((JObjectType("java/lang/Class")))
-    public convenience init!(_ a0: java$lang$Class?) throws {
-        try self.init(constructor: I.java$util$EnumMap_init_java$lang$Class__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Class?) throws {
+        try self.init(creator: I.java$util$EnumMap_init_java$lang$Class__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$EnumMap_init_java$util$EnumMap__V = constructor((JObjectType("java/util/EnumMap")))
-    public convenience init!(_ a0: java$util$EnumMap?) throws {
-        try self.init(constructor: I.java$util$EnumMap_init_java$util$EnumMap__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$EnumMap?) throws {
+        try self.init(creator: I.java$util$EnumMap_init_java$util$EnumMap__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$EnumMap_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$EnumMap_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$EnumMap_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$EnumMap_size__I = invoker("size", returns: jint.jniType)
@@ -1327,23 +1327,23 @@ open class java$util$HashMap : java$util$AbstractMap, java$lang$Cloneable, java$
     open class override func jniName() -> String { return "java/util/HashMap" }
 
     fileprivate static let java$util$HashMap_init_I_F__V = constructor((jint.jniType, jfloat.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat) throws {
-        try self.init(constructor: I.java$util$HashMap_init_I_F__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jfloat) throws {
+        try self.init(creator: I.java$util$HashMap_init_I_F__V(a0, a1))
     }
 
     fileprivate static let java$util$HashMap_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$HashMap_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$HashMap_init_I__V(a0))
     }
 
     fileprivate static let java$util$HashMap_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$HashMap_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$HashMap_init__V())
     }
 
     fileprivate static let java$util$HashMap_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$HashMap_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$HashMap_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$HashMap_size__I = invoker("size", returns: jint.jniType)
@@ -1430,28 +1430,28 @@ open class java$util$LinkedHashMap : java$util$HashMap {
     open class override func jniName() -> String { return "java/util/LinkedHashMap" }
 
     fileprivate static let java$util$LinkedHashMap_init_I_F__V = constructor((jint.jniType, jfloat.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat) throws {
-        try self.init(constructor: I.java$util$LinkedHashMap_init_I_F__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jfloat) throws {
+        try self.init(creator: I.java$util$LinkedHashMap_init_I_F__V(a0, a1))
     }
 
     fileprivate static let java$util$LinkedHashMap_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$LinkedHashMap_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$LinkedHashMap_init_I__V(a0))
     }
 
     fileprivate static let java$util$LinkedHashMap_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$LinkedHashMap_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$LinkedHashMap_init__V())
     }
 
     fileprivate static let java$util$LinkedHashMap_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$LinkedHashMap_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$LinkedHashMap_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$LinkedHashMap_init_I_F_Z__V = constructor((jint.jniType, jfloat.jniType, jboolean.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$util$LinkedHashMap_init_I_F_Z__V(a0, a1, a2))
+    public convenience init(_ a0: jint, _ a1: jfloat, _ a2: jboolean) throws {
+        try self.init(creator: I.java$util$LinkedHashMap_init_I_F_Z__V(a0, a1, a2))
     }
 
     fileprivate static let java$util$LinkedHashMap_containsValue_java$lang$Object__Z = invoker("containsValue", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -1475,18 +1475,18 @@ open class java$util$IdentityHashMap : java$util$AbstractMap, java$io$Serializab
     open class override func jniName() -> String { return "java/util/IdentityHashMap" }
 
     fileprivate static let java$util$IdentityHashMap_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$IdentityHashMap_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$IdentityHashMap_init__V())
     }
 
     fileprivate static let java$util$IdentityHashMap_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$IdentityHashMap_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$IdentityHashMap_init_I__V(a0))
     }
 
     fileprivate static let java$util$IdentityHashMap_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$IdentityHashMap_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$IdentityHashMap_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$IdentityHashMap_size__I = invoker("size", returns: jint.jniType)
@@ -1530,23 +1530,23 @@ open class java$util$TreeMap : java$util$AbstractMap, java$util$NavigableMap, ja
     open class override func jniName() -> String { return "java/util/TreeMap" }
 
     fileprivate static let java$util$TreeMap_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$TreeMap_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$TreeMap_init__V())
     }
 
     fileprivate static let java$util$TreeMap_init_java$util$Comparator__V = constructor((JObjectType("java/util/Comparator")))
-    public convenience init!(_ a0: java$util$Comparator?) throws {
-        try self.init(constructor: I.java$util$TreeMap_init_java$util$Comparator__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Comparator?) throws {
+        try self.init(creator: I.java$util$TreeMap_init_java$util$Comparator__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$TreeMap_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$TreeMap_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$TreeMap_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$TreeMap_init_java$util$SortedMap__V = constructor((JObjectType("java/util/SortedMap")))
-    public convenience init!(_ a0: java$util$SortedMap?) throws {
-        try self.init(constructor: I.java$util$TreeMap_init_java$util$SortedMap__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$SortedMap?) throws {
+        try self.init(creator: I.java$util$TreeMap_init_java$util$SortedMap__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$TreeMap_size__I = invoker("size", returns: jint.jniType)
@@ -1717,23 +1717,23 @@ open class java$util$WeakHashMap : java$util$AbstractMap {
     open class override func jniName() -> String { return "java/util/WeakHashMap" }
 
     fileprivate static let java$util$WeakHashMap_init_I_F__V = constructor((jint.jniType, jfloat.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat) throws {
-        try self.init(constructor: I.java$util$WeakHashMap_init_I_F__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jfloat) throws {
+        try self.init(creator: I.java$util$WeakHashMap_init_I_F__V(a0, a1))
     }
 
     fileprivate static let java$util$WeakHashMap_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$WeakHashMap_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$WeakHashMap_init_I__V(a0))
     }
 
     fileprivate static let java$util$WeakHashMap_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$WeakHashMap_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$WeakHashMap_init__V())
     }
 
     fileprivate static let java$util$WeakHashMap_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$WeakHashMap_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$WeakHashMap_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$WeakHashMap_size__I = invoker("size", returns: jint.jniType)
@@ -1770,13 +1770,13 @@ open class java$util$AbstractMap$SimpleEntry : java$lang$Object, java$util$Map$E
     open class override func jniName() -> String { return "java/util/AbstractMap$SimpleEntry" }
 
     fileprivate static let java$util$AbstractMap$SimpleEntry_init_java$lang$Object_java$lang$Object__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws {
-        try self.init(constructor: I.java$util$AbstractMap$SimpleEntry_init_java$lang$Object_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws {
+        try self.init(creator: I.java$util$AbstractMap$SimpleEntry_init_java$lang$Object_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$AbstractMap$SimpleEntry_init_java$util$Map$Entry__V = constructor((JObjectType("java/util/Map$Entry")))
-    public convenience init!(_ a0: java$util$Map$Entry?) throws {
-        try self.init(constructor: I.java$util$AbstractMap$SimpleEntry_init_java$util$Map$Entry__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map$Entry?) throws {
+        try self.init(creator: I.java$util$AbstractMap$SimpleEntry_init_java$util$Map$Entry__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$AbstractMap$SimpleEntry_getKey__java$lang$Object = invoker("getKey", returns: JObjectType("java/lang/Object"))
@@ -1809,13 +1809,13 @@ open class java$util$AbstractMap$SimpleImmutableEntry : java$lang$Object, java$u
     open class override func jniName() -> String { return "java/util/AbstractMap$SimpleImmutableEntry" }
 
     fileprivate static let java$util$AbstractMap$SimpleImmutableEntry_init_java$lang$Object_java$lang$Object__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws {
-        try self.init(constructor: I.java$util$AbstractMap$SimpleImmutableEntry_init_java$lang$Object_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws {
+        try self.init(creator: I.java$util$AbstractMap$SimpleImmutableEntry_init_java$lang$Object_java$lang$Object__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$AbstractMap$SimpleImmutableEntry_init_java$util$Map$Entry__V = constructor((JObjectType("java/util/Map$Entry")))
-    public convenience init!(_ a0: java$util$Map$Entry?) throws {
-        try self.init(constructor: I.java$util$AbstractMap$SimpleImmutableEntry_init_java$util$Map$Entry__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map$Entry?) throws {
+        try self.init(creator: I.java$util$AbstractMap$SimpleImmutableEntry_init_java$util$Map$Entry__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$AbstractMap$SimpleImmutableEntry_getKey__java$lang$Object = invoker("getKey", returns: JObjectType("java/lang/Object"))
@@ -2757,13 +2757,13 @@ open class java$util$BitSet : java$lang$Object, java$lang$Cloneable, java$io$Ser
     open class override func jniName() -> String { return "java/util/BitSet" }
 
     fileprivate static let java$util$BitSet_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$BitSet_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$BitSet_init__V())
     }
 
     fileprivate static let java$util$BitSet_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$BitSet_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$BitSet_init_I__V(a0))
     }
 
     fileprivate static let java$util$BitSet_valueOf_AJ__java$util$BitSet = svoker("valueOf", returns: JObjectType("java/util/BitSet"), arguments: (JArray(jlong.jniType)))
@@ -3455,38 +3455,38 @@ open class java$util$GregorianCalendar : java$util$Calendar {
     }
 
     fileprivate static let java$util$GregorianCalendar_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$GregorianCalendar_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$GregorianCalendar_init__V())
     }
 
     fileprivate static let java$util$GregorianCalendar_init_java$util$TimeZone__V = constructor((JObjectType("java/util/TimeZone")))
-    public convenience init!(_ a0: java$util$TimeZone?) throws {
-        try self.init(constructor: I.java$util$GregorianCalendar_init_java$util$TimeZone__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$TimeZone?) throws {
+        try self.init(creator: I.java$util$GregorianCalendar_init_java$util$TimeZone__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$GregorianCalendar_init_java$util$Locale__V = constructor((JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$util$Locale?) throws {
-        try self.init(constructor: I.java$util$GregorianCalendar_init_java$util$Locale__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$GregorianCalendar_init_java$util$Locale__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$GregorianCalendar_init_java$util$TimeZone_java$util$Locale__V = constructor((JObjectType("java/util/TimeZone"), JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$util$TimeZone?, _ a1: java$util$Locale?) throws {
-        try self.init(constructor: I.java$util$GregorianCalendar_init_java$util$TimeZone_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$util$TimeZone?, _ a1: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$GregorianCalendar_init_java$util$TimeZone_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$GregorianCalendar_init_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$GregorianCalendar_init_I_I_I__V(a0, a1, a2))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$util$GregorianCalendar_init_I_I_I__V(a0, a1, a2))
     }
 
     fileprivate static let java$util$GregorianCalendar_init_I_I_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint) throws {
-        try self.init(constructor: I.java$util$GregorianCalendar_init_I_I_I_I_I__V(a0, a1, a2, a3, a4))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint) throws {
+        try self.init(creator: I.java$util$GregorianCalendar_init_I_I_I_I_I__V(a0, a1, a2, a3, a4))
     }
 
     fileprivate static let java$util$GregorianCalendar_init_I_I_I_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint) throws {
-        try self.init(constructor: I.java$util$GregorianCalendar_init_I_I_I_I_I_I__V(a0, a1, a2, a3, a4, a5))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint) throws {
+        try self.init(creator: I.java$util$GregorianCalendar_init_I_I_I_I_I_I__V(a0, a1, a2, a3, a4, a5))
     }
 
     fileprivate static let java$util$GregorianCalendar_setGregorianChange_java$util$Date__V = invoker("setGregorianChange", returns: JVoid.jniType, arguments: (JObjectType("java/util/Date")))
@@ -3545,8 +3545,8 @@ open class java$util$Calendar$Builder : java$lang$Object {
     open class override func jniName() -> String { return "java/util/Calendar$Builder" }
 
     fileprivate static let java$util$Calendar$Builder_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Calendar$Builder_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Calendar$Builder_init__V())
     }
 
     fileprivate static let java$util$Calendar$Builder_setInstant_J__java$util$Calendar$Builder = invoker("setInstant", returns: JObjectType("java/util/Calendar$Builder"), arguments: (jlong.jniType))
@@ -4049,33 +4049,33 @@ open class java$util$Date : java$lang$Object, java$io$Serializable, java$lang$Cl
     open class override func jniName() -> String { return "java/util/Date" }
 
     fileprivate static let java$util$Date_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Date_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Date_init__V())
     }
 
     fileprivate static let java$util$Date_init_J__V = constructor((jlong.jniType))
-    public convenience init!(_ a0: jlong) throws {
-        try self.init(constructor: I.java$util$Date_init_J__V(a0))
+    public convenience init(_ a0: jlong) throws {
+        try self.init(creator: I.java$util$Date_init_J__V(a0))
     }
 
     fileprivate static let java$util$Date_init_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$Date_init_I_I_I__V(a0, a1, a2))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$util$Date_init_I_I_I__V(a0, a1, a2))
     }
 
     fileprivate static let java$util$Date_init_I_I_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint) throws {
-        try self.init(constructor: I.java$util$Date_init_I_I_I_I_I__V(a0, a1, a2, a3, a4))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint) throws {
+        try self.init(creator: I.java$util$Date_init_I_I_I_I_I__V(a0, a1, a2, a3, a4))
     }
 
     fileprivate static let java$util$Date_init_I_I_I_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint) throws {
-        try self.init(constructor: I.java$util$Date_init_I_I_I_I_I_I__V(a0, a1, a2, a3, a4, a5))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint) throws {
+        try self.init(creator: I.java$util$Date_init_I_I_I_I_I_I__V(a0, a1, a2, a3, a4, a5))
     }
 
     fileprivate static let java$util$Date_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Date_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Date_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Date_clone__java$lang$Object = invoker("clone", returns: JObjectType("java/lang/Object"))
@@ -4228,8 +4228,8 @@ open class java$util$Dictionary : java$lang$Object {
     open class override func jniName() -> String { return "java/util/Dictionary" }
 
     fileprivate static let java$util$Dictionary_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Dictionary_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Dictionary_init__V())
     }
 
     fileprivate static let java$util$Dictionary_size__I = invoker("size", returns: jint.jniType)
@@ -4279,23 +4279,23 @@ open class java$util$Hashtable : java$util$Dictionary, java$util$Map, java$lang$
     open class override func jniName() -> String { return "java/util/Hashtable" }
 
     fileprivate static let java$util$Hashtable_init_I_F__V = constructor((jint.jniType, jfloat.jniType))
-    public convenience init!(_ a0: jint, _ a1: jfloat) throws {
-        try self.init(constructor: I.java$util$Hashtable_init_I_F__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jfloat) throws {
+        try self.init(creator: I.java$util$Hashtable_init_I_F__V(a0, a1))
     }
 
     fileprivate static let java$util$Hashtable_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$Hashtable_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$Hashtable_init_I__V(a0))
     }
 
     fileprivate static let java$util$Hashtable_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Hashtable_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Hashtable_init__V())
     }
 
     fileprivate static let java$util$Hashtable_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$util$Hashtable_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$util$Hashtable_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Hashtable_size__I = invoker("size", returns: jint.jniType)
@@ -4420,13 +4420,13 @@ open class java$util$Properties : java$util$Hashtable {
     open class override func jniName() -> String { return "java/util/Properties" }
 
     fileprivate static let java$util$Properties_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Properties_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Properties_init__V())
     }
 
     fileprivate static let java$util$Properties_init_java$util$Properties__V = constructor((JObjectType("java/util/Properties")))
-    public convenience init!(_ a0: java$util$Properties?) throws {
-        try self.init(constructor: I.java$util$Properties_init_java$util$Properties__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Properties?) throws {
+        try self.init(creator: I.java$util$Properties_init_java$util$Properties__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Properties_setProperty_java$lang$String_java$lang$String__java$lang$Object = invoker("setProperty", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String")))
@@ -4516,8 +4516,8 @@ open class java$util$DoubleSummaryStatistics : java$lang$Object, java$util$funct
     open class override func jniName() -> String { return "java/util/DoubleSummaryStatistics" }
 
     fileprivate static let java$util$DoubleSummaryStatistics_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$DoubleSummaryStatistics_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$DoubleSummaryStatistics_init__V())
     }
 
     fileprivate static let java$util$DoubleSummaryStatistics_accept_D__V = invoker("accept", returns: JVoid.jniType, arguments: (jdouble.jniType))
@@ -4568,8 +4568,8 @@ open class java$util$EventListenerProxy : java$lang$Object, java$util$EventListe
     open class override func jniName() -> String { return "java/util/EventListenerProxy" }
 
     fileprivate static let java$util$EventListenerProxy_init_java$util$EventListener__V = constructor((JObjectType("java/util/EventListener")))
-    public convenience init!(_ a0: java$util$EventListener?) throws {
-        try self.init(constructor: I.java$util$EventListenerProxy_init_java$util$EventListener__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$EventListener?) throws {
+        try self.init(creator: I.java$util$EventListenerProxy_init_java$util$EventListener__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$EventListenerProxy_getListener__java$util$EventListener = invoker("getListener", returns: JObjectType("java/util/EventListener"))
@@ -4589,8 +4589,8 @@ open class java$util$EventObject : java$lang$Object, java$io$Serializable {
     open class override func jniName() -> String { return "java/util/EventObject" }
 
     fileprivate static let java$util$EventObject_init_java$lang$Object__V = constructor((JObjectType("java/lang/Object")))
-    public convenience init!(_ a0: java$lang$Object?) throws {
-        try self.init(constructor: I.java$util$EventObject_init_java$lang$Object__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?) throws {
+        try self.init(creator: I.java$util$EventObject_init_java$lang$Object__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$EventObject_getSource__java$lang$Object = invoker("getSource", returns: JObjectType("java/lang/Object"))
@@ -4637,73 +4637,73 @@ public final class java$util$Formatter : java$lang$Object, java$io$Closeable, ja
     open class override func jniName() -> String { return "java/util/Formatter" }
 
     fileprivate static let java$util$Formatter_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Formatter_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Formatter_init__V())
     }
 
     fileprivate static let java$util$Formatter_init_java$lang$Appendable__V = constructor((JObjectType("java/lang/Appendable")))
-    public convenience init!(_ a0: java$lang$Appendable?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$lang$Appendable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Appendable?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$lang$Appendable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$util$Locale__V = constructor((JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$util$Locale?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$util$Locale__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$util$Locale__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$lang$Appendable_java$util$Locale__V = constructor((JObjectType("java/lang/Appendable"), JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$lang$Appendable?, _ a1: java$util$Locale?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$lang$Appendable_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Appendable?, _ a1: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$lang$Appendable_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$lang$String_java$lang$String_java$util$Locale__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$util$Locale?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$lang$String_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$lang$String_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$io$File_java$lang$String__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$io$File_java$lang$String_java$util$Locale__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String"), JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$io$File?, _ a1: java$lang$String?, _ a2: java$util$Locale?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$io$File_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?, _ a2: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$File_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$io$PrintStream__V = constructor((JObjectType("java/io/PrintStream")))
-    public convenience init!(_ a0: java$io$PrintStream?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$io$PrintStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$PrintStream?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$PrintStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$io$OutputStream__V = constructor((JObjectType("java/io/OutputStream")))
-    public convenience init!(_ a0: java$io$OutputStream?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$io$OutputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$OutputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$io$OutputStream_java$lang$String__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$io$OutputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$OutputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$io$OutputStream_java$lang$String_java$util$Locale__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/lang/String"), JObjectType("java/util/Locale")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$lang$String?, _ a2: java$util$Locale?) throws {
-        try self.init(constructor: I.java$util$Formatter_init_java$io$OutputStream_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$lang$String?, _ a2: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$OutputStream_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_locale__java$util$Locale = invoker("locale", returns: JObjectType("java/util/Locale"))
@@ -4754,8 +4754,8 @@ open class java$util$IntSummaryStatistics : java$lang$Object, java$util$function
     open class override func jniName() -> String { return "java/util/IntSummaryStatistics" }
 
     fileprivate static let java$util$IntSummaryStatistics_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$IntSummaryStatistics_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$IntSummaryStatistics_init__V())
     }
 
     fileprivate static let java$util$IntSummaryStatistics_accept_I__V = invoker("accept", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -4926,18 +4926,18 @@ public final class java$util$Locale : java$lang$Object, java$lang$Cloneable, jav
     }
 
     fileprivate static let java$util$Locale_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Locale_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Locale_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Locale_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Locale_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Locale_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Locale_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Locale_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Locale_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Locale_getDefault__java$util$Locale = svoker("getDefault", returns: JObjectType("java/util/Locale"))
@@ -5150,8 +5150,8 @@ public final class java$util$Locale$Builder : java$lang$Object {
     open class override func jniName() -> String { return "java/util/Locale$Builder" }
 
     fileprivate static let java$util$Locale$Builder_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Locale$Builder_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Locale$Builder_init__V())
     }
 
     fileprivate static let java$util$Locale$Builder_setLocale_java$util$Locale__java$util$Locale$Builder = invoker("setLocale", returns: JObjectType("java/util/Locale$Builder"), arguments: (JObjectType("java/util/Locale")))
@@ -5241,13 +5241,13 @@ public final class java$util$Locale$LanguageRange : java$lang$Object {
     }
 
     fileprivate static let java$util$Locale$LanguageRange_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Locale$LanguageRange_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Locale$LanguageRange_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Locale$LanguageRange_init_java$lang$String_D__V = constructor((JObjectType("java/lang/String"), jdouble.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jdouble) throws {
-        try self.init(constructor: I.java$util$Locale$LanguageRange_init_java$lang$String_D__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jdouble) throws {
+        try self.init(creator: I.java$util$Locale$LanguageRange_init_java$lang$String_D__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$Locale$LanguageRange_getRange__java$lang$String = invoker("getRange", returns: JObjectType("java/lang/String"))
@@ -5289,8 +5289,8 @@ open class java$util$LongSummaryStatistics : java$lang$Object, java$util$functio
     open class override func jniName() -> String { return "java/util/LongSummaryStatistics" }
 
     fileprivate static let java$util$LongSummaryStatistics_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$LongSummaryStatistics_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$LongSummaryStatistics_init__V())
     }
 
     fileprivate static let java$util$LongSummaryStatistics_accept_I__V = invoker("accept", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -5417,8 +5417,8 @@ open class java$util$Observable : java$lang$Object {
     open class override func jniName() -> String { return "java/util/Observable" }
 
     fileprivate static let java$util$Observable_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Observable_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Observable_init__V())
     }
 
     fileprivate static let java$util$Observable_addObserver_java$util$Observer__V = invoker("addObserver", returns: JVoid.jniType, arguments: (JObjectType("java/util/Observer")))
@@ -5704,8 +5704,8 @@ public final class java$util$PropertyPermission : java$security$BasicPermission 
     open class override func jniName() -> String { return "java/util/PropertyPermission" }
 
     fileprivate static let java$util$PropertyPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$PropertyPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$PropertyPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$PropertyPermission_implies_java$security$Permission__Z = invoker("implies", returns: jboolean.jniType, arguments: (JObjectType("java/security/Permission")))
@@ -5725,13 +5725,13 @@ open class java$util$Random : java$lang$Object, java$io$Serializable {
     open class override func jniName() -> String { return "java/util/Random" }
 
     fileprivate static let java$util$Random_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Random_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Random_init__V())
     }
 
     fileprivate static let java$util$Random_init_J__V = constructor((jlong.jniType))
-    public convenience init!(_ a0: jlong) throws {
-        try self.init(constructor: I.java$util$Random_init_J__V(a0))
+    public convenience init(_ a0: jlong) throws {
+        try self.init(creator: I.java$util$Random_init_J__V(a0))
     }
 
     fileprivate static let java$util$Random_setSeed_J__V = invoker("setSeed", returns: JVoid.jniType, arguments: (jlong.jniType))
@@ -5856,8 +5856,8 @@ open class java$util$ResourceBundle : java$lang$Object {
     }
 
     fileprivate static let java$util$ResourceBundle_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$ResourceBundle_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$ResourceBundle_init__V())
     }
 
     fileprivate static let java$util$ResourceBundle_getString_java$lang$String__java$lang$String = invoker("getString", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String")))
@@ -5947,8 +5947,8 @@ open class java$util$ListResourceBundle : java$util$ResourceBundle {
     open class override func jniName() -> String { return "java/util/ListResourceBundle" }
 
     fileprivate static let java$util$ListResourceBundle_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$ListResourceBundle_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$ListResourceBundle_init__V())
     }
 
     fileprivate static let java$util$ListResourceBundle_handleGetObject_java$lang$String__java$lang$Object = invoker("handleGetObject", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/String")))
@@ -5969,13 +5969,13 @@ open class java$util$PropertyResourceBundle : java$util$ResourceBundle {
     open class override func jniName() -> String { return "java/util/PropertyResourceBundle" }
 
     fileprivate static let java$util$PropertyResourceBundle_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$util$PropertyResourceBundle_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$util$PropertyResourceBundle_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$PropertyResourceBundle_init_java$io$Reader__V = constructor((JObjectType("java/io/Reader")))
-    public convenience init!(_ a0: java$io$Reader?) throws {
-        try self.init(constructor: I.java$util$PropertyResourceBundle_init_java$io$Reader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Reader?) throws {
+        try self.init(creator: I.java$util$PropertyResourceBundle_init_java$io$Reader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$PropertyResourceBundle_handleGetObject_java$lang$String__java$lang$Object = invoker("handleGetObject", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/String")))
@@ -6082,53 +6082,53 @@ public final class java$util$Scanner : java$lang$Object, java$util$Iterator, jav
     open class override func jniName() -> String { return "java/util/Scanner" }
 
     fileprivate static let java$util$Scanner_init_java$lang$Readable__V = constructor((JObjectType("java/lang/Readable")))
-    public convenience init!(_ a0: java$lang$Readable?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$lang$Readable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Readable?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$lang$Readable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$io$InputStream_java$lang$String__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$io$InputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$io$InputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$io$File__V = constructor((JObjectType("java/io/File")))
-    public convenience init!(_ a0: java$io$File?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$io$File__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$io$File__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$io$File_java$lang$String__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$nio$file$Path__V = constructor((JObjectType("java/nio/file/Path")))
-    public convenience init!(_ a0: java$nio$file$Path?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$nio$file$Path__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$nio$file$Path?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$nio$file$Path__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$nio$file$Path_java$lang$String__V = constructor((JObjectType("java/nio/file/Path"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$nio$file$Path?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$nio$file$Path_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$nio$file$Path?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$nio$file$Path_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$nio$channels$ReadableByteChannel__V = constructor((JObjectType("java/nio/channels/ReadableByteChannel")))
-    public convenience init!(_ a0: java$nio$channels$ReadableByteChannel?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$nio$channels$ReadableByteChannel__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$nio$channels$ReadableByteChannel?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$nio$channels$ReadableByteChannel__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$nio$channels$ReadableByteChannel_java$lang$String__V = constructor((JObjectType("java/nio/channels/ReadableByteChannel"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$nio$channels$ReadableByteChannel?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Scanner_init_java$nio$channels$ReadableByteChannel_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$nio$channels$ReadableByteChannel?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$nio$channels$ReadableByteChannel_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_close__V = invoker("close", returns: JVoid.jniType)
@@ -6726,13 +6726,13 @@ public final class java$util$SplittableRandom : java$lang$Object {
     open class override func jniName() -> String { return "java/util/SplittableRandom" }
 
     fileprivate static let java$util$SplittableRandom_init_J__V = constructor((jlong.jniType))
-    public convenience init!(_ a0: jlong) throws {
-        try self.init(constructor: I.java$util$SplittableRandom_init_J__V(a0))
+    public convenience init(_ a0: jlong) throws {
+        try self.init(creator: I.java$util$SplittableRandom_init_J__V(a0))
     }
 
     fileprivate static let java$util$SplittableRandom_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$SplittableRandom_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$SplittableRandom_init__V())
     }
 
     fileprivate static let java$util$SplittableRandom_split__java$util$SplittableRandom = invoker("split", returns: JObjectType("java/util/SplittableRandom"))
@@ -6862,13 +6862,13 @@ public final class java$util$StringJoiner : java$lang$Object {
     open class override func jniName() -> String { return "java/util/StringJoiner" }
 
     fileprivate static let java$util$StringJoiner_init_java$lang$CharSequence__V = constructor((JObjectType("java/lang/CharSequence")))
-    public convenience init!(_ a0: java$lang$CharSequence?) throws {
-        try self.init(constructor: I.java$util$StringJoiner_init_java$lang$CharSequence__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$CharSequence?) throws {
+        try self.init(creator: I.java$util$StringJoiner_init_java$lang$CharSequence__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$StringJoiner_init_java$lang$CharSequence_java$lang$CharSequence_java$lang$CharSequence__V = constructor((JObjectType("java/lang/CharSequence"), JObjectType("java/lang/CharSequence"), JObjectType("java/lang/CharSequence")))
-    public convenience init!(_ a0: java$lang$CharSequence?, _ a1: java$lang$CharSequence?, _ a2: java$lang$CharSequence?) throws {
-        try self.init(constructor: I.java$util$StringJoiner_init_java$lang$CharSequence_java$lang$CharSequence_java$lang$CharSequence__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$CharSequence?, _ a1: java$lang$CharSequence?, _ a2: java$lang$CharSequence?) throws {
+        try self.init(creator: I.java$util$StringJoiner_init_java$lang$CharSequence_java$lang$CharSequence_java$lang$CharSequence__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$StringJoiner_setEmptyValue_java$lang$CharSequence__java$util$StringJoiner = invoker("setEmptyValue", returns: JObjectType("java/util/StringJoiner"), arguments: (JObjectType("java/lang/CharSequence")))
@@ -6904,18 +6904,18 @@ open class java$util$StringTokenizer : java$lang$Object, java$util$Enumeration {
     open class override func jniName() -> String { return "java/util/StringTokenizer" }
 
     fileprivate static let java$util$StringTokenizer_init_java$lang$String_java$lang$String_Z__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$util$StringTokenizer_init_java$lang$String_java$lang$String_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jboolean) throws {
+        try self.init(creator: I.java$util$StringTokenizer_init_java$lang$String_java$lang$String_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$util$StringTokenizer_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$StringTokenizer_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$StringTokenizer_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$StringTokenizer_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$StringTokenizer_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$StringTokenizer_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$StringTokenizer_hasMoreTokens__Z = invoker("hasMoreTokens", returns: jboolean.jniType)
@@ -6960,13 +6960,13 @@ open class java$util$ServiceConfigurationError : java$lang$Error {
     open class override func jniName() -> String { return "java/util/ServiceConfigurationError" }
 
     fileprivate static let java$util$ServiceConfigurationError_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$ServiceConfigurationError_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$ServiceConfigurationError_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$ServiceConfigurationError_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$ServiceConfigurationError_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$ServiceConfigurationError_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -6981,13 +6981,13 @@ open class java$util$InvalidPropertiesFormatException : java$io$IOException {
     open class override func jniName() -> String { return "java/util/InvalidPropertiesFormatException" }
 
     fileprivate static let java$util$InvalidPropertiesFormatException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$InvalidPropertiesFormatException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$InvalidPropertiesFormatException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$InvalidPropertiesFormatException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$InvalidPropertiesFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$InvalidPropertiesFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -7002,23 +7002,23 @@ open class java$util$ConcurrentModificationException : java$lang$RuntimeExceptio
     open class override func jniName() -> String { return "java/util/ConcurrentModificationException" }
 
     fileprivate static let java$util$ConcurrentModificationException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$ConcurrentModificationException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$ConcurrentModificationException_init__V())
     }
 
     fileprivate static let java$util$ConcurrentModificationException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$ConcurrentModificationException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$ConcurrentModificationException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$ConcurrentModificationException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$ConcurrentModificationException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$ConcurrentModificationException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$ConcurrentModificationException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$ConcurrentModificationException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$ConcurrentModificationException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -7033,8 +7033,8 @@ open class java$util$EmptyStackException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/util/EmptyStackException" }
 
     fileprivate static let java$util$EmptyStackException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$EmptyStackException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$EmptyStackException_init__V())
     }
 
 }
@@ -7060,8 +7060,8 @@ open class java$util$DuplicateFormatFlagsException : java$util$IllegalFormatExce
     open class override func jniName() -> String { return "java/util/DuplicateFormatFlagsException" }
 
     fileprivate static let java$util$DuplicateFormatFlagsException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$DuplicateFormatFlagsException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$DuplicateFormatFlagsException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$DuplicateFormatFlagsException_getFlags__java$lang$String = invoker("getFlags", returns: JObjectType("java/lang/String"))
@@ -7082,8 +7082,8 @@ open class java$util$FormatFlagsConversionMismatchException : java$util$IllegalF
     open class override func jniName() -> String { return "java/util/FormatFlagsConversionMismatchException" }
 
     fileprivate static let java$util$FormatFlagsConversionMismatchException_init_java$lang$String_C__V = constructor((JObjectType("java/lang/String"), jchar.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jchar) throws {
-        try self.init(constructor: I.java$util$FormatFlagsConversionMismatchException_init_java$lang$String_C__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jchar) throws {
+        try self.init(creator: I.java$util$FormatFlagsConversionMismatchException_init_java$lang$String_C__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$FormatFlagsConversionMismatchException_getFlags__java$lang$String = invoker("getFlags", returns: JObjectType("java/lang/String"))
@@ -7109,8 +7109,8 @@ open class java$util$IllegalFormatCodePointException : java$util$IllegalFormatEx
     open class override func jniName() -> String { return "java/util/IllegalFormatCodePointException" }
 
     fileprivate static let java$util$IllegalFormatCodePointException_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$IllegalFormatCodePointException_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$IllegalFormatCodePointException_init_I__V(a0))
     }
 
     fileprivate static let java$util$IllegalFormatCodePointException_getCodePoint__I = invoker("getCodePoint", returns: jint.jniType)
@@ -7131,8 +7131,8 @@ open class java$util$IllegalFormatConversionException : java$util$IllegalFormatE
     open class override func jniName() -> String { return "java/util/IllegalFormatConversionException" }
 
     fileprivate static let java$util$IllegalFormatConversionException_init_C_java$lang$Class__V = constructor((jchar.jniType, JObjectType("java/lang/Class")))
-    public convenience init!(_ a0: jchar, _ a1: java$lang$Class?) throws {
-        try self.init(constructor: I.java$util$IllegalFormatConversionException_init_C_java$lang$Class__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jchar, _ a1: java$lang$Class?) throws {
+        try self.init(creator: I.java$util$IllegalFormatConversionException_init_C_java$lang$Class__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$IllegalFormatConversionException_getConversion__C = invoker("getConversion", returns: jchar.jniType)
@@ -7158,8 +7158,8 @@ open class java$util$IllegalFormatFlagsException : java$util$IllegalFormatExcept
     open class override func jniName() -> String { return "java/util/IllegalFormatFlagsException" }
 
     fileprivate static let java$util$IllegalFormatFlagsException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$IllegalFormatFlagsException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$IllegalFormatFlagsException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$IllegalFormatFlagsException_getFlags__java$lang$String = invoker("getFlags", returns: JObjectType("java/lang/String"))
@@ -7180,8 +7180,8 @@ open class java$util$IllegalFormatPrecisionException : java$util$IllegalFormatEx
     open class override func jniName() -> String { return "java/util/IllegalFormatPrecisionException" }
 
     fileprivate static let java$util$IllegalFormatPrecisionException_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$IllegalFormatPrecisionException_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$IllegalFormatPrecisionException_init_I__V(a0))
     }
 
     fileprivate static let java$util$IllegalFormatPrecisionException_getPrecision__I = invoker("getPrecision", returns: jint.jniType)
@@ -7202,8 +7202,8 @@ open class java$util$IllegalFormatWidthException : java$util$IllegalFormatExcept
     open class override func jniName() -> String { return "java/util/IllegalFormatWidthException" }
 
     fileprivate static let java$util$IllegalFormatWidthException_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$util$IllegalFormatWidthException_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$IllegalFormatWidthException_init_I__V(a0))
     }
 
     fileprivate static let java$util$IllegalFormatWidthException_getWidth__I = invoker("getWidth", returns: jint.jniType)
@@ -7224,8 +7224,8 @@ open class java$util$MissingFormatArgumentException : java$util$IllegalFormatExc
     open class override func jniName() -> String { return "java/util/MissingFormatArgumentException" }
 
     fileprivate static let java$util$MissingFormatArgumentException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$MissingFormatArgumentException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$MissingFormatArgumentException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$MissingFormatArgumentException_getFormatSpecifier__java$lang$String = invoker("getFormatSpecifier", returns: JObjectType("java/lang/String"))
@@ -7246,8 +7246,8 @@ open class java$util$MissingFormatWidthException : java$util$IllegalFormatExcept
     open class override func jniName() -> String { return "java/util/MissingFormatWidthException" }
 
     fileprivate static let java$util$MissingFormatWidthException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$MissingFormatWidthException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$MissingFormatWidthException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$MissingFormatWidthException_getFormatSpecifier__java$lang$String = invoker("getFormatSpecifier", returns: JObjectType("java/lang/String"))
@@ -7268,8 +7268,8 @@ open class java$util$UnknownFormatConversionException : java$util$IllegalFormatE
     open class override func jniName() -> String { return "java/util/UnknownFormatConversionException" }
 
     fileprivate static let java$util$UnknownFormatConversionException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$UnknownFormatConversionException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$UnknownFormatConversionException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$UnknownFormatConversionException_getConversion__java$lang$String = invoker("getConversion", returns: JObjectType("java/lang/String"))
@@ -7290,8 +7290,8 @@ open class java$util$UnknownFormatFlagsException : java$util$IllegalFormatExcept
     open class override func jniName() -> String { return "java/util/UnknownFormatFlagsException" }
 
     fileprivate static let java$util$UnknownFormatFlagsException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$UnknownFormatFlagsException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$UnknownFormatFlagsException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$UnknownFormatFlagsException_getFlags__java$lang$String = invoker("getFlags", returns: JObjectType("java/lang/String"))
@@ -7312,8 +7312,8 @@ open class java$util$FormatterClosedException : java$lang$IllegalStateException 
     open class override func jniName() -> String { return "java/util/FormatterClosedException" }
 
     fileprivate static let java$util$FormatterClosedException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$FormatterClosedException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$FormatterClosedException_init__V())
     }
 
 }
@@ -7328,18 +7328,18 @@ open class java$util$IllformedLocaleException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/util/IllformedLocaleException" }
 
     fileprivate static let java$util$IllformedLocaleException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$IllformedLocaleException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$IllformedLocaleException_init__V())
     }
 
     fileprivate static let java$util$IllformedLocaleException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$IllformedLocaleException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$IllformedLocaleException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$IllformedLocaleException_init_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint) throws {
-        try self.init(constructor: I.java$util$IllformedLocaleException_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint) throws {
+        try self.init(creator: I.java$util$IllformedLocaleException_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$IllformedLocaleException_getErrorIndex__I = invoker("getErrorIndex", returns: jint.jniType)
@@ -7359,8 +7359,8 @@ open class java$util$MissingResourceException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/util/MissingResourceException" }
 
     fileprivate static let java$util$MissingResourceException_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$MissingResourceException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$util$MissingResourceException_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$MissingResourceException_getClassName__java$lang$String = invoker("getClassName", returns: JObjectType("java/lang/String"))
@@ -7385,13 +7385,13 @@ open class java$util$NoSuchElementException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/util/NoSuchElementException" }
 
     fileprivate static let java$util$NoSuchElementException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$NoSuchElementException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$NoSuchElementException_init__V())
     }
 
     fileprivate static let java$util$NoSuchElementException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$NoSuchElementException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$NoSuchElementException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -7406,13 +7406,13 @@ open class java$util$InputMismatchException : java$util$NoSuchElementException {
     open class override func jniName() -> String { return "java/util/InputMismatchException" }
 
     fileprivate static let java$util$InputMismatchException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$InputMismatchException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$InputMismatchException_init__V())
     }
 
     fileprivate static let java$util$InputMismatchException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$InputMismatchException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$InputMismatchException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -7427,13 +7427,13 @@ open class java$util$TooManyListenersException : java$lang$Exception {
     open class override func jniName() -> String { return "java/util/TooManyListenersException" }
 
     fileprivate static let java$util$TooManyListenersException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$TooManyListenersException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$TooManyListenersException_init__V())
     }
 
     fileprivate static let java$util$TooManyListenersException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$TooManyListenersException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$TooManyListenersException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -7448,23 +7448,23 @@ open class java$util$Timer : java$lang$Object {
     open class override func jniName() -> String { return "java/util/Timer" }
 
     fileprivate static let java$util$Timer_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$Timer_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$Timer_init__V())
     }
 
     fileprivate static let java$util$Timer_init_Z__V = constructor((jboolean.jniType))
-    public convenience init!(_ a0: jboolean) throws {
-        try self.init(constructor: I.java$util$Timer_init_Z__V(a0))
+    public convenience init(_ a0: jboolean) throws {
+        try self.init(creator: I.java$util$Timer_init_Z__V(a0))
     }
 
     fileprivate static let java$util$Timer_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$Timer_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$Timer_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Timer_init_java$lang$String_Z__V = constructor((JObjectType("java/lang/String"), jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$Timer_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$Timer_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$Timer_schedule_java$util$TimerTask_J__V = invoker("schedule", returns: JVoid.jniType, arguments: (JObjectType("java/util/TimerTask"), jlong.jniType))
@@ -7555,8 +7555,8 @@ open class java$util$TimeZone : java$lang$Object, java$io$Serializable, java$lan
     }
 
     fileprivate static let java$util$TimeZone_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$TimeZone_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$TimeZone_init__V())
     }
 
     fileprivate static let java$util$TimeZone_getOffset_I_I_I_I_I_I__I = invoker("getOffset", returns: jint.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
@@ -7701,23 +7701,23 @@ open class java$util$SimpleTimeZone : java$util$TimeZone {
     }
 
     fileprivate static let java$util$SimpleTimeZone_init_I_java$lang$String__V = constructor((jint.jniType, JObjectType("java/lang/String")))
-    public convenience init!(_ a0: jint, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$SimpleTimeZone_init_I_java$lang$String__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$SimpleTimeZone_init_I_java$lang$String__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I__V = constructor((jint.jniType, JObjectType("java/lang/String"), jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: java$lang$String?, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: jint, _ a8: jint, _ a9: jint) throws {
-        try self.init(constructor: I.java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I__V(a0, a1?.jobj ?? nil, a2, a3, a4, a5, a6, a7, a8, a9))
+    public convenience init(_ a0: jint, _ a1: java$lang$String?, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: jint, _ a8: jint, _ a9: jint) throws {
+        try self.init(creator: I.java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I__V(a0, a1?.jobj ?? nil, a2, a3, a4, a5, a6, a7, a8, a9))
     }
 
     fileprivate static let java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I_I__V = constructor((jint.jniType, JObjectType("java/lang/String"), jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: java$lang$String?, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: jint, _ a8: jint, _ a9: jint, _ a10: jint) throws {
-        try self.init(constructor: I.java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I_I__V(a0, a1?.jobj ?? nil, a2, a3, a4, a5, a6, a7, a8, a9, a10))
+    public convenience init(_ a0: jint, _ a1: java$lang$String?, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: jint, _ a8: jint, _ a9: jint, _ a10: jint) throws {
+        try self.init(creator: I.java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I_I__V(a0, a1?.jobj ?? nil, a2, a3, a4, a5, a6, a7, a8, a9, a10))
     }
 
     fileprivate static let java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I_I_I_I__V = constructor((jint.jniType, JObjectType("java/lang/String"), jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: java$lang$String?, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: jint, _ a8: jint, _ a9: jint, _ a10: jint, _ a11: jint, _ a12: jint) throws {
-        try self.init(constructor: I.java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I_I_I_I__V(a0, a1?.jobj ?? nil, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12))
+    public convenience init(_ a0: jint, _ a1: java$lang$String?, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: jint, _ a8: jint, _ a9: jint, _ a10: jint, _ a11: jint, _ a12: jint) throws {
+        try self.init(creator: I.java$util$SimpleTimeZone_init_I_java$lang$String_I_I_I_I_I_I_I_I_I_I_I__V(a0, a1?.jobj ?? nil, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12))
     }
 
     fileprivate static let java$util$SimpleTimeZone_setStartYear_I__V = invoker("setStartYear", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -7785,8 +7785,8 @@ public final class java$util$UUID : java$lang$Object, java$io$Serializable, java
     open class override func jniName() -> String { return "java/util/UUID" }
 
     fileprivate static let java$util$UUID_init_J_J__V = constructor((jlong.jniType, jlong.jniType))
-    public convenience init!(_ a0: jlong, _ a1: jlong) throws {
-        try self.init(constructor: I.java$util$UUID_init_J_J__V(a0, a1))
+    public convenience init(_ a0: jlong, _ a1: jlong) throws {
+        try self.init(creator: I.java$util$UUID_init_J_J__V(a0, a1))
     }
 
     fileprivate static let java$util$UUID_randomUUID__java$util$UUID = svoker("randomUUID", returns: JObjectType("java/util/UUID"))

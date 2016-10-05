@@ -202,13 +202,13 @@ open class java$time$temporal$UnsupportedTemporalTypeException : java$time$DateT
     open class override func jniName() -> String { return "java/time/temporal/UnsupportedTemporalTypeException" }
 
     fileprivate static let java$time$temporal$UnsupportedTemporalTypeException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$time$temporal$UnsupportedTemporalTypeException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$time$temporal$UnsupportedTemporalTypeException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$time$temporal$UnsupportedTemporalTypeException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$time$temporal$UnsupportedTemporalTypeException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$time$temporal$UnsupportedTemporalTypeException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }

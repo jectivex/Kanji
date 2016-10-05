@@ -297,8 +297,8 @@ open class java$util$regex$PatternSyntaxException : java$lang$IllegalArgumentExc
     open class override func jniName() -> String { return "java/util/regex/PatternSyntaxException" }
 
     fileprivate static let java$util$regex$PatternSyntaxException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$regex$PatternSyntaxException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$util$regex$PatternSyntaxException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$util$regex$PatternSyntaxException_getIndex__I = invoker("getIndex", returns: jint.jniType)

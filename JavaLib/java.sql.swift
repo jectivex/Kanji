@@ -8,13 +8,13 @@ open class java$sql$Date : java$util$Date {
     open class override func jniName() -> String { return "java/sql/Date" }
 
     fileprivate static let java$sql$Date_init_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$Date_init_I_I_I__V(a0, a1, a2))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$Date_init_I_I_I__V(a0, a1, a2))
     }
 
     fileprivate static let java$sql$Date_init_J__V = constructor((jlong.jniType))
-    public convenience init!(_ a0: jlong) throws {
-        try self.init(constructor: I.java$sql$Date_init_J__V(a0))
+    public convenience init(_ a0: jlong) throws {
+        try self.init(creator: I.java$sql$Date_init_J__V(a0))
     }
 
     fileprivate static let java$sql$Date_setTime_J__V = invoker("setTime", returns: JVoid.jniType, arguments: (jlong.jniType))
@@ -53,13 +53,13 @@ open class java$sql$Time : java$util$Date {
     open class override func jniName() -> String { return "java/sql/Time" }
 
     fileprivate static let java$sql$Time_init_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$Time_init_I_I_I__V(a0, a1, a2))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$Time_init_I_I_I__V(a0, a1, a2))
     }
 
     fileprivate static let java$sql$Time_init_J__V = constructor((jlong.jniType))
-    public convenience init!(_ a0: jlong) throws {
-        try self.init(constructor: I.java$sql$Time_init_J__V(a0))
+    public convenience init(_ a0: jlong) throws {
+        try self.init(creator: I.java$sql$Time_init_J__V(a0))
     }
 
     fileprivate static let java$sql$Time_setTime_J__V = invoker("setTime", returns: JVoid.jniType, arguments: (jlong.jniType))
@@ -99,13 +99,13 @@ open class java$sql$Timestamp : java$util$Date {
     open class override func jniName() -> String { return "java/sql/Timestamp" }
 
     fileprivate static let java$sql$Timestamp_init_I_I_I_I_I_I_I__V = constructor((jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint) throws {
-        try self.init(constructor: I.java$sql$Timestamp_init_I_I_I_I_I_I_I__V(a0, a1, a2, a3, a4, a5, a6))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint) throws {
+        try self.init(creator: I.java$sql$Timestamp_init_I_I_I_I_I_I_I__V(a0, a1, a2, a3, a4, a5, a6))
     }
 
     fileprivate static let java$sql$Timestamp_init_J__V = constructor((jlong.jniType))
-    public convenience init!(_ a0: jlong) throws {
-        try self.init(constructor: I.java$sql$Timestamp_init_J__V(a0))
+    public convenience init(_ a0: jlong) throws {
+        try self.init(creator: I.java$sql$Timestamp_init_J__V(a0))
     }
 
     fileprivate static let java$sql$Timestamp_setTime_J__V = invoker("setTime", returns: JVoid.jniType, arguments: (jlong.jniType))
@@ -290,8 +290,8 @@ open class java$sql$DriverPropertyInfo : java$lang$Object {
     }
 
     fileprivate static let java$sql$DriverPropertyInfo_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$DriverPropertyInfo_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$DriverPropertyInfo_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -306,13 +306,13 @@ public final class java$sql$SQLPermission : java$security$BasicPermission {
     open class override func jniName() -> String { return "java/sql/SQLPermission" }
 
     fileprivate static let java$sql$SQLPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLPermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLPermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -327,43 +327,43 @@ open class java$sql$SQLException : java$lang$Exception, java$lang$Iterable {
     open class override func jniName() -> String { return "java/sql/SQLException" }
 
     fileprivate static let java$sql$SQLException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLException_init__V())
     }
 
     fileprivate static let java$sql$SQLException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLException_getSQLState__java$lang$String = invoker("getSQLState", returns: JObjectType("java/lang/String"))
@@ -403,53 +403,53 @@ open class java$sql$BatchUpdateException : java$sql$SQLException {
     open class override func jniName() -> String { return "java/sql/BatchUpdateException" }
 
     fileprivate static let java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AI__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JArray(jint.jniType)))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: [jint]?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AI__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: [jint]?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AI__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_AI__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JArray(jint.jniType)))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: [jint]?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_AI__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: [jint]?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_AI__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_java$lang$String_AI__V = constructor((JObjectType("java/lang/String"), JArray(jint.jniType)))
-    public convenience init!(_ a0: java$lang$String?, _ a1: [jint]?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_java$lang$String_AI__V(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: [jint]?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_java$lang$String_AI__V(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_AI__V = constructor((JArray(jint.jniType)))
-    public convenience init!(_ a0: [jint]?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_AI__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jint]?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_AI__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init__V())
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_AI_java$lang$Throwable__V = constructor((JArray(jint.jniType), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: [jint]?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_AI_java$lang$Throwable__V(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: [jint]?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_AI_java$lang$Throwable__V(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_java$lang$String_AI_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JArray(jint.jniType), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: [jint]?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_java$lang$String_AI_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: [jint]?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_java$lang$String_AI_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_AI_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JArray(jint.jniType), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: [jint]?, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_AI_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.arrayToJArray() ?? nil, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: [jint]?, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_AI_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.arrayToJArray() ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AI_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JArray(jint.jniType), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: [jint]?, _ a4: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AI_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.arrayToJArray() ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: [jint]?, _ a4: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AI_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.arrayToJArray() ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_getUpdateCounts__AI = invoker("getUpdateCounts", returns: JArray(jint.jniType))
@@ -458,8 +458,8 @@ open class java$sql$BatchUpdateException : java$sql$SQLException {
     }
 
     fileprivate static let java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AJ_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JArray(jlong.jniType), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: [jlong]?, _ a4: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AJ_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.arrayToJArray() ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: [jlong]?, _ a4: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$BatchUpdateException_init_java$lang$String_java$lang$String_I_AJ_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.arrayToJArray() ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$BatchUpdateException_getLargeUpdateCounts__AJ = invoker("getLargeUpdateCounts", returns: JArray(jlong.jniType))
@@ -479,48 +479,48 @@ open class java$sql$SQLClientInfoException : java$sql$SQLException {
     open class override func jniName() -> String { return "java/sql/SQLClientInfoException" }
 
     fileprivate static let java$sql$SQLClientInfoException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init__V())
     }
 
     fileprivate static let java$sql$SQLClientInfoException_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLClientInfoException_init_java$util$Map_java$lang$Throwable__V = constructor((JObjectType("java/util/Map"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$util$Map?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init_java$util$Map_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init_java$util$Map_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLClientInfoException_init_java$lang$String_java$util$Map__V = constructor((JObjectType("java/lang/String"), JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$util$Map?) throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init_java$lang$String_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$util$Map?) throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init_java$lang$String_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLClientInfoException_init_java$lang$String_java$util$Map_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/util/Map"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$util$Map?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init_java$lang$String_java$util$Map_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$util$Map?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init_java$lang$String_java$util$Map_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_java$util$Map__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$util$Map?) throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$util$Map?) throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_java$util$Map_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/util/Map"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$util$Map?, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_java$util$Map_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$util$Map?, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_java$util$Map_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_I_java$util$Map__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$util$Map?) throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_I_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$util$Map?) throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_I_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_I_java$util$Map_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/util/Map"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$util$Map?, _ a4: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_I_java$util$Map_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$util$Map?, _ a4: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLClientInfoException_init_java$lang$String_java$lang$String_I_java$util$Map_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLClientInfoException_getFailedProperties__java$util$Map = invoker("getFailedProperties", returns: JObjectType("java/util/Map"))
@@ -540,43 +540,43 @@ open class java$sql$SQLNonTransientException : java$sql$SQLException {
     open class override func jniName() -> String { return "java/sql/SQLNonTransientException" }
 
     fileprivate static let java$sql$SQLNonTransientException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLNonTransientException_init__V())
     }
 
     fileprivate static let java$sql$SQLNonTransientException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLNonTransientException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -591,43 +591,43 @@ open class java$sql$SQLDataException : java$sql$SQLNonTransientException {
     open class override func jniName() -> String { return "java/sql/SQLDataException" }
 
     fileprivate static let java$sql$SQLDataException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLDataException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLDataException_init__V())
     }
 
     fileprivate static let java$sql$SQLDataException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLDataException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLDataException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLDataException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLDataException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLDataException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLDataException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLDataException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLDataException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLDataException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLDataException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLDataException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLDataException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLDataException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLDataException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLDataException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLDataException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLDataException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLDataException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLDataException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLDataException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -642,43 +642,43 @@ open class java$sql$SQLFeatureNotSupportedException : java$sql$SQLNonTransientEx
     open class override func jniName() -> String { return "java/sql/SQLFeatureNotSupportedException" }
 
     fileprivate static let java$sql$SQLFeatureNotSupportedException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLFeatureNotSupportedException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLFeatureNotSupportedException_init__V())
     }
 
     fileprivate static let java$sql$SQLFeatureNotSupportedException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLFeatureNotSupportedException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLFeatureNotSupportedException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -693,43 +693,43 @@ open class java$sql$SQLIntegrityConstraintViolationException : java$sql$SQLNonTr
     open class override func jniName() -> String { return "java/sql/SQLIntegrityConstraintViolationException" }
 
     fileprivate static let java$sql$SQLIntegrityConstraintViolationException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLIntegrityConstraintViolationException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLIntegrityConstraintViolationException_init__V())
     }
 
     fileprivate static let java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLIntegrityConstraintViolationException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLIntegrityConstraintViolationException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -744,43 +744,43 @@ open class java$sql$SQLInvalidAuthorizationSpecException : java$sql$SQLNonTransi
     open class override func jniName() -> String { return "java/sql/SQLInvalidAuthorizationSpecException" }
 
     fileprivate static let java$sql$SQLInvalidAuthorizationSpecException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLInvalidAuthorizationSpecException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLInvalidAuthorizationSpecException_init__V())
     }
 
     fileprivate static let java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLInvalidAuthorizationSpecException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -795,43 +795,43 @@ open class java$sql$SQLNonTransientConnectionException : java$sql$SQLNonTransien
     open class override func jniName() -> String { return "java/sql/SQLNonTransientConnectionException" }
 
     fileprivate static let java$sql$SQLNonTransientConnectionException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientConnectionException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLNonTransientConnectionException_init__V())
     }
 
     fileprivate static let java$sql$SQLNonTransientConnectionException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLNonTransientConnectionException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientConnectionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientConnectionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLNonTransientConnectionException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -846,43 +846,43 @@ open class java$sql$SQLSyntaxErrorException : java$sql$SQLNonTransientException 
     open class override func jniName() -> String { return "java/sql/SQLSyntaxErrorException" }
 
     fileprivate static let java$sql$SQLSyntaxErrorException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLSyntaxErrorException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLSyntaxErrorException_init__V())
     }
 
     fileprivate static let java$sql$SQLSyntaxErrorException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLSyntaxErrorException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLSyntaxErrorException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLSyntaxErrorException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLSyntaxErrorException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLSyntaxErrorException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLSyntaxErrorException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -897,43 +897,43 @@ open class java$sql$SQLRecoverableException : java$sql$SQLException {
     open class override func jniName() -> String { return "java/sql/SQLRecoverableException" }
 
     fileprivate static let java$sql$SQLRecoverableException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLRecoverableException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLRecoverableException_init__V())
     }
 
     fileprivate static let java$sql$SQLRecoverableException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLRecoverableException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLRecoverableException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLRecoverableException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLRecoverableException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLRecoverableException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLRecoverableException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLRecoverableException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -948,43 +948,43 @@ open class java$sql$SQLTransientException : java$sql$SQLException {
     open class override func jniName() -> String { return "java/sql/SQLTransientException" }
 
     fileprivate static let java$sql$SQLTransientException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLTransientException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLTransientException_init__V())
     }
 
     fileprivate static let java$sql$SQLTransientException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLTransientException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLTransientException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransientException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransientException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -999,43 +999,43 @@ open class java$sql$SQLTimeoutException : java$sql$SQLTransientException {
     open class override func jniName() -> String { return "java/sql/SQLTimeoutException" }
 
     fileprivate static let java$sql$SQLTimeoutException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLTimeoutException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLTimeoutException_init__V())
     }
 
     fileprivate static let java$sql$SQLTimeoutException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLTimeoutException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLTimeoutException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLTimeoutException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTimeoutException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTimeoutException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTimeoutException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTimeoutException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -1050,43 +1050,43 @@ open class java$sql$SQLTransactionRollbackException : java$sql$SQLTransientExcep
     open class override func jniName() -> String { return "java/sql/SQLTransactionRollbackException" }
 
     fileprivate static let java$sql$SQLTransactionRollbackException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLTransactionRollbackException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLTransactionRollbackException_init__V())
     }
 
     fileprivate static let java$sql$SQLTransactionRollbackException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLTransactionRollbackException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLTransactionRollbackException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLTransactionRollbackException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransactionRollbackException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransactionRollbackException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransactionRollbackException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -1101,43 +1101,43 @@ open class java$sql$SQLTransientConnectionException : java$sql$SQLTransientExcep
     open class override func jniName() -> String { return "java/sql/SQLTransientConnectionException" }
 
     fileprivate static let java$sql$SQLTransientConnectionException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLTransientConnectionException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLTransientConnectionException_init__V())
     }
 
     fileprivate static let java$sql$SQLTransientConnectionException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientConnectionException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLTransientConnectionException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLTransientConnectionException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientConnectionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransientConnectionException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLTransientConnectionException_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
 }
@@ -1152,43 +1152,43 @@ open class java$sql$SQLWarning : java$sql$SQLException {
     open class override func jniName() -> String { return "java/sql/SQLWarning" }
 
     fileprivate static let java$sql$SQLWarning_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$sql$SQLWarning_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$sql$SQLWarning_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$sql$SQLWarning_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLWarning_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLWarning_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLWarning_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$sql$SQLWarning_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$sql$SQLWarning_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLWarning_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$sql$SQLWarning_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$sql$SQLWarning_init__V())
     }
 
     fileprivate static let java$sql$SQLWarning_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLWarning_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLWarning_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLWarning_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLWarning_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLWarning_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLWarning_init_java$lang$String_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLWarning_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLWarning_init_java$lang$String_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLWarning_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$SQLWarning_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$SQLWarning_init_java$lang$String_java$lang$String_I_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$SQLWarning_getNextWarning__java$sql$SQLWarning = invoker("getNextWarning", returns: JObjectType("java/sql/SQLWarning"))
@@ -1213,13 +1213,13 @@ open class java$sql$DataTruncation : java$sql$SQLWarning {
     open class override func jniName() -> String { return "java/sql/DataTruncation" }
 
     fileprivate static let java$sql$DataTruncation_init_I_Z_Z_I_I__V = constructor((jint.jniType, jboolean.jniType, jboolean.jniType, jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jboolean, _ a2: jboolean, _ a3: jint, _ a4: jint) throws {
-        try self.init(constructor: I.java$sql$DataTruncation_init_I_Z_Z_I_I__V(a0, a1, a2, a3, a4))
+    public convenience init(_ a0: jint, _ a1: jboolean, _ a2: jboolean, _ a3: jint, _ a4: jint) throws {
+        try self.init(creator: I.java$sql$DataTruncation_init_I_Z_Z_I_I__V(a0, a1, a2, a3, a4))
     }
 
     fileprivate static let java$sql$DataTruncation_init_I_Z_Z_I_I_java$lang$Throwable__V = constructor((jint.jniType, jboolean.jniType, jboolean.jniType, jint.jniType, jint.jniType, JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: jint, _ a1: jboolean, _ a2: jboolean, _ a3: jint, _ a4: jint, _ a5: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$sql$DataTruncation_init_I_Z_Z_I_I_java$lang$Throwable__V(a0, a1, a2, a3, a4, a5?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jboolean, _ a2: jboolean, _ a3: jint, _ a4: jint, _ a5: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$sql$DataTruncation_init_I_Z_Z_I_I_java$lang$Throwable__V(a0, a1, a2, a3, a4, a5?.jobj ?? nil))
     }
 
     fileprivate static let java$sql$DataTruncation_getIndex__I = invoker("getIndex", returns: jint.jniType)

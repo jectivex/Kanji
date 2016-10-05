@@ -2563,8 +2563,6 @@ private func checked<T>(_ env: JNIEnvPointer, _ f: @autoclosure () throws -> T) 
     return result
 }
 
-
-
 /// Marker interface for all Java objects
 public protocol JavaObject: class, JSig, JRef, JInvocable {
     /// The JNI name for this class

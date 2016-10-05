@@ -8,8 +8,8 @@ open class java$security$acl$AclNotFoundException : java$lang$Exception {
     open class override func jniName() -> String { return "java/security/acl/AclNotFoundException" }
 
     fileprivate static let java$security$acl$AclNotFoundException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$acl$AclNotFoundException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$acl$AclNotFoundException_init__V())
     }
 
 }
@@ -24,8 +24,8 @@ open class java$security$acl$LastOwnerException : java$lang$Exception {
     open class override func jniName() -> String { return "java/security/acl/LastOwnerException" }
 
     fileprivate static let java$security$acl$LastOwnerException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$acl$LastOwnerException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$acl$LastOwnerException_init__V())
     }
 
 }
@@ -40,8 +40,8 @@ open class java$security$acl$NotOwnerException : java$lang$Exception {
     open class override func jniName() -> String { return "java/security/acl/NotOwnerException" }
 
     fileprivate static let java$security$acl$NotOwnerException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$acl$NotOwnerException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$acl$NotOwnerException_init__V())
     }
 
 }

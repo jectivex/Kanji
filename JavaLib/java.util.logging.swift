@@ -38,8 +38,8 @@ open class java$util$logging$ErrorManager : java$lang$Object {
     }
 
     fileprivate static let java$util$logging$ErrorManager_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$logging$ErrorManager_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$logging$ErrorManager_init__V())
     }
 
     fileprivate static let java$util$logging$ErrorManager_error_java$lang$String_java$lang$Exception_I__V = invoker("error", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/Exception"), jint.jniType))
@@ -90,8 +90,8 @@ open class java$util$logging$SimpleFormatter : java$util$logging$Formatter {
     open class override func jniName() -> String { return "java/util/logging/SimpleFormatter" }
 
     fileprivate static let java$util$logging$SimpleFormatter_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$logging$SimpleFormatter_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$logging$SimpleFormatter_init__V())
     }
 
     fileprivate static let java$util$logging$SimpleFormatter_format_java$util$logging$LogRecord__java$lang$String = invoker("format", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/util/logging/LogRecord")))
@@ -107,8 +107,8 @@ open class java$util$logging$XMLFormatter : java$util$logging$Formatter {
     open class override func jniName() -> String { return "java/util/logging/XMLFormatter" }
 
     fileprivate static let java$util$logging$XMLFormatter_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$logging$XMLFormatter_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$logging$XMLFormatter_init__V())
     }
 
     fileprivate static let java$util$logging$XMLFormatter_format_java$util$logging$LogRecord__java$lang$String = invoker("format", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/util/logging/LogRecord")))
@@ -207,13 +207,13 @@ open class java$util$logging$MemoryHandler : java$util$logging$Handler {
     open class override func jniName() -> String { return "java/util/logging/MemoryHandler" }
 
     fileprivate static let java$util$logging$MemoryHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$logging$MemoryHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$logging$MemoryHandler_init__V())
     }
 
     fileprivate static let java$util$logging$MemoryHandler_init_java$util$logging$Handler_I_java$util$logging$Level__V = constructor((JObjectType("java/util/logging/Handler"), jint.jniType, JObjectType("java/util/logging/Level")))
-    public convenience init!(_ a0: java$util$logging$Handler?, _ a1: jint, _ a2: java$util$logging$Level?) throws {
-        try self.init(constructor: I.java$util$logging$MemoryHandler_init_java$util$logging$Handler_I_java$util$logging$Level__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$util$logging$Handler?, _ a1: jint, _ a2: java$util$logging$Level?) throws {
+        try self.init(creator: I.java$util$logging$MemoryHandler_init_java$util$logging$Handler_I_java$util$logging$Level__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$logging$MemoryHandler_publish_java$util$logging$LogRecord__V = invoker("publish", returns: JVoid.jniType, arguments: (JObjectType("java/util/logging/LogRecord")))
@@ -247,13 +247,13 @@ open class java$util$logging$StreamHandler : java$util$logging$Handler {
     open class override func jniName() -> String { return "java/util/logging/StreamHandler" }
 
     fileprivate static let java$util$logging$StreamHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$logging$StreamHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$logging$StreamHandler_init__V())
     }
 
     fileprivate static let java$util$logging$StreamHandler_init_java$io$OutputStream_java$util$logging$Formatter__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/util/logging/Formatter")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$util$logging$Formatter?) throws {
-        try self.init(constructor: I.java$util$logging$StreamHandler_init_java$io$OutputStream_java$util$logging$Formatter__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$util$logging$Formatter?) throws {
+        try self.init(creator: I.java$util$logging$StreamHandler_init_java$io$OutputStream_java$util$logging$Formatter__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$logging$StreamHandler_setEncoding_java$lang$String__V = invoker("setEncoding", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String")))
@@ -273,8 +273,8 @@ open class java$util$logging$ConsoleHandler : java$util$logging$StreamHandler {
     open class override func jniName() -> String { return "java/util/logging/ConsoleHandler" }
 
     fileprivate static let java$util$logging$ConsoleHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$logging$ConsoleHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$logging$ConsoleHandler_init__V())
     }
 
     fileprivate static let java$util$logging$ConsoleHandler_publish_java$util$logging$LogRecord__V = invoker("publish", returns: JVoid.jniType, arguments: (JObjectType("java/util/logging/LogRecord")))
@@ -291,28 +291,28 @@ open class java$util$logging$FileHandler : java$util$logging$StreamHandler {
     open class override func jniName() -> String { return "java/util/logging/FileHandler" }
 
     fileprivate static let java$util$logging$FileHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$logging$FileHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$logging$FileHandler_init__V())
     }
 
     fileprivate static let java$util$logging$FileHandler_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$logging$FileHandler_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$logging$FileHandler_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$logging$FileHandler_init_java$lang$String_Z__V = constructor((JObjectType("java/lang/String"), jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jboolean) throws {
-        try self.init(constructor: I.java$util$logging$FileHandler_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jboolean) throws {
+        try self.init(creator: I.java$util$logging$FileHandler_init_java$lang$String_Z__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$logging$FileHandler_init_java$lang$String_I_I__V = constructor((JObjectType("java/lang/String"), jint.jniType, jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$util$logging$FileHandler_init_java$lang$String_I_I__V(a0?.jobj ?? nil, a1, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$util$logging$FileHandler_init_java$lang$String_I_I__V(a0?.jobj ?? nil, a1, a2))
     }
 
     fileprivate static let java$util$logging$FileHandler_init_java$lang$String_I_I_Z__V = constructor((JObjectType("java/lang/String"), jint.jniType, jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint, _ a2: jint, _ a3: jboolean) throws {
-        try self.init(constructor: I.java$util$logging$FileHandler_init_java$lang$String_I_I_Z__V(a0?.jobj ?? nil, a1, a2, a3))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint, _ a2: jint, _ a3: jboolean) throws {
+        try self.init(creator: I.java$util$logging$FileHandler_init_java$lang$String_I_I_Z__V(a0?.jobj ?? nil, a1, a2, a3))
     }
 
     fileprivate static let java$util$logging$FileHandler_publish_java$util$logging$LogRecord__V = invoker("publish", returns: JVoid.jniType, arguments: (JObjectType("java/util/logging/LogRecord")))
@@ -329,13 +329,13 @@ open class java$util$logging$SocketHandler : java$util$logging$StreamHandler {
     open class override func jniName() -> String { return "java/util/logging/SocketHandler" }
 
     fileprivate static let java$util$logging$SocketHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$util$logging$SocketHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$util$logging$SocketHandler_init__V())
     }
 
     fileprivate static let java$util$logging$SocketHandler_init_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint) throws {
-        try self.init(constructor: I.java$util$logging$SocketHandler_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint) throws {
+        try self.init(creator: I.java$util$logging$SocketHandler_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$util$logging$SocketHandler_close__V = invoker("close", returns: JVoid.jniType)
@@ -833,8 +833,8 @@ open class java$util$logging$LogRecord : java$lang$Object, java$io$Serializable 
     open class override func jniName() -> String { return "java/util/logging/LogRecord" }
 
     fileprivate static let java$util$logging$LogRecord_init_java$util$logging$Level_java$lang$String__V = constructor((JObjectType("java/util/logging/Level"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$util$logging$Level?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$logging$LogRecord_init_java$util$logging$Level_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$util$logging$Level?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$logging$LogRecord_init_java$util$logging$Level_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$logging$LogRecord_getLoggerName__java$lang$String = invoker("getLoggerName", returns: JObjectType("java/lang/String"))
@@ -969,8 +969,8 @@ public final class java$util$logging$LoggingPermission : java$security$BasicPerm
     open class override func jniName() -> String { return "java/util/logging/LoggingPermission" }
 
     fileprivate static let java$util$logging$LoggingPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$logging$LoggingPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$util$logging$LoggingPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }

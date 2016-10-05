@@ -8,8 +8,8 @@ open class java$lang$management$LockInfo : java$lang$Object {
     open class override func jniName() -> String { return "java/lang/management/LockInfo" }
 
     fileprivate static let java$lang$management$LockInfo_init_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint) throws {
-        try self.init(constructor: I.java$lang$management$LockInfo_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint) throws {
+        try self.init(creator: I.java$lang$management$LockInfo_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$lang$management$LockInfo_getClassName__java$lang$String = invoker("getClassName", returns: JObjectType("java/lang/String"))
@@ -40,8 +40,8 @@ open class java$lang$management$MonitorInfo : java$lang$management$LockInfo {
     open class override func jniName() -> String { return "java/lang/management/MonitorInfo" }
 
     fileprivate static let java$lang$management$MonitorInfo_init_java$lang$String_I_I_java$lang$StackTraceElement__V = constructor((JObjectType("java/lang/String"), jint.jniType, jint.jniType, JObjectType("java/lang/StackTraceElement")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint, _ a2: jint, _ a3: java$lang$StackTraceElement?) throws {
-        try self.init(constructor: I.java$lang$management$MonitorInfo_init_java$lang$String_I_I_java$lang$StackTraceElement__V(a0?.jobj ?? nil, a1, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint, _ a2: jint, _ a3: java$lang$StackTraceElement?) throws {
+        try self.init(creator: I.java$lang$management$MonitorInfo_init_java$lang$String_I_I_java$lang$StackTraceElement__V(a0?.jobj ?? nil, a1, a2, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$management$MonitorInfo_getLockedStackDepth__I = invoker("getLockedStackDepth", returns: jint.jniType)
@@ -213,8 +213,8 @@ open class java$lang$management$MemoryNotificationInfo : java$lang$Object {
     }
 
     fileprivate static let java$lang$management$MemoryNotificationInfo_init_java$lang$String_java$lang$management$MemoryUsage_J__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/management/MemoryUsage"), jlong.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$management$MemoryUsage?, _ a2: jlong) throws {
-        try self.init(constructor: I.java$lang$management$MemoryNotificationInfo_init_java$lang$String_java$lang$management$MemoryUsage_J__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$management$MemoryUsage?, _ a2: jlong) throws {
+        try self.init(creator: I.java$lang$management$MemoryNotificationInfo_init_java$lang$String_java$lang$management$MemoryUsage_J__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$lang$management$MemoryNotificationInfo_getPoolName__java$lang$String = invoker("getPoolName", returns: JObjectType("java/lang/String"))
@@ -249,8 +249,8 @@ open class java$lang$management$MemoryUsage : java$lang$Object {
     open class override func jniName() -> String { return "java/lang/management/MemoryUsage" }
 
     fileprivate static let java$lang$management$MemoryUsage_init_J_J_J_J__V = constructor((jlong.jniType, jlong.jniType, jlong.jniType, jlong.jniType))
-    public convenience init!(_ a0: jlong, _ a1: jlong, _ a2: jlong, _ a3: jlong) throws {
-        try self.init(constructor: I.java$lang$management$MemoryUsage_init_J_J_J_J__V(a0, a1, a2, a3))
+    public convenience init(_ a0: jlong, _ a1: jlong, _ a2: jlong, _ a3: jlong) throws {
+        try self.init(creator: I.java$lang$management$MemoryUsage_init_J_J_J_J__V(a0, a1, a2, a3))
     }
 
     fileprivate static let java$lang$management$MemoryUsage_getInit__J = invoker("getInit", returns: jlong.jniType)
@@ -291,13 +291,13 @@ public final class java$lang$management$ManagementPermission : java$security$Bas
     open class override func jniName() -> String { return "java/lang/management/ManagementPermission" }
 
     fileprivate static let java$lang$management$ManagementPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$management$ManagementPermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$management$ManagementPermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$lang$management$ManagementPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$lang$management$ManagementPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$management$ManagementPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }

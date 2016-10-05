@@ -8,8 +8,8 @@ open class java$net$Authenticator : java$lang$Object {
     open class override func jniName() -> String { return "java/net/Authenticator" }
 
     fileprivate static let java$net$Authenticator_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$Authenticator_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$Authenticator_init__V())
     }
 
     fileprivate static let java$net$Authenticator_setDefault_java$net$Authenticator__V = svoker("setDefault", returns: JVoid.jniType, arguments: (JObjectType("java/net/Authenticator")))
@@ -44,8 +44,8 @@ open class java$net$CacheRequest : java$lang$Object {
     open class override func jniName() -> String { return "java/net/CacheRequest" }
 
     fileprivate static let java$net$CacheRequest_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$CacheRequest_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$CacheRequest_init__V())
     }
 
     fileprivate static let java$net$CacheRequest_getBody__java$io$OutputStream = invoker("getBody", returns: JObjectType("java/io/OutputStream"))
@@ -70,8 +70,8 @@ open class java$net$CacheResponse : java$lang$Object {
     open class override func jniName() -> String { return "java/net/CacheResponse" }
 
     fileprivate static let java$net$CacheResponse_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$CacheResponse_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$CacheResponse_init__V())
     }
 
     fileprivate static let java$net$CacheResponse_getHeaders__java$util$Map = invoker("getHeaders", returns: JObjectType("java/util/Map"))
@@ -96,8 +96,8 @@ open class java$net$SecureCacheResponse : java$net$CacheResponse {
     open class override func jniName() -> String { return "java/net/SecureCacheResponse" }
 
     fileprivate static let java$net$SecureCacheResponse_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$SecureCacheResponse_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$SecureCacheResponse_init__V())
     }
 
     fileprivate static let java$net$SecureCacheResponse_getCipherSuite__java$lang$String = invoker("getCipherSuite", returns: JObjectType("java/lang/String"))
@@ -137,18 +137,18 @@ open class java$net$URLClassLoader : java$security$SecureClassLoader, java$io$Cl
     open class override func jniName() -> String { return "java/net/URLClassLoader" }
 
     fileprivate static let java$net$URLClassLoader_init_Ajava$net$URL_java$lang$ClassLoader__V = constructor((JArray(JObjectType("java/net/URL")), JObjectType("java/lang/ClassLoader")))
-    public convenience init!(_ a0: [java$net$URL?]?, _ a1: java$lang$ClassLoader?) throws {
-        try self.init(constructor: I.java$net$URLClassLoader_init_Ajava$net$URL_java$lang$ClassLoader__V(a0?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: [java$net$URL?]?, _ a1: java$lang$ClassLoader?) throws {
+        try self.init(creator: I.java$net$URLClassLoader_init_Ajava$net$URL_java$lang$ClassLoader__V(a0?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URLClassLoader_init_Ajava$net$URL__V = constructor((JArray(JObjectType("java/net/URL"))))
-    public convenience init!(_ a0: [java$net$URL?]?) throws {
-        try self.init(constructor: I.java$net$URLClassLoader_init_Ajava$net$URL__V(a0?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: [java$net$URL?]?) throws {
+        try self.init(creator: I.java$net$URLClassLoader_init_Ajava$net$URL__V(a0?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$net$URLClassLoader_init_Ajava$net$URL_java$lang$ClassLoader_java$net$URLStreamHandlerFactory__V = constructor((JArray(JObjectType("java/net/URL")), JObjectType("java/lang/ClassLoader"), JObjectType("java/net/URLStreamHandlerFactory")))
-    public convenience init!(_ a0: [java$net$URL?]?, _ a1: java$lang$ClassLoader?, _ a2: java$net$URLStreamHandlerFactory?) throws {
-        try self.init(constructor: I.java$net$URLClassLoader_init_Ajava$net$URL_java$lang$ClassLoader_java$net$URLStreamHandlerFactory__V(a0?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: [java$net$URL?]?, _ a1: java$lang$ClassLoader?, _ a2: java$net$URLStreamHandlerFactory?) throws {
+        try self.init(creator: I.java$net$URLClassLoader_init_Ajava$net$URL_java$lang$ClassLoader_java$net$URLStreamHandlerFactory__V(a0?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URLClassLoader_getResourceAsStream_java$lang$String__java$io$InputStream = invoker("getResourceAsStream", returns: JObjectType("java/io/InputStream"), arguments: (JObjectType("java/lang/String")))
@@ -194,8 +194,8 @@ open class java$net$ContentHandler : java$lang$Object {
     open class override func jniName() -> String { return "java/net/ContentHandler" }
 
     fileprivate static let java$net$ContentHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$ContentHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$ContentHandler_init__V())
     }
 
     fileprivate static let java$net$ContentHandler_getContent_java$net$URLConnection__java$lang$Object = invoker("getContent", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/net/URLConnection")))
@@ -220,8 +220,8 @@ open class java$net$CookieHandler : java$lang$Object {
     open class override func jniName() -> String { return "java/net/CookieHandler" }
 
     fileprivate static let java$net$CookieHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$CookieHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$CookieHandler_init__V())
     }
 
     fileprivate static let java$net$CookieHandler_getDefault__java$net$CookieHandler = svoker("getDefault", returns: JObjectType("java/net/CookieHandler"))
@@ -256,13 +256,13 @@ open class java$net$CookieManager : java$net$CookieHandler {
     open class override func jniName() -> String { return "java/net/CookieManager" }
 
     fileprivate static let java$net$CookieManager_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$CookieManager_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$CookieManager_init__V())
     }
 
     fileprivate static let java$net$CookieManager_init_java$net$CookieStore_java$net$CookiePolicy__V = constructor((JObjectType("java/net/CookieStore"), JObjectType("java/net/CookiePolicy")))
-    public convenience init!(_ a0: java$net$CookieStore?, _ a1: java$net$CookiePolicy?) throws {
-        try self.init(constructor: I.java$net$CookieManager_init_java$net$CookieStore_java$net$CookiePolicy__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$net$CookieStore?, _ a1: java$net$CookiePolicy?) throws {
+        try self.init(creator: I.java$net$CookieManager_init_java$net$CookieStore_java$net$CookiePolicy__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$CookieManager_setCookiePolicy_java$net$CookiePolicy__V = invoker("setCookiePolicy", returns: JVoid.jniType, arguments: (JObjectType("java/net/CookiePolicy")))
@@ -289,33 +289,33 @@ public final class java$net$DatagramPacket : java$lang$Object {
     open class override func jniName() -> String { return "java/net/DatagramPacket" }
 
     fileprivate static let java$net$DatagramPacket_init_AB_I_I__V = constructor((JArray(jbyte.jniType), jint.jniType, jint.jniType))
-    public convenience init!(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws {
-        try self.init(constructor: I.java$net$DatagramPacket_init_AB_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
+    public convenience init(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$net$DatagramPacket_init_AB_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
     }
 
     fileprivate static let java$net$DatagramPacket_init_AB_I__V = constructor((JArray(jbyte.jniType), jint.jniType))
-    public convenience init!(_ a0: [jbyte]?, _ a1: jint) throws {
-        try self.init(constructor: I.java$net$DatagramPacket_init_AB_I__V(a0?.arrayToJArray() ?? nil, a1))
+    public convenience init(_ a0: [jbyte]?, _ a1: jint) throws {
+        try self.init(creator: I.java$net$DatagramPacket_init_AB_I__V(a0?.arrayToJArray() ?? nil, a1))
     }
 
     fileprivate static let java$net$DatagramPacket_init_AB_I_I_java$net$InetAddress_I__V = constructor((JArray(jbyte.jniType), jint.jniType, jint.jniType, JObjectType("java/net/InetAddress"), jint.jniType))
-    public convenience init!(_ a0: [jbyte]?, _ a1: jint, _ a2: jint, _ a3: java$net$InetAddress?, _ a4: jint) throws {
-        try self.init(constructor: I.java$net$DatagramPacket_init_AB_I_I_java$net$InetAddress_I__V(a0?.arrayToJArray() ?? nil, a1, a2, a3?.jobj ?? nil, a4))
+    public convenience init(_ a0: [jbyte]?, _ a1: jint, _ a2: jint, _ a3: java$net$InetAddress?, _ a4: jint) throws {
+        try self.init(creator: I.java$net$DatagramPacket_init_AB_I_I_java$net$InetAddress_I__V(a0?.arrayToJArray() ?? nil, a1, a2, a3?.jobj ?? nil, a4))
     }
 
     fileprivate static let java$net$DatagramPacket_init_AB_I_I_java$net$SocketAddress__V = constructor((JArray(jbyte.jniType), jint.jniType, jint.jniType, JObjectType("java/net/SocketAddress")))
-    public convenience init!(_ a0: [jbyte]?, _ a1: jint, _ a2: jint, _ a3: java$net$SocketAddress?) throws {
-        try self.init(constructor: I.java$net$DatagramPacket_init_AB_I_I_java$net$SocketAddress__V(a0?.arrayToJArray() ?? nil, a1, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: [jbyte]?, _ a1: jint, _ a2: jint, _ a3: java$net$SocketAddress?) throws {
+        try self.init(creator: I.java$net$DatagramPacket_init_AB_I_I_java$net$SocketAddress__V(a0?.arrayToJArray() ?? nil, a1, a2, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$net$DatagramPacket_init_AB_I_java$net$InetAddress_I__V = constructor((JArray(jbyte.jniType), jint.jniType, JObjectType("java/net/InetAddress"), jint.jniType))
-    public convenience init!(_ a0: [jbyte]?, _ a1: jint, _ a2: java$net$InetAddress?, _ a3: jint) throws {
-        try self.init(constructor: I.java$net$DatagramPacket_init_AB_I_java$net$InetAddress_I__V(a0?.arrayToJArray() ?? nil, a1, a2?.jobj ?? nil, a3))
+    public convenience init(_ a0: [jbyte]?, _ a1: jint, _ a2: java$net$InetAddress?, _ a3: jint) throws {
+        try self.init(creator: I.java$net$DatagramPacket_init_AB_I_java$net$InetAddress_I__V(a0?.arrayToJArray() ?? nil, a1, a2?.jobj ?? nil, a3))
     }
 
     fileprivate static let java$net$DatagramPacket_init_AB_I_java$net$SocketAddress__V = constructor((JArray(jbyte.jniType), jint.jniType, JObjectType("java/net/SocketAddress")))
-    public convenience init!(_ a0: [jbyte]?, _ a1: jint, _ a2: java$net$SocketAddress?) throws {
-        try self.init(constructor: I.java$net$DatagramPacket_init_AB_I_java$net$SocketAddress__V(a0?.arrayToJArray() ?? nil, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: [jbyte]?, _ a1: jint, _ a2: java$net$SocketAddress?) throws {
+        try self.init(creator: I.java$net$DatagramPacket_init_AB_I_java$net$SocketAddress__V(a0?.arrayToJArray() ?? nil, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$net$DatagramPacket_getAddress__java$net$InetAddress = invoker("getAddress", returns: JObjectType("java/net/InetAddress"))
@@ -390,23 +390,23 @@ open class java$net$DatagramSocket : java$lang$Object, java$io$Closeable {
     open class override func jniName() -> String { return "java/net/DatagramSocket" }
 
     fileprivate static let java$net$DatagramSocket_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$DatagramSocket_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$DatagramSocket_init__V())
     }
 
     fileprivate static let java$net$DatagramSocket_init_java$net$SocketAddress__V = constructor((JObjectType("java/net/SocketAddress")))
-    public convenience init!(_ a0: java$net$SocketAddress?) throws {
-        try self.init(constructor: I.java$net$DatagramSocket_init_java$net$SocketAddress__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$net$SocketAddress?) throws {
+        try self.init(creator: I.java$net$DatagramSocket_init_java$net$SocketAddress__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$DatagramSocket_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$net$DatagramSocket_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$net$DatagramSocket_init_I__V(a0))
     }
 
     fileprivate static let java$net$DatagramSocket_init_I_java$net$InetAddress__V = constructor((jint.jniType, JObjectType("java/net/InetAddress")))
-    public convenience init!(_ a0: jint, _ a1: java$net$InetAddress?) throws {
-        try self.init(constructor: I.java$net$DatagramSocket_init_I_java$net$InetAddress__V(a0, a1?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: java$net$InetAddress?) throws {
+        try self.init(creator: I.java$net$DatagramSocket_init_I_java$net$InetAddress__V(a0, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$DatagramSocket_bind_java$net$SocketAddress__V = invoker("bind", returns: JVoid.jniType, arguments: (JObjectType("java/net/SocketAddress")))
@@ -571,18 +571,18 @@ open class java$net$MulticastSocket : java$net$DatagramSocket {
     open class override func jniName() -> String { return "java/net/MulticastSocket" }
 
     fileprivate static let java$net$MulticastSocket_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$MulticastSocket_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$MulticastSocket_init__V())
     }
 
     fileprivate static let java$net$MulticastSocket_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$net$MulticastSocket_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$net$MulticastSocket_init_I__V(a0))
     }
 
     fileprivate static let java$net$MulticastSocket_init_java$net$SocketAddress__V = constructor((JObjectType("java/net/SocketAddress")))
-    public convenience init!(_ a0: java$net$SocketAddress?) throws {
-        try self.init(constructor: I.java$net$MulticastSocket_init_java$net$SocketAddress__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$net$SocketAddress?) throws {
+        try self.init(creator: I.java$net$MulticastSocket_init_java$net$SocketAddress__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$MulticastSocket_setTTL_B__V = invoker("setTTL", returns: JVoid.jniType, arguments: (jbyte.jniType))
@@ -672,8 +672,8 @@ open class java$net$DatagramSocketImpl : java$lang$Object, java$net$SocketOption
     open class override func jniName() -> String { return "java/net/DatagramSocketImpl" }
 
     fileprivate static let java$net$DatagramSocketImpl_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$DatagramSocketImpl_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$DatagramSocketImpl_init__V())
     }
 
 }
@@ -688,8 +688,8 @@ public final class java$net$HttpCookie : java$lang$Object, java$lang$Cloneable {
     open class override func jniName() -> String { return "java/net/HttpCookie" }
 
     fileprivate static let java$net$HttpCookie_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$HttpCookie_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$net$HttpCookie_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$HttpCookie_parse_java$lang$String__java$util$List = svoker("parse", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/String")))
@@ -1215,8 +1215,8 @@ public final class java$net$PasswordAuthentication : java$lang$Object {
     open class override func jniName() -> String { return "java/net/PasswordAuthentication" }
 
     fileprivate static let java$net$PasswordAuthentication_init_java$lang$String_AC__V = constructor((JObjectType("java/lang/String"), JArray(jchar.jniType)))
-    public convenience init!(_ a0: java$lang$String?, _ a1: [jchar]?) throws {
-        try self.init(constructor: I.java$net$PasswordAuthentication_init_java$lang$String_AC__V(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: [jchar]?) throws {
+        try self.init(creator: I.java$net$PasswordAuthentication_init_java$lang$String_AC__V(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$net$PasswordAuthentication_getUserName__java$lang$String = invoker("getUserName", returns: JObjectType("java/lang/String"))
@@ -1241,13 +1241,13 @@ public final class java$net$NetPermission : java$security$BasicPermission {
     open class override func jniName() -> String { return "java/net/NetPermission" }
 
     fileprivate static let java$net$NetPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$NetPermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$NetPermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$NetPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$NetPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$net$NetPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -1262,8 +1262,8 @@ public final class java$net$SocketPermission : java$security$Permission {
     open class override func jniName() -> String { return "java/net/SocketPermission" }
 
     fileprivate static let java$net$SocketPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$SocketPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$net$SocketPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$SocketPermission_implies_java$security$Permission__Z = invoker("implies", returns: jboolean.jniType, arguments: (JObjectType("java/security/Permission")))
@@ -1283,13 +1283,13 @@ public final class java$net$URLPermission : java$security$Permission {
     open class override func jniName() -> String { return "java/net/URLPermission" }
 
     fileprivate static let java$net$URLPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URLPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URLPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URLPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URLPermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URLPermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URLPermission_getActions__java$lang$String = invoker("getActions", returns: JObjectType("java/lang/String"))
@@ -1313,8 +1313,8 @@ open class java$net$Proxy : java$lang$Object {
     }
 
     fileprivate static let java$net$Proxy_init_java$net$Proxy$Type_java$net$SocketAddress__V = constructor((JObjectType("java/net/Proxy$Type"), JObjectType("java/net/SocketAddress")))
-    public convenience init!(_ a0: java$net$Proxy$Type?, _ a1: java$net$SocketAddress?) throws {
-        try self.init(constructor: I.java$net$Proxy_init_java$net$Proxy$Type_java$net$SocketAddress__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$net$Proxy$Type?, _ a1: java$net$SocketAddress?) throws {
+        try self.init(creator: I.java$net$Proxy_init_java$net$Proxy$Type_java$net$SocketAddress__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$Proxy_type__java$net$Proxy$Type = invoker("type", returns: JObjectType("java/net/Proxy$Type"))
@@ -1342,8 +1342,8 @@ open class java$net$ProxySelector : java$lang$Object {
     open class override func jniName() -> String { return "java/net/ProxySelector" }
 
     fileprivate static let java$net$ProxySelector_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$ProxySelector_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$ProxySelector_init__V())
     }
 
     fileprivate static let java$net$ProxySelector_getDefault__java$net$ProxySelector = svoker("getDefault", returns: JObjectType("java/net/ProxySelector"))
@@ -1378,8 +1378,8 @@ open class java$net$ResponseCache : java$lang$Object {
     open class override func jniName() -> String { return "java/net/ResponseCache" }
 
     fileprivate static let java$net$ResponseCache_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$ResponseCache_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$ResponseCache_init__V())
     }
 
     fileprivate static let java$net$ResponseCache_getDefault__java$net$ResponseCache = svoker("getDefault", returns: JObjectType("java/net/ResponseCache"))
@@ -1414,23 +1414,23 @@ open class java$net$ServerSocket : java$lang$Object, java$io$Closeable {
     open class override func jniName() -> String { return "java/net/ServerSocket" }
 
     fileprivate static let java$net$ServerSocket_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$ServerSocket_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$ServerSocket_init__V())
     }
 
     fileprivate static let java$net$ServerSocket_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$net$ServerSocket_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$net$ServerSocket_init_I__V(a0))
     }
 
     fileprivate static let java$net$ServerSocket_init_I_I__V = constructor((jint.jniType, jint.jniType))
-    public convenience init!(_ a0: jint, _ a1: jint) throws {
-        try self.init(constructor: I.java$net$ServerSocket_init_I_I__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jint) throws {
+        try self.init(creator: I.java$net$ServerSocket_init_I_I__V(a0, a1))
     }
 
     fileprivate static let java$net$ServerSocket_init_I_I_java$net$InetAddress__V = constructor((jint.jniType, jint.jniType, JObjectType("java/net/InetAddress")))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: java$net$InetAddress?) throws {
-        try self.init(constructor: I.java$net$ServerSocket_init_I_I_java$net$InetAddress__V(a0, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: java$net$InetAddress?) throws {
+        try self.init(creator: I.java$net$ServerSocket_init_I_I_java$net$InetAddress__V(a0, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$net$ServerSocket_bind_java$net$SocketAddress__V = invoker("bind", returns: JVoid.jniType, arguments: (JObjectType("java/net/SocketAddress")))
@@ -1536,43 +1536,43 @@ open class java$net$Socket : java$lang$Object, java$io$Closeable {
     open class override func jniName() -> String { return "java/net/Socket" }
 
     fileprivate static let java$net$Socket_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$Socket_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$Socket_init__V())
     }
 
     fileprivate static let java$net$Socket_init_java$net$Proxy__V = constructor((JObjectType("java/net/Proxy")))
-    public convenience init!(_ a0: java$net$Proxy?) throws {
-        try self.init(constructor: I.java$net$Socket_init_java$net$Proxy__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$net$Proxy?) throws {
+        try self.init(creator: I.java$net$Socket_init_java$net$Proxy__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$Socket_init_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint) throws {
-        try self.init(constructor: I.java$net$Socket_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint) throws {
+        try self.init(creator: I.java$net$Socket_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$net$Socket_init_java$net$InetAddress_I__V = constructor((JObjectType("java/net/InetAddress"), jint.jniType))
-    public convenience init!(_ a0: java$net$InetAddress?, _ a1: jint) throws {
-        try self.init(constructor: I.java$net$Socket_init_java$net$InetAddress_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$net$InetAddress?, _ a1: jint) throws {
+        try self.init(creator: I.java$net$Socket_init_java$net$InetAddress_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$net$Socket_init_java$lang$String_I_java$net$InetAddress_I__V = constructor((JObjectType("java/lang/String"), jint.jniType, JObjectType("java/net/InetAddress"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint, _ a2: java$net$InetAddress?, _ a3: jint) throws {
-        try self.init(constructor: I.java$net$Socket_init_java$lang$String_I_java$net$InetAddress_I__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil, a3))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint, _ a2: java$net$InetAddress?, _ a3: jint) throws {
+        try self.init(creator: I.java$net$Socket_init_java$lang$String_I_java$net$InetAddress_I__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil, a3))
     }
 
     fileprivate static let java$net$Socket_init_java$net$InetAddress_I_java$net$InetAddress_I__V = constructor((JObjectType("java/net/InetAddress"), jint.jniType, JObjectType("java/net/InetAddress"), jint.jniType))
-    public convenience init!(_ a0: java$net$InetAddress?, _ a1: jint, _ a2: java$net$InetAddress?, _ a3: jint) throws {
-        try self.init(constructor: I.java$net$Socket_init_java$net$InetAddress_I_java$net$InetAddress_I__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil, a3))
+    public convenience init(_ a0: java$net$InetAddress?, _ a1: jint, _ a2: java$net$InetAddress?, _ a3: jint) throws {
+        try self.init(creator: I.java$net$Socket_init_java$net$InetAddress_I_java$net$InetAddress_I__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil, a3))
     }
 
     fileprivate static let java$net$Socket_init_java$lang$String_I_Z__V = constructor((JObjectType("java/lang/String"), jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$net$Socket_init_java$lang$String_I_Z__V(a0?.jobj ?? nil, a1, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint, _ a2: jboolean) throws {
+        try self.init(creator: I.java$net$Socket_init_java$lang$String_I_Z__V(a0?.jobj ?? nil, a1, a2))
     }
 
     fileprivate static let java$net$Socket_init_java$net$InetAddress_I_Z__V = constructor((JObjectType("java/net/InetAddress"), jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: java$net$InetAddress?, _ a1: jint, _ a2: jboolean) throws {
-        try self.init(constructor: I.java$net$Socket_init_java$net$InetAddress_I_Z__V(a0?.jobj ?? nil, a1, a2))
+    public convenience init(_ a0: java$net$InetAddress?, _ a1: jint, _ a2: jboolean) throws {
+        try self.init(creator: I.java$net$Socket_init_java$net$InetAddress_I_Z__V(a0?.jobj ?? nil, a1, a2))
     }
 
     fileprivate static let java$net$Socket_connect_java$net$SocketAddress__V = invoker("connect", returns: JVoid.jniType, arguments: (JObjectType("java/net/SocketAddress")))
@@ -1793,8 +1793,8 @@ open class java$net$SocketAddress : java$lang$Object, java$io$Serializable {
     open class override func jniName() -> String { return "java/net/SocketAddress" }
 
     fileprivate static let java$net$SocketAddress_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$SocketAddress_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$SocketAddress_init__V())
     }
 
 }
@@ -1809,18 +1809,18 @@ open class java$net$InetSocketAddress : java$net$SocketAddress {
     open class override func jniName() -> String { return "java/net/InetSocketAddress" }
 
     fileprivate static let java$net$InetSocketAddress_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$net$InetSocketAddress_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$net$InetSocketAddress_init_I__V(a0))
     }
 
     fileprivate static let java$net$InetSocketAddress_init_java$net$InetAddress_I__V = constructor((JObjectType("java/net/InetAddress"), jint.jniType))
-    public convenience init!(_ a0: java$net$InetAddress?, _ a1: jint) throws {
-        try self.init(constructor: I.java$net$InetSocketAddress_init_java$net$InetAddress_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$net$InetAddress?, _ a1: jint) throws {
+        try self.init(creator: I.java$net$InetSocketAddress_init_java$net$InetAddress_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$net$InetSocketAddress_init_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint) throws {
-        try self.init(constructor: I.java$net$InetSocketAddress_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint) throws {
+        try self.init(creator: I.java$net$InetSocketAddress_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$net$InetSocketAddress_createUnresolved_java$lang$String_I__java$net$InetSocketAddress = svoker("createUnresolved", returns: JObjectType("java/net/InetSocketAddress"), arguments: (JObjectType("java/lang/String"), jint.jniType))
@@ -1868,8 +1868,8 @@ open class java$net$SocketImpl : java$lang$Object, java$net$SocketOptions {
     open class override func jniName() -> String { return "java/net/SocketImpl" }
 
     fileprivate static let java$net$SocketImpl_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$SocketImpl_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$SocketImpl_init__V())
     }
 
     fileprivate static let java$net$SocketImpl_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
@@ -1951,13 +1951,13 @@ open class java$net$HttpRetryException : java$io$IOException {
     open class override func jniName() -> String { return "java/net/HttpRetryException" }
 
     fileprivate static let java$net$HttpRetryException_init_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint) throws {
-        try self.init(constructor: I.java$net$HttpRetryException_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint) throws {
+        try self.init(creator: I.java$net$HttpRetryException_init_java$lang$String_I__V(a0?.jobj ?? nil, a1))
     }
 
     fileprivate static let java$net$HttpRetryException_init_java$lang$String_I_java$lang$String__V = constructor((JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: jint, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$HttpRetryException_init_java$lang$String_I_java$lang$String__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: jint, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$net$HttpRetryException_init_java$lang$String_I_java$lang$String__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$net$HttpRetryException_responseCode__I = invoker("responseCode", returns: jint.jniType)
@@ -1987,13 +1987,13 @@ open class java$net$SocketTimeoutException : java$io$InterruptedIOException {
     open class override func jniName() -> String { return "java/net/SocketTimeoutException" }
 
     fileprivate static let java$net$SocketTimeoutException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$SocketTimeoutException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$SocketTimeoutException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$SocketTimeoutException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$SocketTimeoutException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$SocketTimeoutException_init__V())
     }
 
 }
@@ -2008,13 +2008,13 @@ open class java$net$MalformedURLException : java$io$IOException {
     open class override func jniName() -> String { return "java/net/MalformedURLException" }
 
     fileprivate static let java$net$MalformedURLException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$MalformedURLException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$MalformedURLException_init__V())
     }
 
     fileprivate static let java$net$MalformedURLException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$MalformedURLException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$MalformedURLException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2029,13 +2029,13 @@ open class java$net$ProtocolException : java$io$IOException {
     open class override func jniName() -> String { return "java/net/ProtocolException" }
 
     fileprivate static let java$net$ProtocolException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$ProtocolException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$ProtocolException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$ProtocolException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$ProtocolException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$ProtocolException_init__V())
     }
 
 }
@@ -2050,13 +2050,13 @@ open class java$net$SocketException : java$io$IOException {
     open class override func jniName() -> String { return "java/net/SocketException" }
 
     fileprivate static let java$net$SocketException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$SocketException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$SocketException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$SocketException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$SocketException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$SocketException_init__V())
     }
 
 }
@@ -2071,13 +2071,13 @@ open class java$net$BindException : java$net$SocketException {
     open class override func jniName() -> String { return "java/net/BindException" }
 
     fileprivate static let java$net$BindException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$BindException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$BindException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$BindException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$BindException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$BindException_init__V())
     }
 
 }
@@ -2092,13 +2092,13 @@ open class java$net$ConnectException : java$net$SocketException {
     open class override func jniName() -> String { return "java/net/ConnectException" }
 
     fileprivate static let java$net$ConnectException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$ConnectException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$ConnectException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$ConnectException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$ConnectException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$ConnectException_init__V())
     }
 
 }
@@ -2113,13 +2113,13 @@ open class java$net$NoRouteToHostException : java$net$SocketException {
     open class override func jniName() -> String { return "java/net/NoRouteToHostException" }
 
     fileprivate static let java$net$NoRouteToHostException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$NoRouteToHostException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$NoRouteToHostException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$NoRouteToHostException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$NoRouteToHostException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$NoRouteToHostException_init__V())
     }
 
 }
@@ -2134,13 +2134,13 @@ open class java$net$PortUnreachableException : java$net$SocketException {
     open class override func jniName() -> String { return "java/net/PortUnreachableException" }
 
     fileprivate static let java$net$PortUnreachableException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$PortUnreachableException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$PortUnreachableException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$PortUnreachableException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$PortUnreachableException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$PortUnreachableException_init__V())
     }
 
 }
@@ -2155,13 +2155,13 @@ open class java$net$UnknownHostException : java$io$IOException {
     open class override func jniName() -> String { return "java/net/UnknownHostException" }
 
     fileprivate static let java$net$UnknownHostException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$UnknownHostException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$UnknownHostException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$UnknownHostException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$UnknownHostException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$UnknownHostException_init__V())
     }
 
 }
@@ -2176,13 +2176,13 @@ open class java$net$UnknownServiceException : java$io$IOException {
     open class override func jniName() -> String { return "java/net/UnknownServiceException" }
 
     fileprivate static let java$net$UnknownServiceException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$UnknownServiceException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$UnknownServiceException_init__V())
     }
 
     fileprivate static let java$net$UnknownServiceException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$UnknownServiceException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$UnknownServiceException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2197,13 +2197,13 @@ open class java$net$URISyntaxException : java$lang$Exception {
     open class override func jniName() -> String { return "java/net/URISyntaxException" }
 
     fileprivate static let java$net$URISyntaxException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.java$net$URISyntaxException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.java$net$URISyntaxException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let java$net$URISyntaxException_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URISyntaxException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URISyntaxException_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URISyntaxException_getInput__java$lang$String = invoker("getInput", returns: JObjectType("java/lang/String"))
@@ -2234,28 +2234,28 @@ public final class java$net$URI : java$lang$Object, java$lang$Comparable, java$i
     open class override func jniName() -> String { return "java/net/URI" }
 
     fileprivate static let java$net$URI_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URI_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URI_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_I_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: jint, _ a4: java$lang$String?, _ a5: java$lang$String?, _ a6: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_I_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: jint, _ a4: java$lang$String?, _ a5: java$lang$String?, _ a6: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_I_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URI_init_java$lang$String_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URI_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URI_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URI_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URI_create_java$lang$String__java$net$URI = svoker("create", returns: JObjectType("java/net/URI"), arguments: (JObjectType("java/lang/String")))
@@ -2408,33 +2408,33 @@ public final class java$net$URL : java$lang$Object, java$io$Serializable {
     open class override func jniName() -> String { return "java/net/URL" }
 
     fileprivate static let java$net$URL_init_java$lang$String_java$lang$String_I_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URL_init_java$lang$String_java$lang$String_I_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URL_init_java$lang$String_java$lang$String_I_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URL_init_java$lang$String_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URL_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URL_init_java$lang$String_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URL_init_java$lang$String_java$lang$String_I_java$lang$String_java$net$URLStreamHandler__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/String"), JObjectType("java/net/URLStreamHandler")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$String?, _ a4: java$net$URLStreamHandler?) throws {
-        try self.init(constructor: I.java$net$URL_init_java$lang$String_java$lang$String_I_java$lang$String_java$net$URLStreamHandler__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil, a4?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$String?, _ a4: java$net$URLStreamHandler?) throws {
+        try self.init(creator: I.java$net$URL_init_java$lang$String_java$lang$String_I_java$lang$String_java$net$URLStreamHandler__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil, a4?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URL_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URL_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URL_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URL_init_java$net$URL_java$lang$String__V = constructor((JObjectType("java/net/URL"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$net$URL?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$net$URL_init_java$net$URL_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$net$URL?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$net$URL_init_java$net$URL_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URL_init_java$net$URL_java$lang$String_java$net$URLStreamHandler__V = constructor((JObjectType("java/net/URL"), JObjectType("java/lang/String"), JObjectType("java/net/URLStreamHandler")))
-    public convenience init!(_ a0: java$net$URL?, _ a1: java$lang$String?, _ a2: java$net$URLStreamHandler?) throws {
-        try self.init(constructor: I.java$net$URL_init_java$net$URL_java$lang$String_java$net$URLStreamHandler__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$net$URL?, _ a1: java$lang$String?, _ a2: java$net$URLStreamHandler?) throws {
+        try self.init(creator: I.java$net$URL_init_java$net$URL_java$lang$String_java$net$URLStreamHandler__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URL_getQuery__java$lang$String = invoker("getQuery", returns: JObjectType("java/lang/String"))
@@ -3125,8 +3125,8 @@ open class java$net$URLDecoder : java$lang$Object {
     open class override func jniName() -> String { return "java/net/URLDecoder" }
 
     fileprivate static let java$net$URLDecoder_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$URLDecoder_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$URLDecoder_init__V())
     }
 
     fileprivate static let java$net$URLDecoder_decode_java$lang$String__java$lang$String = svoker("decode", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String")))
@@ -3172,8 +3172,8 @@ open class java$net$URLStreamHandler : java$lang$Object {
     open class override func jniName() -> String { return "java/net/URLStreamHandler" }
 
     fileprivate static let java$net$URLStreamHandler_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$net$URLStreamHandler_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$net$URLStreamHandler_init__V())
     }
 
 }

@@ -8,13 +8,13 @@ open class org$ietf$jgss$ChannelBinding : java$lang$Object {
     open class override func jniName() -> String { return "org/ietf/jgss/ChannelBinding" }
 
     fileprivate static let org$ietf$jgss$ChannelBinding_init_java$net$InetAddress_java$net$InetAddress_AB__V = constructor((JObjectType("java/net/InetAddress"), JObjectType("java/net/InetAddress"), JArray(jbyte.jniType)))
-    public convenience init!(_ a0: java$net$InetAddress?, _ a1: java$net$InetAddress?, _ a2: [jbyte]?) throws {
-        try self.init(constructor: I.org$ietf$jgss$ChannelBinding_init_java$net$InetAddress_java$net$InetAddress_AB__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$net$InetAddress?, _ a1: java$net$InetAddress?, _ a2: [jbyte]?) throws {
+        try self.init(creator: I.org$ietf$jgss$ChannelBinding_init_java$net$InetAddress_java$net$InetAddress_AB__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let org$ietf$jgss$ChannelBinding_init_AB__V = constructor((JArray(jbyte.jniType)))
-    public convenience init!(_ a0: [jbyte]?) throws {
-        try self.init(constructor: I.org$ietf$jgss$ChannelBinding_init_AB__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jbyte]?) throws {
+        try self.init(creator: I.org$ietf$jgss$ChannelBinding_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let org$ietf$jgss$ChannelBinding_getInitiatorAddress__java$net$InetAddress = invoker("getInitiatorAddress", returns: JObjectType("java/net/InetAddress"))
@@ -46,8 +46,8 @@ open class org$ietf$jgss$GSSManager : java$lang$Object {
     open class override func jniName() -> String { return "org/ietf/jgss/GSSManager" }
 
     fileprivate static let org$ietf$jgss$GSSManager_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.org$ietf$jgss$GSSManager_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.org$ietf$jgss$GSSManager_init__V())
     }
 
     fileprivate static let org$ietf$jgss$GSSManager_getInstance__org$ietf$jgss$GSSManager = svoker("getInstance", returns: JObjectType("org/ietf/jgss/GSSManager"))
@@ -142,13 +142,13 @@ open class org$ietf$jgss$MessageProp : java$lang$Object {
     open class override func jniName() -> String { return "org/ietf/jgss/MessageProp" }
 
     fileprivate static let org$ietf$jgss$MessageProp_init_Z__V = constructor((jboolean.jniType))
-    public convenience init!(_ a0: jboolean) throws {
-        try self.init(constructor: I.org$ietf$jgss$MessageProp_init_Z__V(a0))
+    public convenience init(_ a0: jboolean) throws {
+        try self.init(creator: I.org$ietf$jgss$MessageProp_init_Z__V(a0))
     }
 
     fileprivate static let org$ietf$jgss$MessageProp_init_I_Z__V = constructor((jint.jniType, jboolean.jniType))
-    public convenience init!(_ a0: jint, _ a1: jboolean) throws {
-        try self.init(constructor: I.org$ietf$jgss$MessageProp_init_I_Z__V(a0, a1))
+    public convenience init(_ a0: jint, _ a1: jboolean) throws {
+        try self.init(creator: I.org$ietf$jgss$MessageProp_init_I_Z__V(a0, a1))
     }
 
     fileprivate static let org$ietf$jgss$MessageProp_getQOP__I = invoker("getQOP", returns: jint.jniType)
@@ -218,18 +218,18 @@ open class org$ietf$jgss$Oid : java$lang$Object {
     open class override func jniName() -> String { return "org/ietf/jgss/Oid" }
 
     fileprivate static let org$ietf$jgss$Oid_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.org$ietf$jgss$Oid_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.org$ietf$jgss$Oid_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$ietf$jgss$Oid_init_java$io$InputStream__V = constructor((JObjectType("java/io/InputStream")))
-    public convenience init!(_ a0: java$io$InputStream?) throws {
-        try self.init(constructor: I.org$ietf$jgss$Oid_init_java$io$InputStream__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?) throws {
+        try self.init(creator: I.org$ietf$jgss$Oid_init_java$io$InputStream__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let org$ietf$jgss$Oid_init_AB__V = constructor((JArray(jbyte.jniType)))
-    public convenience init!(_ a0: [jbyte]?) throws {
-        try self.init(constructor: I.org$ietf$jgss$Oid_init_AB__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jbyte]?) throws {
+        try self.init(creator: I.org$ietf$jgss$Oid_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let org$ietf$jgss$Oid_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
@@ -367,13 +367,13 @@ open class org$ietf$jgss$GSSException : java$lang$Exception {
     }
 
     fileprivate static let org$ietf$jgss$GSSException_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.org$ietf$jgss$GSSException_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.org$ietf$jgss$GSSException_init_I__V(a0))
     }
 
     fileprivate static let org$ietf$jgss$GSSException_init_I_I_java$lang$String__V = constructor((jint.jniType, jint.jniType, JObjectType("java/lang/String")))
-    public convenience init!(_ a0: jint, _ a1: jint, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.org$ietf$jgss$GSSException_init_I_I_java$lang$String__V(a0, a1, a2?.jobj ?? nil))
+    public convenience init(_ a0: jint, _ a1: jint, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.org$ietf$jgss$GSSException_init_I_I_java$lang$String__V(a0, a1, a2?.jobj ?? nil))
     }
 
     fileprivate static let org$ietf$jgss$GSSException_getMajor__I = invoker("getMajor", returns: jint.jniType)

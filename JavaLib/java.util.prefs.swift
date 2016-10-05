@@ -8,8 +8,8 @@ open class java$util$prefs$NodeChangeEvent : java$util$EventObject {
     open class override func jniName() -> String { return "java/util/prefs/NodeChangeEvent" }
 
     fileprivate static let java$util$prefs$NodeChangeEvent_init_java$util$prefs$Preferences_java$util$prefs$Preferences__V = constructor((JObjectType("java/util/prefs/Preferences"), JObjectType("java/util/prefs/Preferences")))
-    public convenience init!(_ a0: java$util$prefs$Preferences?, _ a1: java$util$prefs$Preferences?) throws {
-        try self.init(constructor: I.java$util$prefs$NodeChangeEvent_init_java$util$prefs$Preferences_java$util$prefs$Preferences__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$util$prefs$Preferences?, _ a1: java$util$prefs$Preferences?) throws {
+        try self.init(creator: I.java$util$prefs$NodeChangeEvent_init_java$util$prefs$Preferences_java$util$prefs$Preferences__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$prefs$NodeChangeEvent_getParent__java$util$prefs$Preferences = invoker("getParent", returns: JObjectType("java/util/prefs/Preferences"))
@@ -34,8 +34,8 @@ open class java$util$prefs$PreferenceChangeEvent : java$util$EventObject {
     open class override func jniName() -> String { return "java/util/prefs/PreferenceChangeEvent" }
 
     fileprivate static let java$util$prefs$PreferenceChangeEvent_init_java$util$prefs$Preferences_java$lang$String_java$lang$String__V = constructor((JObjectType("java/util/prefs/Preferences"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$util$prefs$Preferences?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$prefs$PreferenceChangeEvent_init_java$util$prefs$Preferences_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$util$prefs$Preferences?, _ a1: java$lang$String?, _ a2: java$lang$String?) throws {
+        try self.init(creator: I.java$util$prefs$PreferenceChangeEvent_init_java$util$prefs$Preferences_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$prefs$PreferenceChangeEvent_getNode__java$util$prefs$Preferences = invoker("getNode", returns: JObjectType("java/util/prefs/Preferences"))
@@ -327,13 +327,13 @@ open class java$util$prefs$BackingStoreException : java$lang$Exception {
     open class override func jniName() -> String { return "java/util/prefs/BackingStoreException" }
 
     fileprivate static let java$util$prefs$BackingStoreException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$prefs$BackingStoreException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$prefs$BackingStoreException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$prefs$BackingStoreException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$prefs$BackingStoreException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$prefs$BackingStoreException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -348,18 +348,18 @@ open class java$util$prefs$InvalidPreferencesFormatException : java$lang$Excepti
     open class override func jniName() -> String { return "java/util/prefs/InvalidPreferencesFormatException" }
 
     fileprivate static let java$util$prefs$InvalidPreferencesFormatException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$prefs$InvalidPreferencesFormatException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$prefs$InvalidPreferencesFormatException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$prefs$InvalidPreferencesFormatException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$util$prefs$InvalidPreferencesFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$util$prefs$InvalidPreferencesFormatException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$util$prefs$InvalidPreferencesFormatException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$util$prefs$InvalidPreferencesFormatException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$util$prefs$InvalidPreferencesFormatException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }

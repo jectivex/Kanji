@@ -8,13 +8,13 @@ public final class java$security$AccessControlContext : java$lang$Object {
     open class override func jniName() -> String { return "java/security/AccessControlContext" }
 
     fileprivate static let java$security$AccessControlContext_init_Ajava$security$ProtectionDomain__V = constructor((JArray(JObjectType("java/security/ProtectionDomain"))))
-    public convenience init!(_ a0: [java$security$ProtectionDomain?]?) throws {
-        try self.init(constructor: I.java$security$AccessControlContext_init_Ajava$security$ProtectionDomain__V(a0?.map({ java$security$ProtectionDomain$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: [java$security$ProtectionDomain?]?) throws {
+        try self.init(creator: I.java$security$AccessControlContext_init_Ajava$security$ProtectionDomain__V(a0?.map({ java$security$ProtectionDomain$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$AccessControlContext_init_java$security$AccessControlContext_java$security$DomainCombiner__V = constructor((JObjectType("java/security/AccessControlContext"), JObjectType("java/security/DomainCombiner")))
-    public convenience init!(_ a0: java$security$AccessControlContext?, _ a1: java$security$DomainCombiner?) throws {
-        try self.init(constructor: I.java$security$AccessControlContext_init_java$security$AccessControlContext_java$security$DomainCombiner__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$security$AccessControlContext?, _ a1: java$security$DomainCombiner?) throws {
+        try self.init(creator: I.java$security$AccessControlContext_init_java$security$AccessControlContext_java$security$DomainCombiner__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$AccessControlContext_getDomainCombiner__java$security$DomainCombiner = invoker("getDomainCombiner", returns: JObjectType("java/security/DomainCombiner"))
@@ -173,8 +173,8 @@ open class java$security$AlgorithmParameterGeneratorSpi : java$lang$Object {
     open class override func jniName() -> String { return "java/security/AlgorithmParameterGeneratorSpi" }
 
     fileprivate static let java$security$AlgorithmParameterGeneratorSpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$AlgorithmParameterGeneratorSpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$AlgorithmParameterGeneratorSpi_init__V())
     }
 
 }
@@ -256,8 +256,8 @@ open class java$security$AlgorithmParametersSpi : java$lang$Object {
     open class override func jniName() -> String { return "java/security/AlgorithmParametersSpi" }
 
     fileprivate static let java$security$AlgorithmParametersSpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$AlgorithmParametersSpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$AlgorithmParametersSpi_init__V())
     }
 
 }
@@ -283,8 +283,8 @@ public final class java$security$CodeSigner : java$lang$Object, java$io$Serializ
     open class override func jniName() -> String { return "java/security/CodeSigner" }
 
     fileprivate static let java$security$CodeSigner_init_java$security$cert$CertPath_java$security$Timestamp__V = constructor((JObjectType("java/security/cert/CertPath"), JObjectType("java/security/Timestamp")))
-    public convenience init!(_ a0: java$security$cert$CertPath?, _ a1: java$security$Timestamp?) throws {
-        try self.init(constructor: I.java$security$CodeSigner_init_java$security$cert$CertPath_java$security$Timestamp__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$security$cert$CertPath?, _ a1: java$security$Timestamp?) throws {
+        try self.init(creator: I.java$security$CodeSigner_init_java$security$cert$CertPath_java$security$Timestamp__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$CodeSigner_getSignerCertPath__java$security$cert$CertPath = invoker("getSignerCertPath", returns: JObjectType("java/security/cert/CertPath"))
@@ -312,13 +312,13 @@ open class java$security$CodeSource : java$lang$Object, java$io$Serializable {
     open class override func jniName() -> String { return "java/security/CodeSource" }
 
     fileprivate static let java$security$CodeSource_init_java$net$URL_Ajava$security$cert$Certificate__V = constructor((JObjectType("java/net/URL"), JArray(JObjectType("java/security/cert/Certificate"))))
-    public convenience init!(_ a0: java$net$URL?, _ a1: [java$security$cert$Certificate?]?) throws {
-        try self.init(constructor: I.java$security$CodeSource_init_java$net$URL_Ajava$security$cert$Certificate__V(a0?.jobj ?? nil, a1?.map({ java$security$cert$Certificate$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$net$URL?, _ a1: [java$security$cert$Certificate?]?) throws {
+        try self.init(creator: I.java$security$CodeSource_init_java$net$URL_Ajava$security$cert$Certificate__V(a0?.jobj ?? nil, a1?.map({ java$security$cert$Certificate$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$CodeSource_init_java$net$URL_Ajava$security$CodeSigner__V = constructor((JObjectType("java/net/URL"), JArray(JObjectType("java/security/CodeSigner"))))
-    public convenience init!(_ a0: java$net$URL?, _ a1: [java$security$CodeSigner?]?) throws {
-        try self.init(constructor: I.java$security$CodeSource_init_java$net$URL_Ajava$security$CodeSigner__V(a0?.jobj ?? nil, a1?.map({ java$security$CodeSigner$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$net$URL?, _ a1: [java$security$CodeSigner?]?) throws {
+        try self.init(creator: I.java$security$CodeSource_init_java$net$URL_Ajava$security$CodeSigner__V(a0?.jobj ?? nil, a1?.map({ java$security$CodeSigner$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$CodeSource_hashCode__I = invoker("hashCode", returns: jint.jniType)
@@ -442,8 +442,8 @@ public final class java$security$DomainLoadStoreParameter : java$lang$Object, ja
     open class override func jniName() -> String { return "java/security/DomainLoadStoreParameter" }
 
     fileprivate static let java$security$DomainLoadStoreParameter_init_java$net$URI_java$util$Map__V = constructor((JObjectType("java/net/URI"), JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$net$URI?, _ a1: java$util$Map?) throws {
-        try self.init(constructor: I.java$security$DomainLoadStoreParameter_init_java$net$URI_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$net$URI?, _ a1: java$util$Map?) throws {
+        try self.init(creator: I.java$security$DomainLoadStoreParameter_init_java$net$URI_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$DomainLoadStoreParameter_getConfiguration__java$net$URI = invoker("getConfiguration", returns: JObjectType("java/net/URI"))
@@ -473,8 +473,8 @@ open class java$security$GuardedObject : java$lang$Object, java$io$Serializable 
     open class override func jniName() -> String { return "java/security/GuardedObject" }
 
     fileprivate static let java$security$GuardedObject_init_java$lang$Object_java$security$Guard__V = constructor((JObjectType("java/lang/Object"), JObjectType("java/security/Guard")))
-    public convenience init!(_ a0: java$lang$Object?, _ a1: java$security$Guard?) throws {
-        try self.init(constructor: I.java$security$GuardedObject_init_java$lang$Object_java$security$Guard__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Object?, _ a1: java$security$Guard?) throws {
+        try self.init(creator: I.java$security$GuardedObject_init_java$lang$Object_java$security$Guard__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$GuardedObject_getObject__java$lang$Object = invoker("getObject", returns: JObjectType("java/lang/Object"))
@@ -494,13 +494,13 @@ open class java$security$Identity : java$lang$Object, java$security$Principal, j
     open class override func jniName() -> String { return "java/security/Identity" }
 
     fileprivate static let java$security$Identity_init_java$lang$String_java$security$IdentityScope__V = constructor((JObjectType("java/lang/String"), JObjectType("java/security/IdentityScope")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$security$IdentityScope?) throws {
-        try self.init(constructor: I.java$security$Identity_init_java$lang$String_java$security$IdentityScope__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$security$IdentityScope?) throws {
+        try self.init(creator: I.java$security$Identity_init_java$lang$String_java$security$IdentityScope__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$Identity_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$Identity_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$Identity_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$Identity_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
@@ -568,13 +568,13 @@ open class java$security$IdentityScope : java$security$Identity {
     open class override func jniName() -> String { return "java/security/IdentityScope" }
 
     fileprivate static let java$security$IdentityScope_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$IdentityScope_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$IdentityScope_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$IdentityScope_init_java$lang$String_java$security$IdentityScope__V = constructor((JObjectType("java/lang/String"), JObjectType("java/security/IdentityScope")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$security$IdentityScope?) throws {
-        try self.init(constructor: I.java$security$IdentityScope_init_java$lang$String_java$security$IdentityScope__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$security$IdentityScope?) throws {
+        try self.init(creator: I.java$security$IdentityScope_init_java$lang$String_java$security$IdentityScope__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$IdentityScope_getSystemScope__java$security$IdentityScope = svoker("getSystemScope", returns: JObjectType("java/security/IdentityScope"))
@@ -630,13 +630,13 @@ open class java$security$Signer : java$security$Identity {
     open class override func jniName() -> String { return "java/security/Signer" }
 
     fileprivate static let java$security$Signer_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$Signer_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$Signer_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$Signer_init_java$lang$String_java$security$IdentityScope__V = constructor((JObjectType("java/lang/String"), JObjectType("java/security/IdentityScope")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$security$IdentityScope?) throws {
-        try self.init(constructor: I.java$security$Signer_init_java$lang$String_java$security$IdentityScope__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$security$IdentityScope?) throws {
+        try self.init(creator: I.java$security$Signer_init_java$lang$String_java$security$IdentityScope__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$Signer_getPrivateKey__java$security$PrivateKey = invoker("getPrivateKey", returns: JObjectType("java/security/PrivateKey"))
@@ -662,8 +662,8 @@ open class java$security$DigestInputStream : java$io$FilterInputStream {
     open class override func jniName() -> String { return "java/security/DigestInputStream" }
 
     fileprivate static let java$security$DigestInputStream_init_java$io$InputStream_java$security$MessageDigest__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/security/MessageDigest")))
-    public convenience init!(_ a0: java$io$InputStream?, _ a1: java$security$MessageDigest?) throws {
-        try self.init(constructor: I.java$security$DigestInputStream_init_java$io$InputStream_java$security$MessageDigest__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$security$MessageDigest?) throws {
+        try self.init(creator: I.java$security$DigestInputStream_init_java$io$InputStream_java$security$MessageDigest__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$DigestInputStream_getMessageDigest__java$security$MessageDigest = invoker("getMessageDigest", returns: JObjectType("java/security/MessageDigest"))
@@ -752,8 +752,8 @@ open class java$security$KeyFactorySpi : java$lang$Object {
     open class override func jniName() -> String { return "java/security/KeyFactorySpi" }
 
     fileprivate static let java$security$KeyFactorySpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$KeyFactorySpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$KeyFactorySpi_init__V())
     }
 
 }
@@ -768,8 +768,8 @@ public final class java$security$KeyPair : java$lang$Object, java$io$Serializabl
     open class override func jniName() -> String { return "java/security/KeyPair" }
 
     fileprivate static let java$security$KeyPair_init_java$security$PublicKey_java$security$PrivateKey__V = constructor((JObjectType("java/security/PublicKey"), JObjectType("java/security/PrivateKey")))
-    public convenience init!(_ a0: java$security$PublicKey?, _ a1: java$security$PrivateKey?) throws {
-        try self.init(constructor: I.java$security$KeyPair_init_java$security$PublicKey_java$security$PrivateKey__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$security$PublicKey?, _ a1: java$security$PrivateKey?) throws {
+        try self.init(creator: I.java$security$KeyPair_init_java$security$PublicKey_java$security$PrivateKey__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyPair_getPublic__java$security$PublicKey = invoker("getPublic", returns: JObjectType("java/security/PublicKey"))
@@ -794,8 +794,8 @@ open class java$security$KeyPairGeneratorSpi : java$lang$Object {
     open class override func jniName() -> String { return "java/security/KeyPairGeneratorSpi" }
 
     fileprivate static let java$security$KeyPairGeneratorSpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$KeyPairGeneratorSpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$KeyPairGeneratorSpi_init__V())
     }
 
     fileprivate static let java$security$KeyPairGeneratorSpi_initialize_I_java$security$SecureRandom__V = invoker("initialize", returns: JVoid.jniType, arguments: (jint.jniType, JObjectType("java/security/SecureRandom")))
@@ -879,8 +879,8 @@ open class java$security$KeyRep : java$lang$Object, java$io$Serializable {
     open class override func jniName() -> String { return "java/security/KeyRep" }
 
     fileprivate static let java$security$KeyRep_init_java$security$KeyRep$Type_java$lang$String_java$lang$String_AB__V = constructor((JObjectType("java/security/KeyRep$Type"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JArray(jbyte.jniType)))
-    public convenience init!(_ a0: java$security$KeyRep$Type?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: [jbyte]?) throws {
-        try self.init(constructor: I.java$security$KeyRep_init_java$security$KeyRep$Type_java$lang$String_java$lang$String_AB__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$security$KeyRep$Type?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: [jbyte]?) throws {
+        try self.init(creator: I.java$security$KeyRep_init_java$security$KeyRep$Type_java$lang$String_java$lang$String_AB__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.arrayToJArray() ?? nil))
     }
 
 }
@@ -1077,8 +1077,8 @@ open class java$security$KeyStore$CallbackHandlerProtection : java$lang$Object, 
     open class override func jniName() -> String { return "java/security/KeyStore$CallbackHandlerProtection" }
 
     fileprivate static let java$security$KeyStore$CallbackHandlerProtection_init_javax$security$auth$callback$CallbackHandler__V = constructor((JObjectType("javax/security/auth/callback/CallbackHandler")))
-    public convenience init!(_ a0: javax$security$auth$callback$CallbackHandler?) throws {
-        try self.init(constructor: I.java$security$KeyStore$CallbackHandlerProtection_init_javax$security$auth$callback$CallbackHandler__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: javax$security$auth$callback$CallbackHandler?) throws {
+        try self.init(creator: I.java$security$KeyStore$CallbackHandlerProtection_init_javax$security$auth$callback$CallbackHandler__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$CallbackHandlerProtection_getCallbackHandler__javax$security$auth$callback$CallbackHandler = invoker("getCallbackHandler", returns: JObjectType("javax/security/auth/callback/CallbackHandler"))
@@ -1098,13 +1098,13 @@ open class java$security$KeyStore$PasswordProtection : java$lang$Object, java$se
     open class override func jniName() -> String { return "java/security/KeyStore$PasswordProtection" }
 
     fileprivate static let java$security$KeyStore$PasswordProtection_init_AC__V = constructor((JArray(jchar.jniType)))
-    public convenience init!(_ a0: [jchar]?) throws {
-        try self.init(constructor: I.java$security$KeyStore$PasswordProtection_init_AC__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jchar]?) throws {
+        try self.init(creator: I.java$security$KeyStore$PasswordProtection_init_AC__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$PasswordProtection_init_AC_java$lang$String_java$security$spec$AlgorithmParameterSpec__V = constructor((JArray(jchar.jniType), JObjectType("java/lang/String"), JObjectType("java/security/spec/AlgorithmParameterSpec")))
-    public convenience init!(_ a0: [jchar]?, _ a1: java$lang$String?, _ a2: java$security$spec$AlgorithmParameterSpec?) throws {
-        try self.init(constructor: I.java$security$KeyStore$PasswordProtection_init_AC_java$lang$String_java$security$spec$AlgorithmParameterSpec__V(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: [jchar]?, _ a1: java$lang$String?, _ a2: java$security$spec$AlgorithmParameterSpec?) throws {
+        try self.init(creator: I.java$security$KeyStore$PasswordProtection_init_AC_java$lang$String_java$security$spec$AlgorithmParameterSpec__V(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$PasswordProtection_getProtectionAlgorithm__java$lang$String = invoker("getProtectionAlgorithm", returns: JObjectType("java/lang/String"))
@@ -1144,13 +1144,13 @@ public final class java$security$KeyStore$PrivateKeyEntry : java$lang$Object, ja
     open class override func jniName() -> String { return "java/security/KeyStore$PrivateKeyEntry" }
 
     fileprivate static let java$security$KeyStore$PrivateKeyEntry_init_java$security$PrivateKey_Ajava$security$cert$Certificate__V = constructor((JObjectType("java/security/PrivateKey"), JArray(JObjectType("java/security/cert/Certificate"))))
-    public convenience init!(_ a0: java$security$PrivateKey?, _ a1: [java$security$cert$Certificate?]?) throws {
-        try self.init(constructor: I.java$security$KeyStore$PrivateKeyEntry_init_java$security$PrivateKey_Ajava$security$cert$Certificate__V(a0?.jobj ?? nil, a1?.map({ java$security$cert$Certificate$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$security$PrivateKey?, _ a1: [java$security$cert$Certificate?]?) throws {
+        try self.init(creator: I.java$security$KeyStore$PrivateKeyEntry_init_java$security$PrivateKey_Ajava$security$cert$Certificate__V(a0?.jobj ?? nil, a1?.map({ java$security$cert$Certificate$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$PrivateKeyEntry_init_java$security$PrivateKey_Ajava$security$cert$Certificate_java$util$Set__V = constructor((JObjectType("java/security/PrivateKey"), JArray(JObjectType("java/security/cert/Certificate")), JObjectType("java/util/Set")))
-    public convenience init!(_ a0: java$security$PrivateKey?, _ a1: [java$security$cert$Certificate?]?, _ a2: java$util$Set?) throws {
-        try self.init(constructor: I.java$security$KeyStore$PrivateKeyEntry_init_java$security$PrivateKey_Ajava$security$cert$Certificate_java$util$Set__V(a0?.jobj ?? nil, a1?.map({ java$security$cert$Certificate$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$security$PrivateKey?, _ a1: [java$security$cert$Certificate?]?, _ a2: java$util$Set?) throws {
+        try self.init(creator: I.java$security$KeyStore$PrivateKeyEntry_init_java$security$PrivateKey_Ajava$security$cert$Certificate_java$util$Set__V(a0?.jobj ?? nil, a1?.map({ java$security$cert$Certificate$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$PrivateKeyEntry_getPrivateKey__java$security$PrivateKey = invoker("getPrivateKey", returns: JObjectType("java/security/PrivateKey"))
@@ -1186,13 +1186,13 @@ public final class java$security$KeyStore$SecretKeyEntry : java$lang$Object, jav
     open class override func jniName() -> String { return "java/security/KeyStore$SecretKeyEntry" }
 
     fileprivate static let java$security$KeyStore$SecretKeyEntry_init_javax$crypto$SecretKey__V = constructor((JObjectType("javax/crypto/SecretKey")))
-    public convenience init!(_ a0: javax$crypto$SecretKey?) throws {
-        try self.init(constructor: I.java$security$KeyStore$SecretKeyEntry_init_javax$crypto$SecretKey__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: javax$crypto$SecretKey?) throws {
+        try self.init(creator: I.java$security$KeyStore$SecretKeyEntry_init_javax$crypto$SecretKey__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$SecretKeyEntry_init_javax$crypto$SecretKey_java$util$Set__V = constructor((JObjectType("javax/crypto/SecretKey"), JObjectType("java/util/Set")))
-    public convenience init!(_ a0: javax$crypto$SecretKey?, _ a1: java$util$Set?) throws {
-        try self.init(constructor: I.java$security$KeyStore$SecretKeyEntry_init_javax$crypto$SecretKey_java$util$Set__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: javax$crypto$SecretKey?, _ a1: java$util$Set?) throws {
+        try self.init(creator: I.java$security$KeyStore$SecretKeyEntry_init_javax$crypto$SecretKey_java$util$Set__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$SecretKeyEntry_getSecretKey__javax$crypto$SecretKey = invoker("getSecretKey", returns: JObjectType("javax/crypto/SecretKey"))
@@ -1218,13 +1218,13 @@ public final class java$security$KeyStore$TrustedCertificateEntry : java$lang$Ob
     open class override func jniName() -> String { return "java/security/KeyStore$TrustedCertificateEntry" }
 
     fileprivate static let java$security$KeyStore$TrustedCertificateEntry_init_java$security$cert$Certificate__V = constructor((JObjectType("java/security/cert/Certificate")))
-    public convenience init!(_ a0: java$security$cert$Certificate?) throws {
-        try self.init(constructor: I.java$security$KeyStore$TrustedCertificateEntry_init_java$security$cert$Certificate__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$security$cert$Certificate?) throws {
+        try self.init(creator: I.java$security$KeyStore$TrustedCertificateEntry_init_java$security$cert$Certificate__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$TrustedCertificateEntry_init_java$security$cert$Certificate_java$util$Set__V = constructor((JObjectType("java/security/cert/Certificate"), JObjectType("java/util/Set")))
-    public convenience init!(_ a0: java$security$cert$Certificate?, _ a1: java$util$Set?) throws {
-        try self.init(constructor: I.java$security$KeyStore$TrustedCertificateEntry_init_java$security$cert$Certificate_java$util$Set__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$security$cert$Certificate?, _ a1: java$util$Set?) throws {
+        try self.init(creator: I.java$security$KeyStore$TrustedCertificateEntry_init_java$security$cert$Certificate_java$util$Set__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStore$TrustedCertificateEntry_getTrustedCertificate__java$security$cert$Certificate = invoker("getTrustedCertificate", returns: JObjectType("java/security/cert/Certificate"))
@@ -1250,8 +1250,8 @@ open class java$security$KeyStoreSpi : java$lang$Object {
     open class override func jniName() -> String { return "java/security/KeyStoreSpi" }
 
     fileprivate static let java$security$KeyStoreSpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$KeyStoreSpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$KeyStoreSpi_init__V())
     }
 
     fileprivate static let java$security$KeyStoreSpi_engineGetKey_java$lang$String_AC__java$security$Key = invoker("engineGetKey", returns: JObjectType("java/security/Key"), arguments: (JObjectType("java/lang/String"), JArray(jchar.jniType)))
@@ -1371,8 +1371,8 @@ open class java$security$MessageDigestSpi : java$lang$Object {
     open class override func jniName() -> String { return "java/security/MessageDigestSpi" }
 
     fileprivate static let java$security$MessageDigestSpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$MessageDigestSpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$MessageDigestSpi_init__V())
     }
 
     fileprivate static let java$security$MessageDigestSpi_clone__java$lang$Object = invoker("clone", returns: JObjectType("java/lang/Object"))
@@ -1480,8 +1480,8 @@ open class java$security$DigestOutputStream : java$io$FilterOutputStream {
     open class override func jniName() -> String { return "java/security/DigestOutputStream" }
 
     fileprivate static let java$security$DigestOutputStream_init_java$io$OutputStream_java$security$MessageDigest__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/security/MessageDigest")))
-    public convenience init!(_ a0: java$io$OutputStream?, _ a1: java$security$MessageDigest?) throws {
-        try self.init(constructor: I.java$security$DigestOutputStream_init_java$io$OutputStream_java$security$MessageDigest__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$security$MessageDigest?) throws {
+        try self.init(creator: I.java$security$DigestOutputStream_init_java$io$OutputStream_java$security$MessageDigest__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$DigestOutputStream_getMessageDigest__java$security$MessageDigest = invoker("getMessageDigest", returns: JObjectType("java/security/MessageDigest"))
@@ -1514,8 +1514,8 @@ open class java$security$Permission : java$lang$Object, java$security$Guard, jav
     open class override func jniName() -> String { return "java/security/Permission" }
 
     fileprivate static let java$security$Permission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$Permission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$Permission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$Permission_checkGuard_java$lang$Object__V = invoker("checkGuard", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -1558,13 +1558,13 @@ public final class java$security$AllPermission : java$security$Permission {
     open class override func jniName() -> String { return "java/security/AllPermission" }
 
     fileprivate static let java$security$AllPermission_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$AllPermission_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$AllPermission_init__V())
     }
 
     fileprivate static let java$security$AllPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$AllPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$security$AllPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$AllPermission_implies_java$security$Permission__Z = invoker("implies", returns: jboolean.jniType, arguments: (JObjectType("java/security/Permission")))
@@ -1584,13 +1584,13 @@ open class java$security$BasicPermission : java$security$Permission {
     open class override func jniName() -> String { return "java/security/BasicPermission" }
 
     fileprivate static let java$security$BasicPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$BasicPermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$BasicPermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$BasicPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$BasicPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$security$BasicPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$BasicPermission_implies_java$security$Permission__Z = invoker("implies", returns: jboolean.jniType, arguments: (JObjectType("java/security/Permission")))
@@ -1610,13 +1610,13 @@ public final class java$security$SecurityPermission : java$security$BasicPermiss
     open class override func jniName() -> String { return "java/security/SecurityPermission" }
 
     fileprivate static let java$security$SecurityPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$SecurityPermission_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$SecurityPermission_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$SecurityPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$SecurityPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$security$SecurityPermission_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
 }
@@ -1631,8 +1631,8 @@ public final class java$security$UnresolvedPermission : java$security$Permission
     open class override func jniName() -> String { return "java/security/UnresolvedPermission" }
 
     fileprivate static let java$security$UnresolvedPermission_init_java$lang$String_java$lang$String_java$lang$String_Ajava$security$cert$Certificate__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JArray(JObjectType("java/security/cert/Certificate"))))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: [java$security$cert$Certificate?]?) throws {
-        try self.init(constructor: I.java$security$UnresolvedPermission_init_java$lang$String_java$lang$String_java$lang$String_Ajava$security$cert$Certificate__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$security$cert$Certificate$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: [java$security$cert$Certificate?]?) throws {
+        try self.init(creator: I.java$security$UnresolvedPermission_init_java$lang$String_java$lang$String_java$lang$String_Ajava$security$cert$Certificate__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$security$cert$Certificate$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$UnresolvedPermission_implies_java$security$Permission__Z = invoker("implies", returns: jboolean.jniType, arguments: (JObjectType("java/security/Permission")))
@@ -1673,8 +1673,8 @@ open class java$security$PermissionCollection : java$lang$Object, java$io$Serial
     open class override func jniName() -> String { return "java/security/PermissionCollection" }
 
     fileprivate static let java$security$PermissionCollection_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$PermissionCollection_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$PermissionCollection_init__V())
     }
 
     fileprivate static let java$security$PermissionCollection_add_java$security$Permission__V = invoker("add", returns: JVoid.jniType, arguments: (JObjectType("java/security/Permission")))
@@ -1715,8 +1715,8 @@ public final class java$security$Permissions : java$security$PermissionCollectio
     open class override func jniName() -> String { return "java/security/Permissions" }
 
     fileprivate static let java$security$Permissions_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$Permissions_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$Permissions_init__V())
     }
 
     fileprivate static let java$security$Permissions_add_java$security$Permission__V = invoker("add", returns: JVoid.jniType, arguments: (JObjectType("java/security/Permission")))
@@ -1734,13 +1734,13 @@ public final class java$security$PKCS12Attribute : java$lang$Object, java$securi
     open class override func jniName() -> String { return "java/security/PKCS12Attribute" }
 
     fileprivate static let java$security$PKCS12Attribute_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$PKCS12Attribute_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$security$PKCS12Attribute_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$PKCS12Attribute_init_AB__V = constructor((JArray(jbyte.jniType)))
-    public convenience init!(_ a0: [jbyte]?) throws {
-        try self.init(constructor: I.java$security$PKCS12Attribute_init_AB__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jbyte]?) throws {
+        try self.init(creator: I.java$security$PKCS12Attribute_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$PKCS12Attribute_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
@@ -1778,8 +1778,8 @@ open class java$security$Policy : java$lang$Object {
     }
 
     fileprivate static let java$security$Policy_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$Policy_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$Policy_init__V())
     }
 
     fileprivate static let java$security$Policy_getPolicy__java$security$Policy = svoker("getPolicy", returns: JObjectType("java/security/Policy"))
@@ -1854,8 +1854,8 @@ open class java$security$PolicySpi : java$lang$Object {
     open class override func jniName() -> String { return "java/security/PolicySpi" }
 
     fileprivate static let java$security$PolicySpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$PolicySpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$PolicySpi_init__V())
     }
 
 }
@@ -1870,13 +1870,13 @@ open class java$security$ProtectionDomain : java$lang$Object {
     open class override func jniName() -> String { return "java/security/ProtectionDomain" }
 
     fileprivate static let java$security$ProtectionDomain_init_java$security$CodeSource_java$security$PermissionCollection__V = constructor((JObjectType("java/security/CodeSource"), JObjectType("java/security/PermissionCollection")))
-    public convenience init!(_ a0: java$security$CodeSource?, _ a1: java$security$PermissionCollection?) throws {
-        try self.init(constructor: I.java$security$ProtectionDomain_init_java$security$CodeSource_java$security$PermissionCollection__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$security$CodeSource?, _ a1: java$security$PermissionCollection?) throws {
+        try self.init(creator: I.java$security$ProtectionDomain_init_java$security$CodeSource_java$security$PermissionCollection__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$ProtectionDomain_init_java$security$CodeSource_java$security$PermissionCollection_java$lang$ClassLoader_Ajava$security$Principal__V = constructor((JObjectType("java/security/CodeSource"), JObjectType("java/security/PermissionCollection"), JObjectType("java/lang/ClassLoader"), JArray(JObjectType("java/security/Principal"))))
-    public convenience init!(_ a0: java$security$CodeSource?, _ a1: java$security$PermissionCollection?, _ a2: java$lang$ClassLoader?, _ a3: [java$security$Principal?]?) throws {
-        try self.init(constructor: I.java$security$ProtectionDomain_init_java$security$CodeSource_java$security$PermissionCollection_java$lang$ClassLoader_Ajava$security$Principal__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$security$Principal$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
+    public convenience init(_ a0: java$security$CodeSource?, _ a1: java$security$PermissionCollection?, _ a2: java$lang$ClassLoader?, _ a3: [java$security$Principal?]?) throws {
+        try self.init(creator: I.java$security$ProtectionDomain_init_java$security$CodeSource_java$security$PermissionCollection_java$lang$ClassLoader_Ajava$security$Principal__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$security$Principal$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$ProtectionDomain_getCodeSource__java$security$CodeSource = invoker("getCodeSource", returns: JObjectType("java/security/CodeSource"))
@@ -1917,8 +1917,8 @@ open class java$security$Provider$Service : java$lang$Object {
     open class override func jniName() -> String { return "java/security/Provider$Service" }
 
     fileprivate static let java$security$Provider$Service_init_java$security$Provider_java$lang$String_java$lang$String_java$lang$String_java$util$List_java$util$Map__V = constructor((JObjectType("java/security/Provider"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/util/List"), JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$security$Provider?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$util$List?, _ a5: java$util$Map?) throws {
-        try self.init(constructor: I.java$security$Provider$Service_init_java$security$Provider_java$lang$String_java$lang$String_java$lang$String_java$util$List_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
+    public convenience init(_ a0: java$security$Provider?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$util$List?, _ a5: java$util$Map?) throws {
+        try self.init(creator: I.java$security$Provider$Service_init_java$security$Provider_java$lang$String_java$lang$String_java$lang$String_java$util$List_java$util$Map__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil))
     }
 
     fileprivate static let java$security$Provider$Service_getType__java$lang$String = invoker("getType", returns: JObjectType("java/lang/String"))
@@ -1969,13 +1969,13 @@ open class java$security$SecureRandom : java$util$Random {
     open class override func jniName() -> String { return "java/security/SecureRandom" }
 
     fileprivate static let java$security$SecureRandom_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$SecureRandom_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$SecureRandom_init__V())
     }
 
     fileprivate static let java$security$SecureRandom_init_AB__V = constructor((JArray(jbyte.jniType)))
-    public convenience init!(_ a0: [jbyte]?) throws {
-        try self.init(constructor: I.java$security$SecureRandom_init_AB__V(a0?.arrayToJArray() ?? nil))
+    public convenience init(_ a0: [jbyte]?) throws {
+        try self.init(creator: I.java$security$SecureRandom_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
     fileprivate static let java$security$SecureRandom_getInstance_java$lang$String__java$security$SecureRandom = svoker("getInstance", returns: JObjectType("java/security/SecureRandom"), arguments: (JObjectType("java/lang/String")))
@@ -2037,8 +2037,8 @@ open class java$security$SecureRandomSpi : java$lang$Object, java$io$Serializabl
     open class override func jniName() -> String { return "java/security/SecureRandomSpi" }
 
     fileprivate static let java$security$SecureRandomSpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$SecureRandomSpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$SecureRandomSpi_init__V())
     }
 
 }
@@ -2119,8 +2119,8 @@ open class java$security$SignatureSpi : java$lang$Object {
     open class override func jniName() -> String { return "java/security/SignatureSpi" }
 
     fileprivate static let java$security$SignatureSpi_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$SignatureSpi_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$SignatureSpi_init__V())
     }
 
     fileprivate static let java$security$SignatureSpi_clone__java$lang$Object = invoker("clone", returns: JObjectType("java/lang/Object"))
@@ -2258,8 +2258,8 @@ public final class java$security$SignedObject : java$lang$Object, java$io$Serial
     open class override func jniName() -> String { return "java/security/SignedObject" }
 
     fileprivate static let java$security$SignedObject_init_java$io$Serializable_java$security$PrivateKey_java$security$Signature__V = constructor((JObjectType("java/io/Serializable"), JObjectType("java/security/PrivateKey"), JObjectType("java/security/Signature")))
-    public convenience init!(_ a0: java$io$Serializable?, _ a1: java$security$PrivateKey?, _ a2: java$security$Signature?) throws {
-        try self.init(constructor: I.java$security$SignedObject_init_java$io$Serializable_java$security$PrivateKey_java$security$Signature__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    public convenience init(_ a0: java$io$Serializable?, _ a1: java$security$PrivateKey?, _ a2: java$security$Signature?) throws {
+        try self.init(creator: I.java$security$SignedObject_init_java$io$Serializable_java$security$PrivateKey_java$security$Signature__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$security$SignedObject_getObject__java$lang$Object = invoker("getObject", returns: JObjectType("java/lang/Object"))
@@ -2294,23 +2294,23 @@ open class java$security$GeneralSecurityException : java$lang$Exception {
     open class override func jniName() -> String { return "java/security/GeneralSecurityException" }
 
     fileprivate static let java$security$GeneralSecurityException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$GeneralSecurityException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$GeneralSecurityException_init__V())
     }
 
     fileprivate static let java$security$GeneralSecurityException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$GeneralSecurityException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$GeneralSecurityException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$GeneralSecurityException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$GeneralSecurityException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$GeneralSecurityException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$GeneralSecurityException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$GeneralSecurityException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$GeneralSecurityException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2325,23 +2325,23 @@ open class java$security$DigestException : java$security$GeneralSecurityExceptio
     open class override func jniName() -> String { return "java/security/DigestException" }
 
     fileprivate static let java$security$DigestException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$DigestException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$DigestException_init__V())
     }
 
     fileprivate static let java$security$DigestException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$DigestException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$DigestException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$DigestException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$DigestException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$DigestException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$DigestException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$DigestException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$DigestException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2356,23 +2356,23 @@ open class java$security$InvalidAlgorithmParameterException : java$security$Gene
     open class override func jniName() -> String { return "java/security/InvalidAlgorithmParameterException" }
 
     fileprivate static let java$security$InvalidAlgorithmParameterException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$InvalidAlgorithmParameterException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$InvalidAlgorithmParameterException_init__V())
     }
 
     fileprivate static let java$security$InvalidAlgorithmParameterException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$InvalidAlgorithmParameterException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$InvalidAlgorithmParameterException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$InvalidAlgorithmParameterException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$InvalidAlgorithmParameterException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$InvalidAlgorithmParameterException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$InvalidAlgorithmParameterException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$InvalidAlgorithmParameterException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$InvalidAlgorithmParameterException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2387,23 +2387,23 @@ open class java$security$KeyException : java$security$GeneralSecurityException {
     open class override func jniName() -> String { return "java/security/KeyException" }
 
     fileprivate static let java$security$KeyException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$KeyException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$KeyException_init__V())
     }
 
     fileprivate static let java$security$KeyException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$KeyException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$KeyException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$KeyException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$KeyException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$KeyException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$KeyException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2418,23 +2418,23 @@ open class java$security$InvalidKeyException : java$security$KeyException {
     open class override func jniName() -> String { return "java/security/InvalidKeyException" }
 
     fileprivate static let java$security$InvalidKeyException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$InvalidKeyException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$InvalidKeyException_init__V())
     }
 
     fileprivate static let java$security$InvalidKeyException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$InvalidKeyException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$InvalidKeyException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$InvalidKeyException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$InvalidKeyException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$InvalidKeyException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$InvalidKeyException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$InvalidKeyException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$InvalidKeyException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2449,23 +2449,23 @@ open class java$security$KeyManagementException : java$security$KeyException {
     open class override func jniName() -> String { return "java/security/KeyManagementException" }
 
     fileprivate static let java$security$KeyManagementException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$KeyManagementException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$KeyManagementException_init__V())
     }
 
     fileprivate static let java$security$KeyManagementException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$KeyManagementException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$KeyManagementException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyManagementException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$KeyManagementException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$KeyManagementException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyManagementException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$KeyManagementException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$KeyManagementException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2480,23 +2480,23 @@ open class java$security$KeyStoreException : java$security$GeneralSecurityExcept
     open class override func jniName() -> String { return "java/security/KeyStoreException" }
 
     fileprivate static let java$security$KeyStoreException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$KeyStoreException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$KeyStoreException_init__V())
     }
 
     fileprivate static let java$security$KeyStoreException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$KeyStoreException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$KeyStoreException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStoreException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$KeyStoreException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$KeyStoreException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$KeyStoreException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$KeyStoreException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$KeyStoreException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2511,23 +2511,23 @@ open class java$security$NoSuchAlgorithmException : java$security$GeneralSecurit
     open class override func jniName() -> String { return "java/security/NoSuchAlgorithmException" }
 
     fileprivate static let java$security$NoSuchAlgorithmException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$NoSuchAlgorithmException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$NoSuchAlgorithmException_init__V())
     }
 
     fileprivate static let java$security$NoSuchAlgorithmException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$NoSuchAlgorithmException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$NoSuchAlgorithmException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$NoSuchAlgorithmException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$NoSuchAlgorithmException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$NoSuchAlgorithmException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$NoSuchAlgorithmException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$NoSuchAlgorithmException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$NoSuchAlgorithmException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2542,13 +2542,13 @@ open class java$security$NoSuchProviderException : java$security$GeneralSecurity
     open class override func jniName() -> String { return "java/security/NoSuchProviderException" }
 
     fileprivate static let java$security$NoSuchProviderException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$NoSuchProviderException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$NoSuchProviderException_init__V())
     }
 
     fileprivate static let java$security$NoSuchProviderException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$NoSuchProviderException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$NoSuchProviderException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2563,23 +2563,23 @@ open class java$security$SignatureException : java$security$GeneralSecurityExcep
     open class override func jniName() -> String { return "java/security/SignatureException" }
 
     fileprivate static let java$security$SignatureException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$SignatureException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$SignatureException_init__V())
     }
 
     fileprivate static let java$security$SignatureException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$SignatureException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$SignatureException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$SignatureException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$SignatureException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$SignatureException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$SignatureException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$SignatureException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$SignatureException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2594,13 +2594,13 @@ open class java$security$UnrecoverableEntryException : java$security$GeneralSecu
     open class override func jniName() -> String { return "java/security/UnrecoverableEntryException" }
 
     fileprivate static let java$security$UnrecoverableEntryException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$UnrecoverableEntryException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$UnrecoverableEntryException_init__V())
     }
 
     fileprivate static let java$security$UnrecoverableEntryException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$UnrecoverableEntryException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$UnrecoverableEntryException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2615,13 +2615,13 @@ open class java$security$UnrecoverableKeyException : java$security$Unrecoverable
     open class override func jniName() -> String { return "java/security/UnrecoverableKeyException" }
 
     fileprivate static let java$security$UnrecoverableKeyException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$UnrecoverableKeyException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$UnrecoverableKeyException_init__V())
     }
 
     fileprivate static let java$security$UnrecoverableKeyException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$UnrecoverableKeyException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$UnrecoverableKeyException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2636,8 +2636,8 @@ open class java$security$PrivilegedActionException : java$lang$Exception {
     open class override func jniName() -> String { return "java/security/PrivilegedActionException" }
 
     fileprivate static let java$security$PrivilegedActionException_init_java$lang$Exception__V = constructor((JObjectType("java/lang/Exception")))
-    public convenience init!(_ a0: java$lang$Exception?) throws {
-        try self.init(constructor: I.java$security$PrivilegedActionException_init_java$lang$Exception__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Exception?) throws {
+        try self.init(creator: I.java$security$PrivilegedActionException_init_java$lang$Exception__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$PrivilegedActionException_getException__java$lang$Exception = invoker("getException", returns: JObjectType("java/lang/Exception"))
@@ -2659,13 +2659,13 @@ open class java$security$InvalidParameterException : java$lang$IllegalArgumentEx
     open class override func jniName() -> String { return "java/security/InvalidParameterException" }
 
     fileprivate static let java$security$InvalidParameterException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$InvalidParameterException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$InvalidParameterException_init__V())
     }
 
     fileprivate static let java$security$InvalidParameterException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$InvalidParameterException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$InvalidParameterException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2680,23 +2680,23 @@ open class java$security$ProviderException : java$lang$RuntimeException {
     open class override func jniName() -> String { return "java/security/ProviderException" }
 
     fileprivate static let java$security$ProviderException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$security$ProviderException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$security$ProviderException_init__V())
     }
 
     fileprivate static let java$security$ProviderException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$ProviderException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$ProviderException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$ProviderException_init_java$lang$String_java$lang$Throwable__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$ProviderException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$ProviderException_init_java$lang$String_java$lang$Throwable__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$ProviderException_init_java$lang$Throwable__V = constructor((JObjectType("java/lang/Throwable")))
-    public convenience init!(_ a0: java$lang$Throwable?) throws {
-        try self.init(constructor: I.java$security$ProviderException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Throwable?) throws {
+        try self.init(creator: I.java$security$ProviderException_init_java$lang$Throwable__V(a0?.jobj ?? nil))
     }
 
 }
@@ -2711,13 +2711,13 @@ open class java$security$AccessControlException : java$lang$SecurityException {
     open class override func jniName() -> String { return "java/security/AccessControlException" }
 
     fileprivate static let java$security$AccessControlException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$security$AccessControlException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$security$AccessControlException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$AccessControlException_init_java$lang$String_java$security$Permission__V = constructor((JObjectType("java/lang/String"), JObjectType("java/security/Permission")))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$security$Permission?) throws {
-        try self.init(constructor: I.java$security$AccessControlException_init_java$lang$String_java$security$Permission__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$security$Permission?) throws {
+        try self.init(creator: I.java$security$AccessControlException_init_java$lang$String_java$security$Permission__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$AccessControlException_getPermission__java$security$Permission = invoker("getPermission", returns: JObjectType("java/security/Permission"))
@@ -2737,8 +2737,8 @@ public final class java$security$Timestamp : java$lang$Object, java$io$Serializa
     open class override func jniName() -> String { return "java/security/Timestamp" }
 
     fileprivate static let java$security$Timestamp_init_java$util$Date_java$security$cert$CertPath__V = constructor((JObjectType("java/util/Date"), JObjectType("java/security/cert/CertPath")))
-    public convenience init!(_ a0: java$util$Date?, _ a1: java$security$cert$CertPath?) throws {
-        try self.init(constructor: I.java$security$Timestamp_init_java$util$Date_java$security$cert$CertPath__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Date?, _ a1: java$security$cert$CertPath?) throws {
+        try self.init(creator: I.java$security$Timestamp_init_java$util$Date_java$security$cert$CertPath__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$security$Timestamp_getTimestamp__java$util$Date = invoker("getTimestamp", returns: JObjectType("java/util/Date"))
@@ -2766,8 +2766,8 @@ open class java$security$URIParameter : java$lang$Object, java$security$Policy$P
     open class override func jniName() -> String { return "java/security/URIParameter" }
 
     fileprivate static let java$security$URIParameter_init_java$net$URI__V = constructor((JObjectType("java/net/URI")))
-    public convenience init!(_ a0: java$net$URI?) throws {
-        try self.init(constructor: I.java$security$URIParameter_init_java$net$URI__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$net$URI?) throws {
+        try self.init(creator: I.java$security$URIParameter_init_java$net$URI__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$security$URIParameter_getURI__java$net$URI = invoker("getURI", returns: JObjectType("java/net/URI"))

@@ -8,13 +8,13 @@ open class javax$script$AbstractScriptEngine : java$lang$Object, javax$script$Sc
     open class override func jniName() -> String { return "javax/script/AbstractScriptEngine" }
 
     fileprivate static let javax$script$AbstractScriptEngine_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.javax$script$AbstractScriptEngine_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.javax$script$AbstractScriptEngine_init__V())
     }
 
     fileprivate static let javax$script$AbstractScriptEngine_init_javax$script$Bindings__V = constructor((JObjectType("javax/script/Bindings")))
-    public convenience init!(_ a0: javax$script$Bindings?) throws {
-        try self.init(constructor: I.javax$script$AbstractScriptEngine_init_javax$script$Bindings__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: javax$script$Bindings?) throws {
+        try self.init(creator: I.javax$script$AbstractScriptEngine_init_javax$script$Bindings__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let javax$script$AbstractScriptEngine_setContext_javax$script$ScriptContext__V = invoker("setContext", returns: JVoid.jniType, arguments: (JObjectType("javax/script/ScriptContext")))
@@ -79,8 +79,8 @@ open class javax$script$CompiledScript : java$lang$Object {
     open class override func jniName() -> String { return "javax/script/CompiledScript" }
 
     fileprivate static let javax$script$CompiledScript_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.javax$script$CompiledScript_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.javax$script$CompiledScript_init__V())
     }
 
     fileprivate static let javax$script$CompiledScript_eval_javax$script$ScriptContext__java$lang$Object = invoker("eval", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("javax/script/ScriptContext")))
@@ -115,13 +115,13 @@ open class javax$script$ScriptEngineManager : java$lang$Object {
     open class override func jniName() -> String { return "javax/script/ScriptEngineManager" }
 
     fileprivate static let javax$script$ScriptEngineManager_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.javax$script$ScriptEngineManager_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.javax$script$ScriptEngineManager_init__V())
     }
 
     fileprivate static let javax$script$ScriptEngineManager_init_java$lang$ClassLoader__V = constructor((JObjectType("java/lang/ClassLoader")))
-    public convenience init!(_ a0: java$lang$ClassLoader?) throws {
-        try self.init(constructor: I.javax$script$ScriptEngineManager_init_java$lang$ClassLoader__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$ClassLoader?) throws {
+        try self.init(creator: I.javax$script$ScriptEngineManager_init_java$lang$ClassLoader__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let javax$script$ScriptEngineManager_setBindings_javax$script$Bindings__V = invoker("setBindings", returns: JVoid.jniType, arguments: (JObjectType("javax/script/Bindings")))
@@ -191,13 +191,13 @@ open class javax$script$SimpleBindings : java$lang$Object, javax$script$Bindings
     open class override func jniName() -> String { return "javax/script/SimpleBindings" }
 
     fileprivate static let javax$script$SimpleBindings_init_java$util$Map__V = constructor((JObjectType("java/util/Map")))
-    public convenience init!(_ a0: java$util$Map?) throws {
-        try self.init(constructor: I.javax$script$SimpleBindings_init_java$util$Map__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$util$Map?) throws {
+        try self.init(creator: I.javax$script$SimpleBindings_init_java$util$Map__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let javax$script$SimpleBindings_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.javax$script$SimpleBindings_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.javax$script$SimpleBindings_init__V())
     }
 
     fileprivate static let javax$script$SimpleBindings_put_java$lang$String_java$lang$Object__java$lang$Object = invoker("put", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/Object")))
@@ -277,8 +277,8 @@ open class javax$script$SimpleScriptContext : java$lang$Object, javax$script$Scr
     open class override func jniName() -> String { return "javax/script/SimpleScriptContext" }
 
     fileprivate static let javax$script$SimpleScriptContext_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.javax$script$SimpleScriptContext_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.javax$script$SimpleScriptContext_init__V())
     }
 
     fileprivate static let javax$script$SimpleScriptContext_setBindings_javax$script$Bindings_I__V = invoker("setBindings", returns: JVoid.jniType, arguments: (JObjectType("javax/script/Bindings"), jint.jniType))
@@ -363,23 +363,23 @@ open class javax$script$ScriptException : java$lang$Exception {
     open class override func jniName() -> String { return "javax/script/ScriptException" }
 
     fileprivate static let javax$script$ScriptException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.javax$script$ScriptException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.javax$script$ScriptException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let javax$script$ScriptException_init_java$lang$Exception__V = constructor((JObjectType("java/lang/Exception")))
-    public convenience init!(_ a0: java$lang$Exception?) throws {
-        try self.init(constructor: I.javax$script$ScriptException_init_java$lang$Exception__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Exception?) throws {
+        try self.init(creator: I.javax$script$ScriptException_init_java$lang$Exception__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let javax$script$ScriptException_init_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
-        try self.init(constructor: I.javax$script$ScriptException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint) throws {
+        try self.init(creator: I.javax$script$ScriptException_init_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2))
     }
 
     fileprivate static let javax$script$ScriptException_init_java$lang$String_java$lang$String_I_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, jint.jniType))
-    public convenience init!(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: jint) throws {
-        try self.init(constructor: I.javax$script$ScriptException_init_java$lang$String_java$lang$String_I_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: jint) throws {
+        try self.init(creator: I.javax$script$ScriptException_init_java$lang$String_java$lang$String_I_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3))
     }
 
     fileprivate static let javax$script$ScriptException_getMessage__java$lang$String = invoker("getMessage", returns: JObjectType("java/lang/String"))

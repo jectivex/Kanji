@@ -429,8 +429,8 @@ open class java$nio$charset$CoderMalfunctionError : java$lang$Error {
     open class override func jniName() -> String { return "java/nio/charset/CoderMalfunctionError" }
 
     fileprivate static let java$nio$charset$CoderMalfunctionError_init_java$lang$Exception__V = constructor((JObjectType("java/lang/Exception")))
-    public convenience init!(_ a0: java$lang$Exception?) throws {
-        try self.init(constructor: I.java$nio$charset$CoderMalfunctionError_init_java$lang$Exception__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$Exception?) throws {
+        try self.init(creator: I.java$nio$charset$CoderMalfunctionError_init_java$lang$Exception__V(a0?.jobj ?? nil))
     }
 
 }
@@ -445,8 +445,8 @@ open class java$nio$charset$CharacterCodingException : java$io$IOException {
     open class override func jniName() -> String { return "java/nio/charset/CharacterCodingException" }
 
     fileprivate static let java$nio$charset$CharacterCodingException_init__V = constructor()
-    public convenience init!() throws {
-        try self.init(constructor: I.java$nio$charset$CharacterCodingException_init__V())
+    public convenience init() throws {
+        try self.init(creator: I.java$nio$charset$CharacterCodingException_init__V())
     }
 
 }
@@ -461,8 +461,8 @@ open class java$nio$charset$MalformedInputException : java$nio$charset$Character
     open class override func jniName() -> String { return "java/nio/charset/MalformedInputException" }
 
     fileprivate static let java$nio$charset$MalformedInputException_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$nio$charset$MalformedInputException_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$nio$charset$MalformedInputException_init_I__V(a0))
     }
 
     fileprivate static let java$nio$charset$MalformedInputException_getInputLength__I = invoker("getInputLength", returns: jint.jniType)
@@ -483,8 +483,8 @@ open class java$nio$charset$UnmappableCharacterException : java$nio$charset$Char
     open class override func jniName() -> String { return "java/nio/charset/UnmappableCharacterException" }
 
     fileprivate static let java$nio$charset$UnmappableCharacterException_init_I__V = constructor((jint.jniType))
-    public convenience init!(_ a0: jint) throws {
-        try self.init(constructor: I.java$nio$charset$UnmappableCharacterException_init_I__V(a0))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$nio$charset$UnmappableCharacterException_init_I__V(a0))
     }
 
     fileprivate static let java$nio$charset$UnmappableCharacterException_getInputLength__I = invoker("getInputLength", returns: jint.jniType)
@@ -505,8 +505,8 @@ open class java$nio$charset$IllegalCharsetNameException : java$lang$IllegalArgum
     open class override func jniName() -> String { return "java/nio/charset/IllegalCharsetNameException" }
 
     fileprivate static let java$nio$charset$IllegalCharsetNameException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$charset$IllegalCharsetNameException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$charset$IllegalCharsetNameException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$charset$IllegalCharsetNameException_getCharsetName__java$lang$String = invoker("getCharsetName", returns: JObjectType("java/lang/String"))
@@ -526,8 +526,8 @@ open class java$nio$charset$UnsupportedCharsetException : java$lang$IllegalArgum
     open class override func jniName() -> String { return "java/nio/charset/UnsupportedCharsetException" }
 
     fileprivate static let java$nio$charset$UnsupportedCharsetException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
-    public convenience init!(_ a0: java$lang$String?) throws {
-        try self.init(constructor: I.java$nio$charset$UnsupportedCharsetException_init_java$lang$String__V(a0?.jobj ?? nil))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$nio$charset$UnsupportedCharsetException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
     fileprivate static let java$nio$charset$UnsupportedCharsetException_getCharsetName__java$lang$String = invoker("getCharsetName", returns: JObjectType("java/lang/String"))
