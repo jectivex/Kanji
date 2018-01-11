@@ -53,7 +53,9 @@ open class KanjiScriptContext : ScriptContext {
 //    }
 
     open func bind(_ key: String, value: InstanceType.RefType) throws {
-        try self.engine.put(java$lang$String(key), value as? java$lang$Object)
+        //try self.engine.put(java$lang$String(key), value as? java$lang$Object)
+        let _ = try self.engine.getBindings(javax$script$ScriptContext$Impl.ENGINE_SCOPE)?.put(java$lang$String(key), value as? java$lang$Object)
+        
     }
 
 //    /// Evaluate the code at the given URL; differs from evaluating as a string in that it permits

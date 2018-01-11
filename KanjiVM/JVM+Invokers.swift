@@ -6,7 +6,7 @@
 //  Copyright © 2015 io.glimpse. All rights reserved.
 //
 
-private extension JInvocable {
+public extension JInvocable {
 
     /// Locates the method with the mangled name, preserving class not found exception
     static func findMethod(_ cls: jclass, name: String, sig: String) -> jmethodID? {

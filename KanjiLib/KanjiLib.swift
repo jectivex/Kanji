@@ -42,6 +42,62 @@ public extension JVM {
 
 extension java$lang$Object : Equatable { }
 
+
+/// A type that can be converted into the wrapper signature
+public protocol JWrappable : JType {
+    associatedtype JWrapperType
+}
+
+extension JVoid : JWrappable {
+    public typealias JWrapperType = JNIType
+}
+
+extension jboolean : JWrappable {
+    /// Wrapper types for primitives are the primitive types themselves
+    public typealias JWrapperType = JNIType
+}
+
+extension jbyte : JWrappable {
+    /// Wrapper types for primitives are the primitive types themselves
+    public typealias JWrapperType = JNIType
+}
+
+extension jchar : JWrappable {
+    /// Wrapper types for primitives are the primitive types themselves
+    public typealias JWrapperType = JNIType
+}
+
+extension jshort : JWrappable {
+    /// Wrapper types for primitives are the primitive types themselves
+    public typealias JWrapperType = JNIType
+}
+
+extension jint : JWrappable {
+    /// Wrapper types for primitives are the primitive types themselves
+    public typealias JWrapperType = JNIType
+}
+
+extension jlong : JWrappable {
+    /// Wrapper types for primitives are the primitive types themselves
+    public typealias JWrapperType = JNIType
+}
+
+extension jfloat : JWrappable {
+    /// Wrapper types for primitives are the primitive types themselves
+    public typealias JWrapperType = JNIType
+}
+
+extension jdouble : JWrappable {
+    /// Wrapper types for primitives are the primitive types themselves
+    public typealias JWrapperType = JNIType
+}
+
+/// An object type will be wrapped in a java$lang$Object wrapper; this needs to happen in KanjiLib instead of KanjiVM since the latter knows nothing of wrapper classes
+extension JObjectType : JWrappable {
+    /// An object type will be wrapped in a java$lang$Object wrapper
+    public typealias JWrapperType = java$lang$Object?
+}
+
 public func == (o1: java$lang$Object, o2: java$lang$Object) -> Bool {
     do {
         let eq = try o1.equals(o2)

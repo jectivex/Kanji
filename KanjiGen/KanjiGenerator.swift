@@ -51,8 +51,8 @@ extension String {
             return nil
         }
         var end = endIndex
-        for _ in suffix.characters.indices {
-            end = suffix.characters.index(before: end)
+        for _ in suffix.indices {
+            end = suffix.index(before: end)
         }
 
         return substring(to: end)
@@ -63,7 +63,7 @@ extension String {
     }
 
     func tokens(_ element: [Character]) -> [String] {
-        return self.characters.split(whereSeparator: { element.contains($0) }).map(String.init)
+        return self.split(whereSeparator: { element.contains($0) }).map(String.init)
     }
 }
 
@@ -91,13 +91,13 @@ extension Scanner {
 
     var remainingDesc: String {
         let rem = remainder as String
-        let end = rem.characters.index(rem.startIndex, offsetBy: 100, limitedBy: rem.endIndex)
+        let end = rem.index(rem.startIndex, offsetBy: 100, limitedBy: rem.endIndex)
         let sub = rem[rem.startIndex..<end!]
         return "“" + sub + "”"
     }
 
     func scanTo(_ chars: [Character], consume: Bool = false) throws -> String {
-        let str: String = String(String.CharacterView(chars))
+        let str: String = String(chars)
         let set = CharacterSet(charactersIn: str)
         var out: NSString?
         if !scanUpToCharacters(from: set, into: &out) {
@@ -349,7 +349,6 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
             var chars: [Character] = []
             while let c = gen.next() {
                 if c == ";" {
-                    let chars = String.CharacterView(chars)
                     let parts = (chars.split() { $0 == "/" }).map { String($0) }
                     return .object(JName(parts: parts, generics: [])) // FIXME: generics are type erased: how to get?
                 } else {
@@ -458,15 +457,15 @@ struct JField {
     init?(decl: String, desc: String, mods: JMod) throws {
         self.mods = mods
 
-        guard let semicolon = decl.characters.index(of: ";") else {
+        guard let semicolon = decl.index(of: ";") else {
             return nil
         }
 
-        let declReverse = decl[decl.startIndex..<semicolon].characters.reversed()
+        let declReverse = decl[decl.startIndex..<semicolon].reversed()
         let fieldEndIndex = declReverse.index(of: " ") ?? declReverse.endIndex
         self.fname = String(declReverse[declReverse.startIndex..<fieldEndIndex].reversed())
 
-        var dgen = desc.characters.makeIterator()
+        var dgen = desc.makeIterator()
         guard let type = try JType.parse(&dgen) else {
             throw CodegenErrors.parseError("No field type")
         }
@@ -496,32 +495,32 @@ struct JMethod {
     init?(decl: String, desc: String, mods: JMod) throws {
         self.mods = mods
 
-        guard let paren = decl.characters.index(of: "(") else {
+        guard let paren = decl.index(of: "(") else {
             return nil // otherwise it is a field, which we don't yet support
         }
 
-        let declReverse = decl[decl.startIndex..<paren].characters.reversed()
+        let declReverse = decl[decl.startIndex..<paren].reversed()
         let funcEndIndex = declReverse.index(of: " ") ?? declReverse.endIndex
         self.fname = String(declReverse[declReverse.startIndex..<funcEndIndex].reversed())
 
-        self.constructor = fname.characters.index(of: ".") != nil // initializers have dots: public java.lang.String(char[])
+        self.constructor = fname.index(of: ".") != nil // initializers have dots: public java.lang.String(char[])
 
-        guard let openParen = desc.characters.index(of: "(") , openParen == desc.startIndex else {
+        guard let openParen = desc.index(of: "(") , openParen == desc.startIndex else {
             throw CodegenErrors.parseError("No open paren")
         }
-        guard let closeParen = desc.characters.index(of: ")") else {
+        guard let closeParen = desc.index(of: ")") else {
             throw CodegenErrors.parseError("No close paren")
         }
 
-        let argstr = desc.substring(from: desc.characters.index(after: openParen)).substring(to: desc.characters.index(before: closeParen))
-        let retstr = desc.substring(from: desc.characters.index(after: closeParen))
+        let argstr = desc.substring(from: desc.index(after: openParen)).substring(to: desc.index(before: closeParen))
+        let retstr = desc.substring(from: desc.index(after: closeParen))
 
         var args: [JType] = []
-        var argsg = argstr.characters.makeIterator()
+        var argsg = argstr.makeIterator()
         while let arg = try JType.parse(&argsg) {
             args.append(arg)
         }
-        var retg = retstr.characters.makeIterator()
+        var retg = retstr.makeIterator()
         guard let ret = try JType.parse(&retg) else {
             throw CodegenErrors.parseError("No return type")
         }
@@ -1223,7 +1222,7 @@ public enum KanjiGen {
             }
 
             // javap declaration outputs dot-separated names
-            let parts = (typeName.characters.split() { $0 == "." }).map { String($0) }
+            let parts = (typeName.split() { $0 == "." }).map { String($0) }
             return JName(parts: parts, generics: generics)
         }
 

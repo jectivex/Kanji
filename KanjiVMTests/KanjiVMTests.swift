@@ -11,7 +11,7 @@ import XCTest
 import KanjiVM
 
 class KanjiVMTests: XCTestCase {
-    internal static override func initialize() {
+    override func setUp() {
         if JVM.sharedJVM == nil {
             JVM.sharedJVM = try! JVM()
         }

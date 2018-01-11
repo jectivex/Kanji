@@ -11,7 +11,7 @@ import BricBrac
 import KanjiVM
 import KanjiLib
 import JavaLib
-@testable import KanjiScript
+import KanjiScript
 
 class KanjiScriptTests: XCTestCase {
 
@@ -20,11 +20,18 @@ class KanjiScriptTests: XCTestCase {
         return super.invokeTest()
     }
 
-    internal static override func initialize() {
-        let dir = "/opt/src/scala/scala-2.11.7/lib/"
+    override func setUp() {
+//        let dir = "/opt/src/scala/scala-2.11.7/lib/"
+        let dir = "/opt/src/scala/scala-2.12.2/lib/"
         let cp: [String] = (try? FileManager.default.contentsOfDirectory(atPath: dir).map({ dir + $0 })) ?? []
         // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
-        JVM.sharedJVM = try! JVM(bootpath: (cp, false))
+        if JVM.sharedJVM == nil {
+            do {
+                JVM.sharedJVM = try JVM(bootpath: (cp, false))
+            } catch {
+                XCTFail("error creating JVM: " + error.localizedDescription)
+            }
+        }
     }
 
     func testKanjiConversions() {
@@ -157,6 +164,46 @@ class KanjiScriptTests: XCTestCase {
         _ = try ctx.eval("var x = 123")
         _ = try ctx.eval("x = x + 1")
         checkeq(124, f: try ctx.val(ctx.eval("x")))
+
+//        do {
+//            let val = try ctx.eval("def tfunX(x: String) : String = { \"XYZ\" }")
+//            try ctx.bind("tfun", value: ctx.ref(val))
+//            checkeq("XYZ", f: try ctx.val(ctx.eval("tfunX(null)")))
+//        } catch {
+//            XCTFail(error.localizedDescription)
+//        }
+
+        do {
+            let _ = try ctx.eval("val sfun = new Object() { def apply(x: Object) : String = { x.toString().toUpperCase } }")
+            checkeq("XYZ", f: try ctx.val(ctx.eval("sfun.apply(\"xyz\")")))
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+        
+//        do {
+//            let function = try ctx.eval("new Object() { def apply(x: Object) : String = { x.toString().toUpperCase } }")
+//            try ctx.bind("vfun", value: ctx.ref(function))
+//            checkeq("XYZ", f: try ctx.val(ctx.eval("vfun.apply(\"xyz\")")))
+//        } catch {
+//            XCTFail(error.localizedDescription)
+//        }
+
+        do {
+            let function = try java$util$function$Function$Impl.fromClosure({ arg in java$lang$String(arg?.description.localizedUppercase ?? "null") })
+            try ctx.bind("nfun", value: function)
+
+            checkeq("XYZ", f: try ctx.val(ctx.eval("nfun.asInstanceOf[java.util.function.Function[String, Object]].apply(\"xyz\")")))
+            checkeq("ABC", f: try ctx.val(ctx.eval("nfun.asInstanceOf[java.util.function.Function[String, String]](\"abc\")")))
+//            checkeq("XYZ", f: try ctx.val(ctx.eval("nfun.apply(\"xyz\")"))) // “value apply is not a member of Object in vfun.apply("xyz") at line number 16 at column number 13”
+            
+            let _ = try ctx.eval("val qfun : String => String = nfun.asInstanceOf[java.util.function.Function[String, String]].apply")
+//            let _ = try ctx.eval("val qfun : String => String = nfun.asInstanceOf[String => String].apply") // not working
+            checkeq("QRS", f: try ctx.val(ctx.eval("qfun(\"qrs\")")))
+            
+        } catch {
+            XCTFail(error.localizedDescription)
+        }
+        
     }
 
     func testScriptRoundTrip() throws {

@@ -1,4 +1,4 @@
-//
+
 //  JVM.swift
 //  KanjiVM
 //
@@ -108,30 +108,25 @@ public final class JVM {
         return getName
     }()
 
-    private func withPointerToRawPointer<T, Result>(to arg: inout T, _ body: @escaping (UnsafeMutablePointer<UnsafeMutableRawPointer?>) throws -> Result) rethrows -> Result {
-        return try withUnsafePointer(to: &arg) {
-            try body( unsafeBitCast( $0, to: UnsafeMutablePointer<UnsafeMutableRawPointer?>.self ) )
-        }
-    }
-
     func GetEnv() -> JNIEnvPointer {
-        var tenv: JNIEnvPointer
-        if withPointerToRawPointer(to: &tenv, {
-            self.jvm.pointee?.pointee.GetEnv(self.jvm, $0, jint(JVM.jniversion) ) != jint(JNI_OK)
-        } ) {
+        var tenv: UnsafeMutableRawPointer?
+
+        if self.jvm.pointee?.pointee.GetEnv(self.jvm, &tenv, jint(JVM.jniversion) ) != jint(JNI_OK) {
             warn("Unable to get initial JNIEnv")
+            return nil
         }
-        return tenv
+        
+        return tenv?.assumingMemoryBound(to: JNIEnv?.self)
     }
 
     func AttachCurrentThread() -> JNIEnvPointer {
-        var tenv: JNIEnvPointer
-        if withPointerToRawPointer(to: &tenv, {
-            self.jvm.pointee?.pointee.AttachCurrentThread( self.jvm, $0, nil ) != jint(JNI_OK)
-        } ) {
-            warn("Could not attach to background jvm")
+
+        var tenv: UnsafeMutableRawPointer?
+        if self.jvm.pointee?.pointee.AttachCurrentThread( self.jvm, &tenv, nil ) != jint(JNI_OK) {
+            return nil
         }
-        return tenv
+        
+        return tenv?.assumingMemoryBound(to: JNIEnv?.self)
     }
 
     public func attach() -> JNIEnvPointer {
@@ -1239,50 +1234,15 @@ public final class NullTerminatedCString {
     }
 }
 
-public extension jarray {
-    public func jarrayToArray<T: JPrimitive>() -> [T]? {
-        return T.getArray(JVM.sharedJVM.env)(self)
-    }
-}
-
-public extension jobject {
-    public func jarrayToArray<T: JavaObject>(_ type: T.Type) -> [T?]? {
-        return T.getArray(JVM.sharedJVM)(self)
-    }
-}
-
-public extension Sequence where Self.Iterator.Element : JPrimitive {
-    public func arrayToJArray() -> Self.Iterator.Element.ArrayType? {
-        return Self.Iterator.Element.createArray(JVM.sharedJVM.env)(Array(self))
-    }
-}
-
-public extension Sequence where Self.Iterator.Element : JavaObject {
-    public func arrayToJArray() -> jobjectArray? {
-        return Self.Iterator.Element.createArray(JVM.sharedJVM)(Array(self).map({ $0 as Self.Iterator.Element? }))
-    }
-}
-
-public protocol FlatMappable {
-    associatedtype Wrapped
-    func flatMap<U>(_ f: (Wrapped) throws -> U?) rethrows -> U?
-}
-
-extension Optional : FlatMappable { }
-
-public extension Sequence where Self.Iterator.Element : FlatMappable, Self.Iterator.Element.Wrapped : JavaObject {
-    public func arrayToJArray() -> jobjectArray? {
-        let elements = Array(self).map({ $0.flatMap({ $0 as Self.Iterator.Element.Wrapped }) })
-        return Self.Iterator.Element.Wrapped.createArray(JVM.sharedJVM)(elements)
-    }
-}
-
+/// A non-generic JNI type that can identify its signature
 public protocol JSig {
     var jsig: String { get }
 }
 
 public protocol JType: JSig {
     associatedtype JNIType
+
+    static var jniType: Self { get }
 
     /// Convert the given JNI type to a jvalue
     static func jvalueOf(_ inst: JNIType) -> jvalue
@@ -1300,6 +1260,10 @@ public struct JVoid: JType {
     public static let jniType = JVoid()
 
     fileprivate init() {
+    }
+
+    public static func empty() -> JNIType {
+        return Void()
     }
 
     public static func jvalueOf(_ inst: JNIType) -> jvalue {
@@ -1341,6 +1305,11 @@ public struct JVoid: JType {
 
 /// A JType that can exist (i.e., a non-void type)
 public protocol JNominal: JType {
+    associatedtype JNIBaseType : CVarArg
+
+    /// Initializer for the generic base type (i.e., "java/lang/Object" for objects, primitive signature for all other types)
+    init()
+    
     /// Constructs a blank instance (e.g., zero for numbers, null for objects)
     static func empty() -> JNIType
     static func getField(_ env: JNIEnvPointer) -> (_ fld: jfieldID) -> (_ obj: jobject) -> JNIType
@@ -1351,9 +1320,12 @@ public protocol JNominal: JType {
 
 public struct JObjectType: JNominal {
     public typealias JNIType = jobject?
+    public typealias JNIBaseType = jobject
 
     public var jsig: String { return "L" + className + ";" }
     public let className: String
+
+    public static let jniType = JObjectType()
 
     public init() {
         self.className = "java/lang/Object"
@@ -1457,11 +1429,19 @@ public struct JObjectType: JNominal {
 
 /// A JNI array that contains other elements
 public struct JArray: JNominal {
-    public typealias JNIType = jarray?
+    public typealias JNIBaseType = jarray
+    public typealias JNIType = JNIBaseType?
+
     public var jsig: String { return "[" + elementType.jsig }
     public let elementType: JSig
 
-    public init(_ elementType: JSig = JObjectType()) {
+    public static let jniType = JArray()
+
+    public init() {
+        self.init(JObjectType())
+    }
+
+    public init(_ elementType: JSig) {
         self.elementType = elementType
     }
 
@@ -1544,7 +1524,9 @@ public struct JArray: JNominal {
 }
 
 /// A primitive that can be used as a JNI return value; the protocol will be implemented by extending the native return values themselves
-public protocol JPrimitive: JNominal {
+public protocol JPrimitive: JNominal where JNIType: CVarArg {
+    
+
     associatedtype ArrayType
 
     static var jniType: JNIType { get }
@@ -1560,6 +1542,8 @@ public extension JPrimitive where Self == JNIType {
 }
 
 extension jboolean: JPrimitive {
+    public typealias JNIBaseType = JNIType
+
     public var jsig: String { return "Z" }
     public static let jniType = jboolean()
 
@@ -1667,6 +1651,8 @@ extension jboolean: JPrimitive {
 }
 
 extension jbyte: JPrimitive {
+    public typealias JNIBaseType = JNIType
+
     public var jsig: String { return "B" }
     public static let jniType = jbyte()
 
@@ -1767,6 +1753,8 @@ extension jbyte: JPrimitive {
 }
 
 extension jchar: JPrimitive {
+    public typealias JNIBaseType = JNIType
+
     public var jsig: String { return "C" }
     public static let jniType = jchar()
 
@@ -1868,6 +1856,8 @@ extension jchar: JPrimitive {
 }
 
 extension jshort: JPrimitive {
+    public typealias JNIBaseType = JNIType
+
     public var jsig: String { return "S" }
     public static let jniType = jshort()
 
@@ -1970,6 +1960,8 @@ extension jshort: JPrimitive {
 }
 
 extension jint: JPrimitive {
+    public typealias JNIBaseType = JNIType
+
     public var jsig: String { return "I" }
     public static let jniType = jint()
 
@@ -2072,6 +2064,8 @@ extension jint: JPrimitive {
 }
 
 extension jlong: JPrimitive {
+    public typealias JNIBaseType = JNIType
+
     public var jsig: String { return "J" }
     public static let jniType = jlong()
 
@@ -2174,6 +2168,8 @@ extension jlong: JPrimitive {
 }
 
 extension jfloat: JPrimitive {
+    public typealias JNIBaseType = JNIType
+
     public var jsig: String { return "F" }
     public static let jniType = jfloat()
 
@@ -2276,6 +2272,8 @@ extension jfloat: JPrimitive {
 }
 
 extension jdouble: JPrimitive {
+    public typealias JNIBaseType = JNIType
+
     public var jsig: String { return "D" }
     public static let jniType = jdouble()
 
@@ -2425,7 +2423,7 @@ public extension JVM {
         if virtualConstruction {
             // use the list of loaders for relative wrapper instantiation; also add in E's type if it is a reference type
             var loaders = moduleLoaders
-            if let prefixName = String(describing: T.self).characters.split(whereSeparator: { $0 == "." }).map(String.init).first {
+            if let prefixName = String(describing: T.self).split(whereSeparator: { $0 == "." }).map(String.init).first {
                 loaders.append(prefixName)
             }
 
@@ -2446,7 +2444,7 @@ public extension JVM {
                 if let className = fromJavaString(clsName) {
 
                     // the wrapped class name is simply the package with "." replaced by "$" and prefixed with the available module loaders
-                    let wChars = className.characters.split(whereSeparator: { $0 == "." }).map(String.init).joined(separator: "$")
+                    let wChars = className.split(whereSeparator: { $0 == "." }).map(String.init).joined(separator: "$")
                     guard let wClassName = String(wChars) else {
                         return nil
                     }
@@ -2528,10 +2526,10 @@ public extension JVM {
     fileprivate func methodName(_ name: String) -> String {
         var n = name
         while n.hasPrefix("_") {
-            n = String(n.characters.dropFirst())
+            n = String(n.dropFirst())
         }
         while n.hasSuffix("_") {
-            n = String(n.characters.dropLast())
+            n = String(n.dropLast())
         }
 
         return n
@@ -2541,12 +2539,12 @@ public extension JVM {
 internal func methodName(_ name: String) -> String {
     if name == "<init>" { return name }
 
-    var chars = name.characters
+    var chars = name
     while chars.first == "_" {
-        chars = name.characters.dropFirst()
+        chars = String(name.dropFirst())
     }
     while chars.last == "_" {
-        chars = name.characters.dropLast()
+        chars = String(name.dropLast())
     }
     if let paren = chars.index(of: "(") {
         chars = chars[chars.startIndex..<paren]
@@ -2597,9 +2595,9 @@ public extension JavaObject {
     public var jsig: String { return JObjectType(type(of: self).jniName()).jsig }
 
     // Need a non-static func invoker() to be able to statically call invoker() for bug #21677702
-    func invoker(_ nothing: Void) { fatalError() }
-    func svoker(_ nothing: Void) { fatalError() }
-    func constructor(_ nothing: Void) { fatalError() }
+//    func invoker(_ nothing: Void) { fatalError() }
+//    func svoker(_ nothing: Void) { fatalError() }
+//    func constructor(_ nothing: Void) { fatalError() }
 
 }
 
@@ -2613,24 +2611,24 @@ public extension JavaObject {
 //    var raw = String(type)
 //
 ////    if let trim = trim { // KanjiVM.java$lang$String.Type -> java$lang$String
-////        raw = String(raw.characters.split(isSeparator: { $0 == trim }).dropFirst().first!)
+////        raw = String(raw.split(isSeparator: { $0 == trim }).dropFirst().first!)
 ////    }
 //
 //    // a generic type will show up as: KanjiVM.java$util$LinkedList<KanjiVM.java$util$Date>
 //    // so cut off anything after "<"
-//    raw = String(raw.characters.split(isSeparator: { $0 == gensep }).first!)
+//    raw = String(raw.split(isSeparator: { $0 == gensep }).first!)
 //
 //    // interfaces show up like:
 //    // KanjiVM.(java$util$Set€ in _AB6308773EA909727AC7DA99C333F370).Type
-//    raw = String(raw.characters.split(isSeparator: { $0 == "(" }).last!)
-//    raw = String(raw.characters.split(isSeparator: { $0 == " " }).first!)
+//    raw = String(raw.split(isSeparator: { $0 == "(" }).last!)
+//    raw = String(raw.split(isSeparator: { $0 == " " }).first!)
 //
 //    if raw.hasSuffix("$Impl") { // trim off stub suffix
-//        raw = String(raw.characters.dropLast(5))
+//        raw = String(raw.dropLast(5))
 //    }
 //
 //    // now turn java$lang$String -> java/lang/String
-//    let segs = raw.characters.split(isSeparator: { $0 == fsep }).map({ String($0) })
+//    let segs = raw.split(isSeparator: { $0 == fsep }).map({ String($0) })
 //
 //    // now apply the inner class name heuristic: any parts of the name beyond a part that
 //    // starts with a capital letter is itself a key in an inner class, so join it using
@@ -2645,7 +2643,7 @@ public extension JavaObject {
 //    for seg in segs {
 //        if !cname.isEmpty { cname.append(inner ? isep : jsep) }
 //        cname += seg
-//        if let initial = seg.characters.first where inner == false {
+//        if let initial = seg.first where inner == false {
 //            if String(initial).uppercaseString == String(initial) {
 //                inner = true
 //            }
@@ -2655,46 +2653,6 @@ public extension JavaObject {
 //    return cname
 //}
 
-public extension Sequence where Iterator.Element: JavaObject {
-    /// Downcast the array to the given element types
-    public func casts<T: JavaObject>() -> [T] {
-        var arr: [T] = []
-        for x in self {
-            if let v: T = x.cast() {
-                arr.append(v)
-            }
-        }
-        return arr
-    }
-}
-
-public extension Collection where Iterator.Element: JavaObject, Index == Int, IndexDistance == Int {
-    public func toJArray(_ jvm: JVM) -> jobjectArray? {
-        if let array = jvm.newObjectArray(jsize(count), clazz: Iterator.Element.javaClass, init: nil) {
-            for (i, x) in self.enumerated() {
-                jvm.setObjectArrayElement(array, index: jsize(i), val: x.jobj)
-            }
-            return array
-        } else {
-            return nil
-        }
-    }
-}
-
-public extension Sequence where Iterator.Element == Optional<JavaObject> {
-    /// Downcast the array to the given element types
-    public func casts<T: JavaObject>() -> [T] {
-        var arr: [T] = []
-        for x in self {
-            if let x = x {
-                if let v: T = x.cast() {
-                    arr.append(v)
-                }
-            }
-        }
-        return arr
-    }
-}
 
 public extension JavaObject {
     /// The Java class name for the type (e.g., “java/lang/Object”)
@@ -2726,34 +2684,6 @@ public extension JavaObject {
 
 }
 
-
-public extension JavaObject {
-    public static func createArray(_ jvm: JVM) -> (_ elements: [Self?]) -> jobjectArray? {
-        return { elements in
-            if let jarr = jvm.newObjectArray(jsize(elements.count), clazz: javaClass, init: nil) {
-                for (i, e) in elements.enumerated() {
-                    jvm.setObjectArrayElement(jarr, index: jsize(i), val: e?.jobj ?? nil)
-                }
-                return jarr
-            } else {
-                return nil
-            }
-        }
-    }
-
-    static func getArray(_ jvm: JVM) -> (_ array: jobjectArray) -> [Self?]? {
-        return { array in
-            let len = jvm.getArrayLength(array)
-            var arr: [Self?] = []
-            for i in 0..<len {
-                let jobj = jvm.getObjectArrayElement(array, index: i)
-                let inst = Self(reference: jobj)
-                arr.append(inst)
-            }
-            return arr
-        }
-    }
-}
 
 extension JVM {
     /// Converts the given JNI jstring to a Swift string
@@ -2804,6 +2734,136 @@ extension JVM {
         //        }
     }
     
+}
+
+// ### these extensions crash when linking Kanji from an external module in Xcode 8.3.2 (FIXED: it seemed to be because any reference to jni.h types like jint, jvalue, etc. would crash because the module.modulemap file was exporting the module named "KanjiJNI" instead of "KanjiVM")
+
+//public extension Sequence {
+//    @available(*, deprecated, message: "re-implement without extensions")
+//    public func arrayToJArray<T>() -> T {
+//        fatalError("TODO: re-implement without extensions")
+//    }
+//}
+//
+//public extension jobject {
+//    @available(*, deprecated, message: "re-implement without extensions")
+//    public func jarrayToArray<T>(_ type: T.Type) -> [T?]? {
+//        fatalError("TODO: re-implement without extensions")
+//    }
+//}
+//
+//public extension jarray {
+//    @available(*, deprecated, message: "re-implement without extensions")
+//    public func jarrayToArray<T>() -> [T]? {
+//        fatalError("TODO: re-implement without extensions")
+//    }
+//}
+
+public extension JavaObject {
+    public static func createArray(_ jvm: JVM) -> (_ elements: [Self?]) -> jobjectArray? {
+        return { elements in
+            if let jarr = jvm.newObjectArray(jsize(elements.count), clazz: javaClass, init: nil) {
+                for (i, e) in elements.enumerated() {
+                    jvm.setObjectArrayElement(jarr, index: jsize(i), val: e?.jobj ?? nil)
+                }
+                return jarr
+            } else {
+                return nil
+            }
+        }
+    }
+
+    static func getArray(_ jvm: JVM) -> (_ array: jobjectArray) -> [Self?]? {
+        return { array in
+            let len = jvm.getArrayLength(array)
+            var arr: [Self?] = []
+            for i in 0..<len {
+                let jobj = jvm.getObjectArrayElement(array, index: i)
+                let inst = Self(reference: jobj)
+                arr.append(inst)
+            }
+            return arr
+        }
+    }
+}
+
+public extension jarray {
+    public func jarrayToArray<T: JPrimitive>() -> [T]? {
+        return T.getArray(JVM.sharedJVM.env)(self)
+    }
+}
+
+public extension jobject {
+    public func jarrayToArray<T: JavaObject>(_ type: T.Type) -> [T?]? {
+        return T.getArray(JVM.sharedJVM)(self)
+    }
+}
+
+public extension Sequence where Self.Iterator.Element : JPrimitive {
+    public func arrayToJArray() -> Self.Iterator.Element.ArrayType? {
+        return Self.Iterator.Element.createArray(JVM.sharedJVM.env)(Array(self))
+    }
+}
+
+public extension Sequence where Self.Iterator.Element : JavaObject {
+    public func arrayToJArray() -> jobjectArray? {
+        return Self.Iterator.Element.createArray(JVM.sharedJVM)(Array(self).map({ $0 as Self.Iterator.Element? }))
+    }
+}
+
+public protocol FlatMappable {
+    associatedtype Wrapped
+    func flatMap<U>(_ f: (Wrapped) throws -> U?) rethrows -> U?
+}
+
+extension Optional : FlatMappable { }
+
+public extension Sequence where Self.Iterator.Element : FlatMappable, Self.Iterator.Element.Wrapped : JavaObject {
+    public func arrayToJArray() -> jobjectArray? {
+        let elements = Array(self).map({ $0.flatMap({ $0 as Self.Iterator.Element.Wrapped }) })
+        return Self.Iterator.Element.Wrapped.createArray(JVM.sharedJVM)(elements)
+    }
+}
+
+public extension Sequence where Iterator.Element: JavaObject {
+    /// Downcast the array to the given element types
+    public func casts<T: JavaObject>() -> [T] {
+        var arr: [T] = []
+        for x in self {
+            if let v: T = x.cast() {
+                arr.append(v)
+            }
+        }
+        return arr
+    }
+}
+
+public extension Collection where Iterator.Element: JavaObject, Index == Int, IndexDistance == Int {
+    public func toJArray(_ jvm: JVM) -> jobjectArray? {
+        if let array = jvm.newObjectArray(jsize(count), clazz: Iterator.Element.javaClass, init: nil) {
+            for (i, x) in self.enumerated() {
+                jvm.setObjectArrayElement(array, index: jsize(i), val: x.jobj)
+            }
+            return array
+        } else {
+            return nil
+        }
+    }
+}
+
+public extension Sequence where Iterator.Element == Optional<JavaObject> {
+    /// Downcast the array to the given element types
+    public func casts<T: JavaObject>() -> [T] {
+        var arr: [T] = []
+        for x in self {
+            if let x = x {
+                if let v: T = x.cast() {
+                    arr.append(v)
+                }
+            }
+        }
+        return arr
+    }
 }
 
 

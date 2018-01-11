@@ -239,6 +239,16 @@ open class jdk$nashorn$api$scripting$AbstractJSObject : java$lang$Object, jdk$na
         return try I.jdk$nashorn$api$scripting$AbstractJSObject_toNumber__D(jobj)()
     }
 
+    fileprivate static let jdk$nashorn$api$scripting$AbstractJSObject_getDefaultValue_java$lang$Class__java$lang$Object = invoker("getDefaultValue", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Class")))
+    public func getDefaultValue(_ a0: java$lang$Class?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$AbstractJSObject_getDefaultValue_java$lang$Class__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let jdk$nashorn$api$scripting$AbstractJSObject_getDefaultValue_jdk$nashorn$api$scripting$JSObject_java$lang$Class__java$lang$Object = svoker("getDefaultValue", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("jdk/nashorn/api/scripting/JSObject"), JObjectType("java/lang/Class")))
+    public static func getDefaultValue(_ a0: jdk$nashorn$api$scripting$JSObject?, _ a1: java$lang$Class?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$AbstractJSObject_getDefaultValue_jdk$nashorn$api$scripting$JSObject_java$lang$Class__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
 }
 
 public typealias jdk$nashorn$api$scripting$AbstractJSObject$Impl = jdk$nashorn$api$scripting$AbstractJSObject
@@ -400,6 +410,11 @@ public final class jdk$nashorn$api$scripting$ScriptObjectMirror : jdk$nashorn$ap
         return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptObjectMirror_wrap_java$lang$Object_java$lang$Object__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
     }
 
+    fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_wrapAsJSONCompatible_java$lang$Object_java$lang$Object__java$lang$Object = svoker("wrapAsJSONCompatible", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public static func wrapAsJSONCompatible(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptObjectMirror_wrapAsJSONCompatible_java$lang$Object_java$lang$Object__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
     fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_unwrap_java$lang$Object_java$lang$Object__java$lang$Object = svoker("unwrap", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
     public static func unwrap(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptObjectMirror_unwrap_java$lang$Object_java$lang$Object__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
@@ -421,6 +436,7 @@ public final class jdk$nashorn$api$scripting$ScriptObjectMirror : jdk$nashorn$ap
     }
 
     fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_toNumber__D = invoker("toNumber", returns: jdouble.jniType)
+    fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_getDefaultValue_java$lang$Class__java$lang$Object = invoker("getDefaultValue", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Class")))
     fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_put_java$lang$Object_java$lang$Object__java$lang$Object = invoker("put", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
     public func put(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptObjectMirror_put_java$lang$Object_java$lang$Object__java$lang$Object(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
@@ -710,14 +726,14 @@ public final class jdk$nashorn$api$scripting$ScriptUtils : java$lang$Object {
         return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptUtils_format_java$lang$String_Ajava$lang$Object__java$lang$String(a0?.jobj ?? nil, a1?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)) as java$lang$String$Impl?
     }
 
-    fileprivate static let jdk$nashorn$api$scripting$ScriptUtils_makeSynchronizedFunction_jdk$nashorn$internal$runtime$ScriptFunction_java$lang$Object__java$lang$Object = svoker("makeSynchronizedFunction", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("jdk/nashorn/internal/runtime/ScriptFunction"), JObjectType("java/lang/Object")))
-    public static func makeSynchronizedFunction(_ a0: jdk$nashorn$internal$runtime$ScriptFunction?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
-        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptUtils_makeSynchronizedFunction_jdk$nashorn$internal$runtime$ScriptFunction_java$lang$Object__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    fileprivate static let jdk$nashorn$api$scripting$ScriptUtils_makeSynchronizedFunction_java$lang$Object_java$lang$Object__java$lang$Object = svoker("makeSynchronizedFunction", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public static func makeSynchronizedFunction(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptUtils_makeSynchronizedFunction_java$lang$Object_java$lang$Object__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
     }
 
-    fileprivate static let jdk$nashorn$api$scripting$ScriptUtils_wrap_jdk$nashorn$internal$runtime$ScriptObject__jdk$nashorn$api$scripting$ScriptObjectMirror = svoker("wrap", returns: JObjectType("jdk/nashorn/api/scripting/ScriptObjectMirror"), arguments: (JObjectType("jdk/nashorn/internal/runtime/ScriptObject")))
-    public static func wrap(_ a0: jdk$nashorn$internal$runtime$ScriptObject?) throws -> jdk$nashorn$api$scripting$ScriptObjectMirror? {
-        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptUtils_wrap_jdk$nashorn$internal$runtime$ScriptObject__jdk$nashorn$api$scripting$ScriptObjectMirror(a0?.jobj ?? nil)) as jdk$nashorn$api$scripting$ScriptObjectMirror$Impl?
+    fileprivate static let jdk$nashorn$api$scripting$ScriptUtils_wrap_java$lang$Object__jdk$nashorn$api$scripting$ScriptObjectMirror = svoker("wrap", returns: JObjectType("jdk/nashorn/api/scripting/ScriptObjectMirror"), arguments: (JObjectType("java/lang/Object")))
+    public static func wrap(_ a0: java$lang$Object?) throws -> jdk$nashorn$api$scripting$ScriptObjectMirror? {
+        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptUtils_wrap_java$lang$Object__jdk$nashorn$api$scripting$ScriptObjectMirror(a0?.jobj ?? nil)) as jdk$nashorn$api$scripting$ScriptObjectMirror$Impl?
     }
 
     fileprivate static let jdk$nashorn$api$scripting$ScriptUtils_unwrap_java$lang$Object__java$lang$Object = svoker("unwrap", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))

@@ -1,4 +1,5 @@
-module KanjiJNI [system] {
+module KanjiVM [system] {
     header "jni.h"
+    header "jni_md.h"
     export *
 }
