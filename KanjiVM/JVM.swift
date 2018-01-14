@@ -2444,10 +2444,7 @@ public extension JVM {
                 if let className = fromJavaString(clsName) {
 
                     // the wrapped class name is simply the package with "." replaced by "$" and prefixed with the available module loaders
-                    let wChars = className.split(whereSeparator: { $0 == "." }).map(String.init).joined(separator: "$")
-                    guard let wClassName = String(wChars) else {
-                        return nil
-                    }
+                    let wClassName = className.split(whereSeparator: { $0 == "." }).map(String.init).joined(separator: "$")
 
                     for prefix in loaders {
                         let baseName = String(prefix) + "." + wClassName
@@ -2547,7 +2544,7 @@ internal func methodName(_ name: String) -> String {
         chars = String(name.dropLast())
     }
     if let paren = chars.index(of: "(") {
-        chars = chars[chars.startIndex..<paren]
+        chars = String(chars[chars.startIndex..<paren])
     }
 
     return String(chars)

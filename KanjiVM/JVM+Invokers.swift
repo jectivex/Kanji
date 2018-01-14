@@ -87,7 +87,7 @@ public extension JInvocable {
         let mid = findMethod(cls ?? javaClass, name: methodName(name), sig: JVM.jsig(returns, args: []))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 1 arguments
@@ -103,7 +103,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 3 arguments
@@ -111,7 +111,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 4 arguments
@@ -119,7 +119,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 5 arguments
@@ -127,7 +127,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 6 arguments
@@ -135,7 +135,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 7 arguments
@@ -143,7 +143,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 8 arguments
@@ -151,7 +151,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 9 arguments
@@ -159,7 +159,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 10 arguments
@@ -167,7 +167,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 11 arguments
@@ -175,7 +175,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 12 arguments
@@ -183,7 +183,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 13 arguments
@@ -191,7 +191,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 14 arguments
@@ -199,7 +199,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 15 arguments
@@ -207,7 +207,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 16 arguments
@@ -215,7 +215,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 17 arguments
@@ -223,7 +223,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 18 arguments
@@ -231,7 +231,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 19 arguments
@@ -239,7 +239,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 20 arguments
@@ -247,7 +247,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 21 arguments
@@ -255,7 +255,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19, arguments.20]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19), A20.jvalueOf(args.20)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19), A20.jvalueOf($20)]))}}
     }
 
     /// Creates an invoker closure from a class, method name, return type, object instance, and 22 arguments
@@ -263,7 +263,7 @@ public extension JInvocable {
         let mid = findMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19, arguments.20, arguments.21]))
         let ex = jvm.popException()
         let caller = T.call(mid)
-        return { inst in { args in try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19), A20.jvalueOf(args.20), A21.jvalueOf(args.21)]))}}
+        return { inst in { try rethrow(ex, caller(jvm.env)(inst.jobj)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19), A20.jvalueOf($20), A21.jvalueOf($21)]))}}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 0 arguments
@@ -271,7 +271,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: []))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 1 arguments
@@ -279,7 +279,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 2 arguments
@@ -287,7 +287,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 3 arguments
@@ -295,7 +295,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 4 arguments
@@ -303,7 +303,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 5 arguments
@@ -311,7 +311,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 6 arguments
@@ -319,7 +319,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 7 arguments
@@ -327,7 +327,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 8 arguments
@@ -335,7 +335,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 9 arguments
@@ -343,7 +343,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 10 arguments
@@ -351,7 +351,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 11 arguments
@@ -359,7 +359,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 12 arguments
@@ -367,7 +367,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 13 arguments
@@ -375,7 +375,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 14 arguments
@@ -383,7 +383,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 15 arguments
@@ -391,7 +391,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 16 arguments
@@ -399,7 +399,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 17 arguments
@@ -407,7 +407,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 18 arguments
@@ -415,7 +415,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 19 arguments
@@ -423,7 +423,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 20 arguments
@@ -431,7 +431,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 21 arguments
@@ -439,7 +439,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19, arguments.20]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19), A20.jvalueOf(args.20)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19), A20.jvalueOf($20)]))}
     }
 
     /// Creates a static invoker closure from a class, method name, return type, and 22 arguments
@@ -447,7 +447,7 @@ public extension JInvocable {
         let mid = findStaticMethod(cls != nil ? cls! : javaClass, name: methodName(name), sig: JVM.jsig(returns, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19, arguments.20, arguments.21]))
         let ex = jvm.popException()
         let caller = T.callStatic(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19), A20.jvalueOf(args.20), A21.jvalueOf(args.21)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19), A20.jvalueOf($20), A21.jvalueOf($21)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 0 arguments
@@ -455,7 +455,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: []))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 1 arguments
@@ -463,7 +463,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 2 arguments
@@ -471,7 +471,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 3 arguments
@@ -479,7 +479,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 4 arguments
@@ -487,7 +487,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 5 arguments
@@ -495,7 +495,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 6 arguments
@@ -503,7 +503,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 7 arguments
@@ -511,7 +511,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 8 arguments
@@ -519,7 +519,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 9 arguments
@@ -527,7 +527,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 10 arguments
@@ -535,7 +535,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 11 arguments
@@ -543,7 +543,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 12 arguments
@@ -551,7 +551,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 13 arguments
@@ -559,7 +559,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 14 arguments
@@ -567,7 +567,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 15 arguments
@@ -575,7 +575,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 16 arguments
@@ -583,7 +583,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 17 arguments
@@ -591,7 +591,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 18 arguments
@@ -599,7 +599,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 19 arguments
@@ -607,7 +607,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 20 arguments
@@ -615,7 +615,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 21 arguments
@@ -623,7 +623,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19, arguments.20]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19), A20.jvalueOf(args.20)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19), A20.jvalueOf($20)]))}
     }
 
     /// Creates a constructor closure for this `javaClass` and 22 arguments
@@ -631,7 +631,7 @@ public extension JInvocable {
         let mid = findMethod(javaClass, name: methodName("<init>"), sig: JVM.jsig(JVoid.jniType, args: [arguments.0, arguments.1, arguments.2, arguments.3, arguments.4, arguments.5, arguments.6, arguments.7, arguments.8, arguments.9, arguments.10, arguments.11, arguments.12, arguments.13, arguments.14, arguments.15, arguments.16, arguments.17, arguments.18, arguments.19, arguments.20, arguments.21]))
         let ex = jvm.popException()
         let caller = JObjectType.callInit(mid)
-        return { args in try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf(args.0), A1.jvalueOf(args.1), A2.jvalueOf(args.2), A3.jvalueOf(args.3), A4.jvalueOf(args.4), A5.jvalueOf(args.5), A6.jvalueOf(args.6), A7.jvalueOf(args.7), A8.jvalueOf(args.8), A9.jvalueOf(args.9), A10.jvalueOf(args.10), A11.jvalueOf(args.11), A12.jvalueOf(args.12), A13.jvalueOf(args.13), A14.jvalueOf(args.14), A15.jvalueOf(args.15), A16.jvalueOf(args.16), A17.jvalueOf(args.17), A18.jvalueOf(args.18), A19.jvalueOf(args.19), A20.jvalueOf(args.20), A21.jvalueOf(args.21)]))}
+        return { try rethrow(ex, caller(jvm.env)(javaClass)([A0.jvalueOf($0), A1.jvalueOf($1), A2.jvalueOf($2), A3.jvalueOf($3), A4.jvalueOf($4), A5.jvalueOf($5), A6.jvalueOf($6), A7.jvalueOf($7), A8.jvalueOf($8), A9.jvalueOf($9), A10.jvalueOf($10), A11.jvalueOf($11), A12.jvalueOf($12), A13.jvalueOf($13), A14.jvalueOf($14), A15.jvalueOf($15), A16.jvalueOf($16), A17.jvalueOf($17), A18.jvalueOf($18), A19.jvalueOf($19), A20.jvalueOf($20), A21.jvalueOf($21)]))}
     }
     
 }
