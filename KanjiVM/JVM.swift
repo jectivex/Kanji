@@ -2658,6 +2658,11 @@ public extension JavaObject {
     }
 
     /// Cast this instance to another type, returning nil if the cast could not be performed
+    public func castTo<T: JavaObject>(_ type: T.Type) -> T? {
+        return cast()
+    }
+    
+    /// Cast this instance to another type, returning nil if the cast could not be performed
     public func cast<T: JavaObject>() -> T? {
         guard let jvm = JVM.sharedJVM else { return nil }
         let jsup = jvm.findClass(T.javaClassName)
@@ -2696,10 +2701,23 @@ extension JVM {
 
     /// Converts the given Swift string to a JNI jstring
     public func toJString(_ string: String) -> jstring? {
-        return ContiguousArray(string.utf16).withUnsafeBufferPointer { bptr in
-            guard let ptr = bptr.baseAddress else { return nil }
-            return newString(ptr, len: jsize(bptr.count))
+        // in theory this should be the fastest way, because we might be able to share string pointers without copying
+        // Unicode.UTF16.CodeUnit == jchar == UInt16
+        return string.withCString(encodedAs: Unicode.UTF16.self) { (ptr: UnsafePointer<Unicode.UTF16.CodeUnit>) in
+            // string is null-terminated, so we need to walk the pointers to find the length
+            var len: jsize = 0
+            var vptr = ptr
+            while vptr.pointee != 0 {
+                vptr = vptr.advanced(by: 1)
+                len += 1
+            }
+            return newString(ptr, len: len)
         }
+
+//        return ContiguousArray(string.utf16).withUnsafeBufferPointer { bptr in
+//            guard let ptr = bptr.baseAddress else { return nil }
+//            return newString(ptr, len: jsize(bptr.count))
+//        }
 
 //        return newStringUTF(string)
 //
