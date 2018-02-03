@@ -153,10 +153,12 @@ public final class JVM {
     /// The static list of module loaders against which dynamic loading will be attempted
     public var moduleLoaders: [String] = ["JavaLib"]
 
-    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (true, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = []) throws {
+    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (false, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = []) throws {
 
         // signal disabling is accomplished by setting the following for the scheme:
         // DYLD_INSERT_LIBRARIES=$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/$KANJI_BUNDLE/Contents/Home/lib/libjsig.dylib
+        // or with JDK 9 custom image:
+        // DYLD_INSERT_LIBRARIES=$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/$KANJI_BUNDLE/lib/libjsig.dylib
 
         // if the signal library was installed correctly, setting debug.jni=true
         // wil output:
@@ -2664,6 +2666,7 @@ public extension JavaObject {
     
     /// Cast this instance to another type, returning nil if the cast could not be performed
     public func cast<T: JavaObject>() -> T? {
+        if let t = self as? T { return t } // we are already the correct instance
         guard let jvm = JVM.sharedJVM else { return nil }
         let jsup = jvm.findClass(T.javaClassName)
         if (jvm.exceptionCheck() == true) {

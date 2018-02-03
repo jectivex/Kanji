@@ -18,7 +18,7 @@ public extension JVM {
         if let thread = try java$lang$Thread.currentThread() {
             if try thread.getContextClassLoader() == nil {
                 if let syscl = try java$lang$ClassLoader.getSystemClassLoader() {
-                    print("initializing context class loader")
+                    print("initializing context class loader for \(Thread.current)")
                     try thread.setContextClassLoader(syscl)
                 }
             }
@@ -185,7 +185,7 @@ extension java$lang$String : ExpressibleByStringLiteral {
 public extension String {
     /// Returns the current Swift string as a Java string
     public var javaString: java$lang$String {
-        return java$lang$String(self)
+        return java$lang$String(reference: JVM.sharedJVM.toJString(self))!
     }
 }
 

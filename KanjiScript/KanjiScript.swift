@@ -14,7 +14,7 @@ import JavaLib
 import BricBrac
 
 open class KanjiScriptContext : ScriptContext {
-    open var engine: javax$script$ScriptEngine! // silly requirement that all properties must be initialized before throwing from an initializer
+    open let engine: javax$script$ScriptEngine
 
     public typealias InstanceType = KanjiScriptType
 
@@ -37,7 +37,7 @@ open class KanjiScriptContext : ScriptContext {
 //        self.engine = engine
 //        return
 
-        let manager = try javax$script$ScriptEngineManager(loader)
+        let manager = loader == nil ? try javax$script$ScriptEngineManager() : try javax$script$ScriptEngineManager(loader)
         guard let engine = try manager.getEngineByName(java$lang$String(stringLiteral: name)) else {
             throw KanjiErrors.general("Could not get engine named \(name)")
         }
@@ -54,7 +54,7 @@ open class KanjiScriptContext : ScriptContext {
 
     open func bind(_ key: String, value: InstanceType.RefType) throws {
         //try self.engine.put(java$lang$String(key), value as? java$lang$Object)
-        let _ = try self.engine.getBindings(javax$script$ScriptContext$Impl.ENGINE_SCOPE)?.put(java$lang$String(key), value as? java$lang$Object)
+        let _ = try self.engine.getBindings(javax$script$ScriptContext$Impl.ENGINE_SCOPE)?.put(java$lang$String(key), value.cast())
         
     }
 
@@ -65,6 +65,39 @@ open class KanjiScriptContext : ScriptContext {
 //
 //    }
 
+    public typealias CompiledArgs = [String : InstanceType?]
+    public typealias CompiledScript = (CompiledArgs) throws -> InstanceType.RefType?
+    
+    /// Compiles the given code for later execution, returning an execution closure
+    open func compile(_ code: String, bindings: CompiledArgs = [:]) throws -> CompiledScript {
+        guard let compiler: javax$script$Compilable = engine.cast() as javax$script$Compilable$Impl? else {
+            throw KanjiErrors.general("Script engine was not compilable")
+        }
+
+        // set the initial bindings in the engine context; some engines (like scala) require them to be declated before they will allow blocks that reference parameter names be compiled
+        for (key, value) in bindings {
+            let _ = try engine.put(key.javaString, value.flatMap(self.ref)?.cast())
+        }
+
+        guard let compiled = try compiler.compile(code.javaString) else {
+            throw KanjiErrors.general("Unable to compile script")
+        }
+        
+        let execute: CompiledScript = { bindings in
+            if bindings.isEmpty {
+                return try compiled.eval()
+            } else {
+                let binds = try javax$script$SimpleBindings()
+                for (key, value) in bindings {
+                    let _ = try binds.put(key.javaString, value.flatMap(self.ref)?.cast())
+                }
+                return try compiled.eval(binds)
+            }
+        }
+        
+        return execute
+    }
+    
     open func eval(_ code: InstanceType, this: InstanceType.RefType? = nil, args: [InstanceType] = []) throws -> InstanceType {
         let script: String
         switch code {
@@ -94,15 +127,15 @@ open class KanjiScriptContext : ScriptContext {
     }
 
     fileprivate func evaluate(_ script: String, this: InstanceType.RefType? = nil, args: [InstanceType.RefType]) throws -> InstanceType.RefType? {
-        let str = java$lang$String(stringLiteral: script)
+        let str = script.javaString
 
         // functions can only be invoked on invocale subclases
         if let invocable: javax$script$Invocable$Impl = engine.cast() , !args.isEmpty || this != nil {
             // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
-            let args2: [java$lang$Object?]? = args.map({ $0 as? java$lang$Object })
+            let args2: [java$lang$Object?]? = args.map({ $0.cast() })
 
-            if let this = this as? java$lang$Object { // invoke a method on this argument
-                return try invocable.invokeMethod(this, java$lang$String(script), args2)
+            if let this = this { // invoke a method on this argument
+                return try invocable.invokeMethod(this.cast(), java$lang$String(script), args2)
             } else {
                 return try invocable.invokeFunction(java$lang$String(script), args2)
             }
@@ -120,6 +153,7 @@ open class KanjiScriptContext : ScriptContext {
         return try ref(inst)
     }
 
+    /// Converts the given instance to a reference, either by deep-converting the Bric for val instances, or leaving it unchanged to ref instances
     open func ref(_ inst: InstanceType) throws -> InstanceType.RefType {
         switch inst {
         case .ref(let r, _):
@@ -133,6 +167,7 @@ open class KanjiScriptContext : ScriptContext {
         }
     }
 
+    /// Converts the given instance to a value, either by deep-converting the Kanji for ref instances, or leaving it unchanged to val instances
     open func val(_ inst: InstanceType) throws -> InstanceType.ValType {
         switch inst {
         case .val(let v):
@@ -191,10 +226,24 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
         }
     }
 
+    public var asRef: RefType? {
+        switch self {
+        case .ref(let x, _): return x
+        case .val: return nil
+        }
+    }
+
     public var isVal: Bool {
         switch self {
         case .ref: return false
         case .val: return true
+        }
+    }
+
+    public var asVal: ValType? {
+        switch self {
+        case .ref: return nil
+        case .val(let x): return x
         }
     }
 
@@ -259,29 +308,26 @@ public extension Bric {
     /// .Str->java.lang.String
     /// .Bol->java.lang.Boolean
     /// .Num->java.lang.Double
-    /// .Arr->java.util.ArrayList
-    /// .Obj->java.util.HashMap
-    public func toKanji(_ vm: JVM) throws -> java$lang$Object? {
+    /// .Arr->java.util.List
+    /// .Obj->java.util.Map
+    public func toKanji(_ vm: JVM = JVM.sharedJVM) throws -> java$lang$Object? {
         switch self {
         case .nul:
             return nil
         case .num(let n):
-            return try java$lang$Double(n)
+            return try java$lang$Double.valueOf(n) ?? java$lang$Double(n)
         case .str(let s):
-            return java$lang$String(s)
+            return s.javaString
         case .bol(let b):
-            return try java$lang$Boolean(b ? true : false)
+            return try java$lang$Boolean.valueOf(b ? true : false) ?? java$lang$Boolean(b ? true : false)
         case .arr(let a):
-            let arr = try java$util$ArrayList()
-            for e in a {
-                let x = try e.toKanji(vm)
-                _ = try arr.add(x)
-            }
-            return arr
+            let karr = try a.map({ try $0.toKanji() })
+            let jarr = try java$util$Arrays.asList(karr)
+            return jarr as? java$lang$Object
         case .obj(let o):
-            let obj = try java$util$HashMap()
+            let obj = try java$util$LinkedHashMap()
             for (k, v) in o {
-                let kk = java$lang$String(stringLiteral: k)
+                let kk = k.javaString
                 let kv = try v.toKanji(vm)
                 _ = try obj.put(kk, kv)
             }
@@ -338,7 +384,7 @@ public extension JavaObject {
 
         if JVM.sharedJVM.findClass(ScriptObject.javaClassName) != nil {
             if let jsobj : ScriptObject = ob.cast() {
-                // “With jdk8u40 onwards, script objects are converted to ScriptObjectMirror whenever script objects are passed to Java layer - even with Object type params or assigned to a Object[] element. Such wrapped mirror instances are automatically unwrapped when execution crosses to script boundary. i.e., say a Java method returns Object type value which happens to be ScriptObjectMirror object, then script caller will see it a ScriptObject instance” -- https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes
+                // “With jdk8u40 onwards, script objects are converted to ScriptObjectMirror whenever script objects are passed to Java layer - even with Object type params or assigned to a Object[] element. Such wrapped mirror instances are automatically unwrapped when execution crosses to script boundary. i.e., say a Java method returns Object type value which happens to be ScriptObjectMirror object, then script caller will see it a ScriptObject instance” -- https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes#Nashornjsr223enginenotes-ScriptObjectMirrorconversion
                 if try jsobj.isArray() == true {
                     if let collection = try jsobj.values() {
                         ob = collection

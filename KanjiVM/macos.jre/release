@@ -1,0 +1,2 @@
+JAVA_VERSION="9.0.1"
+MODULES="java.base java.logging java.compiler java.xml java.prefs java.datatransfer java.desktop jdk.unsupported java.activation java.xml.bind jdk.charsets jdk.dynalink java.sql java.scripting java.rmi jdk.scripting.nashorn"

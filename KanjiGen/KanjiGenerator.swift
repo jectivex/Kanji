@@ -38,7 +38,7 @@ extension String {
         if !hasPrefix(prefix) {
             return nil
         }
-        let sub = substring(from: prefix.endIndex)
+        let sub = String(self[prefix.endIndex...])
         if let sub2 = sub.trimPrefix(prefix, count: count - 1) , count > 1 {
             return sub2 // when count is more than one, we optionally trim the remaining prefixes
         } else {
@@ -55,7 +55,7 @@ extension String {
             end = suffix.index(before: end)
         }
 
-        return substring(to: end)
+        return String(self[...end])
     }
 
     func trimSurrounding(_ prefix: String, suffix: String) -> String? {
@@ -512,8 +512,8 @@ struct JMethod {
             throw CodegenErrors.parseError("No close paren")
         }
 
-        let argstr = desc.substring(from: desc.index(after: openParen)).substring(to: desc.index(before: closeParen))
-        let retstr = desc.substring(from: desc.index(after: closeParen))
+        let argstr = desc[desc.index(after: openParen)...][...desc.index(before: closeParen)]
+        let retstr = desc[desc.index(after: closeParen)...]
 
         var args: [JType] = []
         var argsg = argstr.makeIterator()

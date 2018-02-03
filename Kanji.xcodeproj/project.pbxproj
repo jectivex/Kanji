@@ -1715,7 +1715,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1764,7 +1765,8 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
+				SWIFT_VERSION = 4.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1784,16 +1786,13 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = KanjiVM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/$(KANJI_BUNDLE)/Contents/MacOS @loader_path/Resources/$(KANJI_BUNDLE)/Contents/Home/lib";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/$(KANJI_BUNDLE)/lib @loader_path/Resources/$(KANJI_BUNDLE)/lib/jli";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/Contents/MacOS",
-					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/Contents/Home/lib",
+					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/lib",
+					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/lib/jli",
 				);
-				OTHER_LDFLAGS = (
-					"-ljsig",
-					"-ljli",
-				);
+				OTHER_LDFLAGS = "-ljli";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.glimpse.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1815,16 +1814,13 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = KanjiVM/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/$(KANJI_BUNDLE)/Contents/MacOS @loader_path/Resources/$(KANJI_BUNDLE)/Contents/Home/lib";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/Resources/$(KANJI_BUNDLE)/lib @loader_path/Resources/$(KANJI_BUNDLE)/lib/jli";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/Contents/MacOS",
-					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/Contents/Home/lib",
+					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/lib",
+					"$(SRCROOT)/$(TARGET_NAME)/$(KANJI_BUNDLE)/lib/jli",
 				);
-				OTHER_LDFLAGS = (
-					"-ljsig",
-					"-ljli",
-				);
+				OTHER_LDFLAGS = "-ljli";
 				PRODUCT_BUNDLE_IDENTIFIER = "io.glimpse.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -325,10 +325,6 @@ extension java$util$function$Function$Impl : FunctionalInterface {
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [functionalMethod(native)]).constructor() as Slf
     }
 
-}
-
-extension java$util$function$Function$Impl {
-
     public static func fromClosure(_ f: @escaping FunctionalClosure) throws -> Slf {
 
         let native: FunctionalBlock = { env, obj, arg in
@@ -350,7 +346,7 @@ extension java$util$function$Function$Impl {
                 } else {
                     return R.empty()
                 }
-            } catch let jerr as java$lang$Throwable { // throw throwable instances directly
+            } catch let jerr as java$lang$Throwable { // re-throw throwable instances directly
                 JVM.sharedJVM.throwException(jerr.jobj)
                 return R.empty()
             } catch { // throws all other exceptions via a runtime exception
@@ -806,88 +802,3 @@ public extension java$util$function$ObjIntConsumer {
     }
 }
 
-
-//public protocol JavaLambda1 {
-//    associatedtype R: JWrappable
-//    associatedtype A1: JWrappable
-//    associatedtype This: Self
-//    
-//    static var lambda: (This) -> (A1) throws -> R { get }
-//}
-//
-//public protocol JavaLambda2 {
-//    associatedtype R: JWrappable
-//    associatedtype A1: JWrappable
-//    associatedtype A2: JWrappable
-//    associatedtype This: Self
-//    
-//    /// Required method for the lambda type; used mostly to validate the types
-//    static var lambda: (This) -> (A1.JWrapperType, A2.JWrapperType) throws -> R.JWrapperType { get }
-//}
-//
-//public final class JavaObjectIntVoidFunction : java$util$function$ObjIntConsumer$Impl, JavaLambda2 {
-//    public typealias R = JVoid
-//    public typealias A1 = JObjectType
-//    public typealias A2 = jint
-//    
-//    public typealias FunctionalBlock = @convention(c) (UnsafePointer<JNIEnv>, jobject, A1.JNIType, A2.JNIType) -> R.JNIType
-//    public typealias FunctionalClosure = (A1.JWrapperType, A2.JWrapperType) throws -> R.JWrapperType
-//
-//    private static var closures: [jlong : FunctionalClosure] = [:]
-//
-//    public static let lambda = accept
-//    
-//    private static let sig = JVM.jsig(R.jniType, args: [A1.jniType, A2.jniType])
-//
-//    /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-//    public static func fromBlock(_ native: FunctionalBlock) throws -> Self {
-//        return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-//            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
-//            ]).constructor()
-//    }
-//
-//    public static func fromClosure(_ f: @escaping FunctionalClosure) throws -> Self {
-//        let native: FunctionalBlock = { env, obj, arg1, arg2 in
-//            guard let address = JVM.sharedJVM.nativeAddress(obj) else {
-//                return dump(R.empty(), name: "Kanji Warning: unable to find native address")
-//            }
-//            guard let f = java$util$function$Function$closures[address] else {
-//                return dump(R.empty(), name: "Kanji Warning: unable to find native implementation for address: \(address)")
-//            }
-//
-//            do {
-//                let ret = try f(java$lang$Object(reference: arg))
-//                if let jobj = ret?.jobj {
-//                    // we need to pass back a new ref, since when the java object is ARC'd,
-//                    // its own reference is immediately dropped
-//                    return JVM.sharedJVM.newWeakGlobalRef(jobj)
-//                } else {
-//                    return R.empty()
-//                }
-//            } catch let jerr as java$lang$Throwable { // throw throwable instances directly
-//                JVM.sharedJVM.throwException(jerr.jobj)
-//                return R.empty()
-//            } catch { // throws all other exceptions via a runtime exception
-//                _ = String(describing: error).withCString({ msg in
-//                    JVM.sharedJVM.throwNew(java$lang$RuntimeException.javaClass, msg: msg)
-//                })
-//                return R.empty()
-//            }
-//        }
-//
-//        let address = jlong(nextNativeClosureIndex())
-//
-//        defer {
-//            nativeClosureSync.sync {
-//                closures[address] = f // remember the closure for later use
-//            }
-//        }
-//
-//        return JVM.sharedJVM.createNativeAddressableClass(interfaces: [self.jniName()], methods: [
-//            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))],
-//                                                          finalizer: { env, cls, address in
-//                                                            // drop the closure when the java object is garbage collected
-//                                                            nativeClosureSync.async { Self.closures.removeValue(forKey: address) }
-//        }).constructor(address) as Self
-//    }
-//}
