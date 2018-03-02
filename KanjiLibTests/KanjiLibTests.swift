@@ -1101,6 +1101,23 @@ class KanjiLibTests: XCTestCase {
         } catch let ex as KanjiException {
             XCTAssertNil(ex.message)
             XCTAssertEqual("java.lang.IllegalArgumentException", ex.className)
+            // make sure we track the line
+            
+            XCTAssertEqual("_", ex.function) // bummer
+            XCTAssertTrue(ex.file.hasSuffix("java.util.swift"), ex.file)
+            XCTAssertGreaterThan(ex.line, 1)
+        }
+        
+        // now try to invoke Date.init(String) via reflection
+        do {
+            let cd = try java$util$Date$Impl.CLASS?.getConstructor([java$lang$String.CLASS])
+            let _ = try cd?.newInstance([nil])
+        } catch let ex as KanjiException {
+            XCTAssertNil(ex.message)
+            XCTAssertEqual("java.lang.reflect.InvocationTargetException", ex.className)
+            guard let ex2 = ex.causes.first else { return XCTFail("No nested exception") }
+            XCTAssertEqual("java.lang.IllegalArgumentException", ex2.className)
+            XCTAssertNil(ex2.causes.first)
         }
 
         do {

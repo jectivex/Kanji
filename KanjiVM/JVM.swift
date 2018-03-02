@@ -22,22 +22,66 @@ public func JNI_OnLoad(_ vm: UnsafeMutablePointer<JavaVM?>!, _ reserved: UnsafeM
     return jint(JVM.jniversion)
 }
 
+public enum KanjiErrors : Error, CustomDebugStringConvertible {
+    case system
+    case notFound(String)
+    case general(String)
+    
+    public var debugDescription: String {
+        switch self {
+        case .system: return "System"
+        case .notFound(let str): return "NotFound: \(str)"
+        case .general(let str): return "General: \(str)"
+        }
+    }
+}
+
 public struct KanjiException: Error, CustomStringConvertible, CustomDebugStringConvertible {
     public let message: String?
     public let className: String
-
+    public let throwable: jthrowable?
+    public let causes: [KanjiException] // this should be an Optional<KanjiException>, but we can't have recursive value types
+    public let file: String
+    public let line: Int
+    public let function: String
+    
     public var description: String {
-        return className + (message.flatMap({ ": " + $0 }) ?? "")
+        return message ?? className
     }
 
     public var debugDescription: String {
         return self.description
     }
+}
 
-    /// Override _domain so unit tests will print out the message in the error stringification
-    @available(*, deprecated, message: "Remove _domain override for Swift 3")
-    public var _domain: String { return description }
-
+extension KanjiException : CustomNSError {
+    public var errorCode: Int {
+        return 0
+    }
+    
+    public var errorUserInfo: [String : Any] {
+        return [
+            NSLocalizedDescriptionKey : message ?? className,
+            NSUnderlyingErrorKey : causes.first.flatMap({ $0 as NSError }) as Any,
+            "ClassName": className,
+            "File": file,
+            "Line": line,
+            "Function": function,
+        ]
+    }
+    
+    public static var errorDomain: String {
+        return "Kanji"
+    }
+    
+    
+//    public func asNSError() -> NSError {
+//        var info: [String: Any] = [:]
+//        info[NSLocalizedDescriptionKey] = message ?? className
+//        info[NSUnderlyingErrorKey] = causes.first?.asNSError()
+//
+//        return NSError(domain: className, code: 0, userInfo: info)
+//    }
 }
 
 public func JNI_DetachCurrentThread() {
@@ -46,22 +90,6 @@ public func JNI_DetachCurrentThread() {
 }
 
 private var JNI: JVM { return JVM.sharedJVM }
-
-public enum KanjiErrors : Error, CustomDebugStringConvertible {
-    case exception(KanjiException)
-    case system
-    case notFound(String)
-    case general(String)
-
-    public var debugDescription: String {
-        switch self {
-        case .exception(let ex): return "Exception: \(ex)"
-        case .system: return "System"
-        case .notFound(let str): return "NotFound: \(str)"
-        case .general(let str): return "General: \(str)"
-        }
-    }
-}
 
 public typealias JNIEnvPointer = UnsafeMutablePointer<JNIEnv?>?
 
@@ -89,6 +117,9 @@ public final class JVM {
     var envCache = [pthread_t : JNIEnvPointer]()
     var env: JNIEnvPointer { return attach() }
 
+    /// Global variable indicating whether we should dump all stack traces to stdout when they are converted into KanjiExceptions
+    public var printStackTraces: Bool = true
+    
     fileprivate static let jniversion = JNI_VERSION_1_8
 
     /// Whether or not to attempt to load dynamic peer subclasses matching the subclass of jobjects returned from methods
@@ -164,12 +195,28 @@ public final class JVM {
         // wil output:
         // Info: libjsig is activated, all active signal checking is disabled
         // Checked JNI functions are being used to validate JNI usage
+        //
+        // From https://docs.oracle.com/javase/9/troubleshoot/handle-signals-and-exceptions.htm#JSTGD347
+        //
+        //        Enable Signal Chaining in macOS
+        //        
+        // To enable signal chaining in macOS, set the following environment variables:
+        //
+        // DYLD_INSERT_LIBRARIES: Preloads the specified libraries instead of the LD_PRELOAD environment variable available on Solaris and Linux.
+        //
+        // DYLD_FORCE_FLAT_NAMESPACE: Enables functions in the libjsig library and replaces the OS implementations, because of macOS’s two-level namespace (a symbol's fully qualified name includes its library). To enable this feature, set this environment variable to any value.
+        //
+        // The following command enables signal chaining by preloading the libjsig library:
+        //
+        //  $ DYLD_FORCE_FLAT_NAMESPACE=0 DYLD_INSERT_LIBRARIES="JAVA_HOME/lib/libjsig.dylib" java MySpiffyJavaApp
+        //
+
         if let dyld = getenv("DYLD_INSERT_LIBRARIES"), let preloaded = String(validatingUTF8: dyld) {
             if !preloaded.contains("libjsig.dylib") {
-                warn("environment variable DYLD_INSERT_LIBRARIES does not include libjsig.dylib; signals will not be handled correctly")
+                warn("JVM signals will not be intercepted without libjsig.dylib in existing DYLD_INSERT_LIBRARIES")
             }
         } else {
-            warn("environment variable DYLD_INSERT_LIBRARIES was not set to include libjsig.dylib; signals will not be handled correctly")
+            warn("JVM signals will not be intercepted without libjsig.dylib in unset DYLD_INSERT_LIBRARIES")
         }
 
         var opts: [String] = []
@@ -1115,35 +1162,38 @@ extension JVM {
 
 public extension JVM {
     /// Create a KanjiException wrapping the current Java exception if it exists and then clear it
-    public func popException() -> KanjiException? {
-        if exceptionCheck() != true {
-            return nil
-        }
-
-        guard let throwable = exceptionOccurred() else {
-            return nil
-        }
-
-        printStackTrace()
-        defer { exceptionClear() }
+    public func popException(file: String, line: Int, function: String) -> KanjiException? {
+        if exceptionCheck() != true { return nil }
+        defer { exceptionClear() } // always clear the exception after we pop it
+        guard let throwable = exceptionOccurred() else { return nil }
+        if printStackTraces { exceptionDescribe() }
+        return exception(from: throwable, file: file, line: line, function: function)
+    }
+    
+    private func exception(from throwable: jthrowable, depth: Int = 0, file: String, line: Int, function: String) -> KanjiException? {
 
         let tclass = self.throwableClass
         if tclass == nil {
-            return KanjiException(message: "Could not find throwable class", className: "java.lang.Throwable")
+            return KanjiException(message: "Could not find throwable class", className: "java.lang.Throwable", throwable: .none, causes: [], file: file, line: line, function: function)
         }
 
         if exceptionCheck() == true {
-            return KanjiException(message: "Exception occurred while throwing exception", className: "java.lang.Throwable")
+            return KanjiException(message: "Exception occurred while throwing exception", className: "java.lang.Throwable", throwable: .none, causes: [], file: file, line: line, function: function)
         }
 
         var msg: String?
-        do {
-            let getMessage = try JVM.invoker("getMessage", cls: tclass, returns: JObjectType("java/lang/String"))(throwable)()
-            if getMessage != nil {
-                msg = fromJavaString(getMessage) ?? msg
-            }
-        } catch {
+        if let getMessage = try? JVM.invoker("getMessage", cls: tclass, returns: JObjectType("java/lang/String"))(throwable)() {
+            msg = fromJavaString(getMessage) ?? msg
+        }
+        
+        var localizedMsg: String?
+        if let getLocalizedMessage = try? JVM.invoker("getLocalizedMessage", cls: tclass, returns: JObjectType("java/lang/String"))(throwable)() {
+            localizedMsg = fromJavaString(getLocalizedMessage) ?? msg
+        }
 
+        var cause: jthrowable?
+        if let getCause = try? JVM.invoker("getCause", cls: tclass, returns: JObjectType("java/lang/Throwable"))(throwable)() {
+            cause = getCause
         }
 
         let cclass = self.classClass
@@ -1164,21 +1214,23 @@ public extension JVM {
         } catch {
         }
 
-        let exception = KanjiException(message: msg, className: nam)
+        let causeException = cause != nil && depth < 10 ? self.exception(from: cause!, depth: depth + 1, file: file, line: line, function: function) : .none
+        
+        let exception = KanjiException(message: localizedMsg ?? msg, className: nam, throwable: .some(throwable), causes: causeException.flatMap({ [$0] }) ?? [], file: file, line: line, function: function)
         return exception
     }
 
-    public func throwException() throws {
-        if let ex = popException() {
+    public func throwException(file: String = #file, line: Int = #line, function: String = #function) throws {
+        if let ex = popException(file: file, line: line, function: function) {
             throw ex
         }
     }
 
     /// Call the given function, throwing an exception if any occurred
-    public func checked<T>(_ f: @autoclosure () throws -> T) throws -> T {
-        try throwException()
+    public func checked<T>(_ f: @autoclosure () throws -> T, file: String = #file, line: Int = #line, function: String = #function) throws -> T {
+        try throwException(file: file, line: line, function: function)
         let x = try f()
-        try throwException()
+        try throwException(file: file, line: line, function: function)
         return x
     }
 
@@ -1249,9 +1301,9 @@ public protocol JType: JSig {
     /// Convert the given JNI type to a jvalue
     static func jvalueOf(_ inst: JNIType) -> jvalue
 
-    static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType
-    static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> JNIType
-    static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType
+    static func call(_ mid: jmethodID?, file: String, line: Int, function: String) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType
+    static func callStatic(_ mid: jmethodID?, file: String, line: Int, function: String) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> JNIType
+    static func callNonvirtual(_ mid: jmethodID?, file: String, line: Int, function: String) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType
 
 }
 
@@ -1272,32 +1324,32 @@ public struct JVoid: JType {
         return jvalue()
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallVoidMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallVoidMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> JNIType {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticVoidMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticVoidMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualVoidMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualVoidMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -1341,44 +1393,44 @@ public struct JObjectType: JNominal {
         return jvalue(l: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
         // TODO: hide the method name somewhere so we can print it out for debugging
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallObjectMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallObjectMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> JNIType {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualObjectMethodA(env, obj, cls,mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualObjectMethodA(env, obj, cls,mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
         }
     }
 
-    public static func callInit(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jobject {
+    public static func callInit(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jobject {
         return { env in
             { cls in
                 { args in
-                    guard let obj = try checked(env, JNI.api.NewObjectA(env, cls, mid, args)) else {
+                    guard let obj = try checked(env, JNI.api.NewObjectA(env, cls, mid, args), file: file, line: line, function: function) else {
                         throw KanjiErrors.general("constructor returned null")
                     }
                     return obj
@@ -1451,32 +1503,32 @@ public struct JArray: JNominal {
         return jvalue(l: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallObjectMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallObjectMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> JNIType {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticObjectMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> JNIType {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualObjectMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualObjectMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -1553,32 +1605,32 @@ extension jboolean: JPrimitive {
         return jvalue(z: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jboolean {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jboolean {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallBooleanMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallBooleanMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jboolean {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jboolean {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticBooleanMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticBooleanMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jboolean {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jboolean {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualBooleanMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualBooleanMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -1662,32 +1714,32 @@ extension jbyte: JPrimitive {
         return jvalue(b: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jbyte {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jbyte {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallByteMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallByteMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jbyte {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jbyte {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticByteMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticByteMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jbyte {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jbyte {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualByteMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualByteMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -1764,32 +1816,32 @@ extension jchar: JPrimitive {
         return jvalue(c: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jchar {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jchar {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallCharMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallCharMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jchar {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jchar {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticCharMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticCharMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jchar {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jchar {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualCharMethodA(env, obj, cls,mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualCharMethodA(env, obj, cls,mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -1867,32 +1919,32 @@ extension jshort: JPrimitive {
         return jvalue(s: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jshort {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jshort {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallShortMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallShortMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jshort {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jshort {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticShortMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticShortMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jshort {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jshort {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualShortMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualShortMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -1971,32 +2023,32 @@ extension jint: JPrimitive {
         return jvalue(i: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jint {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jint {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallIntMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallIntMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jint {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jint {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticIntMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticIntMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jint {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jint {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualIntMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualIntMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -2075,32 +2127,32 @@ extension jlong: JPrimitive {
         return jvalue(j: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jlong {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jlong {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallLongMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallLongMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jlong {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jlong {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticLongMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticLongMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jlong {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jlong {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualLongMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualLongMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -2179,32 +2231,32 @@ extension jfloat: JPrimitive {
         return jvalue(f: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jfloat {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jfloat {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallFloatMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallFloatMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jfloat {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jfloat {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticFloatMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticFloatMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jfloat {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jfloat {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualFloatMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualFloatMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -2283,32 +2335,32 @@ extension jdouble: JPrimitive {
         return jvalue(d: inst)
     }
 
-    public static func call(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jdouble {
+    public static func call(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jdouble {
         return { env in
             { obj in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallDoubleMethodA(env, obj, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallDoubleMethodA(env, obj, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callStatic(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jdouble {
+    public static func callStatic(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ args: [jvalue]) throws -> jdouble {
         return { env in
             { cls in
                 { args in
-                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticDoubleMethodA(env, cls, mid, $0.baseAddress) }))
+                    return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallStaticDoubleMethodA(env, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                 }
             }
         }
     }
 
-    public static func callNonvirtual(_ mid: jmethodID?) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jdouble {
+    public static func callNonvirtual(_ mid: jmethodID?, file: String = #file, line: Int = #line, function: String = #function) -> (_ env: JNIEnvPointer) -> (_ cls: jclass) -> (_ obj: jobject) -> (_ args: [jvalue]) throws -> jdouble {
         return { env in
             { cls in
                 { obj in
                     { args in
-                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualDoubleMethodA(env, obj, cls, mid, $0.baseAddress) }))
+                        return try checked(env, args.withUnsafeBufferPointer({ JNI.api.CallNonvirtualDoubleMethodA(env, obj, cls, mid, $0.baseAddress) }), file: file, line: line, function: function)
                     }
                 }
             }
@@ -2553,10 +2605,10 @@ internal func methodName(_ name: String) -> String {
 }
 
 /// Performs the given block, checking for JNI exceptions and translating them into Swift exceptions
-private func checked<T>(_ env: JNIEnvPointer, _ f: @autoclosure () throws -> T) throws -> T {
-    if JNI.api.ExceptionCheck(env) == true { try JVM.sharedJVM.throwException() }
+private func checked<T>(_ env: JNIEnvPointer, _ f: @autoclosure () throws -> T, file: String = #file, line: Int = #line, function: String = #function) throws -> T {
+    if JNI.api.ExceptionCheck(env) == true { try JVM.sharedJVM.throwException(file: file, line: line, function: function) }
     let result = try f()
-    if JNI.api.ExceptionCheck(env) == true { try JVM.sharedJVM.throwException() }
+    if JNI.api.ExceptionCheck(env) == true { try JVM.sharedJVM.throwException(file: file, line: line, function: function) }
     return result
 }
 

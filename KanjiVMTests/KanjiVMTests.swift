@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 io.glimpse. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 import XCTest
 import KanjiVM
 

@@ -159,6 +159,14 @@ public extension java$lang$Object {
 extension java$lang$Throwable : Error {
 }
 
+//public extension KanjiException {
+//    /// Convert this KanjiException back to a Java throwable instance
+//    public var asJavaException: java$lang$Throwable? {
+//        guard let throwable = throwable else { return .none }
+//        return java$lang$Throwable(reference: throwable)
+//    }
+//}
+
 extension java$lang$String : ExpressibleByStringLiteral {
     public convenience init!(_ string: String) {
         try! self.init(constructor: JVM.sharedJVM.toJString(string))
