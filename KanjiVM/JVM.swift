@@ -54,34 +54,44 @@ public struct KanjiException: Error, CustomStringConvertible, CustomDebugStringC
     }
 }
 
+extension KanjiException {
+    public func createUserInfo() -> [String : Any] {
+        var info: [String : Any] = [:]
+        
+        info[NSLocalizedDescriptionKey] = message ?? className
+        
+        if let cause = causes.first {
+            info[NSUnderlyingErrorKey] = cause as NSError
+        }
+
+        info["ClassName"] = className
+        info["File"] = file
+        info["Line"] = line
+        info["Function"] = function
+        
+        return info
+    }
+
+    public func asNSError() -> NSError {
+        return NSError(domain: className, code: 0, userInfo: createUserInfo())
+    }
+}
+
+/// Support for automatically converting KanjiExceptions into an NSError
 extension KanjiException : CustomNSError {
     public var errorCode: Int {
         return 0
     }
-    
+
     public var errorUserInfo: [String : Any] {
-        return [
-            NSLocalizedDescriptionKey : message ?? className,
-            NSUnderlyingErrorKey : causes.first.flatMap({ $0 as NSError }) as Any,
-            "ClassName": className,
-            "File": file,
-            "Line": line,
-            "Function": function,
-        ]
+        return createUserInfo()
     }
-    
+
     public static var errorDomain: String {
         return "Kanji"
     }
-    
-    
-//    public func asNSError() -> NSError {
-//        var info: [String: Any] = [:]
-//        info[NSLocalizedDescriptionKey] = message ?? className
-//        info[NSUnderlyingErrorKey] = causes.first?.asNSError()
-//
-//        return NSError(domain: className, code: 0, userInfo: info)
-//    }
+
+
 }
 
 public func JNI_DetachCurrentThread() {
