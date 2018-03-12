@@ -1,8 +1,6 @@
 #!/bin/sh
-# this script will create a custom JRE image with minimal dependencies
-# Apache commons & logging relies on java.beans in java.desktop, which
-# adds about 20M to the distribution.
-# The total distibution size is about 53M.
+#
+# This script will create a custom JRE image with minimal dependencies
 #
 # Sizes:
 # 504M jdk-9.0.1.jdk
@@ -17,6 +15,10 @@
 # 52M +jdk.scripting.nashorn (88M uncompressed)
 # 52M +javafx.base
 # 123M +javafx.web
+#
+# Notes:
+# • Apache commons & logging relies on java.beans in java.desktop
+# • SQL Server JDBC Driver requires org/ietf/jgss/
 jlink \
   -v \
   --module-path $JAVA_HOME/jmods \
@@ -29,5 +31,6 @@ jlink \
   --add-modules java.desktop \
   --add-modules jdk.charsets \
   --add-modules java.xml.bind \
+  --add-modules java.security.jgss \
   --compress 2 \
   --output macos.jre
