@@ -31,11 +31,11 @@
 #define JNICALL
 
 typedef int jint;
-#ifdef _LP64 /* 64-bit */
-typedef long jlong;
-#else
+//#ifdef _LP64 /* 64-bit */
+//typedef long jlong;
+//#else
 typedef long long jlong;
-#endif
+//#endif
 
 typedef signed char jbyte;
 

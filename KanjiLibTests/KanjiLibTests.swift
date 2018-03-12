@@ -162,7 +162,7 @@ class KanjiLibTests: XCTestCase {
     func testDirectByteBuffers() throws {
         var bytes: [jbyte] = [1,5,9,3]
         let bbuf = bytes.withUnsafeMutableBufferPointer { ptr in
-            java$nio$ByteBuffer(reference: JVM.sharedJVM.newDirectByteBuffer(ptr.baseAddress!, capacity: ptr.count))
+            java$nio$ByteBuffer(reference: JVM.sharedJVM.newDirectByteBuffer(ptr.baseAddress!, capacity: jlong(ptr.count)))
         }
 
         XCTAssertEqual(1, try bbuf?.get(0))
@@ -833,7 +833,7 @@ class KanjiLibTests: XCTestCase {
                     let list = try java$util$ArrayList()
                     for _ in 0...1000 {
                         let ob = try java$lang$StringBuilder()
-                        _ = try ob.append(66)
+                        _ = try ob.append(jint(66))
                         for _ in 1...17 { // 2^20 = 1,048,576
                             let _: java$lang$AbstractStringBuilder? = try ob.append(ob as java$lang$CharSequence)
                         }
@@ -964,7 +964,7 @@ class KanjiLibTests: XCTestCase {
             let count = 1000
             DispatchQueue.concurrentPerform(iterations: count) { n in
                 do {
-                    _ = try table.put(java$lang$Long(n), java$lang$String("\(count)"))
+                    _ = try table.put(java$lang$Long(jlong(n)), java$lang$String("\(count)"))
                 } catch {
                     return XCTFail(String(describing: error))
                 }
@@ -1309,7 +1309,7 @@ class KanjiLibTests: XCTestCase {
             try date2.setTime(time)
             XCTAssertTrue(date == date2) // ...unless they have the exact same time
 
-            let ms = 1_425_780_721_000
+            let ms: jlong = 1_425_780_721_000
 
             try date.setTime(ms)
             dump(date.description)
