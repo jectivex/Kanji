@@ -124,6 +124,7 @@ grant codeBase "jrt:/jdk.crypto.cryptoki" {
     permission java.util.PropertyPermission "sun.security.pkcs11.allowSingleThreadedModules", "read";
     permission java.util.PropertyPermission "os.name", "read";
     permission java.util.PropertyPermission "os.arch", "read";
+    permission java.util.PropertyPermission "jdk.crypto.KeyAgreement.legacyKDF", "read";
     permission java.security.SecurityPermission "putProviderProperty.*";
     permission java.security.SecurityPermission "clearProviderProperties.*";
     permission java.security.SecurityPermission "removeProviderProperty.*";
@@ -142,12 +143,23 @@ grant codeBase "jrt:/jdk.dynalink" {
     permission java.security.AllPermission;
 };
 
+grant codeBase "jrt:/jdk.httpserver" {
+    permission java.security.AllPermission;
+};
+
 grant codeBase "jrt:/jdk.internal.le" {
     permission java.security.AllPermission;
 };
 
 grant codeBase "jrt:/jdk.internal.vm.compiler" {
     permission java.security.AllPermission;
+};
+
+grant codeBase "jrt:/jdk.internal.vm.compiler.management" {
+    permission java.lang.RuntimePermission "accessClassInPackage.org.graalvm.compiler.hotspot";
+    permission java.lang.RuntimePermission "accessClassInPackage.jdk.vm.ci.runtime";
+    permission java.lang.RuntimePermission "accessClassInPackage.sun.management.spi";
+    permission java.lang.RuntimePermission "sun.management.spi.PlatformMBeanProvider.subclass";
 };
 
 grant codeBase "jrt:/jdk.jsobject" {
@@ -192,42 +204,3 @@ grant {
     permission java.lang.RuntimePermission "accessClassInPackage.com.sun.java.swing.plaf.*";
     permission java.lang.RuntimePermission "accessClassInPackage.com.apple.*";
 };
-
-grant codeBase "jrt:/oracle.desktop" {
-    permission java.lang.RuntimePermission "accessClassInPackage.sun.awt";
-    permission java.lang.RuntimePermission "accessClassInPackage.sun.java2d";
-};
-
-grant codeBase "jrt:/oracle.net" {
-    permission java.lang.RuntimePermission "accessClassInPackage.jdk.internal.misc";
-    permission java.lang.RuntimePermission "accessClassInPackage.sun.net.sdp";
-    permission java.lang.RuntimePermission "accessClassInPackage.sun.nio.ch";
-};
-grant codeBase "jrt:/javafx.base" {
-    permission java.security.AllPermission;
-};
-
-grant codeBase "jrt:/javafx.controls" {
-    permission java.security.AllPermission;
-};
-
-grant codeBase "jrt:/javafx.fxml" {
-    permission java.security.AllPermission;
-};
-
-grant codeBase "jrt:/javafx.graphics" {
-    permission java.security.AllPermission;
-};
-
-grant codeBase "jrt:/javafx.media" {
-    permission java.security.AllPermission;
-};
-
-grant codeBase "jrt:/javafx.swing" {
-    permission java.security.AllPermission;
-};
-
-grant codeBase "jrt:/javafx.web" {
-    permission java.security.AllPermission;
-};
-

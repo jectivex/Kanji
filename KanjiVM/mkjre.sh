@@ -34,3 +34,6 @@ jlink \
   --add-modules java.security.jgss \
   --compress 2 \
   --output macos.jre
+
+# need to delete the binaries for embedding in sandboxed apps
+rm -r macos.jre/bin macos.jre/lib/jspawnhelper

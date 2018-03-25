@@ -1,2 +1,2 @@
-JAVA_VERSION="9.0.1"
-MODULES="java.base java.logging jdk.unsupported java.xml java.prefs java.datatransfer java.desktop java.activation java.compiler java.xml.bind jdk.charsets java.security.sasl java.rmi java.naming java.scripting java.sql java.security.jgss jdk.dynalink jdk.scripting.nashorn"
+JAVA_VERSION="10"
+MODULES="java.base java.datatransfer java.logging java.activation java.compiler java.xml java.prefs java.desktop java.security.sasl java.naming java.rmi java.scripting java.security.jgss java.sql jdk.unsupported java.xml.bind jdk.charsets jdk.dynalink jdk.scripting.nashorn"
