@@ -1103,7 +1103,7 @@ class KanjiLibTests: XCTestCase {
             XCTAssertEqual("java.lang.IllegalArgumentException", ex.className)
             // make sure we track the line
             
-            XCTAssertEqual("_", ex.function) // bummer
+            XCTAssertEqual("java$util$Date", ex.function)
             XCTAssertTrue(ex.file.hasSuffix("java.util.swift"), ex.file)
             XCTAssertGreaterThan(ex.line, 1)
         }
@@ -1216,7 +1216,7 @@ class KanjiLibTests: XCTestCase {
             var llsize = try ll.size()
             XCTAssertEqual(llsize, 5)
 
-            let asArray = try ll.toArray([])?.flatMap({ $0 })
+            let asArray = try ll.toArray([])?.compactMap({ $0 })
             XCTAssertEqual(asArray?.count, 5)
 
 //            debugPrint("array: \(asArray)")

@@ -1294,7 +1294,7 @@ public final class NullTerminatedCString {
     }
 
     deinit {
-        buffer.deallocate(capacity: length)
+        buffer.deallocate()
     }
 }
 
@@ -2918,7 +2918,7 @@ public extension Sequence where Iterator.Element: JavaObject {
     }
 }
 
-public extension Collection where Iterator.Element: JavaObject, Index == Int, IndexDistance == Int {
+public extension Collection where Iterator.Element: JavaObject, Index == Int {
     public func toJArray(_ jvm: JVM) -> jobjectArray? {
         if let array = jvm.newObjectArray(jsize(count), clazz: Iterator.Element.javaClass, init: nil) {
             for (i, x) in self.enumerated() {

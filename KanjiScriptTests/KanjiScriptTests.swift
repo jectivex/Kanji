@@ -22,7 +22,7 @@ public class ScalaContext : KanjiScriptContext {
         try super.init(engine: "scala", jars: jars)
         
         // now ensure that the context really is scala
-        let names = try engine.getFactory()?.getNames()?.toArray()?.flatMap({ $0?.description }) ?? []
+        let names = try engine.getFactory()?.getNames()?.toArray()?.compactMap({ $0?.description }) ?? []
         
         if !names.contains("scala") {
             throw KanjiErrors.general("Script engine was not Scala: \(names)")
@@ -173,7 +173,7 @@ class KanjiScriptTests: XCTestCase {
                 return XCTFail("could not get factory list")
             }
             
-            let names = try factories.flatMap({ try $0?.castTo(javax$script$ScriptEngineFactory$Impl.self)?.getLanguageName() }).flatMap({ $0.toSwiftString() })
+            let names = try factories.compactMap({ try $0?.castTo(javax$script$ScriptEngineFactory$Impl.self)?.getLanguageName() }).compactMap({ $0.toSwiftString() })
             
             print("script names: \(names)")
             XCTAssertTrue(names.contains("ECMAScript"))

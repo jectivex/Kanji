@@ -97,17 +97,18 @@ public final class java$lang$System : java$lang$Object {
 
     fileprivate static let java$lang$System__in__java$io$InputStream = J.saccessor("in", type: JObjectType("java/io/InputStream"))
     public static var `in`: java$io$InputStream? {
-        get { return java$io$InputStream$Impl(constructor: I.java$lang$System__in__java$io$InputStream.getter()) }
+        // FIXME: Swift 4.1 compiler crashes when this is construtor: instead of reference:
+        get { return java$io$InputStream$Impl(reference: I.java$lang$System__in__java$io$InputStream.getter()) }
     }
 
     fileprivate static let java$lang$System__out__java$io$PrintStream = J.saccessor("out", type: JObjectType("java/io/PrintStream"))
     public static var out: java$io$PrintStream? {
-        get { return java$io$PrintStream$Impl(constructor: I.java$lang$System__out__java$io$PrintStream.getter()) }
+        get { return java$io$PrintStream$Impl(reference: I.java$lang$System__out__java$io$PrintStream.getter()) }
     }
 
     fileprivate static let java$lang$System__err__java$io$PrintStream = J.saccessor("err", type: JObjectType("java/io/PrintStream"))
     public static var err: java$io$PrintStream? {
-        get { return java$io$PrintStream$Impl(constructor: I.java$lang$System__err__java$io$PrintStream.getter()) }
+        get { return java$io$PrintStream$Impl(reference: I.java$lang$System__err__java$io$PrintStream.getter()) }
     }
 
     fileprivate static let java$lang$System_setIn_java$io$InputStream__V = svoker("setIn", returns: JVoid.jniType, arguments: (JObjectType("java/io/InputStream")))
@@ -258,7 +259,7 @@ public final class java$lang$String : java$lang$Object, java$io$Serializable, ja
 
     fileprivate static let java$lang$String__CASE_INSENSITIVE_ORDER__java$util$Comparator = J.saccessor("CASE_INSENSITIVE_ORDER", type: JObjectType("java/util/Comparator"))
     public static var CASE_INSENSITIVE_ORDER: java$util$Comparator? {
-        get { return java$util$Comparator$Impl(constructor: I.java$lang$String__CASE_INSENSITIVE_ORDER__java$util$Comparator.getter()) }
+        get { return java$util$Comparator$Impl(reference: I.java$lang$String__CASE_INSENSITIVE_ORDER__java$util$Comparator.getter()) }
     }
 
     fileprivate static let java$lang$String_init__V = constructor()
@@ -677,17 +678,17 @@ public final class java$lang$Boolean : java$lang$Object, java$io$Serializable, j
 
     fileprivate static let java$lang$Boolean__TRUE__java$lang$Boolean = J.saccessor("TRUE", type: JObjectType("java/lang/Boolean"))
     public static var TRUE: java$lang$Boolean? {
-        get { return java$lang$Boolean$Impl(constructor: I.java$lang$Boolean__TRUE__java$lang$Boolean.getter()) }
+        get { return java$lang$Boolean$Impl(reference: I.java$lang$Boolean__TRUE__java$lang$Boolean.getter()) }
     }
 
     fileprivate static let java$lang$Boolean__FALSE__java$lang$Boolean = J.saccessor("FALSE", type: JObjectType("java/lang/Boolean"))
     public static var FALSE: java$lang$Boolean? {
-        get { return java$lang$Boolean$Impl(constructor: I.java$lang$Boolean__FALSE__java$lang$Boolean.getter()) }
+        get { return java$lang$Boolean$Impl(reference: I.java$lang$Boolean__FALSE__java$lang$Boolean.getter()) }
     }
 
     fileprivate static let java$lang$Boolean__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Boolean__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Boolean__TYPE__java$lang$Class.getter()) }
     }
 
     fileprivate static let java$lang$Boolean_init_Z__V = constructor((jboolean.jniType))

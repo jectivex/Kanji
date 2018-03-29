@@ -19,6 +19,7 @@
 # Notes:
 # • Apache commons & logging relies on java.beans in java.desktop
 # • SQL Server JDBC Driver requires org/ietf/jgss/
+# • Orade JDBC Driver requires javax.management
 jlink \
   -v \
   --module-path $JAVA_HOME/jmods \
@@ -32,8 +33,10 @@ jlink \
   --add-modules jdk.charsets \
   --add-modules java.xml.bind \
   --add-modules java.security.jgss \
+  --add-modules java.management \
+  --add-modules jdk.jshell \
   --compress 2 \
   --output macos.jre
 
 # need to delete the binaries for embedding in sandboxed apps
-rm -r macos.jre/bin macos.jre/lib/jspawnhelper
+# rm -r macos.jre/bin macos.jre/lib/jspawnhelper
