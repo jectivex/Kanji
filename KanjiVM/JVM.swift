@@ -196,6 +196,8 @@ public final class JVM {
 
     public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (false, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = []) throws {
 
+        let start = CFAbsoluteTimeGetCurrent()
+
         // signal disabling is accomplished by setting the following for the scheme:
         // DYLD_INSERT_LIBRARIES=$BUILT_PRODUCTS_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/$KANJI_BUNDLE/Contents/Home/lib/libjsig.dylib
         // or with JDK 9 custom image:
@@ -295,8 +297,9 @@ public final class JVM {
         self.envCache[pthread_self()] = env
         self.api = env!.pointee!.pointee
 
+        let end = CFAbsoluteTimeGetCurrent()
 
-        log("created JVM version \(self.api.GetVersion(env)) with options \(opts)")
+        log("created JVM version \(self.api.GetVersion(env)) with options \(opts) in \(end-start)sec")
     }
 
     //    deinit {
