@@ -8,12 +8,21 @@
 
 import Foundation.NSObjCRuntime // just for NSClassFromString
 
-private func warn(_ message: String) {
-    print("Kanji Warning:", message)
+private func dbg(_ items: Any..., functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: UInt = #line) {
+    let msg = items.map({ String(describing: $0) }).joined(separator: " ")
+    let truncatedFunctionName = String(describing: functionName).components(separatedBy: "(").first ?? String(describing: functionName)
+    let truncatedFileName = URL(fileURLWithPath: String(describing: fileName)).lastPathComponent
+    let calendar = Calendar.current
+    let comp = calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: Date())
+    print("\(comp.hour ?? 0):\(comp.minute ?? 0):\(comp.second ?? 0).\(comp.nanosecond ?? 0) \(truncatedFileName):\(lineNumber) \(truncatedFunctionName): \(msg)")
 }
 
-private func log(_ message: String) {
-    print("Kanji Log:", message)
+private func warn(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
+    dbg("Kanji Warning:", message, functionName: function, fileName: file, lineNumber: line)
+}
+
+private func log(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
+    dbg("Kanji Log:", message, functionName: function, fileName: file, lineNumber: line)
 }
 
 @_silgen_name("JNI_OnLoad")
@@ -194,7 +203,7 @@ public final class JVM {
     /// The static list of module loaders against which dynamic loading will be attempted
     public var moduleLoaders: [String] = ["JavaLib"]
 
-    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (false, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = []) throws {
+    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (false, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
 
         let start = CFAbsoluteTimeGetCurrent()
 
@@ -299,7 +308,7 @@ public final class JVM {
 
         let end = CFAbsoluteTimeGetCurrent()
 
-        log("created JVM version \(self.api.GetVersion(env)) with options \(opts) in \(end-start)sec")
+        log("created JVM version \(self.api.GetVersion(env)) with options \(opts) in \(end-start)sec", file: file, line: line, function: function)
     }
 
     //    deinit {
