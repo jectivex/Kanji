@@ -172,7 +172,7 @@ class KanjiScriptTests: XCTestCase {
             guard let factories = try manager.getEngineFactories()?.toArray() else {
                 return XCTFail("could not get factory list")
             }
-            
+
             let names = try factories.compactMap({ try $0?.castTo(javax$script$ScriptEngineFactory$Impl.self)?.getLanguageName() }).compactMap({ $0.toSwiftString() })
             
             print("script names: \(names)")
@@ -254,16 +254,32 @@ class KanjiScriptTests: XCTestCase {
             }
 
             do { // test combined value and function returns
-                let composite = try ctx.eval("(function() { return { val: [1, 2, 5], fun: (function() { return 'Hello' }) } })();")
-                let val = try composite.get("val").flatMap(ctx.val)
+                let composite: KanjiScriptContext.InstanceType = try ctx.eval("({ val: [1, 2, 5], fun: x => { 'use strict'; return 'Hello ' + x; } })")
+                let val: KanjiScriptType.ValType? = try composite.get("val").flatMap(ctx.val)
                 XCTAssertEqual([1, 2, 5], val)
-//                let fun = try composite.get("fun").flatMap(ctx.ref)
-//                print("### fun: \(fun)")
-//                XCTAssertNotNil(fun)
+                guard let fun: KanjiScriptType.RefType = try composite.get("fun").flatMap(ctx.ref) else {
+                    return XCTFail("could not get function argument")
+                }
+
+                guard let jfun: ScriptObject = fun.cast() else {
+                    return XCTFail("function was not a function: \(fun)")
+                }
+
+                XCTAssertTrue(try jfun.isFunction() == 1)
+                XCTAssertTrue(try jfun.isStrictFunction() == 1) // this returns false when we don't have 'use strict'; as the first line of our function
+
+                guard let fout = try jfun.call(nil, ["Nashorn!".javaString]) else {
+                    return XCTFail("function call failed: \(fun)")
+                }
+
+                XCTAssertEqual("Hello Nashorn!", fout.description)
+
             } catch {
                 XCTFail("should have been able to return a composite instance: \(error)")
             }
 
+            // check for ES6 arrow functions & let constants
+            checkeq(["X", "Y", "Z"], f: try ctx.val(ctx.eval("let result = ['x', 'y', 'z'].map(str => str.toUpperCase()); result;")))
         }
     }
     

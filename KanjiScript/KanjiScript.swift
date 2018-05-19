@@ -33,9 +33,12 @@ open class KanjiScriptContext : ScriptContext {
             try java$lang$Thread.currentThread()?.setContextClassLoader(loader)
         }
 
-//        let engine = try jdk$nashorn$api$scripting$NashornScriptEngineFactory().getScriptEngine(loader)
-//        self.engine = engine
-//        return
+
+        // the only way to tell nashorn to use ES6 mode as a default without calling NashornScriptEngineFactory-specific functions,
+        // which lets us use arrow functions
+        // https://stackoverflow.com/questions/48911937/can-i-run-ecmascript-6-from-java-9-nashorn-engine
+        let _ = try java$lang$System.setProperty("nashorn.args", "--language=es6")
+        //self.engine = try jdk$nashorn$api$scripting$NashornScriptEngineFactory().getScriptEngine(["--language=es6"], loader) // this also works, but requires that we use the Nashorn API
 
         let manager = loader == nil ? try javax$script$ScriptEngineManager() : try javax$script$ScriptEngineManager(loader)
         guard let engine = try manager.getEngineByName(java$lang$String(stringLiteral: name)) else {
@@ -336,7 +339,9 @@ public extension Bric {
     }
 }
 
-typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Impl
+/// This interface can be implemented by an arbitrary Java class. Nashorn will treat objects of such classes just like nashorn script objects.
+/// Usual nashorn operations like obj[i], obj.foo, obj.func(), delete obj.foo will be delegated to appropriate method call of this interface.
+public typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Impl
 //        typealias ScriptObject = jdk$nashorn$api$scripting$AbstractJSObject
 //        typealias ScriptObject = jdk$nashorn$api$scripting$ScriptObjectMirror
 
