@@ -203,7 +203,7 @@ public final class JVM {
     /// The static list of module loaders against which dynamic loading will be attempted
     public var moduleLoaders: [String] = ["JavaLib"]
 
-    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (false, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
+    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (false, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], compiler: String? = nil, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
 
         let start = CFAbsoluteTimeGetCurrent()
 
@@ -257,6 +257,8 @@ public final class JVM {
         if let classpath = classpath { opts += ["-Djava.class.path=" + classpath.joined(separator: ":")] }
         if let libpath = libpath { opts += ["-Djava.library.path=" + libpath.joined(separator: ":")] }
         if let extpath = extpath { opts += ["-Djava.ext.dirs=" + extpath.joined(separator: ":")] }
+        if let compiler = compiler { opts += ["-Djava.compiler=" + compiler] }
+//        opts += ["-Djava.io.tmpdir=" + NSTemporaryDirectory()] // seems to be automatic, on mac
 
         if let bootpath = bootpath {
             var bp = "-Xbootclasspath"
