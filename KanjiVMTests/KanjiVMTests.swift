@@ -17,6 +17,24 @@ class KanjiVMTests: XCTestCase {
         }
     }
 
+    func testStringBridging() {
+        var str = "hello "
+        str += "swift"
+//        str += Array(repeating: "x", count: 100_000_000)
+        let jvm = JVM.jvm
+        guard let jstr = jvm.toJString(str) else { return XCTFail("could not convert") }
+        guard let str2 = jvm.fromJavaString(jstr) else { return XCTFail("could not convert") }
+
+        XCTAssertEqual(str, str2)
+
+        str.withCString(encodedAs: Unicode.UTF16.self) { (ptr: UnsafePointer<Unicode.UTF16.CodeUnit>) in
+            str2.withCString(encodedAs: Unicode.UTF16.self) { (ptr2: UnsafePointer<Unicode.UTF16.CodeUnit>) in
+                // it would be nice if we could demonstrate that the strings are the same pointer without any copying happening
+//                XCTAssertEqual(ptr == ptr2)
+            }
+        }
+    }
+
     func testSimpleClass() {
         guard let syscls = JVM.jvm.findClass("java/lang/System") else {
             return XCTFail("Unable to find System class")
