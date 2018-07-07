@@ -190,7 +190,7 @@ public extension JVM {
     /// Generates bytecode for a class that implements the listed methods by calling the function pointer to the native block
     /// The instance will contain a single long `address` member which will be passed to the finalizer method, allowing the
     /// closure to implement any native cleanup that needs to occur
-    public func createNativeAddressableClass<F: JavaObject>(_ name: String? = nil, extends: String = "java/lang/Object", interfaces: [String] = [], methods: [MethodSignature], finalizer: @escaping @convention(c) (UnsafePointer<JNIEnv>, jclass, jlong) -> ()) throws -> (cls: jclass, constructor: (jlong) throws -> F) {
+    public func createNativeAddressableClass<F: JavaObject>(_ name: String? = nil, extends: String = "java/lang/Object", interfaces: [String] = [], methods: [MethodSignature], finalizer: @convention(c) (UnsafePointer<JNIEnv>, jclass, jlong) -> ()) throws -> (cls: jclass, constructor: (jlong) throws -> F) {
         var methods = methods
         let className = name ?? ("$KanjiNativeWrapper\(nextNativeClassIndex())")
 
@@ -235,7 +235,7 @@ public extension JVM {
 
 public extension java$lang$Runnable$Impl {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject) -> ()) throws -> java$lang$Runnable {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> ()) throws -> java$lang$Runnable {
         let sig = JVM.jsig(JVoid.jniType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("run", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -245,7 +245,7 @@ public extension java$lang$Runnable$Impl {
 
 public extension java$util$concurrent$Callable$Impl {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jobject) throws -> java$util$concurrent$Callable {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jobject) throws -> java$util$concurrent$Callable {
         let sig = JVM.jsig(JObjectType(), args: [])
         assert(sig == "()Ljava/lang/Object;")
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
@@ -256,7 +256,7 @@ public extension java$util$concurrent$Callable$Impl {
 
 public extension java$util$Comparator$Impl {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jint) throws -> java$util$Comparator {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jint) throws -> java$util$Comparator {
         let sig = JVM.jsig(jint.jniType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("compare", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -316,12 +316,12 @@ extension java$util$function$Function$Impl : FunctionalInterface {
     private static var FunctionalSig : String { return JVM.jsig(R(), args: [A1()]) }
     
     /// Returns the native signature of the method for generating the native stub
-    fileprivate static func functionalMethod(_ f: @escaping FunctionalBlock) -> JVM.MethodSignature {
+    fileprivate static func functionalMethod(_ f: FunctionalBlock) -> JVM.MethodSignature {
         return ("apply", FunctionalSig, unsafeBitCast(f, to: UnsafeMutableRawPointer.self))
     }
     
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping FunctionalBlock) throws -> Slf {
+    public static func fromBlock(_ native: FunctionalBlock) throws -> Slf {
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [functionalMethod(native)]).constructor() as Slf
     }
 
@@ -378,7 +378,7 @@ extension java$util$function$Function$Impl : FunctionalInterface {
 
 public extension java$util$function$Consumer {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> Void) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -393,7 +393,7 @@ private let intLambdaFuncSuffix = "Int"
 
 public extension java$util$function$IntFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jobject) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("apply", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -403,7 +403,7 @@ public extension java$util$function$IntFunction {
 
 public extension java$util$function$IntBinaryOperator {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jint, jint) -> jint) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint, jint) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [intLambdaType, intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + intLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -413,7 +413,7 @@ public extension java$util$function$IntBinaryOperator {
 
 public extension java$util$function$IntConsumer {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> Void) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -423,7 +423,7 @@ public extension java$util$function$IntConsumer {
 
 public extension java$util$function$IntPredicate {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jboolean) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jboolean) throws -> Self {
         let sig = JVM.jsig(jboolean.jniType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -433,7 +433,7 @@ public extension java$util$function$IntPredicate {
 
 public extension java$util$function$IntSupplier {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jint) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("getAsInt", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -443,7 +443,7 @@ public extension java$util$function$IntSupplier {
 
 public extension java$util$function$IntToDoubleFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jdouble) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jdouble) throws -> Self {
         let sig = JVM.jsig(jdouble.jniType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAsDouble", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -453,7 +453,7 @@ public extension java$util$function$IntToDoubleFunction {
 
 public extension java$util$function$IntToLongFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jlong) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jlong) throws -> Self {
         let sig = JVM.jsig(jlong.jniType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAsLong", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -463,7 +463,7 @@ public extension java$util$function$IntToLongFunction {
 
 public extension java$util$function$IntUnaryOperator {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jint) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + intLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -473,7 +473,7 @@ public extension java$util$function$IntUnaryOperator {
 
 public extension java$util$function$ToIntFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jint) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + intLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -483,7 +483,7 @@ public extension java$util$function$ToIntFunction {
 
 public extension java$util$function$ToIntBiFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jint) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + intLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -499,7 +499,7 @@ private let longLambdaFuncSuffix = "Long"
 
 public extension java$util$function$LongFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jobject) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("apply", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -509,7 +509,7 @@ public extension java$util$function$LongFunction {
 
 public extension java$util$function$LongBinaryOperator {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong, jlong) -> jlong) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong, jlong) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [longLambdaType, longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + longLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -519,7 +519,7 @@ public extension java$util$function$LongBinaryOperator {
 
 public extension java$util$function$LongConsumer {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> Void) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -529,7 +529,7 @@ public extension java$util$function$LongConsumer {
 
 public extension java$util$function$LongPredicate {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jboolean) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jboolean) throws -> Self {
         let sig = JVM.jsig(jboolean.jniType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -539,7 +539,7 @@ public extension java$util$function$LongPredicate {
 
 public extension java$util$function$LongSupplier {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jlong) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("getAsLong", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -549,7 +549,7 @@ public extension java$util$function$LongSupplier {
 
 public extension java$util$function$LongToDoubleFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jdouble) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jdouble) throws -> Self {
         let sig = JVM.jsig(jdouble.jniType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAsDouble", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -559,7 +559,7 @@ public extension java$util$function$LongToDoubleFunction {
 
 public extension java$util$function$LongToIntFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jint) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jint) throws -> Self {
         let sig = JVM.jsig(jint.jniType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAsInt", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -569,7 +569,7 @@ public extension java$util$function$LongToIntFunction {
 
 public extension java$util$function$LongUnaryOperator {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jlong) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + longLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -579,7 +579,7 @@ public extension java$util$function$LongUnaryOperator {
 
 public extension java$util$function$ToLongFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jlong) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + longLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -589,7 +589,7 @@ public extension java$util$function$ToLongFunction {
 
 public extension java$util$function$ToLongBiFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jlong) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + longLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -605,7 +605,7 @@ private let doubleLambdaFuncSuffix = "Double"
 
 public extension java$util$function$DoubleFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jobject) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("apply", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -615,7 +615,7 @@ public extension java$util$function$DoubleFunction {
 
 public extension java$util$function$DoubleBinaryOperator {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble, jdouble) -> jdouble) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble, jdouble) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [doubleLambdaType, doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + doubleLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -625,7 +625,7 @@ public extension java$util$function$DoubleBinaryOperator {
 
 public extension java$util$function$DoubleConsumer {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> Void) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -635,7 +635,7 @@ public extension java$util$function$DoubleConsumer {
 
 public extension java$util$function$DoublePredicate {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jboolean) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jboolean) throws -> Self {
         let sig = JVM.jsig(jboolean.jniType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -645,7 +645,7 @@ public extension java$util$function$DoublePredicate {
 
 public extension java$util$function$DoubleSupplier {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jdouble) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("getAsDouble", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -655,7 +655,7 @@ public extension java$util$function$DoubleSupplier {
 
 public extension java$util$function$DoubleToLongFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jlong) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jlong) throws -> Self {
         let sig = JVM.jsig(jlong.jniType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAsLong", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -665,7 +665,7 @@ public extension java$util$function$DoubleToLongFunction {
 
 public extension java$util$function$DoubleToIntFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jint) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jint) throws -> Self {
         let sig = JVM.jsig(jint.jniType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAsInt", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -675,7 +675,7 @@ public extension java$util$function$DoubleToIntFunction {
 
 public extension java$util$function$DoubleUnaryOperator {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jdouble) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + doubleLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -685,7 +685,7 @@ public extension java$util$function$DoubleUnaryOperator {
 
 public extension java$util$function$ToDoubleFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jdouble) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + doubleLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -695,7 +695,7 @@ public extension java$util$function$ToDoubleFunction {
 
 public extension java$util$function$ToDoubleBiFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jdouble) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("applyAs" + doubleLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -711,7 +711,7 @@ private let booleanLambdaFuncSuffix = "Boolean"
 
 public extension java$util$function$BooleanSupplier {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jboolean) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jboolean) throws -> Self {
         let sig = JVM.jsig(booleanLambdaType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("getAsBoolean", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -723,7 +723,7 @@ public extension java$util$function$BooleanSupplier {
 
 public extension java$util$function$Supplier {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jobject) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("get", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -733,7 +733,7 @@ public extension java$util$function$Supplier {
 
 public extension java$util$function$Predicate {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jboolean) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jboolean) throws -> Self {
         let sig = JVM.jsig(booleanLambdaType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -743,7 +743,7 @@ public extension java$util$function$Predicate {
 
 public extension java$util$function$BiPredicate {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jboolean) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jboolean) throws -> Self {
         let sig = JVM.jsig(booleanLambdaType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -753,7 +753,7 @@ public extension java$util$function$BiPredicate {
 
 public extension java$util$function$BiConsumer {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> Void) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -763,7 +763,7 @@ public extension java$util$function$BiConsumer {
 
 public extension java$util$function$BiFunction {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jobject) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("apply", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -774,7 +774,7 @@ public extension java$util$function$BiFunction {
 
 public extension java$util$function$ObjLongConsumer {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jlong) -> Void) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jlong) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType(), jlong.jniType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -784,7 +784,7 @@ public extension java$util$function$ObjLongConsumer {
 
 public extension java$util$function$ObjDoubleConsumer {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jdouble) -> Void) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jdouble) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType(), jdouble.jniType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
@@ -794,7 +794,7 @@ public extension java$util$function$ObjDoubleConsumer {
 
 public extension java$util$function$ObjIntConsumer {
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @escaping @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jint) -> Void) throws -> Self {
+    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jint) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType(), jint.jniType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
             ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
