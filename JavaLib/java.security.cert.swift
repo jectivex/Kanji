@@ -2344,7 +2344,7 @@ public final class java$security$cert$PKIXRevocationChecker$Option : java$lang$E
     private typealias I = java$security$cert$PKIXRevocationChecker$Option$Impl
 
     /// Returns the internal JNI name for this class: "java/security/cert/PKIXRevocationChecker$Option"
-    open class override func jniName() -> String { return "java/security/cert/PKIXRevocationChecker$Option" }
+    public class override func jniName() -> String { return "java/security/cert/PKIXRevocationChecker$Option" }
 
     fileprivate static let java$security$cert$PKIXRevocationChecker$Option__ONLY_END_ENTITY__java$security$cert$PKIXRevocationChecker$Option = J.saccessor("ONLY_END_ENTITY", type: JObjectType("java/security/cert/PKIXRevocationChecker$Option"))
     public static var ONLY_END_ENTITY: java$security$cert$PKIXRevocationChecker$Option? {
@@ -2385,7 +2385,7 @@ public final class java$security$cert$PKIXReason : java$lang$Enum, java$security
     private typealias I = java$security$cert$PKIXReason$Impl
 
     /// Returns the internal JNI name for this class: "java/security/cert/PKIXReason"
-    open class override func jniName() -> String { return "java/security/cert/PKIXReason" }
+    public class override func jniName() -> String { return "java/security/cert/PKIXReason" }
 
     fileprivate static let java$security$cert$PKIXReason__NAME_CHAINING__java$security$cert$PKIXReason = J.saccessor("NAME_CHAINING", type: JObjectType("java/security/cert/PKIXReason"))
     public static var NAME_CHAINING: java$security$cert$PKIXReason? {
@@ -2446,7 +2446,7 @@ public final class java$security$cert$CRLReason : java$lang$Enum {
     private typealias I = java$security$cert$CRLReason$Impl
 
     /// Returns the internal JNI name for this class: "java/security/cert/CRLReason"
-    open class override func jniName() -> String { return "java/security/cert/CRLReason" }
+    public class override func jniName() -> String { return "java/security/cert/CRLReason" }
 
     fileprivate static let java$security$cert$CRLReason__UNSPECIFIED__java$security$cert$CRLReason = J.saccessor("UNSPECIFIED", type: JObjectType("java/security/cert/CRLReason"))
     public static var UNSPECIFIED: java$security$cert$CRLReason? {
@@ -2522,7 +2522,7 @@ public final class java$security$cert$CertPathValidatorException$BasicReason : j
     private typealias I = java$security$cert$CertPathValidatorException$BasicReason$Impl
 
     /// Returns the internal JNI name for this class: "java/security/cert/CertPathValidatorException$BasicReason"
-    open class override func jniName() -> String { return "java/security/cert/CertPathValidatorException$BasicReason" }
+    public class override func jniName() -> String { return "java/security/cert/CertPathValidatorException$BasicReason" }
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason__UNSPECIFIED__java$security$cert$CertPathValidatorException$BasicReason = J.saccessor("UNSPECIFIED", type: JObjectType("java/security/cert/CertPathValidatorException$BasicReason"))
     public static var UNSPECIFIED: java$security$cert$CertPathValidatorException$BasicReason? {

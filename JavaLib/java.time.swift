@@ -78,7 +78,7 @@ public final class java$time$Duration : java$lang$Object, java$time$temporal$Tem
     private typealias I = java$time$Duration$Impl
 
     /// Returns the internal JNI name for this class: "java/time/Duration"
-    open class override func jniName() -> String { return "java/time/Duration" }
+    public class override func jniName() -> String { return "java/time/Duration" }
 
     fileprivate static let java$time$Duration__ZERO__java$time$Duration = J.saccessor("ZERO", type: JObjectType("java/time/Duration"))
     public static var ZERO: java$time$Duration? {
@@ -337,7 +337,7 @@ public final class java$time$Instant : java$lang$Object, java$time$temporal$Temp
     private typealias I = java$time$Instant$Impl
 
     /// Returns the internal JNI name for this class: "java/time/Instant"
-    open class override func jniName() -> String { return "java/time/Instant" }
+    public class override func jniName() -> String { return "java/time/Instant" }
 
     fileprivate static let java$time$Instant__EPOCH__java$time$Instant = J.saccessor("EPOCH", type: JObjectType("java/time/Instant"))
     public static var EPOCH: java$time$Instant? {
@@ -581,7 +581,7 @@ public final class java$time$LocalDate : java$lang$Object, java$time$temporal$Te
     private typealias I = java$time$LocalDate$Impl
 
     /// Returns the internal JNI name for this class: "java/time/LocalDate"
-    open class override func jniName() -> String { return "java/time/LocalDate" }
+    public class override func jniName() -> String { return "java/time/LocalDate" }
 
     fileprivate static let java$time$LocalDate__MIN__java$time$LocalDate = J.saccessor("MIN", type: JObjectType("java/time/LocalDate"))
     public static var MIN: java$time$LocalDate? {
@@ -990,7 +990,7 @@ public final class java$time$LocalDateTime : java$lang$Object, java$time$tempora
     private typealias I = java$time$LocalDateTime$Impl
 
     /// Returns the internal JNI name for this class: "java/time/LocalDateTime"
-    open class override func jniName() -> String { return "java/time/LocalDateTime" }
+    public class override func jniName() -> String { return "java/time/LocalDateTime" }
 
     fileprivate static let java$time$LocalDateTime__MIN__java$time$LocalDateTime = J.saccessor("MIN", type: JObjectType("java/time/LocalDateTime"))
     public static var MIN: java$time$LocalDateTime? {
@@ -1454,7 +1454,7 @@ public final class java$time$LocalTime : java$lang$Object, java$time$temporal$Te
     private typealias I = java$time$LocalTime$Impl
 
     /// Returns the internal JNI name for this class: "java/time/LocalTime"
-    open class override func jniName() -> String { return "java/time/LocalTime" }
+    public class override func jniName() -> String { return "java/time/LocalTime" }
 
     fileprivate static let java$time$LocalTime__MIN__java$time$LocalTime = J.saccessor("MIN", type: JObjectType("java/time/LocalTime"))
     public static var MIN: java$time$LocalTime? {
@@ -1773,7 +1773,7 @@ public final class java$time$MonthDay : java$lang$Object, java$time$temporal$Tem
     private typealias I = java$time$MonthDay$Impl
 
     /// Returns the internal JNI name for this class: "java/time/MonthDay"
-    open class override func jniName() -> String { return "java/time/MonthDay" }
+    public class override func jniName() -> String { return "java/time/MonthDay" }
 
     fileprivate static let java$time$MonthDay_now__java$time$MonthDay = svoker("now", returns: JObjectType("java/time/MonthDay"))
     public static func now() throws -> java$time$MonthDay? {
@@ -1922,7 +1922,7 @@ public final class java$time$OffsetDateTime : java$lang$Object, java$time$tempor
     private typealias I = java$time$OffsetDateTime$Impl
 
     /// Returns the internal JNI name for this class: "java/time/OffsetDateTime"
-    open class override func jniName() -> String { return "java/time/OffsetDateTime" }
+    public class override func jniName() -> String { return "java/time/OffsetDateTime" }
 
     fileprivate static let java$time$OffsetDateTime__MIN__java$time$OffsetDateTime = J.saccessor("MIN", type: JObjectType("java/time/OffsetDateTime"))
     public static var MIN: java$time$OffsetDateTime? {
@@ -2366,7 +2366,7 @@ public final class java$time$OffsetTime : java$lang$Object, java$time$temporal$T
     private typealias I = java$time$OffsetTime$Impl
 
     /// Returns the internal JNI name for this class: "java/time/OffsetTime"
-    open class override func jniName() -> String { return "java/time/OffsetTime" }
+    public class override func jniName() -> String { return "java/time/OffsetTime" }
 
     fileprivate static let java$time$OffsetTime__MIN__java$time$OffsetTime = J.saccessor("MIN", type: JObjectType("java/time/OffsetTime"))
     public static var MIN: java$time$OffsetTime? {
@@ -2675,7 +2675,7 @@ public final class java$time$Period : java$lang$Object, java$time$chrono$ChronoP
     private typealias I = java$time$Period$Impl
 
     /// Returns the internal JNI name for this class: "java/time/Period"
-    open class override func jniName() -> String { return "java/time/Period" }
+    public class override func jniName() -> String { return "java/time/Period" }
 
     fileprivate static let java$time$Period__ZERO__java$time$Period = J.saccessor("ZERO", type: JObjectType("java/time/Period"))
     public static var ZERO: java$time$Period? {
@@ -2910,7 +2910,7 @@ public final class java$time$Year : java$lang$Object, java$time$temporal$Tempora
     private typealias I = java$time$Year$Impl
 
     /// Returns the internal JNI name for this class: "java/time/Year"
-    open class override func jniName() -> String { return "java/time/Year" }
+    public class override func jniName() -> String { return "java/time/Year" }
 
     fileprivate static let java$time$Year__MIN_VALUE__I = J.saccessor("MIN_VALUE", type: jint.jniType)
     public static var MIN_VALUE: jint {
@@ -3149,7 +3149,7 @@ public final class java$time$YearMonth : java$lang$Object, java$time$temporal$Te
     private typealias I = java$time$YearMonth$Impl
 
     /// Returns the internal JNI name for this class: "java/time/YearMonth"
-    open class override func jniName() -> String { return "java/time/YearMonth" }
+    public class override func jniName() -> String { return "java/time/YearMonth" }
 
     fileprivate static let java$time$YearMonth_now__java$time$YearMonth = svoker("now", returns: JObjectType("java/time/YearMonth"))
     public static func now() throws -> java$time$YearMonth? {
@@ -3403,7 +3403,7 @@ public final class java$time$ZonedDateTime : java$lang$Object, java$time$tempora
     private typealias I = java$time$ZonedDateTime$Impl
 
     /// Returns the internal JNI name for this class: "java/time/ZonedDateTime"
-    open class override func jniName() -> String { return "java/time/ZonedDateTime" }
+    public class override func jniName() -> String { return "java/time/ZonedDateTime" }
 
     fileprivate static let java$time$ZonedDateTime_now__java$time$ZonedDateTime = svoker("now", returns: JObjectType("java/time/ZonedDateTime"))
     public static func now() throws -> java$time$ZonedDateTime? {
@@ -3941,7 +3941,7 @@ public final class java$time$ZoneOffset : java$time$ZoneId, java$time$temporal$T
     private typealias I = java$time$ZoneOffset$Impl
 
     /// Returns the internal JNI name for this class: "java/time/ZoneOffset"
-    open class override func jniName() -> String { return "java/time/ZoneOffset" }
+    public class override func jniName() -> String { return "java/time/ZoneOffset" }
 
     fileprivate static let java$time$ZoneOffset__UTC__java$time$ZoneOffset = J.saccessor("UTC", type: JObjectType("java/time/ZoneOffset"))
     public static var UTC: java$time$ZoneOffset? {
@@ -4039,7 +4039,7 @@ public final class java$time$DayOfWeek : java$lang$Enum, java$time$temporal$Temp
     private typealias I = java$time$DayOfWeek$Impl
 
     /// Returns the internal JNI name for this class: "java/time/DayOfWeek"
-    open class override func jniName() -> String { return "java/time/DayOfWeek" }
+    public class override func jniName() -> String { return "java/time/DayOfWeek" }
 
     fileprivate static let java$time$DayOfWeek__MONDAY__java$time$DayOfWeek = J.saccessor("MONDAY", type: JObjectType("java/time/DayOfWeek"))
     public static var MONDAY: java$time$DayOfWeek? {
@@ -4155,7 +4155,7 @@ public final class java$time$Month : java$lang$Enum, java$time$temporal$Temporal
     private typealias I = java$time$Month$Impl
 
     /// Returns the internal JNI name for this class: "java/time/Month"
-    open class override func jniName() -> String { return "java/time/Month" }
+    public class override func jniName() -> String { return "java/time/Month" }
 
     fileprivate static let java$time$Month__JANUARY__java$time$Month = J.saccessor("JANUARY", type: JObjectType("java/time/Month"))
     public static var JANUARY: java$time$Month? {

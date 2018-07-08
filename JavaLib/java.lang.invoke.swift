@@ -373,7 +373,7 @@ public final class java$lang$invoke$MethodHandles$Lookup : java$lang$Object {
     private typealias I = java$lang$invoke$MethodHandles$Lookup$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/invoke/MethodHandles$Lookup"
-    open class override func jniName() -> String { return "java/lang/invoke/MethodHandles$Lookup" }
+    public class override func jniName() -> String { return "java/lang/invoke/MethodHandles$Lookup" }
 
     fileprivate static let java$lang$invoke$MethodHandles$Lookup__PUBLIC__I = J.saccessor("PUBLIC", type: jint.jniType)
     public static var PUBLIC: jint {
@@ -495,7 +495,7 @@ public final class java$lang$invoke$MethodType : java$lang$Object, java$io$Seria
     private typealias I = java$lang$invoke$MethodType$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/invoke/MethodType"
-    open class override func jniName() -> String { return "java/lang/invoke/MethodType" }
+    public class override func jniName() -> String { return "java/lang/invoke/MethodType" }
 
     fileprivate static let java$lang$invoke$MethodType_methodType_java$lang$Class_Ajava$lang$Class__java$lang$invoke$MethodType = svoker("methodType", returns: JObjectType("java/lang/invoke/MethodType"), arguments: (JObjectType("java/lang/Class"), JArray(JObjectType("java/lang/Class"))))
     public static func methodType(_ a0: java$lang$Class?, _ a1: [java$lang$Class?]?) throws -> java$lang$invoke$MethodType? {
@@ -649,7 +649,7 @@ public final class java$lang$invoke$SerializedLambda : java$lang$Object, java$io
     private typealias I = java$lang$invoke$SerializedLambda$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/invoke/SerializedLambda"
-    open class override func jniName() -> String { return "java/lang/invoke/SerializedLambda" }
+    public class override func jniName() -> String { return "java/lang/invoke/SerializedLambda" }
 
     fileprivate static let java$lang$invoke$SerializedLambda_init_java$lang$Class_java$lang$String_java$lang$String_java$lang$String_I_java$lang$String_java$lang$String_java$lang$String_java$lang$String_Ajava$lang$Object__V = constructor((JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JArray(JObjectType("java/lang/Object"))))
     public convenience init(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: jint, _ a5: java$lang$String?, _ a6: java$lang$String?, _ a7: java$lang$String?, _ a8: java$lang$String?, _ a9: [java$lang$Object?]?) throws {

@@ -97,9 +97,7 @@ class KanjiScriptTests: XCTestCase {
     }
 
     override func setUp() {
-//        let dir = "/opt/src/scala/scala-2.11.7/lib/"
-//        let dir = "/opt/src/scala/scala-2.12.2/lib/"
-        let dir = "/opt/src/scala/scala-2.12.4/lib/"
+        let dir = "/opt/src/scala/scala-2.12.6/lib/"
         let cp: [String] = (try? FileManager.default.contentsOfDirectory(atPath: dir).map({ dir + $0 })) ?? []
         // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
         if JVM.sharedJVM == nil {
@@ -109,6 +107,11 @@ class KanjiScriptTests: XCTestCase {
                 XCTFail("error creating JVM: " + error.localizedDescription)
             }
         }
+        
+        if FileManager.default.fileExists(atPath: dir) == false {
+            return XCTFail("scala not installed at \(dir)") // make sure we know when scala is missing
+        }
+
     }
 
     func testKanjiConversions() {

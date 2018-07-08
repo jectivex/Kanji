@@ -26,7 +26,7 @@ public final class java$time$zone$ZoneOffsetTransition : java$lang$Object, java$
     private typealias I = java$time$zone$ZoneOffsetTransition$Impl
 
     /// Returns the internal JNI name for this class: "java/time/zone/ZoneOffsetTransition"
-    open class override func jniName() -> String { return "java/time/zone/ZoneOffsetTransition" }
+    public class override func jniName() -> String { return "java/time/zone/ZoneOffsetTransition" }
 
     fileprivate static let java$time$zone$ZoneOffsetTransition_of_java$time$LocalDateTime_java$time$ZoneOffset_java$time$ZoneOffset__java$time$zone$ZoneOffsetTransition = svoker("of", returns: JObjectType("java/time/zone/ZoneOffsetTransition"), arguments: (JObjectType("java/time/LocalDateTime"), JObjectType("java/time/ZoneOffset"), JObjectType("java/time/ZoneOffset")))
     public static func of(_ a0: java$time$LocalDateTime?, _ a1: java$time$ZoneOffset?, _ a2: java$time$ZoneOffset?) throws -> java$time$zone$ZoneOffsetTransition? {
@@ -105,7 +105,7 @@ public final class java$time$zone$ZoneOffsetTransitionRule : java$lang$Object, j
     private typealias I = java$time$zone$ZoneOffsetTransitionRule$Impl
 
     /// Returns the internal JNI name for this class: "java/time/zone/ZoneOffsetTransitionRule"
-    open class override func jniName() -> String { return "java/time/zone/ZoneOffsetTransitionRule" }
+    public class override func jniName() -> String { return "java/time/zone/ZoneOffsetTransitionRule" }
 
     fileprivate static let java$time$zone$ZoneOffsetTransitionRule_of_java$time$Month_I_java$time$DayOfWeek_java$time$LocalTime_Z_java$time$zone$ZoneOffsetTransitionRule$TimeDefinition_java$time$ZoneOffset_java$time$ZoneOffset_java$time$ZoneOffset__java$time$zone$ZoneOffsetTransitionRule = svoker("of", returns: JObjectType("java/time/zone/ZoneOffsetTransitionRule"), arguments: (JObjectType("java/time/Month"), jint.jniType, JObjectType("java/time/DayOfWeek"), JObjectType("java/time/LocalTime"), jboolean.jniType, JObjectType("java/time/zone/ZoneOffsetTransitionRule$TimeDefinition"), JObjectType("java/time/ZoneOffset"), JObjectType("java/time/ZoneOffset"), JObjectType("java/time/ZoneOffset")))
     public static func of(_ a0: java$time$Month?, _ a1: jint, _ a2: java$time$DayOfWeek?, _ a3: java$time$LocalTime?, _ a4: jboolean, _ a5: java$time$zone$ZoneOffsetTransitionRule$TimeDefinition?, _ a6: java$time$ZoneOffset?, _ a7: java$time$ZoneOffset?, _ a8: java$time$ZoneOffset?) throws -> java$time$zone$ZoneOffsetTransitionRule? {
@@ -174,7 +174,7 @@ public final class java$time$zone$ZoneRules : java$lang$Object, java$io$Serializ
     private typealias I = java$time$zone$ZoneRules$Impl
 
     /// Returns the internal JNI name for this class: "java/time/zone/ZoneRules"
-    open class override func jniName() -> String { return "java/time/zone/ZoneRules" }
+    public class override func jniName() -> String { return "java/time/zone/ZoneRules" }
 
     fileprivate static let java$time$zone$ZoneRules_of_java$time$ZoneOffset_java$time$ZoneOffset_java$util$List_java$util$List_java$util$List__java$time$zone$ZoneRules = svoker("of", returns: JObjectType("java/time/zone/ZoneRules"), arguments: (JObjectType("java/time/ZoneOffset"), JObjectType("java/time/ZoneOffset"), JObjectType("java/util/List"), JObjectType("java/util/List"), JObjectType("java/util/List")))
     public static func of(_ a0: java$time$ZoneOffset?, _ a1: java$time$ZoneOffset?, _ a2: java$util$List?, _ a3: java$util$List?, _ a4: java$util$List?) throws -> java$time$zone$ZoneRules? {
@@ -299,7 +299,7 @@ public final class java$time$zone$ZoneOffsetTransitionRule$TimeDefinition : java
     private typealias I = java$time$zone$ZoneOffsetTransitionRule$TimeDefinition$Impl
 
     /// Returns the internal JNI name for this class: "java/time/zone/ZoneOffsetTransitionRule$TimeDefinition"
-    open class override func jniName() -> String { return "java/time/zone/ZoneOffsetTransitionRule$TimeDefinition" }
+    public class override func jniName() -> String { return "java/time/zone/ZoneOffsetTransitionRule$TimeDefinition" }
 
     fileprivate static let java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__UTC__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition = J.saccessor("UTC", type: JObjectType("java/time/zone/ZoneOffsetTransitionRule$TimeDefinition"))
     public static var UTC: java$time$zone$ZoneOffsetTransitionRule$TimeDefinition? {

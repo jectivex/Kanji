@@ -5,7 +5,7 @@ public final class java$time$format$DateTimeFormatter : java$lang$Object {
     private typealias I = java$time$format$DateTimeFormatter$Impl
 
     /// Returns the internal JNI name for this class: "java/time/format/DateTimeFormatter"
-    open class override func jniName() -> String { return "java/time/format/DateTimeFormatter" }
+    public class override func jniName() -> String { return "java/time/format/DateTimeFormatter" }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_LOCAL_DATE__java$time$format$DateTimeFormatter = J.saccessor("ISO_LOCAL_DATE", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_LOCAL_DATE: java$time$format$DateTimeFormatter? {
@@ -242,7 +242,7 @@ public final class java$time$format$DateTimeFormatterBuilder : java$lang$Object 
     private typealias I = java$time$format$DateTimeFormatterBuilder$Impl
 
     /// Returns the internal JNI name for this class: "java/time/format/DateTimeFormatterBuilder"
-    open class override func jniName() -> String { return "java/time/format/DateTimeFormatterBuilder" }
+    public class override func jniName() -> String { return "java/time/format/DateTimeFormatterBuilder" }
 
     fileprivate static let java$time$format$DateTimeFormatterBuilder_getLocalizedDateTimePattern_java$time$format$FormatStyle_java$time$format$FormatStyle_java$time$chrono$Chronology_java$util$Locale__java$lang$String = svoker("getLocalizedDateTimePattern", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/time/format/FormatStyle"), JObjectType("java/time/format/FormatStyle"), JObjectType("java/time/chrono/Chronology"), JObjectType("java/util/Locale")))
     public static func getLocalizedDateTimePattern(_ a0: java$time$format$FormatStyle?, _ a1: java$time$format$FormatStyle?, _ a2: java$time$chrono$Chronology?, _ a3: java$util$Locale?) throws -> java$lang$String? {
@@ -453,7 +453,7 @@ public final class java$time$format$DecimalStyle : java$lang$Object {
     private typealias I = java$time$format$DecimalStyle$Impl
 
     /// Returns the internal JNI name for this class: "java/time/format/DecimalStyle"
-    open class override func jniName() -> String { return "java/time/format/DecimalStyle" }
+    public class override func jniName() -> String { return "java/time/format/DecimalStyle" }
 
     fileprivate static let java$time$format$DecimalStyle__STANDARD__java$time$format$DecimalStyle = J.saccessor("STANDARD", type: JObjectType("java/time/format/DecimalStyle"))
     public static var STANDARD: java$time$format$DecimalStyle? {
@@ -558,7 +558,7 @@ public final class java$time$format$ResolverStyle : java$lang$Enum {
     private typealias I = java$time$format$ResolverStyle$Impl
 
     /// Returns the internal JNI name for this class: "java/time/format/ResolverStyle"
-    open class override func jniName() -> String { return "java/time/format/ResolverStyle" }
+    public class override func jniName() -> String { return "java/time/format/ResolverStyle" }
 
     fileprivate static let java$time$format$ResolverStyle__STRICT__java$time$format$ResolverStyle = J.saccessor("STRICT", type: JObjectType("java/time/format/ResolverStyle"))
     public static var STRICT: java$time$format$ResolverStyle? {
@@ -594,7 +594,7 @@ public final class java$time$format$FormatStyle : java$lang$Enum {
     private typealias I = java$time$format$FormatStyle$Impl
 
     /// Returns the internal JNI name for this class: "java/time/format/FormatStyle"
-    open class override func jniName() -> String { return "java/time/format/FormatStyle" }
+    public class override func jniName() -> String { return "java/time/format/FormatStyle" }
 
     fileprivate static let java$time$format$FormatStyle__FULL__java$time$format$FormatStyle = J.saccessor("FULL", type: JObjectType("java/time/format/FormatStyle"))
     public static var FULL: java$time$format$FormatStyle? {
@@ -635,7 +635,7 @@ public final class java$time$format$TextStyle : java$lang$Enum {
     private typealias I = java$time$format$TextStyle$Impl
 
     /// Returns the internal JNI name for this class: "java/time/format/TextStyle"
-    open class override func jniName() -> String { return "java/time/format/TextStyle" }
+    public class override func jniName() -> String { return "java/time/format/TextStyle" }
 
     fileprivate static let java$time$format$TextStyle__FULL__java$time$format$TextStyle = J.saccessor("FULL", type: JObjectType("java/time/format/TextStyle"))
     public static var FULL: java$time$format$TextStyle? {
@@ -701,7 +701,7 @@ public final class java$time$format$SignStyle : java$lang$Enum {
     private typealias I = java$time$format$SignStyle$Impl
 
     /// Returns the internal JNI name for this class: "java/time/format/SignStyle"
-    open class override func jniName() -> String { return "java/time/format/SignStyle" }
+    public class override func jniName() -> String { return "java/time/format/SignStyle" }
 
     fileprivate static let java$time$format$SignStyle__NORMAL__java$time$format$SignStyle = J.saccessor("NORMAL", type: JObjectType("java/time/format/SignStyle"))
     public static var NORMAL: java$time$format$SignStyle? {

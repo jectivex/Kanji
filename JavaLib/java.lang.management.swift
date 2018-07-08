@@ -288,7 +288,7 @@ public final class java$lang$management$ManagementPermission : java$security$Bas
     private typealias I = java$lang$management$ManagementPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/management/ManagementPermission"
-    open class override func jniName() -> String { return "java/lang/management/ManagementPermission" }
+    public class override func jniName() -> String { return "java/lang/management/ManagementPermission" }
 
     fileprivate static let java$lang$management$ManagementPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -1186,7 +1186,7 @@ public final class java$lang$management$MemoryType : java$lang$Enum {
     private typealias I = java$lang$management$MemoryType$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/management/MemoryType"
-    open class override func jniName() -> String { return "java/lang/management/MemoryType" }
+    public class override func jniName() -> String { return "java/lang/management/MemoryType" }
 
     fileprivate static let java$lang$management$MemoryType__HEAP__java$lang$management$MemoryType = J.saccessor("HEAP", type: JObjectType("java/lang/management/MemoryType"))
     public static var HEAP: java$lang$management$MemoryType? {

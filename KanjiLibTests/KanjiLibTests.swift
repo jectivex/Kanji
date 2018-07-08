@@ -227,6 +227,13 @@ class KanjiLibTests: XCTestCase {
 //                let ob = try! java$net$URLClassLoader([java$net$URL("file:///tmp/")]).loadClass("FinDemo")!.newInstance()
 //            }
 
+            do {
+                let subob: java$lang$Object = try JVM.sharedJVM.createNativeClass("SimpleKanjiClass", methods: [
+                    ]).constructor()
+                
+                XCTAssertEqual("SimpleKanjiClass", (try? subob.getClass()?.getName()) ?? "")
+            }
+            
             func kanjiCast<T>(_ x: T) -> UnsafeMutableRawPointer { return unsafeBitCast(x, to: UnsafeMutableRawPointer.self) }
 
             do {

@@ -5,7 +5,7 @@ public final class java$time$temporal$IsoFields : java$lang$Object {
     private typealias I = java$time$temporal$IsoFields$Impl
 
     /// Returns the internal JNI name for this class: "java/time/temporal/IsoFields"
-    open class override func jniName() -> String { return "java/time/temporal/IsoFields" }
+    public class override func jniName() -> String { return "java/time/temporal/IsoFields" }
 
     fileprivate static let java$time$temporal$IsoFields__DAY_OF_QUARTER__java$time$temporal$TemporalField = J.saccessor("DAY_OF_QUARTER", type: JObjectType("java/time/temporal/TemporalField"))
     public static var DAY_OF_QUARTER: java$time$temporal$TemporalField? {
@@ -46,7 +46,7 @@ public final class java$time$temporal$JulianFields : java$lang$Object {
     private typealias I = java$time$temporal$JulianFields$Impl
 
     /// Returns the internal JNI name for this class: "java/time/temporal/JulianFields"
-    open class override func jniName() -> String { return "java/time/temporal/JulianFields" }
+    public class override func jniName() -> String { return "java/time/temporal/JulianFields" }
 
     fileprivate static let java$time$temporal$JulianFields__JULIAN_DAY__java$time$temporal$TemporalField = J.saccessor("JULIAN_DAY", type: JObjectType("java/time/temporal/TemporalField"))
     public static var JULIAN_DAY: java$time$temporal$TemporalField? {
@@ -72,7 +72,7 @@ public final class java$time$temporal$TemporalAdjusters : java$lang$Object {
     private typealias I = java$time$temporal$TemporalAdjusters$Impl
 
     /// Returns the internal JNI name for this class: "java/time/temporal/TemporalAdjusters"
-    open class override func jniName() -> String { return "java/time/temporal/TemporalAdjusters" }
+    public class override func jniName() -> String { return "java/time/temporal/TemporalAdjusters" }
 
     fileprivate static let java$time$temporal$TemporalAdjusters_ofDateAdjuster_java$util$function$UnaryOperator__java$time$temporal$TemporalAdjuster = svoker("ofDateAdjuster", returns: JObjectType("java/time/temporal/TemporalAdjuster"), arguments: (JObjectType("java/util/function/UnaryOperator")))
     public static func ofDateAdjuster(_ a0: java$util$function$UnaryOperator?) throws -> java$time$temporal$TemporalAdjuster? {
@@ -153,7 +153,7 @@ public final class java$time$temporal$TemporalQueries : java$lang$Object {
     private typealias I = java$time$temporal$TemporalQueries$Impl
 
     /// Returns the internal JNI name for this class: "java/time/temporal/TemporalQueries"
-    open class override func jniName() -> String { return "java/time/temporal/TemporalQueries" }
+    public class override func jniName() -> String { return "java/time/temporal/TemporalQueries" }
 
     fileprivate static let java$time$temporal$TemporalQueries_zoneId__java$time$temporal$TemporalQuery = svoker("zoneId", returns: JObjectType("java/time/temporal/TemporalQuery"))
     public static func zoneId() throws -> java$time$temporal$TemporalQuery? {
@@ -220,7 +220,7 @@ public final class java$time$temporal$ValueRange : java$lang$Object, java$io$Ser
     private typealias I = java$time$temporal$ValueRange$Impl
 
     /// Returns the internal JNI name for this class: "java/time/temporal/ValueRange"
-    open class override func jniName() -> String { return "java/time/temporal/ValueRange" }
+    public class override func jniName() -> String { return "java/time/temporal/ValueRange" }
 
     fileprivate static let java$time$temporal$ValueRange_of_J_J__java$time$temporal$ValueRange = svoker("of", returns: JObjectType("java/time/temporal/ValueRange"), arguments: (jlong.jniType, jlong.jniType))
     public static func of(_ a0: jlong, _ a1: jlong) throws -> java$time$temporal$ValueRange? {
@@ -299,7 +299,7 @@ public final class java$time$temporal$WeekFields : java$lang$Object, java$io$Ser
     private typealias I = java$time$temporal$WeekFields$Impl
 
     /// Returns the internal JNI name for this class: "java/time/temporal/WeekFields"
-    open class override func jniName() -> String { return "java/time/temporal/WeekFields" }
+    public class override func jniName() -> String { return "java/time/temporal/WeekFields" }
 
     fileprivate static let java$time$temporal$WeekFields__ISO__java$time$temporal$WeekFields = J.saccessor("ISO", type: JObjectType("java/time/temporal/WeekFields"))
     public static var ISO: java$time$temporal$WeekFields? {
@@ -733,7 +733,7 @@ public final class java$time$temporal$ChronoUnit : java$lang$Enum, java$time$tem
     private typealias I = java$time$temporal$ChronoUnit$Impl
 
     /// Returns the internal JNI name for this class: "java/time/temporal/ChronoUnit"
-    open class override func jniName() -> String { return "java/time/temporal/ChronoUnit" }
+    public class override func jniName() -> String { return "java/time/temporal/ChronoUnit" }
 
     fileprivate static let java$time$temporal$ChronoUnit__NANOS__java$time$temporal$ChronoUnit = J.saccessor("NANOS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var NANOS: java$time$temporal$ChronoUnit? {
@@ -870,7 +870,7 @@ public final class java$time$temporal$ChronoField : java$lang$Enum, java$time$te
     private typealias I = java$time$temporal$ChronoField$Impl
 
     /// Returns the internal JNI name for this class: "java/time/temporal/ChronoField"
-    open class override func jniName() -> String { return "java/time/temporal/ChronoField" }
+    public class override func jniName() -> String { return "java/time/temporal/ChronoField" }
 
     fileprivate static let java$time$temporal$ChronoField__NANO_OF_SECOND__java$time$temporal$ChronoField = J.saccessor("NANO_OF_SECOND", type: JObjectType("java/time/temporal/ChronoField"))
     public static var NANO_OF_SECOND: java$time$temporal$ChronoField? {

@@ -1165,7 +1165,7 @@ public final class java$nio$ByteOrder : java$lang$Object {
     private typealias I = java$nio$ByteOrder$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/ByteOrder"
-    open class override func jniName() -> String { return "java/nio/ByteOrder" }
+    public class override func jniName() -> String { return "java/nio/ByteOrder" }
 
     fileprivate static let java$nio$ByteOrder__BIG_ENDIAN__java$nio$ByteOrder = J.saccessor("BIG_ENDIAN", type: JObjectType("java/nio/ByteOrder"))
     public static var BIG_ENDIAN: java$nio$ByteOrder? {

@@ -14,7 +14,7 @@ import JavaLib
 import BricBrac
 
 open class KanjiScriptContext : ScriptContext {
-    open let engine: javax$script$ScriptEngine
+    public let engine: javax$script$ScriptEngine
 
     public typealias InstanceType = KanjiScriptType
 

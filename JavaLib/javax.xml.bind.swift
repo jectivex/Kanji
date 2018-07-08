@@ -91,7 +91,7 @@ public final class javax$xml$bind$JAXB : java$lang$Object {
     private typealias I = javax$xml$bind$JAXB$Impl
 
     /// Returns the internal JNI name for this class: "javax/xml/bind/JAXB"
-    open class override func jniName() -> String { return "javax/xml/bind/JAXB" }
+    public class override func jniName() -> String { return "javax/xml/bind/JAXB" }
 
     fileprivate static let javax$xml$bind$JAXB_unmarshal_java$io$File_java$lang$Class__java$lang$Object = svoker("unmarshal", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/io/File"), JObjectType("java/lang/Class")))
     public static func unmarshal(_ a0: java$io$File?, _ a1: java$lang$Class?) throws -> java$lang$Object? {
@@ -172,7 +172,7 @@ public final class javax$xml$bind$DatatypeConverter : java$lang$Object {
     private typealias I = javax$xml$bind$DatatypeConverter$Impl
 
     /// Returns the internal JNI name for this class: "javax/xml/bind/DatatypeConverter"
-    open class override func jniName() -> String { return "javax/xml/bind/DatatypeConverter" }
+    public class override func jniName() -> String { return "javax/xml/bind/DatatypeConverter" }
 
     fileprivate static let javax$xml$bind$DatatypeConverter_setDatatypeConverter_javax$xml$bind$DatatypeConverterInterface__V = svoker("setDatatypeConverter", returns: JVoid.jniType, arguments: (JObjectType("javax/xml/bind/DatatypeConverterInterface")))
     public static func setDatatypeConverter(_ a0: javax$xml$bind$DatatypeConverterInterface?) throws -> Void {

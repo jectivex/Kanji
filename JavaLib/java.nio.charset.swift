@@ -385,7 +385,7 @@ public final class java$nio$charset$StandardCharsets : java$lang$Object {
     private typealias I = java$nio$charset$StandardCharsets$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/charset/StandardCharsets"
-    open class override func jniName() -> String { return "java/nio/charset/StandardCharsets" }
+    public class override func jniName() -> String { return "java/nio/charset/StandardCharsets" }
 
     fileprivate static let java$nio$charset$StandardCharsets__US_ASCII__java$nio$charset$Charset = J.saccessor("US_ASCII", type: JObjectType("java/nio/charset/Charset"))
     public static var US_ASCII: java$nio$charset$Charset? {

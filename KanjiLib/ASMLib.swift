@@ -53,7 +53,7 @@ public final class jdk$internal$org$objectweb$asm$AnnotationWriter : jdk$interna
     private typealias I = jdk$internal$org$objectweb$asm$AnnotationWriter$Impl
 
     /// Returns the internal JNI name for this class: "jdk/internal/org/objectweb/asm/AnnotationWriter"
-    open class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/AnnotationWriter" }
+    public class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/AnnotationWriter" }
 
     fileprivate static let jdk$internal$org$objectweb$asm$AnnotationWriter_visit_java$lang$String_java$lang$Object__V = invoker("visit", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/Object")))
     fileprivate static let jdk$internal$org$objectweb$asm$AnnotationWriter_visitEnum_java$lang$String_java$lang$String_java$lang$String__V = invoker("visitEnum", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
@@ -517,7 +517,7 @@ public final class jdk$internal$org$objectweb$asm$FieldWriter : jdk$internal$org
     private typealias I = jdk$internal$org$objectweb$asm$FieldWriter$Impl
 
     /// Returns the internal JNI name for this class: "jdk/internal/org/objectweb/asm/FieldWriter"
-    open class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/FieldWriter" }
+    public class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/FieldWriter" }
 
     fileprivate static let jdk$internal$org$objectweb$asm$FieldWriter_visitAnnotation_java$lang$String_Z__jdk$internal$org$objectweb$asm$AnnotationVisitor = invoker("visitAnnotation", returns: JObjectType("jdk/internal/org/objectweb/asm/AnnotationVisitor"), arguments: (JObjectType("java/lang/String"), jboolean.jniType))
     fileprivate static let jdk$internal$org$objectweb$asm$FieldWriter_visitTypeAnnotation_I_jdk$internal$org$objectweb$asm$TypePath_java$lang$String_Z__jdk$internal$org$objectweb$asm$AnnotationVisitor = invoker("visitTypeAnnotation", returns: JObjectType("jdk/internal/org/objectweb/asm/AnnotationVisitor"), arguments: (jint.jniType, JObjectType("jdk/internal/org/objectweb/asm/TypePath"), JObjectType("java/lang/String"), jboolean.jniType))
@@ -532,7 +532,7 @@ public final class jdk$internal$org$objectweb$asm$Frame : java$lang$Object {
     private typealias I = jdk$internal$org$objectweb$asm$Frame$Impl
 
     /// Returns the internal JNI name for this class: "jdk/internal/org/objectweb/asm/Frame"
-    open class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/Frame" }
+    public class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/Frame" }
 
 }
 
@@ -542,8 +542,7 @@ public final class jdk$internal$org$objectweb$asm$Handle : java$lang$Object {
     private typealias J = jdk$internal$org$objectweb$asm$Handle
     private typealias I = jdk$internal$org$objectweb$asm$Handle$Impl
 
-    /// Returns the internal JNI name for this class: "jdk/internal/org/objectweb/asm/Handle"
-    open class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/Handle" }
+    /// Returns the internal JNI name for this class: "jdk/internal/org/objectweb/asm/Handlepublic  public class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/Handle" }
 
     fileprivate static let jdk$internal$org$objectweb$asm$Handle_init_I_java$lang$String_java$lang$String_java$lang$String__V = constructor((jint.jniType, JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public convenience init(_ a0: jint, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?) throws {
@@ -592,8 +591,7 @@ public final class jdk$internal$org$objectweb$asm$Item : java$lang$Object {
     private typealias J = jdk$internal$org$objectweb$asm$Item
     private typealias I = jdk$internal$org$objectweb$asm$Item$Impl
 
-    /// Returns the internal JNI name for this class: "jdk/internal/org/objectweb/asm/Item"
-    open class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/Item" }
+    /// Returns the internal JNI name for this class: "jdk/internal/org/objectweb/asm/Itpublic    public class override func jniName() -> String { return "jdk/internal/org/objectweb/asm/Item" }
 
 }
 

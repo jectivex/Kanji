@@ -904,7 +904,7 @@ public final class org$xml$sax$helpers$XMLReaderFactory : java$lang$Object {
     private typealias I = org$xml$sax$helpers$XMLReaderFactory$Impl
 
     /// Returns the internal JNI name for this class: "org/xml/sax/helpers/XMLReaderFactory"
-    open class override func jniName() -> String { return "org/xml/sax/helpers/XMLReaderFactory" }
+    public class override func jniName() -> String { return "org/xml/sax/helpers/XMLReaderFactory" }
 
     fileprivate static let org$xml$sax$helpers$XMLReaderFactory_createXMLReader__org$xml$sax$XMLReader = svoker("createXMLReader", returns: JObjectType("org/xml/sax/XMLReader"))
     public static func createXMLReader() throws -> org$xml$sax$XMLReader? {

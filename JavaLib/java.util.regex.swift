@@ -5,7 +5,7 @@ public final class java$util$regex$Matcher : java$lang$Object, java$util$regex$M
     private typealias I = java$util$regex$Matcher$Impl
 
     /// Returns the internal JNI name for this class: "java/util/regex/Matcher"
-    open class override func jniName() -> String { return "java/util/regex/Matcher" }
+    public class override func jniName() -> String { return "java/util/regex/Matcher" }
 
     fileprivate static let java$util$regex$Matcher_pattern__java$util$regex$Pattern = invoker("pattern", returns: JObjectType("java/util/regex/Pattern"))
     public func pattern() throws -> java$util$regex$Pattern? {
@@ -182,7 +182,7 @@ public final class java$util$regex$Pattern : java$lang$Object, java$io$Serializa
     private typealias I = java$util$regex$Pattern$Impl
 
     /// Returns the internal JNI name for this class: "java/util/regex/Pattern"
-    open class override func jniName() -> String { return "java/util/regex/Pattern" }
+    public class override func jniName() -> String { return "java/util/regex/Pattern" }
 
     fileprivate static let java$util$regex$Pattern__UNIX_LINES__I = J.saccessor("UNIX_LINES", type: jint.jniType)
     public static var UNIX_LINES: jint {

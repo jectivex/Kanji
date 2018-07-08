@@ -5,7 +5,7 @@ public final class javax$xml$XMLConstants : java$lang$Object {
     private typealias I = javax$xml$XMLConstants$Impl
 
     /// Returns the internal JNI name for this class: "javax/xml/XMLConstants"
-    open class override func jniName() -> String { return "javax/xml/XMLConstants" }
+    public class override func jniName() -> String { return "javax/xml/XMLConstants" }
 
     fileprivate static let javax$xml$XMLConstants__NULL_NS_URI__java$lang$String = J.saccessor("NULL_NS_URI", type: JObjectType("java/lang/String"))
     public static var NULL_NS_URI: java$lang$String? {

@@ -5,7 +5,7 @@ public final class java$security$AccessControlContext : java$lang$Object {
     private typealias I = java$security$AccessControlContext$Impl
 
     /// Returns the internal JNI name for this class: "java/security/AccessControlContext"
-    open class override func jniName() -> String { return "java/security/AccessControlContext" }
+    public class override func jniName() -> String { return "java/security/AccessControlContext" }
 
     fileprivate static let java$security$AccessControlContext_init_Ajava$security$ProtectionDomain__V = constructor((JArray(JObjectType("java/security/ProtectionDomain"))))
     public convenience init(_ a0: [java$security$ProtectionDomain?]?) throws {
@@ -38,7 +38,7 @@ public final class java$security$AccessController : java$lang$Object {
     private typealias I = java$security$AccessController$Impl
 
     /// Returns the internal JNI name for this class: "java/security/AccessController"
-    open class override func jniName() -> String { return "java/security/AccessController" }
+    public class override func jniName() -> String { return "java/security/AccessController" }
 
     fileprivate static let java$security$AccessController_doPrivileged_java$security$PrivilegedAction__java$lang$Object = svoker("doPrivileged", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/security/PrivilegedAction")))
     public static func doPrivileged(_ a0: java$security$PrivilegedAction?) throws -> java$lang$Object? {
@@ -280,7 +280,7 @@ public final class java$security$CodeSigner : java$lang$Object, java$io$Serializ
     private typealias I = java$security$CodeSigner$Impl
 
     /// Returns the internal JNI name for this class: "java/security/CodeSigner"
-    open class override func jniName() -> String { return "java/security/CodeSigner" }
+    public class override func jniName() -> String { return "java/security/CodeSigner" }
 
     fileprivate static let java$security$CodeSigner_init_java$security$cert$CertPath_java$security$Timestamp__V = constructor((JObjectType("java/security/cert/CertPath"), JObjectType("java/security/Timestamp")))
     public convenience init(_ a0: java$security$cert$CertPath?, _ a1: java$security$Timestamp?) throws {
@@ -439,7 +439,7 @@ public final class java$security$DomainLoadStoreParameter : java$lang$Object, ja
     private typealias I = java$security$DomainLoadStoreParameter$Impl
 
     /// Returns the internal JNI name for this class: "java/security/DomainLoadStoreParameter"
-    open class override func jniName() -> String { return "java/security/DomainLoadStoreParameter" }
+    public class override func jniName() -> String { return "java/security/DomainLoadStoreParameter" }
 
     fileprivate static let java$security$DomainLoadStoreParameter_init_java$net$URI_java$util$Map__V = constructor((JObjectType("java/net/URI"), JObjectType("java/util/Map")))
     public convenience init(_ a0: java$net$URI?, _ a1: java$util$Map?) throws {
@@ -765,7 +765,7 @@ public final class java$security$KeyPair : java$lang$Object, java$io$Serializabl
     private typealias I = java$security$KeyPair$Impl
 
     /// Returns the internal JNI name for this class: "java/security/KeyPair"
-    open class override func jniName() -> String { return "java/security/KeyPair" }
+    public class override func jniName() -> String { return "java/security/KeyPair" }
 
     fileprivate static let java$security$KeyPair_init_java$security$PublicKey_java$security$PrivateKey__V = constructor((JObjectType("java/security/PublicKey"), JObjectType("java/security/PrivateKey")))
     public convenience init(_ a0: java$security$PublicKey?, _ a1: java$security$PrivateKey?) throws {
@@ -1141,7 +1141,7 @@ public final class java$security$KeyStore$PrivateKeyEntry : java$lang$Object, ja
     private typealias I = java$security$KeyStore$PrivateKeyEntry$Impl
 
     /// Returns the internal JNI name for this class: "java/security/KeyStore$PrivateKeyEntry"
-    open class override func jniName() -> String { return "java/security/KeyStore$PrivateKeyEntry" }
+    public class override func jniName() -> String { return "java/security/KeyStore$PrivateKeyEntry" }
 
     fileprivate static let java$security$KeyStore$PrivateKeyEntry_init_java$security$PrivateKey_Ajava$security$cert$Certificate__V = constructor((JObjectType("java/security/PrivateKey"), JArray(JObjectType("java/security/cert/Certificate"))))
     public convenience init(_ a0: java$security$PrivateKey?, _ a1: [java$security$cert$Certificate?]?) throws {
@@ -1183,7 +1183,7 @@ public final class java$security$KeyStore$SecretKeyEntry : java$lang$Object, jav
     private typealias I = java$security$KeyStore$SecretKeyEntry$Impl
 
     /// Returns the internal JNI name for this class: "java/security/KeyStore$SecretKeyEntry"
-    open class override func jniName() -> String { return "java/security/KeyStore$SecretKeyEntry" }
+    public class override func jniName() -> String { return "java/security/KeyStore$SecretKeyEntry" }
 
     fileprivate static let java$security$KeyStore$SecretKeyEntry_init_javax$crypto$SecretKey__V = constructor((JObjectType("javax/crypto/SecretKey")))
     public convenience init(_ a0: javax$crypto$SecretKey?) throws {
@@ -1215,7 +1215,7 @@ public final class java$security$KeyStore$TrustedCertificateEntry : java$lang$Ob
     private typealias I = java$security$KeyStore$TrustedCertificateEntry$Impl
 
     /// Returns the internal JNI name for this class: "java/security/KeyStore$TrustedCertificateEntry"
-    open class override func jniName() -> String { return "java/security/KeyStore$TrustedCertificateEntry" }
+    public class override func jniName() -> String { return "java/security/KeyStore$TrustedCertificateEntry" }
 
     fileprivate static let java$security$KeyStore$TrustedCertificateEntry_init_java$security$cert$Certificate__V = constructor((JObjectType("java/security/cert/Certificate")))
     public convenience init(_ a0: java$security$cert$Certificate?) throws {
@@ -1555,7 +1555,7 @@ public final class java$security$AllPermission : java$security$Permission {
     private typealias I = java$security$AllPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/security/AllPermission"
-    open class override func jniName() -> String { return "java/security/AllPermission" }
+    public class override func jniName() -> String { return "java/security/AllPermission" }
 
     fileprivate static let java$security$AllPermission_init__V = constructor()
     public convenience init() throws {
@@ -1607,7 +1607,7 @@ public final class java$security$SecurityPermission : java$security$BasicPermiss
     private typealias I = java$security$SecurityPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/security/SecurityPermission"
-    open class override func jniName() -> String { return "java/security/SecurityPermission" }
+    public class override func jniName() -> String { return "java/security/SecurityPermission" }
 
     fileprivate static let java$security$SecurityPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -1628,7 +1628,7 @@ public final class java$security$UnresolvedPermission : java$security$Permission
     private typealias I = java$security$UnresolvedPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/security/UnresolvedPermission"
-    open class override func jniName() -> String { return "java/security/UnresolvedPermission" }
+    public class override func jniName() -> String { return "java/security/UnresolvedPermission" }
 
     fileprivate static let java$security$UnresolvedPermission_init_java$lang$String_java$lang$String_java$lang$String_Ajava$security$cert$Certificate__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JArray(JObjectType("java/security/cert/Certificate"))))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: [java$security$cert$Certificate?]?) throws {
@@ -1712,7 +1712,7 @@ public final class java$security$Permissions : java$security$PermissionCollectio
     private typealias I = java$security$Permissions$Impl
 
     /// Returns the internal JNI name for this class: "java/security/Permissions"
-    open class override func jniName() -> String { return "java/security/Permissions" }
+    public class override func jniName() -> String { return "java/security/Permissions" }
 
     fileprivate static let java$security$Permissions_init__V = constructor()
     public convenience init() throws {
@@ -1731,7 +1731,7 @@ public final class java$security$PKCS12Attribute : java$lang$Object, java$securi
     private typealias I = java$security$PKCS12Attribute$Impl
 
     /// Returns the internal JNI name for this class: "java/security/PKCS12Attribute"
-    open class override func jniName() -> String { return "java/security/PKCS12Attribute" }
+    public class override func jniName() -> String { return "java/security/PKCS12Attribute" }
 
     fileprivate static let java$security$PKCS12Attribute_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
@@ -2050,7 +2050,7 @@ public final class java$security$Security : java$lang$Object {
     private typealias I = java$security$Security$Impl
 
     /// Returns the internal JNI name for this class: "java/security/Security"
-    open class override func jniName() -> String { return "java/security/Security" }
+    public class override func jniName() -> String { return "java/security/Security" }
 
     fileprivate static let java$security$Security_getAlgorithmProperty_java$lang$String_java$lang$String__java$lang$String = svoker("getAlgorithmProperty", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public static func getAlgorithmProperty(_ a0: java$lang$String?, _ a1: java$lang$String?) throws -> java$lang$String? {
@@ -2255,7 +2255,7 @@ public final class java$security$SignedObject : java$lang$Object, java$io$Serial
     private typealias I = java$security$SignedObject$Impl
 
     /// Returns the internal JNI name for this class: "java/security/SignedObject"
-    open class override func jniName() -> String { return "java/security/SignedObject" }
+    public class override func jniName() -> String { return "java/security/SignedObject" }
 
     fileprivate static let java$security$SignedObject_init_java$io$Serializable_java$security$PrivateKey_java$security$Signature__V = constructor((JObjectType("java/io/Serializable"), JObjectType("java/security/PrivateKey"), JObjectType("java/security/Signature")))
     public convenience init(_ a0: java$io$Serializable?, _ a1: java$security$PrivateKey?, _ a2: java$security$Signature?) throws {
@@ -2734,7 +2734,7 @@ public final class java$security$Timestamp : java$lang$Object, java$io$Serializa
     private typealias I = java$security$Timestamp$Impl
 
     /// Returns the internal JNI name for this class: "java/security/Timestamp"
-    open class override func jniName() -> String { return "java/security/Timestamp" }
+    public class override func jniName() -> String { return "java/security/Timestamp" }
 
     fileprivate static let java$security$Timestamp_init_java$util$Date_java$security$cert$CertPath__V = constructor((JObjectType("java/util/Date"), JObjectType("java/security/cert/CertPath")))
     public convenience init(_ a0: java$util$Date?, _ a1: java$security$cert$CertPath?) throws {
@@ -3231,7 +3231,7 @@ public final class java$security$KeyRep$Type : java$lang$Enum {
     private typealias I = java$security$KeyRep$Type$Impl
 
     /// Returns the internal JNI name for this class: "java/security/KeyRep$Type"
-    open class override func jniName() -> String { return "java/security/KeyRep$Type" }
+    public class override func jniName() -> String { return "java/security/KeyRep$Type" }
 
     fileprivate static let java$security$KeyRep$Type__SECRET__java$security$KeyRep$Type = J.saccessor("SECRET", type: JObjectType("java/security/KeyRep$Type"))
     public static var SECRET: java$security$KeyRep$Type? {
@@ -3267,7 +3267,7 @@ public final class java$security$CryptoPrimitive : java$lang$Enum {
     private typealias I = java$security$CryptoPrimitive$Impl
 
     /// Returns the internal JNI name for this class: "java/security/CryptoPrimitive"
-    open class override func jniName() -> String { return "java/security/CryptoPrimitive" }
+    public class override func jniName() -> String { return "java/security/CryptoPrimitive" }
 
     fileprivate static let java$security$CryptoPrimitive__MESSAGE_DIGEST__java$security$CryptoPrimitive = J.saccessor("MESSAGE_DIGEST", type: JObjectType("java/security/CryptoPrimitive"))
     public static var MESSAGE_DIGEST: java$security$CryptoPrimitive? {

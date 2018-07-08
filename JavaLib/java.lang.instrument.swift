@@ -5,7 +5,7 @@ public final class java$lang$instrument$ClassDefinition : java$lang$Object {
     private typealias I = java$lang$instrument$ClassDefinition$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/instrument/ClassDefinition"
-    open class override func jniName() -> String { return "java/lang/instrument/ClassDefinition" }
+    public class override func jniName() -> String { return "java/lang/instrument/ClassDefinition" }
 
     fileprivate static let java$lang$instrument$ClassDefinition_init_java$lang$Class_AB__V = constructor((JObjectType("java/lang/Class"), JArray(jbyte.jniType)))
     public convenience init(_ a0: java$lang$Class?, _ a1: [jbyte]?) throws {

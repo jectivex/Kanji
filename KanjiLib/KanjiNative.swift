@@ -125,17 +125,15 @@ public extension JVM {
         let loader = try java$lang$Thread.currentThread()?.getContextClassLoader()
         //print("loading native class \(className): \(try? loadedClasses())")
         
-        let jcls: jclass? = try bytes.withUnsafeBufferPointer { ptr in
-            guard let addr = ptr.baseAddress else { throw KanjiErrors.general("Could not access loader address") }
-
-            return defineClass(NullTerminatedCString(className).buffer, loader: loader?.jobj ?? nil, buf: addr, len: jsize(ptr.count))
-        }
-        
-        try throwException() // defineClass can throw an exception
-        //print("loaded native class \(className): \(try? loadedClasses())")
-
-        guard let jcls2 = jcls else { throw KanjiErrors.general("Unable to generate dynamic class") }
-        return jcls2
+        let cname = NullTerminatedCString(className)
+        return try withExtendedLifetime(cname) {
+            guard let jcls = defineClass(cname.buffer, loader: loader?.jobj ?? nil, buf: bytes, len: jsize(bytes.count)) else {
+                try throwException() // defineClass can throw an exception
+                throw KanjiErrors.general("Unable to generate dynamic class")
+            }
+            try throwException() // defineClass can throw an exception
+            return jcls
+        }        
     }
 
     fileprivate func registerNativeMethods(_ jcls: jclass, methods: [MethodSignature]) throws {
@@ -199,7 +197,7 @@ public extension JVM {
         methods.append((
             name: "finalizeImpl",
             sig: "(J)V",
-            fptr: unsafeBitCast(finalizer, to: UnsafeMutableRawPointer.self)))
+            fptr: withoutActuallyEscaping(finalizer, do: castFunction)))
 
         try registerNativeMethods(jcls, methods: methods)
 
@@ -238,7 +236,7 @@ public extension java$lang$Runnable$Impl {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> ()) throws -> java$lang$Runnable {
         let sig = JVM.jsig(JVoid.jniType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("run", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("run", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor() as java$lang$Runnable$Impl
     }
 }
@@ -249,7 +247,7 @@ public extension java$util$concurrent$Callable$Impl {
         let sig = JVM.jsig(JObjectType(), args: [])
         assert(sig == "()Ljava/lang/Object;")
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("call", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("call", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor() as java$util$concurrent$Callable$Impl
     }
 }
@@ -259,7 +257,7 @@ public extension java$util$Comparator$Impl {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jint) throws -> java$util$Comparator {
         let sig = JVM.jsig(jint.jniType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("compare", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("compare", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor() as java$util$Comparator$Impl
     }
 }
@@ -317,7 +315,7 @@ extension java$util$function$Function$Impl : FunctionalInterface {
     
     /// Returns the native signature of the method for generating the native stub
     fileprivate static func functionalMethod(_ f: FunctionalBlock) -> JVM.MethodSignature {
-        return ("apply", FunctionalSig, unsafeBitCast(f, to: UnsafeMutableRawPointer.self))
+        return ("apply", FunctionalSig, withoutActuallyEscaping(f, do: castFunction))
     }
     
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
@@ -381,7 +379,7 @@ public extension java$util$function$Consumer {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -396,7 +394,7 @@ public extension java$util$function$IntFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("apply", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("apply", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -406,7 +404,7 @@ public extension java$util$function$IntBinaryOperator {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint, jint) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [intLambdaType, intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + intLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + intLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -416,7 +414,7 @@ public extension java$util$function$IntConsumer {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -426,7 +424,7 @@ public extension java$util$function$IntPredicate {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jboolean) throws -> Self {
         let sig = JVM.jsig(jboolean.jniType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("test", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -436,7 +434,7 @@ public extension java$util$function$IntSupplier {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("getAsInt", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("getAsInt", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -446,7 +444,7 @@ public extension java$util$function$IntToDoubleFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jdouble) throws -> Self {
         let sig = JVM.jsig(jdouble.jniType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAsDouble", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAsDouble", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -456,7 +454,7 @@ public extension java$util$function$IntToLongFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jlong) throws -> Self {
         let sig = JVM.jsig(jlong.jniType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAsLong", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAsLong", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -466,7 +464,7 @@ public extension java$util$function$IntUnaryOperator {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jint) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [intLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + intLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + intLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -476,7 +474,7 @@ public extension java$util$function$ToIntFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + intLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + intLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -486,7 +484,7 @@ public extension java$util$function$ToIntBiFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jint) throws -> Self {
         let sig = JVM.jsig(intLambdaType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + intLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + intLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -502,7 +500,7 @@ public extension java$util$function$LongFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("apply", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("apply", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -512,7 +510,7 @@ public extension java$util$function$LongBinaryOperator {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong, jlong) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [longLambdaType, longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + longLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + longLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -522,7 +520,7 @@ public extension java$util$function$LongConsumer {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -532,7 +530,7 @@ public extension java$util$function$LongPredicate {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jboolean) throws -> Self {
         let sig = JVM.jsig(jboolean.jniType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("test", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -542,7 +540,7 @@ public extension java$util$function$LongSupplier {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("getAsLong", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("getAsLong", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -552,7 +550,7 @@ public extension java$util$function$LongToDoubleFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jdouble) throws -> Self {
         let sig = JVM.jsig(jdouble.jniType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAsDouble", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAsDouble", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -562,7 +560,7 @@ public extension java$util$function$LongToIntFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jint) throws -> Self {
         let sig = JVM.jsig(jint.jniType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAsInt", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAsInt", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -572,7 +570,7 @@ public extension java$util$function$LongUnaryOperator {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jlong) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [longLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + longLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + longLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -582,7 +580,7 @@ public extension java$util$function$ToLongFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + longLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + longLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -592,11 +590,14 @@ public extension java$util$function$ToLongBiFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jlong) throws -> Self {
         let sig = JVM.jsig(longLambdaType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + longLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + longLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
 
+private func castFunction<T>(_ x: T) -> UnsafeMutableRawPointer {
+    return unsafeBitCast(x, to: UnsafeMutableRawPointer.self)
+}
 
 /// MARK: DoubleLambda Functions
 
@@ -608,7 +609,7 @@ public extension java$util$function$DoubleFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("apply", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("apply", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -618,7 +619,7 @@ public extension java$util$function$DoubleBinaryOperator {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble, jdouble) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [doubleLambdaType, doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + doubleLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + doubleLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -628,7 +629,7 @@ public extension java$util$function$DoubleConsumer {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -638,7 +639,7 @@ public extension java$util$function$DoublePredicate {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jboolean) throws -> Self {
         let sig = JVM.jsig(jboolean.jniType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("test", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -648,7 +649,7 @@ public extension java$util$function$DoubleSupplier {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("getAsDouble", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("getAsDouble", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -658,7 +659,7 @@ public extension java$util$function$DoubleToLongFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jlong) throws -> Self {
         let sig = JVM.jsig(jlong.jniType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAsLong", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAsLong", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -668,7 +669,7 @@ public extension java$util$function$DoubleToIntFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jint) throws -> Self {
         let sig = JVM.jsig(jint.jniType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAsInt", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAsInt", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -678,7 +679,7 @@ public extension java$util$function$DoubleUnaryOperator {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jdouble) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [doubleLambdaType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + doubleLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + doubleLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -688,7 +689,7 @@ public extension java$util$function$ToDoubleFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + doubleLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + doubleLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -698,7 +699,7 @@ public extension java$util$function$ToDoubleBiFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jdouble) throws -> Self {
         let sig = JVM.jsig(doubleLambdaType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("applyAs" + doubleLambdaFuncSuffix, sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("applyAs" + doubleLambdaFuncSuffix, sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -714,7 +715,7 @@ public extension java$util$function$BooleanSupplier {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jboolean) throws -> Self {
         let sig = JVM.jsig(booleanLambdaType, args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("getAsBoolean", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("getAsBoolean", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -726,7 +727,7 @@ public extension java$util$function$Supplier {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("get", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("get", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -736,7 +737,7 @@ public extension java$util$function$Predicate {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> jboolean) throws -> Self {
         let sig = JVM.jsig(booleanLambdaType, args: [JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("test", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -746,7 +747,7 @@ public extension java$util$function$BiPredicate {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jboolean) throws -> Self {
         let sig = JVM.jsig(booleanLambdaType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("test", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("test", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -756,7 +757,7 @@ public extension java$util$function$BiConsumer {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -766,7 +767,7 @@ public extension java$util$function$BiFunction {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jobject) -> jobject) throws -> Self {
         let sig = JVM.jsig(JObjectType(), args: [JObjectType(), JObjectType()])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("apply", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("apply", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -777,7 +778,7 @@ public extension java$util$function$ObjLongConsumer {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jlong) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType(), jlong.jniType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -787,7 +788,7 @@ public extension java$util$function$ObjDoubleConsumer {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jdouble) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType(), jdouble.jniType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }
@@ -797,7 +798,7 @@ public extension java$util$function$ObjIntConsumer {
     public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject, jint) -> Void) throws -> Self {
         let sig = JVM.jsig(JVoid.jniType, args: [JObjectType(), jint.jniType])
         return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, unsafeBitCast(native, to: UnsafeMutableRawPointer.self))
+            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
             ]).constructor()
     }
 }

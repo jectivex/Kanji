@@ -34,7 +34,7 @@ public final class java$time$chrono$HijrahChronology : java$time$chrono$Abstract
     private typealias I = java$time$chrono$HijrahChronology$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/HijrahChronology"
-    open class override func jniName() -> String { return "java/time/chrono/HijrahChronology" }
+    public class override func jniName() -> String { return "java/time/chrono/HijrahChronology" }
 
     fileprivate static let java$time$chrono$HijrahChronology__INSTANCE__java$time$chrono$HijrahChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/HijrahChronology"))
     public static var INSTANCE: java$time$chrono$HijrahChronology? {
@@ -197,7 +197,7 @@ public final class java$time$chrono$IsoChronology : java$time$chrono$AbstractChr
     private typealias I = java$time$chrono$IsoChronology$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/IsoChronology"
-    open class override func jniName() -> String { return "java/time/chrono/IsoChronology" }
+    public class override func jniName() -> String { return "java/time/chrono/IsoChronology" }
 
     fileprivate static let java$time$chrono$IsoChronology__INSTANCE__java$time$chrono$IsoChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/IsoChronology"))
     public static var INSTANCE: java$time$chrono$IsoChronology? {
@@ -385,7 +385,7 @@ public final class java$time$chrono$JapaneseChronology : java$time$chrono$Abstra
     private typealias I = java$time$chrono$JapaneseChronology$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/JapaneseChronology"
-    open class override func jniName() -> String { return "java/time/chrono/JapaneseChronology" }
+    public class override func jniName() -> String { return "java/time/chrono/JapaneseChronology" }
 
     fileprivate static let java$time$chrono$JapaneseChronology__INSTANCE__java$time$chrono$JapaneseChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/JapaneseChronology"))
     public static var INSTANCE: java$time$chrono$JapaneseChronology? {
@@ -548,7 +548,7 @@ public final class java$time$chrono$MinguoChronology : java$time$chrono$Abstract
     private typealias I = java$time$chrono$MinguoChronology$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/MinguoChronology"
-    open class override func jniName() -> String { return "java/time/chrono/MinguoChronology" }
+    public class override func jniName() -> String { return "java/time/chrono/MinguoChronology" }
 
     fileprivate static let java$time$chrono$MinguoChronology__INSTANCE__java$time$chrono$MinguoChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/MinguoChronology"))
     public static var INSTANCE: java$time$chrono$MinguoChronology? {
@@ -711,7 +711,7 @@ public final class java$time$chrono$ThaiBuddhistChronology : java$time$chrono$Ab
     private typealias I = java$time$chrono$ThaiBuddhistChronology$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/ThaiBuddhistChronology"
-    open class override func jniName() -> String { return "java/time/chrono/ThaiBuddhistChronology" }
+    public class override func jniName() -> String { return "java/time/chrono/ThaiBuddhistChronology" }
 
     fileprivate static let java$time$chrono$ThaiBuddhistChronology__INSTANCE__java$time$chrono$ThaiBuddhistChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/ThaiBuddhistChronology"))
     public static var INSTANCE: java$time$chrono$ThaiBuddhistChronology? {
@@ -953,7 +953,7 @@ public final class java$time$chrono$HijrahDate : java$time$chrono$ChronoLocalDat
     private typealias I = java$time$chrono$HijrahDate$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/HijrahDate"
-    open class override func jniName() -> String { return "java/time/chrono/HijrahDate" }
+    public class override func jniName() -> String { return "java/time/chrono/HijrahDate" }
 
     fileprivate static let java$time$chrono$HijrahDate_now__java$time$chrono$HijrahDate = svoker("now", returns: JObjectType("java/time/chrono/HijrahDate"))
     public static func now() throws -> java$time$chrono$HijrahDate? {
@@ -1076,7 +1076,7 @@ public final class java$time$chrono$JapaneseDate : java$time$chrono$ChronoLocalD
     private typealias I = java$time$chrono$JapaneseDate$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/JapaneseDate"
-    open class override func jniName() -> String { return "java/time/chrono/JapaneseDate" }
+    public class override func jniName() -> String { return "java/time/chrono/JapaneseDate" }
 
     fileprivate static let java$time$chrono$JapaneseDate_now__java$time$chrono$JapaneseDate = svoker("now", returns: JObjectType("java/time/chrono/JapaneseDate"))
     public static func now() throws -> java$time$chrono$JapaneseDate? {
@@ -1199,7 +1199,7 @@ public final class java$time$chrono$JapaneseEra : java$lang$Object, java$time$ch
     private typealias I = java$time$chrono$JapaneseEra$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/JapaneseEra"
-    open class override func jniName() -> String { return "java/time/chrono/JapaneseEra" }
+    public class override func jniName() -> String { return "java/time/chrono/JapaneseEra" }
 
     fileprivate static let java$time$chrono$JapaneseEra__MEIJI__java$time$chrono$JapaneseEra = J.saccessor("MEIJI", type: JObjectType("java/time/chrono/JapaneseEra"))
     public static var MEIJI: java$time$chrono$JapaneseEra? {
@@ -1256,7 +1256,7 @@ public final class java$time$chrono$MinguoDate : java$time$chrono$ChronoLocalDat
     private typealias I = java$time$chrono$MinguoDate$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/MinguoDate"
-    open class override func jniName() -> String { return "java/time/chrono/MinguoDate" }
+    public class override func jniName() -> String { return "java/time/chrono/MinguoDate" }
 
     fileprivate static let java$time$chrono$MinguoDate_now__java$time$chrono$MinguoDate = svoker("now", returns: JObjectType("java/time/chrono/MinguoDate"))
     public static func now() throws -> java$time$chrono$MinguoDate? {
@@ -1364,7 +1364,7 @@ public final class java$time$chrono$ThaiBuddhistDate : java$time$chrono$ChronoLo
     private typealias I = java$time$chrono$ThaiBuddhistDate$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/ThaiBuddhistDate"
-    open class override func jniName() -> String { return "java/time/chrono/ThaiBuddhistDate" }
+    public class override func jniName() -> String { return "java/time/chrono/ThaiBuddhistDate" }
 
     fileprivate static let java$time$chrono$ThaiBuddhistDate_now__java$time$chrono$ThaiBuddhistDate = svoker("now", returns: JObjectType("java/time/chrono/ThaiBuddhistDate"))
     public static func now() throws -> java$time$chrono$ThaiBuddhistDate? {
@@ -2570,7 +2570,7 @@ public final class java$time$chrono$MinguoEra : java$lang$Enum, java$time$chrono
     private typealias I = java$time$chrono$MinguoEra$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/MinguoEra"
-    open class override func jniName() -> String { return "java/time/chrono/MinguoEra" }
+    public class override func jniName() -> String { return "java/time/chrono/MinguoEra" }
 
     fileprivate static let java$time$chrono$MinguoEra__BEFORE_ROC__java$time$chrono$MinguoEra = J.saccessor("BEFORE_ROC", type: JObjectType("java/time/chrono/MinguoEra"))
     public static var BEFORE_ROC: java$time$chrono$MinguoEra? {
@@ -2611,7 +2611,7 @@ public final class java$time$chrono$HijrahEra : java$lang$Enum, java$time$chrono
     private typealias I = java$time$chrono$HijrahEra$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/HijrahEra"
-    open class override func jniName() -> String { return "java/time/chrono/HijrahEra" }
+    public class override func jniName() -> String { return "java/time/chrono/HijrahEra" }
 
     fileprivate static let java$time$chrono$HijrahEra__AH__java$time$chrono$HijrahEra = J.saccessor("AH", type: JObjectType("java/time/chrono/HijrahEra"))
     public static var AH: java$time$chrono$HijrahEra? {
@@ -2652,7 +2652,7 @@ public final class java$time$chrono$IsoEra : java$lang$Enum, java$time$chrono$Er
     private typealias I = java$time$chrono$IsoEra$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/IsoEra"
-    open class override func jniName() -> String { return "java/time/chrono/IsoEra" }
+    public class override func jniName() -> String { return "java/time/chrono/IsoEra" }
 
     fileprivate static let java$time$chrono$IsoEra__BCE__java$time$chrono$IsoEra = J.saccessor("BCE", type: JObjectType("java/time/chrono/IsoEra"))
     public static var BCE: java$time$chrono$IsoEra? {
@@ -2693,7 +2693,7 @@ public final class java$time$chrono$ThaiBuddhistEra : java$lang$Enum, java$time$
     private typealias I = java$time$chrono$ThaiBuddhistEra$Impl
 
     /// Returns the internal JNI name for this class: "java/time/chrono/ThaiBuddhistEra"
-    open class override func jniName() -> String { return "java/time/chrono/ThaiBuddhistEra" }
+    public class override func jniName() -> String { return "java/time/chrono/ThaiBuddhistEra" }
 
     fileprivate static let java$time$chrono$ThaiBuddhistEra__BEFORE_BE__java$time$chrono$ThaiBuddhistEra = J.saccessor("BEFORE_BE", type: JObjectType("java/time/chrono/ThaiBuddhistEra"))
     public static var BEFORE_BE: java$time$chrono$ThaiBuddhistEra? {
