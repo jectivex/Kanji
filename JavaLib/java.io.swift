@@ -5,7 +5,7 @@ public final class java$io$Console : java$lang$Object, java$io$Flushable {
     private typealias I = java$io$Console$Impl
 
     /// Returns the internal JNI name for this class: "java/io/Console"
-    open class override func jniName() -> String { return "java/io/Console" }
+    public class override func jniName() -> String { return "java/io/Console" }
 
     fileprivate static let java$io$Console_writer__java$io$PrintWriter = invoker("writer", returns: JObjectType("java/io/PrintWriter"))
     public func writer() throws -> java$io$PrintWriter? {
@@ -355,7 +355,7 @@ public final class java$io$FileDescriptor : java$lang$Object {
     private typealias I = java$io$FileDescriptor$Impl
 
     /// Returns the internal JNI name for this class: "java/io/FileDescriptor"
-    open class override func jniName() -> String { return "java/io/FileDescriptor" }
+    public class override func jniName() -> String { return "java/io/FileDescriptor" }
 
     fileprivate static let java$io$FileDescriptor__in__java$io$FileDescriptor = J.saccessor("in", type: JObjectType("java/io/FileDescriptor"))
     public static var `in`: java$io$FileDescriptor? {
@@ -1819,7 +1819,7 @@ public final class java$io$SerializablePermission : java$security$BasicPermissio
     private typealias I = java$io$SerializablePermission$Impl
 
     /// Returns the internal JNI name for this class: "java/io/SerializablePermission"
-    open class override func jniName() -> String { return "java/io/SerializablePermission" }
+    public class override func jniName() -> String { return "java/io/SerializablePermission" }
 
     fileprivate static let java$io$SerializablePermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -1840,7 +1840,7 @@ public final class java$io$FilePermission : java$security$Permission {
     private typealias I = java$io$FilePermission$Impl
 
     /// Returns the internal JNI name for this class: "java/io/FilePermission"
-    open class override func jniName() -> String { return "java/io/FilePermission" }
+    public class override func jniName() -> String { return "java/io/FilePermission" }
 
     fileprivate static let java$io$FilePermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {

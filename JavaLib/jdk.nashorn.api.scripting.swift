@@ -258,7 +258,7 @@ public final class jdk$nashorn$api$scripting$ScriptObjectMirror : jdk$nashorn$ap
     private typealias I = jdk$nashorn$api$scripting$ScriptObjectMirror$Impl
 
     /// Returns the internal JNI name for this class: "jdk/nashorn/api/scripting/ScriptObjectMirror"
-    open class override func jniName() -> String { return "jdk/nashorn/api/scripting/ScriptObjectMirror" }
+    public class override func jniName() -> String { return "jdk/nashorn/api/scripting/ScriptObjectMirror" }
 
     fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_hashCode__I = invoker("hashCode", returns: jint.jniType)
@@ -475,7 +475,7 @@ public final class jdk$nashorn$api$scripting$Formatter : java$lang$Object {
     private typealias I = jdk$nashorn$api$scripting$Formatter$Impl
 
     /// Returns the internal JNI name for this class: "jdk/nashorn/api/scripting/Formatter"
-    open class override func jniName() -> String { return "jdk/nashorn/api/scripting/Formatter" }
+    public class override func jniName() -> String { return "jdk/nashorn/api/scripting/Formatter" }
 
 }
 
@@ -547,7 +547,7 @@ public final class jdk$nashorn$api$scripting$NashornScriptEngine : javax$script$
     private typealias I = jdk$nashorn$api$scripting$NashornScriptEngine$Impl
 
     /// Returns the internal JNI name for this class: "jdk/nashorn/api/scripting/NashornScriptEngine"
-    open class override func jniName() -> String { return "jdk/nashorn/api/scripting/NashornScriptEngine" }
+    public class override func jniName() -> String { return "jdk/nashorn/api/scripting/NashornScriptEngine" }
 
     fileprivate static let jdk$nashorn$api$scripting$NashornScriptEngine__NASHORN_GLOBAL__java$lang$String = J.saccessor("NASHORN_GLOBAL", type: JObjectType("java/lang/String"))
     public static var NASHORN_GLOBAL: java$lang$String? {
@@ -613,7 +613,7 @@ public final class jdk$nashorn$api$scripting$NashornScriptEngineFactory : java$l
     private typealias I = jdk$nashorn$api$scripting$NashornScriptEngineFactory$Impl
 
     /// Returns the internal JNI name for this class: "jdk/nashorn/api/scripting/NashornScriptEngineFactory"
-    open class override func jniName() -> String { return "jdk/nashorn/api/scripting/NashornScriptEngineFactory" }
+    public class override func jniName() -> String { return "jdk/nashorn/api/scripting/NashornScriptEngineFactory" }
 
     fileprivate static let jdk$nashorn$api$scripting$NashornScriptEngineFactory_init__V = constructor()
     public convenience init() throws {
@@ -714,7 +714,7 @@ public final class jdk$nashorn$api$scripting$ScriptUtils : java$lang$Object {
     private typealias I = jdk$nashorn$api$scripting$ScriptUtils$Impl
 
     /// Returns the internal JNI name for this class: "jdk/nashorn/api/scripting/ScriptUtils"
-    open class override func jniName() -> String { return "jdk/nashorn/api/scripting/ScriptUtils" }
+    public class override func jniName() -> String { return "jdk/nashorn/api/scripting/ScriptUtils" }
 
     fileprivate static let jdk$nashorn$api$scripting$ScriptUtils_parse_java$lang$String_java$lang$String_Z__java$lang$String = svoker("parse", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String"), jboolean.jniType))
     public static func parse(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jboolean) throws -> java$lang$String? {
@@ -765,7 +765,7 @@ public final class jdk$nashorn$api$scripting$URLReader : java$io$Reader {
     private typealias I = jdk$nashorn$api$scripting$URLReader$Impl
 
     /// Returns the internal JNI name for this class: "jdk/nashorn/api/scripting/URLReader"
-    open class override func jniName() -> String { return "jdk/nashorn/api/scripting/URLReader" }
+    public class override func jniName() -> String { return "jdk/nashorn/api/scripting/URLReader" }
 
     fileprivate static let jdk$nashorn$api$scripting$URLReader_init_java$net$URL__V = constructor((JObjectType("java/net/URL")))
     public convenience init(_ a0: java$net$URL?) throws {

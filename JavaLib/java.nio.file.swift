@@ -5,7 +5,7 @@ public final class java$nio$file$Files : java$lang$Object {
     private typealias I = java$nio$file$Files$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/Files"
-    open class override func jniName() -> String { return "java/nio/file/Files" }
+    public class override func jniName() -> String { return "java/nio/file/Files" }
 
     fileprivate static let java$nio$file$Files_newInputStream_java$nio$file$Path_Ajava$nio$file$OpenOption__java$io$InputStream = svoker("newInputStream", returns: JObjectType("java/io/InputStream"), arguments: (JObjectType("java/nio/file/Path"), JArray(JObjectType("java/nio/file/OpenOption"))))
     public static func newInputStream(_ a0: java$nio$file$Path?, _ a1: [java$nio$file$OpenOption?]?) throws -> java$io$InputStream? {
@@ -473,7 +473,7 @@ public final class java$nio$file$FileSystems : java$lang$Object {
     private typealias I = java$nio$file$FileSystems$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/FileSystems"
-    open class override func jniName() -> String { return "java/nio/file/FileSystems" }
+    public class override func jniName() -> String { return "java/nio/file/FileSystems" }
 
     fileprivate static let java$nio$file$FileSystems_getDefault__java$nio$file$FileSystem = svoker("getDefault", returns: JObjectType("java/nio/file/FileSystem"))
     public static func getDefault() throws -> java$nio$file$FileSystem? {
@@ -509,7 +509,7 @@ public final class java$nio$file$Paths : java$lang$Object {
     private typealias I = java$nio$file$Paths$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/Paths"
-    open class override func jniName() -> String { return "java/nio/file/Paths" }
+    public class override func jniName() -> String { return "java/nio/file/Paths" }
 
     fileprivate static let java$nio$file$Paths_get_java$lang$String_Ajava$lang$String__java$nio$file$Path = svoker("get", returns: JObjectType("java/nio/file/Path"), arguments: (JObjectType("java/lang/String"), JArray(JObjectType("java/lang/String"))))
     public static func get(_ a0: java$lang$String?, _ a1: [java$lang$String?]?) throws -> java$nio$file$Path? {
@@ -530,7 +530,7 @@ public final class java$nio$file$LinkPermission : java$security$BasicPermission 
     private typealias I = java$nio$file$LinkPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/LinkPermission"
-    open class override func jniName() -> String { return "java/nio/file/LinkPermission" }
+    public class override func jniName() -> String { return "java/nio/file/LinkPermission" }
 
     fileprivate static let java$nio$file$LinkPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -582,7 +582,7 @@ public final class java$nio$file$StandardWatchEventKinds : java$lang$Object {
     private typealias I = java$nio$file$StandardWatchEventKinds$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/StandardWatchEventKinds"
-    open class override func jniName() -> String { return "java/nio/file/StandardWatchEventKinds" }
+    public class override func jniName() -> String { return "java/nio/file/StandardWatchEventKinds" }
 
     fileprivate static let java$nio$file$StandardWatchEventKinds__OVERFLOW__java$nio$file$WatchEvent$Kind = J.saccessor("OVERFLOW", type: JObjectType("java/nio/file/WatchEvent$Kind"))
     public static var OVERFLOW: java$nio$file$WatchEvent$Kind? {
@@ -798,7 +798,7 @@ public final class java$nio$file$DirectoryIteratorException : java$util$Concurre
     private typealias I = java$nio$file$DirectoryIteratorException$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/DirectoryIteratorException"
-    open class override func jniName() -> String { return "java/nio/file/DirectoryIteratorException" }
+    public class override func jniName() -> String { return "java/nio/file/DirectoryIteratorException" }
 
     fileprivate static let java$nio$file$DirectoryIteratorException_init_java$io$IOException__V = constructor((JObjectType("java/io/IOException")))
     public convenience init(_ a0: java$io$IOException?) throws {
@@ -1619,7 +1619,7 @@ public final class java$nio$file$StandardCopyOption : java$lang$Enum, java$nio$f
     private typealias I = java$nio$file$StandardCopyOption$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/StandardCopyOption"
-    open class override func jniName() -> String { return "java/nio/file/StandardCopyOption" }
+    public class override func jniName() -> String { return "java/nio/file/StandardCopyOption" }
 
     fileprivate static let java$nio$file$StandardCopyOption__REPLACE_EXISTING__java$nio$file$StandardCopyOption = J.saccessor("REPLACE_EXISTING", type: JObjectType("java/nio/file/StandardCopyOption"))
     public static var REPLACE_EXISTING: java$nio$file$StandardCopyOption? {
@@ -1655,7 +1655,7 @@ public final class java$nio$file$FileVisitOption : java$lang$Enum {
     private typealias I = java$nio$file$FileVisitOption$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/FileVisitOption"
-    open class override func jniName() -> String { return "java/nio/file/FileVisitOption" }
+    public class override func jniName() -> String { return "java/nio/file/FileVisitOption" }
 
     fileprivate static let java$nio$file$FileVisitOption__FOLLOW_LINKS__java$nio$file$FileVisitOption = J.saccessor("FOLLOW_LINKS", type: JObjectType("java/nio/file/FileVisitOption"))
     public static var FOLLOW_LINKS: java$nio$file$FileVisitOption? {
@@ -1681,7 +1681,7 @@ public final class java$nio$file$LinkOption : java$lang$Enum, java$nio$file$Open
     private typealias I = java$nio$file$LinkOption$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/LinkOption"
-    open class override func jniName() -> String { return "java/nio/file/LinkOption" }
+    public class override func jniName() -> String { return "java/nio/file/LinkOption" }
 
     fileprivate static let java$nio$file$LinkOption__NOFOLLOW_LINKS__java$nio$file$LinkOption = J.saccessor("NOFOLLOW_LINKS", type: JObjectType("java/nio/file/LinkOption"))
     public static var NOFOLLOW_LINKS: java$nio$file$LinkOption? {
@@ -1707,7 +1707,7 @@ public final class java$nio$file$AccessMode : java$lang$Enum {
     private typealias I = java$nio$file$AccessMode$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/AccessMode"
-    open class override func jniName() -> String { return "java/nio/file/AccessMode" }
+    public class override func jniName() -> String { return "java/nio/file/AccessMode" }
 
     fileprivate static let java$nio$file$AccessMode__READ__java$nio$file$AccessMode = J.saccessor("READ", type: JObjectType("java/nio/file/AccessMode"))
     public static var READ: java$nio$file$AccessMode? {
@@ -1743,7 +1743,7 @@ public final class java$nio$file$StandardOpenOption : java$lang$Enum, java$nio$f
     private typealias I = java$nio$file$StandardOpenOption$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/StandardOpenOption"
-    open class override func jniName() -> String { return "java/nio/file/StandardOpenOption" }
+    public class override func jniName() -> String { return "java/nio/file/StandardOpenOption" }
 
     fileprivate static let java$nio$file$StandardOpenOption__READ__java$nio$file$StandardOpenOption = J.saccessor("READ", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var READ: java$nio$file$StandardOpenOption? {
@@ -1814,7 +1814,7 @@ public final class java$nio$file$FileVisitResult : java$lang$Enum {
     private typealias I = java$nio$file$FileVisitResult$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/FileVisitResult"
-    open class override func jniName() -> String { return "java/nio/file/FileVisitResult" }
+    public class override func jniName() -> String { return "java/nio/file/FileVisitResult" }
 
     fileprivate static let java$nio$file$FileVisitResult__CONTINUE__java$nio$file$FileVisitResult = J.saccessor("CONTINUE", type: JObjectType("java/nio/file/FileVisitResult"))
     public static var CONTINUE: java$nio$file$FileVisitResult? {

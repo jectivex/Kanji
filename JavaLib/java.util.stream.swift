@@ -5,7 +5,7 @@ public final class java$util$stream$Collectors : java$lang$Object {
     private typealias I = java$util$stream$Collectors$Impl
 
     /// Returns the internal JNI name for this class: "java/util/stream/Collectors"
-    open class override func jniName() -> String { return "java/util/stream/Collectors" }
+    public class override func jniName() -> String { return "java/util/stream/Collectors" }
 
     fileprivate static let java$util$stream$Collectors_toCollection_java$util$function$Supplier__java$util$stream$Collector = svoker("toCollection", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/function/Supplier")))
     public static func toCollection(_ a0: java$util$function$Supplier?) throws -> java$util$stream$Collector? {
@@ -201,7 +201,7 @@ public final class java$util$stream$StreamSupport : java$lang$Object {
     private typealias I = java$util$stream$StreamSupport$Impl
 
     /// Returns the internal JNI name for this class: "java/util/stream/StreamSupport"
-    open class override func jniName() -> String { return "java/util/stream/StreamSupport" }
+    public class override func jniName() -> String { return "java/util/stream/StreamSupport" }
 
     fileprivate static let java$util$stream$StreamSupport_stream_java$util$Spliterator_Z__java$util$stream$Stream = svoker("stream", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/util/Spliterator"), jboolean.jniType))
     public static func stream(_ a0: java$util$Spliterator?, _ a1: jboolean) throws -> java$util$stream$Stream? {
@@ -1662,7 +1662,7 @@ public final class java$util$stream$Collector$Characteristics : java$lang$Enum {
     private typealias I = java$util$stream$Collector$Characteristics$Impl
 
     /// Returns the internal JNI name for this class: "java/util/stream/Collector$Characteristics"
-    open class override func jniName() -> String { return "java/util/stream/Collector$Characteristics" }
+    public class override func jniName() -> String { return "java/util/stream/Collector$Characteristics" }
 
     fileprivate static let java$util$stream$Collector$Characteristics__CONCURRENT__java$util$stream$Collector$Characteristics = J.saccessor("CONCURRENT", type: JObjectType("java/util/stream/Collector$Characteristics"))
     public static var CONCURRENT: java$util$stream$Collector$Characteristics? {

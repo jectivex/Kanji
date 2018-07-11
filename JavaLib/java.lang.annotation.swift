@@ -251,7 +251,7 @@ public final class java$lang$annotation$RetentionPolicy : java$lang$Enum {
     private typealias I = java$lang$annotation$RetentionPolicy$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/annotation/RetentionPolicy"
-    open class override func jniName() -> String { return "java/lang/annotation/RetentionPolicy" }
+    public class override func jniName() -> String { return "java/lang/annotation/RetentionPolicy" }
 
     fileprivate static let java$lang$annotation$RetentionPolicy__SOURCE__java$lang$annotation$RetentionPolicy = J.saccessor("SOURCE", type: JObjectType("java/lang/annotation/RetentionPolicy"))
     public static var SOURCE: java$lang$annotation$RetentionPolicy? {
@@ -287,7 +287,7 @@ public final class java$lang$annotation$ElementType : java$lang$Enum {
     private typealias I = java$lang$annotation$ElementType$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/annotation/ElementType"
-    open class override func jniName() -> String { return "java/lang/annotation/ElementType" }
+    public class override func jniName() -> String { return "java/lang/annotation/ElementType" }
 
     fileprivate static let java$lang$annotation$ElementType__TYPE__java$lang$annotation$ElementType = J.saccessor("TYPE", type: JObjectType("java/lang/annotation/ElementType"))
     public static var TYPE: java$lang$annotation$ElementType? {

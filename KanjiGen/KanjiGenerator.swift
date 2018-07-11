@@ -780,8 +780,13 @@ extension JUnit {
         if implement {
             let over = isRootObject ? "" : " override"
             code += "    /// Returns the internal JNI name for this class: \"\(self.jniName)\"\n"
-            code += "    open class\(over) func jniName() -> String { return \"\(self.jniName)\" }\n\n"
 
+            do {
+                code += "    "
+                code += self.mods.contains(.Final) ? "final" : "public"
+                code += " class\(over) func jniName() -> String { return \"\(self.jniName)\" }\n\n"
+            }
+            
             if isRootObject {
                 let conv = convenience ? "convenience " : ""
 

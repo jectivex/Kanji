@@ -303,7 +303,7 @@ public final class java$sql$SQLPermission : java$security$BasicPermission {
     private typealias I = java$sql$SQLPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/sql/SQLPermission"
-    open class override func jniName() -> String { return "java/sql/SQLPermission" }
+    public class override func jniName() -> String { return "java/sql/SQLPermission" }
 
     fileprivate static let java$sql$SQLPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -7399,7 +7399,7 @@ public final class java$sql$PseudoColumnUsage : java$lang$Enum {
     private typealias I = java$sql$PseudoColumnUsage$Impl
 
     /// Returns the internal JNI name for this class: "java/sql/PseudoColumnUsage"
-    open class override func jniName() -> String { return "java/sql/PseudoColumnUsage" }
+    public class override func jniName() -> String { return "java/sql/PseudoColumnUsage" }
 
     fileprivate static let java$sql$PseudoColumnUsage__SELECT_LIST_ONLY__java$sql$PseudoColumnUsage = J.saccessor("SELECT_LIST_ONLY", type: JObjectType("java/sql/PseudoColumnUsage"))
     public static var SELECT_LIST_ONLY: java$sql$PseudoColumnUsage? {
@@ -7440,7 +7440,7 @@ public final class java$sql$JDBCType : java$lang$Enum, java$sql$SQLType {
     private typealias I = java$sql$JDBCType$Impl
 
     /// Returns the internal JNI name for this class: "java/sql/JDBCType"
-    open class override func jniName() -> String { return "java/sql/JDBCType" }
+    public class override func jniName() -> String { return "java/sql/JDBCType" }
 
     fileprivate static let java$sql$JDBCType__BIT__java$sql$JDBCType = J.saccessor("BIT", type: JObjectType("java/sql/JDBCType"))
     public static var BIT: java$sql$JDBCType? {
@@ -7676,7 +7676,7 @@ public final class java$sql$RowIdLifetime : java$lang$Enum {
     private typealias I = java$sql$RowIdLifetime$Impl
 
     /// Returns the internal JNI name for this class: "java/sql/RowIdLifetime"
-    open class override func jniName() -> String { return "java/sql/RowIdLifetime" }
+    public class override func jniName() -> String { return "java/sql/RowIdLifetime" }
 
     fileprivate static let java$sql$RowIdLifetime__ROWID_UNSUPPORTED__java$sql$RowIdLifetime = J.saccessor("ROWID_UNSUPPORTED", type: JObjectType("java/sql/RowIdLifetime"))
     public static var ROWID_UNSUPPORTED: java$sql$RowIdLifetime? {
@@ -7722,7 +7722,7 @@ public final class java$sql$ClientInfoStatus : java$lang$Enum {
     private typealias I = java$sql$ClientInfoStatus$Impl
 
     /// Returns the internal JNI name for this class: "java/sql/ClientInfoStatus"
-    open class override func jniName() -> String { return "java/sql/ClientInfoStatus" }
+    public class override func jniName() -> String { return "java/sql/ClientInfoStatus" }
 
     fileprivate static let java$sql$ClientInfoStatus__REASON_UNKNOWN__java$sql$ClientInfoStatus = J.saccessor("REASON_UNKNOWN", type: JObjectType("java/sql/ClientInfoStatus"))
     public static var REASON_UNKNOWN: java$sql$ClientInfoStatus? {

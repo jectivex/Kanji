@@ -326,7 +326,7 @@ public final class java$text$Bidi : java$lang$Object {
     private typealias I = java$text$Bidi$Impl
 
     /// Returns the internal JNI name for this class: "java/text/Bidi"
-    open class override func jniName() -> String { return "java/text/Bidi" }
+    public class override func jniName() -> String { return "java/text/Bidi" }
 
     fileprivate static let java$text$Bidi__DIRECTION_LEFT_TO_RIGHT__I = J.saccessor("DIRECTION_LEFT_TO_RIGHT", type: jint.jniType)
     public static var DIRECTION_LEFT_TO_RIGHT: jint {
@@ -569,7 +569,7 @@ public final class java$text$CollationElementIterator : java$lang$Object {
     private typealias I = java$text$CollationElementIterator$Impl
 
     /// Returns the internal JNI name for this class: "java/text/CollationElementIterator"
-    open class override func jniName() -> String { return "java/text/CollationElementIterator" }
+    public class override func jniName() -> String { return "java/text/CollationElementIterator" }
 
     fileprivate static let java$text$CollationElementIterator__NULLORDER__I = J.saccessor("NULLORDER", type: jint.jniType)
     public static var NULLORDER: jint {
@@ -2056,7 +2056,7 @@ public final class java$text$Normalizer : java$lang$Object {
     private typealias I = java$text$Normalizer$Impl
 
     /// Returns the internal JNI name for this class: "java/text/Normalizer"
-    open class override func jniName() -> String { return "java/text/Normalizer" }
+    public class override func jniName() -> String { return "java/text/Normalizer" }
 
     fileprivate static let java$text$Normalizer_normalize_java$lang$CharSequence_java$text$Normalizer$Form__java$lang$String = svoker("normalize", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/CharSequence"), JObjectType("java/text/Normalizer$Form")))
     public static func normalize(_ a0: java$lang$CharSequence?, _ a1: java$text$Normalizer$Form?) throws -> java$lang$String? {
@@ -2116,7 +2116,7 @@ public final class java$text$StringCharacterIterator : java$lang$Object, java$te
     private typealias I = java$text$StringCharacterIterator$Impl
 
     /// Returns the internal JNI name for this class: "java/text/StringCharacterIterator"
-    open class override func jniName() -> String { return "java/text/StringCharacterIterator" }
+    public class override func jniName() -> String { return "java/text/StringCharacterIterator" }
 
     fileprivate static let java$text$StringCharacterIterator_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -2377,7 +2377,7 @@ public final class java$text$Normalizer$Form : java$lang$Enum {
     private typealias I = java$text$Normalizer$Form$Impl
 
     /// Returns the internal JNI name for this class: "java/text/Normalizer$Form"
-    open class override func jniName() -> String { return "java/text/Normalizer$Form" }
+    public class override func jniName() -> String { return "java/text/Normalizer$Form" }
 
     fileprivate static let java$text$Normalizer$Form__NFD__java$text$Normalizer$Form = J.saccessor("NFD", type: JObjectType("java/text/Normalizer$Form"))
     public static var NFD: java$text$Normalizer$Form? {

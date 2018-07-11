@@ -93,7 +93,7 @@ public final class java$lang$System : java$lang$Object {
     private typealias I = java$lang$System$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/System"
-    open class override func jniName() -> String { return "java/lang/System" }
+    public class override func jniName() -> String { return "java/lang/System" }
 
     fileprivate static let java$lang$System__in__java$io$InputStream = J.saccessor("in", type: JObjectType("java/io/InputStream"))
     public static var `in`: java$io$InputStream? {
@@ -255,7 +255,7 @@ public final class java$lang$String : java$lang$Object, java$io$Serializable, ja
     private typealias I = java$lang$String$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/String"
-    open class override func jniName() -> String { return "java/lang/String" }
+    public class override func jniName() -> String { return "java/lang/String" }
 
     fileprivate static let java$lang$String__CASE_INSENSITIVE_ORDER__java$util$Comparator = J.saccessor("CASE_INSENSITIVE_ORDER", type: JObjectType("java/util/Comparator"))
     public static var CASE_INSENSITIVE_ORDER: java$util$Comparator? {
@@ -674,7 +674,7 @@ public final class java$lang$Boolean : java$lang$Object, java$io$Serializable, j
     private typealias I = java$lang$Boolean$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Boolean"
-    open class override func jniName() -> String { return "java/lang/Boolean" }
+    public class override func jniName() -> String { return "java/lang/Boolean" }
 
     fileprivate static let java$lang$Boolean__TRUE__java$lang$Boolean = J.saccessor("TRUE", type: JObjectType("java/lang/Boolean"))
     public static var TRUE: java$lang$Boolean? {
@@ -778,7 +778,7 @@ public final class java$lang$Character : java$lang$Object, java$io$Serializable,
     private typealias I = java$lang$Character$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Character"
-    open class override func jniName() -> String { return "java/lang/Character" }
+    public class override func jniName() -> String { return "java/lang/Character" }
 
     fileprivate static let java$lang$Character__MIN_RADIX__I = J.saccessor("MIN_RADIX", type: jint.jniType)
     public static var MIN_RADIX: jint {
@@ -1561,7 +1561,7 @@ public final class java$lang$Character$UnicodeBlock : java$lang$Character$Subset
     private typealias I = java$lang$Character$UnicodeBlock$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Character$UnicodeBlock"
-    open class override func jniName() -> String { return "java/lang/Character$UnicodeBlock" }
+    public class override func jniName() -> String { return "java/lang/Character$UnicodeBlock" }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BASIC_LATIN__java$lang$Character$UnicodeBlock = J.saccessor("BASIC_LATIN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BASIC_LATIN: java$lang$Character$UnicodeBlock? {
@@ -2692,7 +2692,7 @@ public final class java$lang$Class : java$lang$Object, java$io$Serializable, jav
     private typealias I = java$lang$Class$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Class"
-    open class override func jniName() -> String { return "java/lang/Class" }
+    public class override func jniName() -> String { return "java/lang/Class" }
 
     fileprivate static let java$lang$Class_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
     fileprivate static let java$lang$Class_toGenericString__java$lang$String = invoker("toGenericString", returns: JObjectType("java/lang/String"))
@@ -3116,7 +3116,7 @@ public final class java$lang$Compiler : java$lang$Object {
     private typealias I = java$lang$Compiler$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Compiler"
-    open class override func jniName() -> String { return "java/lang/Compiler" }
+    public class override func jniName() -> String { return "java/lang/Compiler" }
 
     fileprivate static let java$lang$Compiler_compileClass_java$lang$Class__Z = svoker("compileClass", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Class")))
     public static func compileClass(_ a0: java$lang$Class?) throws -> jboolean {
@@ -3196,7 +3196,7 @@ public final class java$lang$Math : java$lang$Object {
     private typealias I = java$lang$Math$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Math"
-    open class override func jniName() -> String { return "java/lang/Math" }
+    public class override func jniName() -> String { return "java/lang/Math" }
 
     fileprivate static let java$lang$Math__E__D = J.saccessor("E", type: jdouble.jniType)
     public static var E: jdouble {
@@ -3628,7 +3628,7 @@ public final class java$lang$Byte : java$lang$Number, java$lang$Comparable {
     private typealias I = java$lang$Byte$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Byte"
-    open class override func jniName() -> String { return "java/lang/Byte" }
+    public class override func jniName() -> String { return "java/lang/Byte" }
 
     fileprivate static let java$lang$Byte__MIN_VALUE__B = J.saccessor("MIN_VALUE", type: jbyte.jniType)
     public static var MIN_VALUE: jbyte {
@@ -3748,7 +3748,7 @@ public final class java$lang$Double : java$lang$Number, java$lang$Comparable {
     private typealias I = java$lang$Double$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Double"
-    open class override func jniName() -> String { return "java/lang/Double" }
+    public class override func jniName() -> String { return "java/lang/Double" }
 
     fileprivate static let java$lang$Double__POSITIVE_INFINITY__D = J.saccessor("POSITIVE_INFINITY", type: jdouble.jniType)
     public static var POSITIVE_INFINITY: jdouble {
@@ -3933,7 +3933,7 @@ public final class java$lang$Float : java$lang$Number, java$lang$Comparable {
     private typealias I = java$lang$Float$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Float"
-    open class override func jniName() -> String { return "java/lang/Float" }
+    public class override func jniName() -> String { return "java/lang/Float" }
 
     fileprivate static let java$lang$Float__POSITIVE_INFINITY__F = J.saccessor("POSITIVE_INFINITY", type: jfloat.jniType)
     public static var POSITIVE_INFINITY: jfloat {
@@ -4123,7 +4123,7 @@ public final class java$lang$Integer : java$lang$Number, java$lang$Comparable {
     private typealias I = java$lang$Integer$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Integer"
-    open class override func jniName() -> String { return "java/lang/Integer" }
+    public class override func jniName() -> String { return "java/lang/Integer" }
 
     fileprivate static let java$lang$Integer__MIN_VALUE__I = J.saccessor("MIN_VALUE", type: jint.jniType)
     public static var MIN_VALUE: jint {
@@ -4373,7 +4373,7 @@ public final class java$lang$Long : java$lang$Number, java$lang$Comparable {
     private typealias I = java$lang$Long$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Long"
-    open class override func jniName() -> String { return "java/lang/Long" }
+    public class override func jniName() -> String { return "java/lang/Long" }
 
     fileprivate static let java$lang$Long__MIN_VALUE__J = J.saccessor("MIN_VALUE", type: jlong.jniType)
     public static var MIN_VALUE: jlong {
@@ -4618,7 +4618,7 @@ public final class java$lang$Short : java$lang$Number, java$lang$Comparable {
     private typealias I = java$lang$Short$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Short"
-    open class override func jniName() -> String { return "java/lang/Short" }
+    public class override func jniName() -> String { return "java/lang/Short" }
 
     fileprivate static let java$lang$Short__MIN_VALUE__S = J.saccessor("MIN_VALUE", type: jshort.jniType)
     public static var MIN_VALUE: jshort {
@@ -4851,7 +4851,7 @@ public final class java$lang$RuntimePermission : java$security$BasicPermission {
     private typealias I = java$lang$RuntimePermission$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/RuntimePermission"
-    open class override func jniName() -> String { return "java/lang/RuntimePermission" }
+    public class override func jniName() -> String { return "java/lang/RuntimePermission" }
 
     fileprivate static let java$lang$RuntimePermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -4933,7 +4933,7 @@ public final class java$lang$ProcessBuilder : java$lang$Object {
     private typealias I = java$lang$ProcessBuilder$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/ProcessBuilder"
-    open class override func jniName() -> String { return "java/lang/ProcessBuilder" }
+    public class override func jniName() -> String { return "java/lang/ProcessBuilder" }
 
     fileprivate static let java$lang$ProcessBuilder_init_java$util$List__V = constructor((JObjectType("java/util/List")))
     public convenience init(_ a0: java$util$List?) throws {
@@ -5414,7 +5414,7 @@ public final class java$lang$StackTraceElement : java$lang$Object, java$io$Seria
     private typealias I = java$lang$StackTraceElement$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/StackTraceElement"
-    open class override func jniName() -> String { return "java/lang/StackTraceElement" }
+    public class override func jniName() -> String { return "java/lang/StackTraceElement" }
 
     fileprivate static let java$lang$StackTraceElement_init_java$lang$String_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: jint) throws {
@@ -5458,7 +5458,7 @@ public final class java$lang$StrictMath : java$lang$Object {
     private typealias I = java$lang$StrictMath$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/StrictMath"
-    open class override func jniName() -> String { return "java/lang/StrictMath" }
+    public class override func jniName() -> String { return "java/lang/StrictMath" }
 
     fileprivate static let java$lang$StrictMath__E__D = J.saccessor("E", type: jdouble.jniType)
     public static var E: jdouble {
@@ -5814,7 +5814,7 @@ public final class java$lang$StringBuffer : java$lang$AbstractStringBuilder, jav
     private typealias I = java$lang$StringBuffer$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/StringBuffer"
-    open class override func jniName() -> String { return "java/lang/StringBuffer" }
+    public class override func jniName() -> String { return "java/lang/StringBuffer" }
 
     fileprivate static let java$lang$StringBuffer_init__V = constructor()
     public convenience init() throws {
@@ -5928,7 +5928,7 @@ public final class java$lang$StringBuilder : java$lang$AbstractStringBuilder, ja
     private typealias I = java$lang$StringBuilder$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/StringBuilder"
-    open class override func jniName() -> String { return "java/lang/StringBuilder" }
+    public class override func jniName() -> String { return "java/lang/StringBuilder" }
 
     fileprivate static let java$lang$StringBuilder_init__V = constructor()
     public convenience init() throws {
@@ -8099,7 +8099,7 @@ public final class java$lang$Void : java$lang$Object {
     private typealias I = java$lang$Void$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Void"
-    open class override func jniName() -> String { return "java/lang/Void" }
+    public class override func jniName() -> String { return "java/lang/Void" }
 
     fileprivate static let java$lang$Void__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
@@ -8475,7 +8475,7 @@ public final class java$lang$Character$UnicodeScript : java$lang$Enum {
     private typealias I = java$lang$Character$UnicodeScript$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Character$UnicodeScript"
-    open class override func jniName() -> String { return "java/lang/Character$UnicodeScript" }
+    public class override func jniName() -> String { return "java/lang/Character$UnicodeScript" }
 
     fileprivate static let java$lang$Character$UnicodeScript__COMMON__java$lang$Character$UnicodeScript = J.saccessor("COMMON", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var COMMON: java$lang$Character$UnicodeScript? {
@@ -9021,7 +9021,7 @@ public final class java$lang$Thread$State : java$lang$Enum {
     private typealias I = java$lang$Thread$State$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/Thread$State"
-    open class override func jniName() -> String { return "java/lang/Thread$State" }
+    public class override func jniName() -> String { return "java/lang/Thread$State" }
 
     fileprivate static let java$lang$Thread$State__NEW__java$lang$Thread$State = J.saccessor("NEW", type: JObjectType("java/lang/Thread$State"))
     public static var NEW: java$lang$Thread$State? {
@@ -9072,7 +9072,7 @@ public final class java$lang$ProcessBuilder$Redirect$Type : java$lang$Enum {
     private typealias I = java$lang$ProcessBuilder$Redirect$Type$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/ProcessBuilder$Redirect$Type"
-    open class override func jniName() -> String { return "java/lang/ProcessBuilder$Redirect$Type" }
+    public class override func jniName() -> String { return "java/lang/ProcessBuilder$Redirect$Type" }
 
     fileprivate static let java$lang$ProcessBuilder$Redirect$Type__PIPE__java$lang$ProcessBuilder$Redirect$Type = J.saccessor("PIPE", type: JObjectType("java/lang/ProcessBuilder$Redirect$Type"))
     public static var PIPE: java$lang$ProcessBuilder$Redirect$Type? {

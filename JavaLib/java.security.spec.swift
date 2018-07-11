@@ -5,7 +5,7 @@ public final class java$security$spec$DSAGenParameterSpec : java$lang$Object, ja
     private typealias I = java$security$spec$DSAGenParameterSpec$Impl
 
     /// Returns the internal JNI name for this class: "java/security/spec/DSAGenParameterSpec"
-    open class override func jniName() -> String { return "java/security/spec/DSAGenParameterSpec" }
+    public class override func jniName() -> String { return "java/security/spec/DSAGenParameterSpec" }
 
     fileprivate static let java$security$spec$DSAGenParameterSpec_init_I_I__V = constructor((jint.jniType, jint.jniType))
     public convenience init(_ a0: jint, _ a1: jint) throws {

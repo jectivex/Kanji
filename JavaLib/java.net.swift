@@ -286,7 +286,7 @@ public final class java$net$DatagramPacket : java$lang$Object {
     private typealias I = java$net$DatagramPacket$Impl
 
     /// Returns the internal JNI name for this class: "java/net/DatagramPacket"
-    open class override func jniName() -> String { return "java/net/DatagramPacket" }
+    public class override func jniName() -> String { return "java/net/DatagramPacket" }
 
     fileprivate static let java$net$DatagramPacket_init_AB_I_I__V = constructor((JArray(jbyte.jniType), jint.jniType, jint.jniType))
     public convenience init(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws {
@@ -685,7 +685,7 @@ public final class java$net$HttpCookie : java$lang$Object, java$lang$Cloneable {
     private typealias I = java$net$HttpCookie$Impl
 
     /// Returns the internal JNI name for this class: "java/net/HttpCookie"
-    open class override func jniName() -> String { return "java/net/HttpCookie" }
+    public class override func jniName() -> String { return "java/net/HttpCookie" }
 
     fileprivate static let java$net$HttpCookie_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
@@ -839,7 +839,7 @@ public final class java$net$IDN : java$lang$Object {
     private typealias I = java$net$IDN$Impl
 
     /// Returns the internal JNI name for this class: "java/net/IDN"
-    open class override func jniName() -> String { return "java/net/IDN" }
+    public class override func jniName() -> String { return "java/net/IDN" }
 
     fileprivate static let java$net$IDN__ALLOW_UNASSIGNED__I = J.saccessor("ALLOW_UNASSIGNED", type: jint.jniType)
     public static var ALLOW_UNASSIGNED: jint {
@@ -1004,7 +1004,7 @@ public final class java$net$Inet4Address : java$net$InetAddress {
     private typealias I = java$net$Inet4Address$Impl
 
     /// Returns the internal JNI name for this class: "java/net/Inet4Address"
-    open class override func jniName() -> String { return "java/net/Inet4Address" }
+    public class override func jniName() -> String { return "java/net/Inet4Address" }
 
     fileprivate static let java$net$Inet4Address_isMulticastAddress__Z = invoker("isMulticastAddress", returns: jboolean.jniType)
     fileprivate static let java$net$Inet4Address_isAnyLocalAddress__Z = invoker("isAnyLocalAddress", returns: jboolean.jniType)
@@ -1029,7 +1029,7 @@ public final class java$net$Inet6Address : java$net$InetAddress {
     private typealias I = java$net$Inet6Address$Impl
 
     /// Returns the internal JNI name for this class: "java/net/Inet6Address"
-    open class override func jniName() -> String { return "java/net/Inet6Address" }
+    public class override func jniName() -> String { return "java/net/Inet6Address" }
 
     fileprivate static let java$net$Inet6Address_getByAddress_java$lang$String_AB_java$net$NetworkInterface__java$net$Inet6Address = svoker("getByAddress", returns: JObjectType("java/net/Inet6Address"), arguments: (JObjectType("java/lang/String"), JArray(jbyte.jniType), JObjectType("java/net/NetworkInterface")))
     public static func getByAddress(_ a0: java$lang$String?, _ a1: [jbyte]?, _ a2: java$net$NetworkInterface?) throws -> java$net$Inet6Address? {
@@ -1108,7 +1108,7 @@ public final class java$net$NetworkInterface : java$lang$Object {
     private typealias I = java$net$NetworkInterface$Impl
 
     /// Returns the internal JNI name for this class: "java/net/NetworkInterface"
-    open class override func jniName() -> String { return "java/net/NetworkInterface" }
+    public class override func jniName() -> String { return "java/net/NetworkInterface" }
 
     fileprivate static let java$net$NetworkInterface_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
     public func getName() throws -> java$lang$String? {
@@ -1212,7 +1212,7 @@ public final class java$net$PasswordAuthentication : java$lang$Object {
     private typealias I = java$net$PasswordAuthentication$Impl
 
     /// Returns the internal JNI name for this class: "java/net/PasswordAuthentication"
-    open class override func jniName() -> String { return "java/net/PasswordAuthentication" }
+    public class override func jniName() -> String { return "java/net/PasswordAuthentication" }
 
     fileprivate static let java$net$PasswordAuthentication_init_java$lang$String_AC__V = constructor((JObjectType("java/lang/String"), JArray(jchar.jniType)))
     public convenience init(_ a0: java$lang$String?, _ a1: [jchar]?) throws {
@@ -1238,7 +1238,7 @@ public final class java$net$NetPermission : java$security$BasicPermission {
     private typealias I = java$net$NetPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/net/NetPermission"
-    open class override func jniName() -> String { return "java/net/NetPermission" }
+    public class override func jniName() -> String { return "java/net/NetPermission" }
 
     fileprivate static let java$net$NetPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -1259,7 +1259,7 @@ public final class java$net$SocketPermission : java$security$Permission {
     private typealias I = java$net$SocketPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/net/SocketPermission"
-    open class override func jniName() -> String { return "java/net/SocketPermission" }
+    public class override func jniName() -> String { return "java/net/SocketPermission" }
 
     fileprivate static let java$net$SocketPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
@@ -1280,7 +1280,7 @@ public final class java$net$URLPermission : java$security$Permission {
     private typealias I = java$net$URLPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/net/URLPermission"
-    open class override func jniName() -> String { return "java/net/URLPermission" }
+    public class override func jniName() -> String { return "java/net/URLPermission" }
 
     fileprivate static let java$net$URLPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
@@ -1882,7 +1882,7 @@ public final class java$net$StandardSocketOptions : java$lang$Object {
     private typealias I = java$net$StandardSocketOptions$Impl
 
     /// Returns the internal JNI name for this class: "java/net/StandardSocketOptions"
-    open class override func jniName() -> String { return "java/net/StandardSocketOptions" }
+    public class override func jniName() -> String { return "java/net/StandardSocketOptions" }
 
     fileprivate static let java$net$StandardSocketOptions__SO_BROADCAST__java$net$SocketOption = J.saccessor("SO_BROADCAST", type: JObjectType("java/net/SocketOption"))
     public static var SO_BROADCAST: java$net$SocketOption? {
@@ -2231,7 +2231,7 @@ public final class java$net$URI : java$lang$Object, java$lang$Comparable, java$i
     private typealias I = java$net$URI$Impl
 
     /// Returns the internal JNI name for this class: "java/net/URI"
-    open class override func jniName() -> String { return "java/net/URI" }
+    public class override func jniName() -> String { return "java/net/URI" }
 
     fileprivate static let java$net$URI_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
@@ -2405,7 +2405,7 @@ public final class java$net$URL : java$lang$Object, java$io$Serializable {
     private typealias I = java$net$URL$Impl
 
     /// Returns the internal JNI name for this class: "java/net/URL"
-    open class override func jniName() -> String { return "java/net/URL" }
+    public class override func jniName() -> String { return "java/net/URL" }
 
     fileprivate static let java$net$URL_init_java$lang$String_java$lang$String_I_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType, JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: jint, _ a3: java$lang$String?) throws {
@@ -3586,7 +3586,7 @@ public final class java$net$Proxy$Type : java$lang$Enum {
     private typealias I = java$net$Proxy$Type$Impl
 
     /// Returns the internal JNI name for this class: "java/net/Proxy$Type"
-    open class override func jniName() -> String { return "java/net/Proxy$Type" }
+    public class override func jniName() -> String { return "java/net/Proxy$Type" }
 
     fileprivate static let java$net$Proxy$Type__DIRECT__java$net$Proxy$Type = J.saccessor("DIRECT", type: JObjectType("java/net/Proxy$Type"))
     public static var DIRECT: java$net$Proxy$Type? {
@@ -3622,7 +3622,7 @@ public final class java$net$StandardProtocolFamily : java$lang$Enum, java$net$Pr
     private typealias I = java$net$StandardProtocolFamily$Impl
 
     /// Returns the internal JNI name for this class: "java/net/StandardProtocolFamily"
-    open class override func jniName() -> String { return "java/net/StandardProtocolFamily" }
+    public class override func jniName() -> String { return "java/net/StandardProtocolFamily" }
 
     fileprivate static let java$net$StandardProtocolFamily__INET__java$net$StandardProtocolFamily = J.saccessor("INET", type: JObjectType("java/net/StandardProtocolFamily"))
     public static var INET: java$net$StandardProtocolFamily? {
@@ -3653,7 +3653,7 @@ public final class java$net$Authenticator$RequestorType : java$lang$Enum {
     private typealias I = java$net$Authenticator$RequestorType$Impl
 
     /// Returns the internal JNI name for this class: "java/net/Authenticator$RequestorType"
-    open class override func jniName() -> String { return "java/net/Authenticator$RequestorType" }
+    public class override func jniName() -> String { return "java/net/Authenticator$RequestorType" }
 
     fileprivate static let java$net$Authenticator$RequestorType__PROXY__java$net$Authenticator$RequestorType = J.saccessor("PROXY", type: JObjectType("java/net/Authenticator$RequestorType"))
     public static var PROXY: java$net$Authenticator$RequestorType? {

@@ -5,7 +5,7 @@ public final class java$nio$file$attribute$AclEntry : java$lang$Object {
     private typealias I = java$nio$file$attribute$AclEntry$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/attribute/AclEntry"
-    open class override func jniName() -> String { return "java/nio/file/attribute/AclEntry" }
+    public class override func jniName() -> String { return "java/nio/file/attribute/AclEntry" }
 
     fileprivate static let java$nio$file$attribute$AclEntry_newBuilder__java$nio$file$attribute$AclEntry$Builder = svoker("newBuilder", returns: JObjectType("java/nio/file/attribute/AclEntry$Builder"))
     public static func newBuilder() throws -> java$nio$file$attribute$AclEntry$Builder? {
@@ -49,7 +49,7 @@ public final class java$nio$file$attribute$AclEntry$Builder : java$lang$Object {
     private typealias I = java$nio$file$attribute$AclEntry$Builder$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/attribute/AclEntry$Builder"
-    open class override func jniName() -> String { return "java/nio/file/attribute/AclEntry$Builder" }
+    public class override func jniName() -> String { return "java/nio/file/attribute/AclEntry$Builder" }
 
     fileprivate static let java$nio$file$attribute$AclEntry$Builder_build__java$nio$file$attribute$AclEntry = invoker("build", returns: JObjectType("java/nio/file/attribute/AclEntry"))
     public func build() throws -> java$nio$file$attribute$AclEntry? {
@@ -95,7 +95,7 @@ public final class java$nio$file$attribute$FileTime : java$lang$Object, java$lan
     private typealias I = java$nio$file$attribute$FileTime$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/attribute/FileTime"
-    open class override func jniName() -> String { return "java/nio/file/attribute/FileTime" }
+    public class override func jniName() -> String { return "java/nio/file/attribute/FileTime" }
 
     fileprivate static let java$nio$file$attribute$FileTime_from_J_java$util$concurrent$TimeUnit__java$nio$file$attribute$FileTime = svoker("from", returns: JObjectType("java/nio/file/attribute/FileTime"), arguments: (jlong.jniType, JObjectType("java/util/concurrent/TimeUnit")))
     public static func from(_ a0: jlong, _ a1: java$util$concurrent$TimeUnit?) throws -> java$nio$file$attribute$FileTime? {
@@ -149,7 +149,7 @@ public final class java$nio$file$attribute$PosixFilePermissions : java$lang$Obje
     private typealias I = java$nio$file$attribute$PosixFilePermissions$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/attribute/PosixFilePermissions"
-    open class override func jniName() -> String { return "java/nio/file/attribute/PosixFilePermissions" }
+    public class override func jniName() -> String { return "java/nio/file/attribute/PosixFilePermissions" }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermissions_toString_java$util$Set__java$lang$String = svoker("toString", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/util/Set")))
     public static func toString(_ a0: java$util$Set?) throws -> java$lang$String? {
@@ -763,7 +763,7 @@ public final class java$nio$file$attribute$PosixFilePermission : java$lang$Enum 
     private typealias I = java$nio$file$attribute$PosixFilePermission$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/attribute/PosixFilePermission"
-    open class override func jniName() -> String { return "java/nio/file/attribute/PosixFilePermission" }
+    public class override func jniName() -> String { return "java/nio/file/attribute/PosixFilePermission" }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__OWNER_READ__java$nio$file$attribute$PosixFilePermission = J.saccessor("OWNER_READ", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var OWNER_READ: java$nio$file$attribute$PosixFilePermission? {
@@ -829,7 +829,7 @@ public final class java$nio$file$attribute$AclEntryPermission : java$lang$Enum {
     private typealias I = java$nio$file$attribute$AclEntryPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/attribute/AclEntryPermission"
-    open class override func jniName() -> String { return "java/nio/file/attribute/AclEntryPermission" }
+    public class override func jniName() -> String { return "java/nio/file/attribute/AclEntryPermission" }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__READ_DATA__java$nio$file$attribute$AclEntryPermission = J.saccessor("READ_DATA", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var READ_DATA: java$nio$file$attribute$AclEntryPermission? {
@@ -935,7 +935,7 @@ public final class java$nio$file$attribute$AclEntryType : java$lang$Enum {
     private typealias I = java$nio$file$attribute$AclEntryType$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/attribute/AclEntryType"
-    open class override func jniName() -> String { return "java/nio/file/attribute/AclEntryType" }
+    public class override func jniName() -> String { return "java/nio/file/attribute/AclEntryType" }
 
     fileprivate static let java$nio$file$attribute$AclEntryType__ALLOW__java$nio$file$attribute$AclEntryType = J.saccessor("ALLOW", type: JObjectType("java/nio/file/attribute/AclEntryType"))
     public static var ALLOW: java$nio$file$attribute$AclEntryType? {
@@ -976,7 +976,7 @@ public final class java$nio$file$attribute$AclEntryFlag : java$lang$Enum {
     private typealias I = java$nio$file$attribute$AclEntryFlag$Impl
 
     /// Returns the internal JNI name for this class: "java/nio/file/attribute/AclEntryFlag"
-    open class override func jniName() -> String { return "java/nio/file/attribute/AclEntryFlag" }
+    public class override func jniName() -> String { return "java/nio/file/attribute/AclEntryFlag" }
 
     fileprivate static let java$nio$file$attribute$AclEntryFlag__FILE_INHERIT__java$nio$file$attribute$AclEntryFlag = J.saccessor("FILE_INHERIT", type: JObjectType("java/nio/file/attribute/AclEntryFlag"))
     public static var FILE_INHERIT: java$nio$file$attribute$AclEntryFlag? {

@@ -455,7 +455,7 @@ public final class java$beans$beancontext$BeanContextSupport$BCSIterator : java$
     private typealias I = java$beans$beancontext$BeanContextSupport$BCSIterator$Impl
 
     /// Returns the internal JNI name for this class: "java/beans/beancontext/BeanContextSupport$BCSIterator"
-    open class override func jniName() -> String { return "java/beans/beancontext/BeanContextSupport$BCSIterator" }
+    public class override func jniName() -> String { return "java/beans/beancontext/BeanContextSupport$BCSIterator" }
 
     fileprivate static let java$beans$beancontext$BeanContextSupport$BCSIterator_hasNext__Z = invoker("hasNext", returns: jboolean.jniType)
     public func hasNext() throws -> jboolean {

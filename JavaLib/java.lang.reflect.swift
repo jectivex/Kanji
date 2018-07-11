@@ -165,7 +165,7 @@ public final class java$lang$reflect$Constructor : java$lang$reflect$Executable 
     private typealias I = java$lang$reflect$Constructor$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/reflect/Constructor"
-    open class override func jniName() -> String { return "java/lang/reflect/Constructor" }
+    public class override func jniName() -> String { return "java/lang/reflect/Constructor" }
 
     fileprivate static let java$lang$reflect$Constructor_getDeclaringClass__java$lang$Class = invoker("getDeclaringClass", returns: JObjectType("java/lang/Class"))
     fileprivate static let java$lang$reflect$Constructor_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
@@ -200,7 +200,7 @@ public final class java$lang$reflect$Method : java$lang$reflect$Executable {
     private typealias I = java$lang$reflect$Method$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/reflect/Method"
-    open class override func jniName() -> String { return "java/lang/reflect/Method" }
+    public class override func jniName() -> String { return "java/lang/reflect/Method" }
 
     fileprivate static let java$lang$reflect$Method_getDeclaringClass__java$lang$Class = invoker("getDeclaringClass", returns: JObjectType("java/lang/Class"))
     fileprivate static let java$lang$reflect$Method_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
@@ -259,7 +259,7 @@ public final class java$lang$reflect$Field : java$lang$reflect$AccessibleObject,
     private typealias I = java$lang$reflect$Field$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/reflect/Field"
-    open class override func jniName() -> String { return "java/lang/reflect/Field" }
+    public class override func jniName() -> String { return "java/lang/reflect/Field" }
 
     fileprivate static let java$lang$reflect$Field_getDeclaringClass__java$lang$Class = invoker("getDeclaringClass", returns: JObjectType("java/lang/Class"))
     public func getDeclaringClass() throws -> java$lang$Class? {
@@ -411,7 +411,7 @@ public final class java$lang$reflect$Array : java$lang$Object {
     private typealias I = java$lang$reflect$Array$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/reflect/Array"
-    open class override func jniName() -> String { return "java/lang/reflect/Array" }
+    public class override func jniName() -> String { return "java/lang/reflect/Array" }
 
     fileprivate static let java$lang$reflect$Array_newInstance_java$lang$Class_I__java$lang$Object = svoker("newInstance", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Class"), jint.jniType))
     public static func newInstance(_ a0: java$lang$Class?, _ a1: jint) throws -> java$lang$Object? {
@@ -698,7 +698,7 @@ public final class java$lang$reflect$Parameter : java$lang$Object, java$lang$ref
     private typealias I = java$lang$reflect$Parameter$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/reflect/Parameter"
-    open class override func jniName() -> String { return "java/lang/reflect/Parameter" }
+    public class override func jniName() -> String { return "java/lang/reflect/Parameter" }
 
     fileprivate static let java$lang$reflect$Parameter_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$lang$reflect$Parameter_hashCode__I = invoker("hashCode", returns: jint.jniType)
@@ -792,7 +792,7 @@ public final class java$lang$reflect$ReflectPermission : java$security$BasicPerm
     private typealias I = java$lang$reflect$ReflectPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/reflect/ReflectPermission"
-    open class override func jniName() -> String { return "java/lang/reflect/ReflectPermission" }
+    public class override func jniName() -> String { return "java/lang/reflect/ReflectPermission" }
 
     fileprivate static let java$lang$reflect$ReflectPermission_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {

@@ -966,7 +966,7 @@ public final class java$util$logging$LoggingPermission : java$security$BasicPerm
     private typealias I = java$util$logging$LoggingPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/util/logging/LoggingPermission"
-    open class override func jniName() -> String { return "java/util/logging/LoggingPermission" }
+    public class override func jniName() -> String { return "java/util/logging/LoggingPermission" }
 
     fileprivate static let java$util$logging$LoggingPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {

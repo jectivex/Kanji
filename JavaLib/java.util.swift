@@ -3984,7 +3984,7 @@ public final class java$util$Currency : java$lang$Object, java$io$Serializable {
     private typealias I = java$util$Currency$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Currency"
-    open class override func jniName() -> String { return "java/util/Currency" }
+    public class override func jniName() -> String { return "java/util/Currency" }
 
     fileprivate static let java$util$Currency_getInstance_java$lang$String__java$util$Currency = svoker("getInstance", returns: JObjectType("java/util/Currency"), arguments: (JObjectType("java/lang/String")))
     public static func getInstance(_ a0: java$lang$String?) throws -> java$util$Currency? {
@@ -4634,7 +4634,7 @@ public final class java$util$Formatter : java$lang$Object, java$io$Closeable, ja
     private typealias I = java$util$Formatter$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Formatter"
-    open class override func jniName() -> String { return "java/util/Formatter" }
+    public class override func jniName() -> String { return "java/util/Formatter" }
 
     fileprivate static let java$util$Formatter_init__V = constructor()
     public convenience init() throws {
@@ -4803,7 +4803,7 @@ public final class java$util$Locale : java$lang$Object, java$lang$Cloneable, jav
     private typealias I = java$util$Locale$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Locale"
-    open class override func jniName() -> String { return "java/util/Locale" }
+    public class override func jniName() -> String { return "java/util/Locale" }
 
     fileprivate static let java$util$Locale__ENGLISH__java$util$Locale = J.saccessor("ENGLISH", type: JObjectType("java/util/Locale"))
     public static var ENGLISH: java$util$Locale? {
@@ -5147,7 +5147,7 @@ public final class java$util$Locale$Builder : java$lang$Object {
     private typealias I = java$util$Locale$Builder$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Locale$Builder"
-    open class override func jniName() -> String { return "java/util/Locale$Builder" }
+    public class override func jniName() -> String { return "java/util/Locale$Builder" }
 
     fileprivate static let java$util$Locale$Builder_init__V = constructor()
     public convenience init() throws {
@@ -5228,7 +5228,7 @@ public final class java$util$Locale$LanguageRange : java$lang$Object {
     private typealias I = java$util$Locale$LanguageRange$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Locale$LanguageRange"
-    open class override func jniName() -> String { return "java/util/Locale$LanguageRange" }
+    public class override func jniName() -> String { return "java/util/Locale$LanguageRange" }
 
     fileprivate static let java$util$Locale$LanguageRange__MAX_WEIGHT__D = J.saccessor("MAX_WEIGHT", type: jdouble.jniType)
     public static var MAX_WEIGHT: jdouble {
@@ -5343,7 +5343,7 @@ public final class java$util$Objects : java$lang$Object {
     private typealias I = java$util$Objects$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Objects"
-    open class override func jniName() -> String { return "java/util/Objects" }
+    public class override func jniName() -> String { return "java/util/Objects" }
 
     fileprivate static let java$util$Objects_equals_java$lang$Object_java$lang$Object__Z = svoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
     public static func equals(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> jboolean {
@@ -5465,7 +5465,7 @@ public final class java$util$Optional : java$lang$Object {
     private typealias I = java$util$Optional$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Optional"
-    open class override func jniName() -> String { return "java/util/Optional" }
+    public class override func jniName() -> String { return "java/util/Optional" }
 
     fileprivate static let java$util$Optional_empty__java$util$Optional = svoker("empty", returns: JObjectType("java/util/Optional"))
     public static func empty() throws -> java$util$Optional? {
@@ -5539,7 +5539,7 @@ public final class java$util$OptionalDouble : java$lang$Object {
     private typealias I = java$util$OptionalDouble$Impl
 
     /// Returns the internal JNI name for this class: "java/util/OptionalDouble"
-    open class override func jniName() -> String { return "java/util/OptionalDouble" }
+    public class override func jniName() -> String { return "java/util/OptionalDouble" }
 
     fileprivate static let java$util$OptionalDouble_empty__java$util$OptionalDouble = svoker("empty", returns: JObjectType("java/util/OptionalDouble"))
     public static func empty() throws -> java$util$OptionalDouble? {
@@ -5593,7 +5593,7 @@ public final class java$util$OptionalInt : java$lang$Object {
     private typealias I = java$util$OptionalInt$Impl
 
     /// Returns the internal JNI name for this class: "java/util/OptionalInt"
-    open class override func jniName() -> String { return "java/util/OptionalInt" }
+    public class override func jniName() -> String { return "java/util/OptionalInt" }
 
     fileprivate static let java$util$OptionalInt_empty__java$util$OptionalInt = svoker("empty", returns: JObjectType("java/util/OptionalInt"))
     public static func empty() throws -> java$util$OptionalInt? {
@@ -5647,7 +5647,7 @@ public final class java$util$OptionalLong : java$lang$Object {
     private typealias I = java$util$OptionalLong$Impl
 
     /// Returns the internal JNI name for this class: "java/util/OptionalLong"
-    open class override func jniName() -> String { return "java/util/OptionalLong" }
+    public class override func jniName() -> String { return "java/util/OptionalLong" }
 
     fileprivate static let java$util$OptionalLong_empty__java$util$OptionalLong = svoker("empty", returns: JObjectType("java/util/OptionalLong"))
     public static func empty() throws -> java$util$OptionalLong? {
@@ -5701,7 +5701,7 @@ public final class java$util$PropertyPermission : java$security$BasicPermission 
     private typealias I = java$util$PropertyPermission$Impl
 
     /// Returns the internal JNI name for this class: "java/util/PropertyPermission"
-    open class override func jniName() -> String { return "java/util/PropertyPermission" }
+    public class override func jniName() -> String { return "java/util/PropertyPermission" }
 
     fileprivate static let java$util$PropertyPermission_init_java$lang$String_java$lang$String__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?) throws {
@@ -6079,7 +6079,7 @@ public final class java$util$Scanner : java$lang$Object, java$util$Iterator, jav
     private typealias I = java$util$Scanner$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Scanner"
-    open class override func jniName() -> String { return "java/util/Scanner" }
+    public class override func jniName() -> String { return "java/util/Scanner" }
 
     fileprivate static let java$util$Scanner_init_java$lang$Readable__V = constructor((JObjectType("java/lang/Readable")))
     public convenience init(_ a0: java$lang$Readable?) throws {
@@ -6416,7 +6416,7 @@ public final class java$util$ServiceLoader : java$lang$Object, java$lang$Iterabl
     private typealias I = java$util$ServiceLoader$Impl
 
     /// Returns the internal JNI name for this class: "java/util/ServiceLoader"
-    open class override func jniName() -> String { return "java/util/ServiceLoader" }
+    public class override func jniName() -> String { return "java/util/ServiceLoader" }
 
     fileprivate static let java$util$ServiceLoader_reload__V = invoker("reload", returns: JVoid.jniType)
     public func reload() throws -> Void {
@@ -6453,7 +6453,7 @@ public final class java$util$Spliterators : java$lang$Object {
     private typealias I = java$util$Spliterators$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Spliterators"
-    open class override func jniName() -> String { return "java/util/Spliterators" }
+    public class override func jniName() -> String { return "java/util/Spliterators" }
 
     fileprivate static let java$util$Spliterators_emptySpliterator__java$util$Spliterator = svoker("emptySpliterator", returns: JObjectType("java/util/Spliterator"))
     public static func emptySpliterator() throws -> java$util$Spliterator? {
@@ -6723,7 +6723,7 @@ public final class java$util$SplittableRandom : java$lang$Object {
     private typealias I = java$util$SplittableRandom$Impl
 
     /// Returns the internal JNI name for this class: "java/util/SplittableRandom"
-    open class override func jniName() -> String { return "java/util/SplittableRandom" }
+    public class override func jniName() -> String { return "java/util/SplittableRandom" }
 
     fileprivate static let java$util$SplittableRandom_init_J__V = constructor((jlong.jniType))
     public convenience init(_ a0: jlong) throws {
@@ -6859,7 +6859,7 @@ public final class java$util$StringJoiner : java$lang$Object {
     private typealias I = java$util$StringJoiner$Impl
 
     /// Returns the internal JNI name for this class: "java/util/StringJoiner"
-    open class override func jniName() -> String { return "java/util/StringJoiner" }
+    public class override func jniName() -> String { return "java/util/StringJoiner" }
 
     fileprivate static let java$util$StringJoiner_init_java$lang$CharSequence__V = constructor((JObjectType("java/lang/CharSequence")))
     public convenience init(_ a0: java$lang$CharSequence?) throws {
@@ -7782,7 +7782,7 @@ public final class java$util$UUID : java$lang$Object, java$io$Serializable, java
     private typealias I = java$util$UUID$Impl
 
     /// Returns the internal JNI name for this class: "java/util/UUID"
-    open class override func jniName() -> String { return "java/util/UUID" }
+    public class override func jniName() -> String { return "java/util/UUID" }
 
     fileprivate static let java$util$UUID_init_J_J__V = constructor((jlong.jniType, jlong.jniType))
     public convenience init(_ a0: jlong, _ a1: jlong) throws {
@@ -10071,7 +10071,7 @@ public final class java$util$Formatter$BigDecimalLayoutForm : java$lang$Enum {
     private typealias I = java$util$Formatter$BigDecimalLayoutForm$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Formatter$BigDecimalLayoutForm"
-    open class override func jniName() -> String { return "java/util/Formatter$BigDecimalLayoutForm" }
+    public class override func jniName() -> String { return "java/util/Formatter$BigDecimalLayoutForm" }
 
     fileprivate static let java$util$Formatter$BigDecimalLayoutForm__SCIENTIFIC__java$util$Formatter$BigDecimalLayoutForm = J.saccessor("SCIENTIFIC", type: JObjectType("java/util/Formatter$BigDecimalLayoutForm"))
     public static var SCIENTIFIC: java$util$Formatter$BigDecimalLayoutForm? {
@@ -10102,7 +10102,7 @@ public final class java$util$Locale$Category : java$lang$Enum {
     private typealias I = java$util$Locale$Category$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Locale$Category"
-    open class override func jniName() -> String { return "java/util/Locale$Category" }
+    public class override func jniName() -> String { return "java/util/Locale$Category" }
 
     fileprivate static let java$util$Locale$Category__DISPLAY__java$util$Locale$Category = J.saccessor("DISPLAY", type: JObjectType("java/util/Locale$Category"))
     public static var DISPLAY: java$util$Locale$Category? {
@@ -10133,7 +10133,7 @@ public final class java$util$Locale$FilteringMode : java$lang$Enum {
     private typealias I = java$util$Locale$FilteringMode$Impl
 
     /// Returns the internal JNI name for this class: "java/util/Locale$FilteringMode"
-    open class override func jniName() -> String { return "java/util/Locale$FilteringMode" }
+    public class override func jniName() -> String { return "java/util/Locale$FilteringMode" }
 
     fileprivate static let java$util$Locale$FilteringMode__AUTOSELECT_FILTERING__java$util$Locale$FilteringMode = J.saccessor("AUTOSELECT_FILTERING", type: JObjectType("java/util/Locale$FilteringMode"))
     public static var AUTOSELECT_FILTERING: java$util$Locale$FilteringMode? {

@@ -5,7 +5,7 @@ public final class java$math$MathContext : java$lang$Object, java$io$Serializabl
     private typealias I = java$math$MathContext$Impl
 
     /// Returns the internal JNI name for this class: "java/math/MathContext"
-    open class override func jniName() -> String { return "java/math/MathContext" }
+    public class override func jniName() -> String { return "java/math/MathContext" }
 
     fileprivate static let java$math$MathContext__UNLIMITED__java$math$MathContext = J.saccessor("UNLIMITED", type: JObjectType("java/math/MathContext"))
     public static var UNLIMITED: java$math$MathContext? {
@@ -760,7 +760,7 @@ public final class java$math$RoundingMode : java$lang$Enum {
     private typealias I = java$math$RoundingMode$Impl
 
     /// Returns the internal JNI name for this class: "java/math/RoundingMode"
-    open class override func jniName() -> String { return "java/math/RoundingMode" }
+    public class override func jniName() -> String { return "java/math/RoundingMode" }
 
     fileprivate static let java$math$RoundingMode__UP__java$math$RoundingMode = J.saccessor("UP", type: JObjectType("java/math/RoundingMode"))
     public static var UP: java$math$RoundingMode? {
