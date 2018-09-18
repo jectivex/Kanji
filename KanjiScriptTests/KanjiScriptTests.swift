@@ -227,7 +227,7 @@ class KanjiScriptTests: XCTestCase {
             checkeq([2,1,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3])")))
             checkeq([1,2,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3]).stream().sorted().toArray()")))
 
-            checkeq("10", f: try ctx.val(ctx.eval("Packages.java.lang.System.getProperty('java.version')")))
+            checkeq("10.0.2", f: try ctx.val(ctx.eval("Packages.java.lang.System.getProperty('java.version')")))
 
             checkeq([1, 2, 3], f: try ctx.val(ctx.eval("[1,2,3]")))
 

@@ -1,2 +1,2 @@
-JAVA_VERSION="10"
+JAVA_VERSION="10.0.2"
 MODULES="java.base java.datatransfer java.logging java.activation java.compiler java.xml java.prefs java.desktop java.management java.security.sasl java.naming java.rmi java.scripting java.security.jgss java.sql jdk.unsupported java.xml.bind jdk.internal.jvmstat jdk.attach jdk.charsets jdk.compiler jdk.dynalink jdk.internal.ed jdk.internal.le jdk.internal.opt jdk.jdwp.agent jdk.jdi jdk.jshell jdk.scripting.nashorn"
