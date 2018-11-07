@@ -373,12 +373,12 @@ open class org$xml$sax$helpers$NamespaceSupport : java$lang$Object {
 
     fileprivate static let org$xml$sax$helpers$NamespaceSupport__XMLNS__java$lang$String = J.saccessor("XMLNS", type: JObjectType("java/lang/String"))
     public static var XMLNS: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.org$xml$sax$helpers$NamespaceSupport__XMLNS__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.org$xml$sax$helpers$NamespaceSupport__XMLNS__java$lang$String.getter()) }
     }
 
     fileprivate static let org$xml$sax$helpers$NamespaceSupport__NSDECL__java$lang$String = J.saccessor("NSDECL", type: JObjectType("java/lang/String"))
     public static var NSDECL: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.org$xml$sax$helpers$NamespaceSupport__NSDECL__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.org$xml$sax$helpers$NamespaceSupport__NSDECL__java$lang$String.getter()) }
     }
 
     fileprivate static let org$xml$sax$helpers$NamespaceSupport_init__V = constructor()

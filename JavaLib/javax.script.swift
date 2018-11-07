@@ -710,31 +710,31 @@ public extension javax$script$ScriptEngine {
     private typealias I = javax$script$ScriptEngine$Impl
 
     static var ARGV: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.javax$script$ScriptEngine__ARGV__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.javax$script$ScriptEngine__ARGV__java$lang$String.getter()) }
     }
 
     static var FILENAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.javax$script$ScriptEngine__FILENAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.javax$script$ScriptEngine__FILENAME__java$lang$String.getter()) }
     }
 
     static var ENGINE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.javax$script$ScriptEngine__ENGINE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.javax$script$ScriptEngine__ENGINE__java$lang$String.getter()) }
     }
 
     static var ENGINE_VERSION: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.javax$script$ScriptEngine__ENGINE_VERSION__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.javax$script$ScriptEngine__ENGINE_VERSION__java$lang$String.getter()) }
     }
 
     static var NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.javax$script$ScriptEngine__NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.javax$script$ScriptEngine__NAME__java$lang$String.getter()) }
     }
 
     static var LANGUAGE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.javax$script$ScriptEngine__LANGUAGE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.javax$script$ScriptEngine__LANGUAGE__java$lang$String.getter()) }
     }
 
     static var LANGUAGE_VERSION: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.javax$script$ScriptEngine__LANGUAGE_VERSION__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.javax$script$ScriptEngine__LANGUAGE_VERSION__java$lang$String.getter()) }
     }
 
     func eval(_ a0: java$lang$String?, _ a1: javax$script$ScriptContext?) throws -> java$lang$Object? {

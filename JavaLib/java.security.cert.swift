@@ -2348,22 +2348,22 @@ public final class java$security$cert$PKIXRevocationChecker$Option : java$lang$E
 
     fileprivate static let java$security$cert$PKIXRevocationChecker$Option__ONLY_END_ENTITY__java$security$cert$PKIXRevocationChecker$Option = J.saccessor("ONLY_END_ENTITY", type: JObjectType("java/security/cert/PKIXRevocationChecker$Option"))
     public static var ONLY_END_ENTITY: java$security$cert$PKIXRevocationChecker$Option? {
-        get { return java$security$cert$PKIXRevocationChecker$Option$Impl(constructor: I.java$security$cert$PKIXRevocationChecker$Option__ONLY_END_ENTITY__java$security$cert$PKIXRevocationChecker$Option.getter()) }
+        get { return java$security$cert$PKIXRevocationChecker$Option$Impl(reference: I.java$security$cert$PKIXRevocationChecker$Option__ONLY_END_ENTITY__java$security$cert$PKIXRevocationChecker$Option.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXRevocationChecker$Option__PREFER_CRLS__java$security$cert$PKIXRevocationChecker$Option = J.saccessor("PREFER_CRLS", type: JObjectType("java/security/cert/PKIXRevocationChecker$Option"))
     public static var PREFER_CRLS: java$security$cert$PKIXRevocationChecker$Option? {
-        get { return java$security$cert$PKIXRevocationChecker$Option$Impl(constructor: I.java$security$cert$PKIXRevocationChecker$Option__PREFER_CRLS__java$security$cert$PKIXRevocationChecker$Option.getter()) }
+        get { return java$security$cert$PKIXRevocationChecker$Option$Impl(reference: I.java$security$cert$PKIXRevocationChecker$Option__PREFER_CRLS__java$security$cert$PKIXRevocationChecker$Option.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXRevocationChecker$Option__NO_FALLBACK__java$security$cert$PKIXRevocationChecker$Option = J.saccessor("NO_FALLBACK", type: JObjectType("java/security/cert/PKIXRevocationChecker$Option"))
     public static var NO_FALLBACK: java$security$cert$PKIXRevocationChecker$Option? {
-        get { return java$security$cert$PKIXRevocationChecker$Option$Impl(constructor: I.java$security$cert$PKIXRevocationChecker$Option__NO_FALLBACK__java$security$cert$PKIXRevocationChecker$Option.getter()) }
+        get { return java$security$cert$PKIXRevocationChecker$Option$Impl(reference: I.java$security$cert$PKIXRevocationChecker$Option__NO_FALLBACK__java$security$cert$PKIXRevocationChecker$Option.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXRevocationChecker$Option__SOFT_FAIL__java$security$cert$PKIXRevocationChecker$Option = J.saccessor("SOFT_FAIL", type: JObjectType("java/security/cert/PKIXRevocationChecker$Option"))
     public static var SOFT_FAIL: java$security$cert$PKIXRevocationChecker$Option? {
-        get { return java$security$cert$PKIXRevocationChecker$Option$Impl(constructor: I.java$security$cert$PKIXRevocationChecker$Option__SOFT_FAIL__java$security$cert$PKIXRevocationChecker$Option.getter()) }
+        get { return java$security$cert$PKIXRevocationChecker$Option$Impl(reference: I.java$security$cert$PKIXRevocationChecker$Option__SOFT_FAIL__java$security$cert$PKIXRevocationChecker$Option.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXRevocationChecker$Option_values__Ajava$security$cert$PKIXRevocationChecker$Option = svoker("values", returns: JArray(JObjectType("java/security/cert/PKIXRevocationChecker$Option")))
@@ -2389,42 +2389,42 @@ public final class java$security$cert$PKIXReason : java$lang$Enum, java$security
 
     fileprivate static let java$security$cert$PKIXReason__NAME_CHAINING__java$security$cert$PKIXReason = J.saccessor("NAME_CHAINING", type: JObjectType("java/security/cert/PKIXReason"))
     public static var NAME_CHAINING: java$security$cert$PKIXReason? {
-        get { return java$security$cert$PKIXReason$Impl(constructor: I.java$security$cert$PKIXReason__NAME_CHAINING__java$security$cert$PKIXReason.getter()) }
+        get { return java$security$cert$PKIXReason$Impl(reference: I.java$security$cert$PKIXReason__NAME_CHAINING__java$security$cert$PKIXReason.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXReason__INVALID_KEY_USAGE__java$security$cert$PKIXReason = J.saccessor("INVALID_KEY_USAGE", type: JObjectType("java/security/cert/PKIXReason"))
     public static var INVALID_KEY_USAGE: java$security$cert$PKIXReason? {
-        get { return java$security$cert$PKIXReason$Impl(constructor: I.java$security$cert$PKIXReason__INVALID_KEY_USAGE__java$security$cert$PKIXReason.getter()) }
+        get { return java$security$cert$PKIXReason$Impl(reference: I.java$security$cert$PKIXReason__INVALID_KEY_USAGE__java$security$cert$PKIXReason.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXReason__INVALID_POLICY__java$security$cert$PKIXReason = J.saccessor("INVALID_POLICY", type: JObjectType("java/security/cert/PKIXReason"))
     public static var INVALID_POLICY: java$security$cert$PKIXReason? {
-        get { return java$security$cert$PKIXReason$Impl(constructor: I.java$security$cert$PKIXReason__INVALID_POLICY__java$security$cert$PKIXReason.getter()) }
+        get { return java$security$cert$PKIXReason$Impl(reference: I.java$security$cert$PKIXReason__INVALID_POLICY__java$security$cert$PKIXReason.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXReason__NO_TRUST_ANCHOR__java$security$cert$PKIXReason = J.saccessor("NO_TRUST_ANCHOR", type: JObjectType("java/security/cert/PKIXReason"))
     public static var NO_TRUST_ANCHOR: java$security$cert$PKIXReason? {
-        get { return java$security$cert$PKIXReason$Impl(constructor: I.java$security$cert$PKIXReason__NO_TRUST_ANCHOR__java$security$cert$PKIXReason.getter()) }
+        get { return java$security$cert$PKIXReason$Impl(reference: I.java$security$cert$PKIXReason__NO_TRUST_ANCHOR__java$security$cert$PKIXReason.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXReason__UNRECOGNIZED_CRIT_EXT__java$security$cert$PKIXReason = J.saccessor("UNRECOGNIZED_CRIT_EXT", type: JObjectType("java/security/cert/PKIXReason"))
     public static var UNRECOGNIZED_CRIT_EXT: java$security$cert$PKIXReason? {
-        get { return java$security$cert$PKIXReason$Impl(constructor: I.java$security$cert$PKIXReason__UNRECOGNIZED_CRIT_EXT__java$security$cert$PKIXReason.getter()) }
+        get { return java$security$cert$PKIXReason$Impl(reference: I.java$security$cert$PKIXReason__UNRECOGNIZED_CRIT_EXT__java$security$cert$PKIXReason.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXReason__NOT_CA_CERT__java$security$cert$PKIXReason = J.saccessor("NOT_CA_CERT", type: JObjectType("java/security/cert/PKIXReason"))
     public static var NOT_CA_CERT: java$security$cert$PKIXReason? {
-        get { return java$security$cert$PKIXReason$Impl(constructor: I.java$security$cert$PKIXReason__NOT_CA_CERT__java$security$cert$PKIXReason.getter()) }
+        get { return java$security$cert$PKIXReason$Impl(reference: I.java$security$cert$PKIXReason__NOT_CA_CERT__java$security$cert$PKIXReason.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXReason__PATH_TOO_LONG__java$security$cert$PKIXReason = J.saccessor("PATH_TOO_LONG", type: JObjectType("java/security/cert/PKIXReason"))
     public static var PATH_TOO_LONG: java$security$cert$PKIXReason? {
-        get { return java$security$cert$PKIXReason$Impl(constructor: I.java$security$cert$PKIXReason__PATH_TOO_LONG__java$security$cert$PKIXReason.getter()) }
+        get { return java$security$cert$PKIXReason$Impl(reference: I.java$security$cert$PKIXReason__PATH_TOO_LONG__java$security$cert$PKIXReason.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXReason__INVALID_NAME__java$security$cert$PKIXReason = J.saccessor("INVALID_NAME", type: JObjectType("java/security/cert/PKIXReason"))
     public static var INVALID_NAME: java$security$cert$PKIXReason? {
-        get { return java$security$cert$PKIXReason$Impl(constructor: I.java$security$cert$PKIXReason__INVALID_NAME__java$security$cert$PKIXReason.getter()) }
+        get { return java$security$cert$PKIXReason$Impl(reference: I.java$security$cert$PKIXReason__INVALID_NAME__java$security$cert$PKIXReason.getter()) }
     }
 
     fileprivate static let java$security$cert$PKIXReason_values__Ajava$security$cert$PKIXReason = svoker("values", returns: JArray(JObjectType("java/security/cert/PKIXReason")))
@@ -2450,57 +2450,57 @@ public final class java$security$cert$CRLReason : java$lang$Enum {
 
     fileprivate static let java$security$cert$CRLReason__UNSPECIFIED__java$security$cert$CRLReason = J.saccessor("UNSPECIFIED", type: JObjectType("java/security/cert/CRLReason"))
     public static var UNSPECIFIED: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__UNSPECIFIED__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__UNSPECIFIED__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__KEY_COMPROMISE__java$security$cert$CRLReason = J.saccessor("KEY_COMPROMISE", type: JObjectType("java/security/cert/CRLReason"))
     public static var KEY_COMPROMISE: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__KEY_COMPROMISE__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__KEY_COMPROMISE__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__CA_COMPROMISE__java$security$cert$CRLReason = J.saccessor("CA_COMPROMISE", type: JObjectType("java/security/cert/CRLReason"))
     public static var CA_COMPROMISE: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__CA_COMPROMISE__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__CA_COMPROMISE__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__AFFILIATION_CHANGED__java$security$cert$CRLReason = J.saccessor("AFFILIATION_CHANGED", type: JObjectType("java/security/cert/CRLReason"))
     public static var AFFILIATION_CHANGED: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__AFFILIATION_CHANGED__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__AFFILIATION_CHANGED__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__SUPERSEDED__java$security$cert$CRLReason = J.saccessor("SUPERSEDED", type: JObjectType("java/security/cert/CRLReason"))
     public static var SUPERSEDED: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__SUPERSEDED__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__SUPERSEDED__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__CESSATION_OF_OPERATION__java$security$cert$CRLReason = J.saccessor("CESSATION_OF_OPERATION", type: JObjectType("java/security/cert/CRLReason"))
     public static var CESSATION_OF_OPERATION: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__CESSATION_OF_OPERATION__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__CESSATION_OF_OPERATION__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__CERTIFICATE_HOLD__java$security$cert$CRLReason = J.saccessor("CERTIFICATE_HOLD", type: JObjectType("java/security/cert/CRLReason"))
     public static var CERTIFICATE_HOLD: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__CERTIFICATE_HOLD__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__CERTIFICATE_HOLD__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__UNUSED__java$security$cert$CRLReason = J.saccessor("UNUSED", type: JObjectType("java/security/cert/CRLReason"))
     public static var UNUSED: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__UNUSED__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__UNUSED__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__REMOVE_FROM_CRL__java$security$cert$CRLReason = J.saccessor("REMOVE_FROM_CRL", type: JObjectType("java/security/cert/CRLReason"))
     public static var REMOVE_FROM_CRL: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__REMOVE_FROM_CRL__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__REMOVE_FROM_CRL__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__PRIVILEGE_WITHDRAWN__java$security$cert$CRLReason = J.saccessor("PRIVILEGE_WITHDRAWN", type: JObjectType("java/security/cert/CRLReason"))
     public static var PRIVILEGE_WITHDRAWN: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__PRIVILEGE_WITHDRAWN__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__PRIVILEGE_WITHDRAWN__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason__AA_COMPROMISE__java$security$cert$CRLReason = J.saccessor("AA_COMPROMISE", type: JObjectType("java/security/cert/CRLReason"))
     public static var AA_COMPROMISE: java$security$cert$CRLReason? {
-        get { return java$security$cert$CRLReason$Impl(constructor: I.java$security$cert$CRLReason__AA_COMPROMISE__java$security$cert$CRLReason.getter()) }
+        get { return java$security$cert$CRLReason$Impl(reference: I.java$security$cert$CRLReason__AA_COMPROMISE__java$security$cert$CRLReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CRLReason_values__Ajava$security$cert$CRLReason = svoker("values", returns: JArray(JObjectType("java/security/cert/CRLReason")))
@@ -2526,37 +2526,37 @@ public final class java$security$cert$CertPathValidatorException$BasicReason : j
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason__UNSPECIFIED__java$security$cert$CertPathValidatorException$BasicReason = J.saccessor("UNSPECIFIED", type: JObjectType("java/security/cert/CertPathValidatorException$BasicReason"))
     public static var UNSPECIFIED: java$security$cert$CertPathValidatorException$BasicReason? {
-        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(constructor: I.java$security$cert$CertPathValidatorException$BasicReason__UNSPECIFIED__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
+        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(reference: I.java$security$cert$CertPathValidatorException$BasicReason__UNSPECIFIED__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason__EXPIRED__java$security$cert$CertPathValidatorException$BasicReason = J.saccessor("EXPIRED", type: JObjectType("java/security/cert/CertPathValidatorException$BasicReason"))
     public static var EXPIRED: java$security$cert$CertPathValidatorException$BasicReason? {
-        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(constructor: I.java$security$cert$CertPathValidatorException$BasicReason__EXPIRED__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
+        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(reference: I.java$security$cert$CertPathValidatorException$BasicReason__EXPIRED__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason__NOT_YET_VALID__java$security$cert$CertPathValidatorException$BasicReason = J.saccessor("NOT_YET_VALID", type: JObjectType("java/security/cert/CertPathValidatorException$BasicReason"))
     public static var NOT_YET_VALID: java$security$cert$CertPathValidatorException$BasicReason? {
-        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(constructor: I.java$security$cert$CertPathValidatorException$BasicReason__NOT_YET_VALID__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
+        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(reference: I.java$security$cert$CertPathValidatorException$BasicReason__NOT_YET_VALID__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason__REVOKED__java$security$cert$CertPathValidatorException$BasicReason = J.saccessor("REVOKED", type: JObjectType("java/security/cert/CertPathValidatorException$BasicReason"))
     public static var REVOKED: java$security$cert$CertPathValidatorException$BasicReason? {
-        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(constructor: I.java$security$cert$CertPathValidatorException$BasicReason__REVOKED__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
+        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(reference: I.java$security$cert$CertPathValidatorException$BasicReason__REVOKED__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason__UNDETERMINED_REVOCATION_STATUS__java$security$cert$CertPathValidatorException$BasicReason = J.saccessor("UNDETERMINED_REVOCATION_STATUS", type: JObjectType("java/security/cert/CertPathValidatorException$BasicReason"))
     public static var UNDETERMINED_REVOCATION_STATUS: java$security$cert$CertPathValidatorException$BasicReason? {
-        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(constructor: I.java$security$cert$CertPathValidatorException$BasicReason__UNDETERMINED_REVOCATION_STATUS__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
+        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(reference: I.java$security$cert$CertPathValidatorException$BasicReason__UNDETERMINED_REVOCATION_STATUS__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason__INVALID_SIGNATURE__java$security$cert$CertPathValidatorException$BasicReason = J.saccessor("INVALID_SIGNATURE", type: JObjectType("java/security/cert/CertPathValidatorException$BasicReason"))
     public static var INVALID_SIGNATURE: java$security$cert$CertPathValidatorException$BasicReason? {
-        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(constructor: I.java$security$cert$CertPathValidatorException$BasicReason__INVALID_SIGNATURE__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
+        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(reference: I.java$security$cert$CertPathValidatorException$BasicReason__INVALID_SIGNATURE__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason__ALGORITHM_CONSTRAINED__java$security$cert$CertPathValidatorException$BasicReason = J.saccessor("ALGORITHM_CONSTRAINED", type: JObjectType("java/security/cert/CertPathValidatorException$BasicReason"))
     public static var ALGORITHM_CONSTRAINED: java$security$cert$CertPathValidatorException$BasicReason? {
-        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(constructor: I.java$security$cert$CertPathValidatorException$BasicReason__ALGORITHM_CONSTRAINED__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
+        get { return java$security$cert$CertPathValidatorException$BasicReason$Impl(reference: I.java$security$cert$CertPathValidatorException$BasicReason__ALGORITHM_CONSTRAINED__java$security$cert$CertPathValidatorException$BasicReason.getter()) }
     }
 
     fileprivate static let java$security$cert$CertPathValidatorException$BasicReason_values__Ajava$security$cert$CertPathValidatorException$BasicReason = svoker("values", returns: JArray(JObjectType("java/security/cert/CertPathValidatorException$BasicReason")))

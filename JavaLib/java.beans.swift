@@ -1563,7 +1563,7 @@ public extension java$beans$DesignMode {
     private typealias I = java$beans$DesignMode$Impl
 
     static var PROPERTYNAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$beans$DesignMode__PROPERTYNAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$beans$DesignMode__PROPERTYNAME__java$lang$String.getter()) }
     }
 
     func setDesignTime(_ a0: jboolean) throws -> Void {

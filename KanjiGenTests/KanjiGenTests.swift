@@ -11,11 +11,13 @@ import XCTest
 import KanjiVM
 
 class KanjiGenTests: XCTestCase {
-    func testGeneration() throws {
+    func testGeneration() {
         do {
             // see JavaLib.knj for class list and generation info
             let classes = try String(contentsOf: Bundle(for: type(of: self)).url(forResource: "JavaLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
             try gencode(classes)
+        } catch {
+            XCTFail("error generating code: \(error)")
         }
     }
 
@@ -31,7 +33,7 @@ class KanjiGenTests: XCTestCase {
         let header = "import KanjiVM\n\n"
 
         try KanjiGen.generateShims(disassembly) { name, mode, code in
-            let packname = name.characters.split(whereSeparator: { $0 == "." || $0 == "$" }).map(String.init).filter({ $0 == $0.lowercased() }).joined(separator: ".")
+            let packname = name.split(whereSeparator: { $0 == "." || $0 == "$" }).map(String.init).filter({ $0 == $0.lowercased() }).joined(separator: ".")
             var packcode = packages[packname] ?? header
             packcode += code
             packages[packname] = packcode

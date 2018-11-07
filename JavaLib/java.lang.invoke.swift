@@ -103,12 +103,12 @@ open class java$lang$invoke$VolatileCallSite : java$lang$invoke$CallSite {
 
 public typealias java$lang$invoke$VolatileCallSite$Impl = java$lang$invoke$VolatileCallSite
 
-open class java$lang$invoke$LambdaMetafactory : java$lang$Object {
+public final class java$lang$invoke$LambdaMetafactory : java$lang$Object {
     private typealias J = java$lang$invoke$LambdaMetafactory
     private typealias I = java$lang$invoke$LambdaMetafactory$Impl
 
     /// Returns the internal JNI name for this class: "java/lang/invoke/LambdaMetafactory"
-    open class override func jniName() -> String { return "java/lang/invoke/LambdaMetafactory" }
+    public class override func jniName() -> String { return "java/lang/invoke/LambdaMetafactory" }
 
     fileprivate static let java$lang$invoke$LambdaMetafactory__FLAG_SERIALIZABLE__I = J.saccessor("FLAG_SERIALIZABLE", type: jint.jniType)
     public static var FLAG_SERIALIZABLE: jint {
@@ -123,11 +123,6 @@ open class java$lang$invoke$LambdaMetafactory : java$lang$Object {
     fileprivate static let java$lang$invoke$LambdaMetafactory__FLAG_BRIDGES__I = J.saccessor("FLAG_BRIDGES", type: jint.jniType)
     public static var FLAG_BRIDGES: jint {
         get { return I.java$lang$invoke$LambdaMetafactory__FLAG_BRIDGES__I.getter() }
-    }
-
-    fileprivate static let java$lang$invoke$LambdaMetafactory_init__V = constructor()
-    public convenience init() throws {
-        try self.init(creator: I.java$lang$invoke$LambdaMetafactory_init__V())
     }
 
     fileprivate static let java$lang$invoke$LambdaMetafactory_metafactory_java$lang$invoke$MethodHandles$Lookup_java$lang$String_java$lang$invoke$MethodType_java$lang$invoke$MethodType_java$lang$invoke$MethodHandle_java$lang$invoke$MethodType__java$lang$invoke$CallSite = svoker("metafactory", returns: JObjectType("java/lang/invoke/CallSite"), arguments: (JObjectType("java/lang/invoke/MethodHandles$Lookup"), JObjectType("java/lang/String"), JObjectType("java/lang/invoke/MethodType"), JObjectType("java/lang/invoke/MethodType"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodType")))
@@ -186,9 +181,24 @@ open class java$lang$invoke$MethodHandle : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandle_asSpreader_java$lang$Class_I__java$lang$invoke$MethodHandle(jobj)(a0?.jobj ?? nil, a1)) as java$lang$invoke$MethodHandle$Impl?
     }
 
+    fileprivate static let java$lang$invoke$MethodHandle_asSpreader_I_java$lang$Class_I__java$lang$invoke$MethodHandle = invoker("asSpreader", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (jint.jniType, JObjectType("java/lang/Class"), jint.jniType))
+    public func asSpreader(_ a0: jint, _ a1: java$lang$Class?, _ a2: jint) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandle_asSpreader_I_java$lang$Class_I__java$lang$invoke$MethodHandle(jobj)(a0, a1?.jobj ?? nil, a2)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandle_withVarargs_Z__java$lang$invoke$MethodHandle = invoker("withVarargs", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (jboolean.jniType))
+    public func withVarargs(_ a0: jboolean) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandle_withVarargs_Z__java$lang$invoke$MethodHandle(jobj)(a0)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
     fileprivate static let java$lang$invoke$MethodHandle_asCollector_java$lang$Class_I__java$lang$invoke$MethodHandle = invoker("asCollector", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class"), jint.jniType))
     public func asCollector(_ a0: java$lang$Class?, _ a1: jint) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandle_asCollector_java$lang$Class_I__java$lang$invoke$MethodHandle(jobj)(a0?.jobj ?? nil, a1)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandle_asCollector_I_java$lang$Class_I__java$lang$invoke$MethodHandle = invoker("asCollector", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (jint.jniType, JObjectType("java/lang/Class"), jint.jniType))
+    public func asCollector(_ a0: jint, _ a1: java$lang$Class?, _ a2: jint) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandle_asCollector_I_java$lang$Class_I__java$lang$invoke$MethodHandle(jobj)(a0, a1?.jobj ?? nil, a2)) as java$lang$invoke$MethodHandle$Impl?
     }
 
     fileprivate static let java$lang$invoke$MethodHandle_asVarargsCollector_java$lang$Class__java$lang$invoke$MethodHandle = invoker("asVarargsCollector", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class")))
@@ -264,9 +274,24 @@ open class java$lang$invoke$MethodHandles : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_publicLookup__java$lang$invoke$MethodHandles$Lookup()) as java$lang$invoke$MethodHandles$Lookup$Impl?
     }
 
+    fileprivate static let java$lang$invoke$MethodHandles_privateLookupIn_java$lang$Class_java$lang$invoke$MethodHandles$Lookup__java$lang$invoke$MethodHandles$Lookup = svoker("privateLookupIn", returns: JObjectType("java/lang/invoke/MethodHandles$Lookup"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/invoke/MethodHandles$Lookup")))
+    public static func privateLookupIn(_ a0: java$lang$Class?, _ a1: java$lang$invoke$MethodHandles$Lookup?) throws -> java$lang$invoke$MethodHandles$Lookup? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_privateLookupIn_java$lang$Class_java$lang$invoke$MethodHandles$Lookup__java$lang$invoke$MethodHandles$Lookup(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$MethodHandles$Lookup$Impl?
+    }
+
     fileprivate static let java$lang$invoke$MethodHandles_reflectAs_java$lang$Class_java$lang$invoke$MethodHandle__java$lang$reflect$Member = svoker("reflectAs", returns: JObjectType("java/lang/reflect/Member"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/invoke/MethodHandle")))
     public static func reflectAs(_ a0: java$lang$Class?, _ a1: java$lang$invoke$MethodHandle?) throws -> java$lang$reflect$Member? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_reflectAs_java$lang$Class_java$lang$invoke$MethodHandle__java$lang$reflect$Member(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$reflect$Member$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_arrayConstructor_java$lang$Class__java$lang$invoke$MethodHandle = svoker("arrayConstructor", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class")))
+    public static func arrayConstructor(_ a0: java$lang$Class?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_arrayConstructor_java$lang$Class__java$lang$invoke$MethodHandle(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_arrayLength_java$lang$Class__java$lang$invoke$MethodHandle = svoker("arrayLength", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class")))
+    public static func arrayLength(_ a0: java$lang$Class?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_arrayLength_java$lang$Class__java$lang$invoke$MethodHandle(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
     }
 
     fileprivate static let java$lang$invoke$MethodHandles_arrayElementGetter_java$lang$Class__java$lang$invoke$MethodHandle = svoker("arrayElementGetter", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class")))
@@ -277,6 +302,21 @@ open class java$lang$invoke$MethodHandles : java$lang$Object {
     fileprivate static let java$lang$invoke$MethodHandles_arrayElementSetter_java$lang$Class__java$lang$invoke$MethodHandle = svoker("arrayElementSetter", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class")))
     public static func arrayElementSetter(_ a0: java$lang$Class?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_arrayElementSetter_java$lang$Class__java$lang$invoke$MethodHandle(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_arrayElementVarHandle_java$lang$Class__java$lang$invoke$VarHandle = svoker("arrayElementVarHandle", returns: JObjectType("java/lang/invoke/VarHandle"), arguments: (JObjectType("java/lang/Class")))
+    public static func arrayElementVarHandle(_ a0: java$lang$Class?) throws -> java$lang$invoke$VarHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_arrayElementVarHandle_java$lang$Class__java$lang$invoke$VarHandle(a0?.jobj ?? nil)) as java$lang$invoke$VarHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_byteArrayViewVarHandle_java$lang$Class_java$nio$ByteOrder__java$lang$invoke$VarHandle = svoker("byteArrayViewVarHandle", returns: JObjectType("java/lang/invoke/VarHandle"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/nio/ByteOrder")))
+    public static func byteArrayViewVarHandle(_ a0: java$lang$Class?, _ a1: java$nio$ByteOrder?) throws -> java$lang$invoke$VarHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_byteArrayViewVarHandle_java$lang$Class_java$nio$ByteOrder__java$lang$invoke$VarHandle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$VarHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_byteBufferViewVarHandle_java$lang$Class_java$nio$ByteOrder__java$lang$invoke$VarHandle = svoker("byteBufferViewVarHandle", returns: JObjectType("java/lang/invoke/VarHandle"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/nio/ByteOrder")))
+    public static func byteBufferViewVarHandle(_ a0: java$lang$Class?, _ a1: java$nio$ByteOrder?) throws -> java$lang$invoke$VarHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_byteBufferViewVarHandle_java$lang$Class_java$nio$ByteOrder__java$lang$invoke$VarHandle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$VarHandle$Impl?
     }
 
     fileprivate static let java$lang$invoke$MethodHandles_spreadInvoker_java$lang$invoke$MethodType_I__java$lang$invoke$MethodHandle = svoker("spreadInvoker", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodType"), jint.jniType))
@@ -292,6 +332,16 @@ open class java$lang$invoke$MethodHandles : java$lang$Object {
     fileprivate static let java$lang$invoke$MethodHandles_invoker_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle = svoker("invoker", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodType")))
     public static func invoker(_ a0: java$lang$invoke$MethodType?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_invoker_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_varHandleExactInvoker_java$lang$invoke$VarHandle$AccessMode_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle = svoker("varHandleExactInvoker", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/VarHandle$AccessMode"), JObjectType("java/lang/invoke/MethodType")))
+    public static func varHandleExactInvoker(_ a0: java$lang$invoke$VarHandle$AccessMode?, _ a1: java$lang$invoke$MethodType?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_varHandleExactInvoker_java$lang$invoke$VarHandle$AccessMode_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_varHandleInvoker_java$lang$invoke$VarHandle$AccessMode_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle = svoker("varHandleInvoker", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/VarHandle$AccessMode"), JObjectType("java/lang/invoke/MethodType")))
+    public static func varHandleInvoker(_ a0: java$lang$invoke$VarHandle$AccessMode?, _ a1: java$lang$invoke$MethodType?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_varHandleInvoker_java$lang$invoke$VarHandle$AccessMode_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
     }
 
     fileprivate static let java$lang$invoke$MethodHandles_explicitCastArguments_java$lang$invoke$MethodHandle_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle = svoker("explicitCastArguments", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodType")))
@@ -314,6 +364,16 @@ open class java$lang$invoke$MethodHandles : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_identity_java$lang$Class__java$lang$invoke$MethodHandle(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
     }
 
+    fileprivate static let java$lang$invoke$MethodHandles_zero_java$lang$Class__java$lang$invoke$MethodHandle = svoker("zero", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class")))
+    public static func zero(_ a0: java$lang$Class?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_zero_java$lang$Class__java$lang$invoke$MethodHandle(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_empty_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle = svoker("empty", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodType")))
+    public static func empty(_ a0: java$lang$invoke$MethodType?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_empty_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
     fileprivate static let java$lang$invoke$MethodHandles_insertArguments_java$lang$invoke$MethodHandle_I_Ajava$lang$Object__java$lang$invoke$MethodHandle = svoker("insertArguments", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), jint.jniType, JArray(JObjectType("java/lang/Object"))))
     public static func insertArguments(_ a0: java$lang$invoke$MethodHandle?, _ a1: jint, _ a2: [java$lang$Object?]?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_insertArguments_java$lang$invoke$MethodHandle_I_Ajava$lang$Object__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1, a2?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)) as java$lang$invoke$MethodHandle$Impl?
@@ -327,6 +387,11 @@ open class java$lang$invoke$MethodHandles : java$lang$Object {
     fileprivate static let java$lang$invoke$MethodHandles_dropArguments_java$lang$invoke$MethodHandle_I_Ajava$lang$Class__java$lang$invoke$MethodHandle = svoker("dropArguments", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), jint.jniType, JArray(JObjectType("java/lang/Class"))))
     public static func dropArguments(_ a0: java$lang$invoke$MethodHandle?, _ a1: jint, _ a2: [java$lang$Class?]?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_dropArguments_java$lang$invoke$MethodHandle_I_Ajava$lang$Class__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1, a2?.map({ java$lang$Class$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_dropArgumentsToMatch_java$lang$invoke$MethodHandle_I_java$util$List_I__java$lang$invoke$MethodHandle = svoker("dropArgumentsToMatch", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), jint.jniType, JObjectType("java/util/List"), jint.jniType))
+    public static func dropArgumentsToMatch(_ a0: java$lang$invoke$MethodHandle?, _ a1: jint, _ a2: java$util$List?, _ a3: jint) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_dropArgumentsToMatch_java$lang$invoke$MethodHandle_I_java$util$List_I__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1, a2?.jobj ?? nil, a3)) as java$lang$invoke$MethodHandle$Impl?
     }
 
     fileprivate static let java$lang$invoke$MethodHandles_filterArguments_java$lang$invoke$MethodHandle_I_Ajava$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("filterArguments", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), jint.jniType, JArray(JObjectType("java/lang/invoke/MethodHandle"))))
@@ -349,6 +414,11 @@ open class java$lang$invoke$MethodHandles : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_foldArguments_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
     }
 
+    fileprivate static let java$lang$invoke$MethodHandles_foldArguments_java$lang$invoke$MethodHandle_I_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("foldArguments", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), jint.jniType, JObjectType("java/lang/invoke/MethodHandle")))
+    public static func foldArguments(_ a0: java$lang$invoke$MethodHandle?, _ a1: jint, _ a2: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_foldArguments_java$lang$invoke$MethodHandle_I_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
     fileprivate static let java$lang$invoke$MethodHandles_guardWithTest_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("guardWithTest", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle")))
     public static func guardWithTest(_ a0: java$lang$invoke$MethodHandle?, _ a1: java$lang$invoke$MethodHandle?, _ a2: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_guardWithTest_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
@@ -362,6 +432,36 @@ open class java$lang$invoke$MethodHandles : java$lang$Object {
     fileprivate static let java$lang$invoke$MethodHandles_throwException_java$lang$Class_java$lang$Class__java$lang$invoke$MethodHandle = svoker("throwException", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/Class")))
     public static func throwException(_ a0: java$lang$Class?, _ a1: java$lang$Class?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_throwException_java$lang$Class_java$lang$Class__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_whileLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("whileLoop", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle")))
+    public static func whileLoop(_ a0: java$lang$invoke$MethodHandle?, _ a1: java$lang$invoke$MethodHandle?, _ a2: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_whileLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_doWhileLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("doWhileLoop", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle")))
+    public static func doWhileLoop(_ a0: java$lang$invoke$MethodHandle?, _ a1: java$lang$invoke$MethodHandle?, _ a2: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_doWhileLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_countedLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("countedLoop", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle")))
+    public static func countedLoop(_ a0: java$lang$invoke$MethodHandle?, _ a1: java$lang$invoke$MethodHandle?, _ a2: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_countedLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_countedLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("countedLoop", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle")))
+    public static func countedLoop(_ a0: java$lang$invoke$MethodHandle?, _ a1: java$lang$invoke$MethodHandle?, _ a2: java$lang$invoke$MethodHandle?, _ a3: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_countedLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_iteratedLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("iteratedLoop", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle")))
+    public static func iteratedLoop(_ a0: java$lang$invoke$MethodHandle?, _ a1: java$lang$invoke$MethodHandle?, _ a2: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_iteratedLoop_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles_tryFinally_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle = svoker("tryFinally", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/invoke/MethodHandle"), JObjectType("java/lang/invoke/MethodHandle")))
+    public static func tryFinally(_ a0: java$lang$invoke$MethodHandle?, _ a1: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles_tryFinally_java$lang$invoke$MethodHandle_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
     }
 
 }
@@ -395,6 +495,16 @@ public final class java$lang$invoke$MethodHandles$Lookup : java$lang$Object {
         get { return I.java$lang$invoke$MethodHandles$Lookup__PACKAGE__I.getter() }
     }
 
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup__MODULE__I = J.saccessor("MODULE", type: jint.jniType)
+    public static var MODULE: jint {
+        get { return I.java$lang$invoke$MethodHandles$Lookup__MODULE__I.getter() }
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup__UNCONDITIONAL__I = J.saccessor("UNCONDITIONAL", type: jint.jniType)
+    public static var UNCONDITIONAL: jint {
+        get { return I.java$lang$invoke$MethodHandles$Lookup__UNCONDITIONAL__I.getter() }
+    }
+
     fileprivate static let java$lang$invoke$MethodHandles$Lookup_lookupClass__java$lang$Class = invoker("lookupClass", returns: JObjectType("java/lang/Class"))
     public func lookupClass() throws -> java$lang$Class? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_lookupClass__java$lang$Class(jobj)()) as java$lang$Class$Impl?
@@ -408,6 +518,16 @@ public final class java$lang$invoke$MethodHandles$Lookup : java$lang$Object {
     fileprivate static let java$lang$invoke$MethodHandles$Lookup_in_java$lang$Class__java$lang$invoke$MethodHandles$Lookup = invoker("in", returns: JObjectType("java/lang/invoke/MethodHandles$Lookup"), arguments: (JObjectType("java/lang/Class")))
     public func `in`(_ a0: java$lang$Class?) throws -> java$lang$invoke$MethodHandles$Lookup? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_in_java$lang$Class__java$lang$invoke$MethodHandles$Lookup(jobj)(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandles$Lookup$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup_dropLookupMode_I__java$lang$invoke$MethodHandles$Lookup = invoker("dropLookupMode", returns: JObjectType("java/lang/invoke/MethodHandles$Lookup"), arguments: (jint.jniType))
+    public func dropLookupMode(_ a0: jint) throws -> java$lang$invoke$MethodHandles$Lookup? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_dropLookupMode_I__java$lang$invoke$MethodHandles$Lookup(jobj)(a0)) as java$lang$invoke$MethodHandles$Lookup$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup_defineClass_AB__java$lang$Class = invoker("defineClass", returns: JObjectType("java/lang/Class"), arguments: (JArray(jbyte.jniType)))
+    public func defineClass(_ a0: [jbyte]?) throws -> java$lang$Class? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_defineClass_AB__java$lang$Class(jobj)(a0?.arrayToJArray() ?? nil)) as java$lang$Class$Impl?
     }
 
     fileprivate static let java$lang$invoke$MethodHandles$Lookup_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
@@ -426,6 +546,16 @@ public final class java$lang$invoke$MethodHandles$Lookup : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_findConstructor_java$lang$Class_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
     }
 
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup_findClass_java$lang$String__java$lang$Class = invoker("findClass", returns: JObjectType("java/lang/Class"), arguments: (JObjectType("java/lang/String")))
+    public func findClass(_ a0: java$lang$String?) throws -> java$lang$Class? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_findClass_java$lang$String__java$lang$Class(jobj)(a0?.jobj ?? nil)) as java$lang$Class$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup_accessClass_java$lang$Class__java$lang$Class = invoker("accessClass", returns: JObjectType("java/lang/Class"), arguments: (JObjectType("java/lang/Class")))
+    public func accessClass(_ a0: java$lang$Class?) throws -> java$lang$Class? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_accessClass_java$lang$Class__java$lang$Class(jobj)(a0?.jobj ?? nil)) as java$lang$Class$Impl?
+    }
+
     fileprivate static let java$lang$invoke$MethodHandles$Lookup_findSpecial_java$lang$Class_java$lang$String_java$lang$invoke$MethodType_java$lang$Class__java$lang$invoke$MethodHandle = invoker("findSpecial", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/invoke/MethodType"), JObjectType("java/lang/Class")))
     public func findSpecial(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$invoke$MethodType?, _ a3: java$lang$Class?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_findSpecial_java$lang$Class_java$lang$String_java$lang$invoke$MethodType_java$lang$Class__java$lang$invoke$MethodHandle(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
@@ -441,6 +571,11 @@ public final class java$lang$invoke$MethodHandles$Lookup : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_findSetter_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$MethodHandle(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
     }
 
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup_findVarHandle_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$VarHandle = invoker("findVarHandle", returns: JObjectType("java/lang/invoke/VarHandle"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/Class")))
+    public func findVarHandle(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?) throws -> java$lang$invoke$VarHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_findVarHandle_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$VarHandle(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$VarHandle$Impl?
+    }
+
     fileprivate static let java$lang$invoke$MethodHandles$Lookup_findStaticGetter_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$MethodHandle = invoker("findStaticGetter", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/Class")))
     public func findStaticGetter(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_findStaticGetter_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$MethodHandle(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
@@ -449,6 +584,11 @@ public final class java$lang$invoke$MethodHandles$Lookup : java$lang$Object {
     fileprivate static let java$lang$invoke$MethodHandles$Lookup_findStaticSetter_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$MethodHandle = invoker("findStaticSetter", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/Class")))
     public func findStaticSetter(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?) throws -> java$lang$invoke$MethodHandle? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_findStaticSetter_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$MethodHandle(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup_findStaticVarHandle_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$VarHandle = invoker("findStaticVarHandle", returns: JObjectType("java/lang/invoke/VarHandle"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/String"), JObjectType("java/lang/Class")))
+    public func findStaticVarHandle(_ a0: java$lang$Class?, _ a1: java$lang$String?, _ a2: java$lang$Class?) throws -> java$lang$invoke$VarHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_findStaticVarHandle_java$lang$Class_java$lang$String_java$lang$Class__java$lang$invoke$VarHandle(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$invoke$VarHandle$Impl?
     }
 
     fileprivate static let java$lang$invoke$MethodHandles$Lookup_bind_java$lang$Object_java$lang$String_java$lang$invoke$MethodType__java$lang$invoke$MethodHandle = invoker("bind", returns: JObjectType("java/lang/invoke/MethodHandle"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/String"), JObjectType("java/lang/invoke/MethodType")))
@@ -481,9 +621,19 @@ public final class java$lang$invoke$MethodHandles$Lookup : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_unreflectSetter_java$lang$reflect$Field__java$lang$invoke$MethodHandle(jobj)(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandle$Impl?
     }
 
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup_unreflectVarHandle_java$lang$reflect$Field__java$lang$invoke$VarHandle = invoker("unreflectVarHandle", returns: JObjectType("java/lang/invoke/VarHandle"), arguments: (JObjectType("java/lang/reflect/Field")))
+    public func unreflectVarHandle(_ a0: java$lang$reflect$Field?) throws -> java$lang$invoke$VarHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_unreflectVarHandle_java$lang$reflect$Field__java$lang$invoke$VarHandle(jobj)(a0?.jobj ?? nil)) as java$lang$invoke$VarHandle$Impl?
+    }
+
     fileprivate static let java$lang$invoke$MethodHandles$Lookup_revealDirect_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandleInfo = invoker("revealDirect", returns: JObjectType("java/lang/invoke/MethodHandleInfo"), arguments: (JObjectType("java/lang/invoke/MethodHandle")))
     public func revealDirect(_ a0: java$lang$invoke$MethodHandle?) throws -> java$lang$invoke$MethodHandleInfo? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandles$Lookup_revealDirect_java$lang$invoke$MethodHandle__java$lang$invoke$MethodHandleInfo(jobj)(a0?.jobj ?? nil)) as java$lang$invoke$MethodHandleInfo$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodHandles$Lookup_hasPrivateAccess__Z = invoker("hasPrivateAccess", returns: jboolean.jniType)
+    public func hasPrivateAccess() throws -> jboolean {
+        return try I.java$lang$invoke$MethodHandles$Lookup_hasPrivateAccess__Z(jobj)()
     }
 
 }
@@ -620,6 +770,11 @@ public final class java$lang$invoke$MethodType : java$lang$Object, java$io$Seria
     fileprivate static let java$lang$invoke$MethodType_parameterList__java$util$List = invoker("parameterList", returns: JObjectType("java/util/List"))
     public func parameterList() throws -> java$util$List? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodType_parameterList__java$util$List(jobj)()) as java$util$List$Impl?
+    }
+
+    fileprivate static let java$lang$invoke$MethodType_lastParameterType__java$lang$Class = invoker("lastParameterType", returns: JObjectType("java/lang/Class"))
+    public func lastParameterType() throws -> java$lang$Class? {
+        return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodType_lastParameterType__java$lang$Class(jobj)()) as java$lang$Class$Impl?
     }
 
     fileprivate static let java$lang$invoke$MethodType_parameterArray__Ajava$lang$Class = invoker("parameterArray", returns: JArray(JObjectType("java/lang/Class")))
@@ -936,6 +1091,30 @@ public extension java$lang$invoke$MethodHandleInfo {
     static func toString(_ a0: jint, _ a1: java$lang$Class?, _ a2: java$lang$String?, _ a3: java$lang$invoke$MethodType?) throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$lang$invoke$MethodHandleInfo_toString_I_java$lang$Class_java$lang$String_java$lang$invoke$MethodType__java$lang$String(a0, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil)) as java$lang$String$Impl?
     }
+
+}
+
+public protocol java$lang$invoke$VarHandle$AccessMode : JavaObject {
+}
+
+open class java$lang$invoke$VarHandle$AccessMode$Impl : java$lang$Object, java$lang$invoke$VarHandle$AccessMode {
+    private typealias J = java$lang$invoke$VarHandle$AccessMode$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/invoke/VarHandle$AccessMode"
+    open class override func jniName() -> String { return "java/lang/invoke/VarHandle$AccessMode" }
+
+}
+
+public protocol java$lang$invoke$VarHandle : JavaObject {
+}
+
+open class java$lang$invoke$VarHandle$Impl : java$lang$Object, java$lang$invoke$VarHandle {
+    private typealias J = java$lang$invoke$VarHandle$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/invoke/VarHandle"
+    open class override func jniName() -> String { return "java/lang/invoke/VarHandle" }
 
 }
 

@@ -112,9 +112,19 @@ public final class java$util$regex$Matcher : java$lang$Object, java$util$regex$M
         return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_appendReplacement_java$lang$StringBuffer_java$lang$String__java$util$regex$Matcher(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$regex$Matcher$Impl?
     }
 
+    fileprivate static let java$util$regex$Matcher_appendReplacement_java$lang$StringBuilder_java$lang$String__java$util$regex$Matcher = invoker("appendReplacement", returns: JObjectType("java/util/regex/Matcher"), arguments: (JObjectType("java/lang/StringBuilder"), JObjectType("java/lang/String")))
+    public func appendReplacement(_ a0: java$lang$StringBuilder?, _ a1: java$lang$String?) throws -> java$util$regex$Matcher? {
+        return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_appendReplacement_java$lang$StringBuilder_java$lang$String__java$util$regex$Matcher(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$regex$Matcher$Impl?
+    }
+
     fileprivate static let java$util$regex$Matcher_appendTail_java$lang$StringBuffer__java$lang$StringBuffer = invoker("appendTail", returns: JObjectType("java/lang/StringBuffer"), arguments: (JObjectType("java/lang/StringBuffer")))
     public func appendTail(_ a0: java$lang$StringBuffer?) throws -> java$lang$StringBuffer? {
         return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_appendTail_java$lang$StringBuffer__java$lang$StringBuffer(jobj)(a0?.jobj ?? nil)) as java$lang$StringBuffer$Impl?
+    }
+
+    fileprivate static let java$util$regex$Matcher_appendTail_java$lang$StringBuilder__java$lang$StringBuilder = invoker("appendTail", returns: JObjectType("java/lang/StringBuilder"), arguments: (JObjectType("java/lang/StringBuilder")))
+    public func appendTail(_ a0: java$lang$StringBuilder?) throws -> java$lang$StringBuilder? {
+        return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_appendTail_java$lang$StringBuilder__java$lang$StringBuilder(jobj)(a0?.jobj ?? nil)) as java$lang$StringBuilder$Impl?
     }
 
     fileprivate static let java$util$regex$Matcher_replaceAll_java$lang$String__java$lang$String = invoker("replaceAll", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String")))
@@ -122,9 +132,24 @@ public final class java$util$regex$Matcher : java$lang$Object, java$util$regex$M
         return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_replaceAll_java$lang$String__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
     }
 
+    fileprivate static let java$util$regex$Matcher_replaceAll_java$util$function$Function__java$lang$String = invoker("replaceAll", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/util/function/Function")))
+    public func replaceAll(_ a0: java$util$function$Function?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_replaceAll_java$util$function$Function__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
+    }
+
+    fileprivate static let java$util$regex$Matcher_results__java$util$stream$Stream = invoker("results", returns: JObjectType("java/util/stream/Stream"))
+    public func results() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_results__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
+    }
+
     fileprivate static let java$util$regex$Matcher_replaceFirst_java$lang$String__java$lang$String = invoker("replaceFirst", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String")))
     public func replaceFirst(_ a0: java$lang$String?) throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_replaceFirst_java$lang$String__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
+    }
+
+    fileprivate static let java$util$regex$Matcher_replaceFirst_java$util$function$Function__java$lang$String = invoker("replaceFirst", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/util/function/Function")))
+    public func replaceFirst(_ a0: java$util$function$Function?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$util$regex$Matcher_replaceFirst_java$util$function$Function__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
     }
 
     fileprivate static let java$util$regex$Matcher_region_I_I__java$util$regex$Matcher = invoker("region", returns: JObjectType("java/util/regex/Matcher"), arguments: (jint.jniType, jint.jniType))

@@ -38,7 +38,7 @@ public final class java$time$chrono$HijrahChronology : java$time$chrono$Abstract
 
     fileprivate static let java$time$chrono$HijrahChronology__INSTANCE__java$time$chrono$HijrahChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/HijrahChronology"))
     public static var INSTANCE: java$time$chrono$HijrahChronology? {
-        get { return java$time$chrono$HijrahChronology$Impl(constructor: I.java$time$chrono$HijrahChronology__INSTANCE__java$time$chrono$HijrahChronology.getter()) }
+        get { return java$time$chrono$HijrahChronology$Impl(reference: I.java$time$chrono$HijrahChronology__INSTANCE__java$time$chrono$HijrahChronology.getter()) }
     }
 
     fileprivate static let java$time$chrono$HijrahChronology_getId__java$lang$String = invoker("getId", returns: JObjectType("java/lang/String"))
@@ -201,7 +201,7 @@ public final class java$time$chrono$IsoChronology : java$time$chrono$AbstractChr
 
     fileprivate static let java$time$chrono$IsoChronology__INSTANCE__java$time$chrono$IsoChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/IsoChronology"))
     public static var INSTANCE: java$time$chrono$IsoChronology? {
-        get { return java$time$chrono$IsoChronology$Impl(constructor: I.java$time$chrono$IsoChronology__INSTANCE__java$time$chrono$IsoChronology.getter()) }
+        get { return java$time$chrono$IsoChronology$Impl(reference: I.java$time$chrono$IsoChronology__INSTANCE__java$time$chrono$IsoChronology.getter()) }
     }
 
     fileprivate static let java$time$chrono$IsoChronology_getId__java$lang$String = invoker("getId", returns: JObjectType("java/lang/String"))
@@ -242,6 +242,11 @@ public final class java$time$chrono$IsoChronology : java$time$chrono$AbstractChr
     fileprivate static let java$time$chrono$IsoChronology_date_java$time$temporal$TemporalAccessor__java$time$LocalDate = invoker("date", returns: JObjectType("java/time/LocalDate"), arguments: (JObjectType("java/time/temporal/TemporalAccessor")))
     public func date(_ a0: java$time$temporal$TemporalAccessor?) throws -> java$time$LocalDate? {
         return try JVM.sharedJVM.construct(I.java$time$chrono$IsoChronology_date_java$time$temporal$TemporalAccessor__java$time$LocalDate(jobj)(a0?.jobj ?? nil)) as java$time$LocalDate$Impl?
+    }
+
+    fileprivate static let java$time$chrono$IsoChronology_epochSecond_I_I_I_I_I_I_java$time$ZoneOffset__J = invoker("epochSecond", returns: jlong.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, JObjectType("java/time/ZoneOffset")))
+    public func epochSecond(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: java$time$ZoneOffset?) throws -> jlong {
+        return try I.java$time$chrono$IsoChronology_epochSecond_I_I_I_I_I_I_java$time$ZoneOffset__J(jobj)(a0, a1, a2, a3, a4, a5, a6?.jobj ?? nil)
     }
 
     fileprivate static let java$time$chrono$IsoChronology_localDateTime_java$time$temporal$TemporalAccessor__java$time$LocalDateTime = invoker("localDateTime", returns: JObjectType("java/time/LocalDateTime"), arguments: (JObjectType("java/time/temporal/TemporalAccessor")))
@@ -389,7 +394,7 @@ public final class java$time$chrono$JapaneseChronology : java$time$chrono$Abstra
 
     fileprivate static let java$time$chrono$JapaneseChronology__INSTANCE__java$time$chrono$JapaneseChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/JapaneseChronology"))
     public static var INSTANCE: java$time$chrono$JapaneseChronology? {
-        get { return java$time$chrono$JapaneseChronology$Impl(constructor: I.java$time$chrono$JapaneseChronology__INSTANCE__java$time$chrono$JapaneseChronology.getter()) }
+        get { return java$time$chrono$JapaneseChronology$Impl(reference: I.java$time$chrono$JapaneseChronology__INSTANCE__java$time$chrono$JapaneseChronology.getter()) }
     }
 
     fileprivate static let java$time$chrono$JapaneseChronology_getId__java$lang$String = invoker("getId", returns: JObjectType("java/lang/String"))
@@ -552,7 +557,7 @@ public final class java$time$chrono$MinguoChronology : java$time$chrono$Abstract
 
     fileprivate static let java$time$chrono$MinguoChronology__INSTANCE__java$time$chrono$MinguoChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/MinguoChronology"))
     public static var INSTANCE: java$time$chrono$MinguoChronology? {
-        get { return java$time$chrono$MinguoChronology$Impl(constructor: I.java$time$chrono$MinguoChronology__INSTANCE__java$time$chrono$MinguoChronology.getter()) }
+        get { return java$time$chrono$MinguoChronology$Impl(reference: I.java$time$chrono$MinguoChronology__INSTANCE__java$time$chrono$MinguoChronology.getter()) }
     }
 
     fileprivate static let java$time$chrono$MinguoChronology_getId__java$lang$String = invoker("getId", returns: JObjectType("java/lang/String"))
@@ -715,7 +720,7 @@ public final class java$time$chrono$ThaiBuddhistChronology : java$time$chrono$Ab
 
     fileprivate static let java$time$chrono$ThaiBuddhistChronology__INSTANCE__java$time$chrono$ThaiBuddhistChronology = J.saccessor("INSTANCE", type: JObjectType("java/time/chrono/ThaiBuddhistChronology"))
     public static var INSTANCE: java$time$chrono$ThaiBuddhistChronology? {
-        get { return java$time$chrono$ThaiBuddhistChronology$Impl(constructor: I.java$time$chrono$ThaiBuddhistChronology__INSTANCE__java$time$chrono$ThaiBuddhistChronology.getter()) }
+        get { return java$time$chrono$ThaiBuddhistChronology$Impl(reference: I.java$time$chrono$ThaiBuddhistChronology__INSTANCE__java$time$chrono$ThaiBuddhistChronology.getter()) }
     }
 
     fileprivate static let java$time$chrono$ThaiBuddhistChronology_getId__java$lang$String = invoker("getId", returns: JObjectType("java/lang/String"))
@@ -1203,22 +1208,22 @@ public final class java$time$chrono$JapaneseEra : java$lang$Object, java$time$ch
 
     fileprivate static let java$time$chrono$JapaneseEra__MEIJI__java$time$chrono$JapaneseEra = J.saccessor("MEIJI", type: JObjectType("java/time/chrono/JapaneseEra"))
     public static var MEIJI: java$time$chrono$JapaneseEra? {
-        get { return java$time$chrono$JapaneseEra$Impl(constructor: I.java$time$chrono$JapaneseEra__MEIJI__java$time$chrono$JapaneseEra.getter()) }
+        get { return java$time$chrono$JapaneseEra$Impl(reference: I.java$time$chrono$JapaneseEra__MEIJI__java$time$chrono$JapaneseEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$JapaneseEra__TAISHO__java$time$chrono$JapaneseEra = J.saccessor("TAISHO", type: JObjectType("java/time/chrono/JapaneseEra"))
     public static var TAISHO: java$time$chrono$JapaneseEra? {
-        get { return java$time$chrono$JapaneseEra$Impl(constructor: I.java$time$chrono$JapaneseEra__TAISHO__java$time$chrono$JapaneseEra.getter()) }
+        get { return java$time$chrono$JapaneseEra$Impl(reference: I.java$time$chrono$JapaneseEra__TAISHO__java$time$chrono$JapaneseEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$JapaneseEra__SHOWA__java$time$chrono$JapaneseEra = J.saccessor("SHOWA", type: JObjectType("java/time/chrono/JapaneseEra"))
     public static var SHOWA: java$time$chrono$JapaneseEra? {
-        get { return java$time$chrono$JapaneseEra$Impl(constructor: I.java$time$chrono$JapaneseEra__SHOWA__java$time$chrono$JapaneseEra.getter()) }
+        get { return java$time$chrono$JapaneseEra$Impl(reference: I.java$time$chrono$JapaneseEra__SHOWA__java$time$chrono$JapaneseEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$JapaneseEra__HEISEI__java$time$chrono$JapaneseEra = J.saccessor("HEISEI", type: JObjectType("java/time/chrono/JapaneseEra"))
     public static var HEISEI: java$time$chrono$JapaneseEra? {
-        get { return java$time$chrono$JapaneseEra$Impl(constructor: I.java$time$chrono$JapaneseEra__HEISEI__java$time$chrono$JapaneseEra.getter()) }
+        get { return java$time$chrono$JapaneseEra$Impl(reference: I.java$time$chrono$JapaneseEra__HEISEI__java$time$chrono$JapaneseEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$JapaneseEra_of_I__java$time$chrono$JapaneseEra = svoker("of", returns: JObjectType("java/time/chrono/JapaneseEra"), arguments: (jint.jniType))
@@ -1234,6 +1239,11 @@ public final class java$time$chrono$JapaneseEra : java$lang$Object, java$time$ch
     fileprivate static let java$time$chrono$JapaneseEra_values__Ajava$time$chrono$JapaneseEra = svoker("values", returns: JArray(JObjectType("java/time/chrono/JapaneseEra")))
     public static func values() throws -> [java$time$chrono$JapaneseEra?]? {
         return try I.java$time$chrono$JapaneseEra_values__Ajava$time$chrono$JapaneseEra()?.jarrayToArray(java$time$chrono$JapaneseEra$Impl.self)
+    }
+
+    fileprivate static let java$time$chrono$JapaneseEra_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String = invoker("getDisplayName", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/time/format/TextStyle"), JObjectType("java/util/Locale")))
+    public func getDisplayName(_ a0: java$time$format$TextStyle?, _ a1: java$util$Locale?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$time$chrono$JapaneseEra_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$String$Impl?
     }
 
     fileprivate static let java$time$chrono$JapaneseEra_getValue__I = invoker("getValue", returns: jint.jniType)
@@ -1944,6 +1954,8 @@ public protocol java$time$chrono$Chronology : java$lang$Comparable {
     func getDisplayName(_ a0: java$time$format$TextStyle?, _ a1: java$util$Locale?) throws -> java$lang$String?
     func resolveDate(_ a0: java$util$Map?, _ a1: java$time$format$ResolverStyle?) throws -> java$time$chrono$ChronoLocalDate?
     func period(_ a0: jint, _ a1: jint, _ a2: jint) throws -> java$time$chrono$ChronoPeriod?
+    func epochSecond(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: java$time$ZoneOffset?) throws -> jlong
+    func epochSecond(_ a0: java$time$chrono$Era?, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: java$time$ZoneOffset?) throws -> jlong
     func compareTo(_ a0: java$time$chrono$Chronology?) throws -> jint
     func equals(_ a0: java$lang$Object?) throws -> jboolean
     func hashCode() throws -> jint
@@ -1984,6 +1996,8 @@ open class java$time$chrono$Chronology$Impl : java$lang$Object, java$time$chrono
     fileprivate static let java$time$chrono$Chronology_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String = invoker("getDisplayName", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/time/format/TextStyle"), JObjectType("java/util/Locale")))
     fileprivate static let java$time$chrono$Chronology_resolveDate_java$util$Map_java$time$format$ResolverStyle__java$time$chrono$ChronoLocalDate = invoker("resolveDate", returns: JObjectType("java/time/chrono/ChronoLocalDate"), arguments: (JObjectType("java/util/Map"), JObjectType("java/time/format/ResolverStyle")))
     fileprivate static let java$time$chrono$Chronology_period_I_I_I__java$time$chrono$ChronoPeriod = invoker("period", returns: JObjectType("java/time/chrono/ChronoPeriod"), arguments: (jint.jniType, jint.jniType, jint.jniType))
+    fileprivate static let java$time$chrono$Chronology_epochSecond_I_I_I_I_I_I_java$time$ZoneOffset__J = invoker("epochSecond", returns: jlong.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, JObjectType("java/time/ZoneOffset")))
+    fileprivate static let java$time$chrono$Chronology_epochSecond_java$time$chrono$Era_I_I_I_I_I_I_java$time$ZoneOffset__J = invoker("epochSecond", returns: jlong.jniType, arguments: (JObjectType("java/time/chrono/Era"), jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, jint.jniType, JObjectType("java/time/ZoneOffset")))
     fileprivate static let java$time$chrono$Chronology_compareTo_java$time$chrono$Chronology__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/time/chrono/Chronology")))
     fileprivate static let java$time$chrono$Chronology_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$time$chrono$Chronology_hashCode__I = invoker("hashCode", returns: jint.jniType)
@@ -2097,6 +2111,14 @@ public extension java$time$chrono$Chronology {
 
     func period(_ a0: jint, _ a1: jint, _ a2: jint) throws -> java$time$chrono$ChronoPeriod? {
         return try JVM.sharedJVM.construct(I.java$time$chrono$Chronology_period_I_I_I__java$time$chrono$ChronoPeriod(jobj)(a0, a1, a2)) as java$time$chrono$ChronoPeriod$Impl?
+    }
+
+    func epochSecond(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: java$time$ZoneOffset?) throws -> jlong {
+        return try I.java$time$chrono$Chronology_epochSecond_I_I_I_I_I_I_java$time$ZoneOffset__J(jobj)(a0, a1, a2, a3, a4, a5, a6?.jobj ?? nil)
+    }
+
+    func epochSecond(_ a0: java$time$chrono$Era?, _ a1: jint, _ a2: jint, _ a3: jint, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: java$time$ZoneOffset?) throws -> jlong {
+        return try I.java$time$chrono$Chronology_epochSecond_java$time$chrono$Era_I_I_I_I_I_I_java$time$ZoneOffset__J(jobj)(a0?.jobj ?? nil, a1, a2, a3, a4, a5, a6, a7?.jobj ?? nil)
     }
 
     func compareTo(_ a0: java$time$chrono$Chronology?) throws -> jint {
@@ -2574,12 +2596,12 @@ public final class java$time$chrono$MinguoEra : java$lang$Enum, java$time$chrono
 
     fileprivate static let java$time$chrono$MinguoEra__BEFORE_ROC__java$time$chrono$MinguoEra = J.saccessor("BEFORE_ROC", type: JObjectType("java/time/chrono/MinguoEra"))
     public static var BEFORE_ROC: java$time$chrono$MinguoEra? {
-        get { return java$time$chrono$MinguoEra$Impl(constructor: I.java$time$chrono$MinguoEra__BEFORE_ROC__java$time$chrono$MinguoEra.getter()) }
+        get { return java$time$chrono$MinguoEra$Impl(reference: I.java$time$chrono$MinguoEra__BEFORE_ROC__java$time$chrono$MinguoEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$MinguoEra__ROC__java$time$chrono$MinguoEra = J.saccessor("ROC", type: JObjectType("java/time/chrono/MinguoEra"))
     public static var ROC: java$time$chrono$MinguoEra? {
-        get { return java$time$chrono$MinguoEra$Impl(constructor: I.java$time$chrono$MinguoEra__ROC__java$time$chrono$MinguoEra.getter()) }
+        get { return java$time$chrono$MinguoEra$Impl(reference: I.java$time$chrono$MinguoEra__ROC__java$time$chrono$MinguoEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$MinguoEra_values__Ajava$time$chrono$MinguoEra = svoker("values", returns: JArray(JObjectType("java/time/chrono/MinguoEra")))
@@ -2602,6 +2624,11 @@ public final class java$time$chrono$MinguoEra : java$lang$Enum, java$time$chrono
         return try I.java$time$chrono$MinguoEra_getValue__I(jobj)()
     }
 
+    fileprivate static let java$time$chrono$MinguoEra_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String = invoker("getDisplayName", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/time/format/TextStyle"), JObjectType("java/util/Locale")))
+    public func getDisplayName(_ a0: java$time$format$TextStyle?, _ a1: java$util$Locale?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$time$chrono$MinguoEra_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$String$Impl?
+    }
+
 }
 
 public typealias java$time$chrono$MinguoEra$Impl = java$time$chrono$MinguoEra
@@ -2615,7 +2642,7 @@ public final class java$time$chrono$HijrahEra : java$lang$Enum, java$time$chrono
 
     fileprivate static let java$time$chrono$HijrahEra__AH__java$time$chrono$HijrahEra = J.saccessor("AH", type: JObjectType("java/time/chrono/HijrahEra"))
     public static var AH: java$time$chrono$HijrahEra? {
-        get { return java$time$chrono$HijrahEra$Impl(constructor: I.java$time$chrono$HijrahEra__AH__java$time$chrono$HijrahEra.getter()) }
+        get { return java$time$chrono$HijrahEra$Impl(reference: I.java$time$chrono$HijrahEra__AH__java$time$chrono$HijrahEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$HijrahEra_values__Ajava$time$chrono$HijrahEra = svoker("values", returns: JArray(JObjectType("java/time/chrono/HijrahEra")))
@@ -2643,6 +2670,11 @@ public final class java$time$chrono$HijrahEra : java$lang$Enum, java$time$chrono
         return try JVM.sharedJVM.construct(I.java$time$chrono$HijrahEra_range_java$time$temporal$TemporalField__java$time$temporal$ValueRange(jobj)(a0?.jobj ?? nil)) as java$time$temporal$ValueRange$Impl?
     }
 
+    fileprivate static let java$time$chrono$HijrahEra_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String = invoker("getDisplayName", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/time/format/TextStyle"), JObjectType("java/util/Locale")))
+    public func getDisplayName(_ a0: java$time$format$TextStyle?, _ a1: java$util$Locale?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$time$chrono$HijrahEra_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$String$Impl?
+    }
+
 }
 
 public typealias java$time$chrono$HijrahEra$Impl = java$time$chrono$HijrahEra
@@ -2656,12 +2688,12 @@ public final class java$time$chrono$IsoEra : java$lang$Enum, java$time$chrono$Er
 
     fileprivate static let java$time$chrono$IsoEra__BCE__java$time$chrono$IsoEra = J.saccessor("BCE", type: JObjectType("java/time/chrono/IsoEra"))
     public static var BCE: java$time$chrono$IsoEra? {
-        get { return java$time$chrono$IsoEra$Impl(constructor: I.java$time$chrono$IsoEra__BCE__java$time$chrono$IsoEra.getter()) }
+        get { return java$time$chrono$IsoEra$Impl(reference: I.java$time$chrono$IsoEra__BCE__java$time$chrono$IsoEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$IsoEra__CE__java$time$chrono$IsoEra = J.saccessor("CE", type: JObjectType("java/time/chrono/IsoEra"))
     public static var CE: java$time$chrono$IsoEra? {
-        get { return java$time$chrono$IsoEra$Impl(constructor: I.java$time$chrono$IsoEra__CE__java$time$chrono$IsoEra.getter()) }
+        get { return java$time$chrono$IsoEra$Impl(reference: I.java$time$chrono$IsoEra__CE__java$time$chrono$IsoEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$IsoEra_values__Ajava$time$chrono$IsoEra = svoker("values", returns: JArray(JObjectType("java/time/chrono/IsoEra")))
@@ -2697,12 +2729,12 @@ public final class java$time$chrono$ThaiBuddhistEra : java$lang$Enum, java$time$
 
     fileprivate static let java$time$chrono$ThaiBuddhistEra__BEFORE_BE__java$time$chrono$ThaiBuddhistEra = J.saccessor("BEFORE_BE", type: JObjectType("java/time/chrono/ThaiBuddhistEra"))
     public static var BEFORE_BE: java$time$chrono$ThaiBuddhistEra? {
-        get { return java$time$chrono$ThaiBuddhistEra$Impl(constructor: I.java$time$chrono$ThaiBuddhistEra__BEFORE_BE__java$time$chrono$ThaiBuddhistEra.getter()) }
+        get { return java$time$chrono$ThaiBuddhistEra$Impl(reference: I.java$time$chrono$ThaiBuddhistEra__BEFORE_BE__java$time$chrono$ThaiBuddhistEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$ThaiBuddhistEra__BE__java$time$chrono$ThaiBuddhistEra = J.saccessor("BE", type: JObjectType("java/time/chrono/ThaiBuddhistEra"))
     public static var BE: java$time$chrono$ThaiBuddhistEra? {
-        get { return java$time$chrono$ThaiBuddhistEra$Impl(constructor: I.java$time$chrono$ThaiBuddhistEra__BE__java$time$chrono$ThaiBuddhistEra.getter()) }
+        get { return java$time$chrono$ThaiBuddhistEra$Impl(reference: I.java$time$chrono$ThaiBuddhistEra__BE__java$time$chrono$ThaiBuddhistEra.getter()) }
     }
 
     fileprivate static let java$time$chrono$ThaiBuddhistEra_values__Ajava$time$chrono$ThaiBuddhistEra = svoker("values", returns: JArray(JObjectType("java/time/chrono/ThaiBuddhistEra")))
@@ -2723,6 +2755,11 @@ public final class java$time$chrono$ThaiBuddhistEra : java$lang$Enum, java$time$
     fileprivate static let java$time$chrono$ThaiBuddhistEra_getValue__I = invoker("getValue", returns: jint.jniType)
     public func getValue() throws -> jint {
         return try I.java$time$chrono$ThaiBuddhistEra_getValue__I(jobj)()
+    }
+
+    fileprivate static let java$time$chrono$ThaiBuddhistEra_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String = invoker("getDisplayName", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/time/format/TextStyle"), JObjectType("java/util/Locale")))
+    public func getDisplayName(_ a0: java$time$format$TextStyle?, _ a1: java$util$Locale?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$time$chrono$ThaiBuddhistEra_getDisplayName_java$time$format$TextStyle_java$util$Locale__java$lang$String(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$String$Impl?
     }
 
 }

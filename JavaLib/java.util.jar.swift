@@ -117,87 +117,92 @@ open class java$util$jar$Attributes$Name : java$lang$Object {
 
     fileprivate static let java$util$jar$Attributes$Name__MANIFEST_VERSION__java$util$jar$Attributes$Name = J.saccessor("MANIFEST_VERSION", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var MANIFEST_VERSION: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__MANIFEST_VERSION__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__MANIFEST_VERSION__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__SIGNATURE_VERSION__java$util$jar$Attributes$Name = J.saccessor("SIGNATURE_VERSION", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var SIGNATURE_VERSION: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__SIGNATURE_VERSION__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__SIGNATURE_VERSION__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__CONTENT_TYPE__java$util$jar$Attributes$Name = J.saccessor("CONTENT_TYPE", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var CONTENT_TYPE: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__CONTENT_TYPE__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__CONTENT_TYPE__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__CLASS_PATH__java$util$jar$Attributes$Name = J.saccessor("CLASS_PATH", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var CLASS_PATH: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__CLASS_PATH__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__CLASS_PATH__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__MAIN_CLASS__java$util$jar$Attributes$Name = J.saccessor("MAIN_CLASS", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var MAIN_CLASS: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__MAIN_CLASS__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__MAIN_CLASS__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__SEALED__java$util$jar$Attributes$Name = J.saccessor("SEALED", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var SEALED: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__SEALED__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__SEALED__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__EXTENSION_LIST__java$util$jar$Attributes$Name = J.saccessor("EXTENSION_LIST", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var EXTENSION_LIST: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__EXTENSION_LIST__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__EXTENSION_LIST__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__EXTENSION_NAME__java$util$jar$Attributes$Name = J.saccessor("EXTENSION_NAME", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var EXTENSION_NAME: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__EXTENSION_NAME__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__EXTENSION_NAME__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__EXTENSION_INSTALLATION__java$util$jar$Attributes$Name = J.saccessor("EXTENSION_INSTALLATION", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var EXTENSION_INSTALLATION: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__EXTENSION_INSTALLATION__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__EXTENSION_INSTALLATION__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__IMPLEMENTATION_TITLE__java$util$jar$Attributes$Name = J.saccessor("IMPLEMENTATION_TITLE", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var IMPLEMENTATION_TITLE: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__IMPLEMENTATION_TITLE__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__IMPLEMENTATION_TITLE__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__IMPLEMENTATION_VERSION__java$util$jar$Attributes$Name = J.saccessor("IMPLEMENTATION_VERSION", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var IMPLEMENTATION_VERSION: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__IMPLEMENTATION_VERSION__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__IMPLEMENTATION_VERSION__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__IMPLEMENTATION_VENDOR__java$util$jar$Attributes$Name = J.saccessor("IMPLEMENTATION_VENDOR", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var IMPLEMENTATION_VENDOR: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__IMPLEMENTATION_VENDOR__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__IMPLEMENTATION_VENDOR__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__IMPLEMENTATION_VENDOR_ID__java$util$jar$Attributes$Name = J.saccessor("IMPLEMENTATION_VENDOR_ID", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var IMPLEMENTATION_VENDOR_ID: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__IMPLEMENTATION_VENDOR_ID__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__IMPLEMENTATION_VENDOR_ID__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__IMPLEMENTATION_URL__java$util$jar$Attributes$Name = J.saccessor("IMPLEMENTATION_URL", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var IMPLEMENTATION_URL: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__IMPLEMENTATION_URL__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__IMPLEMENTATION_URL__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__SPECIFICATION_TITLE__java$util$jar$Attributes$Name = J.saccessor("SPECIFICATION_TITLE", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var SPECIFICATION_TITLE: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__SPECIFICATION_TITLE__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__SPECIFICATION_TITLE__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__SPECIFICATION_VERSION__java$util$jar$Attributes$Name = J.saccessor("SPECIFICATION_VERSION", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var SPECIFICATION_VERSION: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__SPECIFICATION_VERSION__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__SPECIFICATION_VERSION__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name__SPECIFICATION_VENDOR__java$util$jar$Attributes$Name = J.saccessor("SPECIFICATION_VENDOR", type: JObjectType("java/util/jar/Attributes$Name"))
     public static var SPECIFICATION_VENDOR: java$util$jar$Attributes$Name? {
-        get { return java$util$jar$Attributes$Name$Impl(constructor: I.java$util$jar$Attributes$Name__SPECIFICATION_VENDOR__java$util$jar$Attributes$Name.getter()) }
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__SPECIFICATION_VENDOR__java$util$jar$Attributes$Name.getter()) }
+    }
+
+    fileprivate static let java$util$jar$Attributes$Name__MULTI_RELEASE__java$util$jar$Attributes$Name = J.saccessor("MULTI_RELEASE", type: JObjectType("java/util/jar/Attributes$Name"))
+    public static var MULTI_RELEASE: java$util$jar$Attributes$Name? {
+        get { return java$util$jar$Attributes$Name$Impl(reference: I.java$util$jar$Attributes$Name__MULTI_RELEASE__java$util$jar$Attributes$Name.getter()) }
     }
 
     fileprivate static let java$util$jar$Attributes$Name_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
@@ -409,6 +414,11 @@ open class java$util$jar$JarEntry : java$util$zip$ZipEntry {
         return try I.java$util$jar$JarEntry_getCodeSigners__Ajava$security$CodeSigner(jobj)()?.jarrayToArray(java$security$CodeSigner$Impl.self)
     }
 
+    fileprivate static let java$util$jar$JarEntry_getRealName__java$lang$String = invoker("getRealName", returns: JObjectType("java/lang/String"))
+    public func getRealName() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$util$jar$JarEntry_getRealName__java$lang$String(jobj)()) as java$lang$String$Impl?
+    }
+
 }
 
 public typealias java$util$jar$JarEntry$Impl = java$util$jar$JarEntry
@@ -422,7 +432,17 @@ open class java$util$jar$JarFile : java$util$zip$ZipFile {
 
     fileprivate static let java$util$jar$JarFile__MANIFEST_NAME__java$lang$String = J.saccessor("MANIFEST_NAME", type: JObjectType("java/lang/String"))
     public static var MANIFEST_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$JarFile__MANIFEST_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$JarFile__MANIFEST_NAME__java$lang$String.getter()) }
+    }
+
+    fileprivate static let java$util$jar$JarFile_baseVersion__java$lang$Runtime$Version = svoker("baseVersion", returns: JObjectType("java/lang/Runtime$Version"))
+    public static func baseVersion() throws -> java$lang$Runtime$Version? {
+        return try JVM.sharedJVM.construct(I.java$util$jar$JarFile_baseVersion__java$lang$Runtime$Version()) as java$lang$Runtime$Version$Impl?
+    }
+
+    fileprivate static let java$util$jar$JarFile_runtimeVersion__java$lang$Runtime$Version = svoker("runtimeVersion", returns: JObjectType("java/lang/Runtime$Version"))
+    public static func runtimeVersion() throws -> java$lang$Runtime$Version? {
+        return try JVM.sharedJVM.construct(I.java$util$jar$JarFile_runtimeVersion__java$lang$Runtime$Version()) as java$lang$Runtime$Version$Impl?
     }
 
     fileprivate static let java$util$jar$JarFile_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
@@ -450,6 +470,21 @@ open class java$util$jar$JarFile : java$util$zip$ZipFile {
         try self.init(creator: I.java$util$jar$JarFile_init_java$io$File_Z_I__V(a0?.jobj ?? nil, a1, a2))
     }
 
+    fileprivate static let java$util$jar$JarFile_init_java$io$File_Z_I_java$lang$Runtime$Version__V = constructor((JObjectType("java/io/File"), jboolean.jniType, jint.jniType, JObjectType("java/lang/Runtime$Version")))
+    public convenience init(_ a0: java$io$File?, _ a1: jboolean, _ a2: jint, _ a3: java$lang$Runtime$Version?) throws {
+        try self.init(creator: I.java$util$jar$JarFile_init_java$io$File_Z_I_java$lang$Runtime$Version__V(a0?.jobj ?? nil, a1, a2, a3?.jobj ?? nil))
+    }
+
+    fileprivate static let java$util$jar$JarFile_getVersion__java$lang$Runtime$Version = invoker("getVersion", returns: JObjectType("java/lang/Runtime$Version"))
+    public func getVersion() throws -> java$lang$Runtime$Version? {
+        return try JVM.sharedJVM.construct(I.java$util$jar$JarFile_getVersion__java$lang$Runtime$Version(jobj)()) as java$lang$Runtime$Version$Impl?
+    }
+
+    fileprivate static let java$util$jar$JarFile_isMultiRelease__Z = invoker("isMultiRelease", returns: jboolean.jniType)
+    public func isMultiRelease() throws -> jboolean {
+        return try I.java$util$jar$JarFile_isMultiRelease__Z(jobj)()
+    }
+
     fileprivate static let java$util$jar$JarFile_getManifest__java$util$jar$Manifest = invoker("getManifest", returns: JObjectType("java/util/jar/Manifest"))
     public func getManifest() throws -> java$util$jar$Manifest? {
         return try JVM.sharedJVM.construct(I.java$util$jar$JarFile_getManifest__java$util$jar$Manifest(jobj)()) as java$util$jar$Manifest$Impl?
@@ -463,6 +498,11 @@ open class java$util$jar$JarFile : java$util$zip$ZipFile {
     fileprivate static let java$util$jar$JarFile_getEntry_java$lang$String__java$util$zip$ZipEntry = invoker("getEntry", returns: JObjectType("java/util/zip/ZipEntry"), arguments: (JObjectType("java/lang/String")))
     fileprivate static let java$util$jar$JarFile_entries__java$util$Enumeration = invoker("entries", returns: JObjectType("java/util/Enumeration"))
     fileprivate static let java$util$jar$JarFile_stream__java$util$stream$Stream = invoker("stream", returns: JObjectType("java/util/stream/Stream"))
+    fileprivate static let java$util$jar$JarFile_versionedStream__java$util$stream$Stream = invoker("versionedStream", returns: JObjectType("java/util/stream/Stream"))
+    public func versionedStream() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$jar$JarFile_versionedStream__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
+    }
+
     fileprivate static let java$util$jar$JarFile_getInputStream_java$util$zip$ZipEntry__java$io$InputStream = invoker("getInputStream", returns: JObjectType("java/io/InputStream"), arguments: (JObjectType("java/util/zip/ZipEntry")))
 }
 
@@ -510,8 +550,6 @@ public protocol java$util$jar$Pack200$Packer : JavaObject {
     func properties() throws -> java$util$SortedMap?
     func pack(_ a0: java$util$jar$JarFile?, _ a1: java$io$OutputStream?) throws -> Void
     func pack(_ a0: java$util$jar$JarInputStream?, _ a1: java$io$OutputStream?) throws -> Void
-    func addPropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void
-    func removePropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void
 }
 
 open class java$util$jar$Pack200$Packer$Impl : java$lang$Object, java$util$jar$Pack200$Packer {
@@ -543,8 +581,6 @@ open class java$util$jar$Pack200$Packer$Impl : java$lang$Object, java$util$jar$P
     fileprivate static let java$util$jar$Pack200$Packer_properties__java$util$SortedMap = invoker("properties", returns: JObjectType("java/util/SortedMap"))
     fileprivate static let java$util$jar$Pack200$Packer_pack_java$util$jar$JarFile_java$io$OutputStream__V = invoker("pack", returns: JVoid.jniType, arguments: (JObjectType("java/util/jar/JarFile"), JObjectType("java/io/OutputStream")))
     fileprivate static let java$util$jar$Pack200$Packer_pack_java$util$jar$JarInputStream_java$io$OutputStream__V = invoker("pack", returns: JVoid.jniType, arguments: (JObjectType("java/util/jar/JarInputStream"), JObjectType("java/io/OutputStream")))
-    fileprivate static let java$util$jar$Pack200$Packer_addPropertyChangeListener_java$beans$PropertyChangeListener__V = invoker("addPropertyChangeListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeListener")))
-    fileprivate static let java$util$jar$Pack200$Packer_removePropertyChangeListener_java$beans$PropertyChangeListener__V = invoker("removePropertyChangeListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeListener")))
 }
 
 public extension java$util$jar$Pack200$Packer {
@@ -552,79 +588,79 @@ public extension java$util$jar$Pack200$Packer {
     private typealias I = java$util$jar$Pack200$Packer$Impl
 
     static var SEGMENT_LIMIT: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__SEGMENT_LIMIT__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__SEGMENT_LIMIT__java$lang$String.getter()) }
     }
 
     static var KEEP_FILE_ORDER: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__KEEP_FILE_ORDER__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__KEEP_FILE_ORDER__java$lang$String.getter()) }
     }
 
     static var EFFORT: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__EFFORT__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__EFFORT__java$lang$String.getter()) }
     }
 
     static var DEFLATE_HINT: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__DEFLATE_HINT__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__DEFLATE_HINT__java$lang$String.getter()) }
     }
 
     static var MODIFICATION_TIME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__MODIFICATION_TIME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__MODIFICATION_TIME__java$lang$String.getter()) }
     }
 
     static var PASS_FILE_PFX: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__PASS_FILE_PFX__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__PASS_FILE_PFX__java$lang$String.getter()) }
     }
 
     static var UNKNOWN_ATTRIBUTE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__UNKNOWN_ATTRIBUTE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__UNKNOWN_ATTRIBUTE__java$lang$String.getter()) }
     }
 
     static var CLASS_ATTRIBUTE_PFX: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__CLASS_ATTRIBUTE_PFX__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__CLASS_ATTRIBUTE_PFX__java$lang$String.getter()) }
     }
 
     static var FIELD_ATTRIBUTE_PFX: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__FIELD_ATTRIBUTE_PFX__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__FIELD_ATTRIBUTE_PFX__java$lang$String.getter()) }
     }
 
     static var METHOD_ATTRIBUTE_PFX: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__METHOD_ATTRIBUTE_PFX__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__METHOD_ATTRIBUTE_PFX__java$lang$String.getter()) }
     }
 
     static var CODE_ATTRIBUTE_PFX: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__CODE_ATTRIBUTE_PFX__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__CODE_ATTRIBUTE_PFX__java$lang$String.getter()) }
     }
 
     static var PROGRESS: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__PROGRESS__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__PROGRESS__java$lang$String.getter()) }
     }
 
     static var KEEP: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__KEEP__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__KEEP__java$lang$String.getter()) }
     }
 
     static var PASS: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__PASS__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__PASS__java$lang$String.getter()) }
     }
 
     static var STRIP: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__STRIP__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__STRIP__java$lang$String.getter()) }
     }
 
     static var ERROR: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__ERROR__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__ERROR__java$lang$String.getter()) }
     }
 
     static var TRUE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__TRUE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__TRUE__java$lang$String.getter()) }
     }
 
     static var FALSE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__FALSE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__FALSE__java$lang$String.getter()) }
     }
 
     static var LATEST: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Packer__LATEST__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Packer__LATEST__java$lang$String.getter()) }
     }
 
     func properties() throws -> java$util$SortedMap? {
@@ -637,14 +673,6 @@ public extension java$util$jar$Pack200$Packer {
 
     func pack(_ a0: java$util$jar$JarInputStream?, _ a1: java$io$OutputStream?) throws -> Void {
         return try I.java$util$jar$Pack200$Packer_pack_java$util$jar$JarInputStream_java$io$OutputStream__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
-    }
-
-    func addPropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void {
-        return try I.java$util$jar$Pack200$Packer_addPropertyChangeListener_java$beans$PropertyChangeListener__V(jobj)(a0?.jobj ?? nil)
-    }
-
-    func removePropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void {
-        return try I.java$util$jar$Pack200$Packer_removePropertyChangeListener_java$beans$PropertyChangeListener__V(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -663,8 +691,6 @@ public protocol java$util$jar$Pack200$Unpacker : JavaObject {
     func properties() throws -> java$util$SortedMap?
     func unpack(_ a0: java$io$InputStream?, _ a1: java$util$jar$JarOutputStream?) throws -> Void
     func unpack(_ a0: java$io$File?, _ a1: java$util$jar$JarOutputStream?) throws -> Void
-    func addPropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void
-    func removePropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void
 }
 
 open class java$util$jar$Pack200$Unpacker$Impl : java$lang$Object, java$util$jar$Pack200$Unpacker {
@@ -682,8 +708,6 @@ open class java$util$jar$Pack200$Unpacker$Impl : java$lang$Object, java$util$jar
     fileprivate static let java$util$jar$Pack200$Unpacker_properties__java$util$SortedMap = invoker("properties", returns: JObjectType("java/util/SortedMap"))
     fileprivate static let java$util$jar$Pack200$Unpacker_unpack_java$io$InputStream_java$util$jar$JarOutputStream__V = invoker("unpack", returns: JVoid.jniType, arguments: (JObjectType("java/io/InputStream"), JObjectType("java/util/jar/JarOutputStream")))
     fileprivate static let java$util$jar$Pack200$Unpacker_unpack_java$io$File_java$util$jar$JarOutputStream__V = invoker("unpack", returns: JVoid.jniType, arguments: (JObjectType("java/io/File"), JObjectType("java/util/jar/JarOutputStream")))
-    fileprivate static let java$util$jar$Pack200$Unpacker_addPropertyChangeListener_java$beans$PropertyChangeListener__V = invoker("addPropertyChangeListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeListener")))
-    fileprivate static let java$util$jar$Pack200$Unpacker_removePropertyChangeListener_java$beans$PropertyChangeListener__V = invoker("removePropertyChangeListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeListener")))
 }
 
 public extension java$util$jar$Pack200$Unpacker {
@@ -691,23 +715,23 @@ public extension java$util$jar$Pack200$Unpacker {
     private typealias I = java$util$jar$Pack200$Unpacker$Impl
 
     static var KEEP: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Unpacker__KEEP__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Unpacker__KEEP__java$lang$String.getter()) }
     }
 
     static var TRUE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Unpacker__TRUE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Unpacker__TRUE__java$lang$String.getter()) }
     }
 
     static var FALSE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Unpacker__FALSE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Unpacker__FALSE__java$lang$String.getter()) }
     }
 
     static var DEFLATE_HINT: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Unpacker__DEFLATE_HINT__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Unpacker__DEFLATE_HINT__java$lang$String.getter()) }
     }
 
     static var PROGRESS: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$jar$Pack200$Unpacker__PROGRESS__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$jar$Pack200$Unpacker__PROGRESS__java$lang$String.getter()) }
     }
 
     func properties() throws -> java$util$SortedMap? {
@@ -720,14 +744,6 @@ public extension java$util$jar$Pack200$Unpacker {
 
     func unpack(_ a0: java$io$File?, _ a1: java$util$jar$JarOutputStream?) throws -> Void {
         return try I.java$util$jar$Pack200$Unpacker_unpack_java$io$File_java$util$jar$JarOutputStream__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
-    }
-
-    func addPropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void {
-        return try I.java$util$jar$Pack200$Unpacker_addPropertyChangeListener_java$beans$PropertyChangeListener__V(jobj)(a0?.jobj ?? nil)
-    }
-
-    func removePropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void {
-        return try I.java$util$jar$Pack200$Unpacker_removePropertyChangeListener_java$beans$PropertyChangeListener__V(jobj)(a0?.jobj ?? nil)
     }
 
 }

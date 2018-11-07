@@ -9,32 +9,32 @@ public final class java$time$temporal$IsoFields : java$lang$Object {
 
     fileprivate static let java$time$temporal$IsoFields__DAY_OF_QUARTER__java$time$temporal$TemporalField = J.saccessor("DAY_OF_QUARTER", type: JObjectType("java/time/temporal/TemporalField"))
     public static var DAY_OF_QUARTER: java$time$temporal$TemporalField? {
-        get { return java$time$temporal$TemporalField$Impl(constructor: I.java$time$temporal$IsoFields__DAY_OF_QUARTER__java$time$temporal$TemporalField.getter()) }
+        get { return java$time$temporal$TemporalField$Impl(reference: I.java$time$temporal$IsoFields__DAY_OF_QUARTER__java$time$temporal$TemporalField.getter()) }
     }
 
     fileprivate static let java$time$temporal$IsoFields__QUARTER_OF_YEAR__java$time$temporal$TemporalField = J.saccessor("QUARTER_OF_YEAR", type: JObjectType("java/time/temporal/TemporalField"))
     public static var QUARTER_OF_YEAR: java$time$temporal$TemporalField? {
-        get { return java$time$temporal$TemporalField$Impl(constructor: I.java$time$temporal$IsoFields__QUARTER_OF_YEAR__java$time$temporal$TemporalField.getter()) }
+        get { return java$time$temporal$TemporalField$Impl(reference: I.java$time$temporal$IsoFields__QUARTER_OF_YEAR__java$time$temporal$TemporalField.getter()) }
     }
 
     fileprivate static let java$time$temporal$IsoFields__WEEK_OF_WEEK_BASED_YEAR__java$time$temporal$TemporalField = J.saccessor("WEEK_OF_WEEK_BASED_YEAR", type: JObjectType("java/time/temporal/TemporalField"))
     public static var WEEK_OF_WEEK_BASED_YEAR: java$time$temporal$TemporalField? {
-        get { return java$time$temporal$TemporalField$Impl(constructor: I.java$time$temporal$IsoFields__WEEK_OF_WEEK_BASED_YEAR__java$time$temporal$TemporalField.getter()) }
+        get { return java$time$temporal$TemporalField$Impl(reference: I.java$time$temporal$IsoFields__WEEK_OF_WEEK_BASED_YEAR__java$time$temporal$TemporalField.getter()) }
     }
 
     fileprivate static let java$time$temporal$IsoFields__WEEK_BASED_YEAR__java$time$temporal$TemporalField = J.saccessor("WEEK_BASED_YEAR", type: JObjectType("java/time/temporal/TemporalField"))
     public static var WEEK_BASED_YEAR: java$time$temporal$TemporalField? {
-        get { return java$time$temporal$TemporalField$Impl(constructor: I.java$time$temporal$IsoFields__WEEK_BASED_YEAR__java$time$temporal$TemporalField.getter()) }
+        get { return java$time$temporal$TemporalField$Impl(reference: I.java$time$temporal$IsoFields__WEEK_BASED_YEAR__java$time$temporal$TemporalField.getter()) }
     }
 
     fileprivate static let java$time$temporal$IsoFields__WEEK_BASED_YEARS__java$time$temporal$TemporalUnit = J.saccessor("WEEK_BASED_YEARS", type: JObjectType("java/time/temporal/TemporalUnit"))
     public static var WEEK_BASED_YEARS: java$time$temporal$TemporalUnit? {
-        get { return java$time$temporal$TemporalUnit$Impl(constructor: I.java$time$temporal$IsoFields__WEEK_BASED_YEARS__java$time$temporal$TemporalUnit.getter()) }
+        get { return java$time$temporal$TemporalUnit$Impl(reference: I.java$time$temporal$IsoFields__WEEK_BASED_YEARS__java$time$temporal$TemporalUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$IsoFields__QUARTER_YEARS__java$time$temporal$TemporalUnit = J.saccessor("QUARTER_YEARS", type: JObjectType("java/time/temporal/TemporalUnit"))
     public static var QUARTER_YEARS: java$time$temporal$TemporalUnit? {
-        get { return java$time$temporal$TemporalUnit$Impl(constructor: I.java$time$temporal$IsoFields__QUARTER_YEARS__java$time$temporal$TemporalUnit.getter()) }
+        get { return java$time$temporal$TemporalUnit$Impl(reference: I.java$time$temporal$IsoFields__QUARTER_YEARS__java$time$temporal$TemporalUnit.getter()) }
     }
 
 }
@@ -50,17 +50,17 @@ public final class java$time$temporal$JulianFields : java$lang$Object {
 
     fileprivate static let java$time$temporal$JulianFields__JULIAN_DAY__java$time$temporal$TemporalField = J.saccessor("JULIAN_DAY", type: JObjectType("java/time/temporal/TemporalField"))
     public static var JULIAN_DAY: java$time$temporal$TemporalField? {
-        get { return java$time$temporal$TemporalField$Impl(constructor: I.java$time$temporal$JulianFields__JULIAN_DAY__java$time$temporal$TemporalField.getter()) }
+        get { return java$time$temporal$TemporalField$Impl(reference: I.java$time$temporal$JulianFields__JULIAN_DAY__java$time$temporal$TemporalField.getter()) }
     }
 
     fileprivate static let java$time$temporal$JulianFields__MODIFIED_JULIAN_DAY__java$time$temporal$TemporalField = J.saccessor("MODIFIED_JULIAN_DAY", type: JObjectType("java/time/temporal/TemporalField"))
     public static var MODIFIED_JULIAN_DAY: java$time$temporal$TemporalField? {
-        get { return java$time$temporal$TemporalField$Impl(constructor: I.java$time$temporal$JulianFields__MODIFIED_JULIAN_DAY__java$time$temporal$TemporalField.getter()) }
+        get { return java$time$temporal$TemporalField$Impl(reference: I.java$time$temporal$JulianFields__MODIFIED_JULIAN_DAY__java$time$temporal$TemporalField.getter()) }
     }
 
     fileprivate static let java$time$temporal$JulianFields__RATA_DIE__java$time$temporal$TemporalField = J.saccessor("RATA_DIE", type: JObjectType("java/time/temporal/TemporalField"))
     public static var RATA_DIE: java$time$temporal$TemporalField? {
-        get { return java$time$temporal$TemporalField$Impl(constructor: I.java$time$temporal$JulianFields__RATA_DIE__java$time$temporal$TemporalField.getter()) }
+        get { return java$time$temporal$TemporalField$Impl(reference: I.java$time$temporal$JulianFields__RATA_DIE__java$time$temporal$TemporalField.getter()) }
     }
 
 }
@@ -303,17 +303,17 @@ public final class java$time$temporal$WeekFields : java$lang$Object, java$io$Ser
 
     fileprivate static let java$time$temporal$WeekFields__ISO__java$time$temporal$WeekFields = J.saccessor("ISO", type: JObjectType("java/time/temporal/WeekFields"))
     public static var ISO: java$time$temporal$WeekFields? {
-        get { return java$time$temporal$WeekFields$Impl(constructor: I.java$time$temporal$WeekFields__ISO__java$time$temporal$WeekFields.getter()) }
+        get { return java$time$temporal$WeekFields$Impl(reference: I.java$time$temporal$WeekFields__ISO__java$time$temporal$WeekFields.getter()) }
     }
 
     fileprivate static let java$time$temporal$WeekFields__SUNDAY_START__java$time$temporal$WeekFields = J.saccessor("SUNDAY_START", type: JObjectType("java/time/temporal/WeekFields"))
     public static var SUNDAY_START: java$time$temporal$WeekFields? {
-        get { return java$time$temporal$WeekFields$Impl(constructor: I.java$time$temporal$WeekFields__SUNDAY_START__java$time$temporal$WeekFields.getter()) }
+        get { return java$time$temporal$WeekFields$Impl(reference: I.java$time$temporal$WeekFields__SUNDAY_START__java$time$temporal$WeekFields.getter()) }
     }
 
     fileprivate static let java$time$temporal$WeekFields__WEEK_BASED_YEARS__java$time$temporal$TemporalUnit = J.saccessor("WEEK_BASED_YEARS", type: JObjectType("java/time/temporal/TemporalUnit"))
     public static var WEEK_BASED_YEARS: java$time$temporal$TemporalUnit? {
-        get { return java$time$temporal$TemporalUnit$Impl(constructor: I.java$time$temporal$WeekFields__WEEK_BASED_YEARS__java$time$temporal$TemporalUnit.getter()) }
+        get { return java$time$temporal$TemporalUnit$Impl(reference: I.java$time$temporal$WeekFields__WEEK_BASED_YEARS__java$time$temporal$TemporalUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$WeekFields_of_java$util$Locale__java$time$temporal$WeekFields = svoker("of", returns: JObjectType("java/time/temporal/WeekFields"), arguments: (JObjectType("java/util/Locale")))
@@ -737,82 +737,82 @@ public final class java$time$temporal$ChronoUnit : java$lang$Enum, java$time$tem
 
     fileprivate static let java$time$temporal$ChronoUnit__NANOS__java$time$temporal$ChronoUnit = J.saccessor("NANOS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var NANOS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__NANOS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__NANOS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__MICROS__java$time$temporal$ChronoUnit = J.saccessor("MICROS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var MICROS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__MICROS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__MICROS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__MILLIS__java$time$temporal$ChronoUnit = J.saccessor("MILLIS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var MILLIS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__MILLIS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__MILLIS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__SECONDS__java$time$temporal$ChronoUnit = J.saccessor("SECONDS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var SECONDS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__SECONDS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__SECONDS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__MINUTES__java$time$temporal$ChronoUnit = J.saccessor("MINUTES", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var MINUTES: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__MINUTES__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__MINUTES__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__HOURS__java$time$temporal$ChronoUnit = J.saccessor("HOURS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var HOURS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__HOURS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__HOURS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__HALF_DAYS__java$time$temporal$ChronoUnit = J.saccessor("HALF_DAYS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var HALF_DAYS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__HALF_DAYS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__HALF_DAYS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__DAYS__java$time$temporal$ChronoUnit = J.saccessor("DAYS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var DAYS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__DAYS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__DAYS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__WEEKS__java$time$temporal$ChronoUnit = J.saccessor("WEEKS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var WEEKS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__WEEKS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__WEEKS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__MONTHS__java$time$temporal$ChronoUnit = J.saccessor("MONTHS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var MONTHS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__MONTHS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__MONTHS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__YEARS__java$time$temporal$ChronoUnit = J.saccessor("YEARS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var YEARS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__YEARS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__YEARS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__DECADES__java$time$temporal$ChronoUnit = J.saccessor("DECADES", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var DECADES: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__DECADES__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__DECADES__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__CENTURIES__java$time$temporal$ChronoUnit = J.saccessor("CENTURIES", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var CENTURIES: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__CENTURIES__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__CENTURIES__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__MILLENNIA__java$time$temporal$ChronoUnit = J.saccessor("MILLENNIA", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var MILLENNIA: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__MILLENNIA__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__MILLENNIA__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__ERAS__java$time$temporal$ChronoUnit = J.saccessor("ERAS", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var ERAS: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__ERAS__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__ERAS__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit__FOREVER__java$time$temporal$ChronoUnit = J.saccessor("FOREVER", type: JObjectType("java/time/temporal/ChronoUnit"))
     public static var FOREVER: java$time$temporal$ChronoUnit? {
-        get { return java$time$temporal$ChronoUnit$Impl(constructor: I.java$time$temporal$ChronoUnit__FOREVER__java$time$temporal$ChronoUnit.getter()) }
+        get { return java$time$temporal$ChronoUnit$Impl(reference: I.java$time$temporal$ChronoUnit__FOREVER__java$time$temporal$ChronoUnit.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoUnit_values__Ajava$time$temporal$ChronoUnit = svoker("values", returns: JArray(JObjectType("java/time/temporal/ChronoUnit")))
@@ -874,152 +874,152 @@ public final class java$time$temporal$ChronoField : java$lang$Enum, java$time$te
 
     fileprivate static let java$time$temporal$ChronoField__NANO_OF_SECOND__java$time$temporal$ChronoField = J.saccessor("NANO_OF_SECOND", type: JObjectType("java/time/temporal/ChronoField"))
     public static var NANO_OF_SECOND: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__NANO_OF_SECOND__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__NANO_OF_SECOND__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__NANO_OF_DAY__java$time$temporal$ChronoField = J.saccessor("NANO_OF_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var NANO_OF_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__NANO_OF_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__NANO_OF_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__MICRO_OF_SECOND__java$time$temporal$ChronoField = J.saccessor("MICRO_OF_SECOND", type: JObjectType("java/time/temporal/ChronoField"))
     public static var MICRO_OF_SECOND: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__MICRO_OF_SECOND__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__MICRO_OF_SECOND__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__MICRO_OF_DAY__java$time$temporal$ChronoField = J.saccessor("MICRO_OF_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var MICRO_OF_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__MICRO_OF_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__MICRO_OF_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__MILLI_OF_SECOND__java$time$temporal$ChronoField = J.saccessor("MILLI_OF_SECOND", type: JObjectType("java/time/temporal/ChronoField"))
     public static var MILLI_OF_SECOND: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__MILLI_OF_SECOND__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__MILLI_OF_SECOND__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__MILLI_OF_DAY__java$time$temporal$ChronoField = J.saccessor("MILLI_OF_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var MILLI_OF_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__MILLI_OF_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__MILLI_OF_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__SECOND_OF_MINUTE__java$time$temporal$ChronoField = J.saccessor("SECOND_OF_MINUTE", type: JObjectType("java/time/temporal/ChronoField"))
     public static var SECOND_OF_MINUTE: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__SECOND_OF_MINUTE__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__SECOND_OF_MINUTE__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__SECOND_OF_DAY__java$time$temporal$ChronoField = J.saccessor("SECOND_OF_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var SECOND_OF_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__SECOND_OF_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__SECOND_OF_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__MINUTE_OF_HOUR__java$time$temporal$ChronoField = J.saccessor("MINUTE_OF_HOUR", type: JObjectType("java/time/temporal/ChronoField"))
     public static var MINUTE_OF_HOUR: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__MINUTE_OF_HOUR__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__MINUTE_OF_HOUR__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__MINUTE_OF_DAY__java$time$temporal$ChronoField = J.saccessor("MINUTE_OF_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var MINUTE_OF_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__MINUTE_OF_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__MINUTE_OF_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__HOUR_OF_AMPM__java$time$temporal$ChronoField = J.saccessor("HOUR_OF_AMPM", type: JObjectType("java/time/temporal/ChronoField"))
     public static var HOUR_OF_AMPM: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__HOUR_OF_AMPM__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__HOUR_OF_AMPM__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__CLOCK_HOUR_OF_AMPM__java$time$temporal$ChronoField = J.saccessor("CLOCK_HOUR_OF_AMPM", type: JObjectType("java/time/temporal/ChronoField"))
     public static var CLOCK_HOUR_OF_AMPM: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__CLOCK_HOUR_OF_AMPM__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__CLOCK_HOUR_OF_AMPM__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__HOUR_OF_DAY__java$time$temporal$ChronoField = J.saccessor("HOUR_OF_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var HOUR_OF_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__HOUR_OF_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__HOUR_OF_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__CLOCK_HOUR_OF_DAY__java$time$temporal$ChronoField = J.saccessor("CLOCK_HOUR_OF_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var CLOCK_HOUR_OF_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__CLOCK_HOUR_OF_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__CLOCK_HOUR_OF_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__AMPM_OF_DAY__java$time$temporal$ChronoField = J.saccessor("AMPM_OF_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var AMPM_OF_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__AMPM_OF_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__AMPM_OF_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__DAY_OF_WEEK__java$time$temporal$ChronoField = J.saccessor("DAY_OF_WEEK", type: JObjectType("java/time/temporal/ChronoField"))
     public static var DAY_OF_WEEK: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__DAY_OF_WEEK__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__DAY_OF_WEEK__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__ALIGNED_DAY_OF_WEEK_IN_MONTH__java$time$temporal$ChronoField = J.saccessor("ALIGNED_DAY_OF_WEEK_IN_MONTH", type: JObjectType("java/time/temporal/ChronoField"))
     public static var ALIGNED_DAY_OF_WEEK_IN_MONTH: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__ALIGNED_DAY_OF_WEEK_IN_MONTH__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__ALIGNED_DAY_OF_WEEK_IN_MONTH__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__ALIGNED_DAY_OF_WEEK_IN_YEAR__java$time$temporal$ChronoField = J.saccessor("ALIGNED_DAY_OF_WEEK_IN_YEAR", type: JObjectType("java/time/temporal/ChronoField"))
     public static var ALIGNED_DAY_OF_WEEK_IN_YEAR: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__ALIGNED_DAY_OF_WEEK_IN_YEAR__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__ALIGNED_DAY_OF_WEEK_IN_YEAR__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__DAY_OF_MONTH__java$time$temporal$ChronoField = J.saccessor("DAY_OF_MONTH", type: JObjectType("java/time/temporal/ChronoField"))
     public static var DAY_OF_MONTH: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__DAY_OF_MONTH__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__DAY_OF_MONTH__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__DAY_OF_YEAR__java$time$temporal$ChronoField = J.saccessor("DAY_OF_YEAR", type: JObjectType("java/time/temporal/ChronoField"))
     public static var DAY_OF_YEAR: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__DAY_OF_YEAR__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__DAY_OF_YEAR__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__EPOCH_DAY__java$time$temporal$ChronoField = J.saccessor("EPOCH_DAY", type: JObjectType("java/time/temporal/ChronoField"))
     public static var EPOCH_DAY: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__EPOCH_DAY__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__EPOCH_DAY__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__ALIGNED_WEEK_OF_MONTH__java$time$temporal$ChronoField = J.saccessor("ALIGNED_WEEK_OF_MONTH", type: JObjectType("java/time/temporal/ChronoField"))
     public static var ALIGNED_WEEK_OF_MONTH: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__ALIGNED_WEEK_OF_MONTH__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__ALIGNED_WEEK_OF_MONTH__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__ALIGNED_WEEK_OF_YEAR__java$time$temporal$ChronoField = J.saccessor("ALIGNED_WEEK_OF_YEAR", type: JObjectType("java/time/temporal/ChronoField"))
     public static var ALIGNED_WEEK_OF_YEAR: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__ALIGNED_WEEK_OF_YEAR__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__ALIGNED_WEEK_OF_YEAR__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__MONTH_OF_YEAR__java$time$temporal$ChronoField = J.saccessor("MONTH_OF_YEAR", type: JObjectType("java/time/temporal/ChronoField"))
     public static var MONTH_OF_YEAR: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__MONTH_OF_YEAR__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__MONTH_OF_YEAR__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__PROLEPTIC_MONTH__java$time$temporal$ChronoField = J.saccessor("PROLEPTIC_MONTH", type: JObjectType("java/time/temporal/ChronoField"))
     public static var PROLEPTIC_MONTH: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__PROLEPTIC_MONTH__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__PROLEPTIC_MONTH__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__YEAR_OF_ERA__java$time$temporal$ChronoField = J.saccessor("YEAR_OF_ERA", type: JObjectType("java/time/temporal/ChronoField"))
     public static var YEAR_OF_ERA: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__YEAR_OF_ERA__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__YEAR_OF_ERA__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__YEAR__java$time$temporal$ChronoField = J.saccessor("YEAR", type: JObjectType("java/time/temporal/ChronoField"))
     public static var YEAR: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__YEAR__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__YEAR__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__ERA__java$time$temporal$ChronoField = J.saccessor("ERA", type: JObjectType("java/time/temporal/ChronoField"))
     public static var ERA: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__ERA__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__ERA__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__INSTANT_SECONDS__java$time$temporal$ChronoField = J.saccessor("INSTANT_SECONDS", type: JObjectType("java/time/temporal/ChronoField"))
     public static var INSTANT_SECONDS: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__INSTANT_SECONDS__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__INSTANT_SECONDS__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField__OFFSET_SECONDS__java$time$temporal$ChronoField = J.saccessor("OFFSET_SECONDS", type: JObjectType("java/time/temporal/ChronoField"))
     public static var OFFSET_SECONDS: java$time$temporal$ChronoField? {
-        get { return java$time$temporal$ChronoField$Impl(constructor: I.java$time$temporal$ChronoField__OFFSET_SECONDS__java$time$temporal$ChronoField.getter()) }
+        get { return java$time$temporal$ChronoField$Impl(reference: I.java$time$temporal$ChronoField__OFFSET_SECONDS__java$time$temporal$ChronoField.getter()) }
     }
 
     fileprivate static let java$time$temporal$ChronoField_values__Ajava$time$temporal$ChronoField = svoker("values", returns: JArray(JObjectType("java/time/temporal/ChronoField")))

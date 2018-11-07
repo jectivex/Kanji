@@ -22,6 +22,11 @@ open class java$time$Clock : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$time$Clock_system_java$time$ZoneId__java$time$Clock(a0?.jobj ?? nil)) as java$time$Clock$Impl?
     }
 
+    fileprivate static let java$time$Clock_tickMillis_java$time$ZoneId__java$time$Clock = svoker("tickMillis", returns: JObjectType("java/time/Clock"), arguments: (JObjectType("java/time/ZoneId")))
+    public static func tickMillis(_ a0: java$time$ZoneId?) throws -> java$time$Clock? {
+        return try JVM.sharedJVM.construct(I.java$time$Clock_tickMillis_java$time$ZoneId__java$time$Clock(a0?.jobj ?? nil)) as java$time$Clock$Impl?
+    }
+
     fileprivate static let java$time$Clock_tickSeconds_java$time$ZoneId__java$time$Clock = svoker("tickSeconds", returns: JObjectType("java/time/Clock"), arguments: (JObjectType("java/time/ZoneId")))
     public static func tickSeconds(_ a0: java$time$ZoneId?) throws -> java$time$Clock? {
         return try JVM.sharedJVM.construct(I.java$time$Clock_tickSeconds_java$time$ZoneId__java$time$Clock(a0?.jobj ?? nil)) as java$time$Clock$Impl?
@@ -82,7 +87,7 @@ public final class java$time$Duration : java$lang$Object, java$time$temporal$Tem
 
     fileprivate static let java$time$Duration__ZERO__java$time$Duration = J.saccessor("ZERO", type: JObjectType("java/time/Duration"))
     public static var ZERO: java$time$Duration? {
-        get { return java$time$Duration$Impl(constructor: I.java$time$Duration__ZERO__java$time$Duration.getter()) }
+        get { return java$time$Duration$Impl(reference: I.java$time$Duration__ZERO__java$time$Duration.getter()) }
     }
 
     fileprivate static let java$time$Duration_ofDays_J__java$time$Duration = svoker("ofDays", returns: JObjectType("java/time/Duration"), arguments: (jlong.jniType))
@@ -270,6 +275,11 @@ public final class java$time$Duration : java$lang$Object, java$time$temporal$Tem
         return try JVM.sharedJVM.construct(I.java$time$Duration_dividedBy_J__java$time$Duration(jobj)(a0)) as java$time$Duration$Impl?
     }
 
+    fileprivate static let java$time$Duration_dividedBy_java$time$Duration__J = invoker("dividedBy", returns: jlong.jniType, arguments: (JObjectType("java/time/Duration")))
+    public func dividedBy(_ a0: java$time$Duration?) throws -> jlong {
+        return try I.java$time$Duration_dividedBy_java$time$Duration__J(jobj)(a0?.jobj ?? nil)
+    }
+
     fileprivate static let java$time$Duration_negated__java$time$Duration = invoker("negated", returns: JObjectType("java/time/Duration"))
     public func negated() throws -> java$time$Duration? {
         return try JVM.sharedJVM.construct(I.java$time$Duration_negated__java$time$Duration(jobj)()) as java$time$Duration$Impl?
@@ -305,6 +315,11 @@ public final class java$time$Duration : java$lang$Object, java$time$temporal$Tem
         return try I.java$time$Duration_toMinutes__J(jobj)()
     }
 
+    fileprivate static let java$time$Duration_toSeconds__J = invoker("toSeconds", returns: jlong.jniType)
+    public func toSeconds() throws -> jlong {
+        return try I.java$time$Duration_toSeconds__J(jobj)()
+    }
+
     fileprivate static let java$time$Duration_toMillis__J = invoker("toMillis", returns: jlong.jniType)
     public func toMillis() throws -> jlong {
         return try I.java$time$Duration_toMillis__J(jobj)()
@@ -313,6 +328,41 @@ public final class java$time$Duration : java$lang$Object, java$time$temporal$Tem
     fileprivate static let java$time$Duration_toNanos__J = invoker("toNanos", returns: jlong.jniType)
     public func toNanos() throws -> jlong {
         return try I.java$time$Duration_toNanos__J(jobj)()
+    }
+
+    fileprivate static let java$time$Duration_toDaysPart__J = invoker("toDaysPart", returns: jlong.jniType)
+    public func toDaysPart() throws -> jlong {
+        return try I.java$time$Duration_toDaysPart__J(jobj)()
+    }
+
+    fileprivate static let java$time$Duration_toHoursPart__I = invoker("toHoursPart", returns: jint.jniType)
+    public func toHoursPart() throws -> jint {
+        return try I.java$time$Duration_toHoursPart__I(jobj)()
+    }
+
+    fileprivate static let java$time$Duration_toMinutesPart__I = invoker("toMinutesPart", returns: jint.jniType)
+    public func toMinutesPart() throws -> jint {
+        return try I.java$time$Duration_toMinutesPart__I(jobj)()
+    }
+
+    fileprivate static let java$time$Duration_toSecondsPart__I = invoker("toSecondsPart", returns: jint.jniType)
+    public func toSecondsPart() throws -> jint {
+        return try I.java$time$Duration_toSecondsPart__I(jobj)()
+    }
+
+    fileprivate static let java$time$Duration_toMillisPart__I = invoker("toMillisPart", returns: jint.jniType)
+    public func toMillisPart() throws -> jint {
+        return try I.java$time$Duration_toMillisPart__I(jobj)()
+    }
+
+    fileprivate static let java$time$Duration_toNanosPart__I = invoker("toNanosPart", returns: jint.jniType)
+    public func toNanosPart() throws -> jint {
+        return try I.java$time$Duration_toNanosPart__I(jobj)()
+    }
+
+    fileprivate static let java$time$Duration_truncatedTo_java$time$temporal$TemporalUnit__java$time$Duration = invoker("truncatedTo", returns: JObjectType("java/time/Duration"), arguments: (JObjectType("java/time/temporal/TemporalUnit")))
+    public func truncatedTo(_ a0: java$time$temporal$TemporalUnit?) throws -> java$time$Duration? {
+        return try JVM.sharedJVM.construct(I.java$time$Duration_truncatedTo_java$time$temporal$TemporalUnit__java$time$Duration(jobj)(a0?.jobj ?? nil)) as java$time$Duration$Impl?
     }
 
     fileprivate static let java$time$Duration_compareTo_java$time$Duration__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/time/Duration")))
@@ -341,17 +391,17 @@ public final class java$time$Instant : java$lang$Object, java$time$temporal$Temp
 
     fileprivate static let java$time$Instant__EPOCH__java$time$Instant = J.saccessor("EPOCH", type: JObjectType("java/time/Instant"))
     public static var EPOCH: java$time$Instant? {
-        get { return java$time$Instant$Impl(constructor: I.java$time$Instant__EPOCH__java$time$Instant.getter()) }
+        get { return java$time$Instant$Impl(reference: I.java$time$Instant__EPOCH__java$time$Instant.getter()) }
     }
 
     fileprivate static let java$time$Instant__MIN__java$time$Instant = J.saccessor("MIN", type: JObjectType("java/time/Instant"))
     public static var MIN: java$time$Instant? {
-        get { return java$time$Instant$Impl(constructor: I.java$time$Instant__MIN__java$time$Instant.getter()) }
+        get { return java$time$Instant$Impl(reference: I.java$time$Instant__MIN__java$time$Instant.getter()) }
     }
 
     fileprivate static let java$time$Instant__MAX__java$time$Instant = J.saccessor("MAX", type: JObjectType("java/time/Instant"))
     public static var MAX: java$time$Instant? {
-        get { return java$time$Instant$Impl(constructor: I.java$time$Instant__MAX__java$time$Instant.getter()) }
+        get { return java$time$Instant$Impl(reference: I.java$time$Instant__MAX__java$time$Instant.getter()) }
     }
 
     fileprivate static let java$time$Instant_now__java$time$Instant = svoker("now", returns: JObjectType("java/time/Instant"))
@@ -585,12 +635,17 @@ public final class java$time$LocalDate : java$lang$Object, java$time$temporal$Te
 
     fileprivate static let java$time$LocalDate__MIN__java$time$LocalDate = J.saccessor("MIN", type: JObjectType("java/time/LocalDate"))
     public static var MIN: java$time$LocalDate? {
-        get { return java$time$LocalDate$Impl(constructor: I.java$time$LocalDate__MIN__java$time$LocalDate.getter()) }
+        get { return java$time$LocalDate$Impl(reference: I.java$time$LocalDate__MIN__java$time$LocalDate.getter()) }
     }
 
     fileprivate static let java$time$LocalDate__MAX__java$time$LocalDate = J.saccessor("MAX", type: JObjectType("java/time/LocalDate"))
     public static var MAX: java$time$LocalDate? {
-        get { return java$time$LocalDate$Impl(constructor: I.java$time$LocalDate__MAX__java$time$LocalDate.getter()) }
+        get { return java$time$LocalDate$Impl(reference: I.java$time$LocalDate__MAX__java$time$LocalDate.getter()) }
+    }
+
+    fileprivate static let java$time$LocalDate__EPOCH__java$time$LocalDate = J.saccessor("EPOCH", type: JObjectType("java/time/LocalDate"))
+    public static var EPOCH: java$time$LocalDate? {
+        get { return java$time$LocalDate$Impl(reference: I.java$time$LocalDate__EPOCH__java$time$LocalDate.getter()) }
     }
 
     fileprivate static let java$time$LocalDate_now__java$time$LocalDate = svoker("now", returns: JObjectType("java/time/LocalDate"))
@@ -621,6 +676,11 @@ public final class java$time$LocalDate : java$lang$Object, java$time$temporal$Te
     fileprivate static let java$time$LocalDate_ofYearDay_I_I__java$time$LocalDate = svoker("ofYearDay", returns: JObjectType("java/time/LocalDate"), arguments: (jint.jniType, jint.jniType))
     public static func ofYearDay(_ a0: jint, _ a1: jint) throws -> java$time$LocalDate? {
         return try JVM.sharedJVM.construct(I.java$time$LocalDate_ofYearDay_I_I__java$time$LocalDate(a0, a1)) as java$time$LocalDate$Impl?
+    }
+
+    fileprivate static let java$time$LocalDate_ofInstant_java$time$Instant_java$time$ZoneId__java$time$LocalDate = svoker("ofInstant", returns: JObjectType("java/time/LocalDate"), arguments: (JObjectType("java/time/Instant"), JObjectType("java/time/ZoneId")))
+    public static func ofInstant(_ a0: java$time$Instant?, _ a1: java$time$ZoneId?) throws -> java$time$LocalDate? {
+        return try JVM.sharedJVM.construct(I.java$time$LocalDate_ofInstant_java$time$Instant_java$time$ZoneId__java$time$LocalDate(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$time$LocalDate$Impl?
     }
 
     fileprivate static let java$time$LocalDate_ofEpochDay_J__java$time$LocalDate = svoker("ofEpochDay", returns: JObjectType("java/time/LocalDate"), arguments: (jlong.jniType))
@@ -673,9 +733,9 @@ public final class java$time$LocalDate : java$lang$Object, java$time$temporal$Te
         return try JVM.sharedJVM.construct(I.java$time$LocalDate_getChronology__java$time$chrono$IsoChronology(jobj)()) as java$time$chrono$IsoChronology$Impl?
     }
 
-    fileprivate static let java$time$LocalDate_getEra__java$time$chrono$Era = invoker("getEra", returns: JObjectType("java/time/chrono/Era"))
-    public func getEra() throws -> java$time$chrono$Era? {
-        return try JVM.sharedJVM.construct(I.java$time$LocalDate_getEra__java$time$chrono$Era(jobj)()) as java$time$chrono$Era$Impl?
+    fileprivate static let java$time$LocalDate_getEra__java$time$chrono$IsoEra = invoker("getEra", returns: JObjectType("java/time/chrono/IsoEra"))
+    public func getEra() throws -> java$time$chrono$IsoEra? {
+        return try JVM.sharedJVM.construct(I.java$time$LocalDate_getEra__java$time$chrono$IsoEra(jobj)()) as java$time$chrono$IsoEra$Impl?
     }
 
     fileprivate static let java$time$LocalDate_getYear__I = invoker("getYear", returns: jint.jniType)
@@ -833,6 +893,16 @@ public final class java$time$LocalDate : java$lang$Object, java$time$temporal$Te
         return try JVM.sharedJVM.construct(I.java$time$LocalDate_until_java$time$chrono$ChronoLocalDate__java$time$Period(jobj)(a0?.jobj ?? nil)) as java$time$Period$Impl?
     }
 
+    fileprivate static let java$time$LocalDate_datesUntil_java$time$LocalDate__java$util$stream$Stream = invoker("datesUntil", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/time/LocalDate")))
+    public func datesUntil(_ a0: java$time$LocalDate?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$time$LocalDate_datesUntil_java$time$LocalDate__java$util$stream$Stream(jobj)(a0?.jobj ?? nil)) as java$util$stream$Stream$Impl?
+    }
+
+    fileprivate static let java$time$LocalDate_datesUntil_java$time$LocalDate_java$time$Period__java$util$stream$Stream = invoker("datesUntil", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/time/LocalDate"), JObjectType("java/time/Period")))
+    public func datesUntil(_ a0: java$time$LocalDate?, _ a1: java$time$Period?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$time$LocalDate_datesUntil_java$time$LocalDate_java$time$Period__java$util$stream$Stream(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$stream$Stream$Impl?
+    }
+
     fileprivate static let java$time$LocalDate_format_java$time$format$DateTimeFormatter__java$lang$String = invoker("format", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/time/format/DateTimeFormatter")))
     public func format(_ a0: java$time$format$DateTimeFormatter?) throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$time$LocalDate_format_java$time$format$DateTimeFormatter__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
@@ -876,6 +946,11 @@ public final class java$time$LocalDate : java$lang$Object, java$time$temporal$Te
     fileprivate static let java$time$LocalDate_toEpochDay__J = invoker("toEpochDay", returns: jlong.jniType)
     public func toEpochDay() throws -> jlong {
         return try I.java$time$LocalDate_toEpochDay__J(jobj)()
+    }
+
+    fileprivate static let java$time$LocalDate_toEpochSecond_java$time$LocalTime_java$time$ZoneOffset__J = invoker("toEpochSecond", returns: jlong.jniType, arguments: (JObjectType("java/time/LocalTime"), JObjectType("java/time/ZoneOffset")))
+    public func toEpochSecond(_ a0: java$time$LocalTime?, _ a1: java$time$ZoneOffset?) throws -> jlong {
+        return try I.java$time$LocalDate_toEpochSecond_java$time$LocalTime_java$time$ZoneOffset__J(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
     }
 
     fileprivate static let java$time$LocalDate_compareTo_java$time$chrono$ChronoLocalDate__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/time/chrono/ChronoLocalDate")))
@@ -971,6 +1046,11 @@ public final class java$time$LocalDate : java$lang$Object, java$time$temporal$Te
         return try JVM.sharedJVM.construct(I.java$time$LocalDate_with_java$time$temporal$TemporalAdjuster__java$time$chrono$ChronoLocalDate(jobj)(a0?.jobj ?? nil)) as java$time$chrono$ChronoLocalDate$Impl?
     }
 
+    fileprivate static let java$time$LocalDate_getEra__java$time$chrono$Era = invoker("getEra", returns: JObjectType("java/time/chrono/Era"))
+    public func getEra() throws -> java$time$chrono$Era? {
+        return try JVM.sharedJVM.construct(I.java$time$LocalDate_getEra__java$time$chrono$Era(jobj)()) as java$time$chrono$Era$Impl?
+    }
+
     fileprivate static let java$time$LocalDate_getChronology__java$time$chrono$Chronology = invoker("getChronology", returns: JObjectType("java/time/chrono/Chronology"))
     public func getChronology() throws -> java$time$chrono$Chronology? {
         return try JVM.sharedJVM.construct(I.java$time$LocalDate_getChronology__java$time$chrono$Chronology(jobj)()) as java$time$chrono$Chronology$Impl?
@@ -994,12 +1074,12 @@ public final class java$time$LocalDateTime : java$lang$Object, java$time$tempora
 
     fileprivate static let java$time$LocalDateTime__MIN__java$time$LocalDateTime = J.saccessor("MIN", type: JObjectType("java/time/LocalDateTime"))
     public static var MIN: java$time$LocalDateTime? {
-        get { return java$time$LocalDateTime$Impl(constructor: I.java$time$LocalDateTime__MIN__java$time$LocalDateTime.getter()) }
+        get { return java$time$LocalDateTime$Impl(reference: I.java$time$LocalDateTime__MIN__java$time$LocalDateTime.getter()) }
     }
 
     fileprivate static let java$time$LocalDateTime__MAX__java$time$LocalDateTime = J.saccessor("MAX", type: JObjectType("java/time/LocalDateTime"))
     public static var MAX: java$time$LocalDateTime? {
-        get { return java$time$LocalDateTime$Impl(constructor: I.java$time$LocalDateTime__MAX__java$time$LocalDateTime.getter()) }
+        get { return java$time$LocalDateTime$Impl(reference: I.java$time$LocalDateTime__MAX__java$time$LocalDateTime.getter()) }
     }
 
     fileprivate static let java$time$LocalDateTime_now__java$time$LocalDateTime = svoker("now", returns: JObjectType("java/time/LocalDateTime"))
@@ -1458,22 +1538,22 @@ public final class java$time$LocalTime : java$lang$Object, java$time$temporal$Te
 
     fileprivate static let java$time$LocalTime__MIN__java$time$LocalTime = J.saccessor("MIN", type: JObjectType("java/time/LocalTime"))
     public static var MIN: java$time$LocalTime? {
-        get { return java$time$LocalTime$Impl(constructor: I.java$time$LocalTime__MIN__java$time$LocalTime.getter()) }
+        get { return java$time$LocalTime$Impl(reference: I.java$time$LocalTime__MIN__java$time$LocalTime.getter()) }
     }
 
     fileprivate static let java$time$LocalTime__MAX__java$time$LocalTime = J.saccessor("MAX", type: JObjectType("java/time/LocalTime"))
     public static var MAX: java$time$LocalTime? {
-        get { return java$time$LocalTime$Impl(constructor: I.java$time$LocalTime__MAX__java$time$LocalTime.getter()) }
+        get { return java$time$LocalTime$Impl(reference: I.java$time$LocalTime__MAX__java$time$LocalTime.getter()) }
     }
 
     fileprivate static let java$time$LocalTime__MIDNIGHT__java$time$LocalTime = J.saccessor("MIDNIGHT", type: JObjectType("java/time/LocalTime"))
     public static var MIDNIGHT: java$time$LocalTime? {
-        get { return java$time$LocalTime$Impl(constructor: I.java$time$LocalTime__MIDNIGHT__java$time$LocalTime.getter()) }
+        get { return java$time$LocalTime$Impl(reference: I.java$time$LocalTime__MIDNIGHT__java$time$LocalTime.getter()) }
     }
 
     fileprivate static let java$time$LocalTime__NOON__java$time$LocalTime = J.saccessor("NOON", type: JObjectType("java/time/LocalTime"))
     public static var NOON: java$time$LocalTime? {
-        get { return java$time$LocalTime$Impl(constructor: I.java$time$LocalTime__NOON__java$time$LocalTime.getter()) }
+        get { return java$time$LocalTime$Impl(reference: I.java$time$LocalTime__NOON__java$time$LocalTime.getter()) }
     }
 
     fileprivate static let java$time$LocalTime_now__java$time$LocalTime = svoker("now", returns: JObjectType("java/time/LocalTime"))
@@ -1504,6 +1584,11 @@ public final class java$time$LocalTime : java$lang$Object, java$time$temporal$Te
     fileprivate static let java$time$LocalTime_of_I_I_I_I__java$time$LocalTime = svoker("of", returns: JObjectType("java/time/LocalTime"), arguments: (jint.jniType, jint.jniType, jint.jniType, jint.jniType))
     public static func of(_ a0: jint, _ a1: jint, _ a2: jint, _ a3: jint) throws -> java$time$LocalTime? {
         return try JVM.sharedJVM.construct(I.java$time$LocalTime_of_I_I_I_I__java$time$LocalTime(a0, a1, a2, a3)) as java$time$LocalTime$Impl?
+    }
+
+    fileprivate static let java$time$LocalTime_ofInstant_java$time$Instant_java$time$ZoneId__java$time$LocalTime = svoker("ofInstant", returns: JObjectType("java/time/LocalTime"), arguments: (JObjectType("java/time/Instant"), JObjectType("java/time/ZoneId")))
+    public static func ofInstant(_ a0: java$time$Instant?, _ a1: java$time$ZoneId?) throws -> java$time$LocalTime? {
+        return try JVM.sharedJVM.construct(I.java$time$LocalTime_ofInstant_java$time$Instant_java$time$ZoneId__java$time$LocalTime(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$time$LocalTime$Impl?
     }
 
     fileprivate static let java$time$LocalTime_ofSecondOfDay_J__java$time$LocalTime = svoker("ofSecondOfDay", returns: JObjectType("java/time/LocalTime"), arguments: (jlong.jniType))
@@ -1709,6 +1794,11 @@ public final class java$time$LocalTime : java$lang$Object, java$time$temporal$Te
     fileprivate static let java$time$LocalTime_toNanoOfDay__J = invoker("toNanoOfDay", returns: jlong.jniType)
     public func toNanoOfDay() throws -> jlong {
         return try I.java$time$LocalTime_toNanoOfDay__J(jobj)()
+    }
+
+    fileprivate static let java$time$LocalTime_toEpochSecond_java$time$LocalDate_java$time$ZoneOffset__J = invoker("toEpochSecond", returns: jlong.jniType, arguments: (JObjectType("java/time/LocalDate"), JObjectType("java/time/ZoneOffset")))
+    public func toEpochSecond(_ a0: java$time$LocalDate?, _ a1: java$time$ZoneOffset?) throws -> jlong {
+        return try I.java$time$LocalTime_toEpochSecond_java$time$LocalDate_java$time$ZoneOffset__J(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
     }
 
     fileprivate static let java$time$LocalTime_compareTo_java$time$LocalTime__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/time/LocalTime")))
@@ -1926,12 +2016,12 @@ public final class java$time$OffsetDateTime : java$lang$Object, java$time$tempor
 
     fileprivate static let java$time$OffsetDateTime__MIN__java$time$OffsetDateTime = J.saccessor("MIN", type: JObjectType("java/time/OffsetDateTime"))
     public static var MIN: java$time$OffsetDateTime? {
-        get { return java$time$OffsetDateTime$Impl(constructor: I.java$time$OffsetDateTime__MIN__java$time$OffsetDateTime.getter()) }
+        get { return java$time$OffsetDateTime$Impl(reference: I.java$time$OffsetDateTime__MIN__java$time$OffsetDateTime.getter()) }
     }
 
     fileprivate static let java$time$OffsetDateTime__MAX__java$time$OffsetDateTime = J.saccessor("MAX", type: JObjectType("java/time/OffsetDateTime"))
     public static var MAX: java$time$OffsetDateTime? {
-        get { return java$time$OffsetDateTime$Impl(constructor: I.java$time$OffsetDateTime__MAX__java$time$OffsetDateTime.getter()) }
+        get { return java$time$OffsetDateTime$Impl(reference: I.java$time$OffsetDateTime__MAX__java$time$OffsetDateTime.getter()) }
     }
 
     fileprivate static let java$time$OffsetDateTime_timeLineOrder__java$util$Comparator = svoker("timeLineOrder", returns: JObjectType("java/util/Comparator"))
@@ -2370,12 +2460,12 @@ public final class java$time$OffsetTime : java$lang$Object, java$time$temporal$T
 
     fileprivate static let java$time$OffsetTime__MIN__java$time$OffsetTime = J.saccessor("MIN", type: JObjectType("java/time/OffsetTime"))
     public static var MIN: java$time$OffsetTime? {
-        get { return java$time$OffsetTime$Impl(constructor: I.java$time$OffsetTime__MIN__java$time$OffsetTime.getter()) }
+        get { return java$time$OffsetTime$Impl(reference: I.java$time$OffsetTime__MIN__java$time$OffsetTime.getter()) }
     }
 
     fileprivate static let java$time$OffsetTime__MAX__java$time$OffsetTime = J.saccessor("MAX", type: JObjectType("java/time/OffsetTime"))
     public static var MAX: java$time$OffsetTime? {
-        get { return java$time$OffsetTime$Impl(constructor: I.java$time$OffsetTime__MAX__java$time$OffsetTime.getter()) }
+        get { return java$time$OffsetTime$Impl(reference: I.java$time$OffsetTime__MAX__java$time$OffsetTime.getter()) }
     }
 
     fileprivate static let java$time$OffsetTime_now__java$time$OffsetTime = svoker("now", returns: JObjectType("java/time/OffsetTime"))
@@ -2608,6 +2698,11 @@ public final class java$time$OffsetTime : java$lang$Object, java$time$temporal$T
         return try JVM.sharedJVM.construct(I.java$time$OffsetTime_atDate_java$time$LocalDate__java$time$OffsetDateTime(jobj)(a0?.jobj ?? nil)) as java$time$OffsetDateTime$Impl?
     }
 
+    fileprivate static let java$time$OffsetTime_toEpochSecond_java$time$LocalDate__J = invoker("toEpochSecond", returns: jlong.jniType, arguments: (JObjectType("java/time/LocalDate")))
+    public func toEpochSecond(_ a0: java$time$LocalDate?) throws -> jlong {
+        return try I.java$time$OffsetTime_toEpochSecond_java$time$LocalDate__J(jobj)(a0?.jobj ?? nil)
+    }
+
     fileprivate static let java$time$OffsetTime_compareTo_java$time$OffsetTime__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/time/OffsetTime")))
     public func compareTo(_ a0: java$time$OffsetTime?) throws -> jint {
         return try I.java$time$OffsetTime_compareTo_java$time$OffsetTime__I(jobj)(a0?.jobj ?? nil)
@@ -2679,7 +2774,7 @@ public final class java$time$Period : java$lang$Object, java$time$chrono$ChronoP
 
     fileprivate static let java$time$Period__ZERO__java$time$Period = J.saccessor("ZERO", type: JObjectType("java/time/Period"))
     public static var ZERO: java$time$Period? {
-        get { return java$time$Period$Impl(constructor: I.java$time$Period__ZERO__java$time$Period.getter()) }
+        get { return java$time$Period$Impl(reference: I.java$time$Period__ZERO__java$time$Period.getter()) }
     }
 
     fileprivate static let java$time$Period_ofYears_I__java$time$Period = svoker("ofYears", returns: JObjectType("java/time/Period"), arguments: (jint.jniType))
@@ -3876,7 +3971,7 @@ open class java$time$ZoneId : java$lang$Object, java$io$Serializable {
 
     fileprivate static let java$time$ZoneId__SHORT_IDS__java$util$Map = J.saccessor("SHORT_IDS", type: JObjectType("java/util/Map"))
     public static var SHORT_IDS: java$util$Map? {
-        get { return java$util$Map$Impl(constructor: I.java$time$ZoneId__SHORT_IDS__java$util$Map.getter()) }
+        get { return java$util$Map$Impl(reference: I.java$time$ZoneId__SHORT_IDS__java$util$Map.getter()) }
     }
 
     fileprivate static let java$time$ZoneId_systemDefault__java$time$ZoneId = svoker("systemDefault", returns: JObjectType("java/time/ZoneId"))
@@ -3945,17 +4040,17 @@ public final class java$time$ZoneOffset : java$time$ZoneId, java$time$temporal$T
 
     fileprivate static let java$time$ZoneOffset__UTC__java$time$ZoneOffset = J.saccessor("UTC", type: JObjectType("java/time/ZoneOffset"))
     public static var UTC: java$time$ZoneOffset? {
-        get { return java$time$ZoneOffset$Impl(constructor: I.java$time$ZoneOffset__UTC__java$time$ZoneOffset.getter()) }
+        get { return java$time$ZoneOffset$Impl(reference: I.java$time$ZoneOffset__UTC__java$time$ZoneOffset.getter()) }
     }
 
     fileprivate static let java$time$ZoneOffset__MIN__java$time$ZoneOffset = J.saccessor("MIN", type: JObjectType("java/time/ZoneOffset"))
     public static var MIN: java$time$ZoneOffset? {
-        get { return java$time$ZoneOffset$Impl(constructor: I.java$time$ZoneOffset__MIN__java$time$ZoneOffset.getter()) }
+        get { return java$time$ZoneOffset$Impl(reference: I.java$time$ZoneOffset__MIN__java$time$ZoneOffset.getter()) }
     }
 
     fileprivate static let java$time$ZoneOffset__MAX__java$time$ZoneOffset = J.saccessor("MAX", type: JObjectType("java/time/ZoneOffset"))
     public static var MAX: java$time$ZoneOffset? {
-        get { return java$time$ZoneOffset$Impl(constructor: I.java$time$ZoneOffset__MAX__java$time$ZoneOffset.getter()) }
+        get { return java$time$ZoneOffset$Impl(reference: I.java$time$ZoneOffset__MAX__java$time$ZoneOffset.getter()) }
     }
 
     fileprivate static let java$time$ZoneOffset_of_java$lang$String__java$time$ZoneOffset = svoker("of", returns: JObjectType("java/time/ZoneOffset"), arguments: (JObjectType("java/lang/String")))
@@ -4043,37 +4138,37 @@ public final class java$time$DayOfWeek : java$lang$Enum, java$time$temporal$Temp
 
     fileprivate static let java$time$DayOfWeek__MONDAY__java$time$DayOfWeek = J.saccessor("MONDAY", type: JObjectType("java/time/DayOfWeek"))
     public static var MONDAY: java$time$DayOfWeek? {
-        get { return java$time$DayOfWeek$Impl(constructor: I.java$time$DayOfWeek__MONDAY__java$time$DayOfWeek.getter()) }
+        get { return java$time$DayOfWeek$Impl(reference: I.java$time$DayOfWeek__MONDAY__java$time$DayOfWeek.getter()) }
     }
 
     fileprivate static let java$time$DayOfWeek__TUESDAY__java$time$DayOfWeek = J.saccessor("TUESDAY", type: JObjectType("java/time/DayOfWeek"))
     public static var TUESDAY: java$time$DayOfWeek? {
-        get { return java$time$DayOfWeek$Impl(constructor: I.java$time$DayOfWeek__TUESDAY__java$time$DayOfWeek.getter()) }
+        get { return java$time$DayOfWeek$Impl(reference: I.java$time$DayOfWeek__TUESDAY__java$time$DayOfWeek.getter()) }
     }
 
     fileprivate static let java$time$DayOfWeek__WEDNESDAY__java$time$DayOfWeek = J.saccessor("WEDNESDAY", type: JObjectType("java/time/DayOfWeek"))
     public static var WEDNESDAY: java$time$DayOfWeek? {
-        get { return java$time$DayOfWeek$Impl(constructor: I.java$time$DayOfWeek__WEDNESDAY__java$time$DayOfWeek.getter()) }
+        get { return java$time$DayOfWeek$Impl(reference: I.java$time$DayOfWeek__WEDNESDAY__java$time$DayOfWeek.getter()) }
     }
 
     fileprivate static let java$time$DayOfWeek__THURSDAY__java$time$DayOfWeek = J.saccessor("THURSDAY", type: JObjectType("java/time/DayOfWeek"))
     public static var THURSDAY: java$time$DayOfWeek? {
-        get { return java$time$DayOfWeek$Impl(constructor: I.java$time$DayOfWeek__THURSDAY__java$time$DayOfWeek.getter()) }
+        get { return java$time$DayOfWeek$Impl(reference: I.java$time$DayOfWeek__THURSDAY__java$time$DayOfWeek.getter()) }
     }
 
     fileprivate static let java$time$DayOfWeek__FRIDAY__java$time$DayOfWeek = J.saccessor("FRIDAY", type: JObjectType("java/time/DayOfWeek"))
     public static var FRIDAY: java$time$DayOfWeek? {
-        get { return java$time$DayOfWeek$Impl(constructor: I.java$time$DayOfWeek__FRIDAY__java$time$DayOfWeek.getter()) }
+        get { return java$time$DayOfWeek$Impl(reference: I.java$time$DayOfWeek__FRIDAY__java$time$DayOfWeek.getter()) }
     }
 
     fileprivate static let java$time$DayOfWeek__SATURDAY__java$time$DayOfWeek = J.saccessor("SATURDAY", type: JObjectType("java/time/DayOfWeek"))
     public static var SATURDAY: java$time$DayOfWeek? {
-        get { return java$time$DayOfWeek$Impl(constructor: I.java$time$DayOfWeek__SATURDAY__java$time$DayOfWeek.getter()) }
+        get { return java$time$DayOfWeek$Impl(reference: I.java$time$DayOfWeek__SATURDAY__java$time$DayOfWeek.getter()) }
     }
 
     fileprivate static let java$time$DayOfWeek__SUNDAY__java$time$DayOfWeek = J.saccessor("SUNDAY", type: JObjectType("java/time/DayOfWeek"))
     public static var SUNDAY: java$time$DayOfWeek? {
-        get { return java$time$DayOfWeek$Impl(constructor: I.java$time$DayOfWeek__SUNDAY__java$time$DayOfWeek.getter()) }
+        get { return java$time$DayOfWeek$Impl(reference: I.java$time$DayOfWeek__SUNDAY__java$time$DayOfWeek.getter()) }
     }
 
     fileprivate static let java$time$DayOfWeek_values__Ajava$time$DayOfWeek = svoker("values", returns: JArray(JObjectType("java/time/DayOfWeek")))
@@ -4159,62 +4254,62 @@ public final class java$time$Month : java$lang$Enum, java$time$temporal$Temporal
 
     fileprivate static let java$time$Month__JANUARY__java$time$Month = J.saccessor("JANUARY", type: JObjectType("java/time/Month"))
     public static var JANUARY: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__JANUARY__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__JANUARY__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__FEBRUARY__java$time$Month = J.saccessor("FEBRUARY", type: JObjectType("java/time/Month"))
     public static var FEBRUARY: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__FEBRUARY__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__FEBRUARY__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__MARCH__java$time$Month = J.saccessor("MARCH", type: JObjectType("java/time/Month"))
     public static var MARCH: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__MARCH__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__MARCH__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__APRIL__java$time$Month = J.saccessor("APRIL", type: JObjectType("java/time/Month"))
     public static var APRIL: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__APRIL__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__APRIL__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__MAY__java$time$Month = J.saccessor("MAY", type: JObjectType("java/time/Month"))
     public static var MAY: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__MAY__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__MAY__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__JUNE__java$time$Month = J.saccessor("JUNE", type: JObjectType("java/time/Month"))
     public static var JUNE: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__JUNE__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__JUNE__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__JULY__java$time$Month = J.saccessor("JULY", type: JObjectType("java/time/Month"))
     public static var JULY: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__JULY__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__JULY__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__AUGUST__java$time$Month = J.saccessor("AUGUST", type: JObjectType("java/time/Month"))
     public static var AUGUST: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__AUGUST__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__AUGUST__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__SEPTEMBER__java$time$Month = J.saccessor("SEPTEMBER", type: JObjectType("java/time/Month"))
     public static var SEPTEMBER: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__SEPTEMBER__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__SEPTEMBER__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__OCTOBER__java$time$Month = J.saccessor("OCTOBER", type: JObjectType("java/time/Month"))
     public static var OCTOBER: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__OCTOBER__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__OCTOBER__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__NOVEMBER__java$time$Month = J.saccessor("NOVEMBER", type: JObjectType("java/time/Month"))
     public static var NOVEMBER: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__NOVEMBER__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__NOVEMBER__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month__DECEMBER__java$time$Month = J.saccessor("DECEMBER", type: JObjectType("java/time/Month"))
     public static var DECEMBER: java$time$Month? {
-        get { return java$time$Month$Impl(constructor: I.java$time$Month__DECEMBER__java$time$Month.getter()) }
+        get { return java$time$Month$Impl(reference: I.java$time$Month__DECEMBER__java$time$Month.getter()) }
     }
 
     fileprivate static let java$time$Month_values__Ajava$time$Month = svoker("values", returns: JArray(JObjectType("java/time/Month")))

@@ -798,6 +798,26 @@ open class java$util$concurrent$locks$StampedLock : java$lang$Object, java$io$Se
         return try I.java$util$concurrent$locks$StampedLock_isReadLocked__Z(jobj)()
     }
 
+    fileprivate static let java$util$concurrent$locks$StampedLock_isWriteLockStamp_J__Z = svoker("isWriteLockStamp", returns: jboolean.jniType, arguments: (jlong.jniType))
+    public static func isWriteLockStamp(_ a0: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$locks$StampedLock_isWriteLockStamp_J__Z(a0)
+    }
+
+    fileprivate static let java$util$concurrent$locks$StampedLock_isReadLockStamp_J__Z = svoker("isReadLockStamp", returns: jboolean.jniType, arguments: (jlong.jniType))
+    public static func isReadLockStamp(_ a0: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$locks$StampedLock_isReadLockStamp_J__Z(a0)
+    }
+
+    fileprivate static let java$util$concurrent$locks$StampedLock_isLockStamp_J__Z = svoker("isLockStamp", returns: jboolean.jniType, arguments: (jlong.jniType))
+    public static func isLockStamp(_ a0: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$locks$StampedLock_isLockStamp_J__Z(a0)
+    }
+
+    fileprivate static let java$util$concurrent$locks$StampedLock_isOptimisticReadStamp_J__Z = svoker("isOptimisticReadStamp", returns: jboolean.jniType, arguments: (jlong.jniType))
+    public static func isOptimisticReadStamp(_ a0: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$locks$StampedLock_isOptimisticReadStamp_J__Z(a0)
+    }
+
     fileprivate static let java$util$concurrent$locks$StampedLock_getReadLockCount__I = invoker("getReadLockCount", returns: jint.jniType)
     public func getReadLockCount() throws -> jint {
         return try I.java$util$concurrent$locks$StampedLock_getReadLockCount__I(jobj)()

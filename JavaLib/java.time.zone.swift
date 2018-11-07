@@ -303,17 +303,17 @@ public final class java$time$zone$ZoneOffsetTransitionRule$TimeDefinition : java
 
     fileprivate static let java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__UTC__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition = J.saccessor("UTC", type: JObjectType("java/time/zone/ZoneOffsetTransitionRule$TimeDefinition"))
     public static var UTC: java$time$zone$ZoneOffsetTransitionRule$TimeDefinition? {
-        get { return java$time$zone$ZoneOffsetTransitionRule$TimeDefinition$Impl(constructor: I.java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__UTC__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition.getter()) }
+        get { return java$time$zone$ZoneOffsetTransitionRule$TimeDefinition$Impl(reference: I.java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__UTC__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition.getter()) }
     }
 
     fileprivate static let java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__WALL__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition = J.saccessor("WALL", type: JObjectType("java/time/zone/ZoneOffsetTransitionRule$TimeDefinition"))
     public static var WALL: java$time$zone$ZoneOffsetTransitionRule$TimeDefinition? {
-        get { return java$time$zone$ZoneOffsetTransitionRule$TimeDefinition$Impl(constructor: I.java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__WALL__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition.getter()) }
+        get { return java$time$zone$ZoneOffsetTransitionRule$TimeDefinition$Impl(reference: I.java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__WALL__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition.getter()) }
     }
 
     fileprivate static let java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__STANDARD__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition = J.saccessor("STANDARD", type: JObjectType("java/time/zone/ZoneOffsetTransitionRule$TimeDefinition"))
     public static var STANDARD: java$time$zone$ZoneOffsetTransitionRule$TimeDefinition? {
-        get { return java$time$zone$ZoneOffsetTransitionRule$TimeDefinition$Impl(constructor: I.java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__STANDARD__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition.getter()) }
+        get { return java$time$zone$ZoneOffsetTransitionRule$TimeDefinition$Impl(reference: I.java$time$zone$ZoneOffsetTransitionRule$TimeDefinition__STANDARD__java$time$zone$ZoneOffsetTransitionRule$TimeDefinition.getter()) }
     }
 
     fileprivate static let java$time$zone$ZoneOffsetTransitionRule$TimeDefinition_values__Ajava$time$zone$ZoneOffsetTransitionRule$TimeDefinition = svoker("values", returns: JArray(JObjectType("java/time/zone/ZoneOffsetTransitionRule$TimeDefinition")))

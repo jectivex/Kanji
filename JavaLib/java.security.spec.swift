@@ -281,7 +281,7 @@ open class java$security$spec$ECPoint : java$lang$Object {
 
     fileprivate static let java$security$spec$ECPoint__POINT_INFINITY__java$security$spec$ECPoint = J.saccessor("POINT_INFINITY", type: JObjectType("java/security/spec/ECPoint"))
     public static var POINT_INFINITY: java$security$spec$ECPoint? {
-        get { return java$security$spec$ECPoint$Impl(constructor: I.java$security$spec$ECPoint__POINT_INFINITY__java$security$spec$ECPoint.getter()) }
+        get { return java$security$spec$ECPoint$Impl(reference: I.java$security$spec$ECPoint__POINT_INFINITY__java$security$spec$ECPoint.getter()) }
     }
 
     fileprivate static let java$security$spec$ECPoint_init_java$math$BigInteger_java$math$BigInteger__V = constructor((JObjectType("java/math/BigInteger"), JObjectType("java/math/BigInteger")))
@@ -412,6 +412,11 @@ open class java$security$spec$EncodedKeySpec : java$lang$Object, java$security$s
         try self.init(creator: I.java$security$spec$EncodedKeySpec_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
+    fileprivate static let java$security$spec$EncodedKeySpec_getAlgorithm__java$lang$String = invoker("getAlgorithm", returns: JObjectType("java/lang/String"))
+    public func getAlgorithm() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$security$spec$EncodedKeySpec_getAlgorithm__java$lang$String(jobj)()) as java$lang$String$Impl?
+    }
+
     fileprivate static let java$security$spec$EncodedKeySpec_getEncoded__AB = invoker("getEncoded", returns: JArray(jbyte.jniType))
     public func getEncoded() throws -> [jbyte]? {
         return try I.java$security$spec$EncodedKeySpec_getEncoded__AB(jobj)()?.jarrayToArray()
@@ -438,6 +443,11 @@ open class java$security$spec$PKCS8EncodedKeySpec : java$security$spec$EncodedKe
         try self.init(creator: I.java$security$spec$PKCS8EncodedKeySpec_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
+    fileprivate static let java$security$spec$PKCS8EncodedKeySpec_init_AB_java$lang$String__V = constructor((JArray(jbyte.jniType), JObjectType("java/lang/String")))
+    public convenience init(_ a0: [jbyte]?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$security$spec$PKCS8EncodedKeySpec_init_AB_java$lang$String__V(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil))
+    }
+
     fileprivate static let java$security$spec$PKCS8EncodedKeySpec_getEncoded__AB = invoker("getEncoded", returns: JArray(jbyte.jniType))
     fileprivate static let java$security$spec$PKCS8EncodedKeySpec_getFormat__java$lang$String = invoker("getFormat", returns: JObjectType("java/lang/String"))
 }
@@ -456,6 +466,11 @@ open class java$security$spec$X509EncodedKeySpec : java$security$spec$EncodedKey
         try self.init(creator: I.java$security$spec$X509EncodedKeySpec_init_AB__V(a0?.arrayToJArray() ?? nil))
     }
 
+    fileprivate static let java$security$spec$X509EncodedKeySpec_init_AB_java$lang$String__V = constructor((JArray(jbyte.jniType), JObjectType("java/lang/String")))
+    public convenience init(_ a0: [jbyte]?, _ a1: java$lang$String?) throws {
+        try self.init(creator: I.java$security$spec$X509EncodedKeySpec_init_AB_java$lang$String__V(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil))
+    }
+
     fileprivate static let java$security$spec$X509EncodedKeySpec_getEncoded__AB = invoker("getEncoded", returns: JArray(jbyte.jniType))
     fileprivate static let java$security$spec$X509EncodedKeySpec_getFormat__java$lang$String = invoker("getFormat", returns: JObjectType("java/lang/String"))
 }
@@ -471,27 +486,27 @@ open class java$security$spec$MGF1ParameterSpec : java$lang$Object, java$securit
 
     fileprivate static let java$security$spec$MGF1ParameterSpec__SHA1__java$security$spec$MGF1ParameterSpec = J.saccessor("SHA1", type: JObjectType("java/security/spec/MGF1ParameterSpec"))
     public static var SHA1: java$security$spec$MGF1ParameterSpec? {
-        get { return java$security$spec$MGF1ParameterSpec$Impl(constructor: I.java$security$spec$MGF1ParameterSpec__SHA1__java$security$spec$MGF1ParameterSpec.getter()) }
+        get { return java$security$spec$MGF1ParameterSpec$Impl(reference: I.java$security$spec$MGF1ParameterSpec__SHA1__java$security$spec$MGF1ParameterSpec.getter()) }
     }
 
     fileprivate static let java$security$spec$MGF1ParameterSpec__SHA224__java$security$spec$MGF1ParameterSpec = J.saccessor("SHA224", type: JObjectType("java/security/spec/MGF1ParameterSpec"))
     public static var SHA224: java$security$spec$MGF1ParameterSpec? {
-        get { return java$security$spec$MGF1ParameterSpec$Impl(constructor: I.java$security$spec$MGF1ParameterSpec__SHA224__java$security$spec$MGF1ParameterSpec.getter()) }
+        get { return java$security$spec$MGF1ParameterSpec$Impl(reference: I.java$security$spec$MGF1ParameterSpec__SHA224__java$security$spec$MGF1ParameterSpec.getter()) }
     }
 
     fileprivate static let java$security$spec$MGF1ParameterSpec__SHA256__java$security$spec$MGF1ParameterSpec = J.saccessor("SHA256", type: JObjectType("java/security/spec/MGF1ParameterSpec"))
     public static var SHA256: java$security$spec$MGF1ParameterSpec? {
-        get { return java$security$spec$MGF1ParameterSpec$Impl(constructor: I.java$security$spec$MGF1ParameterSpec__SHA256__java$security$spec$MGF1ParameterSpec.getter()) }
+        get { return java$security$spec$MGF1ParameterSpec$Impl(reference: I.java$security$spec$MGF1ParameterSpec__SHA256__java$security$spec$MGF1ParameterSpec.getter()) }
     }
 
     fileprivate static let java$security$spec$MGF1ParameterSpec__SHA384__java$security$spec$MGF1ParameterSpec = J.saccessor("SHA384", type: JObjectType("java/security/spec/MGF1ParameterSpec"))
     public static var SHA384: java$security$spec$MGF1ParameterSpec? {
-        get { return java$security$spec$MGF1ParameterSpec$Impl(constructor: I.java$security$spec$MGF1ParameterSpec__SHA384__java$security$spec$MGF1ParameterSpec.getter()) }
+        get { return java$security$spec$MGF1ParameterSpec$Impl(reference: I.java$security$spec$MGF1ParameterSpec__SHA384__java$security$spec$MGF1ParameterSpec.getter()) }
     }
 
     fileprivate static let java$security$spec$MGF1ParameterSpec__SHA512__java$security$spec$MGF1ParameterSpec = J.saccessor("SHA512", type: JObjectType("java/security/spec/MGF1ParameterSpec"))
     public static var SHA512: java$security$spec$MGF1ParameterSpec? {
-        get { return java$security$spec$MGF1ParameterSpec$Impl(constructor: I.java$security$spec$MGF1ParameterSpec__SHA512__java$security$spec$MGF1ParameterSpec.getter()) }
+        get { return java$security$spec$MGF1ParameterSpec$Impl(reference: I.java$security$spec$MGF1ParameterSpec__SHA512__java$security$spec$MGF1ParameterSpec.getter()) }
     }
 
     fileprivate static let java$security$spec$MGF1ParameterSpec_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
@@ -517,7 +532,7 @@ open class java$security$spec$PSSParameterSpec : java$lang$Object, java$security
 
     fileprivate static let java$security$spec$PSSParameterSpec__DEFAULT__java$security$spec$PSSParameterSpec = J.saccessor("DEFAULT", type: JObjectType("java/security/spec/PSSParameterSpec"))
     public static var DEFAULT: java$security$spec$PSSParameterSpec? {
-        get { return java$security$spec$PSSParameterSpec$Impl(constructor: I.java$security$spec$PSSParameterSpec__DEFAULT__java$security$spec$PSSParameterSpec.getter()) }
+        get { return java$security$spec$PSSParameterSpec$Impl(reference: I.java$security$spec$PSSParameterSpec__DEFAULT__java$security$spec$PSSParameterSpec.getter()) }
     }
 
     fileprivate static let java$security$spec$PSSParameterSpec_init_java$lang$String_java$lang$String_java$security$spec$AlgorithmParameterSpec_I_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/security/spec/AlgorithmParameterSpec"), jint.jniType, jint.jniType))
@@ -568,12 +583,12 @@ open class java$security$spec$RSAKeyGenParameterSpec : java$lang$Object, java$se
 
     fileprivate static let java$security$spec$RSAKeyGenParameterSpec__F0__java$math$BigInteger = J.saccessor("F0", type: JObjectType("java/math/BigInteger"))
     public static var F0: java$math$BigInteger? {
-        get { return java$math$BigInteger$Impl(constructor: I.java$security$spec$RSAKeyGenParameterSpec__F0__java$math$BigInteger.getter()) }
+        get { return java$math$BigInteger$Impl(reference: I.java$security$spec$RSAKeyGenParameterSpec__F0__java$math$BigInteger.getter()) }
     }
 
     fileprivate static let java$security$spec$RSAKeyGenParameterSpec__F4__java$math$BigInteger = J.saccessor("F4", type: JObjectType("java/math/BigInteger"))
     public static var F4: java$math$BigInteger? {
-        get { return java$math$BigInteger$Impl(constructor: I.java$security$spec$RSAKeyGenParameterSpec__F4__java$math$BigInteger.getter()) }
+        get { return java$math$BigInteger$Impl(reference: I.java$security$spec$RSAKeyGenParameterSpec__F4__java$math$BigInteger.getter()) }
     }
 
     fileprivate static let java$security$spec$RSAKeyGenParameterSpec_init_I_java$math$BigInteger__V = constructor((jint.jniType, JObjectType("java/math/BigInteger")))

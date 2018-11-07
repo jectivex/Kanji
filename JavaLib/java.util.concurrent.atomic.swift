@@ -32,6 +32,11 @@ open class java$util$concurrent$atomic$AtomicBoolean : java$lang$Object, java$io
         return try I.java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSet_Z_Z__Z(jobj)(a0, a1)
     }
 
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSetPlain_Z_Z__Z = invoker("weakCompareAndSetPlain", returns: jboolean.jniType, arguments: (jboolean.jniType, jboolean.jniType))
+    public func weakCompareAndSetPlain(_ a0: jboolean, _ a1: jboolean) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSetPlain_Z_Z__Z(jobj)(a0, a1)
+    }
+
     fileprivate static let java$util$concurrent$atomic$AtomicBoolean_set_Z__V = invoker("set", returns: JVoid.jniType, arguments: (jboolean.jniType))
     public func set(_ a0: jboolean) throws -> Void {
         return try I.java$util$concurrent$atomic$AtomicBoolean_set_Z__V(jobj)(a0)
@@ -48,6 +53,66 @@ open class java$util$concurrent$atomic$AtomicBoolean : java$lang$Object, java$io
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicBoolean_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_getPlain__Z = invoker("getPlain", returns: jboolean.jniType)
+    public func getPlain() throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_getPlain__Z(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_setPlain_Z__V = invoker("setPlain", returns: JVoid.jniType, arguments: (jboolean.jniType))
+    public func setPlain(_ a0: jboolean) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_setPlain_Z__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_getOpaque__Z = invoker("getOpaque", returns: jboolean.jniType)
+    public func getOpaque() throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_getOpaque__Z(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_setOpaque_Z__V = invoker("setOpaque", returns: JVoid.jniType, arguments: (jboolean.jniType))
+    public func setOpaque(_ a0: jboolean) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_setOpaque_Z__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_getAcquire__Z = invoker("getAcquire", returns: jboolean.jniType)
+    public func getAcquire() throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_getAcquire__Z(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_setRelease_Z__V = invoker("setRelease", returns: JVoid.jniType, arguments: (jboolean.jniType))
+    public func setRelease(_ a0: jboolean) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_setRelease_Z__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_compareAndExchange_Z_Z__Z = invoker("compareAndExchange", returns: jboolean.jniType, arguments: (jboolean.jniType, jboolean.jniType))
+    public func compareAndExchange(_ a0: jboolean, _ a1: jboolean) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_compareAndExchange_Z_Z__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_compareAndExchangeAcquire_Z_Z__Z = invoker("compareAndExchangeAcquire", returns: jboolean.jniType, arguments: (jboolean.jniType, jboolean.jniType))
+    public func compareAndExchangeAcquire(_ a0: jboolean, _ a1: jboolean) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_compareAndExchangeAcquire_Z_Z__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_compareAndExchangeRelease_Z_Z__Z = invoker("compareAndExchangeRelease", returns: jboolean.jniType, arguments: (jboolean.jniType, jboolean.jniType))
+    public func compareAndExchangeRelease(_ a0: jboolean, _ a1: jboolean) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_compareAndExchangeRelease_Z_Z__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSetVolatile_Z_Z__Z = invoker("weakCompareAndSetVolatile", returns: jboolean.jniType, arguments: (jboolean.jniType, jboolean.jniType))
+    public func weakCompareAndSetVolatile(_ a0: jboolean, _ a1: jboolean) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSetVolatile_Z_Z__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSetAcquire_Z_Z__Z = invoker("weakCompareAndSetAcquire", returns: jboolean.jniType, arguments: (jboolean.jniType, jboolean.jniType))
+    public func weakCompareAndSetAcquire(_ a0: jboolean, _ a1: jboolean) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSetAcquire_Z_Z__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSetRelease_Z_Z__Z = invoker("weakCompareAndSetRelease", returns: jboolean.jniType, arguments: (jboolean.jniType, jboolean.jniType))
+    public func weakCompareAndSetRelease(_ a0: jboolean, _ a1: jboolean) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicBoolean_weakCompareAndSetRelease_Z_Z__Z(jobj)(a0, a1)
+    }
+
 }
 
 public typealias java$util$concurrent$atomic$AtomicBoolean$Impl = java$util$concurrent$atomic$AtomicBoolean
@@ -104,6 +169,11 @@ open class java$util$concurrent$atomic$AtomicIntegerArray : java$lang$Object, ja
         return try I.java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSet_I_I_I__Z(jobj)(a0, a1, a2)
     }
 
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSetPlain_I_I_I__Z = invoker("weakCompareAndSetPlain", returns: jboolean.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public func weakCompareAndSetPlain(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSetPlain_I_I_I__Z(jobj)(a0, a1, a2)
+    }
+
     fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_getAndIncrement_I__I = invoker("getAndIncrement", returns: jint.jniType, arguments: (jint.jniType))
     public func getAndIncrement(_ a0: jint) throws -> jint {
         return try I.java$util$concurrent$atomic$AtomicIntegerArray_getAndIncrement_I__I(jobj)(a0)
@@ -155,6 +225,66 @@ open class java$util$concurrent$atomic$AtomicIntegerArray : java$lang$Object, ja
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_getPlain_I__I = invoker("getPlain", returns: jint.jniType, arguments: (jint.jniType))
+    public func getPlain(_ a0: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_getPlain_I__I(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_setPlain_I_I__V = invoker("setPlain", returns: JVoid.jniType, arguments: (jint.jniType, jint.jniType))
+    public func setPlain(_ a0: jint, _ a1: jint) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_setPlain_I_I__V(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_getOpaque_I__I = invoker("getOpaque", returns: jint.jniType, arguments: (jint.jniType))
+    public func getOpaque(_ a0: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_getOpaque_I__I(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_setOpaque_I_I__V = invoker("setOpaque", returns: JVoid.jniType, arguments: (jint.jniType, jint.jniType))
+    public func setOpaque(_ a0: jint, _ a1: jint) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_setOpaque_I_I__V(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_getAcquire_I__I = invoker("getAcquire", returns: jint.jniType, arguments: (jint.jniType))
+    public func getAcquire(_ a0: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_getAcquire_I__I(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_setRelease_I_I__V = invoker("setRelease", returns: JVoid.jniType, arguments: (jint.jniType, jint.jniType))
+    public func setRelease(_ a0: jint, _ a1: jint) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_setRelease_I_I__V(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_compareAndExchange_I_I_I__I = invoker("compareAndExchange", returns: jint.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public func compareAndExchange(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_compareAndExchange_I_I_I__I(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_compareAndExchangeAcquire_I_I_I__I = invoker("compareAndExchangeAcquire", returns: jint.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public func compareAndExchangeAcquire(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_compareAndExchangeAcquire_I_I_I__I(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_compareAndExchangeRelease_I_I_I__I = invoker("compareAndExchangeRelease", returns: jint.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public func compareAndExchangeRelease(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_compareAndExchangeRelease_I_I_I__I(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSetVolatile_I_I_I__Z = invoker("weakCompareAndSetVolatile", returns: jboolean.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public func weakCompareAndSetVolatile(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSetVolatile_I_I_I__Z(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSetAcquire_I_I_I__Z = invoker("weakCompareAndSetAcquire", returns: jboolean.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public func weakCompareAndSetAcquire(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSetAcquire_I_I_I__Z(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSetRelease_I_I_I__Z = invoker("weakCompareAndSetRelease", returns: jboolean.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public func weakCompareAndSetRelease(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicIntegerArray_weakCompareAndSetRelease_I_I_I__Z(jobj)(a0, a1, a2)
+    }
+
 }
 
 public typealias java$util$concurrent$atomic$AtomicIntegerArray$Impl = java$util$concurrent$atomic$AtomicIntegerArray
@@ -307,6 +437,11 @@ open class java$util$concurrent$atomic$AtomicLongArray : java$lang$Object, java$
         return try I.java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSet_I_J_J__Z(jobj)(a0, a1, a2)
     }
 
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSetPlain_I_J_J__Z = invoker("weakCompareAndSetPlain", returns: jboolean.jniType, arguments: (jint.jniType, jlong.jniType, jlong.jniType))
+    public func weakCompareAndSetPlain(_ a0: jint, _ a1: jlong, _ a2: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSetPlain_I_J_J__Z(jobj)(a0, a1, a2)
+    }
+
     fileprivate static let java$util$concurrent$atomic$AtomicLongArray_getAndIncrement_I__J = invoker("getAndIncrement", returns: jlong.jniType, arguments: (jint.jniType))
     public func getAndIncrement(_ a0: jint) throws -> jlong {
         return try I.java$util$concurrent$atomic$AtomicLongArray_getAndIncrement_I__J(jobj)(a0)
@@ -358,6 +493,66 @@ open class java$util$concurrent$atomic$AtomicLongArray : java$lang$Object, java$
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicLongArray_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_getPlain_I__J = invoker("getPlain", returns: jlong.jniType, arguments: (jint.jniType))
+    public func getPlain(_ a0: jint) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_getPlain_I__J(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_setPlain_I_J__V = invoker("setPlain", returns: JVoid.jniType, arguments: (jint.jniType, jlong.jniType))
+    public func setPlain(_ a0: jint, _ a1: jlong) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_setPlain_I_J__V(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_getOpaque_I__J = invoker("getOpaque", returns: jlong.jniType, arguments: (jint.jniType))
+    public func getOpaque(_ a0: jint) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_getOpaque_I__J(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_setOpaque_I_J__V = invoker("setOpaque", returns: JVoid.jniType, arguments: (jint.jniType, jlong.jniType))
+    public func setOpaque(_ a0: jint, _ a1: jlong) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_setOpaque_I_J__V(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_getAcquire_I__J = invoker("getAcquire", returns: jlong.jniType, arguments: (jint.jniType))
+    public func getAcquire(_ a0: jint) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_getAcquire_I__J(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_setRelease_I_J__V = invoker("setRelease", returns: JVoid.jniType, arguments: (jint.jniType, jlong.jniType))
+    public func setRelease(_ a0: jint, _ a1: jlong) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_setRelease_I_J__V(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_compareAndExchange_I_J_J__J = invoker("compareAndExchange", returns: jlong.jniType, arguments: (jint.jniType, jlong.jniType, jlong.jniType))
+    public func compareAndExchange(_ a0: jint, _ a1: jlong, _ a2: jlong) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_compareAndExchange_I_J_J__J(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_compareAndExchangeAcquire_I_J_J__J = invoker("compareAndExchangeAcquire", returns: jlong.jniType, arguments: (jint.jniType, jlong.jniType, jlong.jniType))
+    public func compareAndExchangeAcquire(_ a0: jint, _ a1: jlong, _ a2: jlong) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_compareAndExchangeAcquire_I_J_J__J(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_compareAndExchangeRelease_I_J_J__J = invoker("compareAndExchangeRelease", returns: jlong.jniType, arguments: (jint.jniType, jlong.jniType, jlong.jniType))
+    public func compareAndExchangeRelease(_ a0: jint, _ a1: jlong, _ a2: jlong) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_compareAndExchangeRelease_I_J_J__J(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSetVolatile_I_J_J__Z = invoker("weakCompareAndSetVolatile", returns: jboolean.jniType, arguments: (jint.jniType, jlong.jniType, jlong.jniType))
+    public func weakCompareAndSetVolatile(_ a0: jint, _ a1: jlong, _ a2: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSetVolatile_I_J_J__Z(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSetAcquire_I_J_J__Z = invoker("weakCompareAndSetAcquire", returns: jboolean.jniType, arguments: (jint.jniType, jlong.jniType, jlong.jniType))
+    public func weakCompareAndSetAcquire(_ a0: jint, _ a1: jlong, _ a2: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSetAcquire_I_J_J__Z(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSetRelease_I_J_J__Z = invoker("weakCompareAndSetRelease", returns: jboolean.jniType, arguments: (jint.jniType, jlong.jniType, jlong.jniType))
+    public func weakCompareAndSetRelease(_ a0: jint, _ a1: jlong, _ a2: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicLongArray_weakCompareAndSetRelease_I_J_J__Z(jobj)(a0, a1, a2)
+    }
+
 }
 
 public typealias java$util$concurrent$atomic$AtomicLongArray$Impl = java$util$concurrent$atomic$AtomicLongArray
@@ -551,6 +746,11 @@ open class java$util$concurrent$atomic$AtomicReference : java$lang$Object, java$
         return try I.java$util$concurrent$atomic$AtomicReference_weakCompareAndSet_java$lang$Object_java$lang$Object__Z(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_weakCompareAndSetPlain_java$lang$Object_java$lang$Object__Z = invoker("weakCompareAndSetPlain", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func weakCompareAndSetPlain(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicReference_weakCompareAndSetPlain_java$lang$Object_java$lang$Object__Z(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
     fileprivate static let java$util$concurrent$atomic$AtomicReference_getAndSet_java$lang$Object__java$lang$Object = invoker("getAndSet", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))
     public func getAndSet(_ a0: java$lang$Object?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReference_getAndSet_java$lang$Object__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
@@ -577,6 +777,66 @@ open class java$util$concurrent$atomic$AtomicReference : java$lang$Object, java$
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicReference_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_getPlain__java$lang$Object = invoker("getPlain", returns: JObjectType("java/lang/Object"))
+    public func getPlain() throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReference_getPlain__java$lang$Object(jobj)()) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_setPlain_java$lang$Object__V = invoker("setPlain", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
+    public func setPlain(_ a0: java$lang$Object?) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicReference_setPlain_java$lang$Object__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_getOpaque__java$lang$Object = invoker("getOpaque", returns: JObjectType("java/lang/Object"))
+    public func getOpaque() throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReference_getOpaque__java$lang$Object(jobj)()) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_setOpaque_java$lang$Object__V = invoker("setOpaque", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
+    public func setOpaque(_ a0: java$lang$Object?) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicReference_setOpaque_java$lang$Object__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_getAcquire__java$lang$Object = invoker("getAcquire", returns: JObjectType("java/lang/Object"))
+    public func getAcquire() throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReference_getAcquire__java$lang$Object(jobj)()) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_setRelease_java$lang$Object__V = invoker("setRelease", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
+    public func setRelease(_ a0: java$lang$Object?) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicReference_setRelease_java$lang$Object__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_compareAndExchange_java$lang$Object_java$lang$Object__java$lang$Object = invoker("compareAndExchange", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func compareAndExchange(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReference_compareAndExchange_java$lang$Object_java$lang$Object__java$lang$Object(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_compareAndExchangeAcquire_java$lang$Object_java$lang$Object__java$lang$Object = invoker("compareAndExchangeAcquire", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func compareAndExchangeAcquire(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReference_compareAndExchangeAcquire_java$lang$Object_java$lang$Object__java$lang$Object(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_compareAndExchangeRelease_java$lang$Object_java$lang$Object__java$lang$Object = invoker("compareAndExchangeRelease", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func compareAndExchangeRelease(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReference_compareAndExchangeRelease_java$lang$Object_java$lang$Object__java$lang$Object(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_weakCompareAndSetVolatile_java$lang$Object_java$lang$Object__Z = invoker("weakCompareAndSetVolatile", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func weakCompareAndSetVolatile(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicReference_weakCompareAndSetVolatile_java$lang$Object_java$lang$Object__Z(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_weakCompareAndSetAcquire_java$lang$Object_java$lang$Object__Z = invoker("weakCompareAndSetAcquire", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func weakCompareAndSetAcquire(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicReference_weakCompareAndSetAcquire_java$lang$Object_java$lang$Object__Z(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReference_weakCompareAndSetRelease_java$lang$Object_java$lang$Object__Z = invoker("weakCompareAndSetRelease", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func weakCompareAndSetRelease(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicReference_weakCompareAndSetRelease_java$lang$Object_java$lang$Object__Z(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
 }
 
 public typealias java$util$concurrent$atomic$AtomicReference$Impl = java$util$concurrent$atomic$AtomicReference
@@ -633,6 +893,11 @@ open class java$util$concurrent$atomic$AtomicReferenceArray : java$lang$Object, 
         return try I.java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSet_I_java$lang$Object_java$lang$Object__Z(jobj)(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSetPlain_I_java$lang$Object_java$lang$Object__Z = invoker("weakCompareAndSetPlain", returns: jboolean.jniType, arguments: (jint.jniType, JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func weakCompareAndSetPlain(_ a0: jint, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSetPlain_I_java$lang$Object_java$lang$Object__Z(jobj)(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)
+    }
+
     fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_getAndUpdate_I_java$util$function$UnaryOperator__java$lang$Object = invoker("getAndUpdate", returns: JObjectType("java/lang/Object"), arguments: (jint.jniType, JObjectType("java/util/function/UnaryOperator")))
     public func getAndUpdate(_ a0: jint, _ a1: java$util$function$UnaryOperator?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReferenceArray_getAndUpdate_I_java$util$function$UnaryOperator__java$lang$Object(jobj)(a0, a1?.jobj ?? nil)) as java$lang$Object$Impl?
@@ -654,6 +919,66 @@ open class java$util$concurrent$atomic$AtomicReferenceArray : java$lang$Object, 
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_getPlain_I__java$lang$Object = invoker("getPlain", returns: JObjectType("java/lang/Object"), arguments: (jint.jniType))
+    public func getPlain(_ a0: jint) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReferenceArray_getPlain_I__java$lang$Object(jobj)(a0)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_setPlain_I_java$lang$Object__V = invoker("setPlain", returns: JVoid.jniType, arguments: (jint.jniType, JObjectType("java/lang/Object")))
+    public func setPlain(_ a0: jint, _ a1: java$lang$Object?) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicReferenceArray_setPlain_I_java$lang$Object__V(jobj)(a0, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_getOpaque_I__java$lang$Object = invoker("getOpaque", returns: JObjectType("java/lang/Object"), arguments: (jint.jniType))
+    public func getOpaque(_ a0: jint) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReferenceArray_getOpaque_I__java$lang$Object(jobj)(a0)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_setOpaque_I_java$lang$Object__V = invoker("setOpaque", returns: JVoid.jniType, arguments: (jint.jniType, JObjectType("java/lang/Object")))
+    public func setOpaque(_ a0: jint, _ a1: java$lang$Object?) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicReferenceArray_setOpaque_I_java$lang$Object__V(jobj)(a0, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_getAcquire_I__java$lang$Object = invoker("getAcquire", returns: JObjectType("java/lang/Object"), arguments: (jint.jniType))
+    public func getAcquire(_ a0: jint) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReferenceArray_getAcquire_I__java$lang$Object(jobj)(a0)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_setRelease_I_java$lang$Object__V = invoker("setRelease", returns: JVoid.jniType, arguments: (jint.jniType, JObjectType("java/lang/Object")))
+    public func setRelease(_ a0: jint, _ a1: java$lang$Object?) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicReferenceArray_setRelease_I_java$lang$Object__V(jobj)(a0, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_compareAndExchange_I_java$lang$Object_java$lang$Object__java$lang$Object = invoker("compareAndExchange", returns: JObjectType("java/lang/Object"), arguments: (jint.jniType, JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func compareAndExchange(_ a0: jint, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReferenceArray_compareAndExchange_I_java$lang$Object_java$lang$Object__java$lang$Object(jobj)(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_compareAndExchangeAcquire_I_java$lang$Object_java$lang$Object__java$lang$Object = invoker("compareAndExchangeAcquire", returns: JObjectType("java/lang/Object"), arguments: (jint.jniType, JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func compareAndExchangeAcquire(_ a0: jint, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReferenceArray_compareAndExchangeAcquire_I_java$lang$Object_java$lang$Object__java$lang$Object(jobj)(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_compareAndExchangeRelease_I_java$lang$Object_java$lang$Object__java$lang$Object = invoker("compareAndExchangeRelease", returns: JObjectType("java/lang/Object"), arguments: (jint.jniType, JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func compareAndExchangeRelease(_ a0: jint, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$atomic$AtomicReferenceArray_compareAndExchangeRelease_I_java$lang$Object_java$lang$Object__java$lang$Object(jobj)(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSetVolatile_I_java$lang$Object_java$lang$Object__Z = invoker("weakCompareAndSetVolatile", returns: jboolean.jniType, arguments: (jint.jniType, JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func weakCompareAndSetVolatile(_ a0: jint, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSetVolatile_I_java$lang$Object_java$lang$Object__Z(jobj)(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSetAcquire_I_java$lang$Object_java$lang$Object__Z = invoker("weakCompareAndSetAcquire", returns: jboolean.jniType, arguments: (jint.jniType, JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func weakCompareAndSetAcquire(_ a0: jint, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSetAcquire_I_java$lang$Object_java$lang$Object__Z(jobj)(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSetRelease_I_java$lang$Object_java$lang$Object__Z = invoker("weakCompareAndSetRelease", returns: jboolean.jniType, arguments: (jint.jniType, JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public func weakCompareAndSetRelease(_ a0: jint, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicReferenceArray_weakCompareAndSetRelease_I_java$lang$Object_java$lang$Object__Z(jobj)(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)
+    }
+
 }
 
 public typealias java$util$concurrent$atomic$AtomicReferenceArray$Impl = java$util$concurrent$atomic$AtomicReferenceArray
@@ -833,6 +1158,11 @@ open class java$util$concurrent$atomic$AtomicInteger : java$lang$Number {
         return try I.java$util$concurrent$atomic$AtomicInteger_weakCompareAndSet_I_I__Z(jobj)(a0, a1)
     }
 
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_weakCompareAndSetPlain_I_I__Z = invoker("weakCompareAndSetPlain", returns: jboolean.jniType, arguments: (jint.jniType, jint.jniType))
+    public func weakCompareAndSetPlain(_ a0: jint, _ a1: jint) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicInteger_weakCompareAndSetPlain_I_I__Z(jobj)(a0, a1)
+    }
+
     fileprivate static let java$util$concurrent$atomic$AtomicInteger_getAndIncrement__I = invoker("getAndIncrement", returns: jint.jniType)
     public func getAndIncrement() throws -> jint {
         return try I.java$util$concurrent$atomic$AtomicInteger_getAndIncrement__I(jobj)()
@@ -888,6 +1218,66 @@ open class java$util$concurrent$atomic$AtomicInteger : java$lang$Number {
     fileprivate static let java$util$concurrent$atomic$AtomicInteger_longValue__J = invoker("longValue", returns: jlong.jniType)
     fileprivate static let java$util$concurrent$atomic$AtomicInteger_floatValue__F = invoker("floatValue", returns: jfloat.jniType)
     fileprivate static let java$util$concurrent$atomic$AtomicInteger_doubleValue__D = invoker("doubleValue", returns: jdouble.jniType)
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_getPlain__I = invoker("getPlain", returns: jint.jniType)
+    public func getPlain() throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicInteger_getPlain__I(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_setPlain_I__V = invoker("setPlain", returns: JVoid.jniType, arguments: (jint.jniType))
+    public func setPlain(_ a0: jint) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicInteger_setPlain_I__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_getOpaque__I = invoker("getOpaque", returns: jint.jniType)
+    public func getOpaque() throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicInteger_getOpaque__I(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_setOpaque_I__V = invoker("setOpaque", returns: JVoid.jniType, arguments: (jint.jniType))
+    public func setOpaque(_ a0: jint) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicInteger_setOpaque_I__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_getAcquire__I = invoker("getAcquire", returns: jint.jniType)
+    public func getAcquire() throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicInteger_getAcquire__I(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_setRelease_I__V = invoker("setRelease", returns: JVoid.jniType, arguments: (jint.jniType))
+    public func setRelease(_ a0: jint) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicInteger_setRelease_I__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_compareAndExchange_I_I__I = invoker("compareAndExchange", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
+    public func compareAndExchange(_ a0: jint, _ a1: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicInteger_compareAndExchange_I_I__I(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_compareAndExchangeAcquire_I_I__I = invoker("compareAndExchangeAcquire", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
+    public func compareAndExchangeAcquire(_ a0: jint, _ a1: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicInteger_compareAndExchangeAcquire_I_I__I(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_compareAndExchangeRelease_I_I__I = invoker("compareAndExchangeRelease", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
+    public func compareAndExchangeRelease(_ a0: jint, _ a1: jint) throws -> jint {
+        return try I.java$util$concurrent$atomic$AtomicInteger_compareAndExchangeRelease_I_I__I(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_weakCompareAndSetVolatile_I_I__Z = invoker("weakCompareAndSetVolatile", returns: jboolean.jniType, arguments: (jint.jniType, jint.jniType))
+    public func weakCompareAndSetVolatile(_ a0: jint, _ a1: jint) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicInteger_weakCompareAndSetVolatile_I_I__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_weakCompareAndSetAcquire_I_I__Z = invoker("weakCompareAndSetAcquire", returns: jboolean.jniType, arguments: (jint.jniType, jint.jniType))
+    public func weakCompareAndSetAcquire(_ a0: jint, _ a1: jint) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicInteger_weakCompareAndSetAcquire_I_I__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicInteger_weakCompareAndSetRelease_I_I__Z = invoker("weakCompareAndSetRelease", returns: jboolean.jniType, arguments: (jint.jniType, jint.jniType))
+    public func weakCompareAndSetRelease(_ a0: jint, _ a1: jint) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicInteger_weakCompareAndSetRelease_I_I__Z(jobj)(a0, a1)
+    }
+
 }
 
 public typealias java$util$concurrent$atomic$AtomicInteger$Impl = java$util$concurrent$atomic$AtomicInteger
@@ -937,6 +1327,11 @@ open class java$util$concurrent$atomic$AtomicLong : java$lang$Number {
     fileprivate static let java$util$concurrent$atomic$AtomicLong_weakCompareAndSet_J_J__Z = invoker("weakCompareAndSet", returns: jboolean.jniType, arguments: (jlong.jniType, jlong.jniType))
     public func weakCompareAndSet(_ a0: jlong, _ a1: jlong) throws -> jboolean {
         return try I.java$util$concurrent$atomic$AtomicLong_weakCompareAndSet_J_J__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_weakCompareAndSetPlain_J_J__Z = invoker("weakCompareAndSetPlain", returns: jboolean.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public func weakCompareAndSetPlain(_ a0: jlong, _ a1: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicLong_weakCompareAndSetPlain_J_J__Z(jobj)(a0, a1)
     }
 
     fileprivate static let java$util$concurrent$atomic$AtomicLong_getAndIncrement__J = invoker("getAndIncrement", returns: jlong.jniType)
@@ -994,6 +1389,66 @@ open class java$util$concurrent$atomic$AtomicLong : java$lang$Number {
     fileprivate static let java$util$concurrent$atomic$AtomicLong_longValue__J = invoker("longValue", returns: jlong.jniType)
     fileprivate static let java$util$concurrent$atomic$AtomicLong_floatValue__F = invoker("floatValue", returns: jfloat.jniType)
     fileprivate static let java$util$concurrent$atomic$AtomicLong_doubleValue__D = invoker("doubleValue", returns: jdouble.jniType)
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_getPlain__J = invoker("getPlain", returns: jlong.jniType)
+    public func getPlain() throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLong_getPlain__J(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_setPlain_J__V = invoker("setPlain", returns: JVoid.jniType, arguments: (jlong.jniType))
+    public func setPlain(_ a0: jlong) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicLong_setPlain_J__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_getOpaque__J = invoker("getOpaque", returns: jlong.jniType)
+    public func getOpaque() throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLong_getOpaque__J(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_setOpaque_J__V = invoker("setOpaque", returns: JVoid.jniType, arguments: (jlong.jniType))
+    public func setOpaque(_ a0: jlong) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicLong_setOpaque_J__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_getAcquire__J = invoker("getAcquire", returns: jlong.jniType)
+    public func getAcquire() throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLong_getAcquire__J(jobj)()
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_setRelease_J__V = invoker("setRelease", returns: JVoid.jniType, arguments: (jlong.jniType))
+    public func setRelease(_ a0: jlong) throws -> Void {
+        return try I.java$util$concurrent$atomic$AtomicLong_setRelease_J__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_compareAndExchange_J_J__J = invoker("compareAndExchange", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public func compareAndExchange(_ a0: jlong, _ a1: jlong) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLong_compareAndExchange_J_J__J(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_compareAndExchangeAcquire_J_J__J = invoker("compareAndExchangeAcquire", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public func compareAndExchangeAcquire(_ a0: jlong, _ a1: jlong) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLong_compareAndExchangeAcquire_J_J__J(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_compareAndExchangeRelease_J_J__J = invoker("compareAndExchangeRelease", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public func compareAndExchangeRelease(_ a0: jlong, _ a1: jlong) throws -> jlong {
+        return try I.java$util$concurrent$atomic$AtomicLong_compareAndExchangeRelease_J_J__J(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_weakCompareAndSetVolatile_J_J__Z = invoker("weakCompareAndSetVolatile", returns: jboolean.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public func weakCompareAndSetVolatile(_ a0: jlong, _ a1: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicLong_weakCompareAndSetVolatile_J_J__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_weakCompareAndSetAcquire_J_J__Z = invoker("weakCompareAndSetAcquire", returns: jboolean.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public func weakCompareAndSetAcquire(_ a0: jlong, _ a1: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicLong_weakCompareAndSetAcquire_J_J__Z(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$util$concurrent$atomic$AtomicLong_weakCompareAndSetRelease_J_J__Z = invoker("weakCompareAndSetRelease", returns: jboolean.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public func weakCompareAndSetRelease(_ a0: jlong, _ a1: jlong) throws -> jboolean {
+        return try I.java$util$concurrent$atomic$AtomicLong_weakCompareAndSetRelease_J_J__Z(jobj)(a0, a1)
+    }
+
 }
 
 public typealias java$util$concurrent$atomic$AtomicLong$Impl = java$util$concurrent$atomic$AtomicLong

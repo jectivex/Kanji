@@ -295,12 +295,12 @@ open class java$nio$charset$CoderResult : java$lang$Object {
 
     fileprivate static let java$nio$charset$CoderResult__UNDERFLOW__java$nio$charset$CoderResult = J.saccessor("UNDERFLOW", type: JObjectType("java/nio/charset/CoderResult"))
     public static var UNDERFLOW: java$nio$charset$CoderResult? {
-        get { return java$nio$charset$CoderResult$Impl(constructor: I.java$nio$charset$CoderResult__UNDERFLOW__java$nio$charset$CoderResult.getter()) }
+        get { return java$nio$charset$CoderResult$Impl(reference: I.java$nio$charset$CoderResult__UNDERFLOW__java$nio$charset$CoderResult.getter()) }
     }
 
     fileprivate static let java$nio$charset$CoderResult__OVERFLOW__java$nio$charset$CoderResult = J.saccessor("OVERFLOW", type: JObjectType("java/nio/charset/CoderResult"))
     public static var OVERFLOW: java$nio$charset$CoderResult? {
-        get { return java$nio$charset$CoderResult$Impl(constructor: I.java$nio$charset$CoderResult__OVERFLOW__java$nio$charset$CoderResult.getter()) }
+        get { return java$nio$charset$CoderResult$Impl(reference: I.java$nio$charset$CoderResult__OVERFLOW__java$nio$charset$CoderResult.getter()) }
     }
 
     fileprivate static let java$nio$charset$CoderResult_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
@@ -362,17 +362,17 @@ open class java$nio$charset$CodingErrorAction : java$lang$Object {
 
     fileprivate static let java$nio$charset$CodingErrorAction__IGNORE__java$nio$charset$CodingErrorAction = J.saccessor("IGNORE", type: JObjectType("java/nio/charset/CodingErrorAction"))
     public static var IGNORE: java$nio$charset$CodingErrorAction? {
-        get { return java$nio$charset$CodingErrorAction$Impl(constructor: I.java$nio$charset$CodingErrorAction__IGNORE__java$nio$charset$CodingErrorAction.getter()) }
+        get { return java$nio$charset$CodingErrorAction$Impl(reference: I.java$nio$charset$CodingErrorAction__IGNORE__java$nio$charset$CodingErrorAction.getter()) }
     }
 
     fileprivate static let java$nio$charset$CodingErrorAction__REPLACE__java$nio$charset$CodingErrorAction = J.saccessor("REPLACE", type: JObjectType("java/nio/charset/CodingErrorAction"))
     public static var REPLACE: java$nio$charset$CodingErrorAction? {
-        get { return java$nio$charset$CodingErrorAction$Impl(constructor: I.java$nio$charset$CodingErrorAction__REPLACE__java$nio$charset$CodingErrorAction.getter()) }
+        get { return java$nio$charset$CodingErrorAction$Impl(reference: I.java$nio$charset$CodingErrorAction__REPLACE__java$nio$charset$CodingErrorAction.getter()) }
     }
 
     fileprivate static let java$nio$charset$CodingErrorAction__REPORT__java$nio$charset$CodingErrorAction = J.saccessor("REPORT", type: JObjectType("java/nio/charset/CodingErrorAction"))
     public static var REPORT: java$nio$charset$CodingErrorAction? {
-        get { return java$nio$charset$CodingErrorAction$Impl(constructor: I.java$nio$charset$CodingErrorAction__REPORT__java$nio$charset$CodingErrorAction.getter()) }
+        get { return java$nio$charset$CodingErrorAction$Impl(reference: I.java$nio$charset$CodingErrorAction__REPORT__java$nio$charset$CodingErrorAction.getter()) }
     }
 
     fileprivate static let java$nio$charset$CodingErrorAction_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
@@ -389,32 +389,32 @@ public final class java$nio$charset$StandardCharsets : java$lang$Object {
 
     fileprivate static let java$nio$charset$StandardCharsets__US_ASCII__java$nio$charset$Charset = J.saccessor("US_ASCII", type: JObjectType("java/nio/charset/Charset"))
     public static var US_ASCII: java$nio$charset$Charset? {
-        get { return java$nio$charset$Charset$Impl(constructor: I.java$nio$charset$StandardCharsets__US_ASCII__java$nio$charset$Charset.getter()) }
+        get { return java$nio$charset$Charset$Impl(reference: I.java$nio$charset$StandardCharsets__US_ASCII__java$nio$charset$Charset.getter()) }
     }
 
     fileprivate static let java$nio$charset$StandardCharsets__ISO_8859_1__java$nio$charset$Charset = J.saccessor("ISO_8859_1", type: JObjectType("java/nio/charset/Charset"))
     public static var ISO_8859_1: java$nio$charset$Charset? {
-        get { return java$nio$charset$Charset$Impl(constructor: I.java$nio$charset$StandardCharsets__ISO_8859_1__java$nio$charset$Charset.getter()) }
+        get { return java$nio$charset$Charset$Impl(reference: I.java$nio$charset$StandardCharsets__ISO_8859_1__java$nio$charset$Charset.getter()) }
     }
 
     fileprivate static let java$nio$charset$StandardCharsets__UTF_8__java$nio$charset$Charset = J.saccessor("UTF_8", type: JObjectType("java/nio/charset/Charset"))
     public static var UTF_8: java$nio$charset$Charset? {
-        get { return java$nio$charset$Charset$Impl(constructor: I.java$nio$charset$StandardCharsets__UTF_8__java$nio$charset$Charset.getter()) }
+        get { return java$nio$charset$Charset$Impl(reference: I.java$nio$charset$StandardCharsets__UTF_8__java$nio$charset$Charset.getter()) }
     }
 
     fileprivate static let java$nio$charset$StandardCharsets__UTF_16BE__java$nio$charset$Charset = J.saccessor("UTF_16BE", type: JObjectType("java/nio/charset/Charset"))
     public static var UTF_16BE: java$nio$charset$Charset? {
-        get { return java$nio$charset$Charset$Impl(constructor: I.java$nio$charset$StandardCharsets__UTF_16BE__java$nio$charset$Charset.getter()) }
+        get { return java$nio$charset$Charset$Impl(reference: I.java$nio$charset$StandardCharsets__UTF_16BE__java$nio$charset$Charset.getter()) }
     }
 
     fileprivate static let java$nio$charset$StandardCharsets__UTF_16LE__java$nio$charset$Charset = J.saccessor("UTF_16LE", type: JObjectType("java/nio/charset/Charset"))
     public static var UTF_16LE: java$nio$charset$Charset? {
-        get { return java$nio$charset$Charset$Impl(constructor: I.java$nio$charset$StandardCharsets__UTF_16LE__java$nio$charset$Charset.getter()) }
+        get { return java$nio$charset$Charset$Impl(reference: I.java$nio$charset$StandardCharsets__UTF_16LE__java$nio$charset$Charset.getter()) }
     }
 
     fileprivate static let java$nio$charset$StandardCharsets__UTF_16__java$nio$charset$Charset = J.saccessor("UTF_16", type: JObjectType("java/nio/charset/Charset"))
     public static var UTF_16: java$nio$charset$Charset? {
-        get { return java$nio$charset$Charset$Impl(constructor: I.java$nio$charset$StandardCharsets__UTF_16__java$nio$charset$Charset.getter()) }
+        get { return java$nio$charset$Charset$Impl(reference: I.java$nio$charset$StandardCharsets__UTF_16__java$nio$charset$Charset.getter()) }
     }
 
 }

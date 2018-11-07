@@ -68,47 +68,47 @@ open class java$lang$management$ManagementFactory : java$lang$Object {
 
     fileprivate static let java$lang$management$ManagementFactory__CLASS_LOADING_MXBEAN_NAME__java$lang$String = J.saccessor("CLASS_LOADING_MXBEAN_NAME", type: JObjectType("java/lang/String"))
     public static var CLASS_LOADING_MXBEAN_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__CLASS_LOADING_MXBEAN_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__CLASS_LOADING_MXBEAN_NAME__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory__COMPILATION_MXBEAN_NAME__java$lang$String = J.saccessor("COMPILATION_MXBEAN_NAME", type: JObjectType("java/lang/String"))
     public static var COMPILATION_MXBEAN_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__COMPILATION_MXBEAN_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__COMPILATION_MXBEAN_NAME__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory__MEMORY_MXBEAN_NAME__java$lang$String = J.saccessor("MEMORY_MXBEAN_NAME", type: JObjectType("java/lang/String"))
     public static var MEMORY_MXBEAN_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__MEMORY_MXBEAN_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__MEMORY_MXBEAN_NAME__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory__OPERATING_SYSTEM_MXBEAN_NAME__java$lang$String = J.saccessor("OPERATING_SYSTEM_MXBEAN_NAME", type: JObjectType("java/lang/String"))
     public static var OPERATING_SYSTEM_MXBEAN_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__OPERATING_SYSTEM_MXBEAN_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__OPERATING_SYSTEM_MXBEAN_NAME__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory__RUNTIME_MXBEAN_NAME__java$lang$String = J.saccessor("RUNTIME_MXBEAN_NAME", type: JObjectType("java/lang/String"))
     public static var RUNTIME_MXBEAN_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__RUNTIME_MXBEAN_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__RUNTIME_MXBEAN_NAME__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory__THREAD_MXBEAN_NAME__java$lang$String = J.saccessor("THREAD_MXBEAN_NAME", type: JObjectType("java/lang/String"))
     public static var THREAD_MXBEAN_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__THREAD_MXBEAN_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__THREAD_MXBEAN_NAME__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory__GARBAGE_COLLECTOR_MXBEAN_DOMAIN_TYPE__java$lang$String = J.saccessor("GARBAGE_COLLECTOR_MXBEAN_DOMAIN_TYPE", type: JObjectType("java/lang/String"))
     public static var GARBAGE_COLLECTOR_MXBEAN_DOMAIN_TYPE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__GARBAGE_COLLECTOR_MXBEAN_DOMAIN_TYPE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__GARBAGE_COLLECTOR_MXBEAN_DOMAIN_TYPE__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory__MEMORY_MANAGER_MXBEAN_DOMAIN_TYPE__java$lang$String = J.saccessor("MEMORY_MANAGER_MXBEAN_DOMAIN_TYPE", type: JObjectType("java/lang/String"))
     public static var MEMORY_MANAGER_MXBEAN_DOMAIN_TYPE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__MEMORY_MANAGER_MXBEAN_DOMAIN_TYPE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__MEMORY_MANAGER_MXBEAN_DOMAIN_TYPE__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory__MEMORY_POOL_MXBEAN_DOMAIN_TYPE__java$lang$String = J.saccessor("MEMORY_POOL_MXBEAN_DOMAIN_TYPE", type: JObjectType("java/lang/String"))
     public static var MEMORY_POOL_MXBEAN_DOMAIN_TYPE: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$ManagementFactory__MEMORY_POOL_MXBEAN_DOMAIN_TYPE__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$ManagementFactory__MEMORY_POOL_MXBEAN_DOMAIN_TYPE__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$ManagementFactory_getClassLoadingMXBean__java$lang$management$ClassLoadingMXBean = svoker("getClassLoadingMXBean", returns: JObjectType("java/lang/management/ClassLoadingMXBean"))
@@ -204,12 +204,12 @@ open class java$lang$management$MemoryNotificationInfo : java$lang$Object {
 
     fileprivate static let java$lang$management$MemoryNotificationInfo__MEMORY_THRESHOLD_EXCEEDED__java$lang$String = J.saccessor("MEMORY_THRESHOLD_EXCEEDED", type: JObjectType("java/lang/String"))
     public static var MEMORY_THRESHOLD_EXCEEDED: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$MemoryNotificationInfo__MEMORY_THRESHOLD_EXCEEDED__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$MemoryNotificationInfo__MEMORY_THRESHOLD_EXCEEDED__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$MemoryNotificationInfo__MEMORY_COLLECTION_THRESHOLD_EXCEEDED__java$lang$String = J.saccessor("MEMORY_COLLECTION_THRESHOLD_EXCEEDED", type: JObjectType("java/lang/String"))
     public static var MEMORY_COLLECTION_THRESHOLD_EXCEEDED: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$lang$management$MemoryNotificationInfo__MEMORY_COLLECTION_THRESHOLD_EXCEEDED__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$lang$management$MemoryNotificationInfo__MEMORY_COLLECTION_THRESHOLD_EXCEEDED__java$lang$String.getter()) }
     }
 
     fileprivate static let java$lang$management$MemoryNotificationInfo_init_java$lang$String_java$lang$management$MemoryUsage_J__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/management/MemoryUsage"), jlong.jniType))
@@ -379,6 +379,16 @@ open class java$lang$management$ThreadInfo : java$lang$Object {
     fileprivate static let java$lang$management$ThreadInfo_isInNative__Z = invoker("isInNative", returns: jboolean.jniType)
     public func isInNative() throws -> jboolean {
         return try I.java$lang$management$ThreadInfo_isInNative__Z(jobj)()
+    }
+
+    fileprivate static let java$lang$management$ThreadInfo_isDaemon__Z = invoker("isDaemon", returns: jboolean.jniType)
+    public func isDaemon() throws -> jboolean {
+        return try I.java$lang$management$ThreadInfo_isDaemon__Z(jobj)()
+    }
+
+    fileprivate static let java$lang$management$ThreadInfo_getPriority__I = invoker("getPriority", returns: jint.jniType)
+    public func getPriority() throws -> jint {
+        return try I.java$lang$management$ThreadInfo_getPriority__I(jobj)()
     }
 
     fileprivate static let java$lang$management$ThreadInfo_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
@@ -888,6 +898,7 @@ public extension java$lang$management$PlatformLoggingMXBean {
 }
 
 public protocol java$lang$management$RuntimeMXBean : java$lang$management$PlatformManagedObject {
+    func getPid() throws -> jlong
     func getName() throws -> java$lang$String?
     func getVmName() throws -> java$lang$String?
     func getVmVendor() throws -> java$lang$String?
@@ -913,6 +924,7 @@ open class java$lang$management$RuntimeMXBean$Impl : java$lang$Object, java$lang
     /// Returns the internal JNI name for this class: "java/lang/management/RuntimeMXBean"
     open class override func jniName() -> String { return "java/lang/management/RuntimeMXBean" }
 
+    fileprivate static let java$lang$management$RuntimeMXBean_getPid__J = invoker("getPid", returns: jlong.jniType)
     fileprivate static let java$lang$management$RuntimeMXBean_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
     fileprivate static let java$lang$management$RuntimeMXBean_getVmName__java$lang$String = invoker("getVmName", returns: JObjectType("java/lang/String"))
     fileprivate static let java$lang$management$RuntimeMXBean_getVmVendor__java$lang$String = invoker("getVmVendor", returns: JObjectType("java/lang/String"))
@@ -934,6 +946,10 @@ open class java$lang$management$RuntimeMXBean$Impl : java$lang$Object, java$lang
 public extension java$lang$management$RuntimeMXBean {
     private typealias J = java$lang$management$RuntimeMXBean
     private typealias I = java$lang$management$RuntimeMXBean$Impl
+
+    func getPid() throws -> jlong {
+        return try I.java$lang$management$RuntimeMXBean_getPid__J(jobj)()
+    }
 
     func getName() throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$lang$management$RuntimeMXBean_getName__java$lang$String(jobj)()) as java$lang$String$Impl?
@@ -1028,7 +1044,9 @@ public protocol java$lang$management$ThreadMXBean : java$lang$management$Platfor
     func isObjectMonitorUsageSupported() throws -> jboolean
     func isSynchronizerUsageSupported() throws -> jboolean
     func getThreadInfo(_ a0: [jlong]?, _ a1: jboolean, _ a2: jboolean) throws -> [java$lang$management$ThreadInfo?]?
+    func getThreadInfo(_ a0: [jlong]?, _ a1: jboolean, _ a2: jboolean, _ a3: jint) throws -> [java$lang$management$ThreadInfo?]?
     func dumpAllThreads(_ a0: jboolean, _ a1: jboolean) throws -> [java$lang$management$ThreadInfo?]?
+    func dumpAllThreads(_ a0: jboolean, _ a1: jboolean, _ a2: jint) throws -> [java$lang$management$ThreadInfo?]?
 }
 
 open class java$lang$management$ThreadMXBean$Impl : java$lang$Object, java$lang$management$ThreadMXBean, java$lang$management$PlatformManagedObject {
@@ -1064,7 +1082,9 @@ open class java$lang$management$ThreadMXBean$Impl : java$lang$Object, java$lang$
     fileprivate static let java$lang$management$ThreadMXBean_isObjectMonitorUsageSupported__Z = invoker("isObjectMonitorUsageSupported", returns: jboolean.jniType)
     fileprivate static let java$lang$management$ThreadMXBean_isSynchronizerUsageSupported__Z = invoker("isSynchronizerUsageSupported", returns: jboolean.jniType)
     fileprivate static let java$lang$management$ThreadMXBean_getThreadInfo_AJ_Z_Z__Ajava$lang$management$ThreadInfo = invoker("getThreadInfo", returns: JArray(JObjectType("java/lang/management/ThreadInfo")), arguments: (JArray(jlong.jniType), jboolean.jniType, jboolean.jniType))
+    fileprivate static let java$lang$management$ThreadMXBean_getThreadInfo_AJ_Z_Z_I__Ajava$lang$management$ThreadInfo = invoker("getThreadInfo", returns: JArray(JObjectType("java/lang/management/ThreadInfo")), arguments: (JArray(jlong.jniType), jboolean.jniType, jboolean.jniType, jint.jniType))
     fileprivate static let java$lang$management$ThreadMXBean_dumpAllThreads_Z_Z__Ajava$lang$management$ThreadInfo = invoker("dumpAllThreads", returns: JArray(JObjectType("java/lang/management/ThreadInfo")), arguments: (jboolean.jniType, jboolean.jniType))
+    fileprivate static let java$lang$management$ThreadMXBean_dumpAllThreads_Z_Z_I__Ajava$lang$management$ThreadInfo = invoker("dumpAllThreads", returns: JArray(JObjectType("java/lang/management/ThreadInfo")), arguments: (jboolean.jniType, jboolean.jniType, jint.jniType))
 }
 
 public extension java$lang$management$ThreadMXBean {
@@ -1175,8 +1195,16 @@ public extension java$lang$management$ThreadMXBean {
         return try I.java$lang$management$ThreadMXBean_getThreadInfo_AJ_Z_Z__Ajava$lang$management$ThreadInfo(jobj)(a0?.arrayToJArray() ?? nil, a1, a2)?.jarrayToArray(java$lang$management$ThreadInfo$Impl.self)
     }
 
+    func getThreadInfo(_ a0: [jlong]?, _ a1: jboolean, _ a2: jboolean, _ a3: jint) throws -> [java$lang$management$ThreadInfo?]? {
+        return try I.java$lang$management$ThreadMXBean_getThreadInfo_AJ_Z_Z_I__Ajava$lang$management$ThreadInfo(jobj)(a0?.arrayToJArray() ?? nil, a1, a2, a3)?.jarrayToArray(java$lang$management$ThreadInfo$Impl.self)
+    }
+
     func dumpAllThreads(_ a0: jboolean, _ a1: jboolean) throws -> [java$lang$management$ThreadInfo?]? {
         return try I.java$lang$management$ThreadMXBean_dumpAllThreads_Z_Z__Ajava$lang$management$ThreadInfo(jobj)(a0, a1)?.jarrayToArray(java$lang$management$ThreadInfo$Impl.self)
+    }
+
+    func dumpAllThreads(_ a0: jboolean, _ a1: jboolean, _ a2: jint) throws -> [java$lang$management$ThreadInfo?]? {
+        return try I.java$lang$management$ThreadMXBean_dumpAllThreads_Z_Z_I__Ajava$lang$management$ThreadInfo(jobj)(a0, a1, a2)?.jarrayToArray(java$lang$management$ThreadInfo$Impl.self)
     }
 
 }
@@ -1190,12 +1218,12 @@ public final class java$lang$management$MemoryType : java$lang$Enum {
 
     fileprivate static let java$lang$management$MemoryType__HEAP__java$lang$management$MemoryType = J.saccessor("HEAP", type: JObjectType("java/lang/management/MemoryType"))
     public static var HEAP: java$lang$management$MemoryType? {
-        get { return java$lang$management$MemoryType$Impl(constructor: I.java$lang$management$MemoryType__HEAP__java$lang$management$MemoryType.getter()) }
+        get { return java$lang$management$MemoryType$Impl(reference: I.java$lang$management$MemoryType__HEAP__java$lang$management$MemoryType.getter()) }
     }
 
     fileprivate static let java$lang$management$MemoryType__NON_HEAP__java$lang$management$MemoryType = J.saccessor("NON_HEAP", type: JObjectType("java/lang/management/MemoryType"))
     public static var NON_HEAP: java$lang$management$MemoryType? {
-        get { return java$lang$management$MemoryType$Impl(constructor: I.java$lang$management$MemoryType__NON_HEAP__java$lang$management$MemoryType.getter()) }
+        get { return java$lang$management$MemoryType$Impl(reference: I.java$lang$management$MemoryType__NON_HEAP__java$lang$management$MemoryType.getter()) }
     }
 
     fileprivate static let java$lang$management$MemoryType_values__Ajava$lang$management$MemoryType = svoker("values", returns: JArray(JObjectType("java/lang/management/MemoryType")))

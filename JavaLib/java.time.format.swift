@@ -9,77 +9,77 @@ public final class java$time$format$DateTimeFormatter : java$lang$Object {
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_LOCAL_DATE__java$time$format$DateTimeFormatter = J.saccessor("ISO_LOCAL_DATE", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_LOCAL_DATE: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_LOCAL_DATE__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_LOCAL_DATE__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_OFFSET_DATE__java$time$format$DateTimeFormatter = J.saccessor("ISO_OFFSET_DATE", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_OFFSET_DATE: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_OFFSET_DATE__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_OFFSET_DATE__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_DATE__java$time$format$DateTimeFormatter = J.saccessor("ISO_DATE", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_DATE: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_DATE__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_DATE__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_LOCAL_TIME__java$time$format$DateTimeFormatter = J.saccessor("ISO_LOCAL_TIME", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_LOCAL_TIME: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_LOCAL_TIME__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_LOCAL_TIME__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_OFFSET_TIME__java$time$format$DateTimeFormatter = J.saccessor("ISO_OFFSET_TIME", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_OFFSET_TIME: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_OFFSET_TIME__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_OFFSET_TIME__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_TIME__java$time$format$DateTimeFormatter = J.saccessor("ISO_TIME", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_TIME: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_TIME__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_TIME__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_LOCAL_DATE_TIME__java$time$format$DateTimeFormatter = J.saccessor("ISO_LOCAL_DATE_TIME", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_LOCAL_DATE_TIME: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_LOCAL_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_LOCAL_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_OFFSET_DATE_TIME__java$time$format$DateTimeFormatter = J.saccessor("ISO_OFFSET_DATE_TIME", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_OFFSET_DATE_TIME: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_OFFSET_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_OFFSET_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_ZONED_DATE_TIME__java$time$format$DateTimeFormatter = J.saccessor("ISO_ZONED_DATE_TIME", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_ZONED_DATE_TIME: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_ZONED_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_ZONED_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_DATE_TIME__java$time$format$DateTimeFormatter = J.saccessor("ISO_DATE_TIME", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_DATE_TIME: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_ORDINAL_DATE__java$time$format$DateTimeFormatter = J.saccessor("ISO_ORDINAL_DATE", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_ORDINAL_DATE: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_ORDINAL_DATE__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_ORDINAL_DATE__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_WEEK_DATE__java$time$format$DateTimeFormatter = J.saccessor("ISO_WEEK_DATE", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_WEEK_DATE: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_WEEK_DATE__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_WEEK_DATE__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__ISO_INSTANT__java$time$format$DateTimeFormatter = J.saccessor("ISO_INSTANT", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var ISO_INSTANT: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__ISO_INSTANT__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__ISO_INSTANT__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__BASIC_ISO_DATE__java$time$format$DateTimeFormatter = J.saccessor("BASIC_ISO_DATE", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var BASIC_ISO_DATE: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__BASIC_ISO_DATE__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__BASIC_ISO_DATE__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter__RFC_1123_DATE_TIME__java$time$format$DateTimeFormatter = J.saccessor("RFC_1123_DATE_TIME", type: JObjectType("java/time/format/DateTimeFormatter"))
     public static var RFC_1123_DATE_TIME: java$time$format$DateTimeFormatter? {
-        get { return java$time$format$DateTimeFormatter$Impl(constructor: I.java$time$format$DateTimeFormatter__RFC_1123_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
+        get { return java$time$format$DateTimeFormatter$Impl(reference: I.java$time$format$DateTimeFormatter__RFC_1123_DATE_TIME__java$time$format$DateTimeFormatter.getter()) }
     }
 
     fileprivate static let java$time$format$DateTimeFormatter_ofPattern_java$lang$String__java$time$format$DateTimeFormatter = svoker("ofPattern", returns: JObjectType("java/time/format/DateTimeFormatter"), arguments: (JObjectType("java/lang/String")))
@@ -130,6 +130,11 @@ public final class java$time$format$DateTimeFormatter : java$lang$Object {
     fileprivate static let java$time$format$DateTimeFormatter_withLocale_java$util$Locale__java$time$format$DateTimeFormatter = invoker("withLocale", returns: JObjectType("java/time/format/DateTimeFormatter"), arguments: (JObjectType("java/util/Locale")))
     public func withLocale(_ a0: java$util$Locale?) throws -> java$time$format$DateTimeFormatter? {
         return try JVM.sharedJVM.construct(I.java$time$format$DateTimeFormatter_withLocale_java$util$Locale__java$time$format$DateTimeFormatter(jobj)(a0?.jobj ?? nil)) as java$time$format$DateTimeFormatter$Impl?
+    }
+
+    fileprivate static let java$time$format$DateTimeFormatter_localizedBy_java$util$Locale__java$time$format$DateTimeFormatter = invoker("localizedBy", returns: JObjectType("java/time/format/DateTimeFormatter"), arguments: (JObjectType("java/util/Locale")))
+    public func localizedBy(_ a0: java$util$Locale?) throws -> java$time$format$DateTimeFormatter? {
+        return try JVM.sharedJVM.construct(I.java$time$format$DateTimeFormatter_localizedBy_java$util$Locale__java$time$format$DateTimeFormatter(jobj)(a0?.jobj ?? nil)) as java$time$format$DateTimeFormatter$Impl?
     }
 
     fileprivate static let java$time$format$DateTimeFormatter_getDecimalStyle__java$time$format$DecimalStyle = invoker("getDecimalStyle", returns: JObjectType("java/time/format/DecimalStyle"))
@@ -374,6 +379,16 @@ public final class java$time$format$DateTimeFormatterBuilder : java$lang$Object 
         return try JVM.sharedJVM.construct(I.java$time$format$DateTimeFormatterBuilder_appendZoneText_java$time$format$TextStyle_java$util$Set__java$time$format$DateTimeFormatterBuilder(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$time$format$DateTimeFormatterBuilder$Impl?
     }
 
+    fileprivate static let java$time$format$DateTimeFormatterBuilder_appendGenericZoneText_java$time$format$TextStyle__java$time$format$DateTimeFormatterBuilder = invoker("appendGenericZoneText", returns: JObjectType("java/time/format/DateTimeFormatterBuilder"), arguments: (JObjectType("java/time/format/TextStyle")))
+    public func appendGenericZoneText(_ a0: java$time$format$TextStyle?) throws -> java$time$format$DateTimeFormatterBuilder? {
+        return try JVM.sharedJVM.construct(I.java$time$format$DateTimeFormatterBuilder_appendGenericZoneText_java$time$format$TextStyle__java$time$format$DateTimeFormatterBuilder(jobj)(a0?.jobj ?? nil)) as java$time$format$DateTimeFormatterBuilder$Impl?
+    }
+
+    fileprivate static let java$time$format$DateTimeFormatterBuilder_appendGenericZoneText_java$time$format$TextStyle_java$util$Set__java$time$format$DateTimeFormatterBuilder = invoker("appendGenericZoneText", returns: JObjectType("java/time/format/DateTimeFormatterBuilder"), arguments: (JObjectType("java/time/format/TextStyle"), JObjectType("java/util/Set")))
+    public func appendGenericZoneText(_ a0: java$time$format$TextStyle?, _ a1: java$util$Set?) throws -> java$time$format$DateTimeFormatterBuilder? {
+        return try JVM.sharedJVM.construct(I.java$time$format$DateTimeFormatterBuilder_appendGenericZoneText_java$time$format$TextStyle_java$util$Set__java$time$format$DateTimeFormatterBuilder(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$time$format$DateTimeFormatterBuilder$Impl?
+    }
+
     fileprivate static let java$time$format$DateTimeFormatterBuilder_appendChronologyId__java$time$format$DateTimeFormatterBuilder = invoker("appendChronologyId", returns: JObjectType("java/time/format/DateTimeFormatterBuilder"))
     public func appendChronologyId() throws -> java$time$format$DateTimeFormatterBuilder? {
         return try JVM.sharedJVM.construct(I.java$time$format$DateTimeFormatterBuilder_appendChronologyId__java$time$format$DateTimeFormatterBuilder(jobj)()) as java$time$format$DateTimeFormatterBuilder$Impl?
@@ -457,7 +472,7 @@ public final class java$time$format$DecimalStyle : java$lang$Object {
 
     fileprivate static let java$time$format$DecimalStyle__STANDARD__java$time$format$DecimalStyle = J.saccessor("STANDARD", type: JObjectType("java/time/format/DecimalStyle"))
     public static var STANDARD: java$time$format$DecimalStyle? {
-        get { return java$time$format$DecimalStyle$Impl(constructor: I.java$time$format$DecimalStyle__STANDARD__java$time$format$DecimalStyle.getter()) }
+        get { return java$time$format$DecimalStyle$Impl(reference: I.java$time$format$DecimalStyle__STANDARD__java$time$format$DecimalStyle.getter()) }
     }
 
     fileprivate static let java$time$format$DecimalStyle_getAvailableLocales__java$util$Set = svoker("getAvailableLocales", returns: JObjectType("java/util/Set"))
@@ -562,17 +577,17 @@ public final class java$time$format$ResolverStyle : java$lang$Enum {
 
     fileprivate static let java$time$format$ResolverStyle__STRICT__java$time$format$ResolverStyle = J.saccessor("STRICT", type: JObjectType("java/time/format/ResolverStyle"))
     public static var STRICT: java$time$format$ResolverStyle? {
-        get { return java$time$format$ResolverStyle$Impl(constructor: I.java$time$format$ResolverStyle__STRICT__java$time$format$ResolverStyle.getter()) }
+        get { return java$time$format$ResolverStyle$Impl(reference: I.java$time$format$ResolverStyle__STRICT__java$time$format$ResolverStyle.getter()) }
     }
 
     fileprivate static let java$time$format$ResolverStyle__SMART__java$time$format$ResolverStyle = J.saccessor("SMART", type: JObjectType("java/time/format/ResolverStyle"))
     public static var SMART: java$time$format$ResolverStyle? {
-        get { return java$time$format$ResolverStyle$Impl(constructor: I.java$time$format$ResolverStyle__SMART__java$time$format$ResolverStyle.getter()) }
+        get { return java$time$format$ResolverStyle$Impl(reference: I.java$time$format$ResolverStyle__SMART__java$time$format$ResolverStyle.getter()) }
     }
 
     fileprivate static let java$time$format$ResolverStyle__LENIENT__java$time$format$ResolverStyle = J.saccessor("LENIENT", type: JObjectType("java/time/format/ResolverStyle"))
     public static var LENIENT: java$time$format$ResolverStyle? {
-        get { return java$time$format$ResolverStyle$Impl(constructor: I.java$time$format$ResolverStyle__LENIENT__java$time$format$ResolverStyle.getter()) }
+        get { return java$time$format$ResolverStyle$Impl(reference: I.java$time$format$ResolverStyle__LENIENT__java$time$format$ResolverStyle.getter()) }
     }
 
     fileprivate static let java$time$format$ResolverStyle_values__Ajava$time$format$ResolverStyle = svoker("values", returns: JArray(JObjectType("java/time/format/ResolverStyle")))
@@ -598,22 +613,22 @@ public final class java$time$format$FormatStyle : java$lang$Enum {
 
     fileprivate static let java$time$format$FormatStyle__FULL__java$time$format$FormatStyle = J.saccessor("FULL", type: JObjectType("java/time/format/FormatStyle"))
     public static var FULL: java$time$format$FormatStyle? {
-        get { return java$time$format$FormatStyle$Impl(constructor: I.java$time$format$FormatStyle__FULL__java$time$format$FormatStyle.getter()) }
+        get { return java$time$format$FormatStyle$Impl(reference: I.java$time$format$FormatStyle__FULL__java$time$format$FormatStyle.getter()) }
     }
 
     fileprivate static let java$time$format$FormatStyle__LONG__java$time$format$FormatStyle = J.saccessor("LONG", type: JObjectType("java/time/format/FormatStyle"))
     public static var LONG: java$time$format$FormatStyle? {
-        get { return java$time$format$FormatStyle$Impl(constructor: I.java$time$format$FormatStyle__LONG__java$time$format$FormatStyle.getter()) }
+        get { return java$time$format$FormatStyle$Impl(reference: I.java$time$format$FormatStyle__LONG__java$time$format$FormatStyle.getter()) }
     }
 
     fileprivate static let java$time$format$FormatStyle__MEDIUM__java$time$format$FormatStyle = J.saccessor("MEDIUM", type: JObjectType("java/time/format/FormatStyle"))
     public static var MEDIUM: java$time$format$FormatStyle? {
-        get { return java$time$format$FormatStyle$Impl(constructor: I.java$time$format$FormatStyle__MEDIUM__java$time$format$FormatStyle.getter()) }
+        get { return java$time$format$FormatStyle$Impl(reference: I.java$time$format$FormatStyle__MEDIUM__java$time$format$FormatStyle.getter()) }
     }
 
     fileprivate static let java$time$format$FormatStyle__SHORT__java$time$format$FormatStyle = J.saccessor("SHORT", type: JObjectType("java/time/format/FormatStyle"))
     public static var SHORT: java$time$format$FormatStyle? {
-        get { return java$time$format$FormatStyle$Impl(constructor: I.java$time$format$FormatStyle__SHORT__java$time$format$FormatStyle.getter()) }
+        get { return java$time$format$FormatStyle$Impl(reference: I.java$time$format$FormatStyle__SHORT__java$time$format$FormatStyle.getter()) }
     }
 
     fileprivate static let java$time$format$FormatStyle_values__Ajava$time$format$FormatStyle = svoker("values", returns: JArray(JObjectType("java/time/format/FormatStyle")))
@@ -639,32 +654,32 @@ public final class java$time$format$TextStyle : java$lang$Enum {
 
     fileprivate static let java$time$format$TextStyle__FULL__java$time$format$TextStyle = J.saccessor("FULL", type: JObjectType("java/time/format/TextStyle"))
     public static var FULL: java$time$format$TextStyle? {
-        get { return java$time$format$TextStyle$Impl(constructor: I.java$time$format$TextStyle__FULL__java$time$format$TextStyle.getter()) }
+        get { return java$time$format$TextStyle$Impl(reference: I.java$time$format$TextStyle__FULL__java$time$format$TextStyle.getter()) }
     }
 
     fileprivate static let java$time$format$TextStyle__FULL_STANDALONE__java$time$format$TextStyle = J.saccessor("FULL_STANDALONE", type: JObjectType("java/time/format/TextStyle"))
     public static var FULL_STANDALONE: java$time$format$TextStyle? {
-        get { return java$time$format$TextStyle$Impl(constructor: I.java$time$format$TextStyle__FULL_STANDALONE__java$time$format$TextStyle.getter()) }
+        get { return java$time$format$TextStyle$Impl(reference: I.java$time$format$TextStyle__FULL_STANDALONE__java$time$format$TextStyle.getter()) }
     }
 
     fileprivate static let java$time$format$TextStyle__SHORT__java$time$format$TextStyle = J.saccessor("SHORT", type: JObjectType("java/time/format/TextStyle"))
     public static var SHORT: java$time$format$TextStyle? {
-        get { return java$time$format$TextStyle$Impl(constructor: I.java$time$format$TextStyle__SHORT__java$time$format$TextStyle.getter()) }
+        get { return java$time$format$TextStyle$Impl(reference: I.java$time$format$TextStyle__SHORT__java$time$format$TextStyle.getter()) }
     }
 
     fileprivate static let java$time$format$TextStyle__SHORT_STANDALONE__java$time$format$TextStyle = J.saccessor("SHORT_STANDALONE", type: JObjectType("java/time/format/TextStyle"))
     public static var SHORT_STANDALONE: java$time$format$TextStyle? {
-        get { return java$time$format$TextStyle$Impl(constructor: I.java$time$format$TextStyle__SHORT_STANDALONE__java$time$format$TextStyle.getter()) }
+        get { return java$time$format$TextStyle$Impl(reference: I.java$time$format$TextStyle__SHORT_STANDALONE__java$time$format$TextStyle.getter()) }
     }
 
     fileprivate static let java$time$format$TextStyle__NARROW__java$time$format$TextStyle = J.saccessor("NARROW", type: JObjectType("java/time/format/TextStyle"))
     public static var NARROW: java$time$format$TextStyle? {
-        get { return java$time$format$TextStyle$Impl(constructor: I.java$time$format$TextStyle__NARROW__java$time$format$TextStyle.getter()) }
+        get { return java$time$format$TextStyle$Impl(reference: I.java$time$format$TextStyle__NARROW__java$time$format$TextStyle.getter()) }
     }
 
     fileprivate static let java$time$format$TextStyle__NARROW_STANDALONE__java$time$format$TextStyle = J.saccessor("NARROW_STANDALONE", type: JObjectType("java/time/format/TextStyle"))
     public static var NARROW_STANDALONE: java$time$format$TextStyle? {
-        get { return java$time$format$TextStyle$Impl(constructor: I.java$time$format$TextStyle__NARROW_STANDALONE__java$time$format$TextStyle.getter()) }
+        get { return java$time$format$TextStyle$Impl(reference: I.java$time$format$TextStyle__NARROW_STANDALONE__java$time$format$TextStyle.getter()) }
     }
 
     fileprivate static let java$time$format$TextStyle_values__Ajava$time$format$TextStyle = svoker("values", returns: JArray(JObjectType("java/time/format/TextStyle")))
@@ -705,27 +720,27 @@ public final class java$time$format$SignStyle : java$lang$Enum {
 
     fileprivate static let java$time$format$SignStyle__NORMAL__java$time$format$SignStyle = J.saccessor("NORMAL", type: JObjectType("java/time/format/SignStyle"))
     public static var NORMAL: java$time$format$SignStyle? {
-        get { return java$time$format$SignStyle$Impl(constructor: I.java$time$format$SignStyle__NORMAL__java$time$format$SignStyle.getter()) }
+        get { return java$time$format$SignStyle$Impl(reference: I.java$time$format$SignStyle__NORMAL__java$time$format$SignStyle.getter()) }
     }
 
     fileprivate static let java$time$format$SignStyle__ALWAYS__java$time$format$SignStyle = J.saccessor("ALWAYS", type: JObjectType("java/time/format/SignStyle"))
     public static var ALWAYS: java$time$format$SignStyle? {
-        get { return java$time$format$SignStyle$Impl(constructor: I.java$time$format$SignStyle__ALWAYS__java$time$format$SignStyle.getter()) }
+        get { return java$time$format$SignStyle$Impl(reference: I.java$time$format$SignStyle__ALWAYS__java$time$format$SignStyle.getter()) }
     }
 
     fileprivate static let java$time$format$SignStyle__NEVER__java$time$format$SignStyle = J.saccessor("NEVER", type: JObjectType("java/time/format/SignStyle"))
     public static var NEVER: java$time$format$SignStyle? {
-        get { return java$time$format$SignStyle$Impl(constructor: I.java$time$format$SignStyle__NEVER__java$time$format$SignStyle.getter()) }
+        get { return java$time$format$SignStyle$Impl(reference: I.java$time$format$SignStyle__NEVER__java$time$format$SignStyle.getter()) }
     }
 
     fileprivate static let java$time$format$SignStyle__NOT_NEGATIVE__java$time$format$SignStyle = J.saccessor("NOT_NEGATIVE", type: JObjectType("java/time/format/SignStyle"))
     public static var NOT_NEGATIVE: java$time$format$SignStyle? {
-        get { return java$time$format$SignStyle$Impl(constructor: I.java$time$format$SignStyle__NOT_NEGATIVE__java$time$format$SignStyle.getter()) }
+        get { return java$time$format$SignStyle$Impl(reference: I.java$time$format$SignStyle__NOT_NEGATIVE__java$time$format$SignStyle.getter()) }
     }
 
     fileprivate static let java$time$format$SignStyle__EXCEEDS_PAD__java$time$format$SignStyle = J.saccessor("EXCEEDS_PAD", type: JObjectType("java/time/format/SignStyle"))
     public static var EXCEEDS_PAD: java$time$format$SignStyle? {
-        get { return java$time$format$SignStyle$Impl(constructor: I.java$time$format$SignStyle__EXCEEDS_PAD__java$time$format$SignStyle.getter()) }
+        get { return java$time$format$SignStyle$Impl(reference: I.java$time$format$SignStyle__EXCEEDS_PAD__java$time$format$SignStyle.getter()) }
     }
 
     fileprivate static let java$time$format$SignStyle_values__Ajava$time$format$SignStyle = svoker("values", returns: JArray(JObjectType("java/time/format/SignStyle")))

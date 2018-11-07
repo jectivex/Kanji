@@ -31,17 +31,17 @@ open class java$text$AttributedCharacterIterator$Attribute : java$lang$Object, j
 
     fileprivate static let java$text$AttributedCharacterIterator$Attribute__LANGUAGE__java$text$AttributedCharacterIterator$Attribute = J.saccessor("LANGUAGE", type: JObjectType("java/text/AttributedCharacterIterator$Attribute"))
     public static var LANGUAGE: java$text$AttributedCharacterIterator$Attribute? {
-        get { return java$text$AttributedCharacterIterator$Attribute$Impl(constructor: I.java$text$AttributedCharacterIterator$Attribute__LANGUAGE__java$text$AttributedCharacterIterator$Attribute.getter()) }
+        get { return java$text$AttributedCharacterIterator$Attribute$Impl(reference: I.java$text$AttributedCharacterIterator$Attribute__LANGUAGE__java$text$AttributedCharacterIterator$Attribute.getter()) }
     }
 
     fileprivate static let java$text$AttributedCharacterIterator$Attribute__READING__java$text$AttributedCharacterIterator$Attribute = J.saccessor("READING", type: JObjectType("java/text/AttributedCharacterIterator$Attribute"))
     public static var READING: java$text$AttributedCharacterIterator$Attribute? {
-        get { return java$text$AttributedCharacterIterator$Attribute$Impl(constructor: I.java$text$AttributedCharacterIterator$Attribute__READING__java$text$AttributedCharacterIterator$Attribute.getter()) }
+        get { return java$text$AttributedCharacterIterator$Attribute$Impl(reference: I.java$text$AttributedCharacterIterator$Attribute__READING__java$text$AttributedCharacterIterator$Attribute.getter()) }
     }
 
     fileprivate static let java$text$AttributedCharacterIterator$Attribute__INPUT_METHOD_SEGMENT__java$text$AttributedCharacterIterator$Attribute = J.saccessor("INPUT_METHOD_SEGMENT", type: JObjectType("java/text/AttributedCharacterIterator$Attribute"))
     public static var INPUT_METHOD_SEGMENT: java$text$AttributedCharacterIterator$Attribute? {
-        get { return java$text$AttributedCharacterIterator$Attribute$Impl(constructor: I.java$text$AttributedCharacterIterator$Attribute__INPUT_METHOD_SEGMENT__java$text$AttributedCharacterIterator$Attribute.getter()) }
+        get { return java$text$AttributedCharacterIterator$Attribute$Impl(reference: I.java$text$AttributedCharacterIterator$Attribute__INPUT_METHOD_SEGMENT__java$text$AttributedCharacterIterator$Attribute.getter()) }
     }
 
     fileprivate static let java$text$AttributedCharacterIterator$Attribute_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -71,92 +71,92 @@ open class java$text$DateFormat$Field : java$text$Format$Field {
 
     fileprivate static let java$text$DateFormat$Field__ERA__java$text$DateFormat$Field = J.saccessor("ERA", type: JObjectType("java/text/DateFormat$Field"))
     public static var ERA: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__ERA__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__ERA__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__YEAR__java$text$DateFormat$Field = J.saccessor("YEAR", type: JObjectType("java/text/DateFormat$Field"))
     public static var YEAR: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__YEAR__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__YEAR__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__MONTH__java$text$DateFormat$Field = J.saccessor("MONTH", type: JObjectType("java/text/DateFormat$Field"))
     public static var MONTH: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__MONTH__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__MONTH__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__DAY_OF_MONTH__java$text$DateFormat$Field = J.saccessor("DAY_OF_MONTH", type: JObjectType("java/text/DateFormat$Field"))
     public static var DAY_OF_MONTH: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__DAY_OF_MONTH__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__DAY_OF_MONTH__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__HOUR_OF_DAY1__java$text$DateFormat$Field = J.saccessor("HOUR_OF_DAY1", type: JObjectType("java/text/DateFormat$Field"))
     public static var HOUR_OF_DAY1: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__HOUR_OF_DAY1__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__HOUR_OF_DAY1__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__HOUR_OF_DAY0__java$text$DateFormat$Field = J.saccessor("HOUR_OF_DAY0", type: JObjectType("java/text/DateFormat$Field"))
     public static var HOUR_OF_DAY0: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__HOUR_OF_DAY0__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__HOUR_OF_DAY0__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__MINUTE__java$text$DateFormat$Field = J.saccessor("MINUTE", type: JObjectType("java/text/DateFormat$Field"))
     public static var MINUTE: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__MINUTE__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__MINUTE__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__SECOND__java$text$DateFormat$Field = J.saccessor("SECOND", type: JObjectType("java/text/DateFormat$Field"))
     public static var SECOND: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__SECOND__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__SECOND__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__MILLISECOND__java$text$DateFormat$Field = J.saccessor("MILLISECOND", type: JObjectType("java/text/DateFormat$Field"))
     public static var MILLISECOND: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__MILLISECOND__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__MILLISECOND__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__DAY_OF_WEEK__java$text$DateFormat$Field = J.saccessor("DAY_OF_WEEK", type: JObjectType("java/text/DateFormat$Field"))
     public static var DAY_OF_WEEK: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__DAY_OF_WEEK__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__DAY_OF_WEEK__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__DAY_OF_YEAR__java$text$DateFormat$Field = J.saccessor("DAY_OF_YEAR", type: JObjectType("java/text/DateFormat$Field"))
     public static var DAY_OF_YEAR: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__DAY_OF_YEAR__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__DAY_OF_YEAR__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__DAY_OF_WEEK_IN_MONTH__java$text$DateFormat$Field = J.saccessor("DAY_OF_WEEK_IN_MONTH", type: JObjectType("java/text/DateFormat$Field"))
     public static var DAY_OF_WEEK_IN_MONTH: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__DAY_OF_WEEK_IN_MONTH__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__DAY_OF_WEEK_IN_MONTH__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__WEEK_OF_YEAR__java$text$DateFormat$Field = J.saccessor("WEEK_OF_YEAR", type: JObjectType("java/text/DateFormat$Field"))
     public static var WEEK_OF_YEAR: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__WEEK_OF_YEAR__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__WEEK_OF_YEAR__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__WEEK_OF_MONTH__java$text$DateFormat$Field = J.saccessor("WEEK_OF_MONTH", type: JObjectType("java/text/DateFormat$Field"))
     public static var WEEK_OF_MONTH: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__WEEK_OF_MONTH__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__WEEK_OF_MONTH__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__AM_PM__java$text$DateFormat$Field = J.saccessor("AM_PM", type: JObjectType("java/text/DateFormat$Field"))
     public static var AM_PM: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__AM_PM__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__AM_PM__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__HOUR1__java$text$DateFormat$Field = J.saccessor("HOUR1", type: JObjectType("java/text/DateFormat$Field"))
     public static var HOUR1: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__HOUR1__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__HOUR1__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__HOUR0__java$text$DateFormat$Field = J.saccessor("HOUR0", type: JObjectType("java/text/DateFormat$Field"))
     public static var HOUR0: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__HOUR0__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__HOUR0__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field__TIME_ZONE__java$text$DateFormat$Field = J.saccessor("TIME_ZONE", type: JObjectType("java/text/DateFormat$Field"))
     public static var TIME_ZONE: java$text$DateFormat$Field? {
-        get { return java$text$DateFormat$Field$Impl(constructor: I.java$text$DateFormat$Field__TIME_ZONE__java$text$DateFormat$Field.getter()) }
+        get { return java$text$DateFormat$Field$Impl(reference: I.java$text$DateFormat$Field__TIME_ZONE__java$text$DateFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$DateFormat$Field_ofCalendarField_I__java$text$DateFormat$Field = svoker("ofCalendarField", returns: JObjectType("java/text/DateFormat$Field"), arguments: (jint.jniType))
@@ -182,7 +182,7 @@ open class java$text$MessageFormat$Field : java$text$Format$Field {
 
     fileprivate static let java$text$MessageFormat$Field__ARGUMENT__java$text$MessageFormat$Field = J.saccessor("ARGUMENT", type: JObjectType("java/text/MessageFormat$Field"))
     public static var ARGUMENT: java$text$MessageFormat$Field? {
-        get { return java$text$MessageFormat$Field$Impl(constructor: I.java$text$MessageFormat$Field__ARGUMENT__java$text$MessageFormat$Field.getter()) }
+        get { return java$text$MessageFormat$Field$Impl(reference: I.java$text$MessageFormat$Field__ARGUMENT__java$text$MessageFormat$Field.getter()) }
     }
 
 }
@@ -198,57 +198,57 @@ open class java$text$NumberFormat$Field : java$text$Format$Field {
 
     fileprivate static let java$text$NumberFormat$Field__INTEGER__java$text$NumberFormat$Field = J.saccessor("INTEGER", type: JObjectType("java/text/NumberFormat$Field"))
     public static var INTEGER: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__INTEGER__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__INTEGER__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__FRACTION__java$text$NumberFormat$Field = J.saccessor("FRACTION", type: JObjectType("java/text/NumberFormat$Field"))
     public static var FRACTION: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__FRACTION__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__FRACTION__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__EXPONENT__java$text$NumberFormat$Field = J.saccessor("EXPONENT", type: JObjectType("java/text/NumberFormat$Field"))
     public static var EXPONENT: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__EXPONENT__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__EXPONENT__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__DECIMAL_SEPARATOR__java$text$NumberFormat$Field = J.saccessor("DECIMAL_SEPARATOR", type: JObjectType("java/text/NumberFormat$Field"))
     public static var DECIMAL_SEPARATOR: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__DECIMAL_SEPARATOR__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__DECIMAL_SEPARATOR__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__SIGN__java$text$NumberFormat$Field = J.saccessor("SIGN", type: JObjectType("java/text/NumberFormat$Field"))
     public static var SIGN: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__SIGN__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__SIGN__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__GROUPING_SEPARATOR__java$text$NumberFormat$Field = J.saccessor("GROUPING_SEPARATOR", type: JObjectType("java/text/NumberFormat$Field"))
     public static var GROUPING_SEPARATOR: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__GROUPING_SEPARATOR__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__GROUPING_SEPARATOR__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__EXPONENT_SYMBOL__java$text$NumberFormat$Field = J.saccessor("EXPONENT_SYMBOL", type: JObjectType("java/text/NumberFormat$Field"))
     public static var EXPONENT_SYMBOL: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__EXPONENT_SYMBOL__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__EXPONENT_SYMBOL__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__PERCENT__java$text$NumberFormat$Field = J.saccessor("PERCENT", type: JObjectType("java/text/NumberFormat$Field"))
     public static var PERCENT: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__PERCENT__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__PERCENT__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__PERMILLE__java$text$NumberFormat$Field = J.saccessor("PERMILLE", type: JObjectType("java/text/NumberFormat$Field"))
     public static var PERMILLE: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__PERMILLE__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__PERMILLE__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__CURRENCY__java$text$NumberFormat$Field = J.saccessor("CURRENCY", type: JObjectType("java/text/NumberFormat$Field"))
     public static var CURRENCY: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__CURRENCY__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__CURRENCY__java$text$NumberFormat$Field.getter()) }
     }
 
     fileprivate static let java$text$NumberFormat$Field__EXPONENT_SIGN__java$text$NumberFormat$Field = J.saccessor("EXPONENT_SIGN", type: JObjectType("java/text/NumberFormat$Field"))
     public static var EXPONENT_SIGN: java$text$NumberFormat$Field? {
-        get { return java$text$NumberFormat$Field$Impl(constructor: I.java$text$NumberFormat$Field__EXPONENT_SIGN__java$text$NumberFormat$Field.getter()) }
+        get { return java$text$NumberFormat$Field$Impl(reference: I.java$text$NumberFormat$Field__EXPONENT_SIGN__java$text$NumberFormat$Field.getter()) }
     }
 
 }
@@ -2381,22 +2381,22 @@ public final class java$text$Normalizer$Form : java$lang$Enum {
 
     fileprivate static let java$text$Normalizer$Form__NFD__java$text$Normalizer$Form = J.saccessor("NFD", type: JObjectType("java/text/Normalizer$Form"))
     public static var NFD: java$text$Normalizer$Form? {
-        get { return java$text$Normalizer$Form$Impl(constructor: I.java$text$Normalizer$Form__NFD__java$text$Normalizer$Form.getter()) }
+        get { return java$text$Normalizer$Form$Impl(reference: I.java$text$Normalizer$Form__NFD__java$text$Normalizer$Form.getter()) }
     }
 
     fileprivate static let java$text$Normalizer$Form__NFC__java$text$Normalizer$Form = J.saccessor("NFC", type: JObjectType("java/text/Normalizer$Form"))
     public static var NFC: java$text$Normalizer$Form? {
-        get { return java$text$Normalizer$Form$Impl(constructor: I.java$text$Normalizer$Form__NFC__java$text$Normalizer$Form.getter()) }
+        get { return java$text$Normalizer$Form$Impl(reference: I.java$text$Normalizer$Form__NFC__java$text$Normalizer$Form.getter()) }
     }
 
     fileprivate static let java$text$Normalizer$Form__NFKD__java$text$Normalizer$Form = J.saccessor("NFKD", type: JObjectType("java/text/Normalizer$Form"))
     public static var NFKD: java$text$Normalizer$Form? {
-        get { return java$text$Normalizer$Form$Impl(constructor: I.java$text$Normalizer$Form__NFKD__java$text$Normalizer$Form.getter()) }
+        get { return java$text$Normalizer$Form$Impl(reference: I.java$text$Normalizer$Form__NFKD__java$text$Normalizer$Form.getter()) }
     }
 
     fileprivate static let java$text$Normalizer$Form__NFKC__java$text$Normalizer$Form = J.saccessor("NFKC", type: JObjectType("java/text/Normalizer$Form"))
     public static var NFKC: java$text$Normalizer$Form? {
-        get { return java$text$Normalizer$Form$Impl(constructor: I.java$text$Normalizer$Form__NFKC__java$text$Normalizer$Form.getter()) }
+        get { return java$text$Normalizer$Form$Impl(reference: I.java$text$Normalizer$Form__NFKC__java$text$Normalizer$Form.getter()) }
     }
 
     fileprivate static let java$text$Normalizer$Form_values__Ajava$text$Normalizer$Form = svoker("values", returns: JArray(JObjectType("java/text/Normalizer$Form")))

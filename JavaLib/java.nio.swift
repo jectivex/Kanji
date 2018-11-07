@@ -92,6 +92,16 @@ open class java$nio$Buffer : java$lang$Object {
         return try I.java$nio$Buffer_isDirect__Z(jobj)()
     }
 
+    fileprivate static let java$nio$Buffer_slice__java$nio$Buffer = invoker("slice", returns: JObjectType("java/nio/Buffer"))
+    public func slice() throws -> java$nio$Buffer? {
+        return try JVM.sharedJVM.construct(I.java$nio$Buffer_slice__java$nio$Buffer(jobj)()) as java$nio$Buffer$Impl?
+    }
+
+    fileprivate static let java$nio$Buffer_duplicate__java$nio$Buffer = invoker("duplicate", returns: JObjectType("java/nio/Buffer"))
+    public func duplicate() throws -> java$nio$Buffer? {
+        return try JVM.sharedJVM.construct(I.java$nio$Buffer_duplicate__java$nio$Buffer(jobj)()) as java$nio$Buffer$Impl?
+    }
+
 }
 
 public typealias java$nio$Buffer$Impl = java$nio$Buffer
@@ -124,15 +134,7 @@ open class java$nio$ByteBuffer : java$nio$Buffer, java$lang$Comparable {
     }
 
     fileprivate static let java$nio$ByteBuffer_slice__java$nio$ByteBuffer = invoker("slice", returns: JObjectType("java/nio/ByteBuffer"))
-    public func slice() throws -> java$nio$ByteBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$ByteBuffer_slice__java$nio$ByteBuffer(jobj)()) as java$nio$ByteBuffer$Impl?
-    }
-
     fileprivate static let java$nio$ByteBuffer_duplicate__java$nio$ByteBuffer = invoker("duplicate", returns: JObjectType("java/nio/ByteBuffer"))
-    public func duplicate() throws -> java$nio$ByteBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$ByteBuffer_duplicate__java$nio$ByteBuffer(jobj)()) as java$nio$ByteBuffer$Impl?
-    }
-
     fileprivate static let java$nio$ByteBuffer_asReadOnlyBuffer__java$nio$ByteBuffer = invoker("asReadOnlyBuffer", returns: JObjectType("java/nio/ByteBuffer"))
     public func asReadOnlyBuffer() throws -> java$nio$ByteBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$ByteBuffer_asReadOnlyBuffer__java$nio$ByteBuffer(jobj)()) as java$nio$ByteBuffer$Impl?
@@ -186,6 +188,13 @@ open class java$nio$ByteBuffer : java$nio$Buffer, java$lang$Comparable {
     fileprivate static let java$nio$ByteBuffer_hasArray__Z = invoker("hasArray", returns: jboolean.jniType)
     fileprivate static let java$nio$ByteBuffer_array__AB = invoker("array", returns: JArray(jbyte.jniType))
     fileprivate static let java$nio$ByteBuffer_arrayOffset__I = invoker("arrayOffset", returns: jint.jniType)
+    fileprivate static let java$nio$ByteBuffer_position_I__java$nio$ByteBuffer = invoker("position", returns: JObjectType("java/nio/ByteBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$ByteBuffer_limit_I__java$nio$ByteBuffer = invoker("limit", returns: JObjectType("java/nio/ByteBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$ByteBuffer_mark__java$nio$ByteBuffer = invoker("mark", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$ByteBuffer_reset__java$nio$ByteBuffer = invoker("reset", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$ByteBuffer_clear__java$nio$ByteBuffer = invoker("clear", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$ByteBuffer_flip__java$nio$ByteBuffer = invoker("flip", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$ByteBuffer_rewind__java$nio$ByteBuffer = invoker("rewind", returns: JObjectType("java/nio/ByteBuffer"))
     fileprivate static let java$nio$ByteBuffer_compact__java$nio$ByteBuffer = invoker("compact", returns: JObjectType("java/nio/ByteBuffer"))
     public func compact() throws -> java$nio$ByteBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$ByteBuffer_compact__java$nio$ByteBuffer(jobj)()) as java$nio$ByteBuffer$Impl?
@@ -208,6 +217,16 @@ open class java$nio$ByteBuffer : java$nio$Buffer, java$lang$Comparable {
     fileprivate static let java$nio$ByteBuffer_order_java$nio$ByteOrder__java$nio$ByteBuffer = invoker("order", returns: JObjectType("java/nio/ByteBuffer"), arguments: (JObjectType("java/nio/ByteOrder")))
     public func order(_ a0: java$nio$ByteOrder?) throws -> java$nio$ByteBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$ByteBuffer_order_java$nio$ByteOrder__java$nio$ByteBuffer(jobj)(a0?.jobj ?? nil)) as java$nio$ByteBuffer$Impl?
+    }
+
+    fileprivate static let java$nio$ByteBuffer_alignmentOffset_I_I__I = invoker("alignmentOffset", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
+    public func alignmentOffset(_ a0: jint, _ a1: jint) throws -> jint {
+        return try I.java$nio$ByteBuffer_alignmentOffset_I_I__I(jobj)(a0, a1)
+    }
+
+    fileprivate static let java$nio$ByteBuffer_alignedSlice_I__java$nio$ByteBuffer = invoker("alignedSlice", returns: JObjectType("java/nio/ByteBuffer"), arguments: (jint.jniType))
+    public func alignedSlice(_ a0: jint) throws -> java$nio$ByteBuffer? {
+        return try JVM.sharedJVM.construct(I.java$nio$ByteBuffer_alignedSlice_I__java$nio$ByteBuffer(jobj)(a0)) as java$nio$ByteBuffer$Impl?
     }
 
     fileprivate static let java$nio$ByteBuffer_getChar__C = invoker("getChar", returns: jchar.jniType)
@@ -360,7 +379,16 @@ open class java$nio$ByteBuffer : java$nio$Buffer, java$lang$Comparable {
         return try JVM.sharedJVM.construct(I.java$nio$ByteBuffer_asDoubleBuffer__java$nio$DoubleBuffer(jobj)()) as java$nio$DoubleBuffer$Impl?
     }
 
+    fileprivate static let java$nio$ByteBuffer_duplicate__java$nio$Buffer = invoker("duplicate", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ByteBuffer_slice__java$nio$Buffer = invoker("slice", returns: JObjectType("java/nio/Buffer"))
     fileprivate static let java$nio$ByteBuffer_array__java$lang$Object = invoker("array", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$nio$ByteBuffer_rewind__java$nio$Buffer = invoker("rewind", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ByteBuffer_flip__java$nio$Buffer = invoker("flip", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ByteBuffer_clear__java$nio$Buffer = invoker("clear", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ByteBuffer_reset__java$nio$Buffer = invoker("reset", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ByteBuffer_mark__java$nio$Buffer = invoker("mark", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ByteBuffer_limit_I__java$nio$Buffer = invoker("limit", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$ByteBuffer_position_I__java$nio$Buffer = invoker("position", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
     fileprivate static let java$nio$ByteBuffer_compareTo_java$lang$Object__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/lang/Object")))
     public func compareTo(_ a0: java$lang$Object?) throws -> jint {
         return try I.java$nio$ByteBuffer_compareTo_java$lang$Object__I(jobj)(a0?.jobj ?? nil)
@@ -392,6 +420,27 @@ open class java$nio$MappedByteBuffer : java$nio$ByteBuffer {
         return try JVM.sharedJVM.construct(I.java$nio$MappedByteBuffer_force__java$nio$MappedByteBuffer(jobj)()) as java$nio$MappedByteBuffer$Impl?
     }
 
+    fileprivate static let java$nio$MappedByteBuffer_position_I__java$nio$MappedByteBuffer = invoker("position", returns: JObjectType("java/nio/MappedByteBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$MappedByteBuffer_limit_I__java$nio$MappedByteBuffer = invoker("limit", returns: JObjectType("java/nio/MappedByteBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$MappedByteBuffer_mark__java$nio$MappedByteBuffer = invoker("mark", returns: JObjectType("java/nio/MappedByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_reset__java$nio$MappedByteBuffer = invoker("reset", returns: JObjectType("java/nio/MappedByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_clear__java$nio$MappedByteBuffer = invoker("clear", returns: JObjectType("java/nio/MappedByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_flip__java$nio$MappedByteBuffer = invoker("flip", returns: JObjectType("java/nio/MappedByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_rewind__java$nio$MappedByteBuffer = invoker("rewind", returns: JObjectType("java/nio/MappedByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_rewind__java$nio$ByteBuffer = invoker("rewind", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_flip__java$nio$ByteBuffer = invoker("flip", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_clear__java$nio$ByteBuffer = invoker("clear", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_reset__java$nio$ByteBuffer = invoker("reset", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_mark__java$nio$ByteBuffer = invoker("mark", returns: JObjectType("java/nio/ByteBuffer"))
+    fileprivate static let java$nio$MappedByteBuffer_limit_I__java$nio$ByteBuffer = invoker("limit", returns: JObjectType("java/nio/ByteBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$MappedByteBuffer_position_I__java$nio$ByteBuffer = invoker("position", returns: JObjectType("java/nio/ByteBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$MappedByteBuffer_rewind__java$nio$Buffer = invoker("rewind", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$MappedByteBuffer_flip__java$nio$Buffer = invoker("flip", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$MappedByteBuffer_clear__java$nio$Buffer = invoker("clear", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$MappedByteBuffer_reset__java$nio$Buffer = invoker("reset", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$MappedByteBuffer_mark__java$nio$Buffer = invoker("mark", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$MappedByteBuffer_limit_I__java$nio$Buffer = invoker("limit", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$MappedByteBuffer_position_I__java$nio$Buffer = invoker("position", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
 }
 
 public typealias java$nio$MappedByteBuffer$Impl = java$nio$MappedByteBuffer
@@ -434,15 +483,7 @@ open class java$nio$CharBuffer : java$nio$Buffer, java$lang$Comparable, java$lan
     }
 
     fileprivate static let java$nio$CharBuffer_slice__java$nio$CharBuffer = invoker("slice", returns: JObjectType("java/nio/CharBuffer"))
-    public func slice() throws -> java$nio$CharBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$CharBuffer_slice__java$nio$CharBuffer(jobj)()) as java$nio$CharBuffer$Impl?
-    }
-
     fileprivate static let java$nio$CharBuffer_duplicate__java$nio$CharBuffer = invoker("duplicate", returns: JObjectType("java/nio/CharBuffer"))
-    public func duplicate() throws -> java$nio$CharBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$CharBuffer_duplicate__java$nio$CharBuffer(jobj)()) as java$nio$CharBuffer$Impl?
-    }
-
     fileprivate static let java$nio$CharBuffer_asReadOnlyBuffer__java$nio$CharBuffer = invoker("asReadOnlyBuffer", returns: JObjectType("java/nio/CharBuffer"))
     public func asReadOnlyBuffer() throws -> java$nio$CharBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$CharBuffer_asReadOnlyBuffer__java$nio$CharBuffer(jobj)()) as java$nio$CharBuffer$Impl?
@@ -506,6 +547,13 @@ open class java$nio$CharBuffer : java$nio$Buffer, java$lang$Comparable, java$lan
     fileprivate static let java$nio$CharBuffer_hasArray__Z = invoker("hasArray", returns: jboolean.jniType)
     fileprivate static let java$nio$CharBuffer_array__AC = invoker("array", returns: JArray(jchar.jniType))
     fileprivate static let java$nio$CharBuffer_arrayOffset__I = invoker("arrayOffset", returns: jint.jniType)
+    fileprivate static let java$nio$CharBuffer_position_I__java$nio$CharBuffer = invoker("position", returns: JObjectType("java/nio/CharBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$CharBuffer_limit_I__java$nio$CharBuffer = invoker("limit", returns: JObjectType("java/nio/CharBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$CharBuffer_mark__java$nio$CharBuffer = invoker("mark", returns: JObjectType("java/nio/CharBuffer"))
+    fileprivate static let java$nio$CharBuffer_reset__java$nio$CharBuffer = invoker("reset", returns: JObjectType("java/nio/CharBuffer"))
+    fileprivate static let java$nio$CharBuffer_clear__java$nio$CharBuffer = invoker("clear", returns: JObjectType("java/nio/CharBuffer"))
+    fileprivate static let java$nio$CharBuffer_flip__java$nio$CharBuffer = invoker("flip", returns: JObjectType("java/nio/CharBuffer"))
+    fileprivate static let java$nio$CharBuffer_rewind__java$nio$CharBuffer = invoker("rewind", returns: JObjectType("java/nio/CharBuffer"))
     fileprivate static let java$nio$CharBuffer_compact__java$nio$CharBuffer = invoker("compact", returns: JObjectType("java/nio/CharBuffer"))
     public func compact() throws -> java$nio$CharBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$CharBuffer_compact__java$nio$CharBuffer(jobj)()) as java$nio$CharBuffer$Impl?
@@ -560,7 +608,16 @@ open class java$nio$CharBuffer : java$nio$Buffer, java$lang$Comparable, java$lan
         return try JVM.sharedJVM.construct(I.java$nio$CharBuffer_chars__java$util$stream$IntStream(jobj)()) as java$util$stream$IntStream$Impl?
     }
 
+    fileprivate static let java$nio$CharBuffer_duplicate__java$nio$Buffer = invoker("duplicate", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$CharBuffer_slice__java$nio$Buffer = invoker("slice", returns: JObjectType("java/nio/Buffer"))
     fileprivate static let java$nio$CharBuffer_array__java$lang$Object = invoker("array", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$nio$CharBuffer_rewind__java$nio$Buffer = invoker("rewind", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$CharBuffer_flip__java$nio$Buffer = invoker("flip", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$CharBuffer_clear__java$nio$Buffer = invoker("clear", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$CharBuffer_reset__java$nio$Buffer = invoker("reset", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$CharBuffer_mark__java$nio$Buffer = invoker("mark", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$CharBuffer_limit_I__java$nio$Buffer = invoker("limit", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$CharBuffer_position_I__java$nio$Buffer = invoker("position", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
     fileprivate static let java$nio$CharBuffer_compareTo_java$lang$Object__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/lang/Object")))
     public func compareTo(_ a0: java$lang$Object?) throws -> jint {
         return try I.java$nio$CharBuffer_compareTo_java$lang$Object__I(jobj)(a0?.jobj ?? nil)
@@ -613,15 +670,7 @@ open class java$nio$DoubleBuffer : java$nio$Buffer, java$lang$Comparable {
     }
 
     fileprivate static let java$nio$DoubleBuffer_slice__java$nio$DoubleBuffer = invoker("slice", returns: JObjectType("java/nio/DoubleBuffer"))
-    public func slice() throws -> java$nio$DoubleBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$DoubleBuffer_slice__java$nio$DoubleBuffer(jobj)()) as java$nio$DoubleBuffer$Impl?
-    }
-
     fileprivate static let java$nio$DoubleBuffer_duplicate__java$nio$DoubleBuffer = invoker("duplicate", returns: JObjectType("java/nio/DoubleBuffer"))
-    public func duplicate() throws -> java$nio$DoubleBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$DoubleBuffer_duplicate__java$nio$DoubleBuffer(jobj)()) as java$nio$DoubleBuffer$Impl?
-    }
-
     fileprivate static let java$nio$DoubleBuffer_asReadOnlyBuffer__java$nio$DoubleBuffer = invoker("asReadOnlyBuffer", returns: JObjectType("java/nio/DoubleBuffer"))
     public func asReadOnlyBuffer() throws -> java$nio$DoubleBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$DoubleBuffer_asReadOnlyBuffer__java$nio$DoubleBuffer(jobj)()) as java$nio$DoubleBuffer$Impl?
@@ -675,6 +724,13 @@ open class java$nio$DoubleBuffer : java$nio$Buffer, java$lang$Comparable {
     fileprivate static let java$nio$DoubleBuffer_hasArray__Z = invoker("hasArray", returns: jboolean.jniType)
     fileprivate static let java$nio$DoubleBuffer_array__AD = invoker("array", returns: JArray(jdouble.jniType))
     fileprivate static let java$nio$DoubleBuffer_arrayOffset__I = invoker("arrayOffset", returns: jint.jniType)
+    fileprivate static let java$nio$DoubleBuffer_position_I__java$nio$DoubleBuffer = invoker("position", returns: JObjectType("java/nio/DoubleBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$DoubleBuffer_limit_I__java$nio$DoubleBuffer = invoker("limit", returns: JObjectType("java/nio/DoubleBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$DoubleBuffer_mark__java$nio$DoubleBuffer = invoker("mark", returns: JObjectType("java/nio/DoubleBuffer"))
+    fileprivate static let java$nio$DoubleBuffer_reset__java$nio$DoubleBuffer = invoker("reset", returns: JObjectType("java/nio/DoubleBuffer"))
+    fileprivate static let java$nio$DoubleBuffer_clear__java$nio$DoubleBuffer = invoker("clear", returns: JObjectType("java/nio/DoubleBuffer"))
+    fileprivate static let java$nio$DoubleBuffer_flip__java$nio$DoubleBuffer = invoker("flip", returns: JObjectType("java/nio/DoubleBuffer"))
+    fileprivate static let java$nio$DoubleBuffer_rewind__java$nio$DoubleBuffer = invoker("rewind", returns: JObjectType("java/nio/DoubleBuffer"))
     fileprivate static let java$nio$DoubleBuffer_compact__java$nio$DoubleBuffer = invoker("compact", returns: JObjectType("java/nio/DoubleBuffer"))
     public func compact() throws -> java$nio$DoubleBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$DoubleBuffer_compact__java$nio$DoubleBuffer(jobj)()) as java$nio$DoubleBuffer$Impl?
@@ -694,7 +750,16 @@ open class java$nio$DoubleBuffer : java$nio$Buffer, java$lang$Comparable {
         return try JVM.sharedJVM.construct(I.java$nio$DoubleBuffer_order__java$nio$ByteOrder(jobj)()) as java$nio$ByteOrder$Impl?
     }
 
+    fileprivate static let java$nio$DoubleBuffer_duplicate__java$nio$Buffer = invoker("duplicate", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$DoubleBuffer_slice__java$nio$Buffer = invoker("slice", returns: JObjectType("java/nio/Buffer"))
     fileprivate static let java$nio$DoubleBuffer_array__java$lang$Object = invoker("array", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$nio$DoubleBuffer_rewind__java$nio$Buffer = invoker("rewind", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$DoubleBuffer_flip__java$nio$Buffer = invoker("flip", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$DoubleBuffer_clear__java$nio$Buffer = invoker("clear", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$DoubleBuffer_reset__java$nio$Buffer = invoker("reset", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$DoubleBuffer_mark__java$nio$Buffer = invoker("mark", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$DoubleBuffer_limit_I__java$nio$Buffer = invoker("limit", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$DoubleBuffer_position_I__java$nio$Buffer = invoker("position", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
     fileprivate static let java$nio$DoubleBuffer_compareTo_java$lang$Object__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/lang/Object")))
     public func compareTo(_ a0: java$lang$Object?) throws -> jint {
         return try I.java$nio$DoubleBuffer_compareTo_java$lang$Object__I(jobj)(a0?.jobj ?? nil)
@@ -727,15 +792,7 @@ open class java$nio$FloatBuffer : java$nio$Buffer, java$lang$Comparable {
     }
 
     fileprivate static let java$nio$FloatBuffer_slice__java$nio$FloatBuffer = invoker("slice", returns: JObjectType("java/nio/FloatBuffer"))
-    public func slice() throws -> java$nio$FloatBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$FloatBuffer_slice__java$nio$FloatBuffer(jobj)()) as java$nio$FloatBuffer$Impl?
-    }
-
     fileprivate static let java$nio$FloatBuffer_duplicate__java$nio$FloatBuffer = invoker("duplicate", returns: JObjectType("java/nio/FloatBuffer"))
-    public func duplicate() throws -> java$nio$FloatBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$FloatBuffer_duplicate__java$nio$FloatBuffer(jobj)()) as java$nio$FloatBuffer$Impl?
-    }
-
     fileprivate static let java$nio$FloatBuffer_asReadOnlyBuffer__java$nio$FloatBuffer = invoker("asReadOnlyBuffer", returns: JObjectType("java/nio/FloatBuffer"))
     public func asReadOnlyBuffer() throws -> java$nio$FloatBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$FloatBuffer_asReadOnlyBuffer__java$nio$FloatBuffer(jobj)()) as java$nio$FloatBuffer$Impl?
@@ -789,6 +846,13 @@ open class java$nio$FloatBuffer : java$nio$Buffer, java$lang$Comparable {
     fileprivate static let java$nio$FloatBuffer_hasArray__Z = invoker("hasArray", returns: jboolean.jniType)
     fileprivate static let java$nio$FloatBuffer_array__AF = invoker("array", returns: JArray(jfloat.jniType))
     fileprivate static let java$nio$FloatBuffer_arrayOffset__I = invoker("arrayOffset", returns: jint.jniType)
+    fileprivate static let java$nio$FloatBuffer_position_I__java$nio$FloatBuffer = invoker("position", returns: JObjectType("java/nio/FloatBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$FloatBuffer_limit_I__java$nio$FloatBuffer = invoker("limit", returns: JObjectType("java/nio/FloatBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$FloatBuffer_mark__java$nio$FloatBuffer = invoker("mark", returns: JObjectType("java/nio/FloatBuffer"))
+    fileprivate static let java$nio$FloatBuffer_reset__java$nio$FloatBuffer = invoker("reset", returns: JObjectType("java/nio/FloatBuffer"))
+    fileprivate static let java$nio$FloatBuffer_clear__java$nio$FloatBuffer = invoker("clear", returns: JObjectType("java/nio/FloatBuffer"))
+    fileprivate static let java$nio$FloatBuffer_flip__java$nio$FloatBuffer = invoker("flip", returns: JObjectType("java/nio/FloatBuffer"))
+    fileprivate static let java$nio$FloatBuffer_rewind__java$nio$FloatBuffer = invoker("rewind", returns: JObjectType("java/nio/FloatBuffer"))
     fileprivate static let java$nio$FloatBuffer_compact__java$nio$FloatBuffer = invoker("compact", returns: JObjectType("java/nio/FloatBuffer"))
     public func compact() throws -> java$nio$FloatBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$FloatBuffer_compact__java$nio$FloatBuffer(jobj)()) as java$nio$FloatBuffer$Impl?
@@ -808,7 +872,16 @@ open class java$nio$FloatBuffer : java$nio$Buffer, java$lang$Comparable {
         return try JVM.sharedJVM.construct(I.java$nio$FloatBuffer_order__java$nio$ByteOrder(jobj)()) as java$nio$ByteOrder$Impl?
     }
 
+    fileprivate static let java$nio$FloatBuffer_duplicate__java$nio$Buffer = invoker("duplicate", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$FloatBuffer_slice__java$nio$Buffer = invoker("slice", returns: JObjectType("java/nio/Buffer"))
     fileprivate static let java$nio$FloatBuffer_array__java$lang$Object = invoker("array", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$nio$FloatBuffer_rewind__java$nio$Buffer = invoker("rewind", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$FloatBuffer_flip__java$nio$Buffer = invoker("flip", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$FloatBuffer_clear__java$nio$Buffer = invoker("clear", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$FloatBuffer_reset__java$nio$Buffer = invoker("reset", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$FloatBuffer_mark__java$nio$Buffer = invoker("mark", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$FloatBuffer_limit_I__java$nio$Buffer = invoker("limit", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$FloatBuffer_position_I__java$nio$Buffer = invoker("position", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
     fileprivate static let java$nio$FloatBuffer_compareTo_java$lang$Object__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/lang/Object")))
     public func compareTo(_ a0: java$lang$Object?) throws -> jint {
         return try I.java$nio$FloatBuffer_compareTo_java$lang$Object__I(jobj)(a0?.jobj ?? nil)
@@ -841,15 +914,7 @@ open class java$nio$IntBuffer : java$nio$Buffer, java$lang$Comparable {
     }
 
     fileprivate static let java$nio$IntBuffer_slice__java$nio$IntBuffer = invoker("slice", returns: JObjectType("java/nio/IntBuffer"))
-    public func slice() throws -> java$nio$IntBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$IntBuffer_slice__java$nio$IntBuffer(jobj)()) as java$nio$IntBuffer$Impl?
-    }
-
     fileprivate static let java$nio$IntBuffer_duplicate__java$nio$IntBuffer = invoker("duplicate", returns: JObjectType("java/nio/IntBuffer"))
-    public func duplicate() throws -> java$nio$IntBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$IntBuffer_duplicate__java$nio$IntBuffer(jobj)()) as java$nio$IntBuffer$Impl?
-    }
-
     fileprivate static let java$nio$IntBuffer_asReadOnlyBuffer__java$nio$IntBuffer = invoker("asReadOnlyBuffer", returns: JObjectType("java/nio/IntBuffer"))
     public func asReadOnlyBuffer() throws -> java$nio$IntBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$IntBuffer_asReadOnlyBuffer__java$nio$IntBuffer(jobj)()) as java$nio$IntBuffer$Impl?
@@ -903,6 +968,13 @@ open class java$nio$IntBuffer : java$nio$Buffer, java$lang$Comparable {
     fileprivate static let java$nio$IntBuffer_hasArray__Z = invoker("hasArray", returns: jboolean.jniType)
     fileprivate static let java$nio$IntBuffer_array__AI = invoker("array", returns: JArray(jint.jniType))
     fileprivate static let java$nio$IntBuffer_arrayOffset__I = invoker("arrayOffset", returns: jint.jniType)
+    fileprivate static let java$nio$IntBuffer_position_I__java$nio$IntBuffer = invoker("position", returns: JObjectType("java/nio/IntBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$IntBuffer_limit_I__java$nio$IntBuffer = invoker("limit", returns: JObjectType("java/nio/IntBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$IntBuffer_mark__java$nio$IntBuffer = invoker("mark", returns: JObjectType("java/nio/IntBuffer"))
+    fileprivate static let java$nio$IntBuffer_reset__java$nio$IntBuffer = invoker("reset", returns: JObjectType("java/nio/IntBuffer"))
+    fileprivate static let java$nio$IntBuffer_clear__java$nio$IntBuffer = invoker("clear", returns: JObjectType("java/nio/IntBuffer"))
+    fileprivate static let java$nio$IntBuffer_flip__java$nio$IntBuffer = invoker("flip", returns: JObjectType("java/nio/IntBuffer"))
+    fileprivate static let java$nio$IntBuffer_rewind__java$nio$IntBuffer = invoker("rewind", returns: JObjectType("java/nio/IntBuffer"))
     fileprivate static let java$nio$IntBuffer_compact__java$nio$IntBuffer = invoker("compact", returns: JObjectType("java/nio/IntBuffer"))
     public func compact() throws -> java$nio$IntBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$IntBuffer_compact__java$nio$IntBuffer(jobj)()) as java$nio$IntBuffer$Impl?
@@ -922,7 +994,16 @@ open class java$nio$IntBuffer : java$nio$Buffer, java$lang$Comparable {
         return try JVM.sharedJVM.construct(I.java$nio$IntBuffer_order__java$nio$ByteOrder(jobj)()) as java$nio$ByteOrder$Impl?
     }
 
+    fileprivate static let java$nio$IntBuffer_duplicate__java$nio$Buffer = invoker("duplicate", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$IntBuffer_slice__java$nio$Buffer = invoker("slice", returns: JObjectType("java/nio/Buffer"))
     fileprivate static let java$nio$IntBuffer_array__java$lang$Object = invoker("array", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$nio$IntBuffer_rewind__java$nio$Buffer = invoker("rewind", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$IntBuffer_flip__java$nio$Buffer = invoker("flip", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$IntBuffer_clear__java$nio$Buffer = invoker("clear", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$IntBuffer_reset__java$nio$Buffer = invoker("reset", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$IntBuffer_mark__java$nio$Buffer = invoker("mark", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$IntBuffer_limit_I__java$nio$Buffer = invoker("limit", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$IntBuffer_position_I__java$nio$Buffer = invoker("position", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
     fileprivate static let java$nio$IntBuffer_compareTo_java$lang$Object__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/lang/Object")))
     public func compareTo(_ a0: java$lang$Object?) throws -> jint {
         return try I.java$nio$IntBuffer_compareTo_java$lang$Object__I(jobj)(a0?.jobj ?? nil)
@@ -955,15 +1036,7 @@ open class java$nio$LongBuffer : java$nio$Buffer, java$lang$Comparable {
     }
 
     fileprivate static let java$nio$LongBuffer_slice__java$nio$LongBuffer = invoker("slice", returns: JObjectType("java/nio/LongBuffer"))
-    public func slice() throws -> java$nio$LongBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$LongBuffer_slice__java$nio$LongBuffer(jobj)()) as java$nio$LongBuffer$Impl?
-    }
-
     fileprivate static let java$nio$LongBuffer_duplicate__java$nio$LongBuffer = invoker("duplicate", returns: JObjectType("java/nio/LongBuffer"))
-    public func duplicate() throws -> java$nio$LongBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$LongBuffer_duplicate__java$nio$LongBuffer(jobj)()) as java$nio$LongBuffer$Impl?
-    }
-
     fileprivate static let java$nio$LongBuffer_asReadOnlyBuffer__java$nio$LongBuffer = invoker("asReadOnlyBuffer", returns: JObjectType("java/nio/LongBuffer"))
     public func asReadOnlyBuffer() throws -> java$nio$LongBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$LongBuffer_asReadOnlyBuffer__java$nio$LongBuffer(jobj)()) as java$nio$LongBuffer$Impl?
@@ -1017,6 +1090,13 @@ open class java$nio$LongBuffer : java$nio$Buffer, java$lang$Comparable {
     fileprivate static let java$nio$LongBuffer_hasArray__Z = invoker("hasArray", returns: jboolean.jniType)
     fileprivate static let java$nio$LongBuffer_array__AJ = invoker("array", returns: JArray(jlong.jniType))
     fileprivate static let java$nio$LongBuffer_arrayOffset__I = invoker("arrayOffset", returns: jint.jniType)
+    fileprivate static let java$nio$LongBuffer_position_I__java$nio$LongBuffer = invoker("position", returns: JObjectType("java/nio/LongBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$LongBuffer_limit_I__java$nio$LongBuffer = invoker("limit", returns: JObjectType("java/nio/LongBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$LongBuffer_mark__java$nio$LongBuffer = invoker("mark", returns: JObjectType("java/nio/LongBuffer"))
+    fileprivate static let java$nio$LongBuffer_reset__java$nio$LongBuffer = invoker("reset", returns: JObjectType("java/nio/LongBuffer"))
+    fileprivate static let java$nio$LongBuffer_clear__java$nio$LongBuffer = invoker("clear", returns: JObjectType("java/nio/LongBuffer"))
+    fileprivate static let java$nio$LongBuffer_flip__java$nio$LongBuffer = invoker("flip", returns: JObjectType("java/nio/LongBuffer"))
+    fileprivate static let java$nio$LongBuffer_rewind__java$nio$LongBuffer = invoker("rewind", returns: JObjectType("java/nio/LongBuffer"))
     fileprivate static let java$nio$LongBuffer_compact__java$nio$LongBuffer = invoker("compact", returns: JObjectType("java/nio/LongBuffer"))
     public func compact() throws -> java$nio$LongBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$LongBuffer_compact__java$nio$LongBuffer(jobj)()) as java$nio$LongBuffer$Impl?
@@ -1036,7 +1116,16 @@ open class java$nio$LongBuffer : java$nio$Buffer, java$lang$Comparable {
         return try JVM.sharedJVM.construct(I.java$nio$LongBuffer_order__java$nio$ByteOrder(jobj)()) as java$nio$ByteOrder$Impl?
     }
 
+    fileprivate static let java$nio$LongBuffer_duplicate__java$nio$Buffer = invoker("duplicate", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$LongBuffer_slice__java$nio$Buffer = invoker("slice", returns: JObjectType("java/nio/Buffer"))
     fileprivate static let java$nio$LongBuffer_array__java$lang$Object = invoker("array", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$nio$LongBuffer_rewind__java$nio$Buffer = invoker("rewind", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$LongBuffer_flip__java$nio$Buffer = invoker("flip", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$LongBuffer_clear__java$nio$Buffer = invoker("clear", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$LongBuffer_reset__java$nio$Buffer = invoker("reset", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$LongBuffer_mark__java$nio$Buffer = invoker("mark", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$LongBuffer_limit_I__java$nio$Buffer = invoker("limit", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$LongBuffer_position_I__java$nio$Buffer = invoker("position", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
     fileprivate static let java$nio$LongBuffer_compareTo_java$lang$Object__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/lang/Object")))
     public func compareTo(_ a0: java$lang$Object?) throws -> jint {
         return try I.java$nio$LongBuffer_compareTo_java$lang$Object__I(jobj)(a0?.jobj ?? nil)
@@ -1069,15 +1158,7 @@ open class java$nio$ShortBuffer : java$nio$Buffer, java$lang$Comparable {
     }
 
     fileprivate static let java$nio$ShortBuffer_slice__java$nio$ShortBuffer = invoker("slice", returns: JObjectType("java/nio/ShortBuffer"))
-    public func slice() throws -> java$nio$ShortBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$ShortBuffer_slice__java$nio$ShortBuffer(jobj)()) as java$nio$ShortBuffer$Impl?
-    }
-
     fileprivate static let java$nio$ShortBuffer_duplicate__java$nio$ShortBuffer = invoker("duplicate", returns: JObjectType("java/nio/ShortBuffer"))
-    public func duplicate() throws -> java$nio$ShortBuffer? {
-        return try JVM.sharedJVM.construct(I.java$nio$ShortBuffer_duplicate__java$nio$ShortBuffer(jobj)()) as java$nio$ShortBuffer$Impl?
-    }
-
     fileprivate static let java$nio$ShortBuffer_asReadOnlyBuffer__java$nio$ShortBuffer = invoker("asReadOnlyBuffer", returns: JObjectType("java/nio/ShortBuffer"))
     public func asReadOnlyBuffer() throws -> java$nio$ShortBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$ShortBuffer_asReadOnlyBuffer__java$nio$ShortBuffer(jobj)()) as java$nio$ShortBuffer$Impl?
@@ -1131,6 +1212,13 @@ open class java$nio$ShortBuffer : java$nio$Buffer, java$lang$Comparable {
     fileprivate static let java$nio$ShortBuffer_hasArray__Z = invoker("hasArray", returns: jboolean.jniType)
     fileprivate static let java$nio$ShortBuffer_array__AS = invoker("array", returns: JArray(jshort.jniType))
     fileprivate static let java$nio$ShortBuffer_arrayOffset__I = invoker("arrayOffset", returns: jint.jniType)
+    fileprivate static let java$nio$ShortBuffer_position_I__java$nio$ShortBuffer = invoker("position", returns: JObjectType("java/nio/ShortBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$ShortBuffer_limit_I__java$nio$ShortBuffer = invoker("limit", returns: JObjectType("java/nio/ShortBuffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$ShortBuffer_mark__java$nio$ShortBuffer = invoker("mark", returns: JObjectType("java/nio/ShortBuffer"))
+    fileprivate static let java$nio$ShortBuffer_reset__java$nio$ShortBuffer = invoker("reset", returns: JObjectType("java/nio/ShortBuffer"))
+    fileprivate static let java$nio$ShortBuffer_clear__java$nio$ShortBuffer = invoker("clear", returns: JObjectType("java/nio/ShortBuffer"))
+    fileprivate static let java$nio$ShortBuffer_flip__java$nio$ShortBuffer = invoker("flip", returns: JObjectType("java/nio/ShortBuffer"))
+    fileprivate static let java$nio$ShortBuffer_rewind__java$nio$ShortBuffer = invoker("rewind", returns: JObjectType("java/nio/ShortBuffer"))
     fileprivate static let java$nio$ShortBuffer_compact__java$nio$ShortBuffer = invoker("compact", returns: JObjectType("java/nio/ShortBuffer"))
     public func compact() throws -> java$nio$ShortBuffer? {
         return try JVM.sharedJVM.construct(I.java$nio$ShortBuffer_compact__java$nio$ShortBuffer(jobj)()) as java$nio$ShortBuffer$Impl?
@@ -1150,7 +1238,16 @@ open class java$nio$ShortBuffer : java$nio$Buffer, java$lang$Comparable {
         return try JVM.sharedJVM.construct(I.java$nio$ShortBuffer_order__java$nio$ByteOrder(jobj)()) as java$nio$ByteOrder$Impl?
     }
 
+    fileprivate static let java$nio$ShortBuffer_duplicate__java$nio$Buffer = invoker("duplicate", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ShortBuffer_slice__java$nio$Buffer = invoker("slice", returns: JObjectType("java/nio/Buffer"))
     fileprivate static let java$nio$ShortBuffer_array__java$lang$Object = invoker("array", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$nio$ShortBuffer_rewind__java$nio$Buffer = invoker("rewind", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ShortBuffer_flip__java$nio$Buffer = invoker("flip", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ShortBuffer_clear__java$nio$Buffer = invoker("clear", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ShortBuffer_reset__java$nio$Buffer = invoker("reset", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ShortBuffer_mark__java$nio$Buffer = invoker("mark", returns: JObjectType("java/nio/Buffer"))
+    fileprivate static let java$nio$ShortBuffer_limit_I__java$nio$Buffer = invoker("limit", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
+    fileprivate static let java$nio$ShortBuffer_position_I__java$nio$Buffer = invoker("position", returns: JObjectType("java/nio/Buffer"), arguments: (jint.jniType))
     fileprivate static let java$nio$ShortBuffer_compareTo_java$lang$Object__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/lang/Object")))
     public func compareTo(_ a0: java$lang$Object?) throws -> jint {
         return try I.java$nio$ShortBuffer_compareTo_java$lang$Object__I(jobj)(a0?.jobj ?? nil)
@@ -1169,12 +1266,12 @@ public final class java$nio$ByteOrder : java$lang$Object {
 
     fileprivate static let java$nio$ByteOrder__BIG_ENDIAN__java$nio$ByteOrder = J.saccessor("BIG_ENDIAN", type: JObjectType("java/nio/ByteOrder"))
     public static var BIG_ENDIAN: java$nio$ByteOrder? {
-        get { return java$nio$ByteOrder$Impl(constructor: I.java$nio$ByteOrder__BIG_ENDIAN__java$nio$ByteOrder.getter()) }
+        get { return java$nio$ByteOrder$Impl(reference: I.java$nio$ByteOrder__BIG_ENDIAN__java$nio$ByteOrder.getter()) }
     }
 
     fileprivate static let java$nio$ByteOrder__LITTLE_ENDIAN__java$nio$ByteOrder = J.saccessor("LITTLE_ENDIAN", type: JObjectType("java/nio/ByteOrder"))
     public static var LITTLE_ENDIAN: java$nio$ByteOrder? {
-        get { return java$nio$ByteOrder$Impl(constructor: I.java$nio$ByteOrder__LITTLE_ENDIAN__java$nio$ByteOrder.getter()) }
+        get { return java$nio$ByteOrder$Impl(reference: I.java$nio$ByteOrder__LITTLE_ENDIAN__java$nio$ByteOrder.getter()) }
     }
 
     fileprivate static let java$nio$ByteOrder_nativeOrder__java$nio$ByteOrder = svoker("nativeOrder", returns: JObjectType("java/nio/ByteOrder"))

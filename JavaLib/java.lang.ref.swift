@@ -27,6 +27,11 @@ open class java$lang$ref$Reference : java$lang$Object {
         return try I.java$lang$ref$Reference_enqueue__Z(jobj)()
     }
 
+    fileprivate static let java$lang$ref$Reference_reachabilityFence_java$lang$Object__V = svoker("reachabilityFence", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
+    public static func reachabilityFence(_ a0: java$lang$Object?) throws -> Void {
+        return try I.java$lang$ref$Reference_reachabilityFence_java$lang$Object__V(a0?.jobj ?? nil)
+    }
+
 }
 
 public typealias java$lang$ref$Reference$Impl = java$lang$ref$Reference

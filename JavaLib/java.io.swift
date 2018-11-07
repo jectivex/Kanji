@@ -70,7 +70,7 @@ open class java$io$File : java$lang$Object, java$io$Serializable, java$lang$Comp
 
     fileprivate static let java$io$File__separator__java$lang$String = J.saccessor("separator", type: JObjectType("java/lang/String"))
     public static var separator: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$io$File__separator__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$io$File__separator__java$lang$String.getter()) }
     }
 
     fileprivate static let java$io$File__pathSeparatorChar__C = J.saccessor("pathSeparatorChar", type: jchar.jniType)
@@ -80,7 +80,7 @@ open class java$io$File : java$lang$Object, java$io$Serializable, java$lang$Comp
 
     fileprivate static let java$io$File__pathSeparator__java$lang$String = J.saccessor("pathSeparator", type: JObjectType("java/lang/String"))
     public static var pathSeparator: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$io$File__pathSeparator__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$io$File__pathSeparator__java$lang$String.getter()) }
     }
 
     fileprivate static let java$io$File_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
@@ -359,17 +359,17 @@ public final class java$io$FileDescriptor : java$lang$Object {
 
     fileprivate static let java$io$FileDescriptor__in__java$io$FileDescriptor = J.saccessor("in", type: JObjectType("java/io/FileDescriptor"))
     public static var `in`: java$io$FileDescriptor? {
-        get { return java$io$FileDescriptor$Impl(constructor: I.java$io$FileDescriptor__in__java$io$FileDescriptor.getter()) }
+        get { return java$io$FileDescriptor$Impl(reference: I.java$io$FileDescriptor__in__java$io$FileDescriptor.getter()) }
     }
 
     fileprivate static let java$io$FileDescriptor__out__java$io$FileDescriptor = J.saccessor("out", type: JObjectType("java/io/FileDescriptor"))
     public static var out: java$io$FileDescriptor? {
-        get { return java$io$FileDescriptor$Impl(constructor: I.java$io$FileDescriptor__out__java$io$FileDescriptor.getter()) }
+        get { return java$io$FileDescriptor$Impl(reference: I.java$io$FileDescriptor__out__java$io$FileDescriptor.getter()) }
     }
 
     fileprivate static let java$io$FileDescriptor__err__java$io$FileDescriptor = J.saccessor("err", type: JObjectType("java/io/FileDescriptor"))
     public static var err: java$io$FileDescriptor? {
-        get { return java$io$FileDescriptor$Impl(constructor: I.java$io$FileDescriptor__err__java$io$FileDescriptor.getter()) }
+        get { return java$io$FileDescriptor$Impl(reference: I.java$io$FileDescriptor__err__java$io$FileDescriptor.getter()) }
     }
 
     fileprivate static let java$io$FileDescriptor_init__V = constructor()
@@ -418,6 +418,16 @@ open class java$io$InputStream : java$lang$Object, java$io$Closeable {
         return try I.java$io$InputStream_read_AB_I_I__I(jobj)(a0?.arrayToJArray() ?? nil, a1, a2)
     }
 
+    fileprivate static let java$io$InputStream_readAllBytes__AB = invoker("readAllBytes", returns: JArray(jbyte.jniType))
+    public func readAllBytes() throws -> [jbyte]? {
+        return try I.java$io$InputStream_readAllBytes__AB(jobj)()?.jarrayToArray()
+    }
+
+    fileprivate static let java$io$InputStream_readNBytes_AB_I_I__I = invoker("readNBytes", returns: jint.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType))
+    public func readNBytes(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws -> jint {
+        return try I.java$io$InputStream_readNBytes_AB_I_I__I(jobj)(a0?.arrayToJArray() ?? nil, a1, a2)
+    }
+
     fileprivate static let java$io$InputStream_skip_J__J = invoker("skip", returns: jlong.jniType, arguments: (jlong.jniType))
     public func skip(_ a0: jlong) throws -> jlong {
         return try I.java$io$InputStream_skip_J__J(jobj)(a0)
@@ -446,6 +456,11 @@ open class java$io$InputStream : java$lang$Object, java$io$Closeable {
     fileprivate static let java$io$InputStream_markSupported__Z = invoker("markSupported", returns: jboolean.jniType)
     public func markSupported() throws -> jboolean {
         return try I.java$io$InputStream_markSupported__Z(jobj)()
+    }
+
+    fileprivate static let java$io$InputStream_transferTo_java$io$OutputStream__J = invoker("transferTo", returns: jlong.jniType, arguments: (JObjectType("java/io/OutputStream")))
+    public func transferTo(_ a0: java$io$OutputStream?) throws -> jlong {
+        return try I.java$io$InputStream_transferTo_java$io$OutputStream__J(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -860,6 +875,16 @@ open class java$io$ObjectInputStream : java$io$InputStream, java$io$ObjectInput,
     fileprivate static let java$io$ObjectInputStream_readUTF__java$lang$String = invoker("readUTF", returns: JObjectType("java/lang/String"))
     public func readUTF() throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$io$ObjectInputStream_readUTF__java$lang$String(jobj)()) as java$lang$String$Impl?
+    }
+
+    fileprivate static let java$io$ObjectInputStream_getObjectInputFilter__java$io$ObjectInputFilter = invoker("getObjectInputFilter", returns: JObjectType("java/io/ObjectInputFilter"))
+    public func getObjectInputFilter() throws -> java$io$ObjectInputFilter? {
+        return try JVM.sharedJVM.construct(I.java$io$ObjectInputStream_getObjectInputFilter__java$io$ObjectInputFilter(jobj)()) as java$io$ObjectInputFilter$Impl?
+    }
+
+    fileprivate static let java$io$ObjectInputStream_setObjectInputFilter_java$io$ObjectInputFilter__V = invoker("setObjectInputFilter", returns: JVoid.jniType, arguments: (JObjectType("java/io/ObjectInputFilter")))
+    public func setObjectInputFilter(_ a0: java$io$ObjectInputFilter?) throws -> Void {
+        return try I.java$io$ObjectInputStream_setObjectInputFilter_java$io$ObjectInputFilter__V(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -1289,6 +1314,11 @@ open class java$io$ByteArrayOutputStream : java$io$OutputStream {
         return try JVM.sharedJVM.construct(I.java$io$ByteArrayOutputStream_toString_java$lang$String__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
     }
 
+    fileprivate static let java$io$ByteArrayOutputStream_toString_java$nio$charset$Charset__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/nio/charset/Charset")))
+    public func toString(_ a0: java$nio$charset$Charset?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$io$ByteArrayOutputStream_toString_java$nio$charset$Charset__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
+    }
+
     fileprivate static let java$io$ByteArrayOutputStream_toString_I__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"), arguments: (jint.jniType))
     public func toString(_ a0: jint) throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$io$ByteArrayOutputStream_toString_I__java$lang$String(jobj)(a0)) as java$lang$String$Impl?
@@ -1495,6 +1525,11 @@ open class java$io$PrintStream : java$io$FilterOutputStream, java$lang$Appendabl
         try self.init(creator: I.java$io$PrintStream_init_java$io$OutputStream_Z_java$lang$String__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
     }
 
+    fileprivate static let java$io$PrintStream_init_java$io$OutputStream_Z_java$nio$charset$Charset__V = constructor((JObjectType("java/io/OutputStream"), jboolean.jniType, JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jboolean, _ a2: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$io$OutputStream_Z_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
+    }
+
     fileprivate static let java$io$PrintStream_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
         try self.init(creator: I.java$io$PrintStream_init_java$lang$String__V(a0?.jobj ?? nil))
@@ -1505,6 +1540,11 @@ open class java$io$PrintStream : java$io$FilterOutputStream, java$lang$Appendabl
         try self.init(creator: I.java$io$PrintStream_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
+    fileprivate static let java$io$PrintStream_init_java$lang$String_java$nio$charset$Charset__V = constructor((JObjectType("java/lang/String"), JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$lang$String_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    }
+
     fileprivate static let java$io$PrintStream_init_java$io$File__V = constructor((JObjectType("java/io/File")))
     public convenience init(_ a0: java$io$File?) throws {
         try self.init(creator: I.java$io$PrintStream_init_java$io$File__V(a0?.jobj ?? nil))
@@ -1513,6 +1553,11 @@ open class java$io$PrintStream : java$io$FilterOutputStream, java$lang$Appendabl
     fileprivate static let java$io$PrintStream_init_java$io$File_java$lang$String__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
         try self.init(creator: I.java$io$PrintStream_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    }
+
+    fileprivate static let java$io$PrintStream_init_java$io$File_java$nio$charset$Charset__V = constructor((JObjectType("java/io/File"), JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$io$File?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$io$PrintStream_init_java$io$File_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintStream_flush__V = invoker("flush", returns: JVoid.jniType)
@@ -2129,6 +2174,11 @@ open class java$io$Reader : java$lang$Object, java$lang$Readable, java$io$Closea
         return try I.java$io$Reader_close__V(jobj)()
     }
 
+    fileprivate static let java$io$Reader_transferTo_java$io$Writer__J = invoker("transferTo", returns: jlong.jniType, arguments: (JObjectType("java/io/Writer")))
+    public func transferTo(_ a0: java$io$Writer?) throws -> jlong {
+        return try I.java$io$Reader_transferTo_java$io$Writer__J(jobj)(a0?.jobj ?? nil)
+    }
+
 }
 
 public typealias java$io$Reader$Impl = java$io$Reader
@@ -2466,7 +2516,7 @@ open class java$io$StreamTokenizer : java$lang$Object {
 
     fileprivate static let java$io$StreamTokenizer__sval__java$lang$String = J.accessor("sval", type: JObjectType("java/lang/String"))
     public var sval: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$io$StreamTokenizer__sval__java$lang$String.getter(jobj)) }
+        get { return java$lang$String$Impl(reference: I.java$io$StreamTokenizer__sval__java$lang$String.getter(jobj)) }
         set { I.java$io$StreamTokenizer__sval__java$lang$String.setter(jobj, newValue?.jobj ?? nil) }
     }
 
@@ -2723,7 +2773,7 @@ open class java$io$InvalidClassException : java$io$ObjectStreamException {
 
     fileprivate static let java$io$InvalidClassException__classname__java$lang$String = J.accessor("classname", type: JObjectType("java/lang/String"))
     public var classname: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$io$InvalidClassException__classname__java$lang$String.getter(jobj)) }
+        get { return java$lang$String$Impl(reference: I.java$io$InvalidClassException__classname__java$lang$String.getter(jobj)) }
         set { I.java$io$InvalidClassException__classname__java$lang$String.setter(jobj, newValue?.jobj ?? nil) }
     }
 
@@ -2853,7 +2903,7 @@ open class java$io$WriteAbortedException : java$io$ObjectStreamException {
 
     fileprivate static let java$io$WriteAbortedException__detail__java$lang$Exception = J.accessor("detail", type: JObjectType("java/lang/Exception"))
     public var detail: java$lang$Exception? {
-        get { return java$lang$Exception$Impl(constructor: I.java$io$WriteAbortedException__detail__java$lang$Exception.getter(jobj)) }
+        get { return java$lang$Exception$Impl(reference: I.java$io$WriteAbortedException__detail__java$lang$Exception.getter(jobj)) }
         set { I.java$io$WriteAbortedException__detail__java$lang$Exception.setter(jobj, newValue?.jobj ?? nil) }
     }
 
@@ -3163,8 +3213,12 @@ open class java$io$OutputStreamWriter : java$io$Writer {
     fileprivate static let java$io$OutputStreamWriter_write_I__V = invoker("write", returns: JVoid.jniType, arguments: (jint.jniType))
     fileprivate static let java$io$OutputStreamWriter_write_AC_I_I__V = invoker("write", returns: JVoid.jniType, arguments: (JArray(jchar.jniType), jint.jniType, jint.jniType))
     fileprivate static let java$io$OutputStreamWriter_write_java$lang$String_I_I__V = invoker("write", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), jint.jniType, jint.jniType))
+    fileprivate static let java$io$OutputStreamWriter_append_java$lang$CharSequence_I_I__java$io$Writer = invoker("append", returns: JObjectType("java/io/Writer"), arguments: (JObjectType("java/lang/CharSequence"), jint.jniType, jint.jniType))
+    fileprivate static let java$io$OutputStreamWriter_append_java$lang$CharSequence__java$io$Writer = invoker("append", returns: JObjectType("java/io/Writer"), arguments: (JObjectType("java/lang/CharSequence")))
     fileprivate static let java$io$OutputStreamWriter_flush__V = invoker("flush", returns: JVoid.jniType)
     fileprivate static let java$io$OutputStreamWriter_close__V = invoker("close", returns: JVoid.jniType)
+    fileprivate static let java$io$OutputStreamWriter_append_java$lang$CharSequence_I_I__java$lang$Appendable = invoker("append", returns: JObjectType("java/lang/Appendable"), arguments: (JObjectType("java/lang/CharSequence"), jint.jniType, jint.jniType))
+    fileprivate static let java$io$OutputStreamWriter_append_java$lang$CharSequence__java$lang$Appendable = invoker("append", returns: JObjectType("java/lang/Appendable"), arguments: (JObjectType("java/lang/CharSequence")))
 }
 
 public typealias java$io$OutputStreamWriter$Impl = java$io$OutputStreamWriter
@@ -3262,6 +3316,11 @@ open class java$io$PrintWriter : java$io$Writer {
         try self.init(creator: I.java$io$PrintWriter_init_java$io$OutputStream_Z__V(a0?.jobj ?? nil, a1))
     }
 
+    fileprivate static let java$io$PrintWriter_init_java$io$OutputStream_Z_java$nio$charset$Charset__V = constructor((JObjectType("java/io/OutputStream"), jboolean.jniType, JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: jboolean, _ a2: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$io$OutputStream_Z_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1, a2?.jobj ?? nil))
+    }
+
     fileprivate static let java$io$PrintWriter_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
         try self.init(creator: I.java$io$PrintWriter_init_java$lang$String__V(a0?.jobj ?? nil))
@@ -3272,6 +3331,11 @@ open class java$io$PrintWriter : java$io$Writer {
         try self.init(creator: I.java$io$PrintWriter_init_java$lang$String_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
+    fileprivate static let java$io$PrintWriter_init_java$lang$String_java$nio$charset$Charset__V = constructor((JObjectType("java/lang/String"), JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$lang$String_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    }
+
     fileprivate static let java$io$PrintWriter_init_java$io$File__V = constructor((JObjectType("java/io/File")))
     public convenience init(_ a0: java$io$File?) throws {
         try self.init(creator: I.java$io$PrintWriter_init_java$io$File__V(a0?.jobj ?? nil))
@@ -3280,6 +3344,11 @@ open class java$io$PrintWriter : java$io$Writer {
     fileprivate static let java$io$PrintWriter_init_java$io$File_java$lang$String__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?) throws {
         try self.init(creator: I.java$io$PrintWriter_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    }
+
+    fileprivate static let java$io$PrintWriter_init_java$io$File_java$nio$charset$Charset__V = constructor((JObjectType("java/io/File"), JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$io$File?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$io$PrintWriter_init_java$io$File_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$io$PrintWriter_flush__V = invoker("flush", returns: JVoid.jniType)
@@ -3963,6 +4032,8 @@ public protocol java$io$ObjectStreamConstants : JavaObject {
 
     static var SUBCLASS_IMPLEMENTATION_PERMISSION: java$io$SerializablePermission? { get }
 
+    static var SERIAL_FILTER_PERMISSION: java$io$SerializablePermission? { get }
+
     static var PROTOCOL_VERSION_1: jint { get }
 
     static var PROTOCOL_VERSION_2: jint { get }
@@ -4003,6 +4074,7 @@ open class java$io$ObjectStreamConstants$Impl : java$lang$Object, java$io$Object
     fileprivate static let java$io$ObjectStreamConstants__SC_ENUM__B = J.saccessor("SC_ENUM", type: jbyte.jniType)
     fileprivate static let java$io$ObjectStreamConstants__SUBSTITUTION_PERMISSION__java$io$SerializablePermission = J.saccessor("SUBSTITUTION_PERMISSION", type: JObjectType("java/io/SerializablePermission"))
     fileprivate static let java$io$ObjectStreamConstants__SUBCLASS_IMPLEMENTATION_PERMISSION__java$io$SerializablePermission = J.saccessor("SUBCLASS_IMPLEMENTATION_PERMISSION", type: JObjectType("java/io/SerializablePermission"))
+    fileprivate static let java$io$ObjectStreamConstants__SERIAL_FILTER_PERMISSION__java$io$SerializablePermission = J.saccessor("SERIAL_FILTER_PERMISSION", type: JObjectType("java/io/SerializablePermission"))
     fileprivate static let java$io$ObjectStreamConstants__PROTOCOL_VERSION_1__I = J.saccessor("PROTOCOL_VERSION_1", type: jint.jniType)
     fileprivate static let java$io$ObjectStreamConstants__PROTOCOL_VERSION_2__I = J.saccessor("PROTOCOL_VERSION_2", type: jint.jniType)
 }
@@ -4112,11 +4184,15 @@ public extension java$io$ObjectStreamConstants {
     }
 
     static var SUBSTITUTION_PERMISSION: java$io$SerializablePermission? {
-        get { return java$io$SerializablePermission$Impl(constructor: I.java$io$ObjectStreamConstants__SUBSTITUTION_PERMISSION__java$io$SerializablePermission.getter()) }
+        get { return java$io$SerializablePermission$Impl(reference: I.java$io$ObjectStreamConstants__SUBSTITUTION_PERMISSION__java$io$SerializablePermission.getter()) }
     }
 
     static var SUBCLASS_IMPLEMENTATION_PERMISSION: java$io$SerializablePermission? {
-        get { return java$io$SerializablePermission$Impl(constructor: I.java$io$ObjectStreamConstants__SUBCLASS_IMPLEMENTATION_PERMISSION__java$io$SerializablePermission.getter()) }
+        get { return java$io$SerializablePermission$Impl(reference: I.java$io$ObjectStreamConstants__SUBCLASS_IMPLEMENTATION_PERMISSION__java$io$SerializablePermission.getter()) }
+    }
+
+    static var SERIAL_FILTER_PERMISSION: java$io$SerializablePermission? {
+        get { return java$io$SerializablePermission$Impl(reference: I.java$io$ObjectStreamConstants__SERIAL_FILTER_PERMISSION__java$io$SerializablePermission.getter()) }
     }
 
     static var PROTOCOL_VERSION_1: jint {
@@ -4174,6 +4250,18 @@ public extension java$io$Externalizable {
     func readExternal(_ a0: java$io$ObjectInput?) throws -> Void {
         return try I.java$io$Externalizable_readExternal_java$io$ObjectInput__V(jobj)(a0?.jobj ?? nil)
     }
+
+}
+
+public protocol java$io$ObjectInputFilter : JavaObject {
+}
+
+open class java$io$ObjectInputFilter$Impl : java$lang$Object, java$io$ObjectInputFilter {
+    private typealias J = java$io$ObjectInputFilter$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/io/ObjectInputFilter"
+    open class override func jniName() -> String { return "java/io/ObjectInputFilter" }
 
 }
 

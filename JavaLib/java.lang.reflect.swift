@@ -17,9 +17,19 @@ open class java$lang$reflect$AccessibleObject : java$lang$Object, java$lang$refl
         return try I.java$lang$reflect$AccessibleObject_setAccessible_Z__V(jobj)(a0)
     }
 
+    fileprivate static let java$lang$reflect$AccessibleObject_trySetAccessible__Z = invoker("trySetAccessible", returns: jboolean.jniType)
+    public func trySetAccessible() throws -> jboolean {
+        return try I.java$lang$reflect$AccessibleObject_trySetAccessible__Z(jobj)()
+    }
+
     fileprivate static let java$lang$reflect$AccessibleObject_isAccessible__Z = invoker("isAccessible", returns: jboolean.jniType)
     public func isAccessible() throws -> jboolean {
         return try I.java$lang$reflect$AccessibleObject_isAccessible__Z(jobj)()
+    }
+
+    fileprivate static let java$lang$reflect$AccessibleObject_canAccess_java$lang$Object__Z = invoker("canAccess", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
+    public func canAccess(_ a0: java$lang$Object?) throws -> jboolean {
+        return try I.java$lang$reflect$AccessibleObject_canAccess_java$lang$Object__Z(jobj)(a0?.jobj ?? nil)
     }
 
     fileprivate static let java$lang$reflect$AccessibleObject_getAnnotation_java$lang$Class__java$lang$annotation$Annotation = invoker("getAnnotation", returns: JObjectType("java/lang/annotation/Annotation"), arguments: (JObjectType("java/lang/Class")))
@@ -167,6 +177,7 @@ public final class java$lang$reflect$Constructor : java$lang$reflect$Executable 
     /// Returns the internal JNI name for this class: "java/lang/reflect/Constructor"
     public class override func jniName() -> String { return "java/lang/reflect/Constructor" }
 
+    fileprivate static let java$lang$reflect$Constructor_setAccessible_Z__V = invoker("setAccessible", returns: JVoid.jniType, arguments: (jboolean.jniType))
     fileprivate static let java$lang$reflect$Constructor_getDeclaringClass__java$lang$Class = invoker("getDeclaringClass", returns: JObjectType("java/lang/Class"))
     fileprivate static let java$lang$reflect$Constructor_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
     fileprivate static let java$lang$reflect$Constructor_getModifiers__I = invoker("getModifiers", returns: jint.jniType)
@@ -202,6 +213,7 @@ public final class java$lang$reflect$Method : java$lang$reflect$Executable {
     /// Returns the internal JNI name for this class: "java/lang/reflect/Method"
     public class override func jniName() -> String { return "java/lang/reflect/Method" }
 
+    fileprivate static let java$lang$reflect$Method_setAccessible_Z__V = invoker("setAccessible", returns: JVoid.jniType, arguments: (jboolean.jniType))
     fileprivate static let java$lang$reflect$Method_getDeclaringClass__java$lang$Class = invoker("getDeclaringClass", returns: JObjectType("java/lang/Class"))
     fileprivate static let java$lang$reflect$Method_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
     fileprivate static let java$lang$reflect$Method_getModifiers__I = invoker("getModifiers", returns: jint.jniType)
@@ -261,6 +273,7 @@ public final class java$lang$reflect$Field : java$lang$reflect$AccessibleObject,
     /// Returns the internal JNI name for this class: "java/lang/reflect/Field"
     public class override func jniName() -> String { return "java/lang/reflect/Field" }
 
+    fileprivate static let java$lang$reflect$Field_setAccessible_Z__V = invoker("setAccessible", returns: JVoid.jniType, arguments: (jboolean.jniType))
     fileprivate static let java$lang$reflect$Field_getDeclaringClass__java$lang$Class = invoker("getDeclaringClass", returns: JObjectType("java/lang/Class"))
     public func getDeclaringClass() throws -> java$lang$Class? {
         return try JVM.sharedJVM.construct(I.java$lang$reflect$Field_getDeclaringClass__java$lang$Class(jobj)()) as java$lang$Class$Impl?
@@ -899,6 +912,11 @@ open class java$lang$reflect$MalformedParameterizedTypeException : java$lang$Run
         try self.init(creator: I.java$lang$reflect$MalformedParameterizedTypeException_init__V())
     }
 
+    fileprivate static let java$lang$reflect$MalformedParameterizedTypeException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
+    public convenience init(_ a0: java$lang$String?) throws {
+        try self.init(creator: I.java$lang$reflect$MalformedParameterizedTypeException_init_java$lang$String__V(a0?.jobj ?? nil))
+    }
+
 }
 
 public typealias java$lang$reflect$MalformedParameterizedTypeException$Impl = java$lang$reflect$MalformedParameterizedTypeException
@@ -1013,6 +1031,7 @@ public extension java$lang$reflect$AnnotatedElement {
 
 public protocol java$lang$reflect$AnnotatedArrayType : java$lang$reflect$AnnotatedType {
     func getAnnotatedGenericComponentType() throws -> java$lang$reflect$AnnotatedType?
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType?
 }
 
 open class java$lang$reflect$AnnotatedArrayType$Impl : java$lang$Object, java$lang$reflect$AnnotatedArrayType, java$lang$reflect$AnnotatedType {
@@ -1023,6 +1042,7 @@ open class java$lang$reflect$AnnotatedArrayType$Impl : java$lang$Object, java$la
     open class override func jniName() -> String { return "java/lang/reflect/AnnotatedArrayType" }
 
     fileprivate static let java$lang$reflect$AnnotatedArrayType_getAnnotatedGenericComponentType__java$lang$reflect$AnnotatedType = invoker("getAnnotatedGenericComponentType", returns: JObjectType("java/lang/reflect/AnnotatedType"))
+    fileprivate static let java$lang$reflect$AnnotatedArrayType_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType = invoker("getAnnotatedOwnerType", returns: JObjectType("java/lang/reflect/AnnotatedType"))
 }
 
 public extension java$lang$reflect$AnnotatedArrayType {
@@ -1033,10 +1053,15 @@ public extension java$lang$reflect$AnnotatedArrayType {
         return try JVM.sharedJVM.construct(I.java$lang$reflect$AnnotatedArrayType_getAnnotatedGenericComponentType__java$lang$reflect$AnnotatedType(jobj)()) as java$lang$reflect$AnnotatedType$Impl?
     }
 
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType? {
+        return try JVM.sharedJVM.construct(I.java$lang$reflect$AnnotatedArrayType_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType(jobj)()) as java$lang$reflect$AnnotatedType$Impl?
+    }
+
 }
 
 public protocol java$lang$reflect$AnnotatedParameterizedType : java$lang$reflect$AnnotatedType {
     func getAnnotatedActualTypeArguments() throws -> [java$lang$reflect$AnnotatedType?]?
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType?
 }
 
 open class java$lang$reflect$AnnotatedParameterizedType$Impl : java$lang$Object, java$lang$reflect$AnnotatedParameterizedType, java$lang$reflect$AnnotatedType {
@@ -1047,6 +1072,7 @@ open class java$lang$reflect$AnnotatedParameterizedType$Impl : java$lang$Object,
     open class override func jniName() -> String { return "java/lang/reflect/AnnotatedParameterizedType" }
 
     fileprivate static let java$lang$reflect$AnnotatedParameterizedType_getAnnotatedActualTypeArguments__Ajava$lang$reflect$AnnotatedType = invoker("getAnnotatedActualTypeArguments", returns: JArray(JObjectType("java/lang/reflect/AnnotatedType")))
+    fileprivate static let java$lang$reflect$AnnotatedParameterizedType_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType = invoker("getAnnotatedOwnerType", returns: JObjectType("java/lang/reflect/AnnotatedType"))
 }
 
 public extension java$lang$reflect$AnnotatedParameterizedType {
@@ -1057,9 +1083,14 @@ public extension java$lang$reflect$AnnotatedParameterizedType {
         return try I.java$lang$reflect$AnnotatedParameterizedType_getAnnotatedActualTypeArguments__Ajava$lang$reflect$AnnotatedType(jobj)()?.jarrayToArray(java$lang$reflect$AnnotatedType$Impl.self)
     }
 
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType? {
+        return try JVM.sharedJVM.construct(I.java$lang$reflect$AnnotatedParameterizedType_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType(jobj)()) as java$lang$reflect$AnnotatedType$Impl?
+    }
+
 }
 
 public protocol java$lang$reflect$AnnotatedType : java$lang$reflect$AnnotatedElement {
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType?
     func getType() throws -> java$lang$reflect$Type?
 }
 
@@ -1070,12 +1101,17 @@ open class java$lang$reflect$AnnotatedType$Impl : java$lang$Object, java$lang$re
     /// Returns the internal JNI name for this class: "java/lang/reflect/AnnotatedType"
     open class override func jniName() -> String { return "java/lang/reflect/AnnotatedType" }
 
+    fileprivate static let java$lang$reflect$AnnotatedType_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType = invoker("getAnnotatedOwnerType", returns: JObjectType("java/lang/reflect/AnnotatedType"))
     fileprivate static let java$lang$reflect$AnnotatedType_getType__java$lang$reflect$Type = invoker("getType", returns: JObjectType("java/lang/reflect/Type"))
 }
 
 public extension java$lang$reflect$AnnotatedType {
     private typealias J = java$lang$reflect$AnnotatedType
     private typealias I = java$lang$reflect$AnnotatedType$Impl
+
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType? {
+        return try JVM.sharedJVM.construct(I.java$lang$reflect$AnnotatedType_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType(jobj)()) as java$lang$reflect$AnnotatedType$Impl?
+    }
 
     func getType() throws -> java$lang$reflect$Type? {
         return try JVM.sharedJVM.construct(I.java$lang$reflect$AnnotatedType_getType__java$lang$reflect$Type(jobj)()) as java$lang$reflect$Type$Impl?
@@ -1085,6 +1121,7 @@ public extension java$lang$reflect$AnnotatedType {
 
 public protocol java$lang$reflect$AnnotatedTypeVariable : java$lang$reflect$AnnotatedType {
     func getAnnotatedBounds() throws -> [java$lang$reflect$AnnotatedType?]?
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType?
 }
 
 open class java$lang$reflect$AnnotatedTypeVariable$Impl : java$lang$Object, java$lang$reflect$AnnotatedTypeVariable, java$lang$reflect$AnnotatedType {
@@ -1095,6 +1132,7 @@ open class java$lang$reflect$AnnotatedTypeVariable$Impl : java$lang$Object, java
     open class override func jniName() -> String { return "java/lang/reflect/AnnotatedTypeVariable" }
 
     fileprivate static let java$lang$reflect$AnnotatedTypeVariable_getAnnotatedBounds__Ajava$lang$reflect$AnnotatedType = invoker("getAnnotatedBounds", returns: JArray(JObjectType("java/lang/reflect/AnnotatedType")))
+    fileprivate static let java$lang$reflect$AnnotatedTypeVariable_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType = invoker("getAnnotatedOwnerType", returns: JObjectType("java/lang/reflect/AnnotatedType"))
 }
 
 public extension java$lang$reflect$AnnotatedTypeVariable {
@@ -1105,11 +1143,16 @@ public extension java$lang$reflect$AnnotatedTypeVariable {
         return try I.java$lang$reflect$AnnotatedTypeVariable_getAnnotatedBounds__Ajava$lang$reflect$AnnotatedType(jobj)()?.jarrayToArray(java$lang$reflect$AnnotatedType$Impl.self)
     }
 
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType? {
+        return try JVM.sharedJVM.construct(I.java$lang$reflect$AnnotatedTypeVariable_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType(jobj)()) as java$lang$reflect$AnnotatedType$Impl?
+    }
+
 }
 
 public protocol java$lang$reflect$AnnotatedWildcardType : java$lang$reflect$AnnotatedType {
     func getAnnotatedLowerBounds() throws -> [java$lang$reflect$AnnotatedType?]?
     func getAnnotatedUpperBounds() throws -> [java$lang$reflect$AnnotatedType?]?
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType?
 }
 
 open class java$lang$reflect$AnnotatedWildcardType$Impl : java$lang$Object, java$lang$reflect$AnnotatedWildcardType, java$lang$reflect$AnnotatedType {
@@ -1121,6 +1164,7 @@ open class java$lang$reflect$AnnotatedWildcardType$Impl : java$lang$Object, java
 
     fileprivate static let java$lang$reflect$AnnotatedWildcardType_getAnnotatedLowerBounds__Ajava$lang$reflect$AnnotatedType = invoker("getAnnotatedLowerBounds", returns: JArray(JObjectType("java/lang/reflect/AnnotatedType")))
     fileprivate static let java$lang$reflect$AnnotatedWildcardType_getAnnotatedUpperBounds__Ajava$lang$reflect$AnnotatedType = invoker("getAnnotatedUpperBounds", returns: JArray(JObjectType("java/lang/reflect/AnnotatedType")))
+    fileprivate static let java$lang$reflect$AnnotatedWildcardType_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType = invoker("getAnnotatedOwnerType", returns: JObjectType("java/lang/reflect/AnnotatedType"))
 }
 
 public extension java$lang$reflect$AnnotatedWildcardType {
@@ -1133,6 +1177,10 @@ public extension java$lang$reflect$AnnotatedWildcardType {
 
     func getAnnotatedUpperBounds() throws -> [java$lang$reflect$AnnotatedType?]? {
         return try I.java$lang$reflect$AnnotatedWildcardType_getAnnotatedUpperBounds__Ajava$lang$reflect$AnnotatedType(jobj)()?.jarrayToArray(java$lang$reflect$AnnotatedType$Impl.self)
+    }
+
+    func getAnnotatedOwnerType() throws -> java$lang$reflect$AnnotatedType? {
+        return try JVM.sharedJVM.construct(I.java$lang$reflect$AnnotatedWildcardType_getAnnotatedOwnerType__java$lang$reflect$AnnotatedType(jobj)()) as java$lang$reflect$AnnotatedType$Impl?
     }
 
 }

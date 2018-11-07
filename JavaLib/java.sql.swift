@@ -223,6 +223,11 @@ open class java$sql$DriverManager : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$sql$DriverManager_getDrivers__java$util$Enumeration()) as java$util$Enumeration$Impl?
     }
 
+    fileprivate static let java$sql$DriverManager_drivers__java$util$stream$Stream = svoker("drivers", returns: JObjectType("java/util/stream/Stream"))
+    public static func drivers() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$sql$DriverManager_drivers__java$util$stream$Stream()) as java$util$stream$Stream$Impl?
+    }
+
     fileprivate static let java$sql$DriverManager_setLoginTimeout_I__V = svoker("setLoginTimeout", returns: JVoid.jniType, arguments: (jint.jniType))
     public static func setLoginTimeout(_ a0: jint) throws -> Void {
         return try I.java$sql$DriverManager_setLoginTimeout_I__V(a0)
@@ -261,13 +266,13 @@ open class java$sql$DriverPropertyInfo : java$lang$Object {
 
     fileprivate static let java$sql$DriverPropertyInfo__name__java$lang$String = J.accessor("name", type: JObjectType("java/lang/String"))
     public var name: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$sql$DriverPropertyInfo__name__java$lang$String.getter(jobj)) }
+        get { return java$lang$String$Impl(reference: I.java$sql$DriverPropertyInfo__name__java$lang$String.getter(jobj)) }
         set { I.java$sql$DriverPropertyInfo__name__java$lang$String.setter(jobj, newValue?.jobj ?? nil) }
     }
 
     fileprivate static let java$sql$DriverPropertyInfo__description__java$lang$String = J.accessor("description", type: JObjectType("java/lang/String"))
     public var description: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$sql$DriverPropertyInfo__description__java$lang$String.getter(jobj)) }
+        get { return java$lang$String$Impl(reference: I.java$sql$DriverPropertyInfo__description__java$lang$String.getter(jobj)) }
         set { I.java$sql$DriverPropertyInfo__description__java$lang$String.setter(jobj, newValue?.jobj ?? nil) }
     }
 
@@ -279,7 +284,7 @@ open class java$sql$DriverPropertyInfo : java$lang$Object {
 
     fileprivate static let java$sql$DriverPropertyInfo__value__java$lang$String = J.accessor("value", type: JObjectType("java/lang/String"))
     public var value: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$sql$DriverPropertyInfo__value__java$lang$String.getter(jobj)) }
+        get { return java$lang$String$Impl(reference: I.java$sql$DriverPropertyInfo__value__java$lang$String.getter(jobj)) }
         set { I.java$sql$DriverPropertyInfo__value__java$lang$String.setter(jobj, newValue?.jobj ?? nil) }
     }
 
@@ -2348,6 +2353,12 @@ public protocol java$sql$Connection : java$sql$Wrapper, java$lang$AutoCloseable 
     func abort(_ a0: java$util$concurrent$Executor?) throws -> Void
     func setNetworkTimeout(_ a0: java$util$concurrent$Executor?, _ a1: jint) throws -> Void
     func getNetworkTimeout() throws -> jint
+    func beginRequest() throws -> Void
+    func endRequest() throws -> Void
+    func setShardingKeyIfValid(_ a0: java$sql$ShardingKey?, _ a1: java$sql$ShardingKey?, _ a2: jint) throws -> jboolean
+    func setShardingKeyIfValid(_ a0: java$sql$ShardingKey?, _ a1: jint) throws -> jboolean
+    func setShardingKey(_ a0: java$sql$ShardingKey?, _ a1: java$sql$ShardingKey?) throws -> Void
+    func setShardingKey(_ a0: java$sql$ShardingKey?) throws -> Void
 }
 
 open class java$sql$Connection$Impl : java$lang$Object, java$sql$Connection, java$sql$Wrapper, java$lang$AutoCloseable {
@@ -2414,6 +2425,12 @@ open class java$sql$Connection$Impl : java$lang$Object, java$sql$Connection, jav
     fileprivate static let java$sql$Connection_abort_java$util$concurrent$Executor__V = invoker("abort", returns: JVoid.jniType, arguments: (JObjectType("java/util/concurrent/Executor")))
     fileprivate static let java$sql$Connection_setNetworkTimeout_java$util$concurrent$Executor_I__V = invoker("setNetworkTimeout", returns: JVoid.jniType, arguments: (JObjectType("java/util/concurrent/Executor"), jint.jniType))
     fileprivate static let java$sql$Connection_getNetworkTimeout__I = invoker("getNetworkTimeout", returns: jint.jniType)
+    fileprivate static let java$sql$Connection_beginRequest__V = invoker("beginRequest", returns: JVoid.jniType)
+    fileprivate static let java$sql$Connection_endRequest__V = invoker("endRequest", returns: JVoid.jniType)
+    fileprivate static let java$sql$Connection_setShardingKeyIfValid_java$sql$ShardingKey_java$sql$ShardingKey_I__Z = invoker("setShardingKeyIfValid", returns: jboolean.jniType, arguments: (JObjectType("java/sql/ShardingKey"), JObjectType("java/sql/ShardingKey"), jint.jniType))
+    fileprivate static let java$sql$Connection_setShardingKeyIfValid_java$sql$ShardingKey_I__Z = invoker("setShardingKeyIfValid", returns: jboolean.jniType, arguments: (JObjectType("java/sql/ShardingKey"), jint.jniType))
+    fileprivate static let java$sql$Connection_setShardingKey_java$sql$ShardingKey_java$sql$ShardingKey__V = invoker("setShardingKey", returns: JVoid.jniType, arguments: (JObjectType("java/sql/ShardingKey"), JObjectType("java/sql/ShardingKey")))
+    fileprivate static let java$sql$Connection_setShardingKey_java$sql$ShardingKey__V = invoker("setShardingKey", returns: JVoid.jniType, arguments: (JObjectType("java/sql/ShardingKey")))
 }
 
 public extension java$sql$Connection {
@@ -2646,6 +2663,30 @@ public extension java$sql$Connection {
 
     func getNetworkTimeout() throws -> jint {
         return try I.java$sql$Connection_getNetworkTimeout__I(jobj)()
+    }
+
+    func beginRequest() throws -> Void {
+        return try I.java$sql$Connection_beginRequest__V(jobj)()
+    }
+
+    func endRequest() throws -> Void {
+        return try I.java$sql$Connection_endRequest__V(jobj)()
+    }
+
+    func setShardingKeyIfValid(_ a0: java$sql$ShardingKey?, _ a1: java$sql$ShardingKey?, _ a2: jint) throws -> jboolean {
+        return try I.java$sql$Connection_setShardingKeyIfValid_java$sql$ShardingKey_java$sql$ShardingKey_I__Z(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2)
+    }
+
+    func setShardingKeyIfValid(_ a0: java$sql$ShardingKey?, _ a1: jint) throws -> jboolean {
+        return try I.java$sql$Connection_setShardingKeyIfValid_java$sql$ShardingKey_I__Z(jobj)(a0?.jobj ?? nil, a1)
+    }
+
+    func setShardingKey(_ a0: java$sql$ShardingKey?, _ a1: java$sql$ShardingKey?) throws -> Void {
+        return try I.java$sql$Connection_setShardingKey_java$sql$ShardingKey_java$sql$ShardingKey__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
+    func setShardingKey(_ a0: java$sql$ShardingKey?) throws -> Void {
+        return try I.java$sql$Connection_setShardingKey_java$sql$ShardingKey__V(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -4327,6 +4368,10 @@ public protocol java$sql$Statement : java$sql$Wrapper, java$lang$AutoCloseable {
     func executeLargeUpdate(_ a0: java$lang$String?, _ a1: jint) throws -> jlong
     func executeLargeUpdate(_ a0: java$lang$String?, _ a1: [jint]?) throws -> jlong
     func executeLargeUpdate(_ a0: java$lang$String?, _ a1: [java$lang$String?]?) throws -> jlong
+    func enquoteLiteral(_ a0: java$lang$String?) throws -> java$lang$String?
+    func enquoteIdentifier(_ a0: java$lang$String?, _ a1: jboolean) throws -> java$lang$String?
+    func isSimpleIdentifier(_ a0: java$lang$String?) throws -> jboolean
+    func enquoteNCharLiteral(_ a0: java$lang$String?) throws -> java$lang$String?
 }
 
 open class java$sql$Statement$Impl : java$lang$Object, java$sql$Statement, java$sql$Wrapper, java$lang$AutoCloseable {
@@ -4393,6 +4438,10 @@ open class java$sql$Statement$Impl : java$lang$Object, java$sql$Statement, java$
     fileprivate static let java$sql$Statement_executeLargeUpdate_java$lang$String_I__J = invoker("executeLargeUpdate", returns: jlong.jniType, arguments: (JObjectType("java/lang/String"), jint.jniType))
     fileprivate static let java$sql$Statement_executeLargeUpdate_java$lang$String_AI__J = invoker("executeLargeUpdate", returns: jlong.jniType, arguments: (JObjectType("java/lang/String"), JArray(jint.jniType)))
     fileprivate static let java$sql$Statement_executeLargeUpdate_java$lang$String_Ajava$lang$String__J = invoker("executeLargeUpdate", returns: jlong.jniType, arguments: (JObjectType("java/lang/String"), JArray(JObjectType("java/lang/String"))))
+    fileprivate static let java$sql$Statement_enquoteLiteral_java$lang$String__java$lang$String = invoker("enquoteLiteral", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String")))
+    fileprivate static let java$sql$Statement_enquoteIdentifier_java$lang$String_Z__java$lang$String = invoker("enquoteIdentifier", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String"), jboolean.jniType))
+    fileprivate static let java$sql$Statement_isSimpleIdentifier_java$lang$String__Z = invoker("isSimpleIdentifier", returns: jboolean.jniType, arguments: (JObjectType("java/lang/String")))
+    fileprivate static let java$sql$Statement_enquoteNCharLiteral_java$lang$String__java$lang$String = invoker("enquoteNCharLiteral", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String")))
 }
 
 public extension java$sql$Statement {
@@ -4625,6 +4674,22 @@ public extension java$sql$Statement {
 
     func executeLargeUpdate(_ a0: java$lang$String?, _ a1: [java$lang$String?]?) throws -> jlong {
         return try I.java$sql$Statement_executeLargeUpdate_java$lang$String_Ajava$lang$String__J(jobj)(a0?.jobj ?? nil, a1?.map({ java$lang$String$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)
+    }
+
+    func enquoteLiteral(_ a0: java$lang$String?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$sql$Statement_enquoteLiteral_java$lang$String__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
+    }
+
+    func enquoteIdentifier(_ a0: java$lang$String?, _ a1: jboolean) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$sql$Statement_enquoteIdentifier_java$lang$String_Z__java$lang$String(jobj)(a0?.jobj ?? nil, a1)) as java$lang$String$Impl?
+    }
+
+    func isSimpleIdentifier(_ a0: java$lang$String?) throws -> jboolean {
+        return try I.java$sql$Statement_isSimpleIdentifier_java$lang$String__Z(jobj)(a0?.jobj ?? nil)
+    }
+
+    func enquoteNCharLiteral(_ a0: java$lang$String?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$sql$Statement_enquoteNCharLiteral_java$lang$String__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
     }
 
 }
@@ -5906,6 +5971,7 @@ public protocol java$sql$DatabaseMetaData : java$sql$Wrapper {
     func generatedKeyAlwaysReturned() throws -> jboolean
     func getMaxLogicalLobSize() throws -> jlong
     func supportsRefCursors() throws -> jboolean
+    func supportsSharding() throws -> jboolean
 }
 
 open class java$sql$DatabaseMetaData$Impl : java$lang$Object, java$sql$DatabaseMetaData, java$sql$Wrapper {
@@ -6152,6 +6218,7 @@ open class java$sql$DatabaseMetaData$Impl : java$lang$Object, java$sql$DatabaseM
     fileprivate static let java$sql$DatabaseMetaData_generatedKeyAlwaysReturned__Z = invoker("generatedKeyAlwaysReturned", returns: jboolean.jniType)
     fileprivate static let java$sql$DatabaseMetaData_getMaxLogicalLobSize__J = invoker("getMaxLogicalLobSize", returns: jlong.jniType)
     fileprivate static let java$sql$DatabaseMetaData_supportsRefCursors__Z = invoker("supportsRefCursors", returns: jboolean.jniType)
+    fileprivate static let java$sql$DatabaseMetaData_supportsSharding__Z = invoker("supportsSharding", returns: jboolean.jniType)
 }
 
 public extension java$sql$DatabaseMetaData {
@@ -7106,6 +7173,10 @@ public extension java$sql$DatabaseMetaData {
         return try I.java$sql$DatabaseMetaData_supportsRefCursors__Z(jobj)()
     }
 
+    func supportsSharding() throws -> jboolean {
+        return try I.java$sql$DatabaseMetaData_supportsSharding__Z(jobj)()
+    }
+
 }
 
 public protocol java$sql$ParameterMetaData : java$sql$Wrapper {
@@ -7403,22 +7474,22 @@ public final class java$sql$PseudoColumnUsage : java$lang$Enum {
 
     fileprivate static let java$sql$PseudoColumnUsage__SELECT_LIST_ONLY__java$sql$PseudoColumnUsage = J.saccessor("SELECT_LIST_ONLY", type: JObjectType("java/sql/PseudoColumnUsage"))
     public static var SELECT_LIST_ONLY: java$sql$PseudoColumnUsage? {
-        get { return java$sql$PseudoColumnUsage$Impl(constructor: I.java$sql$PseudoColumnUsage__SELECT_LIST_ONLY__java$sql$PseudoColumnUsage.getter()) }
+        get { return java$sql$PseudoColumnUsage$Impl(reference: I.java$sql$PseudoColumnUsage__SELECT_LIST_ONLY__java$sql$PseudoColumnUsage.getter()) }
     }
 
     fileprivate static let java$sql$PseudoColumnUsage__WHERE_CLAUSE_ONLY__java$sql$PseudoColumnUsage = J.saccessor("WHERE_CLAUSE_ONLY", type: JObjectType("java/sql/PseudoColumnUsage"))
     public static var WHERE_CLAUSE_ONLY: java$sql$PseudoColumnUsage? {
-        get { return java$sql$PseudoColumnUsage$Impl(constructor: I.java$sql$PseudoColumnUsage__WHERE_CLAUSE_ONLY__java$sql$PseudoColumnUsage.getter()) }
+        get { return java$sql$PseudoColumnUsage$Impl(reference: I.java$sql$PseudoColumnUsage__WHERE_CLAUSE_ONLY__java$sql$PseudoColumnUsage.getter()) }
     }
 
     fileprivate static let java$sql$PseudoColumnUsage__NO_USAGE_RESTRICTIONS__java$sql$PseudoColumnUsage = J.saccessor("NO_USAGE_RESTRICTIONS", type: JObjectType("java/sql/PseudoColumnUsage"))
     public static var NO_USAGE_RESTRICTIONS: java$sql$PseudoColumnUsage? {
-        get { return java$sql$PseudoColumnUsage$Impl(constructor: I.java$sql$PseudoColumnUsage__NO_USAGE_RESTRICTIONS__java$sql$PseudoColumnUsage.getter()) }
+        get { return java$sql$PseudoColumnUsage$Impl(reference: I.java$sql$PseudoColumnUsage__NO_USAGE_RESTRICTIONS__java$sql$PseudoColumnUsage.getter()) }
     }
 
     fileprivate static let java$sql$PseudoColumnUsage__USAGE_UNKNOWN__java$sql$PseudoColumnUsage = J.saccessor("USAGE_UNKNOWN", type: JObjectType("java/sql/PseudoColumnUsage"))
     public static var USAGE_UNKNOWN: java$sql$PseudoColumnUsage? {
-        get { return java$sql$PseudoColumnUsage$Impl(constructor: I.java$sql$PseudoColumnUsage__USAGE_UNKNOWN__java$sql$PseudoColumnUsage.getter()) }
+        get { return java$sql$PseudoColumnUsage$Impl(reference: I.java$sql$PseudoColumnUsage__USAGE_UNKNOWN__java$sql$PseudoColumnUsage.getter()) }
     }
 
     fileprivate static let java$sql$PseudoColumnUsage_values__Ajava$sql$PseudoColumnUsage = svoker("values", returns: JArray(JObjectType("java/sql/PseudoColumnUsage")))
@@ -7444,197 +7515,197 @@ public final class java$sql$JDBCType : java$lang$Enum, java$sql$SQLType {
 
     fileprivate static let java$sql$JDBCType__BIT__java$sql$JDBCType = J.saccessor("BIT", type: JObjectType("java/sql/JDBCType"))
     public static var BIT: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__BIT__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__BIT__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__TINYINT__java$sql$JDBCType = J.saccessor("TINYINT", type: JObjectType("java/sql/JDBCType"))
     public static var TINYINT: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__TINYINT__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__TINYINT__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__SMALLINT__java$sql$JDBCType = J.saccessor("SMALLINT", type: JObjectType("java/sql/JDBCType"))
     public static var SMALLINT: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__SMALLINT__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__SMALLINT__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__INTEGER__java$sql$JDBCType = J.saccessor("INTEGER", type: JObjectType("java/sql/JDBCType"))
     public static var INTEGER: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__INTEGER__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__INTEGER__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__BIGINT__java$sql$JDBCType = J.saccessor("BIGINT", type: JObjectType("java/sql/JDBCType"))
     public static var BIGINT: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__BIGINT__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__BIGINT__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__FLOAT__java$sql$JDBCType = J.saccessor("FLOAT", type: JObjectType("java/sql/JDBCType"))
     public static var FLOAT: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__FLOAT__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__FLOAT__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__REAL__java$sql$JDBCType = J.saccessor("REAL", type: JObjectType("java/sql/JDBCType"))
     public static var REAL: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__REAL__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__REAL__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__DOUBLE__java$sql$JDBCType = J.saccessor("DOUBLE", type: JObjectType("java/sql/JDBCType"))
     public static var DOUBLE: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__DOUBLE__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__DOUBLE__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__NUMERIC__java$sql$JDBCType = J.saccessor("NUMERIC", type: JObjectType("java/sql/JDBCType"))
     public static var NUMERIC: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__NUMERIC__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__NUMERIC__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__DECIMAL__java$sql$JDBCType = J.saccessor("DECIMAL", type: JObjectType("java/sql/JDBCType"))
     public static var DECIMAL: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__DECIMAL__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__DECIMAL__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__CHAR__java$sql$JDBCType = J.saccessor("CHAR", type: JObjectType("java/sql/JDBCType"))
     public static var CHAR: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__CHAR__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__CHAR__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__VARCHAR__java$sql$JDBCType = J.saccessor("VARCHAR", type: JObjectType("java/sql/JDBCType"))
     public static var VARCHAR: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__VARCHAR__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__VARCHAR__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__LONGVARCHAR__java$sql$JDBCType = J.saccessor("LONGVARCHAR", type: JObjectType("java/sql/JDBCType"))
     public static var LONGVARCHAR: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__LONGVARCHAR__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__LONGVARCHAR__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__DATE__java$sql$JDBCType = J.saccessor("DATE", type: JObjectType("java/sql/JDBCType"))
     public static var DATE: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__DATE__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__DATE__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__TIME__java$sql$JDBCType = J.saccessor("TIME", type: JObjectType("java/sql/JDBCType"))
     public static var TIME: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__TIME__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__TIME__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__TIMESTAMP__java$sql$JDBCType = J.saccessor("TIMESTAMP", type: JObjectType("java/sql/JDBCType"))
     public static var TIMESTAMP: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__TIMESTAMP__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__TIMESTAMP__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__BINARY__java$sql$JDBCType = J.saccessor("BINARY", type: JObjectType("java/sql/JDBCType"))
     public static var BINARY: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__BINARY__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__BINARY__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__VARBINARY__java$sql$JDBCType = J.saccessor("VARBINARY", type: JObjectType("java/sql/JDBCType"))
     public static var VARBINARY: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__VARBINARY__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__VARBINARY__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__LONGVARBINARY__java$sql$JDBCType = J.saccessor("LONGVARBINARY", type: JObjectType("java/sql/JDBCType"))
     public static var LONGVARBINARY: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__LONGVARBINARY__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__LONGVARBINARY__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__NULL__java$sql$JDBCType = J.saccessor("NULL", type: JObjectType("java/sql/JDBCType"))
     public static var NULL: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__NULL__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__NULL__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__OTHER__java$sql$JDBCType = J.saccessor("OTHER", type: JObjectType("java/sql/JDBCType"))
     public static var OTHER: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__OTHER__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__OTHER__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__JAVA_OBJECT__java$sql$JDBCType = J.saccessor("JAVA_OBJECT", type: JObjectType("java/sql/JDBCType"))
     public static var JAVA_OBJECT: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__JAVA_OBJECT__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__JAVA_OBJECT__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__DISTINCT__java$sql$JDBCType = J.saccessor("DISTINCT", type: JObjectType("java/sql/JDBCType"))
     public static var DISTINCT: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__DISTINCT__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__DISTINCT__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__STRUCT__java$sql$JDBCType = J.saccessor("STRUCT", type: JObjectType("java/sql/JDBCType"))
     public static var STRUCT: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__STRUCT__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__STRUCT__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__ARRAY__java$sql$JDBCType = J.saccessor("ARRAY", type: JObjectType("java/sql/JDBCType"))
     public static var ARRAY: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__ARRAY__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__ARRAY__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__BLOB__java$sql$JDBCType = J.saccessor("BLOB", type: JObjectType("java/sql/JDBCType"))
     public static var BLOB: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__BLOB__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__BLOB__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__CLOB__java$sql$JDBCType = J.saccessor("CLOB", type: JObjectType("java/sql/JDBCType"))
     public static var CLOB: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__CLOB__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__CLOB__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__REF__java$sql$JDBCType = J.saccessor("REF", type: JObjectType("java/sql/JDBCType"))
     public static var REF: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__REF__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__REF__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__DATALINK__java$sql$JDBCType = J.saccessor("DATALINK", type: JObjectType("java/sql/JDBCType"))
     public static var DATALINK: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__DATALINK__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__DATALINK__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__BOOLEAN__java$sql$JDBCType = J.saccessor("BOOLEAN", type: JObjectType("java/sql/JDBCType"))
     public static var BOOLEAN: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__BOOLEAN__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__BOOLEAN__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__ROWID__java$sql$JDBCType = J.saccessor("ROWID", type: JObjectType("java/sql/JDBCType"))
     public static var ROWID: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__ROWID__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__ROWID__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__NCHAR__java$sql$JDBCType = J.saccessor("NCHAR", type: JObjectType("java/sql/JDBCType"))
     public static var NCHAR: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__NCHAR__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__NCHAR__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__NVARCHAR__java$sql$JDBCType = J.saccessor("NVARCHAR", type: JObjectType("java/sql/JDBCType"))
     public static var NVARCHAR: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__NVARCHAR__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__NVARCHAR__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__LONGNVARCHAR__java$sql$JDBCType = J.saccessor("LONGNVARCHAR", type: JObjectType("java/sql/JDBCType"))
     public static var LONGNVARCHAR: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__LONGNVARCHAR__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__LONGNVARCHAR__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__NCLOB__java$sql$JDBCType = J.saccessor("NCLOB", type: JObjectType("java/sql/JDBCType"))
     public static var NCLOB: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__NCLOB__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__NCLOB__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__SQLXML__java$sql$JDBCType = J.saccessor("SQLXML", type: JObjectType("java/sql/JDBCType"))
     public static var SQLXML: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__SQLXML__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__SQLXML__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__REF_CURSOR__java$sql$JDBCType = J.saccessor("REF_CURSOR", type: JObjectType("java/sql/JDBCType"))
     public static var REF_CURSOR: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__REF_CURSOR__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__REF_CURSOR__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__TIME_WITH_TIMEZONE__java$sql$JDBCType = J.saccessor("TIME_WITH_TIMEZONE", type: JObjectType("java/sql/JDBCType"))
     public static var TIME_WITH_TIMEZONE: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__TIME_WITH_TIMEZONE__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__TIME_WITH_TIMEZONE__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType__TIMESTAMP_WITH_TIMEZONE__java$sql$JDBCType = J.saccessor("TIMESTAMP_WITH_TIMEZONE", type: JObjectType("java/sql/JDBCType"))
     public static var TIMESTAMP_WITH_TIMEZONE: java$sql$JDBCType? {
-        get { return java$sql$JDBCType$Impl(constructor: I.java$sql$JDBCType__TIMESTAMP_WITH_TIMEZONE__java$sql$JDBCType.getter()) }
+        get { return java$sql$JDBCType$Impl(reference: I.java$sql$JDBCType__TIMESTAMP_WITH_TIMEZONE__java$sql$JDBCType.getter()) }
     }
 
     fileprivate static let java$sql$JDBCType_values__Ajava$sql$JDBCType = svoker("values", returns: JArray(JObjectType("java/sql/JDBCType")))
@@ -7680,27 +7751,27 @@ public final class java$sql$RowIdLifetime : java$lang$Enum {
 
     fileprivate static let java$sql$RowIdLifetime__ROWID_UNSUPPORTED__java$sql$RowIdLifetime = J.saccessor("ROWID_UNSUPPORTED", type: JObjectType("java/sql/RowIdLifetime"))
     public static var ROWID_UNSUPPORTED: java$sql$RowIdLifetime? {
-        get { return java$sql$RowIdLifetime$Impl(constructor: I.java$sql$RowIdLifetime__ROWID_UNSUPPORTED__java$sql$RowIdLifetime.getter()) }
+        get { return java$sql$RowIdLifetime$Impl(reference: I.java$sql$RowIdLifetime__ROWID_UNSUPPORTED__java$sql$RowIdLifetime.getter()) }
     }
 
     fileprivate static let java$sql$RowIdLifetime__ROWID_VALID_OTHER__java$sql$RowIdLifetime = J.saccessor("ROWID_VALID_OTHER", type: JObjectType("java/sql/RowIdLifetime"))
     public static var ROWID_VALID_OTHER: java$sql$RowIdLifetime? {
-        get { return java$sql$RowIdLifetime$Impl(constructor: I.java$sql$RowIdLifetime__ROWID_VALID_OTHER__java$sql$RowIdLifetime.getter()) }
+        get { return java$sql$RowIdLifetime$Impl(reference: I.java$sql$RowIdLifetime__ROWID_VALID_OTHER__java$sql$RowIdLifetime.getter()) }
     }
 
     fileprivate static let java$sql$RowIdLifetime__ROWID_VALID_SESSION__java$sql$RowIdLifetime = J.saccessor("ROWID_VALID_SESSION", type: JObjectType("java/sql/RowIdLifetime"))
     public static var ROWID_VALID_SESSION: java$sql$RowIdLifetime? {
-        get { return java$sql$RowIdLifetime$Impl(constructor: I.java$sql$RowIdLifetime__ROWID_VALID_SESSION__java$sql$RowIdLifetime.getter()) }
+        get { return java$sql$RowIdLifetime$Impl(reference: I.java$sql$RowIdLifetime__ROWID_VALID_SESSION__java$sql$RowIdLifetime.getter()) }
     }
 
     fileprivate static let java$sql$RowIdLifetime__ROWID_VALID_TRANSACTION__java$sql$RowIdLifetime = J.saccessor("ROWID_VALID_TRANSACTION", type: JObjectType("java/sql/RowIdLifetime"))
     public static var ROWID_VALID_TRANSACTION: java$sql$RowIdLifetime? {
-        get { return java$sql$RowIdLifetime$Impl(constructor: I.java$sql$RowIdLifetime__ROWID_VALID_TRANSACTION__java$sql$RowIdLifetime.getter()) }
+        get { return java$sql$RowIdLifetime$Impl(reference: I.java$sql$RowIdLifetime__ROWID_VALID_TRANSACTION__java$sql$RowIdLifetime.getter()) }
     }
 
     fileprivate static let java$sql$RowIdLifetime__ROWID_VALID_FOREVER__java$sql$RowIdLifetime = J.saccessor("ROWID_VALID_FOREVER", type: JObjectType("java/sql/RowIdLifetime"))
     public static var ROWID_VALID_FOREVER: java$sql$RowIdLifetime? {
-        get { return java$sql$RowIdLifetime$Impl(constructor: I.java$sql$RowIdLifetime__ROWID_VALID_FOREVER__java$sql$RowIdLifetime.getter()) }
+        get { return java$sql$RowIdLifetime$Impl(reference: I.java$sql$RowIdLifetime__ROWID_VALID_FOREVER__java$sql$RowIdLifetime.getter()) }
     }
 
     fileprivate static let java$sql$RowIdLifetime_values__Ajava$sql$RowIdLifetime = svoker("values", returns: JArray(JObjectType("java/sql/RowIdLifetime")))
@@ -7726,22 +7797,22 @@ public final class java$sql$ClientInfoStatus : java$lang$Enum {
 
     fileprivate static let java$sql$ClientInfoStatus__REASON_UNKNOWN__java$sql$ClientInfoStatus = J.saccessor("REASON_UNKNOWN", type: JObjectType("java/sql/ClientInfoStatus"))
     public static var REASON_UNKNOWN: java$sql$ClientInfoStatus? {
-        get { return java$sql$ClientInfoStatus$Impl(constructor: I.java$sql$ClientInfoStatus__REASON_UNKNOWN__java$sql$ClientInfoStatus.getter()) }
+        get { return java$sql$ClientInfoStatus$Impl(reference: I.java$sql$ClientInfoStatus__REASON_UNKNOWN__java$sql$ClientInfoStatus.getter()) }
     }
 
     fileprivate static let java$sql$ClientInfoStatus__REASON_UNKNOWN_PROPERTY__java$sql$ClientInfoStatus = J.saccessor("REASON_UNKNOWN_PROPERTY", type: JObjectType("java/sql/ClientInfoStatus"))
     public static var REASON_UNKNOWN_PROPERTY: java$sql$ClientInfoStatus? {
-        get { return java$sql$ClientInfoStatus$Impl(constructor: I.java$sql$ClientInfoStatus__REASON_UNKNOWN_PROPERTY__java$sql$ClientInfoStatus.getter()) }
+        get { return java$sql$ClientInfoStatus$Impl(reference: I.java$sql$ClientInfoStatus__REASON_UNKNOWN_PROPERTY__java$sql$ClientInfoStatus.getter()) }
     }
 
     fileprivate static let java$sql$ClientInfoStatus__REASON_VALUE_INVALID__java$sql$ClientInfoStatus = J.saccessor("REASON_VALUE_INVALID", type: JObjectType("java/sql/ClientInfoStatus"))
     public static var REASON_VALUE_INVALID: java$sql$ClientInfoStatus? {
-        get { return java$sql$ClientInfoStatus$Impl(constructor: I.java$sql$ClientInfoStatus__REASON_VALUE_INVALID__java$sql$ClientInfoStatus.getter()) }
+        get { return java$sql$ClientInfoStatus$Impl(reference: I.java$sql$ClientInfoStatus__REASON_VALUE_INVALID__java$sql$ClientInfoStatus.getter()) }
     }
 
     fileprivate static let java$sql$ClientInfoStatus__REASON_VALUE_TRUNCATED__java$sql$ClientInfoStatus = J.saccessor("REASON_VALUE_TRUNCATED", type: JObjectType("java/sql/ClientInfoStatus"))
     public static var REASON_VALUE_TRUNCATED: java$sql$ClientInfoStatus? {
-        get { return java$sql$ClientInfoStatus$Impl(constructor: I.java$sql$ClientInfoStatus__REASON_VALUE_TRUNCATED__java$sql$ClientInfoStatus.getter()) }
+        get { return java$sql$ClientInfoStatus$Impl(reference: I.java$sql$ClientInfoStatus__REASON_VALUE_TRUNCATED__java$sql$ClientInfoStatus.getter()) }
     }
 
     fileprivate static let java$sql$ClientInfoStatus_values__Ajava$sql$ClientInfoStatus = svoker("values", returns: JArray(JObjectType("java/sql/ClientInfoStatus")))
@@ -7757,4 +7828,40 @@ public final class java$sql$ClientInfoStatus : java$lang$Enum {
 }
 
 public typealias java$sql$ClientInfoStatus$Impl = java$sql$ClientInfoStatus
+
+public protocol java$sql$ConnectionBuilder : JavaObject {
+}
+
+open class java$sql$ConnectionBuilder$Impl : java$lang$Object, java$sql$ConnectionBuilder {
+    private typealias J = java$sql$ConnectionBuilder$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/sql/ConnectionBuilder"
+    open class override func jniName() -> String { return "java/sql/ConnectionBuilder" }
+
+}
+
+public protocol java$sql$ShardingKeyBuilder : JavaObject {
+}
+
+open class java$sql$ShardingKeyBuilder$Impl : java$lang$Object, java$sql$ShardingKeyBuilder {
+    private typealias J = java$sql$ShardingKeyBuilder$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/sql/ShardingKeyBuilder"
+    open class override func jniName() -> String { return "java/sql/ShardingKeyBuilder" }
+
+}
+
+public protocol java$sql$ShardingKey : JavaObject {
+}
+
+open class java$sql$ShardingKey$Impl : java$lang$Object, java$sql$ShardingKey {
+    private typealias J = java$sql$ShardingKey$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/sql/ShardingKey"
+    open class override func jniName() -> String { return "java/sql/ShardingKey" }
+
+}
 

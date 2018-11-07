@@ -22,11 +22,6 @@ open class java$util$zip$Adler32 : java$lang$Object, java$util$zip$Checksum {
         return try I.java$util$zip$Adler32_update_AB_I_I__V(jobj)(a0?.arrayToJArray() ?? nil, a1, a2)
     }
 
-    fileprivate static let java$util$zip$Adler32_update_AB__V = invoker("update", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType)))
-    public func update(_ a0: [jbyte]?) throws -> Void {
-        return try I.java$util$zip$Adler32_update_AB__V(jobj)(a0?.arrayToJArray() ?? nil)
-    }
-
     fileprivate static let java$util$zip$Adler32_update_java$nio$ByteBuffer__V = invoker("update", returns: JVoid.jniType, arguments: (JObjectType("java/nio/ByteBuffer")))
     public func update(_ a0: java$nio$ByteBuffer?) throws -> Void {
         return try I.java$util$zip$Adler32_update_java$nio$ByteBuffer__V(jobj)(a0?.jobj ?? nil)
@@ -66,11 +61,6 @@ open class java$util$zip$CRC32 : java$lang$Object, java$util$zip$Checksum {
     fileprivate static let java$util$zip$CRC32_update_AB_I_I__V = invoker("update", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType))
     public func update(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws -> Void {
         return try I.java$util$zip$CRC32_update_AB_I_I__V(jobj)(a0?.arrayToJArray() ?? nil, a1, a2)
-    }
-
-    fileprivate static let java$util$zip$CRC32_update_AB__V = invoker("update", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType)))
-    public func update(_ a0: [jbyte]?) throws -> Void {
-        return try I.java$util$zip$CRC32_update_AB__V(jobj)(a0?.arrayToJArray() ?? nil)
     }
 
     fileprivate static let java$util$zip$CRC32_update_java$nio$ByteBuffer__V = invoker("update", returns: JVoid.jniType, arguments: (JObjectType("java/nio/ByteBuffer")))
@@ -829,6 +819,16 @@ open class java$util$zip$ZipEntry : java$lang$Object, java$util$zip$ZipConstants
         return try I.java$util$zip$ZipEntry_getTime__J(jobj)()
     }
 
+    fileprivate static let java$util$zip$ZipEntry_setTimeLocal_java$time$LocalDateTime__V = invoker("setTimeLocal", returns: JVoid.jniType, arguments: (JObjectType("java/time/LocalDateTime")))
+    public func setTimeLocal(_ a0: java$time$LocalDateTime?) throws -> Void {
+        return try I.java$util$zip$ZipEntry_setTimeLocal_java$time$LocalDateTime__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$zip$ZipEntry_getTimeLocal__java$time$LocalDateTime = invoker("getTimeLocal", returns: JObjectType("java/time/LocalDateTime"))
+    public func getTimeLocal() throws -> java$time$LocalDateTime? {
+        return try JVM.sharedJVM.construct(I.java$util$zip$ZipEntry_getTimeLocal__java$time$LocalDateTime(jobj)()) as java$time$LocalDateTime$Impl?
+    }
+
     fileprivate static let java$util$zip$ZipEntry_setLastModifiedTime_java$nio$file$attribute$FileTime__java$util$zip$ZipEntry = invoker("setLastModifiedTime", returns: JObjectType("java/util/zip/ZipEntry"), arguments: (JObjectType("java/nio/file/attribute/FileTime")))
     public func setLastModifiedTime(_ a0: java$nio$file$attribute$FileTime?) throws -> java$util$zip$ZipEntry? {
         return try JVM.sharedJVM.construct(I.java$util$zip$ZipEntry_setLastModifiedTime_java$nio$file$attribute$FileTime__java$util$zip$ZipEntry(jobj)(a0?.jobj ?? nil)) as java$util$zip$ZipEntry$Impl?
@@ -1028,7 +1028,9 @@ public typealias java$util$zip$ZipFile$Impl = java$util$zip$ZipFile
 
 public protocol java$util$zip$Checksum : JavaObject {
     func update(_ a0: jint) throws -> Void
+    func update(_ a0: [jbyte]?) throws -> Void
     func update(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws -> Void
+    func update(_ a0: java$nio$ByteBuffer?) throws -> Void
     func getValue() throws -> jlong
     func reset() throws -> Void
 }
@@ -1041,7 +1043,9 @@ open class java$util$zip$Checksum$Impl : java$lang$Object, java$util$zip$Checksu
     open class override func jniName() -> String { return "java/util/zip/Checksum" }
 
     fileprivate static let java$util$zip$Checksum_update_I__V = invoker("update", returns: JVoid.jniType, arguments: (jint.jniType))
+    fileprivate static let java$util$zip$Checksum_update_AB__V = invoker("update", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType)))
     fileprivate static let java$util$zip$Checksum_update_AB_I_I__V = invoker("update", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType))
+    fileprivate static let java$util$zip$Checksum_update_java$nio$ByteBuffer__V = invoker("update", returns: JVoid.jniType, arguments: (JObjectType("java/nio/ByteBuffer")))
     fileprivate static let java$util$zip$Checksum_getValue__J = invoker("getValue", returns: jlong.jniType)
     fileprivate static let java$util$zip$Checksum_reset__V = invoker("reset", returns: JVoid.jniType)
 }
@@ -1054,8 +1058,16 @@ public extension java$util$zip$Checksum {
         return try I.java$util$zip$Checksum_update_I__V(jobj)(a0)
     }
 
+    func update(_ a0: [jbyte]?) throws -> Void {
+        return try I.java$util$zip$Checksum_update_AB__V(jobj)(a0?.arrayToJArray() ?? nil)
+    }
+
     func update(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws -> Void {
         return try I.java$util$zip$Checksum_update_AB_I_I__V(jobj)(a0?.arrayToJArray() ?? nil, a1, a2)
+    }
+
+    func update(_ a0: java$nio$ByteBuffer?) throws -> Void {
+        return try I.java$util$zip$Checksum_update_java$nio$ByteBuffer__V(jobj)(a0?.jobj ?? nil)
     }
 
     func getValue() throws -> jlong {

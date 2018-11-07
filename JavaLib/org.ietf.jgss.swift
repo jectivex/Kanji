@@ -857,27 +857,27 @@ public extension org$ietf$jgss$GSSName {
     private typealias I = org$ietf$jgss$GSSName$Impl
 
     static var NT_HOSTBASED_SERVICE: org$ietf$jgss$Oid? {
-        get { return org$ietf$jgss$Oid$Impl(constructor: I.org$ietf$jgss$GSSName__NT_HOSTBASED_SERVICE__org$ietf$jgss$Oid.getter()) }
+        get { return org$ietf$jgss$Oid$Impl(reference: I.org$ietf$jgss$GSSName__NT_HOSTBASED_SERVICE__org$ietf$jgss$Oid.getter()) }
     }
 
     static var NT_USER_NAME: org$ietf$jgss$Oid? {
-        get { return org$ietf$jgss$Oid$Impl(constructor: I.org$ietf$jgss$GSSName__NT_USER_NAME__org$ietf$jgss$Oid.getter()) }
+        get { return org$ietf$jgss$Oid$Impl(reference: I.org$ietf$jgss$GSSName__NT_USER_NAME__org$ietf$jgss$Oid.getter()) }
     }
 
     static var NT_MACHINE_UID_NAME: org$ietf$jgss$Oid? {
-        get { return org$ietf$jgss$Oid$Impl(constructor: I.org$ietf$jgss$GSSName__NT_MACHINE_UID_NAME__org$ietf$jgss$Oid.getter()) }
+        get { return org$ietf$jgss$Oid$Impl(reference: I.org$ietf$jgss$GSSName__NT_MACHINE_UID_NAME__org$ietf$jgss$Oid.getter()) }
     }
 
     static var NT_STRING_UID_NAME: org$ietf$jgss$Oid? {
-        get { return org$ietf$jgss$Oid$Impl(constructor: I.org$ietf$jgss$GSSName__NT_STRING_UID_NAME__org$ietf$jgss$Oid.getter()) }
+        get { return org$ietf$jgss$Oid$Impl(reference: I.org$ietf$jgss$GSSName__NT_STRING_UID_NAME__org$ietf$jgss$Oid.getter()) }
     }
 
     static var NT_ANONYMOUS: org$ietf$jgss$Oid? {
-        get { return org$ietf$jgss$Oid$Impl(constructor: I.org$ietf$jgss$GSSName__NT_ANONYMOUS__org$ietf$jgss$Oid.getter()) }
+        get { return org$ietf$jgss$Oid$Impl(reference: I.org$ietf$jgss$GSSName__NT_ANONYMOUS__org$ietf$jgss$Oid.getter()) }
     }
 
     static var NT_EXPORT_NAME: org$ietf$jgss$Oid? {
-        get { return org$ietf$jgss$Oid$Impl(constructor: I.org$ietf$jgss$GSSName__NT_EXPORT_NAME__org$ietf$jgss$Oid.getter()) }
+        get { return org$ietf$jgss$Oid$Impl(reference: I.org$ietf$jgss$GSSName__NT_EXPORT_NAME__org$ietf$jgss$Oid.getter()) }
     }
 
     func equals(_ a0: org$ietf$jgss$GSSName?) throws -> jboolean {

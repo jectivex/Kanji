@@ -69,6 +69,11 @@ open class java$lang$Object : JavaObject {
         return try I.java$lang$Object_notifyAll__V(jobj)()
     }
 
+    fileprivate static let java$lang$Object_wait__V = invoker("wait", returns: JVoid.jniType)
+    public func wait() throws -> Void {
+        return try I.java$lang$Object_wait__V(jobj)()
+    }
+
     fileprivate static let java$lang$Object_wait_J__V = invoker("wait", returns: JVoid.jniType, arguments: (jlong.jniType))
     public func wait(_ a0: jlong) throws -> Void {
         return try I.java$lang$Object_wait_J__V(jobj)(a0)
@@ -77,11 +82,6 @@ open class java$lang$Object : JavaObject {
     fileprivate static let java$lang$Object_wait_J_I__V = invoker("wait", returns: JVoid.jniType, arguments: (jlong.jniType, jint.jniType))
     public func wait(_ a0: jlong, _ a1: jint) throws -> Void {
         return try I.java$lang$Object_wait_J_I__V(jobj)(a0, a1)
-    }
-
-    fileprivate static let java$lang$Object_wait__V = invoker("wait", returns: JVoid.jniType)
-    public func wait() throws -> Void {
-        return try I.java$lang$Object_wait__V(jobj)()
     }
 
 }
@@ -97,7 +97,6 @@ public final class java$lang$System : java$lang$Object {
 
     fileprivate static let java$lang$System__in__java$io$InputStream = J.saccessor("in", type: JObjectType("java/io/InputStream"))
     public static var `in`: java$io$InputStream? {
-        // FIXME: Swift 4.1 compiler crashes when this is construtor: instead of reference:
         get { return java$io$InputStream$Impl(reference: I.java$lang$System__in__java$io$InputStream.getter()) }
     }
 
@@ -209,6 +208,16 @@ public final class java$lang$System : java$lang$Object {
     fileprivate static let java$lang$System_getenv__java$util$Map = svoker("getenv", returns: JObjectType("java/util/Map"))
     public static func getenv() throws -> java$util$Map? {
         return try JVM.sharedJVM.construct(I.java$lang$System_getenv__java$util$Map()) as java$util$Map$Impl?
+    }
+
+    fileprivate static let java$lang$System_getLogger_java$lang$String__java$lang$System$Logger = svoker("getLogger", returns: JObjectType("java/lang/System$Logger"), arguments: (JObjectType("java/lang/String")))
+    public static func getLogger(_ a0: java$lang$String?) throws -> java$lang$System$Logger? {
+        return try JVM.sharedJVM.construct(I.java$lang$System_getLogger_java$lang$String__java$lang$System$Logger(a0?.jobj ?? nil)) as java$lang$System$Logger$Impl?
+    }
+
+    fileprivate static let java$lang$System_getLogger_java$lang$String_java$util$ResourceBundle__java$lang$System$Logger = svoker("getLogger", returns: JObjectType("java/lang/System$Logger"), arguments: (JObjectType("java/lang/String"), JObjectType("java/util/ResourceBundle")))
+    public static func getLogger(_ a0: java$lang$String?, _ a1: java$util$ResourceBundle?) throws -> java$lang$System$Logger? {
+        return try JVM.sharedJVM.construct(I.java$lang$System_getLogger_java$lang$String_java$util$ResourceBundle__java$lang$System$Logger(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$System$Logger$Impl?
     }
 
     fileprivate static let java$lang$System_exit_I__V = svoker("exit", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -585,6 +594,16 @@ public final class java$lang$String : java$lang$Object, java$io$Serializable, ja
     }
 
     fileprivate static let java$lang$String_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$lang$String_chars__java$util$stream$IntStream = invoker("chars", returns: JObjectType("java/util/stream/IntStream"))
+    public func chars() throws -> java$util$stream$IntStream? {
+        return try JVM.sharedJVM.construct(I.java$lang$String_chars__java$util$stream$IntStream(jobj)()) as java$util$stream$IntStream$Impl?
+    }
+
+    fileprivate static let java$lang$String_codePoints__java$util$stream$IntStream = invoker("codePoints", returns: JObjectType("java/util/stream/IntStream"))
+    public func codePoints() throws -> java$util$stream$IntStream? {
+        return try JVM.sharedJVM.construct(I.java$lang$String_codePoints__java$util$stream$IntStream(jobj)()) as java$util$stream$IntStream$Impl?
+    }
+
     fileprivate static let java$lang$String_toCharArray__AC = invoker("toCharArray", returns: JArray(jchar.jniType))
     public func toCharArray() throws -> [jchar]? {
         return try I.java$lang$String_toCharArray__AC(jobj)()?.jarrayToArray()
@@ -802,7 +821,7 @@ public final class java$lang$Character : java$lang$Object, java$io$Serializable,
 
     fileprivate static let java$lang$Character__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Character__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Character__TYPE__java$lang$Class.getter()) }
     }
 
     fileprivate static let java$lang$Character__UNASSIGNED__B = J.saccessor("UNASSIGNED", type: jbyte.jniType)
@@ -1053,6 +1072,26 @@ public final class java$lang$Character : java$lang$Object, java$io$Serializable,
     fileprivate static let java$lang$Character__DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__B = J.saccessor("DIRECTIONALITY_POP_DIRECTIONAL_FORMAT", type: jbyte.jniType)
     public static var DIRECTIONALITY_POP_DIRECTIONAL_FORMAT: jbyte {
         get { return I.java$lang$Character__DIRECTIONALITY_POP_DIRECTIONAL_FORMAT__B.getter() }
+    }
+
+    fileprivate static let java$lang$Character__DIRECTIONALITY_LEFT_TO_RIGHT_ISOLATE__B = J.saccessor("DIRECTIONALITY_LEFT_TO_RIGHT_ISOLATE", type: jbyte.jniType)
+    public static var DIRECTIONALITY_LEFT_TO_RIGHT_ISOLATE: jbyte {
+        get { return I.java$lang$Character__DIRECTIONALITY_LEFT_TO_RIGHT_ISOLATE__B.getter() }
+    }
+
+    fileprivate static let java$lang$Character__DIRECTIONALITY_RIGHT_TO_LEFT_ISOLATE__B = J.saccessor("DIRECTIONALITY_RIGHT_TO_LEFT_ISOLATE", type: jbyte.jniType)
+    public static var DIRECTIONALITY_RIGHT_TO_LEFT_ISOLATE: jbyte {
+        get { return I.java$lang$Character__DIRECTIONALITY_RIGHT_TO_LEFT_ISOLATE__B.getter() }
+    }
+
+    fileprivate static let java$lang$Character__DIRECTIONALITY_FIRST_STRONG_ISOLATE__B = J.saccessor("DIRECTIONALITY_FIRST_STRONG_ISOLATE", type: jbyte.jniType)
+    public static var DIRECTIONALITY_FIRST_STRONG_ISOLATE: jbyte {
+        get { return I.java$lang$Character__DIRECTIONALITY_FIRST_STRONG_ISOLATE__B.getter() }
+    }
+
+    fileprivate static let java$lang$Character__DIRECTIONALITY_POP_DIRECTIONAL_ISOLATE__B = J.saccessor("DIRECTIONALITY_POP_DIRECTIONAL_ISOLATE", type: jbyte.jniType)
+    public static var DIRECTIONALITY_POP_DIRECTIONAL_ISOLATE: jbyte {
+        get { return I.java$lang$Character__DIRECTIONALITY_POP_DIRECTIONAL_ISOLATE__B.getter() }
     }
 
     fileprivate static let java$lang$Character__MIN_HIGH_SURROGATE__C = J.saccessor("MIN_HIGH_SURROGATE", type: jchar.jniType)
@@ -1533,6 +1572,11 @@ public final class java$lang$Character : java$lang$Object, java$io$Serializable,
         return try JVM.sharedJVM.construct(I.java$lang$Character_getName_I__java$lang$String(a0)) as java$lang$String$Impl?
     }
 
+    fileprivate static let java$lang$Character_codePointOf_java$lang$String__I = svoker("codePointOf", returns: jint.jniType, arguments: (JObjectType("java/lang/String")))
+    public static func codePointOf(_ a0: java$lang$String?) throws -> jint {
+        return try I.java$lang$Character_codePointOf_java$lang$String__I(a0?.jobj ?? nil)
+    }
+
     fileprivate static let java$lang$Character_compareTo_java$lang$Object__I = invoker("compareTo", returns: jint.jniType, arguments: (JObjectType("java/lang/Object")))
     public func compareTo(_ a0: java$lang$Object?) throws -> jint {
         return try I.java$lang$Character_compareTo_java$lang$Object__I(jobj)(a0?.jobj ?? nil)
@@ -1565,1107 +1609,1317 @@ public final class java$lang$Character$UnicodeBlock : java$lang$Character$Subset
 
     fileprivate static let java$lang$Character$UnicodeBlock__BASIC_LATIN__java$lang$Character$UnicodeBlock = J.saccessor("BASIC_LATIN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BASIC_LATIN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BASIC_LATIN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BASIC_LATIN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LATIN_1_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("LATIN_1_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LATIN_1_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LATIN_1_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LATIN_1_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LATIN_EXTENDED_A__java$lang$Character$UnicodeBlock = J.saccessor("LATIN_EXTENDED_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LATIN_EXTENDED_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LATIN_EXTENDED_B__java$lang$Character$UnicodeBlock = J.saccessor("LATIN_EXTENDED_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LATIN_EXTENDED_B: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_B__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_B__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__IPA_EXTENSIONS__java$lang$Character$UnicodeBlock = J.saccessor("IPA_EXTENSIONS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var IPA_EXTENSIONS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__IPA_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__IPA_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SPACING_MODIFIER_LETTERS__java$lang$Character$UnicodeBlock = J.saccessor("SPACING_MODIFIER_LETTERS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SPACING_MODIFIER_LETTERS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SPACING_MODIFIER_LETTERS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SPACING_MODIFIER_LETTERS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__COMBINING_DIACRITICAL_MARKS__java$lang$Character$UnicodeBlock = J.saccessor("COMBINING_DIACRITICAL_MARKS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var COMBINING_DIACRITICAL_MARKS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__COMBINING_DIACRITICAL_MARKS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COMBINING_DIACRITICAL_MARKS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GREEK__java$lang$Character$UnicodeBlock = J.saccessor("GREEK", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GREEK: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GREEK__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GREEK__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CYRILLIC__java$lang$Character$UnicodeBlock = J.saccessor("CYRILLIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CYRILLIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CYRILLIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CYRILLIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ARMENIAN__java$lang$Character$UnicodeBlock = J.saccessor("ARMENIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ARMENIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ARMENIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ARMENIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HEBREW__java$lang$Character$UnicodeBlock = J.saccessor("HEBREW", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HEBREW: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HEBREW__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HEBREW__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ARABIC__java$lang$Character$UnicodeBlock = J.saccessor("ARABIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ARABIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ARABIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ARABIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__DEVANAGARI__java$lang$Character$UnicodeBlock = J.saccessor("DEVANAGARI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var DEVANAGARI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__DEVANAGARI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__DEVANAGARI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BENGALI__java$lang$Character$UnicodeBlock = J.saccessor("BENGALI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BENGALI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BENGALI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BENGALI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GURMUKHI__java$lang$Character$UnicodeBlock = J.saccessor("GURMUKHI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GURMUKHI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GURMUKHI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GURMUKHI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GUJARATI__java$lang$Character$UnicodeBlock = J.saccessor("GUJARATI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GUJARATI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GUJARATI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GUJARATI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ORIYA__java$lang$Character$UnicodeBlock = J.saccessor("ORIYA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ORIYA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ORIYA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ORIYA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAMIL__java$lang$Character$UnicodeBlock = J.saccessor("TAMIL", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAMIL: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAMIL__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAMIL__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TELUGU__java$lang$Character$UnicodeBlock = J.saccessor("TELUGU", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TELUGU: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TELUGU__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TELUGU__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KANNADA__java$lang$Character$UnicodeBlock = J.saccessor("KANNADA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KANNADA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KANNADA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KANNADA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MALAYALAM__java$lang$Character$UnicodeBlock = J.saccessor("MALAYALAM", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MALAYALAM: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MALAYALAM__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MALAYALAM__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__THAI__java$lang$Character$UnicodeBlock = J.saccessor("THAI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var THAI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__THAI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__THAI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LAO__java$lang$Character$UnicodeBlock = J.saccessor("LAO", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LAO: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LAO__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LAO__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TIBETAN__java$lang$Character$UnicodeBlock = J.saccessor("TIBETAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TIBETAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TIBETAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TIBETAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GEORGIAN__java$lang$Character$UnicodeBlock = J.saccessor("GEORGIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GEORGIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GEORGIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GEORGIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HANGUL_JAMO__java$lang$Character$UnicodeBlock = J.saccessor("HANGUL_JAMO", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HANGUL_JAMO: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HANGUL_JAMO__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HANGUL_JAMO__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LATIN_EXTENDED_ADDITIONAL__java$lang$Character$UnicodeBlock = J.saccessor("LATIN_EXTENDED_ADDITIONAL", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LATIN_EXTENDED_ADDITIONAL: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_ADDITIONAL__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_ADDITIONAL__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GREEK_EXTENDED__java$lang$Character$UnicodeBlock = J.saccessor("GREEK_EXTENDED", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GREEK_EXTENDED: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GREEK_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GREEK_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GENERAL_PUNCTUATION__java$lang$Character$UnicodeBlock = J.saccessor("GENERAL_PUNCTUATION", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GENERAL_PUNCTUATION: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GENERAL_PUNCTUATION__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GENERAL_PUNCTUATION__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUPERSCRIPTS_AND_SUBSCRIPTS__java$lang$Character$UnicodeBlock = J.saccessor("SUPERSCRIPTS_AND_SUBSCRIPTS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUPERSCRIPTS_AND_SUBSCRIPTS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUPERSCRIPTS_AND_SUBSCRIPTS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPERSCRIPTS_AND_SUBSCRIPTS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CURRENCY_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("CURRENCY_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CURRENCY_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CURRENCY_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CURRENCY_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__COMBINING_MARKS_FOR_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("COMBINING_MARKS_FOR_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var COMBINING_MARKS_FOR_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__COMBINING_MARKS_FOR_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COMBINING_MARKS_FOR_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LETTERLIKE_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("LETTERLIKE_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LETTERLIKE_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LETTERLIKE_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LETTERLIKE_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__NUMBER_FORMS__java$lang$Character$UnicodeBlock = J.saccessor("NUMBER_FORMS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var NUMBER_FORMS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__NUMBER_FORMS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__NUMBER_FORMS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ARROWS__java$lang$Character$UnicodeBlock = J.saccessor("ARROWS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ARROWS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ARROWS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ARROWS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MATHEMATICAL_OPERATORS__java$lang$Character$UnicodeBlock = J.saccessor("MATHEMATICAL_OPERATORS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MATHEMATICAL_OPERATORS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MATHEMATICAL_OPERATORS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MATHEMATICAL_OPERATORS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MISCELLANEOUS_TECHNICAL__java$lang$Character$UnicodeBlock = J.saccessor("MISCELLANEOUS_TECHNICAL", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MISCELLANEOUS_TECHNICAL: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_TECHNICAL__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_TECHNICAL__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CONTROL_PICTURES__java$lang$Character$UnicodeBlock = J.saccessor("CONTROL_PICTURES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CONTROL_PICTURES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CONTROL_PICTURES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CONTROL_PICTURES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__OPTICAL_CHARACTER_RECOGNITION__java$lang$Character$UnicodeBlock = J.saccessor("OPTICAL_CHARACTER_RECOGNITION", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var OPTICAL_CHARACTER_RECOGNITION: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__OPTICAL_CHARACTER_RECOGNITION__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OPTICAL_CHARACTER_RECOGNITION__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ENCLOSED_ALPHANUMERICS__java$lang$Character$UnicodeBlock = J.saccessor("ENCLOSED_ALPHANUMERICS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ENCLOSED_ALPHANUMERICS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ENCLOSED_ALPHANUMERICS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ENCLOSED_ALPHANUMERICS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BOX_DRAWING__java$lang$Character$UnicodeBlock = J.saccessor("BOX_DRAWING", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BOX_DRAWING: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BOX_DRAWING__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BOX_DRAWING__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BLOCK_ELEMENTS__java$lang$Character$UnicodeBlock = J.saccessor("BLOCK_ELEMENTS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BLOCK_ELEMENTS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BLOCK_ELEMENTS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BLOCK_ELEMENTS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GEOMETRIC_SHAPES__java$lang$Character$UnicodeBlock = J.saccessor("GEOMETRIC_SHAPES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GEOMETRIC_SHAPES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GEOMETRIC_SHAPES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GEOMETRIC_SHAPES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("MISCELLANEOUS_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MISCELLANEOUS_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__DINGBATS__java$lang$Character$UnicodeBlock = J.saccessor("DINGBATS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var DINGBATS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__DINGBATS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__DINGBATS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_SYMBOLS_AND_PUNCTUATION__java$lang$Character$UnicodeBlock = J.saccessor("CJK_SYMBOLS_AND_PUNCTUATION", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_SYMBOLS_AND_PUNCTUATION: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_SYMBOLS_AND_PUNCTUATION__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_SYMBOLS_AND_PUNCTUATION__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HIRAGANA__java$lang$Character$UnicodeBlock = J.saccessor("HIRAGANA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HIRAGANA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HIRAGANA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HIRAGANA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KATAKANA__java$lang$Character$UnicodeBlock = J.saccessor("KATAKANA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KATAKANA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KATAKANA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KATAKANA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BOPOMOFO__java$lang$Character$UnicodeBlock = J.saccessor("BOPOMOFO", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BOPOMOFO: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BOPOMOFO__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BOPOMOFO__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HANGUL_COMPATIBILITY_JAMO__java$lang$Character$UnicodeBlock = J.saccessor("HANGUL_COMPATIBILITY_JAMO", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HANGUL_COMPATIBILITY_JAMO: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HANGUL_COMPATIBILITY_JAMO__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HANGUL_COMPATIBILITY_JAMO__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KANBUN__java$lang$Character$UnicodeBlock = J.saccessor("KANBUN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KANBUN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KANBUN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KANBUN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ENCLOSED_CJK_LETTERS_AND_MONTHS__java$lang$Character$UnicodeBlock = J.saccessor("ENCLOSED_CJK_LETTERS_AND_MONTHS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ENCLOSED_CJK_LETTERS_AND_MONTHS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ENCLOSED_CJK_LETTERS_AND_MONTHS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ENCLOSED_CJK_LETTERS_AND_MONTHS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY__java$lang$Character$UnicodeBlock = J.saccessor("CJK_COMPATIBILITY", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_COMPATIBILITY: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS__java$lang$Character$UnicodeBlock = J.saccessor("CJK_UNIFIED_IDEOGRAPHS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_UNIFIED_IDEOGRAPHS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HANGUL_SYLLABLES__java$lang$Character$UnicodeBlock = J.saccessor("HANGUL_SYLLABLES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HANGUL_SYLLABLES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HANGUL_SYLLABLES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HANGUL_SYLLABLES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__PRIVATE_USE_AREA__java$lang$Character$UnicodeBlock = J.saccessor("PRIVATE_USE_AREA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var PRIVATE_USE_AREA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__PRIVATE_USE_AREA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PRIVATE_USE_AREA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_IDEOGRAPHS__java$lang$Character$UnicodeBlock = J.saccessor("CJK_COMPATIBILITY_IDEOGRAPHS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_COMPATIBILITY_IDEOGRAPHS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_IDEOGRAPHS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_IDEOGRAPHS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ALPHABETIC_PRESENTATION_FORMS__java$lang$Character$UnicodeBlock = J.saccessor("ALPHABETIC_PRESENTATION_FORMS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ALPHABETIC_PRESENTATION_FORMS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ALPHABETIC_PRESENTATION_FORMS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ALPHABETIC_PRESENTATION_FORMS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ARABIC_PRESENTATION_FORMS_A__java$lang$Character$UnicodeBlock = J.saccessor("ARABIC_PRESENTATION_FORMS_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ARABIC_PRESENTATION_FORMS_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ARABIC_PRESENTATION_FORMS_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ARABIC_PRESENTATION_FORMS_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__COMBINING_HALF_MARKS__java$lang$Character$UnicodeBlock = J.saccessor("COMBINING_HALF_MARKS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var COMBINING_HALF_MARKS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__COMBINING_HALF_MARKS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COMBINING_HALF_MARKS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_FORMS__java$lang$Character$UnicodeBlock = J.saccessor("CJK_COMPATIBILITY_FORMS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_COMPATIBILITY_FORMS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_FORMS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_FORMS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SMALL_FORM_VARIANTS__java$lang$Character$UnicodeBlock = J.saccessor("SMALL_FORM_VARIANTS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SMALL_FORM_VARIANTS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SMALL_FORM_VARIANTS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SMALL_FORM_VARIANTS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ARABIC_PRESENTATION_FORMS_B__java$lang$Character$UnicodeBlock = J.saccessor("ARABIC_PRESENTATION_FORMS_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ARABIC_PRESENTATION_FORMS_B: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ARABIC_PRESENTATION_FORMS_B__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ARABIC_PRESENTATION_FORMS_B__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HALFWIDTH_AND_FULLWIDTH_FORMS__java$lang$Character$UnicodeBlock = J.saccessor("HALFWIDTH_AND_FULLWIDTH_FORMS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HALFWIDTH_AND_FULLWIDTH_FORMS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HALFWIDTH_AND_FULLWIDTH_FORMS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HALFWIDTH_AND_FULLWIDTH_FORMS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SPECIALS__java$lang$Character$UnicodeBlock = J.saccessor("SPECIALS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SPECIALS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SPECIALS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SPECIALS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SURROGATES_AREA__java$lang$Character$UnicodeBlock = J.saccessor("SURROGATES_AREA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SURROGATES_AREA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SURROGATES_AREA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SURROGATES_AREA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SYRIAC__java$lang$Character$UnicodeBlock = J.saccessor("SYRIAC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SYRIAC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SYRIAC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SYRIAC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__THAANA__java$lang$Character$UnicodeBlock = J.saccessor("THAANA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var THAANA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__THAANA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__THAANA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SINHALA__java$lang$Character$UnicodeBlock = J.saccessor("SINHALA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SINHALA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SINHALA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SINHALA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MYANMAR__java$lang$Character$UnicodeBlock = J.saccessor("MYANMAR", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MYANMAR: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MYANMAR__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MYANMAR__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ETHIOPIC__java$lang$Character$UnicodeBlock = J.saccessor("ETHIOPIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ETHIOPIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ETHIOPIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ETHIOPIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CHEROKEE__java$lang$Character$UnicodeBlock = J.saccessor("CHEROKEE", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CHEROKEE: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CHEROKEE__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CHEROKEE__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS__java$lang$Character$UnicodeBlock = J.saccessor("UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__OGHAM__java$lang$Character$UnicodeBlock = J.saccessor("OGHAM", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var OGHAM: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__OGHAM__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OGHAM__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__RUNIC__java$lang$Character$UnicodeBlock = J.saccessor("RUNIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var RUNIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__RUNIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__RUNIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KHMER__java$lang$Character$UnicodeBlock = J.saccessor("KHMER", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KHMER: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KHMER__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KHMER__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MONGOLIAN__java$lang$Character$UnicodeBlock = J.saccessor("MONGOLIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MONGOLIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MONGOLIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MONGOLIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BRAILLE_PATTERNS__java$lang$Character$UnicodeBlock = J.saccessor("BRAILLE_PATTERNS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BRAILLE_PATTERNS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BRAILLE_PATTERNS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BRAILLE_PATTERNS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_RADICALS_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("CJK_RADICALS_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_RADICALS_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_RADICALS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_RADICALS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KANGXI_RADICALS__java$lang$Character$UnicodeBlock = J.saccessor("KANGXI_RADICALS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KANGXI_RADICALS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KANGXI_RADICALS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KANGXI_RADICALS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__IDEOGRAPHIC_DESCRIPTION_CHARACTERS__java$lang$Character$UnicodeBlock = J.saccessor("IDEOGRAPHIC_DESCRIPTION_CHARACTERS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var IDEOGRAPHIC_DESCRIPTION_CHARACTERS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__IDEOGRAPHIC_DESCRIPTION_CHARACTERS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__IDEOGRAPHIC_DESCRIPTION_CHARACTERS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BOPOMOFO_EXTENDED__java$lang$Character$UnicodeBlock = J.saccessor("BOPOMOFO_EXTENDED", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BOPOMOFO_EXTENDED: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BOPOMOFO_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BOPOMOFO_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A__java$lang$Character$UnicodeBlock = J.saccessor("CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__YI_SYLLABLES__java$lang$Character$UnicodeBlock = J.saccessor("YI_SYLLABLES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var YI_SYLLABLES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__YI_SYLLABLES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__YI_SYLLABLES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__YI_RADICALS__java$lang$Character$UnicodeBlock = J.saccessor("YI_RADICALS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var YI_RADICALS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__YI_RADICALS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__YI_RADICALS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CYRILLIC_SUPPLEMENTARY__java$lang$Character$UnicodeBlock = J.saccessor("CYRILLIC_SUPPLEMENTARY", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CYRILLIC_SUPPLEMENTARY: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CYRILLIC_SUPPLEMENTARY__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CYRILLIC_SUPPLEMENTARY__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAGALOG__java$lang$Character$UnicodeBlock = J.saccessor("TAGALOG", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAGALOG: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAGALOG__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAGALOG__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HANUNOO__java$lang$Character$UnicodeBlock = J.saccessor("HANUNOO", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HANUNOO: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HANUNOO__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HANUNOO__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BUHID__java$lang$Character$UnicodeBlock = J.saccessor("BUHID", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BUHID: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BUHID__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BUHID__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAGBANWA__java$lang$Character$UnicodeBlock = J.saccessor("TAGBANWA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAGBANWA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAGBANWA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAGBANWA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LIMBU__java$lang$Character$UnicodeBlock = J.saccessor("LIMBU", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LIMBU: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LIMBU__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LIMBU__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAI_LE__java$lang$Character$UnicodeBlock = J.saccessor("TAI_LE", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAI_LE: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAI_LE__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAI_LE__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KHMER_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("KHMER_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KHMER_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KHMER_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KHMER_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__PHONETIC_EXTENSIONS__java$lang$Character$UnicodeBlock = J.saccessor("PHONETIC_EXTENSIONS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var PHONETIC_EXTENSIONS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__PHONETIC_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PHONETIC_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A__java$lang$Character$UnicodeBlock = J.saccessor("MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_MATHEMATICAL_SYMBOLS_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUPPLEMENTAL_ARROWS_A__java$lang$Character$UnicodeBlock = J.saccessor("SUPPLEMENTAL_ARROWS_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUPPLEMENTAL_ARROWS_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_ARROWS_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_ARROWS_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUPPLEMENTAL_ARROWS_B__java$lang$Character$UnicodeBlock = J.saccessor("SUPPLEMENTAL_ARROWS_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUPPLEMENTAL_ARROWS_B: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_ARROWS_B__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_ARROWS_B__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B__java$lang$Character$UnicodeBlock = J.saccessor("MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_MATHEMATICAL_SYMBOLS_B__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUPPLEMENTAL_MATHEMATICAL_OPERATORS__java$lang$Character$UnicodeBlock = J.saccessor("SUPPLEMENTAL_MATHEMATICAL_OPERATORS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUPPLEMENTAL_MATHEMATICAL_OPERATORS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_MATHEMATICAL_OPERATORS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_MATHEMATICAL_OPERATORS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS_AND_ARROWS__java$lang$Character$UnicodeBlock = J.saccessor("MISCELLANEOUS_SYMBOLS_AND_ARROWS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MISCELLANEOUS_SYMBOLS_AND_ARROWS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS_AND_ARROWS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS_AND_ARROWS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KATAKANA_PHONETIC_EXTENSIONS__java$lang$Character$UnicodeBlock = J.saccessor("KATAKANA_PHONETIC_EXTENSIONS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KATAKANA_PHONETIC_EXTENSIONS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KATAKANA_PHONETIC_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KATAKANA_PHONETIC_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__YIJING_HEXAGRAM_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("YIJING_HEXAGRAM_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var YIJING_HEXAGRAM_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__YIJING_HEXAGRAM_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__YIJING_HEXAGRAM_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__VARIATION_SELECTORS__java$lang$Character$UnicodeBlock = J.saccessor("VARIATION_SELECTORS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var VARIATION_SELECTORS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__VARIATION_SELECTORS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__VARIATION_SELECTORS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LINEAR_B_SYLLABARY__java$lang$Character$UnicodeBlock = J.saccessor("LINEAR_B_SYLLABARY", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LINEAR_B_SYLLABARY: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LINEAR_B_SYLLABARY__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LINEAR_B_SYLLABARY__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LINEAR_B_IDEOGRAMS__java$lang$Character$UnicodeBlock = J.saccessor("LINEAR_B_IDEOGRAMS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LINEAR_B_IDEOGRAMS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LINEAR_B_IDEOGRAMS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LINEAR_B_IDEOGRAMS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__AEGEAN_NUMBERS__java$lang$Character$UnicodeBlock = J.saccessor("AEGEAN_NUMBERS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var AEGEAN_NUMBERS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__AEGEAN_NUMBERS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__AEGEAN_NUMBERS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__OLD_ITALIC__java$lang$Character$UnicodeBlock = J.saccessor("OLD_ITALIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var OLD_ITALIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__OLD_ITALIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OLD_ITALIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GOTHIC__java$lang$Character$UnicodeBlock = J.saccessor("GOTHIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GOTHIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GOTHIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GOTHIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__UGARITIC__java$lang$Character$UnicodeBlock = J.saccessor("UGARITIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var UGARITIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__UGARITIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__UGARITIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__DESERET__java$lang$Character$UnicodeBlock = J.saccessor("DESERET", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var DESERET: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__DESERET__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__DESERET__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SHAVIAN__java$lang$Character$UnicodeBlock = J.saccessor("SHAVIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SHAVIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SHAVIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SHAVIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__OSMANYA__java$lang$Character$UnicodeBlock = J.saccessor("OSMANYA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var OSMANYA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__OSMANYA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OSMANYA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CYPRIOT_SYLLABARY__java$lang$Character$UnicodeBlock = J.saccessor("CYPRIOT_SYLLABARY", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CYPRIOT_SYLLABARY: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CYPRIOT_SYLLABARY__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CYPRIOT_SYLLABARY__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BYZANTINE_MUSICAL_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("BYZANTINE_MUSICAL_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BYZANTINE_MUSICAL_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BYZANTINE_MUSICAL_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BYZANTINE_MUSICAL_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MUSICAL_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("MUSICAL_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MUSICAL_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MUSICAL_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MUSICAL_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAI_XUAN_JING_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("TAI_XUAN_JING_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAI_XUAN_JING_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAI_XUAN_JING_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAI_XUAN_JING_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MATHEMATICAL_ALPHANUMERIC_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("MATHEMATICAL_ALPHANUMERIC_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MATHEMATICAL_ALPHANUMERIC_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MATHEMATICAL_ALPHANUMERIC_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MATHEMATICAL_ALPHANUMERIC_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B__java$lang$Character$UnicodeBlock = J.saccessor("CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_COMPATIBILITY_IDEOGRAPHS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAGS__java$lang$Character$UnicodeBlock = J.saccessor("TAGS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAGS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAGS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAGS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__VARIATION_SELECTORS_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("VARIATION_SELECTORS_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var VARIATION_SELECTORS_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__VARIATION_SELECTORS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__VARIATION_SELECTORS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUPPLEMENTARY_PRIVATE_USE_AREA_A__java$lang$Character$UnicodeBlock = J.saccessor("SUPPLEMENTARY_PRIVATE_USE_AREA_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUPPLEMENTARY_PRIVATE_USE_AREA_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUPPLEMENTARY_PRIVATE_USE_AREA_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPPLEMENTARY_PRIVATE_USE_AREA_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUPPLEMENTARY_PRIVATE_USE_AREA_B__java$lang$Character$UnicodeBlock = J.saccessor("SUPPLEMENTARY_PRIVATE_USE_AREA_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUPPLEMENTARY_PRIVATE_USE_AREA_B: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUPPLEMENTARY_PRIVATE_USE_AREA_B__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPPLEMENTARY_PRIVATE_USE_AREA_B__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HIGH_SURROGATES__java$lang$Character$UnicodeBlock = J.saccessor("HIGH_SURROGATES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HIGH_SURROGATES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HIGH_SURROGATES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HIGH_SURROGATES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HIGH_PRIVATE_USE_SURROGATES__java$lang$Character$UnicodeBlock = J.saccessor("HIGH_PRIVATE_USE_SURROGATES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HIGH_PRIVATE_USE_SURROGATES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HIGH_PRIVATE_USE_SURROGATES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HIGH_PRIVATE_USE_SURROGATES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LOW_SURROGATES__java$lang$Character$UnicodeBlock = J.saccessor("LOW_SURROGATES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LOW_SURROGATES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LOW_SURROGATES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LOW_SURROGATES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ARABIC_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("ARABIC_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ARABIC_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ARABIC_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ARABIC_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__NKO__java$lang$Character$UnicodeBlock = J.saccessor("NKO", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var NKO: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__NKO__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__NKO__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SAMARITAN__java$lang$Character$UnicodeBlock = J.saccessor("SAMARITAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SAMARITAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SAMARITAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SAMARITAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MANDAIC__java$lang$Character$UnicodeBlock = J.saccessor("MANDAIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MANDAIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MANDAIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MANDAIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ETHIOPIC_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("ETHIOPIC_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ETHIOPIC_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ETHIOPIC_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ETHIOPIC_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED__java$lang$Character$UnicodeBlock = J.saccessor("UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__UNIFIED_CANADIAN_ABORIGINAL_SYLLABICS_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__NEW_TAI_LUE__java$lang$Character$UnicodeBlock = J.saccessor("NEW_TAI_LUE", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var NEW_TAI_LUE: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__NEW_TAI_LUE__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__NEW_TAI_LUE__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BUGINESE__java$lang$Character$UnicodeBlock = J.saccessor("BUGINESE", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BUGINESE: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BUGINESE__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BUGINESE__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAI_THAM__java$lang$Character$UnicodeBlock = J.saccessor("TAI_THAM", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAI_THAM: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAI_THAM__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAI_THAM__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BALINESE__java$lang$Character$UnicodeBlock = J.saccessor("BALINESE", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BALINESE: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BALINESE__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BALINESE__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUNDANESE__java$lang$Character$UnicodeBlock = J.saccessor("SUNDANESE", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUNDANESE: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUNDANESE__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUNDANESE__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BATAK__java$lang$Character$UnicodeBlock = J.saccessor("BATAK", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BATAK: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BATAK__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BATAK__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LEPCHA__java$lang$Character$UnicodeBlock = J.saccessor("LEPCHA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LEPCHA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LEPCHA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LEPCHA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__OL_CHIKI__java$lang$Character$UnicodeBlock = J.saccessor("OL_CHIKI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var OL_CHIKI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__OL_CHIKI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OL_CHIKI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__VEDIC_EXTENSIONS__java$lang$Character$UnicodeBlock = J.saccessor("VEDIC_EXTENSIONS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var VEDIC_EXTENSIONS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__VEDIC_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__VEDIC_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__PHONETIC_EXTENSIONS_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("PHONETIC_EXTENSIONS_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var PHONETIC_EXTENSIONS_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__PHONETIC_EXTENSIONS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PHONETIC_EXTENSIONS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__COMBINING_DIACRITICAL_MARKS_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("COMBINING_DIACRITICAL_MARKS_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var COMBINING_DIACRITICAL_MARKS_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__COMBINING_DIACRITICAL_MARKS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COMBINING_DIACRITICAL_MARKS_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GLAGOLITIC__java$lang$Character$UnicodeBlock = J.saccessor("GLAGOLITIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GLAGOLITIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GLAGOLITIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GLAGOLITIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LATIN_EXTENDED_C__java$lang$Character$UnicodeBlock = J.saccessor("LATIN_EXTENDED_C", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LATIN_EXTENDED_C: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_C__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_C__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__COPTIC__java$lang$Character$UnicodeBlock = J.saccessor("COPTIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var COPTIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__COPTIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COPTIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__GEORGIAN_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("GEORGIAN_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var GEORGIAN_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__GEORGIAN_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GEORGIAN_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TIFINAGH__java$lang$Character$UnicodeBlock = J.saccessor("TIFINAGH", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TIFINAGH: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TIFINAGH__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TIFINAGH__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ETHIOPIC_EXTENDED__java$lang$Character$UnicodeBlock = J.saccessor("ETHIOPIC_EXTENDED", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ETHIOPIC_EXTENDED: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ETHIOPIC_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ETHIOPIC_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CYRILLIC_EXTENDED_A__java$lang$Character$UnicodeBlock = J.saccessor("CYRILLIC_EXTENDED_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CYRILLIC_EXTENDED_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CYRILLIC_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CYRILLIC_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUPPLEMENTAL_PUNCTUATION__java$lang$Character$UnicodeBlock = J.saccessor("SUPPLEMENTAL_PUNCTUATION", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUPPLEMENTAL_PUNCTUATION: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_PUNCTUATION__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_PUNCTUATION__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_STROKES__java$lang$Character$UnicodeBlock = J.saccessor("CJK_STROKES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_STROKES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_STROKES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_STROKES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LISU__java$lang$Character$UnicodeBlock = J.saccessor("LISU", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LISU: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LISU__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LISU__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__VAI__java$lang$Character$UnicodeBlock = J.saccessor("VAI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var VAI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__VAI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__VAI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CYRILLIC_EXTENDED_B__java$lang$Character$UnicodeBlock = J.saccessor("CYRILLIC_EXTENDED_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CYRILLIC_EXTENDED_B: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CYRILLIC_EXTENDED_B__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CYRILLIC_EXTENDED_B__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BAMUM__java$lang$Character$UnicodeBlock = J.saccessor("BAMUM", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BAMUM: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BAMUM__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BAMUM__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MODIFIER_TONE_LETTERS__java$lang$Character$UnicodeBlock = J.saccessor("MODIFIER_TONE_LETTERS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MODIFIER_TONE_LETTERS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MODIFIER_TONE_LETTERS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MODIFIER_TONE_LETTERS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LATIN_EXTENDED_D__java$lang$Character$UnicodeBlock = J.saccessor("LATIN_EXTENDED_D", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LATIN_EXTENDED_D: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_D__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_D__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SYLOTI_NAGRI__java$lang$Character$UnicodeBlock = J.saccessor("SYLOTI_NAGRI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SYLOTI_NAGRI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SYLOTI_NAGRI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SYLOTI_NAGRI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__COMMON_INDIC_NUMBER_FORMS__java$lang$Character$UnicodeBlock = J.saccessor("COMMON_INDIC_NUMBER_FORMS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var COMMON_INDIC_NUMBER_FORMS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__COMMON_INDIC_NUMBER_FORMS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COMMON_INDIC_NUMBER_FORMS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__PHAGS_PA__java$lang$Character$UnicodeBlock = J.saccessor("PHAGS_PA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var PHAGS_PA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__PHAGS_PA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PHAGS_PA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SAURASHTRA__java$lang$Character$UnicodeBlock = J.saccessor("SAURASHTRA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SAURASHTRA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SAURASHTRA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SAURASHTRA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__DEVANAGARI_EXTENDED__java$lang$Character$UnicodeBlock = J.saccessor("DEVANAGARI_EXTENDED", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var DEVANAGARI_EXTENDED: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__DEVANAGARI_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__DEVANAGARI_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KAYAH_LI__java$lang$Character$UnicodeBlock = J.saccessor("KAYAH_LI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KAYAH_LI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KAYAH_LI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KAYAH_LI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__REJANG__java$lang$Character$UnicodeBlock = J.saccessor("REJANG", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var REJANG: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__REJANG__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__REJANG__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HANGUL_JAMO_EXTENDED_A__java$lang$Character$UnicodeBlock = J.saccessor("HANGUL_JAMO_EXTENDED_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HANGUL_JAMO_EXTENDED_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HANGUL_JAMO_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HANGUL_JAMO_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__JAVANESE__java$lang$Character$UnicodeBlock = J.saccessor("JAVANESE", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var JAVANESE: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__JAVANESE__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__JAVANESE__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CHAM__java$lang$Character$UnicodeBlock = J.saccessor("CHAM", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CHAM: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CHAM__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CHAM__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MYANMAR_EXTENDED_A__java$lang$Character$UnicodeBlock = J.saccessor("MYANMAR_EXTENDED_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MYANMAR_EXTENDED_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MYANMAR_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MYANMAR_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAI_VIET__java$lang$Character$UnicodeBlock = J.saccessor("TAI_VIET", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAI_VIET: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAI_VIET__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAI_VIET__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ETHIOPIC_EXTENDED_A__java$lang$Character$UnicodeBlock = J.saccessor("ETHIOPIC_EXTENDED_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ETHIOPIC_EXTENDED_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ETHIOPIC_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ETHIOPIC_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MEETEI_MAYEK__java$lang$Character$UnicodeBlock = J.saccessor("MEETEI_MAYEK", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MEETEI_MAYEK: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MEETEI_MAYEK__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MEETEI_MAYEK__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__HANGUL_JAMO_EXTENDED_B__java$lang$Character$UnicodeBlock = J.saccessor("HANGUL_JAMO_EXTENDED_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var HANGUL_JAMO_EXTENDED_B: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__HANGUL_JAMO_EXTENDED_B__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HANGUL_JAMO_EXTENDED_B__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__VERTICAL_FORMS__java$lang$Character$UnicodeBlock = J.saccessor("VERTICAL_FORMS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var VERTICAL_FORMS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__VERTICAL_FORMS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__VERTICAL_FORMS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ANCIENT_GREEK_NUMBERS__java$lang$Character$UnicodeBlock = J.saccessor("ANCIENT_GREEK_NUMBERS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ANCIENT_GREEK_NUMBERS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ANCIENT_GREEK_NUMBERS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ANCIENT_GREEK_NUMBERS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ANCIENT_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("ANCIENT_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ANCIENT_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ANCIENT_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ANCIENT_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__PHAISTOS_DISC__java$lang$Character$UnicodeBlock = J.saccessor("PHAISTOS_DISC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var PHAISTOS_DISC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__PHAISTOS_DISC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PHAISTOS_DISC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LYCIAN__java$lang$Character$UnicodeBlock = J.saccessor("LYCIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LYCIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LYCIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LYCIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CARIAN__java$lang$Character$UnicodeBlock = J.saccessor("CARIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CARIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CARIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CARIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__OLD_PERSIAN__java$lang$Character$UnicodeBlock = J.saccessor("OLD_PERSIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var OLD_PERSIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__OLD_PERSIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OLD_PERSIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__IMPERIAL_ARAMAIC__java$lang$Character$UnicodeBlock = J.saccessor("IMPERIAL_ARAMAIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var IMPERIAL_ARAMAIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__IMPERIAL_ARAMAIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__IMPERIAL_ARAMAIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__PHOENICIAN__java$lang$Character$UnicodeBlock = J.saccessor("PHOENICIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var PHOENICIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__PHOENICIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PHOENICIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__LYDIAN__java$lang$Character$UnicodeBlock = J.saccessor("LYDIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var LYDIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__LYDIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LYDIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KHAROSHTHI__java$lang$Character$UnicodeBlock = J.saccessor("KHAROSHTHI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KHAROSHTHI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KHAROSHTHI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KHAROSHTHI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__OLD_SOUTH_ARABIAN__java$lang$Character$UnicodeBlock = J.saccessor("OLD_SOUTH_ARABIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var OLD_SOUTH_ARABIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__OLD_SOUTH_ARABIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OLD_SOUTH_ARABIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__AVESTAN__java$lang$Character$UnicodeBlock = J.saccessor("AVESTAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var AVESTAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__AVESTAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__AVESTAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__INSCRIPTIONAL_PARTHIAN__java$lang$Character$UnicodeBlock = J.saccessor("INSCRIPTIONAL_PARTHIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var INSCRIPTIONAL_PARTHIAN: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__INSCRIPTIONAL_PARTHIAN__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__INSCRIPTIONAL_PARTHIAN__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__INSCRIPTIONAL_PAHLAVI__java$lang$Character$UnicodeBlock = J.saccessor("INSCRIPTIONAL_PAHLAVI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var INSCRIPTIONAL_PAHLAVI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__INSCRIPTIONAL_PAHLAVI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__INSCRIPTIONAL_PAHLAVI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__OLD_TURKIC__java$lang$Character$UnicodeBlock = J.saccessor("OLD_TURKIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var OLD_TURKIC: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__OLD_TURKIC__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OLD_TURKIC__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__RUMI_NUMERAL_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("RUMI_NUMERAL_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var RUMI_NUMERAL_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__RUMI_NUMERAL_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__RUMI_NUMERAL_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BRAHMI__java$lang$Character$UnicodeBlock = J.saccessor("BRAHMI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BRAHMI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BRAHMI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BRAHMI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KAITHI__java$lang$Character$UnicodeBlock = J.saccessor("KAITHI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KAITHI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KAITHI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KAITHI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CUNEIFORM__java$lang$Character$UnicodeBlock = J.saccessor("CUNEIFORM", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CUNEIFORM: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CUNEIFORM__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CUNEIFORM__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CUNEIFORM_NUMBERS_AND_PUNCTUATION__java$lang$Character$UnicodeBlock = J.saccessor("CUNEIFORM_NUMBERS_AND_PUNCTUATION", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CUNEIFORM_NUMBERS_AND_PUNCTUATION: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CUNEIFORM_NUMBERS_AND_PUNCTUATION__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CUNEIFORM_NUMBERS_AND_PUNCTUATION__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__EGYPTIAN_HIEROGLYPHS__java$lang$Character$UnicodeBlock = J.saccessor("EGYPTIAN_HIEROGLYPHS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var EGYPTIAN_HIEROGLYPHS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__EGYPTIAN_HIEROGLYPHS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__EGYPTIAN_HIEROGLYPHS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__BAMUM_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("BAMUM_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var BAMUM_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__BAMUM_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BAMUM_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__KANA_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("KANA_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var KANA_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__KANA_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KANA_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ANCIENT_GREEK_MUSICAL_NOTATION__java$lang$Character$UnicodeBlock = J.saccessor("ANCIENT_GREEK_MUSICAL_NOTATION", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ANCIENT_GREEK_MUSICAL_NOTATION: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ANCIENT_GREEK_MUSICAL_NOTATION__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ANCIENT_GREEK_MUSICAL_NOTATION__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__COUNTING_ROD_NUMERALS__java$lang$Character$UnicodeBlock = J.saccessor("COUNTING_ROD_NUMERALS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var COUNTING_ROD_NUMERALS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__COUNTING_ROD_NUMERALS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COUNTING_ROD_NUMERALS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MAHJONG_TILES__java$lang$Character$UnicodeBlock = J.saccessor("MAHJONG_TILES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MAHJONG_TILES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MAHJONG_TILES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MAHJONG_TILES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__DOMINO_TILES__java$lang$Character$UnicodeBlock = J.saccessor("DOMINO_TILES", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var DOMINO_TILES: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__DOMINO_TILES__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__DOMINO_TILES__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__PLAYING_CARDS__java$lang$Character$UnicodeBlock = J.saccessor("PLAYING_CARDS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var PLAYING_CARDS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__PLAYING_CARDS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PLAYING_CARDS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ENCLOSED_ALPHANUMERIC_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("ENCLOSED_ALPHANUMERIC_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ENCLOSED_ALPHANUMERIC_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ENCLOSED_ALPHANUMERIC_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ENCLOSED_ALPHANUMERIC_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ENCLOSED_IDEOGRAPHIC_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("ENCLOSED_IDEOGRAPHIC_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ENCLOSED_IDEOGRAPHIC_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ENCLOSED_IDEOGRAPHIC_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ENCLOSED_IDEOGRAPHIC_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS__java$lang$Character$UnicodeBlock = J.saccessor("MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MISCELLANEOUS_SYMBOLS_AND_PICTOGRAPHS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__EMOTICONS__java$lang$Character$UnicodeBlock = J.saccessor("EMOTICONS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var EMOTICONS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__EMOTICONS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__EMOTICONS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TRANSPORT_AND_MAP_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("TRANSPORT_AND_MAP_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TRANSPORT_AND_MAP_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TRANSPORT_AND_MAP_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TRANSPORT_AND_MAP_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ALCHEMICAL_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("ALCHEMICAL_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ALCHEMICAL_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ALCHEMICAL_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ALCHEMICAL_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C__java$lang$Character$UnicodeBlock = J.saccessor("CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_C__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D__java$lang$Character$UnicodeBlock = J.saccessor("CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_D__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ARABIC_EXTENDED_A__java$lang$Character$UnicodeBlock = J.saccessor("ARABIC_EXTENDED_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ARABIC_EXTENDED_A: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ARABIC_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ARABIC_EXTENDED_A__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SUNDANESE_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("SUNDANESE_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SUNDANESE_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SUNDANESE_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUNDANESE_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MEETEI_MAYEK_EXTENSIONS__java$lang$Character$UnicodeBlock = J.saccessor("MEETEI_MAYEK_EXTENSIONS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MEETEI_MAYEK_EXTENSIONS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MEETEI_MAYEK_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MEETEI_MAYEK_EXTENSIONS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MEROITIC_HIEROGLYPHS__java$lang$Character$UnicodeBlock = J.saccessor("MEROITIC_HIEROGLYPHS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MEROITIC_HIEROGLYPHS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MEROITIC_HIEROGLYPHS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MEROITIC_HIEROGLYPHS__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MEROITIC_CURSIVE__java$lang$Character$UnicodeBlock = J.saccessor("MEROITIC_CURSIVE", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MEROITIC_CURSIVE: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MEROITIC_CURSIVE__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MEROITIC_CURSIVE__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SORA_SOMPENG__java$lang$Character$UnicodeBlock = J.saccessor("SORA_SOMPENG", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SORA_SOMPENG: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SORA_SOMPENG__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SORA_SOMPENG__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__CHAKMA__java$lang$Character$UnicodeBlock = J.saccessor("CHAKMA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var CHAKMA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__CHAKMA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CHAKMA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__SHARADA__java$lang$Character$UnicodeBlock = J.saccessor("SHARADA", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var SHARADA: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__SHARADA__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SHARADA__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__TAKRI__java$lang$Character$UnicodeBlock = J.saccessor("TAKRI", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var TAKRI: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__TAKRI__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TAKRI__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__MIAO__java$lang$Character$UnicodeBlock = J.saccessor("MIAO", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var MIAO: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__MIAO__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MIAO__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock__ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS__java$lang$Character$UnicodeBlock = J.saccessor("ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
     public static var ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS: java$lang$Character$UnicodeBlock? {
-        get { return java$lang$Character$UnicodeBlock$Impl(constructor: I.java$lang$Character$UnicodeBlock__ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ARABIC_MATHEMATICAL_ALPHABETIC_SYMBOLS__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__COMBINING_DIACRITICAL_MARKS_EXTENDED__java$lang$Character$UnicodeBlock = J.saccessor("COMBINING_DIACRITICAL_MARKS_EXTENDED", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var COMBINING_DIACRITICAL_MARKS_EXTENDED: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COMBINING_DIACRITICAL_MARKS_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__MYANMAR_EXTENDED_B__java$lang$Character$UnicodeBlock = J.saccessor("MYANMAR_EXTENDED_B", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var MYANMAR_EXTENDED_B: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MYANMAR_EXTENDED_B__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__LATIN_EXTENDED_E__java$lang$Character$UnicodeBlock = J.saccessor("LATIN_EXTENDED_E", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var LATIN_EXTENDED_E: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LATIN_EXTENDED_E__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__COPTIC_EPACT_NUMBERS__java$lang$Character$UnicodeBlock = J.saccessor("COPTIC_EPACT_NUMBERS", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var COPTIC_EPACT_NUMBERS: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__COPTIC_EPACT_NUMBERS__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__OLD_PERMIC__java$lang$Character$UnicodeBlock = J.saccessor("OLD_PERMIC", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var OLD_PERMIC: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OLD_PERMIC__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__ELBASAN__java$lang$Character$UnicodeBlock = J.saccessor("ELBASAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var ELBASAN: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ELBASAN__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__CAUCASIAN_ALBANIAN__java$lang$Character$UnicodeBlock = J.saccessor("CAUCASIAN_ALBANIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var CAUCASIAN_ALBANIAN: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CAUCASIAN_ALBANIAN__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__LINEAR_A__java$lang$Character$UnicodeBlock = J.saccessor("LINEAR_A", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var LINEAR_A: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__LINEAR_A__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__PALMYRENE__java$lang$Character$UnicodeBlock = J.saccessor("PALMYRENE", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var PALMYRENE: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PALMYRENE__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__NABATAEAN__java$lang$Character$UnicodeBlock = J.saccessor("NABATAEAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var NABATAEAN: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__NABATAEAN__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__OLD_NORTH_ARABIAN__java$lang$Character$UnicodeBlock = J.saccessor("OLD_NORTH_ARABIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var OLD_NORTH_ARABIAN: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OLD_NORTH_ARABIAN__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__MANICHAEAN__java$lang$Character$UnicodeBlock = J.saccessor("MANICHAEAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var MANICHAEAN: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MANICHAEAN__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__PSALTER_PAHLAVI__java$lang$Character$UnicodeBlock = J.saccessor("PSALTER_PAHLAVI", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var PSALTER_PAHLAVI: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PSALTER_PAHLAVI__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__MAHAJANI__java$lang$Character$UnicodeBlock = J.saccessor("MAHAJANI", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var MAHAJANI: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MAHAJANI__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__SINHALA_ARCHAIC_NUMBERS__java$lang$Character$UnicodeBlock = J.saccessor("SINHALA_ARCHAIC_NUMBERS", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var SINHALA_ARCHAIC_NUMBERS: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SINHALA_ARCHAIC_NUMBERS__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__KHOJKI__java$lang$Character$UnicodeBlock = J.saccessor("KHOJKI", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var KHOJKI: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KHOJKI__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__KHUDAWADI__java$lang$Character$UnicodeBlock = J.saccessor("KHUDAWADI", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var KHUDAWADI: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__KHUDAWADI__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__GRANTHA__java$lang$Character$UnicodeBlock = J.saccessor("GRANTHA", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var GRANTHA: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GRANTHA__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__TIRHUTA__java$lang$Character$UnicodeBlock = J.saccessor("TIRHUTA", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var TIRHUTA: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__TIRHUTA__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__SIDDHAM__java$lang$Character$UnicodeBlock = J.saccessor("SIDDHAM", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var SIDDHAM: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SIDDHAM__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__MODI__java$lang$Character$UnicodeBlock = J.saccessor("MODI", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var MODI: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MODI__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__WARANG_CITI__java$lang$Character$UnicodeBlock = J.saccessor("WARANG_CITI", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var WARANG_CITI: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__WARANG_CITI__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__PAU_CIN_HAU__java$lang$Character$UnicodeBlock = J.saccessor("PAU_CIN_HAU", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var PAU_CIN_HAU: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PAU_CIN_HAU__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__MRO__java$lang$Character$UnicodeBlock = J.saccessor("MRO", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var MRO: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MRO__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__BASSA_VAH__java$lang$Character$UnicodeBlock = J.saccessor("BASSA_VAH", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var BASSA_VAH: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__BASSA_VAH__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__PAHAWH_HMONG__java$lang$Character$UnicodeBlock = J.saccessor("PAHAWH_HMONG", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var PAHAWH_HMONG: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__PAHAWH_HMONG__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__DUPLOYAN__java$lang$Character$UnicodeBlock = J.saccessor("DUPLOYAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var DUPLOYAN: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__DUPLOYAN__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__SHORTHAND_FORMAT_CONTROLS__java$lang$Character$UnicodeBlock = J.saccessor("SHORTHAND_FORMAT_CONTROLS", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var SHORTHAND_FORMAT_CONTROLS: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SHORTHAND_FORMAT_CONTROLS__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__MENDE_KIKAKUI__java$lang$Character$UnicodeBlock = J.saccessor("MENDE_KIKAKUI", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var MENDE_KIKAKUI: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MENDE_KIKAKUI__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__ORNAMENTAL_DINGBATS__java$lang$Character$UnicodeBlock = J.saccessor("ORNAMENTAL_DINGBATS", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var ORNAMENTAL_DINGBATS: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ORNAMENTAL_DINGBATS__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__GEOMETRIC_SHAPES_EXTENDED__java$lang$Character$UnicodeBlock = J.saccessor("GEOMETRIC_SHAPES_EXTENDED", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var GEOMETRIC_SHAPES_EXTENDED: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__GEOMETRIC_SHAPES_EXTENDED__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__SUPPLEMENTAL_ARROWS_C__java$lang$Character$UnicodeBlock = J.saccessor("SUPPLEMENTAL_ARROWS_C", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var SUPPLEMENTAL_ARROWS_C: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_ARROWS_C__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__CHEROKEE_SUPPLEMENT__java$lang$Character$UnicodeBlock = J.saccessor("CHEROKEE_SUPPLEMENT", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var CHEROKEE_SUPPLEMENT: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CHEROKEE_SUPPLEMENT__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__HATRAN__java$lang$Character$UnicodeBlock = J.saccessor("HATRAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var HATRAN: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__HATRAN__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__OLD_HUNGARIAN__java$lang$Character$UnicodeBlock = J.saccessor("OLD_HUNGARIAN", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var OLD_HUNGARIAN: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__OLD_HUNGARIAN__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__MULTANI__java$lang$Character$UnicodeBlock = J.saccessor("MULTANI", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var MULTANI: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__MULTANI__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__AHOM__java$lang$Character$UnicodeBlock = J.saccessor("AHOM", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var AHOM: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__AHOM__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__EARLY_DYNASTIC_CUNEIFORM__java$lang$Character$UnicodeBlock = J.saccessor("EARLY_DYNASTIC_CUNEIFORM", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var EARLY_DYNASTIC_CUNEIFORM: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__EARLY_DYNASTIC_CUNEIFORM__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__ANATOLIAN_HIEROGLYPHS__java$lang$Character$UnicodeBlock = J.saccessor("ANATOLIAN_HIEROGLYPHS", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var ANATOLIAN_HIEROGLYPHS: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__ANATOLIAN_HIEROGLYPHS__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__SUTTON_SIGNWRITING__java$lang$Character$UnicodeBlock = J.saccessor("SUTTON_SIGNWRITING", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var SUTTON_SIGNWRITING: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUTTON_SIGNWRITING__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS__java$lang$Character$UnicodeBlock = J.saccessor("SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__SUPPLEMENTAL_SYMBOLS_AND_PICTOGRAPHS__java$lang$Character$UnicodeBlock.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E__java$lang$Character$UnicodeBlock = J.saccessor("CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E", type: JObjectType("java/lang/Character$UnicodeBlock"))
+    public static var CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E: java$lang$Character$UnicodeBlock? {
+        get { return java$lang$Character$UnicodeBlock$Impl(reference: I.java$lang$Character$UnicodeBlock__CJK_UNIFIED_IDEOGRAPHS_EXTENSION_E__java$lang$Character$UnicodeBlock.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeBlock_of_C__java$lang$Character$UnicodeBlock = svoker("of", returns: JObjectType("java/lang/Character$UnicodeBlock"), arguments: (jchar.jniType))
@@ -2708,6 +2962,11 @@ public final class java$lang$Class : java$lang$Object, java$io$Serializable, jav
     fileprivate static let java$lang$Class_forName_java$lang$String_Z_java$lang$ClassLoader__java$lang$Class = svoker("forName", returns: JObjectType("java/lang/Class"), arguments: (JObjectType("java/lang/String"), jboolean.jniType, JObjectType("java/lang/ClassLoader")))
     public static func forName(_ a0: java$lang$String?, _ a1: jboolean, _ a2: java$lang$ClassLoader?) throws -> java$lang$Class? {
         return try JVM.sharedJVM.construct(I.java$lang$Class_forName_java$lang$String_Z_java$lang$ClassLoader__java$lang$Class(a0?.jobj ?? nil, a1, a2?.jobj ?? nil)) as java$lang$Class$Impl?
+    }
+
+    fileprivate static let java$lang$Class_forName_java$lang$Module_java$lang$String__java$lang$Class = svoker("forName", returns: JObjectType("java/lang/Class"), arguments: (JObjectType("java/lang/Module"), JObjectType("java/lang/String")))
+    public static func forName(_ a0: java$lang$Module?, _ a1: java$lang$String?) throws -> java$lang$Class? {
+        return try JVM.sharedJVM.construct(I.java$lang$Class_forName_java$lang$Module_java$lang$String__java$lang$Class(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Class$Impl?
     }
 
     fileprivate static let java$lang$Class_newInstance__java$lang$Object = invoker("newInstance", returns: JObjectType("java/lang/Object"))
@@ -2760,6 +3019,11 @@ public final class java$lang$Class : java$lang$Object, java$io$Serializable, jav
         return try JVM.sharedJVM.construct(I.java$lang$Class_getClassLoader__java$lang$ClassLoader(jobj)()) as java$lang$ClassLoader$Impl?
     }
 
+    fileprivate static let java$lang$Class_getModule__java$lang$Module = invoker("getModule", returns: JObjectType("java/lang/Module"))
+    public func getModule() throws -> java$lang$Module? {
+        return try JVM.sharedJVM.construct(I.java$lang$Class_getModule__java$lang$Module(jobj)()) as java$lang$Module$Impl?
+    }
+
     fileprivate static let java$lang$Class_getTypeParameters__Ajava$lang$reflect$TypeVariable = invoker("getTypeParameters", returns: JArray(JObjectType("java/lang/reflect/TypeVariable")))
     public func getTypeParameters() throws -> [java$lang$reflect$TypeVariable?]? {
         return try I.java$lang$Class_getTypeParameters__Ajava$lang$reflect$TypeVariable(jobj)()?.jarrayToArray(java$lang$reflect$TypeVariable$Impl.self)
@@ -2778,6 +3042,11 @@ public final class java$lang$Class : java$lang$Object, java$io$Serializable, jav
     fileprivate static let java$lang$Class_getPackage__java$lang$Package = invoker("getPackage", returns: JObjectType("java/lang/Package"))
     public func getPackage() throws -> java$lang$Package? {
         return try JVM.sharedJVM.construct(I.java$lang$Class_getPackage__java$lang$Package(jobj)()) as java$lang$Package$Impl?
+    }
+
+    fileprivate static let java$lang$Class_getPackageName__java$lang$String = invoker("getPackageName", returns: JObjectType("java/lang/String"))
+    public func getPackageName() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$lang$Class_getPackageName__java$lang$String(jobj)()) as java$lang$String$Impl?
     }
 
     fileprivate static let java$lang$Class_getInterfaces__Ajava$lang$Class = invoker("getInterfaces", returns: JArray(JObjectType("java/lang/Class")))
@@ -3021,6 +3290,11 @@ open class java$lang$ClassLoader : java$lang$Object {
     /// Returns the internal JNI name for this class: "java/lang/ClassLoader"
     open class override func jniName() -> String { return "java/lang/ClassLoader" }
 
+    fileprivate static let java$lang$ClassLoader_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
+    public func getName() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_getName__java$lang$String(jobj)()) as java$lang$String$Impl?
+    }
+
     fileprivate static let java$lang$ClassLoader_loadClass_java$lang$String__java$lang$Class = invoker("loadClass", returns: JObjectType("java/lang/Class"), arguments: (JObjectType("java/lang/String")))
     public func loadClass(_ a0: java$lang$String?) throws -> java$lang$Class? {
         return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_loadClass_java$lang$String__java$lang$Class(jobj)(a0?.jobj ?? nil)) as java$lang$Class$Impl?
@@ -3034,6 +3308,16 @@ open class java$lang$ClassLoader : java$lang$Object {
     fileprivate static let java$lang$ClassLoader_getResources_java$lang$String__java$util$Enumeration = invoker("getResources", returns: JObjectType("java/util/Enumeration"), arguments: (JObjectType("java/lang/String")))
     public func getResources(_ a0: java$lang$String?) throws -> java$util$Enumeration? {
         return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_getResources_java$lang$String__java$util$Enumeration(jobj)(a0?.jobj ?? nil)) as java$util$Enumeration$Impl?
+    }
+
+    fileprivate static let java$lang$ClassLoader_resources_java$lang$String__java$util$stream$Stream = invoker("resources", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/lang/String")))
+    public func resources(_ a0: java$lang$String?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_resources_java$lang$String__java$util$stream$Stream(jobj)(a0?.jobj ?? nil)) as java$util$stream$Stream$Impl?
+    }
+
+    fileprivate static let java$lang$ClassLoader_isRegisteredAsParallelCapable__Z = invoker("isRegisteredAsParallelCapable", returns: jboolean.jniType)
+    public func isRegisteredAsParallelCapable() throws -> jboolean {
+        return try I.java$lang$ClassLoader_isRegisteredAsParallelCapable__Z(jobj)()
     }
 
     fileprivate static let java$lang$ClassLoader_getSystemResource_java$lang$String__java$net$URL = svoker("getSystemResource", returns: JObjectType("java/net/URL"), arguments: (JObjectType("java/lang/String")))
@@ -3061,9 +3345,29 @@ open class java$lang$ClassLoader : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_getParent__java$lang$ClassLoader(jobj)()) as java$lang$ClassLoader$Impl?
     }
 
+    fileprivate static let java$lang$ClassLoader_getUnnamedModule__java$lang$Module = invoker("getUnnamedModule", returns: JObjectType("java/lang/Module"))
+    public func getUnnamedModule() throws -> java$lang$Module? {
+        return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_getUnnamedModule__java$lang$Module(jobj)()) as java$lang$Module$Impl?
+    }
+
+    fileprivate static let java$lang$ClassLoader_getPlatformClassLoader__java$lang$ClassLoader = svoker("getPlatformClassLoader", returns: JObjectType("java/lang/ClassLoader"))
+    public static func getPlatformClassLoader() throws -> java$lang$ClassLoader? {
+        return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_getPlatformClassLoader__java$lang$ClassLoader()) as java$lang$ClassLoader$Impl?
+    }
+
     fileprivate static let java$lang$ClassLoader_getSystemClassLoader__java$lang$ClassLoader = svoker("getSystemClassLoader", returns: JObjectType("java/lang/ClassLoader"))
     public static func getSystemClassLoader() throws -> java$lang$ClassLoader? {
         return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_getSystemClassLoader__java$lang$ClassLoader()) as java$lang$ClassLoader$Impl?
+    }
+
+    fileprivate static let java$lang$ClassLoader_getDefinedPackage_java$lang$String__java$lang$Package = invoker("getDefinedPackage", returns: JObjectType("java/lang/Package"), arguments: (JObjectType("java/lang/String")))
+    public func getDefinedPackage(_ a0: java$lang$String?) throws -> java$lang$Package? {
+        return try JVM.sharedJVM.construct(I.java$lang$ClassLoader_getDefinedPackage_java$lang$String__java$lang$Package(jobj)(a0?.jobj ?? nil)) as java$lang$Package$Impl?
+    }
+
+    fileprivate static let java$lang$ClassLoader_getDefinedPackages__Ajava$lang$Package = invoker("getDefinedPackages", returns: JArray(JObjectType("java/lang/Package")))
+    public func getDefinedPackages() throws -> [java$lang$Package?]? {
+        return try I.java$lang$ClassLoader_getDefinedPackages__Ajava$lang$Package(jobj)()?.jarrayToArray(java$lang$Package$Impl.self)
     }
 
     fileprivate static let java$lang$ClassLoader_setDefaultAssertionStatus_Z__V = invoker("setDefaultAssertionStatus", returns: JVoid.jniType, arguments: (jboolean.jniType))
@@ -3343,6 +3647,11 @@ public final class java$lang$Math : java$lang$Object {
         return try I.java$lang$Math_multiplyExact_I_I__I(a0, a1)
     }
 
+    fileprivate static let java$lang$Math_multiplyExact_J_I__J = svoker("multiplyExact", returns: jlong.jniType, arguments: (jlong.jniType, jint.jniType))
+    public static func multiplyExact(_ a0: jlong, _ a1: jint) throws -> jlong {
+        return try I.java$lang$Math_multiplyExact_J_I__J(a0, a1)
+    }
+
     fileprivate static let java$lang$Math_multiplyExact_J_J__J = svoker("multiplyExact", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
     public static func multiplyExact(_ a0: jlong, _ a1: jlong) throws -> jlong {
         return try I.java$lang$Math_multiplyExact_J_J__J(a0, a1)
@@ -3383,9 +3692,24 @@ public final class java$lang$Math : java$lang$Object {
         return try I.java$lang$Math_toIntExact_J__I(a0)
     }
 
+    fileprivate static let java$lang$Math_multiplyFull_I_I__J = svoker("multiplyFull", returns: jlong.jniType, arguments: (jint.jniType, jint.jniType))
+    public static func multiplyFull(_ a0: jint, _ a1: jint) throws -> jlong {
+        return try I.java$lang$Math_multiplyFull_I_I__J(a0, a1)
+    }
+
+    fileprivate static let java$lang$Math_multiplyHigh_J_J__J = svoker("multiplyHigh", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public static func multiplyHigh(_ a0: jlong, _ a1: jlong) throws -> jlong {
+        return try I.java$lang$Math_multiplyHigh_J_J__J(a0, a1)
+    }
+
     fileprivate static let java$lang$Math_floorDiv_I_I__I = svoker("floorDiv", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
     public static func floorDiv(_ a0: jint, _ a1: jint) throws -> jint {
         return try I.java$lang$Math_floorDiv_I_I__I(a0, a1)
+    }
+
+    fileprivate static let java$lang$Math_floorDiv_J_I__J = svoker("floorDiv", returns: jlong.jniType, arguments: (jlong.jniType, jint.jniType))
+    public static func floorDiv(_ a0: jlong, _ a1: jint) throws -> jlong {
+        return try I.java$lang$Math_floorDiv_J_I__J(a0, a1)
     }
 
     fileprivate static let java$lang$Math_floorDiv_J_J__J = svoker("floorDiv", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
@@ -3396,6 +3720,11 @@ public final class java$lang$Math : java$lang$Object {
     fileprivate static let java$lang$Math_floorMod_I_I__I = svoker("floorMod", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
     public static func floorMod(_ a0: jint, _ a1: jint) throws -> jint {
         return try I.java$lang$Math_floorMod_I_I__I(a0, a1)
+    }
+
+    fileprivate static let java$lang$Math_floorMod_J_I__I = svoker("floorMod", returns: jint.jniType, arguments: (jlong.jniType, jint.jniType))
+    public static func floorMod(_ a0: jlong, _ a1: jint) throws -> jint {
+        return try I.java$lang$Math_floorMod_J_I__I(a0, a1)
     }
 
     fileprivate static let java$lang$Math_floorMod_J_J__J = svoker("floorMod", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
@@ -3461,6 +3790,16 @@ public final class java$lang$Math : java$lang$Object {
     fileprivate static let java$lang$Math_min_D_D__D = svoker("min", returns: jdouble.jniType, arguments: (jdouble.jniType, jdouble.jniType))
     public static func min(_ a0: jdouble, _ a1: jdouble) throws -> jdouble {
         return try I.java$lang$Math_min_D_D__D(a0, a1)
+    }
+
+    fileprivate static let java$lang$Math_fma_D_D_D__D = svoker("fma", returns: jdouble.jniType, arguments: (jdouble.jniType, jdouble.jniType, jdouble.jniType))
+    public static func fma(_ a0: jdouble, _ a1: jdouble, _ a2: jdouble) throws -> jdouble {
+        return try I.java$lang$Math_fma_D_D_D__D(a0, a1, a2)
+    }
+
+    fileprivate static let java$lang$Math_fma_F_F_F__F = svoker("fma", returns: jfloat.jniType, arguments: (jfloat.jniType, jfloat.jniType, jfloat.jniType))
+    public static func fma(_ a0: jfloat, _ a1: jfloat, _ a2: jfloat) throws -> jfloat {
+        return try I.java$lang$Math_fma_F_F_F__F(a0, a1, a2)
     }
 
     fileprivate static let java$lang$Math_ulp_D__D = svoker("ulp", returns: jdouble.jniType, arguments: (jdouble.jniType))
@@ -3642,7 +3981,7 @@ public final class java$lang$Byte : java$lang$Number, java$lang$Comparable {
 
     fileprivate static let java$lang$Byte__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Byte__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Byte__TYPE__java$lang$Class.getter()) }
     }
 
     fileprivate static let java$lang$Byte__SIZE__I = J.saccessor("SIZE", type: jint.jniType)
@@ -3724,6 +4063,11 @@ public final class java$lang$Byte : java$lang$Number, java$lang$Comparable {
         return try I.java$lang$Byte_compare_B_B__I(a0, a1)
     }
 
+    fileprivate static let java$lang$Byte_compareUnsigned_B_B__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (jbyte.jniType, jbyte.jniType))
+    public static func compareUnsigned(_ a0: jbyte, _ a1: jbyte) throws -> jint {
+        return try I.java$lang$Byte_compareUnsigned_B_B__I(a0, a1)
+    }
+
     fileprivate static let java$lang$Byte_toUnsignedInt_B__I = svoker("toUnsignedInt", returns: jint.jniType, arguments: (jbyte.jniType))
     public static func toUnsignedInt(_ a0: jbyte) throws -> jint {
         return try I.java$lang$Byte_toUnsignedInt_B__I(a0)
@@ -3802,7 +4146,7 @@ public final class java$lang$Double : java$lang$Number, java$lang$Comparable {
 
     fileprivate static let java$lang$Double__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Double__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Double__TYPE__java$lang$Class.getter()) }
     }
 
     fileprivate static let java$lang$Double_toString_D__java$lang$String = svoker("toString", returns: JObjectType("java/lang/String"), arguments: (jdouble.jniType))
@@ -3987,7 +4331,7 @@ public final class java$lang$Float : java$lang$Number, java$lang$Comparable {
 
     fileprivate static let java$lang$Float__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Float__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Float__TYPE__java$lang$Class.getter()) }
     }
 
     fileprivate static let java$lang$Float_toString_F__java$lang$String = svoker("toString", returns: JObjectType("java/lang/String"), arguments: (jfloat.jniType))
@@ -4137,7 +4481,7 @@ public final class java$lang$Integer : java$lang$Number, java$lang$Comparable {
 
     fileprivate static let java$lang$Integer__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Integer__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Integer__TYPE__java$lang$Class.getter()) }
     }
 
     fileprivate static let java$lang$Integer__SIZE__I = J.saccessor("SIZE", type: jint.jniType)
@@ -4190,6 +4534,11 @@ public final class java$lang$Integer : java$lang$Number, java$lang$Comparable {
         return try I.java$lang$Integer_parseInt_java$lang$String_I__I(a0?.jobj ?? nil, a1)
     }
 
+    fileprivate static let java$lang$Integer_parseInt_java$lang$CharSequence_I_I_I__I = svoker("parseInt", returns: jint.jniType, arguments: (JObjectType("java/lang/CharSequence"), jint.jniType, jint.jniType, jint.jniType))
+    public static func parseInt(_ a0: java$lang$CharSequence?, _ a1: jint, _ a2: jint, _ a3: jint) throws -> jint {
+        return try I.java$lang$Integer_parseInt_java$lang$CharSequence_I_I_I__I(a0?.jobj ?? nil, a1, a2, a3)
+    }
+
     fileprivate static let java$lang$Integer_parseInt_java$lang$String__I = svoker("parseInt", returns: jint.jniType, arguments: (JObjectType("java/lang/String")))
     public static func parseInt(_ a0: java$lang$String?) throws -> jint {
         return try I.java$lang$Integer_parseInt_java$lang$String__I(a0?.jobj ?? nil)
@@ -4198,6 +4547,11 @@ public final class java$lang$Integer : java$lang$Number, java$lang$Comparable {
     fileprivate static let java$lang$Integer_parseUnsignedInt_java$lang$String_I__I = svoker("parseUnsignedInt", returns: jint.jniType, arguments: (JObjectType("java/lang/String"), jint.jniType))
     public static func parseUnsignedInt(_ a0: java$lang$String?, _ a1: jint) throws -> jint {
         return try I.java$lang$Integer_parseUnsignedInt_java$lang$String_I__I(a0?.jobj ?? nil, a1)
+    }
+
+    fileprivate static let java$lang$Integer_parseUnsignedInt_java$lang$CharSequence_I_I_I__I = svoker("parseUnsignedInt", returns: jint.jniType, arguments: (JObjectType("java/lang/CharSequence"), jint.jniType, jint.jniType, jint.jniType))
+    public static func parseUnsignedInt(_ a0: java$lang$CharSequence?, _ a1: jint, _ a2: jint, _ a3: jint) throws -> jint {
+        return try I.java$lang$Integer_parseUnsignedInt_java$lang$CharSequence_I_I_I__I(a0?.jobj ?? nil, a1, a2, a3)
     }
 
     fileprivate static let java$lang$Integer_parseUnsignedInt_java$lang$String__I = svoker("parseUnsignedInt", returns: jint.jniType, arguments: (JObjectType("java/lang/String")))
@@ -4387,7 +4741,7 @@ public final class java$lang$Long : java$lang$Number, java$lang$Comparable {
 
     fileprivate static let java$lang$Long__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Long__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Long__TYPE__java$lang$Class.getter()) }
     }
 
     fileprivate static let java$lang$Long__SIZE__I = J.saccessor("SIZE", type: jint.jniType)
@@ -4440,6 +4794,11 @@ public final class java$lang$Long : java$lang$Number, java$lang$Comparable {
         return try I.java$lang$Long_parseLong_java$lang$String_I__J(a0?.jobj ?? nil, a1)
     }
 
+    fileprivate static let java$lang$Long_parseLong_java$lang$CharSequence_I_I_I__J = svoker("parseLong", returns: jlong.jniType, arguments: (JObjectType("java/lang/CharSequence"), jint.jniType, jint.jniType, jint.jniType))
+    public static func parseLong(_ a0: java$lang$CharSequence?, _ a1: jint, _ a2: jint, _ a3: jint) throws -> jlong {
+        return try I.java$lang$Long_parseLong_java$lang$CharSequence_I_I_I__J(a0?.jobj ?? nil, a1, a2, a3)
+    }
+
     fileprivate static let java$lang$Long_parseLong_java$lang$String__J = svoker("parseLong", returns: jlong.jniType, arguments: (JObjectType("java/lang/String")))
     public static func parseLong(_ a0: java$lang$String?) throws -> jlong {
         return try I.java$lang$Long_parseLong_java$lang$String__J(a0?.jobj ?? nil)
@@ -4448,6 +4807,11 @@ public final class java$lang$Long : java$lang$Number, java$lang$Comparable {
     fileprivate static let java$lang$Long_parseUnsignedLong_java$lang$String_I__J = svoker("parseUnsignedLong", returns: jlong.jniType, arguments: (JObjectType("java/lang/String"), jint.jniType))
     public static func parseUnsignedLong(_ a0: java$lang$String?, _ a1: jint) throws -> jlong {
         return try I.java$lang$Long_parseUnsignedLong_java$lang$String_I__J(a0?.jobj ?? nil, a1)
+    }
+
+    fileprivate static let java$lang$Long_parseUnsignedLong_java$lang$CharSequence_I_I_I__J = svoker("parseUnsignedLong", returns: jlong.jniType, arguments: (JObjectType("java/lang/CharSequence"), jint.jniType, jint.jniType, jint.jniType))
+    public static func parseUnsignedLong(_ a0: java$lang$CharSequence?, _ a1: jint, _ a2: jint, _ a3: jint) throws -> jlong {
+        return try I.java$lang$Long_parseUnsignedLong_java$lang$CharSequence_I_I_I__J(a0?.jobj ?? nil, a1, a2, a3)
     }
 
     fileprivate static let java$lang$Long_parseUnsignedLong_java$lang$String__J = svoker("parseUnsignedLong", returns: jlong.jniType, arguments: (JObjectType("java/lang/String")))
@@ -4632,7 +4996,7 @@ public final class java$lang$Short : java$lang$Number, java$lang$Comparable {
 
     fileprivate static let java$lang$Short__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Short__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Short__TYPE__java$lang$Class.getter()) }
     }
 
     fileprivate static let java$lang$Short__SIZE__I = J.saccessor("SIZE", type: jint.jniType)
@@ -4714,6 +5078,11 @@ public final class java$lang$Short : java$lang$Number, java$lang$Comparable {
         return try I.java$lang$Short_compare_S_S__I(a0, a1)
     }
 
+    fileprivate static let java$lang$Short_compareUnsigned_S_S__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (jshort.jniType, jshort.jniType))
+    public static func compareUnsigned(_ a0: jshort, _ a1: jshort) throws -> jint {
+        return try I.java$lang$Short_compareUnsigned_S_S__I(a0, a1)
+    }
+
     fileprivate static let java$lang$Short_reverseBytes_S__S = svoker("reverseBytes", returns: jshort.jniType, arguments: (jshort.jniType))
     public static func reverseBytes(_ a0: jshort) throws -> jshort {
         return try I.java$lang$Short_reverseBytes_S__S(a0)
@@ -4738,7 +5107,18 @@ public final class java$lang$Short : java$lang$Number, java$lang$Comparable {
 
 public typealias java$lang$Short$Impl = java$lang$Short
 
-open class java$lang$Package : java$lang$Object, java$lang$reflect$AnnotatedElement {
+open class java$lang$NamedPackage : java$lang$Object {
+    private typealias J = java$lang$NamedPackage
+    private typealias I = java$lang$NamedPackage$Impl
+
+    /// Returns the internal JNI name for this class: "java/lang/NamedPackage"
+    open class override func jniName() -> String { return "java/lang/NamedPackage" }
+
+}
+
+public typealias java$lang$NamedPackage$Impl = java$lang$NamedPackage
+
+open class java$lang$Package : java$lang$NamedPackage, java$lang$reflect$AnnotatedElement {
     private typealias J = java$lang$Package
     private typealias I = java$lang$Package$Impl
 
@@ -4919,9 +5299,44 @@ open class java$lang$Process : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$Process_destroyForcibly__java$lang$Process(jobj)()) as java$lang$Process$Impl?
     }
 
+    fileprivate static let java$lang$Process_supportsNormalTermination__Z = invoker("supportsNormalTermination", returns: jboolean.jniType)
+    public func supportsNormalTermination() throws -> jboolean {
+        return try I.java$lang$Process_supportsNormalTermination__Z(jobj)()
+    }
+
     fileprivate static let java$lang$Process_isAlive__Z = invoker("isAlive", returns: jboolean.jniType)
     public func isAlive() throws -> jboolean {
         return try I.java$lang$Process_isAlive__Z(jobj)()
+    }
+
+    fileprivate static let java$lang$Process_pid__J = invoker("pid", returns: jlong.jniType)
+    public func pid() throws -> jlong {
+        return try I.java$lang$Process_pid__J(jobj)()
+    }
+
+    fileprivate static let java$lang$Process_onExit__java$util$concurrent$CompletableFuture = invoker("onExit", returns: JObjectType("java/util/concurrent/CompletableFuture"))
+    public func onExit() throws -> java$util$concurrent$CompletableFuture? {
+        return try JVM.sharedJVM.construct(I.java$lang$Process_onExit__java$util$concurrent$CompletableFuture(jobj)()) as java$util$concurrent$CompletableFuture$Impl?
+    }
+
+    fileprivate static let java$lang$Process_toHandle__java$lang$ProcessHandle = invoker("toHandle", returns: JObjectType("java/lang/ProcessHandle"))
+    public func toHandle() throws -> java$lang$ProcessHandle? {
+        return try JVM.sharedJVM.construct(I.java$lang$Process_toHandle__java$lang$ProcessHandle(jobj)()) as java$lang$ProcessHandle$Impl?
+    }
+
+    fileprivate static let java$lang$Process_info__java$lang$ProcessHandle$Info = invoker("info", returns: JObjectType("java/lang/ProcessHandle$Info"))
+    public func info() throws -> java$lang$ProcessHandle$Info? {
+        return try JVM.sharedJVM.construct(I.java$lang$Process_info__java$lang$ProcessHandle$Info(jobj)()) as java$lang$ProcessHandle$Info$Impl?
+    }
+
+    fileprivate static let java$lang$Process_children__java$util$stream$Stream = invoker("children", returns: JObjectType("java/util/stream/Stream"))
+    public func children() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$lang$Process_children__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
+    }
+
+    fileprivate static let java$lang$Process_descendants__java$util$stream$Stream = invoker("descendants", returns: JObjectType("java/util/stream/Stream"))
+    public func descendants() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$lang$Process_descendants__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
     }
 
 }
@@ -5040,6 +5455,11 @@ public final class java$lang$ProcessBuilder : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$lang$ProcessBuilder_start__java$lang$Process(jobj)()) as java$lang$Process$Impl?
     }
 
+    fileprivate static let java$lang$ProcessBuilder_startPipeline_java$util$List__java$util$List = svoker("startPipeline", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/util/List")))
+    public static func startPipeline(_ a0: java$util$List?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$lang$ProcessBuilder_startPipeline_java$util$List__java$util$List(a0?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
 }
 
 public typealias java$lang$ProcessBuilder$Impl = java$lang$ProcessBuilder
@@ -5053,12 +5473,17 @@ open class java$lang$ProcessBuilder$Redirect : java$lang$Object {
 
     fileprivate static let java$lang$ProcessBuilder$Redirect__PIPE__java$lang$ProcessBuilder$Redirect = J.saccessor("PIPE", type: JObjectType("java/lang/ProcessBuilder$Redirect"))
     public static var PIPE: java$lang$ProcessBuilder$Redirect? {
-        get { return java$lang$ProcessBuilder$Redirect$Impl(constructor: I.java$lang$ProcessBuilder$Redirect__PIPE__java$lang$ProcessBuilder$Redirect.getter()) }
+        get { return java$lang$ProcessBuilder$Redirect$Impl(reference: I.java$lang$ProcessBuilder$Redirect__PIPE__java$lang$ProcessBuilder$Redirect.getter()) }
     }
 
     fileprivate static let java$lang$ProcessBuilder$Redirect__INHERIT__java$lang$ProcessBuilder$Redirect = J.saccessor("INHERIT", type: JObjectType("java/lang/ProcessBuilder$Redirect"))
     public static var INHERIT: java$lang$ProcessBuilder$Redirect? {
-        get { return java$lang$ProcessBuilder$Redirect$Impl(constructor: I.java$lang$ProcessBuilder$Redirect__INHERIT__java$lang$ProcessBuilder$Redirect.getter()) }
+        get { return java$lang$ProcessBuilder$Redirect$Impl(reference: I.java$lang$ProcessBuilder$Redirect__INHERIT__java$lang$ProcessBuilder$Redirect.getter()) }
+    }
+
+    fileprivate static let java$lang$ProcessBuilder$Redirect__DISCARD__java$lang$ProcessBuilder$Redirect = J.saccessor("DISCARD", type: JObjectType("java/lang/ProcessBuilder$Redirect"))
+    public static var DISCARD: java$lang$ProcessBuilder$Redirect? {
+        get { return java$lang$ProcessBuilder$Redirect$Impl(reference: I.java$lang$ProcessBuilder$Redirect__DISCARD__java$lang$ProcessBuilder$Redirect.getter()) }
     }
 
     fileprivate static let java$lang$ProcessBuilder$Redirect_type__java$lang$ProcessBuilder$Redirect$Type = invoker("type", returns: JObjectType("java/lang/ProcessBuilder$Redirect$Type"))
@@ -5209,14 +5634,9 @@ open class java$lang$Runtime : java$lang$Object {
         return try I.java$lang$Runtime_loadLibrary_java$lang$String__V(jobj)(a0?.jobj ?? nil)
     }
 
-    fileprivate static let java$lang$Runtime_getLocalizedInputStream_java$io$InputStream__java$io$InputStream = invoker("getLocalizedInputStream", returns: JObjectType("java/io/InputStream"), arguments: (JObjectType("java/io/InputStream")))
-    public func getLocalizedInputStream(_ a0: java$io$InputStream?) throws -> java$io$InputStream? {
-        return try JVM.sharedJVM.construct(I.java$lang$Runtime_getLocalizedInputStream_java$io$InputStream__java$io$InputStream(jobj)(a0?.jobj ?? nil)) as java$io$InputStream$Impl?
-    }
-
-    fileprivate static let java$lang$Runtime_getLocalizedOutputStream_java$io$OutputStream__java$io$OutputStream = invoker("getLocalizedOutputStream", returns: JObjectType("java/io/OutputStream"), arguments: (JObjectType("java/io/OutputStream")))
-    public func getLocalizedOutputStream(_ a0: java$io$OutputStream?) throws -> java$io$OutputStream? {
-        return try JVM.sharedJVM.construct(I.java$lang$Runtime_getLocalizedOutputStream_java$io$OutputStream__java$io$OutputStream(jobj)(a0?.jobj ?? nil)) as java$io$OutputStream$Impl?
+    fileprivate static let java$lang$Runtime_version__java$lang$Runtime$Version = svoker("version", returns: JObjectType("java/lang/Runtime$Version"))
+    public static func version() throws -> java$lang$Runtime$Version? {
+        return try JVM.sharedJVM.construct(I.java$lang$Runtime_version__java$lang$Runtime$Version()) as java$lang$Runtime$Version$Impl?
     }
 
 }
@@ -5229,11 +5649,6 @@ open class java$lang$SecurityManager : java$lang$Object {
 
     /// Returns the internal JNI name for this class: "java/lang/SecurityManager"
     open class override func jniName() -> String { return "java/lang/SecurityManager" }
-
-    fileprivate static let java$lang$SecurityManager_getInCheck__Z = invoker("getInCheck", returns: jboolean.jniType)
-    public func getInCheck() throws -> jboolean {
-        return try I.java$lang$SecurityManager_getInCheck__Z(jobj)()
-    }
 
     fileprivate static let java$lang$SecurityManager_init__V = constructor()
     public convenience init() throws {
@@ -5421,6 +5836,11 @@ public final class java$lang$StackTraceElement : java$lang$Object, java$io$Seria
         try self.init(creator: I.java$lang$StackTraceElement_init_java$lang$String_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3))
     }
 
+    fileprivate static let java$lang$StackTraceElement_init_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$String_I__V = constructor((JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), jint.jniType))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$lang$String?, _ a5: java$lang$String?, _ a6: jint) throws {
+        try self.init(creator: I.java$lang$StackTraceElement_init_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$String_I__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6))
+    }
+
     fileprivate static let java$lang$StackTraceElement_getFileName__java$lang$String = invoker("getFileName", returns: JObjectType("java/lang/String"))
     public func getFileName() throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$lang$StackTraceElement_getFileName__java$lang$String(jobj)()) as java$lang$String$Impl?
@@ -5429,6 +5849,21 @@ public final class java$lang$StackTraceElement : java$lang$Object, java$io$Seria
     fileprivate static let java$lang$StackTraceElement_getLineNumber__I = invoker("getLineNumber", returns: jint.jniType)
     public func getLineNumber() throws -> jint {
         return try I.java$lang$StackTraceElement_getLineNumber__I(jobj)()
+    }
+
+    fileprivate static let java$lang$StackTraceElement_getModuleName__java$lang$String = invoker("getModuleName", returns: JObjectType("java/lang/String"))
+    public func getModuleName() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$lang$StackTraceElement_getModuleName__java$lang$String(jobj)()) as java$lang$String$Impl?
+    }
+
+    fileprivate static let java$lang$StackTraceElement_getModuleVersion__java$lang$String = invoker("getModuleVersion", returns: JObjectType("java/lang/String"))
+    public func getModuleVersion() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$lang$StackTraceElement_getModuleVersion__java$lang$String(jobj)()) as java$lang$String$Impl?
+    }
+
+    fileprivate static let java$lang$StackTraceElement_getClassLoaderName__java$lang$String = invoker("getClassLoaderName", returns: JObjectType("java/lang/String"))
+    public func getClassLoaderName() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$lang$StackTraceElement_getClassLoaderName__java$lang$String(jobj)()) as java$lang$String$Impl?
     }
 
     fileprivate static let java$lang$StackTraceElement_getClassName__java$lang$String = invoker("getClassName", returns: JObjectType("java/lang/String"))
@@ -5605,6 +6040,11 @@ public final class java$lang$StrictMath : java$lang$Object {
         return try I.java$lang$StrictMath_multiplyExact_I_I__I(a0, a1)
     }
 
+    fileprivate static let java$lang$StrictMath_multiplyExact_J_I__J = svoker("multiplyExact", returns: jlong.jniType, arguments: (jlong.jniType, jint.jniType))
+    public static func multiplyExact(_ a0: jlong, _ a1: jint) throws -> jlong {
+        return try I.java$lang$StrictMath_multiplyExact_J_I__J(a0, a1)
+    }
+
     fileprivate static let java$lang$StrictMath_multiplyExact_J_J__J = svoker("multiplyExact", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
     public static func multiplyExact(_ a0: jlong, _ a1: jlong) throws -> jlong {
         return try I.java$lang$StrictMath_multiplyExact_J_J__J(a0, a1)
@@ -5615,9 +6055,24 @@ public final class java$lang$StrictMath : java$lang$Object {
         return try I.java$lang$StrictMath_toIntExact_J__I(a0)
     }
 
+    fileprivate static let java$lang$StrictMath_multiplyFull_I_I__J = svoker("multiplyFull", returns: jlong.jniType, arguments: (jint.jniType, jint.jniType))
+    public static func multiplyFull(_ a0: jint, _ a1: jint) throws -> jlong {
+        return try I.java$lang$StrictMath_multiplyFull_I_I__J(a0, a1)
+    }
+
+    fileprivate static let java$lang$StrictMath_multiplyHigh_J_J__J = svoker("multiplyHigh", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
+    public static func multiplyHigh(_ a0: jlong, _ a1: jlong) throws -> jlong {
+        return try I.java$lang$StrictMath_multiplyHigh_J_J__J(a0, a1)
+    }
+
     fileprivate static let java$lang$StrictMath_floorDiv_I_I__I = svoker("floorDiv", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
     public static func floorDiv(_ a0: jint, _ a1: jint) throws -> jint {
         return try I.java$lang$StrictMath_floorDiv_I_I__I(a0, a1)
+    }
+
+    fileprivate static let java$lang$StrictMath_floorDiv_J_I__J = svoker("floorDiv", returns: jlong.jniType, arguments: (jlong.jniType, jint.jniType))
+    public static func floorDiv(_ a0: jlong, _ a1: jint) throws -> jlong {
+        return try I.java$lang$StrictMath_floorDiv_J_I__J(a0, a1)
     }
 
     fileprivate static let java$lang$StrictMath_floorDiv_J_J__J = svoker("floorDiv", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
@@ -5628,6 +6083,11 @@ public final class java$lang$StrictMath : java$lang$Object {
     fileprivate static let java$lang$StrictMath_floorMod_I_I__I = svoker("floorMod", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
     public static func floorMod(_ a0: jint, _ a1: jint) throws -> jint {
         return try I.java$lang$StrictMath_floorMod_I_I__I(a0, a1)
+    }
+
+    fileprivate static let java$lang$StrictMath_floorMod_J_I__I = svoker("floorMod", returns: jint.jniType, arguments: (jlong.jniType, jint.jniType))
+    public static func floorMod(_ a0: jlong, _ a1: jint) throws -> jint {
+        return try I.java$lang$StrictMath_floorMod_J_I__I(a0, a1)
     }
 
     fileprivate static let java$lang$StrictMath_floorMod_J_J__J = svoker("floorMod", returns: jlong.jniType, arguments: (jlong.jniType, jlong.jniType))
@@ -5693,6 +6153,16 @@ public final class java$lang$StrictMath : java$lang$Object {
     fileprivate static let java$lang$StrictMath_min_D_D__D = svoker("min", returns: jdouble.jniType, arguments: (jdouble.jniType, jdouble.jniType))
     public static func min(_ a0: jdouble, _ a1: jdouble) throws -> jdouble {
         return try I.java$lang$StrictMath_min_D_D__D(a0, a1)
+    }
+
+    fileprivate static let java$lang$StrictMath_fma_D_D_D__D = svoker("fma", returns: jdouble.jniType, arguments: (jdouble.jniType, jdouble.jniType, jdouble.jniType))
+    public static func fma(_ a0: jdouble, _ a1: jdouble, _ a2: jdouble) throws -> jdouble {
+        return try I.java$lang$StrictMath_fma_D_D_D__D(a0, a1, a2)
+    }
+
+    fileprivate static let java$lang$StrictMath_fma_F_F_F__F = svoker("fma", returns: jfloat.jniType, arguments: (jfloat.jniType, jfloat.jniType, jfloat.jniType))
+    public static func fma(_ a0: jfloat, _ a1: jfloat, _ a2: jfloat) throws -> jfloat {
+        return try I.java$lang$StrictMath_fma_F_F_F__F(a0, a1, a2)
     }
 
     fileprivate static let java$lang$StrictMath_ulp_D__D = svoker("ulp", returns: jdouble.jniType, arguments: (jdouble.jniType))
@@ -5886,6 +6356,8 @@ public final class java$lang$StringBuffer : java$lang$AbstractStringBuilder, jav
     fileprivate static let java$lang$StringBuffer_lastIndexOf_java$lang$String_I__I = invoker("lastIndexOf", returns: jint.jniType, arguments: (JObjectType("java/lang/String"), jint.jniType))
     fileprivate static let java$lang$StringBuffer_reverse__java$lang$StringBuffer = invoker("reverse", returns: JObjectType("java/lang/StringBuffer"))
     fileprivate static let java$lang$StringBuffer_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$lang$StringBuffer_codePoints__java$util$stream$IntStream = invoker("codePoints", returns: JObjectType("java/util/stream/IntStream"))
+    fileprivate static let java$lang$StringBuffer_chars__java$util$stream$IntStream = invoker("chars", returns: JObjectType("java/util/stream/IntStream"))
     fileprivate static let java$lang$StringBuffer_reverse__java$lang$AbstractStringBuilder = invoker("reverse", returns: JObjectType("java/lang/AbstractStringBuilder"))
     fileprivate static let java$lang$StringBuffer_insert_I_D__java$lang$AbstractStringBuilder = invoker("insert", returns: JObjectType("java/lang/AbstractStringBuilder"), arguments: (jint.jniType, jdouble.jniType))
     fileprivate static let java$lang$StringBuffer_insert_I_F__java$lang$AbstractStringBuilder = invoker("insert", returns: JObjectType("java/lang/AbstractStringBuilder"), arguments: (jint.jniType, jfloat.jniType))
@@ -5985,6 +6457,8 @@ public final class java$lang$StringBuilder : java$lang$AbstractStringBuilder, ja
     fileprivate static let java$lang$StringBuilder_lastIndexOf_java$lang$String_I__I = invoker("lastIndexOf", returns: jint.jniType, arguments: (JObjectType("java/lang/String"), jint.jniType))
     fileprivate static let java$lang$StringBuilder_reverse__java$lang$StringBuilder = invoker("reverse", returns: JObjectType("java/lang/StringBuilder"))
     fileprivate static let java$lang$StringBuilder_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$lang$StringBuilder_codePoints__java$util$stream$IntStream = invoker("codePoints", returns: JObjectType("java/util/stream/IntStream"))
+    fileprivate static let java$lang$StringBuilder_chars__java$util$stream$IntStream = invoker("chars", returns: JObjectType("java/util/stream/IntStream"))
     fileprivate static let java$lang$StringBuilder_reverse__java$lang$AbstractStringBuilder = invoker("reverse", returns: JObjectType("java/lang/AbstractStringBuilder"))
     fileprivate static let java$lang$StringBuilder_insert_I_D__java$lang$AbstractStringBuilder = invoker("insert", returns: JObjectType("java/lang/AbstractStringBuilder"), arguments: (jint.jniType, jdouble.jniType))
     fileprivate static let java$lang$StringBuilder_insert_I_F__java$lang$AbstractStringBuilder = invoker("insert", returns: JObjectType("java/lang/AbstractStringBuilder"), arguments: (jint.jniType, jfloat.jniType))
@@ -6290,6 +6764,16 @@ open class java$lang$AbstractStringBuilder : java$lang$Object, java$lang$Appenda
     }
 
     fileprivate static let java$lang$AbstractStringBuilder_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$lang$AbstractStringBuilder_chars__java$util$stream$IntStream = invoker("chars", returns: JObjectType("java/util/stream/IntStream"))
+    public func chars() throws -> java$util$stream$IntStream? {
+        return try JVM.sharedJVM.construct(I.java$lang$AbstractStringBuilder_chars__java$util$stream$IntStream(jobj)()) as java$util$stream$IntStream$Impl?
+    }
+
+    fileprivate static let java$lang$AbstractStringBuilder_codePoints__java$util$stream$IntStream = invoker("codePoints", returns: JObjectType("java/util/stream/IntStream"))
+    public func codePoints() throws -> java$util$stream$IntStream? {
+        return try JVM.sharedJVM.construct(I.java$lang$AbstractStringBuilder_codePoints__java$util$stream$IntStream(jobj)()) as java$util$stream$IntStream$Impl?
+    }
+
     fileprivate static let java$lang$AbstractStringBuilder_append_C__java$lang$Appendable = invoker("append", returns: JObjectType("java/lang/Appendable"), arguments: (jchar.jniType))
     public func append(_ a0: jchar) throws -> java$lang$Appendable? {
         return try JVM.sharedJVM.construct(I.java$lang$AbstractStringBuilder_append_C__java$lang$Appendable(jobj)(a0)) as java$lang$Appendable$Impl?
@@ -6351,6 +6835,11 @@ open class java$lang$Thread : java$lang$Object, java$lang$Runnable {
         return try I.java$lang$Thread_sleep_J_I__V(a0, a1)
     }
 
+    fileprivate static let java$lang$Thread_onSpinWait__V = svoker("onSpinWait", returns: JVoid.jniType)
+    public static func onSpinWait() throws -> Void {
+        return try I.java$lang$Thread_onSpinWait__V()
+    }
+
     fileprivate static let java$lang$Thread_init__V = constructor()
     public convenience init() throws {
         try self.init(creator: I.java$lang$Thread_init__V())
@@ -6389,6 +6878,11 @@ open class java$lang$Thread : java$lang$Object, java$lang$Runnable {
     fileprivate static let java$lang$Thread_init_java$lang$ThreadGroup_java$lang$Runnable_java$lang$String_J__V = constructor((JObjectType("java/lang/ThreadGroup"), JObjectType("java/lang/Runnable"), JObjectType("java/lang/String"), jlong.jniType))
     public convenience init(_ a0: java$lang$ThreadGroup?, _ a1: java$lang$Runnable?, _ a2: java$lang$String?, _ a3: jlong) throws {
         try self.init(creator: I.java$lang$Thread_init_java$lang$ThreadGroup_java$lang$Runnable_java$lang$String_J__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3))
+    }
+
+    fileprivate static let java$lang$Thread_init_java$lang$ThreadGroup_java$lang$Runnable_java$lang$String_J_Z__V = constructor((JObjectType("java/lang/ThreadGroup"), JObjectType("java/lang/Runnable"), JObjectType("java/lang/String"), jlong.jniType, jboolean.jniType))
+    public convenience init(_ a0: java$lang$ThreadGroup?, _ a1: java$lang$Runnable?, _ a2: java$lang$String?, _ a3: jlong, _ a4: jboolean) throws {
+        try self.init(creator: I.java$lang$Thread_init_java$lang$ThreadGroup_java$lang$Runnable_java$lang$String_J_Z__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4))
     }
 
     fileprivate static let java$lang$Thread_start__V = invoker("start", returns: JVoid.jniType)
@@ -7913,6 +8407,11 @@ open class java$lang$IndexOutOfBoundsException : java$lang$RuntimeException {
         try self.init(creator: I.java$lang$IndexOutOfBoundsException_init_java$lang$String__V(a0?.jobj ?? nil))
     }
 
+    fileprivate static let java$lang$IndexOutOfBoundsException_init_I__V = constructor((jint.jniType))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$lang$IndexOutOfBoundsException_init_I__V(a0))
+    }
+
 }
 
 public typealias java$lang$IndexOutOfBoundsException$Impl = java$lang$IndexOutOfBoundsException
@@ -7929,14 +8428,14 @@ open class java$lang$ArrayIndexOutOfBoundsException : java$lang$IndexOutOfBounds
         try self.init(creator: I.java$lang$ArrayIndexOutOfBoundsException_init__V())
     }
 
-    fileprivate static let java$lang$ArrayIndexOutOfBoundsException_init_I__V = constructor((jint.jniType))
-    public convenience init(_ a0: jint) throws {
-        try self.init(creator: I.java$lang$ArrayIndexOutOfBoundsException_init_I__V(a0))
-    }
-
     fileprivate static let java$lang$ArrayIndexOutOfBoundsException_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
     public convenience init(_ a0: java$lang$String?) throws {
         try self.init(creator: I.java$lang$ArrayIndexOutOfBoundsException_init_java$lang$String__V(a0?.jobj ?? nil))
+    }
+
+    fileprivate static let java$lang$ArrayIndexOutOfBoundsException_init_I__V = constructor((jint.jniType))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$lang$ArrayIndexOutOfBoundsException_init_I__V(a0))
     }
 
 }
@@ -8103,7 +8602,7 @@ public final class java$lang$Void : java$lang$Object {
 
     fileprivate static let java$lang$Void__TYPE__java$lang$Class = J.saccessor("TYPE", type: JObjectType("java/lang/Class"))
     public static var TYPE: java$lang$Class? {
-        get { return java$lang$Class$Impl(constructor: I.java$lang$Void__TYPE__java$lang$Class.getter()) }
+        get { return java$lang$Class$Impl(reference: I.java$lang$Void__TYPE__java$lang$Class.getter()) }
     }
 
 }
@@ -8393,6 +8892,8 @@ public extension java$lang$FunctionalInterface {
 }
 
 public protocol java$lang$Deprecated : java$lang$annotation$Annotation {
+    func since() throws -> java$lang$String?
+    func forRemoval() throws -> jboolean
 }
 
 open class java$lang$Deprecated$Impl : java$lang$Object, java$lang$Deprecated, java$lang$annotation$Annotation {
@@ -8402,11 +8903,21 @@ open class java$lang$Deprecated$Impl : java$lang$Object, java$lang$Deprecated, j
     /// Returns the internal JNI name for this class: "java/lang/Deprecated"
     open class override func jniName() -> String { return "java/lang/Deprecated" }
 
+    fileprivate static let java$lang$Deprecated_since__java$lang$String = invoker("since", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$lang$Deprecated_forRemoval__Z = invoker("forRemoval", returns: jboolean.jniType)
 }
 
 public extension java$lang$Deprecated {
     private typealias J = java$lang$Deprecated
     private typealias I = java$lang$Deprecated$Impl
+
+    func since() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$lang$Deprecated_since__java$lang$String(jobj)()) as java$lang$String$Impl?
+    }
+
+    func forRemoval() throws -> jboolean {
+        return try I.java$lang$Deprecated_forRemoval__Z(jobj)()
+    }
 
 }
 
@@ -8479,517 +8990,662 @@ public final class java$lang$Character$UnicodeScript : java$lang$Enum {
 
     fileprivate static let java$lang$Character$UnicodeScript__COMMON__java$lang$Character$UnicodeScript = J.saccessor("COMMON", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var COMMON: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__COMMON__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__COMMON__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__LATIN__java$lang$Character$UnicodeScript = J.saccessor("LATIN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var LATIN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__LATIN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LATIN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__GREEK__java$lang$Character$UnicodeScript = J.saccessor("GREEK", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var GREEK: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__GREEK__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__GREEK__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__CYRILLIC__java$lang$Character$UnicodeScript = J.saccessor("CYRILLIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var CYRILLIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__CYRILLIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CYRILLIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__ARMENIAN__java$lang$Character$UnicodeScript = J.saccessor("ARMENIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var ARMENIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__ARMENIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__ARMENIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__HEBREW__java$lang$Character$UnicodeScript = J.saccessor("HEBREW", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var HEBREW: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__HEBREW__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__HEBREW__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__ARABIC__java$lang$Character$UnicodeScript = J.saccessor("ARABIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var ARABIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__ARABIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__ARABIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SYRIAC__java$lang$Character$UnicodeScript = J.saccessor("SYRIAC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SYRIAC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SYRIAC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SYRIAC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__THAANA__java$lang$Character$UnicodeScript = J.saccessor("THAANA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var THAANA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__THAANA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__THAANA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__DEVANAGARI__java$lang$Character$UnicodeScript = J.saccessor("DEVANAGARI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var DEVANAGARI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__DEVANAGARI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__DEVANAGARI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BENGALI__java$lang$Character$UnicodeScript = J.saccessor("BENGALI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BENGALI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BENGALI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BENGALI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__GURMUKHI__java$lang$Character$UnicodeScript = J.saccessor("GURMUKHI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var GURMUKHI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__GURMUKHI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__GURMUKHI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__GUJARATI__java$lang$Character$UnicodeScript = J.saccessor("GUJARATI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var GUJARATI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__GUJARATI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__GUJARATI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__ORIYA__java$lang$Character$UnicodeScript = J.saccessor("ORIYA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var ORIYA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__ORIYA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__ORIYA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TAMIL__java$lang$Character$UnicodeScript = J.saccessor("TAMIL", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TAMIL: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TAMIL__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TAMIL__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TELUGU__java$lang$Character$UnicodeScript = J.saccessor("TELUGU", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TELUGU: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TELUGU__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TELUGU__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__KANNADA__java$lang$Character$UnicodeScript = J.saccessor("KANNADA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var KANNADA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__KANNADA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__KANNADA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__MALAYALAM__java$lang$Character$UnicodeScript = J.saccessor("MALAYALAM", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var MALAYALAM: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__MALAYALAM__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MALAYALAM__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SINHALA__java$lang$Character$UnicodeScript = J.saccessor("SINHALA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SINHALA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SINHALA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SINHALA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__THAI__java$lang$Character$UnicodeScript = J.saccessor("THAI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var THAI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__THAI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__THAI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__LAO__java$lang$Character$UnicodeScript = J.saccessor("LAO", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var LAO: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__LAO__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LAO__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TIBETAN__java$lang$Character$UnicodeScript = J.saccessor("TIBETAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TIBETAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TIBETAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TIBETAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__MYANMAR__java$lang$Character$UnicodeScript = J.saccessor("MYANMAR", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var MYANMAR: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__MYANMAR__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MYANMAR__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__GEORGIAN__java$lang$Character$UnicodeScript = J.saccessor("GEORGIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var GEORGIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__GEORGIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__GEORGIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__HANGUL__java$lang$Character$UnicodeScript = J.saccessor("HANGUL", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var HANGUL: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__HANGUL__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__HANGUL__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__ETHIOPIC__java$lang$Character$UnicodeScript = J.saccessor("ETHIOPIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var ETHIOPIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__ETHIOPIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__ETHIOPIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__CHEROKEE__java$lang$Character$UnicodeScript = J.saccessor("CHEROKEE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var CHEROKEE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__CHEROKEE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CHEROKEE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__CANADIAN_ABORIGINAL__java$lang$Character$UnicodeScript = J.saccessor("CANADIAN_ABORIGINAL", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var CANADIAN_ABORIGINAL: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__CANADIAN_ABORIGINAL__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CANADIAN_ABORIGINAL__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__OGHAM__java$lang$Character$UnicodeScript = J.saccessor("OGHAM", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var OGHAM: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__OGHAM__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OGHAM__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__RUNIC__java$lang$Character$UnicodeScript = J.saccessor("RUNIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var RUNIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__RUNIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__RUNIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__KHMER__java$lang$Character$UnicodeScript = J.saccessor("KHMER", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var KHMER: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__KHMER__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__KHMER__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__MONGOLIAN__java$lang$Character$UnicodeScript = J.saccessor("MONGOLIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var MONGOLIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__MONGOLIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MONGOLIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__HIRAGANA__java$lang$Character$UnicodeScript = J.saccessor("HIRAGANA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var HIRAGANA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__HIRAGANA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__HIRAGANA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__KATAKANA__java$lang$Character$UnicodeScript = J.saccessor("KATAKANA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var KATAKANA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__KATAKANA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__KATAKANA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BOPOMOFO__java$lang$Character$UnicodeScript = J.saccessor("BOPOMOFO", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BOPOMOFO: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BOPOMOFO__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BOPOMOFO__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__HAN__java$lang$Character$UnicodeScript = J.saccessor("HAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var HAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__HAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__HAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__YI__java$lang$Character$UnicodeScript = J.saccessor("YI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var YI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__YI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__YI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__OLD_ITALIC__java$lang$Character$UnicodeScript = J.saccessor("OLD_ITALIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var OLD_ITALIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__OLD_ITALIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OLD_ITALIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__GOTHIC__java$lang$Character$UnicodeScript = J.saccessor("GOTHIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var GOTHIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__GOTHIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__GOTHIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__DESERET__java$lang$Character$UnicodeScript = J.saccessor("DESERET", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var DESERET: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__DESERET__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__DESERET__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__INHERITED__java$lang$Character$UnicodeScript = J.saccessor("INHERITED", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var INHERITED: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__INHERITED__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__INHERITED__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TAGALOG__java$lang$Character$UnicodeScript = J.saccessor("TAGALOG", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TAGALOG: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TAGALOG__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TAGALOG__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__HANUNOO__java$lang$Character$UnicodeScript = J.saccessor("HANUNOO", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var HANUNOO: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__HANUNOO__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__HANUNOO__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BUHID__java$lang$Character$UnicodeScript = J.saccessor("BUHID", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BUHID: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BUHID__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BUHID__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TAGBANWA__java$lang$Character$UnicodeScript = J.saccessor("TAGBANWA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TAGBANWA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TAGBANWA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TAGBANWA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__LIMBU__java$lang$Character$UnicodeScript = J.saccessor("LIMBU", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var LIMBU: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__LIMBU__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LIMBU__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TAI_LE__java$lang$Character$UnicodeScript = J.saccessor("TAI_LE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TAI_LE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TAI_LE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TAI_LE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__LINEAR_B__java$lang$Character$UnicodeScript = J.saccessor("LINEAR_B", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var LINEAR_B: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__LINEAR_B__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LINEAR_B__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__UGARITIC__java$lang$Character$UnicodeScript = J.saccessor("UGARITIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var UGARITIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__UGARITIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__UGARITIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SHAVIAN__java$lang$Character$UnicodeScript = J.saccessor("SHAVIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SHAVIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SHAVIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SHAVIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__OSMANYA__java$lang$Character$UnicodeScript = J.saccessor("OSMANYA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var OSMANYA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__OSMANYA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OSMANYA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__CYPRIOT__java$lang$Character$UnicodeScript = J.saccessor("CYPRIOT", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var CYPRIOT: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__CYPRIOT__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CYPRIOT__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BRAILLE__java$lang$Character$UnicodeScript = J.saccessor("BRAILLE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BRAILLE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BRAILLE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BRAILLE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BUGINESE__java$lang$Character$UnicodeScript = J.saccessor("BUGINESE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BUGINESE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BUGINESE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BUGINESE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__COPTIC__java$lang$Character$UnicodeScript = J.saccessor("COPTIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var COPTIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__COPTIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__COPTIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__NEW_TAI_LUE__java$lang$Character$UnicodeScript = J.saccessor("NEW_TAI_LUE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var NEW_TAI_LUE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__NEW_TAI_LUE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__NEW_TAI_LUE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__GLAGOLITIC__java$lang$Character$UnicodeScript = J.saccessor("GLAGOLITIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var GLAGOLITIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__GLAGOLITIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__GLAGOLITIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TIFINAGH__java$lang$Character$UnicodeScript = J.saccessor("TIFINAGH", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TIFINAGH: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TIFINAGH__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TIFINAGH__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SYLOTI_NAGRI__java$lang$Character$UnicodeScript = J.saccessor("SYLOTI_NAGRI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SYLOTI_NAGRI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SYLOTI_NAGRI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SYLOTI_NAGRI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__OLD_PERSIAN__java$lang$Character$UnicodeScript = J.saccessor("OLD_PERSIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var OLD_PERSIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__OLD_PERSIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OLD_PERSIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__KHAROSHTHI__java$lang$Character$UnicodeScript = J.saccessor("KHAROSHTHI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var KHAROSHTHI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__KHAROSHTHI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__KHAROSHTHI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BALINESE__java$lang$Character$UnicodeScript = J.saccessor("BALINESE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BALINESE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BALINESE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BALINESE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__CUNEIFORM__java$lang$Character$UnicodeScript = J.saccessor("CUNEIFORM", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var CUNEIFORM: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__CUNEIFORM__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CUNEIFORM__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__PHOENICIAN__java$lang$Character$UnicodeScript = J.saccessor("PHOENICIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var PHOENICIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__PHOENICIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__PHOENICIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__PHAGS_PA__java$lang$Character$UnicodeScript = J.saccessor("PHAGS_PA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var PHAGS_PA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__PHAGS_PA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__PHAGS_PA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__NKO__java$lang$Character$UnicodeScript = J.saccessor("NKO", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var NKO: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__NKO__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__NKO__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SUNDANESE__java$lang$Character$UnicodeScript = J.saccessor("SUNDANESE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SUNDANESE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SUNDANESE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SUNDANESE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BATAK__java$lang$Character$UnicodeScript = J.saccessor("BATAK", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BATAK: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BATAK__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BATAK__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__LEPCHA__java$lang$Character$UnicodeScript = J.saccessor("LEPCHA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var LEPCHA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__LEPCHA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LEPCHA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__OL_CHIKI__java$lang$Character$UnicodeScript = J.saccessor("OL_CHIKI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var OL_CHIKI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__OL_CHIKI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OL_CHIKI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__VAI__java$lang$Character$UnicodeScript = J.saccessor("VAI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var VAI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__VAI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__VAI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SAURASHTRA__java$lang$Character$UnicodeScript = J.saccessor("SAURASHTRA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SAURASHTRA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SAURASHTRA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SAURASHTRA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__KAYAH_LI__java$lang$Character$UnicodeScript = J.saccessor("KAYAH_LI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var KAYAH_LI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__KAYAH_LI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__KAYAH_LI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__REJANG__java$lang$Character$UnicodeScript = J.saccessor("REJANG", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var REJANG: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__REJANG__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__REJANG__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__LYCIAN__java$lang$Character$UnicodeScript = J.saccessor("LYCIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var LYCIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__LYCIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LYCIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__CARIAN__java$lang$Character$UnicodeScript = J.saccessor("CARIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var CARIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__CARIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CARIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__LYDIAN__java$lang$Character$UnicodeScript = J.saccessor("LYDIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var LYDIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__LYDIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LYDIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__CHAM__java$lang$Character$UnicodeScript = J.saccessor("CHAM", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var CHAM: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__CHAM__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CHAM__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TAI_THAM__java$lang$Character$UnicodeScript = J.saccessor("TAI_THAM", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TAI_THAM: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TAI_THAM__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TAI_THAM__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TAI_VIET__java$lang$Character$UnicodeScript = J.saccessor("TAI_VIET", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TAI_VIET: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TAI_VIET__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TAI_VIET__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__AVESTAN__java$lang$Character$UnicodeScript = J.saccessor("AVESTAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var AVESTAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__AVESTAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__AVESTAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__EGYPTIAN_HIEROGLYPHS__java$lang$Character$UnicodeScript = J.saccessor("EGYPTIAN_HIEROGLYPHS", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var EGYPTIAN_HIEROGLYPHS: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__EGYPTIAN_HIEROGLYPHS__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__EGYPTIAN_HIEROGLYPHS__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SAMARITAN__java$lang$Character$UnicodeScript = J.saccessor("SAMARITAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SAMARITAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SAMARITAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SAMARITAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__MANDAIC__java$lang$Character$UnicodeScript = J.saccessor("MANDAIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var MANDAIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__MANDAIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MANDAIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__LISU__java$lang$Character$UnicodeScript = J.saccessor("LISU", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var LISU: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__LISU__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LISU__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BAMUM__java$lang$Character$UnicodeScript = J.saccessor("BAMUM", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BAMUM: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BAMUM__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BAMUM__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__JAVANESE__java$lang$Character$UnicodeScript = J.saccessor("JAVANESE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var JAVANESE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__JAVANESE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__JAVANESE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__MEETEI_MAYEK__java$lang$Character$UnicodeScript = J.saccessor("MEETEI_MAYEK", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var MEETEI_MAYEK: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__MEETEI_MAYEK__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MEETEI_MAYEK__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__IMPERIAL_ARAMAIC__java$lang$Character$UnicodeScript = J.saccessor("IMPERIAL_ARAMAIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var IMPERIAL_ARAMAIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__IMPERIAL_ARAMAIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__IMPERIAL_ARAMAIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__OLD_SOUTH_ARABIAN__java$lang$Character$UnicodeScript = J.saccessor("OLD_SOUTH_ARABIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var OLD_SOUTH_ARABIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__OLD_SOUTH_ARABIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OLD_SOUTH_ARABIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__INSCRIPTIONAL_PARTHIAN__java$lang$Character$UnicodeScript = J.saccessor("INSCRIPTIONAL_PARTHIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var INSCRIPTIONAL_PARTHIAN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__INSCRIPTIONAL_PARTHIAN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__INSCRIPTIONAL_PARTHIAN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__INSCRIPTIONAL_PAHLAVI__java$lang$Character$UnicodeScript = J.saccessor("INSCRIPTIONAL_PAHLAVI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var INSCRIPTIONAL_PAHLAVI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__INSCRIPTIONAL_PAHLAVI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__INSCRIPTIONAL_PAHLAVI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__OLD_TURKIC__java$lang$Character$UnicodeScript = J.saccessor("OLD_TURKIC", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var OLD_TURKIC: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__OLD_TURKIC__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OLD_TURKIC__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__BRAHMI__java$lang$Character$UnicodeScript = J.saccessor("BRAHMI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var BRAHMI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__BRAHMI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BRAHMI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__KAITHI__java$lang$Character$UnicodeScript = J.saccessor("KAITHI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var KAITHI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__KAITHI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__KAITHI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__MEROITIC_HIEROGLYPHS__java$lang$Character$UnicodeScript = J.saccessor("MEROITIC_HIEROGLYPHS", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var MEROITIC_HIEROGLYPHS: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__MEROITIC_HIEROGLYPHS__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MEROITIC_HIEROGLYPHS__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__MEROITIC_CURSIVE__java$lang$Character$UnicodeScript = J.saccessor("MEROITIC_CURSIVE", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var MEROITIC_CURSIVE: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__MEROITIC_CURSIVE__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MEROITIC_CURSIVE__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SORA_SOMPENG__java$lang$Character$UnicodeScript = J.saccessor("SORA_SOMPENG", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SORA_SOMPENG: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SORA_SOMPENG__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SORA_SOMPENG__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__CHAKMA__java$lang$Character$UnicodeScript = J.saccessor("CHAKMA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var CHAKMA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__CHAKMA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CHAKMA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__SHARADA__java$lang$Character$UnicodeScript = J.saccessor("SHARADA", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var SHARADA: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__SHARADA__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SHARADA__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__TAKRI__java$lang$Character$UnicodeScript = J.saccessor("TAKRI", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var TAKRI: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__TAKRI__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TAKRI__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__MIAO__java$lang$Character$UnicodeScript = J.saccessor("MIAO", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var MIAO: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__MIAO__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MIAO__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__CAUCASIAN_ALBANIAN__java$lang$Character$UnicodeScript = J.saccessor("CAUCASIAN_ALBANIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var CAUCASIAN_ALBANIAN: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__CAUCASIAN_ALBANIAN__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__BASSA_VAH__java$lang$Character$UnicodeScript = J.saccessor("BASSA_VAH", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var BASSA_VAH: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__BASSA_VAH__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__DUPLOYAN__java$lang$Character$UnicodeScript = J.saccessor("DUPLOYAN", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var DUPLOYAN: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__DUPLOYAN__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__ELBASAN__java$lang$Character$UnicodeScript = J.saccessor("ELBASAN", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var ELBASAN: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__ELBASAN__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__GRANTHA__java$lang$Character$UnicodeScript = J.saccessor("GRANTHA", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var GRANTHA: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__GRANTHA__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__PAHAWH_HMONG__java$lang$Character$UnicodeScript = J.saccessor("PAHAWH_HMONG", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var PAHAWH_HMONG: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__PAHAWH_HMONG__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__KHOJKI__java$lang$Character$UnicodeScript = J.saccessor("KHOJKI", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var KHOJKI: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__KHOJKI__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__LINEAR_A__java$lang$Character$UnicodeScript = J.saccessor("LINEAR_A", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var LINEAR_A: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__LINEAR_A__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__MAHAJANI__java$lang$Character$UnicodeScript = J.saccessor("MAHAJANI", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var MAHAJANI: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MAHAJANI__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__MANICHAEAN__java$lang$Character$UnicodeScript = J.saccessor("MANICHAEAN", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var MANICHAEAN: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MANICHAEAN__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__MENDE_KIKAKUI__java$lang$Character$UnicodeScript = J.saccessor("MENDE_KIKAKUI", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var MENDE_KIKAKUI: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MENDE_KIKAKUI__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__MODI__java$lang$Character$UnicodeScript = J.saccessor("MODI", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var MODI: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MODI__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__MRO__java$lang$Character$UnicodeScript = J.saccessor("MRO", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var MRO: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MRO__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__OLD_NORTH_ARABIAN__java$lang$Character$UnicodeScript = J.saccessor("OLD_NORTH_ARABIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var OLD_NORTH_ARABIAN: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OLD_NORTH_ARABIAN__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__NABATAEAN__java$lang$Character$UnicodeScript = J.saccessor("NABATAEAN", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var NABATAEAN: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__NABATAEAN__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__PALMYRENE__java$lang$Character$UnicodeScript = J.saccessor("PALMYRENE", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var PALMYRENE: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__PALMYRENE__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__PAU_CIN_HAU__java$lang$Character$UnicodeScript = J.saccessor("PAU_CIN_HAU", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var PAU_CIN_HAU: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__PAU_CIN_HAU__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__OLD_PERMIC__java$lang$Character$UnicodeScript = J.saccessor("OLD_PERMIC", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var OLD_PERMIC: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OLD_PERMIC__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__PSALTER_PAHLAVI__java$lang$Character$UnicodeScript = J.saccessor("PSALTER_PAHLAVI", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var PSALTER_PAHLAVI: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__PSALTER_PAHLAVI__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__SIDDHAM__java$lang$Character$UnicodeScript = J.saccessor("SIDDHAM", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var SIDDHAM: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SIDDHAM__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__KHUDAWADI__java$lang$Character$UnicodeScript = J.saccessor("KHUDAWADI", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var KHUDAWADI: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__KHUDAWADI__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__TIRHUTA__java$lang$Character$UnicodeScript = J.saccessor("TIRHUTA", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var TIRHUTA: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__TIRHUTA__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__WARANG_CITI__java$lang$Character$UnicodeScript = J.saccessor("WARANG_CITI", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var WARANG_CITI: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__WARANG_CITI__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__AHOM__java$lang$Character$UnicodeScript = J.saccessor("AHOM", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var AHOM: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__AHOM__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__ANATOLIAN_HIEROGLYPHS__java$lang$Character$UnicodeScript = J.saccessor("ANATOLIAN_HIEROGLYPHS", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var ANATOLIAN_HIEROGLYPHS: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__ANATOLIAN_HIEROGLYPHS__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__HATRAN__java$lang$Character$UnicodeScript = J.saccessor("HATRAN", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var HATRAN: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__HATRAN__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__MULTANI__java$lang$Character$UnicodeScript = J.saccessor("MULTANI", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var MULTANI: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__MULTANI__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__OLD_HUNGARIAN__java$lang$Character$UnicodeScript = J.saccessor("OLD_HUNGARIAN", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var OLD_HUNGARIAN: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__OLD_HUNGARIAN__java$lang$Character$UnicodeScript.getter()) }
+    }
+
+    fileprivate static let java$lang$Character$UnicodeScript__SIGNWRITING__java$lang$Character$UnicodeScript = J.saccessor("SIGNWRITING", type: JObjectType("java/lang/Character$UnicodeScript"))
+    public static var SIGNWRITING: java$lang$Character$UnicodeScript? {
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__SIGNWRITING__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript__UNKNOWN__java$lang$Character$UnicodeScript = J.saccessor("UNKNOWN", type: JObjectType("java/lang/Character$UnicodeScript"))
     public static var UNKNOWN: java$lang$Character$UnicodeScript? {
-        get { return java$lang$Character$UnicodeScript$Impl(constructor: I.java$lang$Character$UnicodeScript__UNKNOWN__java$lang$Character$UnicodeScript.getter()) }
+        get { return java$lang$Character$UnicodeScript$Impl(reference: I.java$lang$Character$UnicodeScript__UNKNOWN__java$lang$Character$UnicodeScript.getter()) }
     }
 
     fileprivate static let java$lang$Character$UnicodeScript_values__Ajava$lang$Character$UnicodeScript = svoker("values", returns: JArray(JObjectType("java/lang/Character$UnicodeScript")))
@@ -9025,32 +9681,32 @@ public final class java$lang$Thread$State : java$lang$Enum {
 
     fileprivate static let java$lang$Thread$State__NEW__java$lang$Thread$State = J.saccessor("NEW", type: JObjectType("java/lang/Thread$State"))
     public static var NEW: java$lang$Thread$State? {
-        get { return java$lang$Thread$State$Impl(constructor: I.java$lang$Thread$State__NEW__java$lang$Thread$State.getter()) }
+        get { return java$lang$Thread$State$Impl(reference: I.java$lang$Thread$State__NEW__java$lang$Thread$State.getter()) }
     }
 
     fileprivate static let java$lang$Thread$State__RUNNABLE__java$lang$Thread$State = J.saccessor("RUNNABLE", type: JObjectType("java/lang/Thread$State"))
     public static var RUNNABLE: java$lang$Thread$State? {
-        get { return java$lang$Thread$State$Impl(constructor: I.java$lang$Thread$State__RUNNABLE__java$lang$Thread$State.getter()) }
+        get { return java$lang$Thread$State$Impl(reference: I.java$lang$Thread$State__RUNNABLE__java$lang$Thread$State.getter()) }
     }
 
     fileprivate static let java$lang$Thread$State__BLOCKED__java$lang$Thread$State = J.saccessor("BLOCKED", type: JObjectType("java/lang/Thread$State"))
     public static var BLOCKED: java$lang$Thread$State? {
-        get { return java$lang$Thread$State$Impl(constructor: I.java$lang$Thread$State__BLOCKED__java$lang$Thread$State.getter()) }
+        get { return java$lang$Thread$State$Impl(reference: I.java$lang$Thread$State__BLOCKED__java$lang$Thread$State.getter()) }
     }
 
     fileprivate static let java$lang$Thread$State__WAITING__java$lang$Thread$State = J.saccessor("WAITING", type: JObjectType("java/lang/Thread$State"))
     public static var WAITING: java$lang$Thread$State? {
-        get { return java$lang$Thread$State$Impl(constructor: I.java$lang$Thread$State__WAITING__java$lang$Thread$State.getter()) }
+        get { return java$lang$Thread$State$Impl(reference: I.java$lang$Thread$State__WAITING__java$lang$Thread$State.getter()) }
     }
 
     fileprivate static let java$lang$Thread$State__TIMED_WAITING__java$lang$Thread$State = J.saccessor("TIMED_WAITING", type: JObjectType("java/lang/Thread$State"))
     public static var TIMED_WAITING: java$lang$Thread$State? {
-        get { return java$lang$Thread$State$Impl(constructor: I.java$lang$Thread$State__TIMED_WAITING__java$lang$Thread$State.getter()) }
+        get { return java$lang$Thread$State$Impl(reference: I.java$lang$Thread$State__TIMED_WAITING__java$lang$Thread$State.getter()) }
     }
 
     fileprivate static let java$lang$Thread$State__TERMINATED__java$lang$Thread$State = J.saccessor("TERMINATED", type: JObjectType("java/lang/Thread$State"))
     public static var TERMINATED: java$lang$Thread$State? {
-        get { return java$lang$Thread$State$Impl(constructor: I.java$lang$Thread$State__TERMINATED__java$lang$Thread$State.getter()) }
+        get { return java$lang$Thread$State$Impl(reference: I.java$lang$Thread$State__TERMINATED__java$lang$Thread$State.getter()) }
     }
 
     fileprivate static let java$lang$Thread$State_values__Ajava$lang$Thread$State = svoker("values", returns: JArray(JObjectType("java/lang/Thread$State")))
@@ -9076,27 +9732,27 @@ public final class java$lang$ProcessBuilder$Redirect$Type : java$lang$Enum {
 
     fileprivate static let java$lang$ProcessBuilder$Redirect$Type__PIPE__java$lang$ProcessBuilder$Redirect$Type = J.saccessor("PIPE", type: JObjectType("java/lang/ProcessBuilder$Redirect$Type"))
     public static var PIPE: java$lang$ProcessBuilder$Redirect$Type? {
-        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(constructor: I.java$lang$ProcessBuilder$Redirect$Type__PIPE__java$lang$ProcessBuilder$Redirect$Type.getter()) }
+        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(reference: I.java$lang$ProcessBuilder$Redirect$Type__PIPE__java$lang$ProcessBuilder$Redirect$Type.getter()) }
     }
 
     fileprivate static let java$lang$ProcessBuilder$Redirect$Type__INHERIT__java$lang$ProcessBuilder$Redirect$Type = J.saccessor("INHERIT", type: JObjectType("java/lang/ProcessBuilder$Redirect$Type"))
     public static var INHERIT: java$lang$ProcessBuilder$Redirect$Type? {
-        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(constructor: I.java$lang$ProcessBuilder$Redirect$Type__INHERIT__java$lang$ProcessBuilder$Redirect$Type.getter()) }
+        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(reference: I.java$lang$ProcessBuilder$Redirect$Type__INHERIT__java$lang$ProcessBuilder$Redirect$Type.getter()) }
     }
 
     fileprivate static let java$lang$ProcessBuilder$Redirect$Type__READ__java$lang$ProcessBuilder$Redirect$Type = J.saccessor("READ", type: JObjectType("java/lang/ProcessBuilder$Redirect$Type"))
     public static var READ: java$lang$ProcessBuilder$Redirect$Type? {
-        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(constructor: I.java$lang$ProcessBuilder$Redirect$Type__READ__java$lang$ProcessBuilder$Redirect$Type.getter()) }
+        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(reference: I.java$lang$ProcessBuilder$Redirect$Type__READ__java$lang$ProcessBuilder$Redirect$Type.getter()) }
     }
 
     fileprivate static let java$lang$ProcessBuilder$Redirect$Type__WRITE__java$lang$ProcessBuilder$Redirect$Type = J.saccessor("WRITE", type: JObjectType("java/lang/ProcessBuilder$Redirect$Type"))
     public static var WRITE: java$lang$ProcessBuilder$Redirect$Type? {
-        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(constructor: I.java$lang$ProcessBuilder$Redirect$Type__WRITE__java$lang$ProcessBuilder$Redirect$Type.getter()) }
+        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(reference: I.java$lang$ProcessBuilder$Redirect$Type__WRITE__java$lang$ProcessBuilder$Redirect$Type.getter()) }
     }
 
     fileprivate static let java$lang$ProcessBuilder$Redirect$Type__APPEND__java$lang$ProcessBuilder$Redirect$Type = J.saccessor("APPEND", type: JObjectType("java/lang/ProcessBuilder$Redirect$Type"))
     public static var APPEND: java$lang$ProcessBuilder$Redirect$Type? {
-        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(constructor: I.java$lang$ProcessBuilder$Redirect$Type__APPEND__java$lang$ProcessBuilder$Redirect$Type.getter()) }
+        get { return java$lang$ProcessBuilder$Redirect$Type$Impl(reference: I.java$lang$ProcessBuilder$Redirect$Type__APPEND__java$lang$ProcessBuilder$Redirect$Type.getter()) }
     }
 
     fileprivate static let java$lang$ProcessBuilder$Redirect$Type_values__Ajava$lang$ProcessBuilder$Redirect$Type = svoker("values", returns: JArray(JObjectType("java/lang/ProcessBuilder$Redirect$Type")))
@@ -9112,4 +9768,76 @@ public final class java$lang$ProcessBuilder$Redirect$Type : java$lang$Enum {
 }
 
 public typealias java$lang$ProcessBuilder$Redirect$Type$Impl = java$lang$ProcessBuilder$Redirect$Type
+
+public protocol java$lang$ProcessHandle$Info : JavaObject {
+}
+
+open class java$lang$ProcessHandle$Info$Impl : java$lang$Object, java$lang$ProcessHandle$Info {
+    private typealias J = java$lang$ProcessHandle$Info$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/ProcessHandle$Info"
+    open class override func jniName() -> String { return "java/lang/ProcessHandle$Info" }
+
+}
+
+public protocol java$lang$ModuleLayer : JavaObject {
+}
+
+open class java$lang$ModuleLayer$Impl : java$lang$Object, java$lang$ModuleLayer {
+    private typealias J = java$lang$ModuleLayer$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/ModuleLayer"
+    open class override func jniName() -> String { return "java/lang/ModuleLayer" }
+
+}
+
+public protocol java$lang$System$Logger : JavaObject {
+}
+
+open class java$lang$System$Logger$Impl : java$lang$Object, java$lang$System$Logger {
+    private typealias J = java$lang$System$Logger$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/System$Logger"
+    open class override func jniName() -> String { return "java/lang/System$Logger" }
+
+}
+
+public protocol java$lang$Runtime$Version : JavaObject {
+}
+
+open class java$lang$Runtime$Version$Impl : java$lang$Object, java$lang$Runtime$Version {
+    private typealias J = java$lang$Runtime$Version$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/Runtime$Version"
+    open class override func jniName() -> String { return "java/lang/Runtime$Version" }
+
+}
+
+public protocol java$lang$ProcessHandle : JavaObject {
+}
+
+open class java$lang$ProcessHandle$Impl : java$lang$Object, java$lang$ProcessHandle {
+    private typealias J = java$lang$ProcessHandle$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/ProcessHandle"
+    open class override func jniName() -> String { return "java/lang/ProcessHandle" }
+
+}
+
+public protocol java$lang$Module : JavaObject {
+}
+
+open class java$lang$Module$Impl : java$lang$Object, java$lang$Module {
+    private typealias J = java$lang$Module$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/Module"
+    open class override func jniName() -> String { return "java/lang/Module" }
+
+}
 

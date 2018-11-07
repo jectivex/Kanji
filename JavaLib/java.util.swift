@@ -541,6 +541,11 @@ open class java$util$Vector : java$util$AbstractList, java$util$RandomAccess, ja
     fileprivate static let java$util$Vector_addAll_java$util$Collection__Z = invoker("addAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
     fileprivate static let java$util$Vector_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
     fileprivate static let java$util$Vector_retainAll_java$util$Collection__Z = invoker("retainAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$Vector_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
+    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
+        return try I.java$util$Vector_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
+    }
+
     fileprivate static let java$util$Vector_addAll_I_java$util$Collection__Z = invoker("addAll", returns: jboolean.jniType, arguments: (jint.jniType, JObjectType("java/util/Collection")))
     fileprivate static let java$util$Vector_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$Vector_hashCode__I = invoker("hashCode", returns: jint.jniType)
@@ -552,11 +557,6 @@ open class java$util$Vector : java$util$AbstractList, java$util$RandomAccess, ja
     fileprivate static let java$util$Vector_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
     public func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
         return try I.java$util$Vector_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
-    }
-
-    fileprivate static let java$util$Vector_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
-    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
-        return try I.java$util$Vector_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
     }
 
     fileprivate static let java$util$Vector_replaceAll_java$util$function$UnaryOperator__V = invoker("replaceAll", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/UnaryOperator")))
@@ -1063,6 +1063,7 @@ open class java$util$ArrayDeque : java$util$AbstractCollection, java$util$Deque,
         return try I.java$util$ArrayDeque_addLast_java$lang$Object__V(jobj)(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$ArrayDeque_addAll_java$util$Collection__Z = invoker("addAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
     fileprivate static let java$util$ArrayDeque_offerFirst_java$lang$Object__Z = invoker("offerFirst", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     public func offerFirst(_ a0: java$lang$Object?) throws -> jboolean {
         return try I.java$util$ArrayDeque_offerFirst_java$lang$Object__Z(jobj)(a0?.jobj ?? nil)
@@ -1167,6 +1168,23 @@ open class java$util$ArrayDeque : java$util$AbstractCollection, java$util$Deque,
         return try JVM.sharedJVM.construct(I.java$util$ArrayDeque_descendingIterator__java$util$Iterator(jobj)()) as java$util$Iterator$Impl?
     }
 
+    fileprivate static let java$util$ArrayDeque_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
+    public func spliterator() throws -> java$util$Spliterator? {
+        return try JVM.sharedJVM.construct(I.java$util$ArrayDeque_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
+    }
+
+    fileprivate static let java$util$ArrayDeque_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
+    public func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
+        return try I.java$util$ArrayDeque_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$ArrayDeque_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
+    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
+        return try I.java$util$ArrayDeque_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$ArrayDeque_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$ArrayDeque_retainAll_java$util$Collection__Z = invoker("retainAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
     fileprivate static let java$util$ArrayDeque_contains_java$lang$Object__Z = invoker("contains", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$ArrayDeque_remove_java$lang$Object__Z = invoker("remove", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$ArrayDeque_clear__V = invoker("clear", returns: JVoid.jniType)
@@ -1175,11 +1193,6 @@ open class java$util$ArrayDeque : java$util$AbstractCollection, java$util$Deque,
     fileprivate static let java$util$ArrayDeque_clone__java$util$ArrayDeque = invoker("clone", returns: JObjectType("java/util/ArrayDeque"))
     public func clone() throws -> java$util$ArrayDeque? {
         return try JVM.sharedJVM.construct(I.java$util$ArrayDeque_clone__java$util$ArrayDeque(jobj)()) as java$util$ArrayDeque$Impl?
-    }
-
-    fileprivate static let java$util$ArrayDeque_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
-    public func spliterator() throws -> java$util$Spliterator? {
-        return try JVM.sharedJVM.construct(I.java$util$ArrayDeque_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
     }
 
     fileprivate static let java$util$ArrayDeque_clone__java$lang$Object = invoker("clone", returns: JObjectType("java/lang/Object"))
@@ -2162,9 +2175,19 @@ open class java$util$Arrays : java$lang$Object {
         return try I.java$util$Arrays_equals_AJ_AJ__Z(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
     }
 
+    fileprivate static let java$util$Arrays_equals_AJ_I_I_AJ_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jlong.jniType), jint.jniType, jint.jniType, JArray(jlong.jniType), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [jlong]?, _ a1: jint, _ a2: jint, _ a3: [jlong]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_AJ_I_I_AJ_I_I__Z(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
     fileprivate static let java$util$Arrays_equals_AI_AI__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jint.jniType), JArray(jint.jniType)))
     public static func equals(_ a0: [jint]?, _ a1: [jint]?) throws -> jboolean {
         return try I.java$util$Arrays_equals_AI_AI__Z(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_equals_AI_I_I_AI_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jint.jniType), jint.jniType, jint.jniType, JArray(jint.jniType), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [jint]?, _ a1: jint, _ a2: jint, _ a3: [jint]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_AI_I_I_AI_I_I__Z(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
     }
 
     fileprivate static let java$util$Arrays_equals_AS_AS__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jshort.jniType), JArray(jshort.jniType)))
@@ -2172,9 +2195,19 @@ open class java$util$Arrays : java$lang$Object {
         return try I.java$util$Arrays_equals_AS_AS__Z(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
     }
 
+    fileprivate static let java$util$Arrays_equals_AS_I_I_AS_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jshort.jniType), jint.jniType, jint.jniType, JArray(jshort.jniType), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [jshort]?, _ a1: jint, _ a2: jint, _ a3: [jshort]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_AS_I_I_AS_I_I__Z(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
     fileprivate static let java$util$Arrays_equals_AC_AC__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jchar.jniType), JArray(jchar.jniType)))
     public static func equals(_ a0: [jchar]?, _ a1: [jchar]?) throws -> jboolean {
         return try I.java$util$Arrays_equals_AC_AC__Z(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_equals_AC_I_I_AC_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jchar.jniType), jint.jniType, jint.jniType, JArray(jchar.jniType), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [jchar]?, _ a1: jint, _ a2: jint, _ a3: [jchar]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_AC_I_I_AC_I_I__Z(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
     }
 
     fileprivate static let java$util$Arrays_equals_AB_AB__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jbyte.jniType), JArray(jbyte.jniType)))
@@ -2182,9 +2215,19 @@ open class java$util$Arrays : java$lang$Object {
         return try I.java$util$Arrays_equals_AB_AB__Z(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
     }
 
+    fileprivate static let java$util$Arrays_equals_AB_I_I_AB_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType, JArray(jbyte.jniType), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [jbyte]?, _ a1: jint, _ a2: jint, _ a3: [jbyte]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_AB_I_I_AB_I_I__Z(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
     fileprivate static let java$util$Arrays_equals_AZ_AZ__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jboolean.jniType), JArray(jboolean.jniType)))
     public static func equals(_ a0: [jboolean]?, _ a1: [jboolean]?) throws -> jboolean {
         return try I.java$util$Arrays_equals_AZ_AZ__Z(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_equals_AZ_I_I_AZ_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jboolean.jniType), jint.jniType, jint.jniType, JArray(jboolean.jniType), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [jboolean]?, _ a1: jint, _ a2: jint, _ a3: [jboolean]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_AZ_I_I_AZ_I_I__Z(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
     }
 
     fileprivate static let java$util$Arrays_equals_AD_AD__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jdouble.jniType), JArray(jdouble.jniType)))
@@ -2192,14 +2235,39 @@ open class java$util$Arrays : java$lang$Object {
         return try I.java$util$Arrays_equals_AD_AD__Z(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
     }
 
+    fileprivate static let java$util$Arrays_equals_AD_I_I_AD_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jdouble.jniType), jint.jniType, jint.jniType, JArray(jdouble.jniType), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [jdouble]?, _ a1: jint, _ a2: jint, _ a3: [jdouble]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_AD_I_I_AD_I_I__Z(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
     fileprivate static let java$util$Arrays_equals_AF_AF__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jfloat.jniType), JArray(jfloat.jniType)))
     public static func equals(_ a0: [jfloat]?, _ a1: [jfloat]?) throws -> jboolean {
         return try I.java$util$Arrays_equals_AF_AF__Z(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
     }
 
+    fileprivate static let java$util$Arrays_equals_AF_I_I_AF_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(jfloat.jniType), jint.jniType, jint.jniType, JArray(jfloat.jniType), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [jfloat]?, _ a1: jint, _ a2: jint, _ a3: [jfloat]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_AF_I_I_AF_I_I__Z(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
     fileprivate static let java$util$Arrays_equals_Ajava$lang$Object_Ajava$lang$Object__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(JObjectType("java/lang/Object")), JArray(JObjectType("java/lang/Object"))))
     public static func equals(_ a0: [java$lang$Object?]?, _ a1: [java$lang$Object?]?) throws -> jboolean {
         return try I.java$util$Arrays_equals_Ajava$lang$Object_Ajava$lang$Object__Z(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_equals_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType, JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType))
+    public static func equals(_ a0: [java$lang$Object?]?, _ a1: jint, _ a2: jint, _ a3: [java$lang$Object?]?, _ a4: jint, _ a5: jint) throws -> jboolean {
+        return try I.java$util$Arrays_equals_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I__Z(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1, a2, a3?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_equals_Ajava$lang$Object_Ajava$lang$Object_java$util$Comparator__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(JObjectType("java/lang/Object")), JArray(JObjectType("java/lang/Object")), JObjectType("java/util/Comparator")))
+    public static func equals(_ a0: [java$lang$Object?]?, _ a1: [java$lang$Object?]?, _ a2: java$util$Comparator?) throws -> jboolean {
+        return try I.java$util$Arrays_equals_Ajava$lang$Object_Ajava$lang$Object_java$util$Comparator__Z(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a2?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_equals_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I_java$util$Comparator__Z = svoker("equals", returns: jboolean.jniType, arguments: (JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType, JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType, JObjectType("java/util/Comparator")))
+    public static func equals(_ a0: [java$lang$Object?]?, _ a1: jint, _ a2: jint, _ a3: [java$lang$Object?]?, _ a4: jint, _ a5: jint, _ a6: java$util$Comparator?) throws -> jboolean {
+        return try I.java$util$Arrays_equals_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I_java$util$Comparator__Z(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1, a2, a3?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4, a5, a6?.jobj ?? nil)
     }
 
     fileprivate static let java$util$Arrays_fill_AJ_J__V = svoker("fill", returns: JVoid.jniType, arguments: (JArray(jlong.jniType), jlong.jniType))
@@ -2620,6 +2688,246 @@ open class java$util$Arrays : java$lang$Object {
     fileprivate static let java$util$Arrays_stream_AD_I_I__java$util$stream$DoubleStream = svoker("stream", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (JArray(jdouble.jniType), jint.jniType, jint.jniType))
     public static func stream(_ a0: [jdouble]?, _ a1: jint, _ a2: jint) throws -> java$util$stream$DoubleStream? {
         return try JVM.sharedJVM.construct(I.java$util$Arrays_stream_AD_I_I__java$util$stream$DoubleStream(a0?.arrayToJArray() ?? nil, a1, a2)) as java$util$stream$DoubleStream$Impl?
+    }
+
+    fileprivate static let java$util$Arrays_compare_AZ_AZ__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jboolean.jniType), JArray(jboolean.jniType)))
+    public static func compare(_ a0: [jboolean]?, _ a1: [jboolean]?) throws -> jint {
+        return try I.java$util$Arrays_compare_AZ_AZ__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AZ_I_I_AZ_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jboolean.jniType), jint.jniType, jint.jniType, JArray(jboolean.jniType), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [jboolean]?, _ a1: jint, _ a2: jint, _ a3: [jboolean]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_AZ_I_I_AZ_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AB_AB__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jbyte.jniType), JArray(jbyte.jniType)))
+    public static func compare(_ a0: [jbyte]?, _ a1: [jbyte]?) throws -> jint {
+        return try I.java$util$Arrays_compare_AB_AB__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AB_I_I_AB_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType, JArray(jbyte.jniType), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [jbyte]?, _ a1: jint, _ a2: jint, _ a3: [jbyte]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_AB_I_I_AB_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compareUnsigned_AB_AB__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (JArray(jbyte.jniType), JArray(jbyte.jniType)))
+    public static func compareUnsigned(_ a0: [jbyte]?, _ a1: [jbyte]?) throws -> jint {
+        return try I.java$util$Arrays_compareUnsigned_AB_AB__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compareUnsigned_AB_I_I_AB_I_I__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType, JArray(jbyte.jniType), jint.jniType, jint.jniType))
+    public static func compareUnsigned(_ a0: [jbyte]?, _ a1: jint, _ a2: jint, _ a3: [jbyte]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compareUnsigned_AB_I_I_AB_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AS_AS__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jshort.jniType), JArray(jshort.jniType)))
+    public static func compare(_ a0: [jshort]?, _ a1: [jshort]?) throws -> jint {
+        return try I.java$util$Arrays_compare_AS_AS__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AS_I_I_AS_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jshort.jniType), jint.jniType, jint.jniType, JArray(jshort.jniType), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [jshort]?, _ a1: jint, _ a2: jint, _ a3: [jshort]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_AS_I_I_AS_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compareUnsigned_AS_AS__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (JArray(jshort.jniType), JArray(jshort.jniType)))
+    public static func compareUnsigned(_ a0: [jshort]?, _ a1: [jshort]?) throws -> jint {
+        return try I.java$util$Arrays_compareUnsigned_AS_AS__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compareUnsigned_AS_I_I_AS_I_I__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (JArray(jshort.jniType), jint.jniType, jint.jniType, JArray(jshort.jniType), jint.jniType, jint.jniType))
+    public static func compareUnsigned(_ a0: [jshort]?, _ a1: jint, _ a2: jint, _ a3: [jshort]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compareUnsigned_AS_I_I_AS_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AC_AC__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jchar.jniType), JArray(jchar.jniType)))
+    public static func compare(_ a0: [jchar]?, _ a1: [jchar]?) throws -> jint {
+        return try I.java$util$Arrays_compare_AC_AC__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AC_I_I_AC_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jchar.jniType), jint.jniType, jint.jniType, JArray(jchar.jniType), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [jchar]?, _ a1: jint, _ a2: jint, _ a3: [jchar]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_AC_I_I_AC_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AI_AI__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jint.jniType), JArray(jint.jniType)))
+    public static func compare(_ a0: [jint]?, _ a1: [jint]?) throws -> jint {
+        return try I.java$util$Arrays_compare_AI_AI__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AI_I_I_AI_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jint.jniType), jint.jniType, jint.jniType, JArray(jint.jniType), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [jint]?, _ a1: jint, _ a2: jint, _ a3: [jint]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_AI_I_I_AI_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compareUnsigned_AI_AI__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (JArray(jint.jniType), JArray(jint.jniType)))
+    public static func compareUnsigned(_ a0: [jint]?, _ a1: [jint]?) throws -> jint {
+        return try I.java$util$Arrays_compareUnsigned_AI_AI__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compareUnsigned_AI_I_I_AI_I_I__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (JArray(jint.jniType), jint.jniType, jint.jniType, JArray(jint.jniType), jint.jniType, jint.jniType))
+    public static func compareUnsigned(_ a0: [jint]?, _ a1: jint, _ a2: jint, _ a3: [jint]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compareUnsigned_AI_I_I_AI_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AJ_AJ__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jlong.jniType), JArray(jlong.jniType)))
+    public static func compare(_ a0: [jlong]?, _ a1: [jlong]?) throws -> jint {
+        return try I.java$util$Arrays_compare_AJ_AJ__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AJ_I_I_AJ_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jlong.jniType), jint.jniType, jint.jniType, JArray(jlong.jniType), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [jlong]?, _ a1: jint, _ a2: jint, _ a3: [jlong]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_AJ_I_I_AJ_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compareUnsigned_AJ_AJ__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (JArray(jlong.jniType), JArray(jlong.jniType)))
+    public static func compareUnsigned(_ a0: [jlong]?, _ a1: [jlong]?) throws -> jint {
+        return try I.java$util$Arrays_compareUnsigned_AJ_AJ__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compareUnsigned_AJ_I_I_AJ_I_I__I = svoker("compareUnsigned", returns: jint.jniType, arguments: (JArray(jlong.jniType), jint.jniType, jint.jniType, JArray(jlong.jniType), jint.jniType, jint.jniType))
+    public static func compareUnsigned(_ a0: [jlong]?, _ a1: jint, _ a2: jint, _ a3: [jlong]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compareUnsigned_AJ_I_I_AJ_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AF_AF__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jfloat.jniType), JArray(jfloat.jniType)))
+    public static func compare(_ a0: [jfloat]?, _ a1: [jfloat]?) throws -> jint {
+        return try I.java$util$Arrays_compare_AF_AF__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AF_I_I_AF_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jfloat.jniType), jint.jniType, jint.jniType, JArray(jfloat.jniType), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [jfloat]?, _ a1: jint, _ a2: jint, _ a3: [jfloat]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_AF_I_I_AF_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AD_AD__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jdouble.jniType), JArray(jdouble.jniType)))
+    public static func compare(_ a0: [jdouble]?, _ a1: [jdouble]?) throws -> jint {
+        return try I.java$util$Arrays_compare_AD_AD__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_AD_I_I_AD_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(jdouble.jniType), jint.jniType, jint.jniType, JArray(jdouble.jniType), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [jdouble]?, _ a1: jint, _ a2: jint, _ a3: [jdouble]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_AD_I_I_AD_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_Ajava$lang$Comparable_Ajava$lang$Comparable__I = svoker("compare", returns: jint.jniType, arguments: (JArray(JObjectType("java/lang/Comparable")), JArray(JObjectType("java/lang/Comparable"))))
+    public static func compare(_ a0: [java$lang$Comparable?]?, _ a1: [java$lang$Comparable?]?) throws -> jint {
+        return try I.java$util$Arrays_compare_Ajava$lang$Comparable_Ajava$lang$Comparable__I(a0?.map({ java$lang$Comparable$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.map({ java$lang$Comparable$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_Ajava$lang$Comparable_I_I_Ajava$lang$Comparable_I_I__I = svoker("compare", returns: jint.jniType, arguments: (JArray(JObjectType("java/lang/Comparable")), jint.jniType, jint.jniType, JArray(JObjectType("java/lang/Comparable")), jint.jniType, jint.jniType))
+    public static func compare(_ a0: [java$lang$Comparable?]?, _ a1: jint, _ a2: jint, _ a3: [java$lang$Comparable?]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_compare_Ajava$lang$Comparable_I_I_Ajava$lang$Comparable_I_I__I(a0?.map({ java$lang$Comparable$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1, a2, a3?.map({ java$lang$Comparable$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_compare_Ajava$lang$Object_Ajava$lang$Object_java$util$Comparator__I = svoker("compare", returns: jint.jniType, arguments: (JArray(JObjectType("java/lang/Object")), JArray(JObjectType("java/lang/Object")), JObjectType("java/util/Comparator")))
+    public static func compare(_ a0: [java$lang$Object?]?, _ a1: [java$lang$Object?]?, _ a2: java$util$Comparator?) throws -> jint {
+        return try I.java$util$Arrays_compare_Ajava$lang$Object_Ajava$lang$Object_java$util$Comparator__I(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a2?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_compare_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I_java$util$Comparator__I = svoker("compare", returns: jint.jniType, arguments: (JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType, JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType, JObjectType("java/util/Comparator")))
+    public static func compare(_ a0: [java$lang$Object?]?, _ a1: jint, _ a2: jint, _ a3: [java$lang$Object?]?, _ a4: jint, _ a5: jint, _ a6: java$util$Comparator?) throws -> jint {
+        return try I.java$util$Arrays_compare_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I_java$util$Comparator__I(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1, a2, a3?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4, a5, a6?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AZ_AZ__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jboolean.jniType), JArray(jboolean.jniType)))
+    public static func mismatch(_ a0: [jboolean]?, _ a1: [jboolean]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AZ_AZ__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AZ_I_I_AZ_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jboolean.jniType), jint.jniType, jint.jniType, JArray(jboolean.jniType), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [jboolean]?, _ a1: jint, _ a2: jint, _ a3: [jboolean]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AZ_I_I_AZ_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AB_AB__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jbyte.jniType), JArray(jbyte.jniType)))
+    public static func mismatch(_ a0: [jbyte]?, _ a1: [jbyte]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AB_AB__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AB_I_I_AB_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jbyte.jniType), jint.jniType, jint.jniType, JArray(jbyte.jniType), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [jbyte]?, _ a1: jint, _ a2: jint, _ a3: [jbyte]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AB_I_I_AB_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AC_AC__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jchar.jniType), JArray(jchar.jniType)))
+    public static func mismatch(_ a0: [jchar]?, _ a1: [jchar]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AC_AC__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AC_I_I_AC_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jchar.jniType), jint.jniType, jint.jniType, JArray(jchar.jniType), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [jchar]?, _ a1: jint, _ a2: jint, _ a3: [jchar]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AC_I_I_AC_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AS_AS__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jshort.jniType), JArray(jshort.jniType)))
+    public static func mismatch(_ a0: [jshort]?, _ a1: [jshort]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AS_AS__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AS_I_I_AS_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jshort.jniType), jint.jniType, jint.jniType, JArray(jshort.jniType), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [jshort]?, _ a1: jint, _ a2: jint, _ a3: [jshort]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AS_I_I_AS_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AI_AI__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jint.jniType), JArray(jint.jniType)))
+    public static func mismatch(_ a0: [jint]?, _ a1: [jint]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AI_AI__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AI_I_I_AI_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jint.jniType), jint.jniType, jint.jniType, JArray(jint.jniType), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [jint]?, _ a1: jint, _ a2: jint, _ a3: [jint]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AI_I_I_AI_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AJ_AJ__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jlong.jniType), JArray(jlong.jniType)))
+    public static func mismatch(_ a0: [jlong]?, _ a1: [jlong]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AJ_AJ__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AJ_I_I_AJ_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jlong.jniType), jint.jniType, jint.jniType, JArray(jlong.jniType), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [jlong]?, _ a1: jint, _ a2: jint, _ a3: [jlong]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AJ_I_I_AJ_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AF_AF__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jfloat.jniType), JArray(jfloat.jniType)))
+    public static func mismatch(_ a0: [jfloat]?, _ a1: [jfloat]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AF_AF__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AF_I_I_AF_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jfloat.jniType), jint.jniType, jint.jniType, JArray(jfloat.jniType), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [jfloat]?, _ a1: jint, _ a2: jint, _ a3: [jfloat]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AF_I_I_AF_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AD_AD__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jdouble.jniType), JArray(jdouble.jniType)))
+    public static func mismatch(_ a0: [jdouble]?, _ a1: [jdouble]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AD_AD__I(a0?.arrayToJArray() ?? nil, a1?.arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_AD_I_I_AD_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(jdouble.jniType), jint.jniType, jint.jniType, JArray(jdouble.jniType), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [jdouble]?, _ a1: jint, _ a2: jint, _ a3: [jdouble]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_AD_I_I_AD_I_I__I(a0?.arrayToJArray() ?? nil, a1, a2, a3?.arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_Ajava$lang$Object_Ajava$lang$Object__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(JObjectType("java/lang/Object")), JArray(JObjectType("java/lang/Object"))))
+    public static func mismatch(_ a0: [java$lang$Object?]?, _ a1: [java$lang$Object?]?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_Ajava$lang$Object_Ajava$lang$Object__I(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType, JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType))
+    public static func mismatch(_ a0: [java$lang$Object?]?, _ a1: jint, _ a2: jint, _ a3: [java$lang$Object?]?, _ a4: jint, _ a5: jint) throws -> jint {
+        return try I.java$util$Arrays_mismatch_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I__I(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1, a2, a3?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4, a5)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_Ajava$lang$Object_Ajava$lang$Object_java$util$Comparator__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(JObjectType("java/lang/Object")), JArray(JObjectType("java/lang/Object")), JObjectType("java/util/Comparator")))
+    public static func mismatch(_ a0: [java$lang$Object?]?, _ a1: [java$lang$Object?]?, _ a2: java$util$Comparator?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_Ajava$lang$Object_Ajava$lang$Object_java$util$Comparator__I(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a2?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$Arrays_mismatch_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I_java$util$Comparator__I = svoker("mismatch", returns: jint.jniType, arguments: (JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType, JArray(JObjectType("java/lang/Object")), jint.jniType, jint.jniType, JObjectType("java/util/Comparator")))
+    public static func mismatch(_ a0: [java$lang$Object?]?, _ a1: jint, _ a2: jint, _ a3: [java$lang$Object?]?, _ a4: jint, _ a5: jint, _ a6: java$util$Comparator?) throws -> jint {
+        return try I.java$util$Arrays_mismatch_Ajava$lang$Object_I_I_Ajava$lang$Object_I_I_java$util$Comparator__I(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1, a2, a3?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a4, a5, a6?.jobj ?? nil)
     }
 
 }
@@ -3632,17 +3940,17 @@ open class java$util$Collections : java$lang$Object {
 
     fileprivate static let java$util$Collections__EMPTY_SET__java$util$Set = J.saccessor("EMPTY_SET", type: JObjectType("java/util/Set"))
     public static var EMPTY_SET: java$util$Set? {
-        get { return java$util$Set$Impl(constructor: I.java$util$Collections__EMPTY_SET__java$util$Set.getter()) }
+        get { return java$util$Set$Impl(reference: I.java$util$Collections__EMPTY_SET__java$util$Set.getter()) }
     }
 
     fileprivate static let java$util$Collections__EMPTY_LIST__java$util$List = J.saccessor("EMPTY_LIST", type: JObjectType("java/util/List"))
     public static var EMPTY_LIST: java$util$List? {
-        get { return java$util$List$Impl(constructor: I.java$util$Collections__EMPTY_LIST__java$util$List.getter()) }
+        get { return java$util$List$Impl(reference: I.java$util$Collections__EMPTY_LIST__java$util$List.getter()) }
     }
 
     fileprivate static let java$util$Collections__EMPTY_MAP__java$util$Map = J.saccessor("EMPTY_MAP", type: JObjectType("java/util/Map"))
     public static var EMPTY_MAP: java$util$Map? {
-        get { return java$util$Map$Impl(constructor: I.java$util$Collections__EMPTY_MAP__java$util$Map.getter()) }
+        get { return java$util$Map$Impl(reference: I.java$util$Collections__EMPTY_MAP__java$util$Map.getter()) }
     }
 
     fileprivate static let java$util$Collections_sort_java$util$List__V = svoker("sort", returns: JVoid.jniType, arguments: (JObjectType("java/util/List")))
@@ -4024,6 +4332,11 @@ public final class java$util$Currency : java$lang$Object, java$io$Serializable {
     fileprivate static let java$util$Currency_getNumericCode__I = invoker("getNumericCode", returns: jint.jniType)
     public func getNumericCode() throws -> jint {
         return try I.java$util$Currency_getNumericCode__I(jobj)()
+    }
+
+    fileprivate static let java$util$Currency_getNumericCodeAsString__java$lang$String = invoker("getNumericCodeAsString", returns: JObjectType("java/lang/String"))
+    public func getNumericCodeAsString() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$util$Currency_getNumericCodeAsString__java$lang$String(jobj)()) as java$lang$String$Impl?
     }
 
     fileprivate static let java$util$Currency_getDisplayName__java$lang$String = invoker("getDisplayName", returns: JObjectType("java/lang/String"))
@@ -4424,6 +4737,11 @@ open class java$util$Properties : java$util$Hashtable {
         try self.init(creator: I.java$util$Properties_init__V())
     }
 
+    fileprivate static let java$util$Properties_init_I__V = constructor((jint.jniType))
+    public convenience init(_ a0: jint) throws {
+        try self.init(creator: I.java$util$Properties_init_I__V(a0))
+    }
+
     fileprivate static let java$util$Properties_init_java$util$Properties__V = constructor((JObjectType("java/util/Properties")))
     public convenience init(_ a0: java$util$Properties?) throws {
         try self.init(creator: I.java$util$Properties_init_java$util$Properties__V(a0?.jobj ?? nil))
@@ -4474,6 +4792,11 @@ open class java$util$Properties : java$util$Hashtable {
         return try I.java$util$Properties_storeToXML_java$io$OutputStream_java$lang$String_java$lang$String__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$Properties_storeToXML_java$io$OutputStream_java$lang$String_java$nio$charset$Charset__V = invoker("storeToXML", returns: JVoid.jniType, arguments: (JObjectType("java/io/OutputStream"), JObjectType("java/lang/String"), JObjectType("java/nio/charset/Charset")))
+    public func storeToXML(_ a0: java$io$OutputStream?, _ a1: java$lang$String?, _ a2: java$nio$charset$Charset?) throws -> Void {
+        return try I.java$util$Properties_storeToXML_java$io$OutputStream_java$lang$String_java$nio$charset$Charset__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)
+    }
+
     fileprivate static let java$util$Properties_getProperty_java$lang$String__java$lang$String = invoker("getProperty", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String")))
     public func getProperty(_ a0: java$lang$String?) throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$util$Properties_getProperty_java$lang$String__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
@@ -4504,6 +4827,36 @@ open class java$util$Properties : java$util$Hashtable {
         return try I.java$util$Properties_list_java$io$PrintWriter__V(jobj)(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$Properties_size__I = invoker("size", returns: jint.jniType)
+    fileprivate static let java$util$Properties_isEmpty__Z = invoker("isEmpty", returns: jboolean.jniType)
+    fileprivate static let java$util$Properties_keys__java$util$Enumeration = invoker("keys", returns: JObjectType("java/util/Enumeration"))
+    fileprivate static let java$util$Properties_elements__java$util$Enumeration = invoker("elements", returns: JObjectType("java/util/Enumeration"))
+    fileprivate static let java$util$Properties_contains_java$lang$Object__Z = invoker("contains", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_containsValue_java$lang$Object__Z = invoker("containsValue", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_containsKey_java$lang$Object__Z = invoker("containsKey", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_get_java$lang$Object__java$lang$Object = invoker("get", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_put_java$lang$Object_java$lang$Object__java$lang$Object = invoker("put", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_remove_java$lang$Object__java$lang$Object = invoker("remove", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_putAll_java$util$Map__V = invoker("putAll", returns: JVoid.jniType, arguments: (JObjectType("java/util/Map")))
+    fileprivate static let java$util$Properties_clear__V = invoker("clear", returns: JVoid.jniType)
+    fileprivate static let java$util$Properties_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$util$Properties_keySet__java$util$Set = invoker("keySet", returns: JObjectType("java/util/Set"))
+    fileprivate static let java$util$Properties_values__java$util$Collection = invoker("values", returns: JObjectType("java/util/Collection"))
+    fileprivate static let java$util$Properties_entrySet__java$util$Set = invoker("entrySet", returns: JObjectType("java/util/Set"))
+    fileprivate static let java$util$Properties_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_hashCode__I = invoker("hashCode", returns: jint.jniType)
+    fileprivate static let java$util$Properties_getOrDefault_java$lang$Object_java$lang$Object__java$lang$Object = invoker("getOrDefault", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_forEach_java$util$function$BiConsumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/BiConsumer")))
+    fileprivate static let java$util$Properties_replaceAll_java$util$function$BiFunction__V = invoker("replaceAll", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/BiFunction")))
+    fileprivate static let java$util$Properties_putIfAbsent_java$lang$Object_java$lang$Object__java$lang$Object = invoker("putIfAbsent", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_remove_java$lang$Object_java$lang$Object__Z = invoker("remove", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_replace_java$lang$Object_java$lang$Object_java$lang$Object__Z = invoker("replace", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_replace_java$lang$Object_java$lang$Object__java$lang$Object = invoker("replace", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Properties_computeIfAbsent_java$lang$Object_java$util$function$Function__java$lang$Object = invoker("computeIfAbsent", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/Function")))
+    fileprivate static let java$util$Properties_computeIfPresent_java$lang$Object_java$util$function$BiFunction__java$lang$Object = invoker("computeIfPresent", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/BiFunction")))
+    fileprivate static let java$util$Properties_compute_java$lang$Object_java$util$function$BiFunction__java$lang$Object = invoker("compute", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/BiFunction")))
+    fileprivate static let java$util$Properties_merge_java$lang$Object_java$lang$Object_java$util$function$BiFunction__java$lang$Object = invoker("merge", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/util/function/BiFunction")))
+    fileprivate static let java$util$Properties_clone__java$lang$Object = invoker("clone", returns: JObjectType("java/lang/Object"))
 }
 
 public typealias java$util$Properties$Impl = java$util$Properties
@@ -4518,6 +4871,11 @@ open class java$util$DoubleSummaryStatistics : java$lang$Object, java$util$funct
     fileprivate static let java$util$DoubleSummaryStatistics_init__V = constructor()
     public convenience init() throws {
         try self.init(creator: I.java$util$DoubleSummaryStatistics_init__V())
+    }
+
+    fileprivate static let java$util$DoubleSummaryStatistics_init_J_D_D_D__V = constructor((jlong.jniType, jdouble.jniType, jdouble.jniType, jdouble.jniType))
+    public convenience init(_ a0: jlong, _ a1: jdouble, _ a2: jdouble, _ a3: jdouble) throws {
+        try self.init(creator: I.java$util$DoubleSummaryStatistics_init_J_D_D_D__V(a0, a1, a2, a3))
     }
 
     fileprivate static let java$util$DoubleSummaryStatistics_accept_D__V = invoker("accept", returns: JVoid.jniType, arguments: (jdouble.jniType))
@@ -4671,6 +5029,11 @@ public final class java$util$Formatter : java$lang$Object, java$io$Closeable, ja
         try self.init(creator: I.java$util$Formatter_init_java$lang$String_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
+    fileprivate static let java$util$Formatter_init_java$lang$String_java$nio$charset$Charset_java$util$Locale__V = constructor((JObjectType("java/lang/String"), JObjectType("java/nio/charset/Charset"), JObjectType("java/util/Locale")))
+    public convenience init(_ a0: java$lang$String?, _ a1: java$nio$charset$Charset?, _ a2: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$lang$String_java$nio$charset$Charset_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    }
+
     fileprivate static let java$util$Formatter_init_java$io$File__V = constructor((JObjectType("java/io/File")))
     public convenience init(_ a0: java$io$File?) throws {
         try self.init(creator: I.java$util$Formatter_init_java$io$File__V(a0?.jobj ?? nil))
@@ -4684,6 +5047,11 @@ public final class java$util$Formatter : java$lang$Object, java$io$Closeable, ja
     fileprivate static let java$util$Formatter_init_java$io$File_java$lang$String_java$util$Locale__V = constructor((JObjectType("java/io/File"), JObjectType("java/lang/String"), JObjectType("java/util/Locale")))
     public convenience init(_ a0: java$io$File?, _ a1: java$lang$String?, _ a2: java$util$Locale?) throws {
         try self.init(creator: I.java$util$Formatter_init_java$io$File_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    }
+
+    fileprivate static let java$util$Formatter_init_java$io$File_java$nio$charset$Charset_java$util$Locale__V = constructor((JObjectType("java/io/File"), JObjectType("java/nio/charset/Charset"), JObjectType("java/util/Locale")))
+    public convenience init(_ a0: java$io$File?, _ a1: java$nio$charset$Charset?, _ a2: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$File_java$nio$charset$Charset_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_init_java$io$PrintStream__V = constructor((JObjectType("java/io/PrintStream")))
@@ -4704,6 +5072,11 @@ public final class java$util$Formatter : java$lang$Object, java$io$Closeable, ja
     fileprivate static let java$util$Formatter_init_java$io$OutputStream_java$lang$String_java$util$Locale__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/lang/String"), JObjectType("java/util/Locale")))
     public convenience init(_ a0: java$io$OutputStream?, _ a1: java$lang$String?, _ a2: java$util$Locale?) throws {
         try self.init(creator: I.java$util$Formatter_init_java$io$OutputStream_java$lang$String_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    }
+
+    fileprivate static let java$util$Formatter_init_java$io$OutputStream_java$nio$charset$Charset_java$util$Locale__V = constructor((JObjectType("java/io/OutputStream"), JObjectType("java/nio/charset/Charset"), JObjectType("java/util/Locale")))
+    public convenience init(_ a0: java$io$OutputStream?, _ a1: java$nio$charset$Charset?, _ a2: java$util$Locale?) throws {
+        try self.init(creator: I.java$util$Formatter_init_java$io$OutputStream_java$nio$charset$Charset_java$util$Locale__V(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Formatter_locale__java$util$Locale = invoker("locale", returns: JObjectType("java/util/Locale"))
@@ -4758,6 +5131,11 @@ open class java$util$IntSummaryStatistics : java$lang$Object, java$util$function
         try self.init(creator: I.java$util$IntSummaryStatistics_init__V())
     }
 
+    fileprivate static let java$util$IntSummaryStatistics_init_J_I_I_J__V = constructor((jlong.jniType, jint.jniType, jint.jniType, jlong.jniType))
+    public convenience init(_ a0: jlong, _ a1: jint, _ a2: jint, _ a3: jlong) throws {
+        try self.init(creator: I.java$util$IntSummaryStatistics_init_J_I_I_J__V(a0, a1, a2, a3))
+    }
+
     fileprivate static let java$util$IntSummaryStatistics_accept_I__V = invoker("accept", returns: JVoid.jniType, arguments: (jint.jniType))
     public func accept(_ a0: jint) throws -> Void {
         return try I.java$util$IntSummaryStatistics_accept_I__V(jobj)(a0)
@@ -4807,112 +5185,112 @@ public final class java$util$Locale : java$lang$Object, java$lang$Cloneable, jav
 
     fileprivate static let java$util$Locale__ENGLISH__java$util$Locale = J.saccessor("ENGLISH", type: JObjectType("java/util/Locale"))
     public static var ENGLISH: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__ENGLISH__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__ENGLISH__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__FRENCH__java$util$Locale = J.saccessor("FRENCH", type: JObjectType("java/util/Locale"))
     public static var FRENCH: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__FRENCH__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__FRENCH__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__GERMAN__java$util$Locale = J.saccessor("GERMAN", type: JObjectType("java/util/Locale"))
     public static var GERMAN: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__GERMAN__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__GERMAN__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__ITALIAN__java$util$Locale = J.saccessor("ITALIAN", type: JObjectType("java/util/Locale"))
     public static var ITALIAN: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__ITALIAN__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__ITALIAN__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__JAPANESE__java$util$Locale = J.saccessor("JAPANESE", type: JObjectType("java/util/Locale"))
     public static var JAPANESE: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__JAPANESE__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__JAPANESE__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__KOREAN__java$util$Locale = J.saccessor("KOREAN", type: JObjectType("java/util/Locale"))
     public static var KOREAN: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__KOREAN__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__KOREAN__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__CHINESE__java$util$Locale = J.saccessor("CHINESE", type: JObjectType("java/util/Locale"))
     public static var CHINESE: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__CHINESE__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__CHINESE__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__SIMPLIFIED_CHINESE__java$util$Locale = J.saccessor("SIMPLIFIED_CHINESE", type: JObjectType("java/util/Locale"))
     public static var SIMPLIFIED_CHINESE: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__SIMPLIFIED_CHINESE__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__SIMPLIFIED_CHINESE__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__TRADITIONAL_CHINESE__java$util$Locale = J.saccessor("TRADITIONAL_CHINESE", type: JObjectType("java/util/Locale"))
     public static var TRADITIONAL_CHINESE: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__TRADITIONAL_CHINESE__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__TRADITIONAL_CHINESE__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__FRANCE__java$util$Locale = J.saccessor("FRANCE", type: JObjectType("java/util/Locale"))
     public static var FRANCE: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__FRANCE__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__FRANCE__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__GERMANY__java$util$Locale = J.saccessor("GERMANY", type: JObjectType("java/util/Locale"))
     public static var GERMANY: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__GERMANY__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__GERMANY__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__ITALY__java$util$Locale = J.saccessor("ITALY", type: JObjectType("java/util/Locale"))
     public static var ITALY: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__ITALY__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__ITALY__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__JAPAN__java$util$Locale = J.saccessor("JAPAN", type: JObjectType("java/util/Locale"))
     public static var JAPAN: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__JAPAN__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__JAPAN__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__KOREA__java$util$Locale = J.saccessor("KOREA", type: JObjectType("java/util/Locale"))
     public static var KOREA: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__KOREA__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__KOREA__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__CHINA__java$util$Locale = J.saccessor("CHINA", type: JObjectType("java/util/Locale"))
     public static var CHINA: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__CHINA__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__CHINA__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__PRC__java$util$Locale = J.saccessor("PRC", type: JObjectType("java/util/Locale"))
     public static var PRC: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__PRC__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__PRC__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__TAIWAN__java$util$Locale = J.saccessor("TAIWAN", type: JObjectType("java/util/Locale"))
     public static var TAIWAN: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__TAIWAN__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__TAIWAN__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__UK__java$util$Locale = J.saccessor("UK", type: JObjectType("java/util/Locale"))
     public static var UK: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__UK__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__UK__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__US__java$util$Locale = J.saccessor("US", type: JObjectType("java/util/Locale"))
     public static var US: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__US__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__US__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__CANADA__java$util$Locale = J.saccessor("CANADA", type: JObjectType("java/util/Locale"))
     public static var CANADA: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__CANADA__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__CANADA__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__CANADA_FRENCH__java$util$Locale = J.saccessor("CANADA_FRENCH", type: JObjectType("java/util/Locale"))
     public static var CANADA_FRENCH: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__CANADA_FRENCH__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__CANADA_FRENCH__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__ROOT__java$util$Locale = J.saccessor("ROOT", type: JObjectType("java/util/Locale"))
     public static var ROOT: java$util$Locale? {
-        get { return java$util$Locale$Impl(constructor: I.java$util$Locale__ROOT__java$util$Locale.getter()) }
+        get { return java$util$Locale$Impl(reference: I.java$util$Locale__ROOT__java$util$Locale.getter()) }
     }
 
     fileprivate static let java$util$Locale__PRIVATE_USE_EXTENSION__C = J.saccessor("PRIVATE_USE_EXTENSION", type: jchar.jniType)
@@ -4968,6 +5346,11 @@ public final class java$util$Locale : java$lang$Object, java$lang$Cloneable, jav
     fileprivate static let java$util$Locale_getISOCountries__Ajava$lang$String = svoker("getISOCountries", returns: JArray(JObjectType("java/lang/String")))
     public static func getISOCountries() throws -> [java$lang$String?]? {
         return try I.java$util$Locale_getISOCountries__Ajava$lang$String()?.jarrayToArray(java$lang$String$Impl.self)
+    }
+
+    fileprivate static let java$util$Locale_getISOCountries_java$util$Locale$IsoCountryCode__java$util$Set = svoker("getISOCountries", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/util/Locale$IsoCountryCode")))
+    public static func getISOCountries(_ a0: java$util$Locale$IsoCountryCode?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Locale_getISOCountries_java$util$Locale$IsoCountryCode__java$util$Set(a0?.jobj ?? nil)) as java$util$Set$Impl?
     }
 
     fileprivate static let java$util$Locale_getISOLanguages__Ajava$lang$String = svoker("getISOLanguages", returns: JArray(JObjectType("java/lang/String")))
@@ -5277,6 +5660,7 @@ public final class java$util$Locale$LanguageRange : java$lang$Object {
 
     fileprivate static let java$util$Locale$LanguageRange_hashCode__I = invoker("hashCode", returns: jint.jniType)
     fileprivate static let java$util$Locale$LanguageRange_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Locale$LanguageRange_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
 }
 
 public typealias java$util$Locale$LanguageRange$Impl = java$util$Locale$LanguageRange
@@ -5291,6 +5675,11 @@ open class java$util$LongSummaryStatistics : java$lang$Object, java$util$functio
     fileprivate static let java$util$LongSummaryStatistics_init__V = constructor()
     public convenience init() throws {
         try self.init(creator: I.java$util$LongSummaryStatistics_init__V())
+    }
+
+    fileprivate static let java$util$LongSummaryStatistics_init_J_J_J_J__V = constructor((jlong.jniType, jlong.jniType, jlong.jniType, jlong.jniType))
+    public convenience init(_ a0: jlong, _ a1: jlong, _ a2: jlong, _ a3: jlong) throws {
+        try self.init(creator: I.java$util$LongSummaryStatistics_init_J_J_J_J__V(a0, a1, a2, a3))
     }
 
     fileprivate static let java$util$LongSummaryStatistics_accept_I__V = invoker("accept", returns: JVoid.jniType, arguments: (jint.jniType))
@@ -5400,9 +5789,34 @@ public final class java$util$Objects : java$lang$Object {
         return try I.java$util$Objects_nonNull_java$lang$Object__Z(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$Objects_requireNonNullElse_java$lang$Object_java$lang$Object__java$lang$Object = svoker("requireNonNullElse", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    public static func requireNonNullElse(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$Objects_requireNonNullElse_java$lang$Object_java$lang$Object__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$Objects_requireNonNullElseGet_java$lang$Object_java$util$function$Supplier__java$lang$Object = svoker("requireNonNullElseGet", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/Supplier")))
+    public static func requireNonNullElseGet(_ a0: java$lang$Object?, _ a1: java$util$function$Supplier?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$Objects_requireNonNullElseGet_java$lang$Object_java$util$function$Supplier__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
     fileprivate static let java$util$Objects_requireNonNull_java$lang$Object_java$util$function$Supplier__java$lang$Object = svoker("requireNonNull", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/Supplier")))
     public static func requireNonNull(_ a0: java$lang$Object?, _ a1: java$util$function$Supplier?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.java$util$Objects_requireNonNull_java$lang$Object_java$util$function$Supplier__java$lang$Object(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$Objects_checkIndex_I_I__I = svoker("checkIndex", returns: jint.jniType, arguments: (jint.jniType, jint.jniType))
+    public static func checkIndex(_ a0: jint, _ a1: jint) throws -> jint {
+        return try I.java$util$Objects_checkIndex_I_I__I(a0, a1)
+    }
+
+    fileprivate static let java$util$Objects_checkFromToIndex_I_I_I__I = svoker("checkFromToIndex", returns: jint.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public static func checkFromToIndex(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jint {
+        return try I.java$util$Objects_checkFromToIndex_I_I_I__I(a0, a1, a2)
+    }
+
+    fileprivate static let java$util$Objects_checkFromIndexSize_I_I_I__I = svoker("checkFromIndexSize", returns: jint.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
+    public static func checkFromIndexSize(_ a0: jint, _ a1: jint, _ a2: jint) throws -> jint {
+        return try I.java$util$Objects_checkFromIndexSize_I_I_I__I(a0, a1, a2)
     }
 
 }
@@ -5497,6 +5911,11 @@ public final class java$util$Optional : java$lang$Object {
         return try I.java$util$Optional_ifPresent_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$Optional_ifPresentOrElse_java$util$function$Consumer_java$lang$Runnable__V = invoker("ifPresentOrElse", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer"), JObjectType("java/lang/Runnable")))
+    public func ifPresentOrElse(_ a0: java$util$function$Consumer?, _ a1: java$lang$Runnable?) throws -> Void {
+        return try I.java$util$Optional_ifPresentOrElse_java$util$function$Consumer_java$lang$Runnable__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
     fileprivate static let java$util$Optional_filter_java$util$function$Predicate__java$util$Optional = invoker("filter", returns: JObjectType("java/util/Optional"), arguments: (JObjectType("java/util/function/Predicate")))
     public func filter(_ a0: java$util$function$Predicate?) throws -> java$util$Optional? {
         return try JVM.sharedJVM.construct(I.java$util$Optional_filter_java$util$function$Predicate__java$util$Optional(jobj)(a0?.jobj ?? nil)) as java$util$Optional$Impl?
@@ -5512,6 +5931,16 @@ public final class java$util$Optional : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$util$Optional_flatMap_java$util$function$Function__java$util$Optional(jobj)(a0?.jobj ?? nil)) as java$util$Optional$Impl?
     }
 
+    fileprivate static let java$util$Optional_or_java$util$function$Supplier__java$util$Optional = invoker("or", returns: JObjectType("java/util/Optional"), arguments: (JObjectType("java/util/function/Supplier")))
+    public func or(_ a0: java$util$function$Supplier?) throws -> java$util$Optional? {
+        return try JVM.sharedJVM.construct(I.java$util$Optional_or_java$util$function$Supplier__java$util$Optional(jobj)(a0?.jobj ?? nil)) as java$util$Optional$Impl?
+    }
+
+    fileprivate static let java$util$Optional_stream__java$util$stream$Stream = invoker("stream", returns: JObjectType("java/util/stream/Stream"))
+    public func stream() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$Optional_stream__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
+    }
+
     fileprivate static let java$util$Optional_orElse_java$lang$Object__java$lang$Object = invoker("orElse", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object")))
     public func orElse(_ a0: java$lang$Object?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.java$util$Optional_orElse_java$lang$Object__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
@@ -5520,6 +5949,11 @@ public final class java$util$Optional : java$lang$Object {
     fileprivate static let java$util$Optional_orElseGet_java$util$function$Supplier__java$lang$Object = invoker("orElseGet", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/util/function/Supplier")))
     public func orElseGet(_ a0: java$util$function$Supplier?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.java$util$Optional_orElseGet_java$util$function$Supplier__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$util$Optional_orElseThrow__java$lang$Object = invoker("orElseThrow", returns: JObjectType("java/lang/Object"))
+    public func orElseThrow() throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$util$Optional_orElseThrow__java$lang$Object(jobj)()) as java$lang$Object$Impl?
     }
 
     fileprivate static let java$util$Optional_orElseThrow_java$util$function$Supplier__java$lang$Object = invoker("orElseThrow", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/util/function/Supplier")))
@@ -5566,6 +6000,16 @@ public final class java$util$OptionalDouble : java$lang$Object {
         return try I.java$util$OptionalDouble_ifPresent_java$util$function$DoubleConsumer__V(jobj)(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$OptionalDouble_ifPresentOrElse_java$util$function$DoubleConsumer_java$lang$Runnable__V = invoker("ifPresentOrElse", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/DoubleConsumer"), JObjectType("java/lang/Runnable")))
+    public func ifPresentOrElse(_ a0: java$util$function$DoubleConsumer?, _ a1: java$lang$Runnable?) throws -> Void {
+        return try I.java$util$OptionalDouble_ifPresentOrElse_java$util$function$DoubleConsumer_java$lang$Runnable__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$OptionalDouble_stream__java$util$stream$DoubleStream = invoker("stream", returns: JObjectType("java/util/stream/DoubleStream"))
+    public func stream() throws -> java$util$stream$DoubleStream? {
+        return try JVM.sharedJVM.construct(I.java$util$OptionalDouble_stream__java$util$stream$DoubleStream(jobj)()) as java$util$stream$DoubleStream$Impl?
+    }
+
     fileprivate static let java$util$OptionalDouble_orElse_D__D = invoker("orElse", returns: jdouble.jniType, arguments: (jdouble.jniType))
     public func orElse(_ a0: jdouble) throws -> jdouble {
         return try I.java$util$OptionalDouble_orElse_D__D(jobj)(a0)
@@ -5574,6 +6018,11 @@ public final class java$util$OptionalDouble : java$lang$Object {
     fileprivate static let java$util$OptionalDouble_orElseGet_java$util$function$DoubleSupplier__D = invoker("orElseGet", returns: jdouble.jniType, arguments: (JObjectType("java/util/function/DoubleSupplier")))
     public func orElseGet(_ a0: java$util$function$DoubleSupplier?) throws -> jdouble {
         return try I.java$util$OptionalDouble_orElseGet_java$util$function$DoubleSupplier__D(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$OptionalDouble_orElseThrow__D = invoker("orElseThrow", returns: jdouble.jniType)
+    public func orElseThrow() throws -> jdouble {
+        return try I.java$util$OptionalDouble_orElseThrow__D(jobj)()
     }
 
     fileprivate static let java$util$OptionalDouble_orElseThrow_java$util$function$Supplier__D = invoker("orElseThrow", returns: jdouble.jniType, arguments: (JObjectType("java/util/function/Supplier")))
@@ -5620,6 +6069,16 @@ public final class java$util$OptionalInt : java$lang$Object {
         return try I.java$util$OptionalInt_ifPresent_java$util$function$IntConsumer__V(jobj)(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$OptionalInt_ifPresentOrElse_java$util$function$IntConsumer_java$lang$Runnable__V = invoker("ifPresentOrElse", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/IntConsumer"), JObjectType("java/lang/Runnable")))
+    public func ifPresentOrElse(_ a0: java$util$function$IntConsumer?, _ a1: java$lang$Runnable?) throws -> Void {
+        return try I.java$util$OptionalInt_ifPresentOrElse_java$util$function$IntConsumer_java$lang$Runnable__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$OptionalInt_stream__java$util$stream$IntStream = invoker("stream", returns: JObjectType("java/util/stream/IntStream"))
+    public func stream() throws -> java$util$stream$IntStream? {
+        return try JVM.sharedJVM.construct(I.java$util$OptionalInt_stream__java$util$stream$IntStream(jobj)()) as java$util$stream$IntStream$Impl?
+    }
+
     fileprivate static let java$util$OptionalInt_orElse_I__I = invoker("orElse", returns: jint.jniType, arguments: (jint.jniType))
     public func orElse(_ a0: jint) throws -> jint {
         return try I.java$util$OptionalInt_orElse_I__I(jobj)(a0)
@@ -5628,6 +6087,11 @@ public final class java$util$OptionalInt : java$lang$Object {
     fileprivate static let java$util$OptionalInt_orElseGet_java$util$function$IntSupplier__I = invoker("orElseGet", returns: jint.jniType, arguments: (JObjectType("java/util/function/IntSupplier")))
     public func orElseGet(_ a0: java$util$function$IntSupplier?) throws -> jint {
         return try I.java$util$OptionalInt_orElseGet_java$util$function$IntSupplier__I(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$OptionalInt_orElseThrow__I = invoker("orElseThrow", returns: jint.jniType)
+    public func orElseThrow() throws -> jint {
+        return try I.java$util$OptionalInt_orElseThrow__I(jobj)()
     }
 
     fileprivate static let java$util$OptionalInt_orElseThrow_java$util$function$Supplier__I = invoker("orElseThrow", returns: jint.jniType, arguments: (JObjectType("java/util/function/Supplier")))
@@ -5674,6 +6138,16 @@ public final class java$util$OptionalLong : java$lang$Object {
         return try I.java$util$OptionalLong_ifPresent_java$util$function$LongConsumer__V(jobj)(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$OptionalLong_ifPresentOrElse_java$util$function$LongConsumer_java$lang$Runnable__V = invoker("ifPresentOrElse", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/LongConsumer"), JObjectType("java/lang/Runnable")))
+    public func ifPresentOrElse(_ a0: java$util$function$LongConsumer?, _ a1: java$lang$Runnable?) throws -> Void {
+        return try I.java$util$OptionalLong_ifPresentOrElse_java$util$function$LongConsumer_java$lang$Runnable__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$OptionalLong_stream__java$util$stream$LongStream = invoker("stream", returns: JObjectType("java/util/stream/LongStream"))
+    public func stream() throws -> java$util$stream$LongStream? {
+        return try JVM.sharedJVM.construct(I.java$util$OptionalLong_stream__java$util$stream$LongStream(jobj)()) as java$util$stream$LongStream$Impl?
+    }
+
     fileprivate static let java$util$OptionalLong_orElse_J__J = invoker("orElse", returns: jlong.jniType, arguments: (jlong.jniType))
     public func orElse(_ a0: jlong) throws -> jlong {
         return try I.java$util$OptionalLong_orElse_J__J(jobj)(a0)
@@ -5682,6 +6156,11 @@ public final class java$util$OptionalLong : java$lang$Object {
     fileprivate static let java$util$OptionalLong_orElseGet_java$util$function$LongSupplier__J = invoker("orElseGet", returns: jlong.jniType, arguments: (JObjectType("java/util/function/LongSupplier")))
     public func orElseGet(_ a0: java$util$function$LongSupplier?) throws -> jlong {
         return try I.java$util$OptionalLong_orElseGet_java$util$function$LongSupplier__J(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$OptionalLong_orElseThrow__J = invoker("orElseThrow", returns: jlong.jniType)
+    public func orElseThrow() throws -> jlong {
+        return try I.java$util$OptionalLong_orElseThrow__J(jobj)()
     }
 
     fileprivate static let java$util$OptionalLong_orElseThrow_java$util$function$Supplier__J = invoker("orElseThrow", returns: jlong.jniType, arguments: (JObjectType("java/util/function/Supplier")))
@@ -5895,6 +6374,16 @@ open class java$util$ResourceBundle : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$util$ResourceBundle_getBundle_java$lang$String_java$util$Locale__java$util$ResourceBundle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$ResourceBundle$Impl?
     }
 
+    fileprivate static let java$util$ResourceBundle_getBundle_java$lang$String_java$lang$Module__java$util$ResourceBundle = svoker("getBundle", returns: JObjectType("java/util/ResourceBundle"), arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/Module")))
+    public static func getBundle(_ a0: java$lang$String?, _ a1: java$lang$Module?) throws -> java$util$ResourceBundle? {
+        return try JVM.sharedJVM.construct(I.java$util$ResourceBundle_getBundle_java$lang$String_java$lang$Module__java$util$ResourceBundle(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$ResourceBundle$Impl?
+    }
+
+    fileprivate static let java$util$ResourceBundle_getBundle_java$lang$String_java$util$Locale_java$lang$Module__java$util$ResourceBundle = svoker("getBundle", returns: JObjectType("java/util/ResourceBundle"), arguments: (JObjectType("java/lang/String"), JObjectType("java/util/Locale"), JObjectType("java/lang/Module")))
+    public static func getBundle(_ a0: java$lang$String?, _ a1: java$util$Locale?, _ a2: java$lang$Module?) throws -> java$util$ResourceBundle? {
+        return try JVM.sharedJVM.construct(I.java$util$ResourceBundle_getBundle_java$lang$String_java$util$Locale_java$lang$Module__java$util$ResourceBundle(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$ResourceBundle$Impl?
+    }
+
     fileprivate static let java$util$ResourceBundle_getBundle_java$lang$String_java$util$Locale_java$util$ResourceBundle$Control__java$util$ResourceBundle = svoker("getBundle", returns: JObjectType("java/util/ResourceBundle"), arguments: (JObjectType("java/lang/String"), JObjectType("java/util/Locale"), JObjectType("java/util/ResourceBundle$Control")))
     public static func getBundle(_ a0: java$lang$String?, _ a1: java$util$Locale?, _ a2: java$util$ResourceBundle$Control?) throws -> java$util$ResourceBundle? {
         return try JVM.sharedJVM.construct(I.java$util$ResourceBundle_getBundle_java$lang$String_java$util$Locale_java$util$ResourceBundle$Control__java$util$ResourceBundle(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$ResourceBundle$Impl?
@@ -5997,17 +6486,17 @@ open class java$util$ResourceBundle$Control : java$lang$Object {
 
     fileprivate static let java$util$ResourceBundle$Control__FORMAT_DEFAULT__java$util$List = J.saccessor("FORMAT_DEFAULT", type: JObjectType("java/util/List"))
     public static var FORMAT_DEFAULT: java$util$List? {
-        get { return java$util$List$Impl(constructor: I.java$util$ResourceBundle$Control__FORMAT_DEFAULT__java$util$List.getter()) }
+        get { return java$util$List$Impl(reference: I.java$util$ResourceBundle$Control__FORMAT_DEFAULT__java$util$List.getter()) }
     }
 
     fileprivate static let java$util$ResourceBundle$Control__FORMAT_CLASS__java$util$List = J.saccessor("FORMAT_CLASS", type: JObjectType("java/util/List"))
     public static var FORMAT_CLASS: java$util$List? {
-        get { return java$util$List$Impl(constructor: I.java$util$ResourceBundle$Control__FORMAT_CLASS__java$util$List.getter()) }
+        get { return java$util$List$Impl(reference: I.java$util$ResourceBundle$Control__FORMAT_CLASS__java$util$List.getter()) }
     }
 
     fileprivate static let java$util$ResourceBundle$Control__FORMAT_PROPERTIES__java$util$List = J.saccessor("FORMAT_PROPERTIES", type: JObjectType("java/util/List"))
     public static var FORMAT_PROPERTIES: java$util$List? {
-        get { return java$util$List$Impl(constructor: I.java$util$ResourceBundle$Control__FORMAT_PROPERTIES__java$util$List.getter()) }
+        get { return java$util$List$Impl(reference: I.java$util$ResourceBundle$Control__FORMAT_PROPERTIES__java$util$List.getter()) }
     }
 
     fileprivate static let java$util$ResourceBundle$Control__TTL_DONT_CACHE__J = J.saccessor("TTL_DONT_CACHE", type: jlong.jniType)
@@ -6096,6 +6585,11 @@ public final class java$util$Scanner : java$lang$Object, java$util$Iterator, jav
         try self.init(creator: I.java$util$Scanner_init_java$io$InputStream_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
+    fileprivate static let java$util$Scanner_init_java$io$InputStream_java$nio$charset$Charset__V = constructor((JObjectType("java/io/InputStream"), JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$io$InputStream?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$io$InputStream_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    }
+
     fileprivate static let java$util$Scanner_init_java$io$File__V = constructor((JObjectType("java/io/File")))
     public convenience init(_ a0: java$io$File?) throws {
         try self.init(creator: I.java$util$Scanner_init_java$io$File__V(a0?.jobj ?? nil))
@@ -6106,6 +6600,11 @@ public final class java$util$Scanner : java$lang$Object, java$util$Iterator, jav
         try self.init(creator: I.java$util$Scanner_init_java$io$File_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
+    fileprivate static let java$util$Scanner_init_java$io$File_java$nio$charset$Charset__V = constructor((JObjectType("java/io/File"), JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$io$File?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$io$File_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    }
+
     fileprivate static let java$util$Scanner_init_java$nio$file$Path__V = constructor((JObjectType("java/nio/file/Path")))
     public convenience init(_ a0: java$nio$file$Path?) throws {
         try self.init(creator: I.java$util$Scanner_init_java$nio$file$Path__V(a0?.jobj ?? nil))
@@ -6114,6 +6613,11 @@ public final class java$util$Scanner : java$lang$Object, java$util$Iterator, jav
     fileprivate static let java$util$Scanner_init_java$nio$file$Path_java$lang$String__V = constructor((JObjectType("java/nio/file/Path"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$nio$file$Path?, _ a1: java$lang$String?) throws {
         try self.init(creator: I.java$util$Scanner_init_java$nio$file$Path_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    }
+
+    fileprivate static let java$util$Scanner_init_java$nio$file$Path_java$nio$charset$Charset__V = constructor((JObjectType("java/nio/file/Path"), JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$nio$file$Path?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$nio$file$Path_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_init_java$lang$String__V = constructor((JObjectType("java/lang/String")))
@@ -6129,6 +6633,11 @@ public final class java$util$Scanner : java$lang$Object, java$util$Iterator, jav
     fileprivate static let java$util$Scanner_init_java$nio$channels$ReadableByteChannel_java$lang$String__V = constructor((JObjectType("java/nio/channels/ReadableByteChannel"), JObjectType("java/lang/String")))
     public convenience init(_ a0: java$nio$channels$ReadableByteChannel?, _ a1: java$lang$String?) throws {
         try self.init(creator: I.java$util$Scanner_init_java$nio$channels$ReadableByteChannel_java$lang$String__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
+    }
+
+    fileprivate static let java$util$Scanner_init_java$nio$channels$ReadableByteChannel_java$nio$charset$Charset__V = constructor((JObjectType("java/nio/channels/ReadableByteChannel"), JObjectType("java/nio/charset/Charset")))
+    public convenience init(_ a0: java$nio$channels$ReadableByteChannel?, _ a1: java$nio$charset$Charset?) throws {
+        try self.init(creator: I.java$util$Scanner_init_java$nio$channels$ReadableByteChannel_java$nio$charset$Charset__V(a0?.jobj ?? nil, a1?.jobj ?? nil))
     }
 
     fileprivate static let java$util$Scanner_close__V = invoker("close", returns: JVoid.jniType)
@@ -6402,6 +6911,21 @@ public final class java$util$Scanner : java$lang$Object, java$util$Iterator, jav
         return try JVM.sharedJVM.construct(I.java$util$Scanner_reset__java$util$Scanner(jobj)()) as java$util$Scanner$Impl?
     }
 
+    fileprivate static let java$util$Scanner_tokens__java$util$stream$Stream = invoker("tokens", returns: JObjectType("java/util/stream/Stream"))
+    public func tokens() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$Scanner_tokens__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
+    }
+
+    fileprivate static let java$util$Scanner_findAll_java$util$regex$Pattern__java$util$stream$Stream = invoker("findAll", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/util/regex/Pattern")))
+    public func findAll(_ a0: java$util$regex$Pattern?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$Scanner_findAll_java$util$regex$Pattern__java$util$stream$Stream(jobj)(a0?.jobj ?? nil)) as java$util$stream$Stream$Impl?
+    }
+
+    fileprivate static let java$util$Scanner_findAll_java$lang$String__java$util$stream$Stream = invoker("findAll", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/lang/String")))
+    public func findAll(_ a0: java$lang$String?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$Scanner_findAll_java$lang$String__java$util$stream$Stream(jobj)(a0?.jobj ?? nil)) as java$util$stream$Stream$Impl?
+    }
+
     fileprivate static let java$util$Scanner_next__java$lang$Object = invoker("next", returns: JObjectType("java/lang/Object"))
     public func next() throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.java$util$Scanner_next__java$lang$Object(jobj)()) as java$lang$Object$Impl?
@@ -6418,14 +6942,14 @@ public final class java$util$ServiceLoader : java$lang$Object, java$lang$Iterabl
     /// Returns the internal JNI name for this class: "java/util/ServiceLoader"
     public class override func jniName() -> String { return "java/util/ServiceLoader" }
 
-    fileprivate static let java$util$ServiceLoader_reload__V = invoker("reload", returns: JVoid.jniType)
-    public func reload() throws -> Void {
-        return try I.java$util$ServiceLoader_reload__V(jobj)()
-    }
-
     fileprivate static let java$util$ServiceLoader_iterator__java$util$Iterator = invoker("iterator", returns: JObjectType("java/util/Iterator"))
     public func iterator() throws -> java$util$Iterator? {
         return try JVM.sharedJVM.construct(I.java$util$ServiceLoader_iterator__java$util$Iterator(jobj)()) as java$util$Iterator$Impl?
+    }
+
+    fileprivate static let java$util$ServiceLoader_stream__java$util$stream$Stream = invoker("stream", returns: JObjectType("java/util/stream/Stream"))
+    public func stream() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$ServiceLoader_stream__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
     }
 
     fileprivate static let java$util$ServiceLoader_load_java$lang$Class_java$lang$ClassLoader__java$util$ServiceLoader = svoker("load", returns: JObjectType("java/util/ServiceLoader"), arguments: (JObjectType("java/lang/Class"), JObjectType("java/lang/ClassLoader")))
@@ -6441,6 +6965,21 @@ public final class java$util$ServiceLoader : java$lang$Object, java$lang$Iterabl
     fileprivate static let java$util$ServiceLoader_loadInstalled_java$lang$Class__java$util$ServiceLoader = svoker("loadInstalled", returns: JObjectType("java/util/ServiceLoader"), arguments: (JObjectType("java/lang/Class")))
     public static func loadInstalled(_ a0: java$lang$Class?) throws -> java$util$ServiceLoader? {
         return try JVM.sharedJVM.construct(I.java$util$ServiceLoader_loadInstalled_java$lang$Class__java$util$ServiceLoader(a0?.jobj ?? nil)) as java$util$ServiceLoader$Impl?
+    }
+
+    fileprivate static let java$util$ServiceLoader_load_java$lang$ModuleLayer_java$lang$Class__java$util$ServiceLoader = svoker("load", returns: JObjectType("java/util/ServiceLoader"), arguments: (JObjectType("java/lang/ModuleLayer"), JObjectType("java/lang/Class")))
+    public static func load(_ a0: java$lang$ModuleLayer?, _ a1: java$lang$Class?) throws -> java$util$ServiceLoader? {
+        return try JVM.sharedJVM.construct(I.java$util$ServiceLoader_load_java$lang$ModuleLayer_java$lang$Class__java$util$ServiceLoader(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$ServiceLoader$Impl?
+    }
+
+    fileprivate static let java$util$ServiceLoader_findFirst__java$util$Optional = invoker("findFirst", returns: JObjectType("java/util/Optional"))
+    public func findFirst() throws -> java$util$Optional? {
+        return try JVM.sharedJVM.construct(I.java$util$ServiceLoader_findFirst__java$util$Optional(jobj)()) as java$util$Optional$Impl?
+    }
+
+    fileprivate static let java$util$ServiceLoader_reload__V = invoker("reload", returns: JVoid.jniType)
+    public func reload() throws -> Void {
+        return try I.java$util$ServiceLoader_reload__V(jobj)()
     }
 
     fileprivate static let java$util$ServiceLoader_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
@@ -6738,6 +7277,11 @@ public final class java$util$SplittableRandom : java$lang$Object {
     fileprivate static let java$util$SplittableRandom_split__java$util$SplittableRandom = invoker("split", returns: JObjectType("java/util/SplittableRandom"))
     public func split() throws -> java$util$SplittableRandom? {
         return try JVM.sharedJVM.construct(I.java$util$SplittableRandom_split__java$util$SplittableRandom(jobj)()) as java$util$SplittableRandom$Impl?
+    }
+
+    fileprivate static let java$util$SplittableRandom_nextBytes_AB__V = invoker("nextBytes", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType)))
+    public func nextBytes(_ a0: [jbyte]?) throws -> Void {
+        return try I.java$util$SplittableRandom_nextBytes_AB__V(jobj)(a0?.arrayToJArray() ?? nil)
     }
 
     fileprivate static let java$util$SplittableRandom_nextInt__I = invoker("nextInt", returns: jint.jniType)
@@ -7985,6 +8529,7 @@ public extension java$util$Comparator {
 public protocol java$util$Enumeration : JavaObject {
     func hasMoreElements() throws -> jboolean
     func nextElement() throws -> java$lang$Object?
+    func asIterator() throws -> java$util$Iterator?
 }
 
 open class java$util$Enumeration$Impl : java$lang$Object, java$util$Enumeration {
@@ -7996,6 +8541,7 @@ open class java$util$Enumeration$Impl : java$lang$Object, java$util$Enumeration 
 
     fileprivate static let java$util$Enumeration_hasMoreElements__Z = invoker("hasMoreElements", returns: jboolean.jniType)
     fileprivate static let java$util$Enumeration_nextElement__java$lang$Object = invoker("nextElement", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$util$Enumeration_asIterator__java$util$Iterator = invoker("asIterator", returns: JObjectType("java/util/Iterator"))
 }
 
 public extension java$util$Enumeration {
@@ -8008,6 +8554,10 @@ public extension java$util$Enumeration {
 
     func nextElement() throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.java$util$Enumeration_nextElement__java$lang$Object(jobj)()) as java$lang$Object$Impl?
+    }
+
+    func asIterator() throws -> java$util$Iterator? {
+        return try JVM.sharedJVM.construct(I.java$util$Enumeration_asIterator__java$util$Iterator(jobj)()) as java$util$Iterator$Impl?
     }
 
 }
@@ -8207,6 +8757,7 @@ public protocol java$util$Deque : java$util$Queue {
     func poll() throws -> java$lang$Object?
     func element() throws -> java$lang$Object?
     func peek() throws -> java$lang$Object?
+    func addAll(_ a0: java$util$Collection?) throws -> jboolean
     func push(_ a0: java$lang$Object?) throws -> Void
     func pop() throws -> java$lang$Object?
     func remove(_ a0: java$lang$Object?) throws -> jboolean
@@ -8243,6 +8794,7 @@ open class java$util$Deque$Impl : java$lang$Object, java$util$Deque, java$util$Q
     fileprivate static let java$util$Deque_poll__java$lang$Object = invoker("poll", returns: JObjectType("java/lang/Object"))
     fileprivate static let java$util$Deque_element__java$lang$Object = invoker("element", returns: JObjectType("java/lang/Object"))
     fileprivate static let java$util$Deque_peek__java$lang$Object = invoker("peek", returns: JObjectType("java/lang/Object"))
+    fileprivate static let java$util$Deque_addAll_java$util$Collection__Z = invoker("addAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
     fileprivate static let java$util$Deque_push_java$lang$Object__V = invoker("push", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$Deque_pop__java$lang$Object = invoker("pop", returns: JObjectType("java/lang/Object"))
     fileprivate static let java$util$Deque_remove_java$lang$Object__Z = invoker("remove", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
@@ -8336,6 +8888,10 @@ public extension java$util$Deque {
         return try JVM.sharedJVM.construct(I.java$util$Deque_peek__java$lang$Object(jobj)()) as java$lang$Object$Impl?
     }
 
+    func addAll(_ a0: java$util$Collection?) throws -> jboolean {
+        return try I.java$util$Deque_addAll_java$util$Collection__Z(jobj)(a0?.jobj ?? nil)
+    }
+
     func push(_ a0: java$lang$Object?) throws -> Void {
         return try I.java$util$Deque_push_java$lang$Object__V(jobj)(a0?.jobj ?? nil)
     }
@@ -8395,6 +8951,19 @@ public protocol java$util$List : java$util$Collection {
     func listIterator(_ a0: jint) throws -> java$util$ListIterator?
     func subList(_ a0: jint, _ a1: jint) throws -> java$util$List?
     func spliterator() throws -> java$util$Spliterator?
+    static func of() throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?) throws -> java$util$List?
+    static func of(_ a0: [java$lang$Object?]?) throws -> java$util$List?
+    static func copyOf(_ a0: java$util$Collection?) throws -> java$util$List?
 }
 
 open class java$util$List$Impl : java$lang$Object, java$util$List, java$util$Collection {
@@ -8432,6 +9001,19 @@ open class java$util$List$Impl : java$lang$Object, java$util$List, java$util$Col
     fileprivate static let java$util$List_listIterator_I__java$util$ListIterator = invoker("listIterator", returns: JObjectType("java/util/ListIterator"), arguments: (jint.jniType))
     fileprivate static let java$util$List_subList_I_I__java$util$List = invoker("subList", returns: JObjectType("java/util/List"), arguments: (jint.jniType, jint.jniType))
     fileprivate static let java$util$List_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
+    fileprivate static let java$util$List_of__java$util$List = svoker("of", returns: JObjectType("java/util/List"))
+    fileprivate static let java$util$List_of_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$List_of_Ajava$lang$Object__java$util$List = svoker("of", returns: JObjectType("java/util/List"), arguments: (JArray(JObjectType("java/lang/Object"))))
+    fileprivate static let java$util$List_copyOf_java$util$Collection__java$util$List = svoker("copyOf", returns: JObjectType("java/util/List"), arguments: (JObjectType("java/util/Collection")))
 }
 
 public extension java$util$List {
@@ -8548,6 +9130,58 @@ public extension java$util$List {
 
     func spliterator() throws -> java$util$Spliterator? {
         return try JVM.sharedJVM.construct(I.java$util$List_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
+    }
+
+    static func of() throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of__java$util$List()) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object__java$util$List(a0?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$List(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.jobj ?? nil)) as java$util$List$Impl?
+    }
+
+    static func of(_ a0: [java$lang$Object?]?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_of_Ajava$lang$Object__java$util$List(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)) as java$util$List$Impl?
+    }
+
+    static func copyOf(_ a0: java$util$Collection?) throws -> java$util$List? {
+        return try JVM.sharedJVM.construct(I.java$util$List_copyOf_java$util$Collection__java$util$List(a0?.jobj ?? nil)) as java$util$List$Impl?
     }
 
 }
@@ -8731,6 +9365,19 @@ public protocol java$util$Set : java$util$Collection {
     func equals(_ a0: java$lang$Object?) throws -> jboolean
     func hashCode() throws -> jint
     func spliterator() throws -> java$util$Spliterator?
+    static func of() throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?) throws -> java$util$Set?
+    static func of(_ a0: [java$lang$Object?]?) throws -> java$util$Set?
+    static func copyOf(_ a0: java$util$Collection?) throws -> java$util$Set?
 }
 
 open class java$util$Set$Impl : java$lang$Object, java$util$Set, java$util$Collection {
@@ -8756,6 +9403,19 @@ open class java$util$Set$Impl : java$lang$Object, java$util$Set, java$util$Colle
     fileprivate static let java$util$Set_equals_java$lang$Object__Z = invoker("equals", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$Set_hashCode__I = invoker("hashCode", returns: jint.jniType)
     fileprivate static let java$util$Set_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
+    fileprivate static let java$util$Set_of__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"))
+    fileprivate static let java$util$Set_of_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Set_of_Ajava$lang$Object__java$util$Set = svoker("of", returns: JObjectType("java/util/Set"), arguments: (JArray(JObjectType("java/lang/Object"))))
+    fileprivate static let java$util$Set_copyOf_java$util$Collection__java$util$Set = svoker("copyOf", returns: JObjectType("java/util/Set"), arguments: (JObjectType("java/util/Collection")))
 }
 
 public extension java$util$Set {
@@ -8824,6 +9484,58 @@ public extension java$util$Set {
 
     func spliterator() throws -> java$util$Spliterator? {
         return try JVM.sharedJVM.construct(I.java$util$Set_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
+    }
+
+    static func of() throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of__java$util$Set()) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object__java$util$Set(a0?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Set(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.jobj ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func of(_ a0: [java$lang$Object?]?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_of_Ajava$lang$Object__java$util$Set(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)) as java$util$Set$Impl?
+    }
+
+    static func copyOf(_ a0: java$util$Collection?) throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$util$Set_copyOf_java$util$Collection__java$util$Set(a0?.jobj ?? nil)) as java$util$Set$Impl?
     }
 
 }
@@ -9214,6 +9926,20 @@ public protocol java$util$Map : JavaObject {
     func computeIfPresent(_ a0: java$lang$Object?, _ a1: java$util$function$BiFunction?) throws -> java$lang$Object?
     func compute(_ a0: java$lang$Object?, _ a1: java$util$function$BiFunction?) throws -> java$lang$Object?
     func merge(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$util$function$BiFunction?) throws -> java$lang$Object?
+    static func of() throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?, _ a12: java$lang$Object?, _ a13: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?, _ a12: java$lang$Object?, _ a13: java$lang$Object?, _ a14: java$lang$Object?, _ a15: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?, _ a12: java$lang$Object?, _ a13: java$lang$Object?, _ a14: java$lang$Object?, _ a15: java$lang$Object?, _ a16: java$lang$Object?, _ a17: java$lang$Object?) throws -> java$util$Map?
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?, _ a12: java$lang$Object?, _ a13: java$lang$Object?, _ a14: java$lang$Object?, _ a15: java$lang$Object?, _ a16: java$lang$Object?, _ a17: java$lang$Object?, _ a18: java$lang$Object?, _ a19: java$lang$Object?) throws -> java$util$Map?
+    static func ofEntries(_ a0: [java$util$Map$Entry?]?) throws -> java$util$Map?
+    static func entry(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$util$Map$Entry?
+    static func copyOf(_ a0: java$util$Map?) throws -> java$util$Map?
 }
 
 open class java$util$Map$Impl : java$lang$Object, java$util$Map {
@@ -9248,6 +9974,20 @@ open class java$util$Map$Impl : java$lang$Object, java$util$Map {
     fileprivate static let java$util$Map_computeIfPresent_java$lang$Object_java$util$function$BiFunction__java$lang$Object = invoker("computeIfPresent", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/BiFunction")))
     fileprivate static let java$util$Map_compute_java$lang$Object_java$util$function$BiFunction__java$lang$Object = invoker("compute", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/BiFunction")))
     fileprivate static let java$util$Map_merge_java$lang$Object_java$lang$Object_java$util$function$BiFunction__java$lang$Object = invoker("merge", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/util/function/BiFunction")))
+    fileprivate static let java$util$Map_of__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map = svoker("of", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_ofEntries_Ajava$util$Map$Entry__java$util$Map = svoker("ofEntries", returns: JObjectType("java/util/Map"), arguments: (JArray(JObjectType("java/util/Map$Entry"))))
+    fileprivate static let java$util$Map_entry_java$lang$Object_java$lang$Object__java$util$Map$Entry = svoker("entry", returns: JObjectType("java/util/Map$Entry"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
+    fileprivate static let java$util$Map_copyOf_java$util$Map__java$util$Map = svoker("copyOf", returns: JObjectType("java/util/Map"), arguments: (JObjectType("java/util/Map")))
 }
 
 public extension java$util$Map {
@@ -9352,6 +10092,62 @@ public extension java$util$Map {
 
     func merge(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$util$function$BiFunction?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.java$util$Map_merge_java$lang$Object_java$lang$Object_java$util$function$BiFunction__java$lang$Object(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    static func of() throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of__java$util$Map()) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.jobj ?? nil, a10?.jobj ?? nil, a11?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?, _ a12: java$lang$Object?, _ a13: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.jobj ?? nil, a10?.jobj ?? nil, a11?.jobj ?? nil, a12?.jobj ?? nil, a13?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?, _ a12: java$lang$Object?, _ a13: java$lang$Object?, _ a14: java$lang$Object?, _ a15: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.jobj ?? nil, a10?.jobj ?? nil, a11?.jobj ?? nil, a12?.jobj ?? nil, a13?.jobj ?? nil, a14?.jobj ?? nil, a15?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?, _ a12: java$lang$Object?, _ a13: java$lang$Object?, _ a14: java$lang$Object?, _ a15: java$lang$Object?, _ a16: java$lang$Object?, _ a17: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.jobj ?? nil, a10?.jobj ?? nil, a11?.jobj ?? nil, a12?.jobj ?? nil, a13?.jobj ?? nil, a14?.jobj ?? nil, a15?.jobj ?? nil, a16?.jobj ?? nil, a17?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func of(_ a0: java$lang$Object?, _ a1: java$lang$Object?, _ a2: java$lang$Object?, _ a3: java$lang$Object?, _ a4: java$lang$Object?, _ a5: java$lang$Object?, _ a6: java$lang$Object?, _ a7: java$lang$Object?, _ a8: java$lang$Object?, _ a9: java$lang$Object?, _ a10: java$lang$Object?, _ a11: java$lang$Object?, _ a12: java$lang$Object?, _ a13: java$lang$Object?, _ a14: java$lang$Object?, _ a15: java$lang$Object?, _ a16: java$lang$Object?, _ a17: java$lang$Object?, _ a18: java$lang$Object?, _ a19: java$lang$Object?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_of_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object_java$lang$Object__java$util$Map(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil, a9?.jobj ?? nil, a10?.jobj ?? nil, a11?.jobj ?? nil, a12?.jobj ?? nil, a13?.jobj ?? nil, a14?.jobj ?? nil, a15?.jobj ?? nil, a16?.jobj ?? nil, a17?.jobj ?? nil, a18?.jobj ?? nil, a19?.jobj ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func ofEntries(_ a0: [java$util$Map$Entry?]?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_ofEntries_Ajava$util$Map$Entry__java$util$Map(a0?.map({ java$util$Map$Entry$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)) as java$util$Map$Impl?
+    }
+
+    static func entry(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$util$Map$Entry? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_entry_java$lang$Object_java$lang$Object__java$util$Map$Entry(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$Map$Entry$Impl?
+    }
+
+    static func copyOf(_ a0: java$util$Map?) throws -> java$util$Map? {
+        return try JVM.sharedJVM.construct(I.java$util$Map_copyOf_java$util$Map__java$util$Map(a0?.jobj ?? nil)) as java$util$Map$Impl?
     }
 
 }
@@ -10075,12 +10871,12 @@ public final class java$util$Formatter$BigDecimalLayoutForm : java$lang$Enum {
 
     fileprivate static let java$util$Formatter$BigDecimalLayoutForm__SCIENTIFIC__java$util$Formatter$BigDecimalLayoutForm = J.saccessor("SCIENTIFIC", type: JObjectType("java/util/Formatter$BigDecimalLayoutForm"))
     public static var SCIENTIFIC: java$util$Formatter$BigDecimalLayoutForm? {
-        get { return java$util$Formatter$BigDecimalLayoutForm$Impl(constructor: I.java$util$Formatter$BigDecimalLayoutForm__SCIENTIFIC__java$util$Formatter$BigDecimalLayoutForm.getter()) }
+        get { return java$util$Formatter$BigDecimalLayoutForm$Impl(reference: I.java$util$Formatter$BigDecimalLayoutForm__SCIENTIFIC__java$util$Formatter$BigDecimalLayoutForm.getter()) }
     }
 
     fileprivate static let java$util$Formatter$BigDecimalLayoutForm__DECIMAL_FLOAT__java$util$Formatter$BigDecimalLayoutForm = J.saccessor("DECIMAL_FLOAT", type: JObjectType("java/util/Formatter$BigDecimalLayoutForm"))
     public static var DECIMAL_FLOAT: java$util$Formatter$BigDecimalLayoutForm? {
-        get { return java$util$Formatter$BigDecimalLayoutForm$Impl(constructor: I.java$util$Formatter$BigDecimalLayoutForm__DECIMAL_FLOAT__java$util$Formatter$BigDecimalLayoutForm.getter()) }
+        get { return java$util$Formatter$BigDecimalLayoutForm$Impl(reference: I.java$util$Formatter$BigDecimalLayoutForm__DECIMAL_FLOAT__java$util$Formatter$BigDecimalLayoutForm.getter()) }
     }
 
     fileprivate static let java$util$Formatter$BigDecimalLayoutForm_values__Ajava$util$Formatter$BigDecimalLayoutForm = svoker("values", returns: JArray(JObjectType("java/util/Formatter$BigDecimalLayoutForm")))
@@ -10106,12 +10902,12 @@ public final class java$util$Locale$Category : java$lang$Enum {
 
     fileprivate static let java$util$Locale$Category__DISPLAY__java$util$Locale$Category = J.saccessor("DISPLAY", type: JObjectType("java/util/Locale$Category"))
     public static var DISPLAY: java$util$Locale$Category? {
-        get { return java$util$Locale$Category$Impl(constructor: I.java$util$Locale$Category__DISPLAY__java$util$Locale$Category.getter()) }
+        get { return java$util$Locale$Category$Impl(reference: I.java$util$Locale$Category__DISPLAY__java$util$Locale$Category.getter()) }
     }
 
     fileprivate static let java$util$Locale$Category__FORMAT__java$util$Locale$Category = J.saccessor("FORMAT", type: JObjectType("java/util/Locale$Category"))
     public static var FORMAT: java$util$Locale$Category? {
-        get { return java$util$Locale$Category$Impl(constructor: I.java$util$Locale$Category__FORMAT__java$util$Locale$Category.getter()) }
+        get { return java$util$Locale$Category$Impl(reference: I.java$util$Locale$Category__FORMAT__java$util$Locale$Category.getter()) }
     }
 
     fileprivate static let java$util$Locale$Category_values__Ajava$util$Locale$Category = svoker("values", returns: JArray(JObjectType("java/util/Locale$Category")))
@@ -10137,27 +10933,27 @@ public final class java$util$Locale$FilteringMode : java$lang$Enum {
 
     fileprivate static let java$util$Locale$FilteringMode__AUTOSELECT_FILTERING__java$util$Locale$FilteringMode = J.saccessor("AUTOSELECT_FILTERING", type: JObjectType("java/util/Locale$FilteringMode"))
     public static var AUTOSELECT_FILTERING: java$util$Locale$FilteringMode? {
-        get { return java$util$Locale$FilteringMode$Impl(constructor: I.java$util$Locale$FilteringMode__AUTOSELECT_FILTERING__java$util$Locale$FilteringMode.getter()) }
+        get { return java$util$Locale$FilteringMode$Impl(reference: I.java$util$Locale$FilteringMode__AUTOSELECT_FILTERING__java$util$Locale$FilteringMode.getter()) }
     }
 
     fileprivate static let java$util$Locale$FilteringMode__EXTENDED_FILTERING__java$util$Locale$FilteringMode = J.saccessor("EXTENDED_FILTERING", type: JObjectType("java/util/Locale$FilteringMode"))
     public static var EXTENDED_FILTERING: java$util$Locale$FilteringMode? {
-        get { return java$util$Locale$FilteringMode$Impl(constructor: I.java$util$Locale$FilteringMode__EXTENDED_FILTERING__java$util$Locale$FilteringMode.getter()) }
+        get { return java$util$Locale$FilteringMode$Impl(reference: I.java$util$Locale$FilteringMode__EXTENDED_FILTERING__java$util$Locale$FilteringMode.getter()) }
     }
 
     fileprivate static let java$util$Locale$FilteringMode__IGNORE_EXTENDED_RANGES__java$util$Locale$FilteringMode = J.saccessor("IGNORE_EXTENDED_RANGES", type: JObjectType("java/util/Locale$FilteringMode"))
     public static var IGNORE_EXTENDED_RANGES: java$util$Locale$FilteringMode? {
-        get { return java$util$Locale$FilteringMode$Impl(constructor: I.java$util$Locale$FilteringMode__IGNORE_EXTENDED_RANGES__java$util$Locale$FilteringMode.getter()) }
+        get { return java$util$Locale$FilteringMode$Impl(reference: I.java$util$Locale$FilteringMode__IGNORE_EXTENDED_RANGES__java$util$Locale$FilteringMode.getter()) }
     }
 
     fileprivate static let java$util$Locale$FilteringMode__MAP_EXTENDED_RANGES__java$util$Locale$FilteringMode = J.saccessor("MAP_EXTENDED_RANGES", type: JObjectType("java/util/Locale$FilteringMode"))
     public static var MAP_EXTENDED_RANGES: java$util$Locale$FilteringMode? {
-        get { return java$util$Locale$FilteringMode$Impl(constructor: I.java$util$Locale$FilteringMode__MAP_EXTENDED_RANGES__java$util$Locale$FilteringMode.getter()) }
+        get { return java$util$Locale$FilteringMode$Impl(reference: I.java$util$Locale$FilteringMode__MAP_EXTENDED_RANGES__java$util$Locale$FilteringMode.getter()) }
     }
 
     fileprivate static let java$util$Locale$FilteringMode__REJECT_EXTENDED_RANGES__java$util$Locale$FilteringMode = J.saccessor("REJECT_EXTENDED_RANGES", type: JObjectType("java/util/Locale$FilteringMode"))
     public static var REJECT_EXTENDED_RANGES: java$util$Locale$FilteringMode? {
-        get { return java$util$Locale$FilteringMode$Impl(constructor: I.java$util$Locale$FilteringMode__REJECT_EXTENDED_RANGES__java$util$Locale$FilteringMode.getter()) }
+        get { return java$util$Locale$FilteringMode$Impl(reference: I.java$util$Locale$FilteringMode__REJECT_EXTENDED_RANGES__java$util$Locale$FilteringMode.getter()) }
     }
 
     fileprivate static let java$util$Locale$FilteringMode_values__Ajava$util$Locale$FilteringMode = svoker("values", returns: JArray(JObjectType("java/util/Locale$FilteringMode")))
@@ -10173,4 +10969,16 @@ public final class java$util$Locale$FilteringMode : java$lang$Enum {
 }
 
 public typealias java$util$Locale$FilteringMode$Impl = java$util$Locale$FilteringMode
+
+public protocol java$util$Locale$IsoCountryCode : JavaObject {
+}
+
+open class java$util$Locale$IsoCountryCode$Impl : java$lang$Object, java$util$Locale$IsoCountryCode {
+    private typealias J = java$util$Locale$IsoCountryCode$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/util/Locale$IsoCountryCode"
+    open class override func jniName() -> String { return "java/util/Locale$IsoCountryCode" }
+
+}
 

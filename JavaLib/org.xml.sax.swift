@@ -163,6 +163,11 @@ open class org$xml$sax$InputSource : java$lang$Object {
         return try JVM.sharedJVM.construct(I.org$xml$sax$InputSource_getCharacterStream__java$io$Reader(jobj)()) as java$io$Reader$Impl?
     }
 
+    fileprivate static let org$xml$sax$InputSource_isEmpty__Z = invoker("isEmpty", returns: jboolean.jniType)
+    public func isEmpty() throws -> jboolean {
+        return try I.org$xml$sax$InputSource_isEmpty__Z(jobj)()
+    }
+
 }
 
 public typealias org$xml$sax$InputSource$Impl = org$xml$sax$InputSource

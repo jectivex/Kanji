@@ -315,6 +315,11 @@ open class java$util$logging$FileHandler : java$util$logging$StreamHandler {
         try self.init(creator: I.java$util$logging$FileHandler_init_java$lang$String_I_I_Z__V(a0?.jobj ?? nil, a1, a2, a3))
     }
 
+    fileprivate static let java$util$logging$FileHandler_init_java$lang$String_J_I_Z__V = constructor((JObjectType("java/lang/String"), jlong.jniType, jint.jniType, jboolean.jniType))
+    public convenience init(_ a0: java$lang$String?, _ a1: jlong, _ a2: jint, _ a3: jboolean) throws {
+        try self.init(creator: I.java$util$logging$FileHandler_init_java$lang$String_J_I_Z__V(a0?.jobj ?? nil, a1, a2, a3))
+    }
+
     fileprivate static let java$util$logging$FileHandler_publish_java$util$logging$LogRecord__V = invoker("publish", returns: JVoid.jniType, arguments: (JObjectType("java/util/logging/LogRecord")))
     fileprivate static let java$util$logging$FileHandler_close__V = invoker("close", returns: JVoid.jniType)
 }
@@ -353,47 +358,47 @@ open class java$util$logging$Level : java$lang$Object, java$io$Serializable {
 
     fileprivate static let java$util$logging$Level__OFF__java$util$logging$Level = J.saccessor("OFF", type: JObjectType("java/util/logging/Level"))
     public static var OFF: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__OFF__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__OFF__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level__SEVERE__java$util$logging$Level = J.saccessor("SEVERE", type: JObjectType("java/util/logging/Level"))
     public static var SEVERE: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__SEVERE__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__SEVERE__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level__WARNING__java$util$logging$Level = J.saccessor("WARNING", type: JObjectType("java/util/logging/Level"))
     public static var WARNING: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__WARNING__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__WARNING__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level__INFO__java$util$logging$Level = J.saccessor("INFO", type: JObjectType("java/util/logging/Level"))
     public static var INFO: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__INFO__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__INFO__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level__CONFIG__java$util$logging$Level = J.saccessor("CONFIG", type: JObjectType("java/util/logging/Level"))
     public static var CONFIG: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__CONFIG__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__CONFIG__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level__FINE__java$util$logging$Level = J.saccessor("FINE", type: JObjectType("java/util/logging/Level"))
     public static var FINE: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__FINE__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__FINE__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level__FINER__java$util$logging$Level = J.saccessor("FINER", type: JObjectType("java/util/logging/Level"))
     public static var FINER: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__FINER__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__FINER__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level__FINEST__java$util$logging$Level = J.saccessor("FINEST", type: JObjectType("java/util/logging/Level"))
     public static var FINEST: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__FINEST__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__FINEST__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level__ALL__java$util$logging$Level = J.saccessor("ALL", type: JObjectType("java/util/logging/Level"))
     public static var ALL: java$util$logging$Level? {
-        get { return java$util$logging$Level$Impl(constructor: I.java$util$logging$Level__ALL__java$util$logging$Level.getter()) }
+        get { return java$util$logging$Level$Impl(reference: I.java$util$logging$Level__ALL__java$util$logging$Level.getter()) }
     }
 
     fileprivate static let java$util$logging$Level_getResourceBundleName__java$lang$String = invoker("getResourceBundleName", returns: JObjectType("java/lang/String"))
@@ -437,12 +442,12 @@ open class java$util$logging$Logger : java$lang$Object {
 
     fileprivate static let java$util$logging$Logger__GLOBAL_LOGGER_NAME__java$lang$String = J.saccessor("GLOBAL_LOGGER_NAME", type: JObjectType("java/lang/String"))
     public static var GLOBAL_LOGGER_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$logging$Logger__GLOBAL_LOGGER_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$logging$Logger__GLOBAL_LOGGER_NAME__java$lang$String.getter()) }
     }
 
     fileprivate static let java$util$logging$Logger__global__java$util$logging$Logger = J.saccessor("global", type: JObjectType("java/util/logging/Logger"))
     public static var global: java$util$logging$Logger? {
-        get { return java$util$logging$Logger$Impl(constructor: I.java$util$logging$Logger__global__java$util$logging$Logger.getter()) }
+        get { return java$util$logging$Logger$Impl(reference: I.java$util$logging$Logger__global__java$util$logging$Logger.getter()) }
     }
 
     fileprivate static let java$util$logging$Logger_getGlobal__java$util$logging$Logger = svoker("getGlobal", returns: JObjectType("java/util/logging/Logger"))
@@ -575,6 +580,11 @@ open class java$util$logging$Logger : java$lang$Object {
         return try I.java$util$logging$Logger_logrb_java$util$logging$Level_java$lang$String_java$lang$String_java$util$ResourceBundle_java$lang$String_Ajava$lang$Object__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)
     }
 
+    fileprivate static let java$util$logging$Logger_logrb_java$util$logging$Level_java$util$ResourceBundle_java$lang$String_Ajava$lang$Object__V = invoker("logrb", returns: JVoid.jniType, arguments: (JObjectType("java/util/logging/Level"), JObjectType("java/util/ResourceBundle"), JObjectType("java/lang/String"), JArray(JObjectType("java/lang/Object"))))
+    public func logrb(_ a0: java$util$logging$Level?, _ a1: java$util$ResourceBundle?, _ a2: java$lang$String?, _ a3: [java$lang$Object?]?) throws -> Void {
+        return try I.java$util$logging$Logger_logrb_java$util$logging$Level_java$util$ResourceBundle_java$lang$String_Ajava$lang$Object__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)
+    }
+
     fileprivate static let java$util$logging$Logger_logrb_java$util$logging$Level_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$Throwable__V = invoker("logrb", returns: JVoid.jniType, arguments: (JObjectType("java/util/logging/Level"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
     public func logrb(_ a0: java$util$logging$Level?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$lang$String?, _ a5: java$lang$Throwable?) throws -> Void {
         return try I.java$util$logging$Logger_logrb_java$util$logging$Level_java$lang$String_java$lang$String_java$lang$String_java$lang$String_java$lang$Throwable__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil)
@@ -583,6 +593,11 @@ open class java$util$logging$Logger : java$lang$Object {
     fileprivate static let java$util$logging$Logger_logrb_java$util$logging$Level_java$lang$String_java$lang$String_java$util$ResourceBundle_java$lang$String_java$lang$Throwable__V = invoker("logrb", returns: JVoid.jniType, arguments: (JObjectType("java/util/logging/Level"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/util/ResourceBundle"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
     public func logrb(_ a0: java$util$logging$Level?, _ a1: java$lang$String?, _ a2: java$lang$String?, _ a3: java$util$ResourceBundle?, _ a4: java$lang$String?, _ a5: java$lang$Throwable?) throws -> Void {
         return try I.java$util$logging$Logger_logrb_java$util$logging$Level_java$lang$String_java$lang$String_java$util$ResourceBundle_java$lang$String_java$lang$Throwable__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$logging$Logger_logrb_java$util$logging$Level_java$util$ResourceBundle_java$lang$String_java$lang$Throwable__V = invoker("logrb", returns: JVoid.jniType, arguments: (JObjectType("java/util/logging/Level"), JObjectType("java/util/ResourceBundle"), JObjectType("java/lang/String"), JObjectType("java/lang/Throwable")))
+    public func logrb(_ a0: java$util$logging$Level?, _ a1: java$util$ResourceBundle?, _ a2: java$lang$String?, _ a3: java$lang$Throwable?) throws -> Void {
+        return try I.java$util$logging$Logger_logrb_java$util$logging$Level_java$util$ResourceBundle_java$lang$String_java$lang$Throwable__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil)
     }
 
     fileprivate static let java$util$logging$Logger_entering_java$lang$String_java$lang$String__V = invoker("entering", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String")))
@@ -758,22 +773,12 @@ open class java$util$logging$LogManager : java$lang$Object {
 
     fileprivate static let java$util$logging$LogManager__LOGGING_MXBEAN_NAME__java$lang$String = J.saccessor("LOGGING_MXBEAN_NAME", type: JObjectType("java/lang/String"))
     public static var LOGGING_MXBEAN_NAME: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.java$util$logging$LogManager__LOGGING_MXBEAN_NAME__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.java$util$logging$LogManager__LOGGING_MXBEAN_NAME__java$lang$String.getter()) }
     }
 
     fileprivate static let java$util$logging$LogManager_getLogManager__java$util$logging$LogManager = svoker("getLogManager", returns: JObjectType("java/util/logging/LogManager"))
     public static func getLogManager() throws -> java$util$logging$LogManager? {
         return try JVM.sharedJVM.construct(I.java$util$logging$LogManager_getLogManager__java$util$logging$LogManager()) as java$util$logging$LogManager$Impl?
-    }
-
-    fileprivate static let java$util$logging$LogManager_addPropertyChangeListener_java$beans$PropertyChangeListener__V = invoker("addPropertyChangeListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeListener")))
-    public func addPropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void {
-        return try I.java$util$logging$LogManager_addPropertyChangeListener_java$beans$PropertyChangeListener__V(jobj)(a0?.jobj ?? nil)
-    }
-
-    fileprivate static let java$util$logging$LogManager_removePropertyChangeListener_java$beans$PropertyChangeListener__V = invoker("removePropertyChangeListener", returns: JVoid.jniType, arguments: (JObjectType("java/beans/PropertyChangeListener")))
-    public func removePropertyChangeListener(_ a0: java$beans$PropertyChangeListener?) throws -> Void {
-        return try I.java$util$logging$LogManager_removePropertyChangeListener_java$beans$PropertyChangeListener__V(jobj)(a0?.jobj ?? nil)
     }
 
     fileprivate static let java$util$logging$LogManager_addLogger_java$util$logging$Logger__Z = invoker("addLogger", returns: jboolean.jniType, arguments: (JObjectType("java/util/logging/Logger")))
@@ -806,6 +811,16 @@ open class java$util$logging$LogManager : java$lang$Object {
         return try I.java$util$logging$LogManager_readConfiguration_java$io$InputStream__V(jobj)(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$logging$LogManager_updateConfiguration_java$util$function$Function__V = invoker("updateConfiguration", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Function")))
+    public func updateConfiguration(_ a0: java$util$function$Function?) throws -> Void {
+        return try I.java$util$logging$LogManager_updateConfiguration_java$util$function$Function__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$logging$LogManager_updateConfiguration_java$io$InputStream_java$util$function$Function__V = invoker("updateConfiguration", returns: JVoid.jniType, arguments: (JObjectType("java/io/InputStream"), JObjectType("java/util/function/Function")))
+    public func updateConfiguration(_ a0: java$io$InputStream?, _ a1: java$util$function$Function?) throws -> Void {
+        return try I.java$util$logging$LogManager_updateConfiguration_java$io$InputStream_java$util$function$Function__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
     fileprivate static let java$util$logging$LogManager_getProperty_java$lang$String__java$lang$String = invoker("getProperty", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String")))
     public func getProperty(_ a0: java$lang$String?) throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$util$logging$LogManager_getProperty_java$lang$String__java$lang$String(jobj)(a0?.jobj ?? nil)) as java$lang$String$Impl?
@@ -819,6 +834,16 @@ open class java$util$logging$LogManager : java$lang$Object {
     fileprivate static let java$util$logging$LogManager_getLoggingMXBean__java$util$logging$LoggingMXBean = svoker("getLoggingMXBean", returns: JObjectType("java/util/logging/LoggingMXBean"))
     public static func getLoggingMXBean() throws -> java$util$logging$LoggingMXBean? {
         return try JVM.sharedJVM.construct(I.java$util$logging$LogManager_getLoggingMXBean__java$util$logging$LoggingMXBean()) as java$util$logging$LoggingMXBean$Impl?
+    }
+
+    fileprivate static let java$util$logging$LogManager_addConfigurationListener_java$lang$Runnable__java$util$logging$LogManager = invoker("addConfigurationListener", returns: JObjectType("java/util/logging/LogManager"), arguments: (JObjectType("java/lang/Runnable")))
+    public func addConfigurationListener(_ a0: java$lang$Runnable?) throws -> java$util$logging$LogManager? {
+        return try JVM.sharedJVM.construct(I.java$util$logging$LogManager_addConfigurationListener_java$lang$Runnable__java$util$logging$LogManager(jobj)(a0?.jobj ?? nil)) as java$util$logging$LogManager$Impl?
+    }
+
+    fileprivate static let java$util$logging$LogManager_removeConfigurationListener_java$lang$Runnable__V = invoker("removeConfigurationListener", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Runnable")))
+    public func removeConfigurationListener(_ a0: java$lang$Runnable?) throws -> Void {
+        return try I.java$util$logging$LogManager_removeConfigurationListener_java$lang$Runnable__V(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -945,6 +970,16 @@ open class java$util$logging$LogRecord : java$lang$Object, java$io$Serializable 
     fileprivate static let java$util$logging$LogRecord_setMillis_J__V = invoker("setMillis", returns: JVoid.jniType, arguments: (jlong.jniType))
     public func setMillis(_ a0: jlong) throws -> Void {
         return try I.java$util$logging$LogRecord_setMillis_J__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$logging$LogRecord_getInstant__java$time$Instant = invoker("getInstant", returns: JObjectType("java/time/Instant"))
+    public func getInstant() throws -> java$time$Instant? {
+        return try JVM.sharedJVM.construct(I.java$util$logging$LogRecord_getInstant__java$time$Instant(jobj)()) as java$time$Instant$Impl?
+    }
+
+    fileprivate static let java$util$logging$LogRecord_setInstant_java$time$Instant__V = invoker("setInstant", returns: JVoid.jniType, arguments: (JObjectType("java/time/Instant")))
+    public func setInstant(_ a0: java$time$Instant?) throws -> Void {
+        return try I.java$util$logging$LogRecord_setInstant_java$time$Instant__V(jobj)(a0?.jobj ?? nil)
     }
 
     fileprivate static let java$util$logging$LogRecord_getThrown__java$lang$Throwable = invoker("getThrown", returns: JObjectType("java/lang/Throwable"))

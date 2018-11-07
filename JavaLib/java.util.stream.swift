@@ -17,9 +17,19 @@ public final class java$util$stream$Collectors : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_toList__java$util$stream$Collector()) as java$util$stream$Collector$Impl?
     }
 
+    fileprivate static let java$util$stream$Collectors_toUnmodifiableList__java$util$stream$Collector = svoker("toUnmodifiableList", returns: JObjectType("java/util/stream/Collector"))
+    public static func toUnmodifiableList() throws -> java$util$stream$Collector? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_toUnmodifiableList__java$util$stream$Collector()) as java$util$stream$Collector$Impl?
+    }
+
     fileprivate static let java$util$stream$Collectors_toSet__java$util$stream$Collector = svoker("toSet", returns: JObjectType("java/util/stream/Collector"))
     public static func toSet() throws -> java$util$stream$Collector? {
         return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_toSet__java$util$stream$Collector()) as java$util$stream$Collector$Impl?
+    }
+
+    fileprivate static let java$util$stream$Collectors_toUnmodifiableSet__java$util$stream$Collector = svoker("toUnmodifiableSet", returns: JObjectType("java/util/stream/Collector"))
+    public static func toUnmodifiableSet() throws -> java$util$stream$Collector? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_toUnmodifiableSet__java$util$stream$Collector()) as java$util$stream$Collector$Impl?
     }
 
     fileprivate static let java$util$stream$Collectors_joining__java$util$stream$Collector = svoker("joining", returns: JObjectType("java/util/stream/Collector"))
@@ -40,6 +50,16 @@ public final class java$util$stream$Collectors : java$lang$Object {
     fileprivate static let java$util$stream$Collectors_mapping_java$util$function$Function_java$util$stream$Collector__java$util$stream$Collector = svoker("mapping", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/function/Function"), JObjectType("java/util/stream/Collector")))
     public static func mapping(_ a0: java$util$function$Function?, _ a1: java$util$stream$Collector?) throws -> java$util$stream$Collector? {
         return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_mapping_java$util$function$Function_java$util$stream$Collector__java$util$stream$Collector(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$stream$Collector$Impl?
+    }
+
+    fileprivate static let java$util$stream$Collectors_flatMapping_java$util$function$Function_java$util$stream$Collector__java$util$stream$Collector = svoker("flatMapping", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/function/Function"), JObjectType("java/util/stream/Collector")))
+    public static func flatMapping(_ a0: java$util$function$Function?, _ a1: java$util$stream$Collector?) throws -> java$util$stream$Collector? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_flatMapping_java$util$function$Function_java$util$stream$Collector__java$util$stream$Collector(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$stream$Collector$Impl?
+    }
+
+    fileprivate static let java$util$stream$Collectors_filtering_java$util$function$Predicate_java$util$stream$Collector__java$util$stream$Collector = svoker("filtering", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/function/Predicate"), JObjectType("java/util/stream/Collector")))
+    public static func filtering(_ a0: java$util$function$Predicate?, _ a1: java$util$stream$Collector?) throws -> java$util$stream$Collector? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_filtering_java$util$function$Predicate_java$util$stream$Collector__java$util$stream$Collector(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$stream$Collector$Impl?
     }
 
     fileprivate static let java$util$stream$Collectors_collectingAndThen_java$util$stream$Collector_java$util$function$Function__java$util$stream$Collector = svoker("collectingAndThen", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/stream/Collector"), JObjectType("java/util/function/Function")))
@@ -152,9 +172,19 @@ public final class java$util$stream$Collectors : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_toMap_java$util$function$Function_java$util$function$Function__java$util$stream$Collector(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$stream$Collector$Impl?
     }
 
+    fileprivate static let java$util$stream$Collectors_toUnmodifiableMap_java$util$function$Function_java$util$function$Function__java$util$stream$Collector = svoker("toUnmodifiableMap", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/function/Function"), JObjectType("java/util/function/Function")))
+    public static func toUnmodifiableMap(_ a0: java$util$function$Function?, _ a1: java$util$function$Function?) throws -> java$util$stream$Collector? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_toUnmodifiableMap_java$util$function$Function_java$util$function$Function__java$util$stream$Collector(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$stream$Collector$Impl?
+    }
+
     fileprivate static let java$util$stream$Collectors_toMap_java$util$function$Function_java$util$function$Function_java$util$function$BinaryOperator__java$util$stream$Collector = svoker("toMap", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/function/Function"), JObjectType("java/util/function/Function"), JObjectType("java/util/function/BinaryOperator")))
     public static func toMap(_ a0: java$util$function$Function?, _ a1: java$util$function$Function?, _ a2: java$util$function$BinaryOperator?) throws -> java$util$stream$Collector? {
         return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_toMap_java$util$function$Function_java$util$function$Function_java$util$function$BinaryOperator__java$util$stream$Collector(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$stream$Collector$Impl?
+    }
+
+    fileprivate static let java$util$stream$Collectors_toUnmodifiableMap_java$util$function$Function_java$util$function$Function_java$util$function$BinaryOperator__java$util$stream$Collector = svoker("toUnmodifiableMap", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/function/Function"), JObjectType("java/util/function/Function"), JObjectType("java/util/function/BinaryOperator")))
+    public static func toUnmodifiableMap(_ a0: java$util$function$Function?, _ a1: java$util$function$Function?, _ a2: java$util$function$BinaryOperator?) throws -> java$util$stream$Collector? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Collectors_toUnmodifiableMap_java$util$function$Function_java$util$function$Function_java$util$function$BinaryOperator__java$util$stream$Collector(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$stream$Collector$Impl?
     }
 
     fileprivate static let java$util$stream$Collectors_toMap_java$util$function$Function_java$util$function$Function_java$util$function$BinaryOperator_java$util$function$Supplier__java$util$stream$Collector = svoker("toMap", returns: JObjectType("java/util/stream/Collector"), arguments: (JObjectType("java/util/function/Function"), JObjectType("java/util/function/Function"), JObjectType("java/util/function/BinaryOperator"), JObjectType("java/util/function/Supplier")))
@@ -325,6 +355,8 @@ public protocol java$util$stream$DoubleStream : java$util$stream$BaseStream {
     func peek(_ a0: java$util$function$DoubleConsumer?) throws -> java$util$stream$DoubleStream?
     func limit(_ a0: jlong) throws -> java$util$stream$DoubleStream?
     func skip(_ a0: jlong) throws -> java$util$stream$DoubleStream?
+    func takeWhile(_ a0: java$util$function$DoublePredicate?) throws -> java$util$stream$DoubleStream?
+    func dropWhile(_ a0: java$util$function$DoublePredicate?) throws -> java$util$stream$DoubleStream?
     func forEach(_ a0: java$util$function$DoubleConsumer?) throws -> Void
     func forEachOrdered(_ a0: java$util$function$DoubleConsumer?) throws -> Void
     func toArray() throws -> [jdouble]?
@@ -352,6 +384,7 @@ public protocol java$util$stream$DoubleStream : java$util$stream$BaseStream {
     static func of(_ a0: jdouble) throws -> java$util$stream$DoubleStream?
     static func of(_ a0: [jdouble]?) throws -> java$util$stream$DoubleStream?
     static func iterate(_ a0: jdouble, _ a1: java$util$function$DoubleUnaryOperator?) throws -> java$util$stream$DoubleStream?
+    static func iterate(_ a0: jdouble, _ a1: java$util$function$DoublePredicate?, _ a2: java$util$function$DoubleUnaryOperator?) throws -> java$util$stream$DoubleStream?
     static func generate(_ a0: java$util$function$DoubleSupplier?) throws -> java$util$stream$DoubleStream?
     static func concat(_ a0: java$util$stream$DoubleStream?, _ a1: java$util$stream$DoubleStream?) throws -> java$util$stream$DoubleStream?
     func parallel() throws -> java$util$stream$BaseStream?
@@ -378,6 +411,8 @@ open class java$util$stream$DoubleStream$Impl : java$lang$Object, java$util$stre
     fileprivate static let java$util$stream$DoubleStream_peek_java$util$function$DoubleConsumer__java$util$stream$DoubleStream = invoker("peek", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (JObjectType("java/util/function/DoubleConsumer")))
     fileprivate static let java$util$stream$DoubleStream_limit_J__java$util$stream$DoubleStream = invoker("limit", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (jlong.jniType))
     fileprivate static let java$util$stream$DoubleStream_skip_J__java$util$stream$DoubleStream = invoker("skip", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (jlong.jniType))
+    fileprivate static let java$util$stream$DoubleStream_takeWhile_java$util$function$DoublePredicate__java$util$stream$DoubleStream = invoker("takeWhile", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (JObjectType("java/util/function/DoublePredicate")))
+    fileprivate static let java$util$stream$DoubleStream_dropWhile_java$util$function$DoublePredicate__java$util$stream$DoubleStream = invoker("dropWhile", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (JObjectType("java/util/function/DoublePredicate")))
     fileprivate static let java$util$stream$DoubleStream_forEach_java$util$function$DoubleConsumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/DoubleConsumer")))
     fileprivate static let java$util$stream$DoubleStream_forEachOrdered_java$util$function$DoubleConsumer__V = invoker("forEachOrdered", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/DoubleConsumer")))
     fileprivate static let java$util$stream$DoubleStream_toArray__AD = invoker("toArray", returns: JArray(jdouble.jniType))
@@ -405,6 +440,7 @@ open class java$util$stream$DoubleStream$Impl : java$lang$Object, java$util$stre
     fileprivate static let java$util$stream$DoubleStream_of_D__java$util$stream$DoubleStream = svoker("of", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (jdouble.jniType))
     fileprivate static let java$util$stream$DoubleStream_of_AD__java$util$stream$DoubleStream = svoker("of", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (JArray(jdouble.jniType)))
     fileprivate static let java$util$stream$DoubleStream_iterate_D_java$util$function$DoubleUnaryOperator__java$util$stream$DoubleStream = svoker("iterate", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (jdouble.jniType, JObjectType("java/util/function/DoubleUnaryOperator")))
+    fileprivate static let java$util$stream$DoubleStream_iterate_D_java$util$function$DoublePredicate_java$util$function$DoubleUnaryOperator__java$util$stream$DoubleStream = svoker("iterate", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (jdouble.jniType, JObjectType("java/util/function/DoublePredicate"), JObjectType("java/util/function/DoubleUnaryOperator")))
     fileprivate static let java$util$stream$DoubleStream_generate_java$util$function$DoubleSupplier__java$util$stream$DoubleStream = svoker("generate", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (JObjectType("java/util/function/DoubleSupplier")))
     fileprivate static let java$util$stream$DoubleStream_concat_java$util$stream$DoubleStream_java$util$stream$DoubleStream__java$util$stream$DoubleStream = svoker("concat", returns: JObjectType("java/util/stream/DoubleStream"), arguments: (JObjectType("java/util/stream/DoubleStream"), JObjectType("java/util/stream/DoubleStream")))
     fileprivate static let java$util$stream$DoubleStream_parallel__java$util$stream$BaseStream = invoker("parallel", returns: JObjectType("java/util/stream/BaseStream"))
@@ -459,6 +495,14 @@ public extension java$util$stream$DoubleStream {
 
     func skip(_ a0: jlong) throws -> java$util$stream$DoubleStream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$DoubleStream_skip_J__java$util$stream$DoubleStream(jobj)(a0)) as java$util$stream$DoubleStream$Impl?
+    }
+
+    func takeWhile(_ a0: java$util$function$DoublePredicate?) throws -> java$util$stream$DoubleStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$DoubleStream_takeWhile_java$util$function$DoublePredicate__java$util$stream$DoubleStream(jobj)(a0?.jobj ?? nil)) as java$util$stream$DoubleStream$Impl?
+    }
+
+    func dropWhile(_ a0: java$util$function$DoublePredicate?) throws -> java$util$stream$DoubleStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$DoubleStream_dropWhile_java$util$function$DoublePredicate__java$util$stream$DoubleStream(jobj)(a0?.jobj ?? nil)) as java$util$stream$DoubleStream$Impl?
     }
 
     func forEach(_ a0: java$util$function$DoubleConsumer?) throws -> Void {
@@ -569,6 +613,10 @@ public extension java$util$stream$DoubleStream {
         return try JVM.sharedJVM.construct(I.java$util$stream$DoubleStream_iterate_D_java$util$function$DoubleUnaryOperator__java$util$stream$DoubleStream(a0, a1?.jobj ?? nil)) as java$util$stream$DoubleStream$Impl?
     }
 
+    static func iterate(_ a0: jdouble, _ a1: java$util$function$DoublePredicate?, _ a2: java$util$function$DoubleUnaryOperator?) throws -> java$util$stream$DoubleStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$DoubleStream_iterate_D_java$util$function$DoublePredicate_java$util$function$DoubleUnaryOperator__java$util$stream$DoubleStream(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$stream$DoubleStream$Impl?
+    }
+
     static func generate(_ a0: java$util$function$DoubleSupplier?) throws -> java$util$stream$DoubleStream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$DoubleStream_generate_java$util$function$DoubleSupplier__java$util$stream$DoubleStream(a0?.jobj ?? nil)) as java$util$stream$DoubleStream$Impl?
     }
@@ -607,6 +655,8 @@ public protocol java$util$stream$IntStream : java$util$stream$BaseStream {
     func peek(_ a0: java$util$function$IntConsumer?) throws -> java$util$stream$IntStream?
     func limit(_ a0: jlong) throws -> java$util$stream$IntStream?
     func skip(_ a0: jlong) throws -> java$util$stream$IntStream?
+    func takeWhile(_ a0: java$util$function$IntPredicate?) throws -> java$util$stream$IntStream?
+    func dropWhile(_ a0: java$util$function$IntPredicate?) throws -> java$util$stream$IntStream?
     func forEach(_ a0: java$util$function$IntConsumer?) throws -> Void
     func forEachOrdered(_ a0: java$util$function$IntConsumer?) throws -> Void
     func toArray() throws -> [jint]?
@@ -636,6 +686,7 @@ public protocol java$util$stream$IntStream : java$util$stream$BaseStream {
     static func of(_ a0: jint) throws -> java$util$stream$IntStream?
     static func of(_ a0: [jint]?) throws -> java$util$stream$IntStream?
     static func iterate(_ a0: jint, _ a1: java$util$function$IntUnaryOperator?) throws -> java$util$stream$IntStream?
+    static func iterate(_ a0: jint, _ a1: java$util$function$IntPredicate?, _ a2: java$util$function$IntUnaryOperator?) throws -> java$util$stream$IntStream?
     static func generate(_ a0: java$util$function$IntSupplier?) throws -> java$util$stream$IntStream?
     static func range(_ a0: jint, _ a1: jint) throws -> java$util$stream$IntStream?
     static func rangeClosed(_ a0: jint, _ a1: jint) throws -> java$util$stream$IntStream?
@@ -664,6 +715,8 @@ open class java$util$stream$IntStream$Impl : java$lang$Object, java$util$stream$
     fileprivate static let java$util$stream$IntStream_peek_java$util$function$IntConsumer__java$util$stream$IntStream = invoker("peek", returns: JObjectType("java/util/stream/IntStream"), arguments: (JObjectType("java/util/function/IntConsumer")))
     fileprivate static let java$util$stream$IntStream_limit_J__java$util$stream$IntStream = invoker("limit", returns: JObjectType("java/util/stream/IntStream"), arguments: (jlong.jniType))
     fileprivate static let java$util$stream$IntStream_skip_J__java$util$stream$IntStream = invoker("skip", returns: JObjectType("java/util/stream/IntStream"), arguments: (jlong.jniType))
+    fileprivate static let java$util$stream$IntStream_takeWhile_java$util$function$IntPredicate__java$util$stream$IntStream = invoker("takeWhile", returns: JObjectType("java/util/stream/IntStream"), arguments: (JObjectType("java/util/function/IntPredicate")))
+    fileprivate static let java$util$stream$IntStream_dropWhile_java$util$function$IntPredicate__java$util$stream$IntStream = invoker("dropWhile", returns: JObjectType("java/util/stream/IntStream"), arguments: (JObjectType("java/util/function/IntPredicate")))
     fileprivate static let java$util$stream$IntStream_forEach_java$util$function$IntConsumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/IntConsumer")))
     fileprivate static let java$util$stream$IntStream_forEachOrdered_java$util$function$IntConsumer__V = invoker("forEachOrdered", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/IntConsumer")))
     fileprivate static let java$util$stream$IntStream_toArray__AI = invoker("toArray", returns: JArray(jint.jniType))
@@ -693,6 +746,7 @@ open class java$util$stream$IntStream$Impl : java$lang$Object, java$util$stream$
     fileprivate static let java$util$stream$IntStream_of_I__java$util$stream$IntStream = svoker("of", returns: JObjectType("java/util/stream/IntStream"), arguments: (jint.jniType))
     fileprivate static let java$util$stream$IntStream_of_AI__java$util$stream$IntStream = svoker("of", returns: JObjectType("java/util/stream/IntStream"), arguments: (JArray(jint.jniType)))
     fileprivate static let java$util$stream$IntStream_iterate_I_java$util$function$IntUnaryOperator__java$util$stream$IntStream = svoker("iterate", returns: JObjectType("java/util/stream/IntStream"), arguments: (jint.jniType, JObjectType("java/util/function/IntUnaryOperator")))
+    fileprivate static let java$util$stream$IntStream_iterate_I_java$util$function$IntPredicate_java$util$function$IntUnaryOperator__java$util$stream$IntStream = svoker("iterate", returns: JObjectType("java/util/stream/IntStream"), arguments: (jint.jniType, JObjectType("java/util/function/IntPredicate"), JObjectType("java/util/function/IntUnaryOperator")))
     fileprivate static let java$util$stream$IntStream_generate_java$util$function$IntSupplier__java$util$stream$IntStream = svoker("generate", returns: JObjectType("java/util/stream/IntStream"), arguments: (JObjectType("java/util/function/IntSupplier")))
     fileprivate static let java$util$stream$IntStream_range_I_I__java$util$stream$IntStream = svoker("range", returns: JObjectType("java/util/stream/IntStream"), arguments: (jint.jniType, jint.jniType))
     fileprivate static let java$util$stream$IntStream_rangeClosed_I_I__java$util$stream$IntStream = svoker("rangeClosed", returns: JObjectType("java/util/stream/IntStream"), arguments: (jint.jniType, jint.jniType))
@@ -749,6 +803,14 @@ public extension java$util$stream$IntStream {
 
     func skip(_ a0: jlong) throws -> java$util$stream$IntStream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$IntStream_skip_J__java$util$stream$IntStream(jobj)(a0)) as java$util$stream$IntStream$Impl?
+    }
+
+    func takeWhile(_ a0: java$util$function$IntPredicate?) throws -> java$util$stream$IntStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$IntStream_takeWhile_java$util$function$IntPredicate__java$util$stream$IntStream(jobj)(a0?.jobj ?? nil)) as java$util$stream$IntStream$Impl?
+    }
+
+    func dropWhile(_ a0: java$util$function$IntPredicate?) throws -> java$util$stream$IntStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$IntStream_dropWhile_java$util$function$IntPredicate__java$util$stream$IntStream(jobj)(a0?.jobj ?? nil)) as java$util$stream$IntStream$Impl?
     }
 
     func forEach(_ a0: java$util$function$IntConsumer?) throws -> Void {
@@ -867,6 +929,10 @@ public extension java$util$stream$IntStream {
         return try JVM.sharedJVM.construct(I.java$util$stream$IntStream_iterate_I_java$util$function$IntUnaryOperator__java$util$stream$IntStream(a0, a1?.jobj ?? nil)) as java$util$stream$IntStream$Impl?
     }
 
+    static func iterate(_ a0: jint, _ a1: java$util$function$IntPredicate?, _ a2: java$util$function$IntUnaryOperator?) throws -> java$util$stream$IntStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$IntStream_iterate_I_java$util$function$IntPredicate_java$util$function$IntUnaryOperator__java$util$stream$IntStream(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$stream$IntStream$Impl?
+    }
+
     static func generate(_ a0: java$util$function$IntSupplier?) throws -> java$util$stream$IntStream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$IntStream_generate_java$util$function$IntSupplier__java$util$stream$IntStream(a0?.jobj ?? nil)) as java$util$stream$IntStream$Impl?
     }
@@ -913,6 +979,8 @@ public protocol java$util$stream$LongStream : java$util$stream$BaseStream {
     func peek(_ a0: java$util$function$LongConsumer?) throws -> java$util$stream$LongStream?
     func limit(_ a0: jlong) throws -> java$util$stream$LongStream?
     func skip(_ a0: jlong) throws -> java$util$stream$LongStream?
+    func takeWhile(_ a0: java$util$function$LongPredicate?) throws -> java$util$stream$LongStream?
+    func dropWhile(_ a0: java$util$function$LongPredicate?) throws -> java$util$stream$LongStream?
     func forEach(_ a0: java$util$function$LongConsumer?) throws -> Void
     func forEachOrdered(_ a0: java$util$function$LongConsumer?) throws -> Void
     func toArray() throws -> [jlong]?
@@ -941,6 +1009,7 @@ public protocol java$util$stream$LongStream : java$util$stream$BaseStream {
     static func of(_ a0: jlong) throws -> java$util$stream$LongStream?
     static func of(_ a0: [jlong]?) throws -> java$util$stream$LongStream?
     static func iterate(_ a0: jlong, _ a1: java$util$function$LongUnaryOperator?) throws -> java$util$stream$LongStream?
+    static func iterate(_ a0: jlong, _ a1: java$util$function$LongPredicate?, _ a2: java$util$function$LongUnaryOperator?) throws -> java$util$stream$LongStream?
     static func generate(_ a0: java$util$function$LongSupplier?) throws -> java$util$stream$LongStream?
     static func range(_ a0: jlong, _ a1: jlong) throws -> java$util$stream$LongStream?
     static func rangeClosed(_ a0: jlong, _ a1: jlong) throws -> java$util$stream$LongStream?
@@ -969,6 +1038,8 @@ open class java$util$stream$LongStream$Impl : java$lang$Object, java$util$stream
     fileprivate static let java$util$stream$LongStream_peek_java$util$function$LongConsumer__java$util$stream$LongStream = invoker("peek", returns: JObjectType("java/util/stream/LongStream"), arguments: (JObjectType("java/util/function/LongConsumer")))
     fileprivate static let java$util$stream$LongStream_limit_J__java$util$stream$LongStream = invoker("limit", returns: JObjectType("java/util/stream/LongStream"), arguments: (jlong.jniType))
     fileprivate static let java$util$stream$LongStream_skip_J__java$util$stream$LongStream = invoker("skip", returns: JObjectType("java/util/stream/LongStream"), arguments: (jlong.jniType))
+    fileprivate static let java$util$stream$LongStream_takeWhile_java$util$function$LongPredicate__java$util$stream$LongStream = invoker("takeWhile", returns: JObjectType("java/util/stream/LongStream"), arguments: (JObjectType("java/util/function/LongPredicate")))
+    fileprivate static let java$util$stream$LongStream_dropWhile_java$util$function$LongPredicate__java$util$stream$LongStream = invoker("dropWhile", returns: JObjectType("java/util/stream/LongStream"), arguments: (JObjectType("java/util/function/LongPredicate")))
     fileprivate static let java$util$stream$LongStream_forEach_java$util$function$LongConsumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/LongConsumer")))
     fileprivate static let java$util$stream$LongStream_forEachOrdered_java$util$function$LongConsumer__V = invoker("forEachOrdered", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/LongConsumer")))
     fileprivate static let java$util$stream$LongStream_toArray__AJ = invoker("toArray", returns: JArray(jlong.jniType))
@@ -997,6 +1068,7 @@ open class java$util$stream$LongStream$Impl : java$lang$Object, java$util$stream
     fileprivate static let java$util$stream$LongStream_of_J__java$util$stream$LongStream = svoker("of", returns: JObjectType("java/util/stream/LongStream"), arguments: (jlong.jniType))
     fileprivate static let java$util$stream$LongStream_of_AJ__java$util$stream$LongStream = svoker("of", returns: JObjectType("java/util/stream/LongStream"), arguments: (JArray(jlong.jniType)))
     fileprivate static let java$util$stream$LongStream_iterate_J_java$util$function$LongUnaryOperator__java$util$stream$LongStream = svoker("iterate", returns: JObjectType("java/util/stream/LongStream"), arguments: (jlong.jniType, JObjectType("java/util/function/LongUnaryOperator")))
+    fileprivate static let java$util$stream$LongStream_iterate_J_java$util$function$LongPredicate_java$util$function$LongUnaryOperator__java$util$stream$LongStream = svoker("iterate", returns: JObjectType("java/util/stream/LongStream"), arguments: (jlong.jniType, JObjectType("java/util/function/LongPredicate"), JObjectType("java/util/function/LongUnaryOperator")))
     fileprivate static let java$util$stream$LongStream_generate_java$util$function$LongSupplier__java$util$stream$LongStream = svoker("generate", returns: JObjectType("java/util/stream/LongStream"), arguments: (JObjectType("java/util/function/LongSupplier")))
     fileprivate static let java$util$stream$LongStream_range_J_J__java$util$stream$LongStream = svoker("range", returns: JObjectType("java/util/stream/LongStream"), arguments: (jlong.jniType, jlong.jniType))
     fileprivate static let java$util$stream$LongStream_rangeClosed_J_J__java$util$stream$LongStream = svoker("rangeClosed", returns: JObjectType("java/util/stream/LongStream"), arguments: (jlong.jniType, jlong.jniType))
@@ -1053,6 +1125,14 @@ public extension java$util$stream$LongStream {
 
     func skip(_ a0: jlong) throws -> java$util$stream$LongStream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$LongStream_skip_J__java$util$stream$LongStream(jobj)(a0)) as java$util$stream$LongStream$Impl?
+    }
+
+    func takeWhile(_ a0: java$util$function$LongPredicate?) throws -> java$util$stream$LongStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$LongStream_takeWhile_java$util$function$LongPredicate__java$util$stream$LongStream(jobj)(a0?.jobj ?? nil)) as java$util$stream$LongStream$Impl?
+    }
+
+    func dropWhile(_ a0: java$util$function$LongPredicate?) throws -> java$util$stream$LongStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$LongStream_dropWhile_java$util$function$LongPredicate__java$util$stream$LongStream(jobj)(a0?.jobj ?? nil)) as java$util$stream$LongStream$Impl?
     }
 
     func forEach(_ a0: java$util$function$LongConsumer?) throws -> Void {
@@ -1167,6 +1247,10 @@ public extension java$util$stream$LongStream {
         return try JVM.sharedJVM.construct(I.java$util$stream$LongStream_iterate_J_java$util$function$LongUnaryOperator__java$util$stream$LongStream(a0, a1?.jobj ?? nil)) as java$util$stream$LongStream$Impl?
     }
 
+    static func iterate(_ a0: jlong, _ a1: java$util$function$LongPredicate?, _ a2: java$util$function$LongUnaryOperator?) throws -> java$util$stream$LongStream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$LongStream_iterate_J_java$util$function$LongPredicate_java$util$function$LongUnaryOperator__java$util$stream$LongStream(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$stream$LongStream$Impl?
+    }
+
     static func generate(_ a0: java$util$function$LongSupplier?) throws -> java$util$stream$LongStream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$LongStream_generate_java$util$function$LongSupplier__java$util$stream$LongStream(a0?.jobj ?? nil)) as java$util$stream$LongStream$Impl?
     }
@@ -1217,6 +1301,8 @@ public protocol java$util$stream$Stream : java$util$stream$BaseStream {
     func peek(_ a0: java$util$function$Consumer?) throws -> java$util$stream$Stream?
     func limit(_ a0: jlong) throws -> java$util$stream$Stream?
     func skip(_ a0: jlong) throws -> java$util$stream$Stream?
+    func takeWhile(_ a0: java$util$function$Predicate?) throws -> java$util$stream$Stream?
+    func dropWhile(_ a0: java$util$function$Predicate?) throws -> java$util$stream$Stream?
     func forEach(_ a0: java$util$function$Consumer?) throws -> Void
     func forEachOrdered(_ a0: java$util$function$Consumer?) throws -> Void
     func toArray() throws -> [java$lang$Object?]?
@@ -1237,8 +1323,10 @@ public protocol java$util$stream$Stream : java$util$stream$BaseStream {
     static func builder() throws -> java$util$stream$Stream$Builder?
     static func empty() throws -> java$util$stream$Stream?
     static func of(_ a0: java$lang$Object?) throws -> java$util$stream$Stream?
+    static func ofNullable(_ a0: java$lang$Object?) throws -> java$util$stream$Stream?
     static func of(_ a0: [java$lang$Object?]?) throws -> java$util$stream$Stream?
     static func iterate(_ a0: java$lang$Object?, _ a1: java$util$function$UnaryOperator?) throws -> java$util$stream$Stream?
+    static func iterate(_ a0: java$lang$Object?, _ a1: java$util$function$Predicate?, _ a2: java$util$function$UnaryOperator?) throws -> java$util$stream$Stream?
     static func generate(_ a0: java$util$function$Supplier?) throws -> java$util$stream$Stream?
     static func concat(_ a0: java$util$stream$Stream?, _ a1: java$util$stream$Stream?) throws -> java$util$stream$Stream?
 }
@@ -1265,6 +1353,8 @@ open class java$util$stream$Stream$Impl : java$lang$Object, java$util$stream$Str
     fileprivate static let java$util$stream$Stream_peek_java$util$function$Consumer__java$util$stream$Stream = invoker("peek", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/util/function/Consumer")))
     fileprivate static let java$util$stream$Stream_limit_J__java$util$stream$Stream = invoker("limit", returns: JObjectType("java/util/stream/Stream"), arguments: (jlong.jniType))
     fileprivate static let java$util$stream$Stream_skip_J__java$util$stream$Stream = invoker("skip", returns: JObjectType("java/util/stream/Stream"), arguments: (jlong.jniType))
+    fileprivate static let java$util$stream$Stream_takeWhile_java$util$function$Predicate__java$util$stream$Stream = invoker("takeWhile", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/util/function/Predicate")))
+    fileprivate static let java$util$stream$Stream_dropWhile_java$util$function$Predicate__java$util$stream$Stream = invoker("dropWhile", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/util/function/Predicate")))
     fileprivate static let java$util$stream$Stream_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
     fileprivate static let java$util$stream$Stream_forEachOrdered_java$util$function$Consumer__V = invoker("forEachOrdered", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
     fileprivate static let java$util$stream$Stream_toArray__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")))
@@ -1285,8 +1375,10 @@ open class java$util$stream$Stream$Impl : java$lang$Object, java$util$stream$Str
     fileprivate static let java$util$stream$Stream_builder__java$util$stream$Stream$Builder = svoker("builder", returns: JObjectType("java/util/stream/Stream$Builder"))
     fileprivate static let java$util$stream$Stream_empty__java$util$stream$Stream = svoker("empty", returns: JObjectType("java/util/stream/Stream"))
     fileprivate static let java$util$stream$Stream_of_java$lang$Object__java$util$stream$Stream = svoker("of", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$stream$Stream_ofNullable_java$lang$Object__java$util$stream$Stream = svoker("ofNullable", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$stream$Stream_of_Ajava$lang$Object__java$util$stream$Stream = svoker("of", returns: JObjectType("java/util/stream/Stream"), arguments: (JArray(JObjectType("java/lang/Object"))))
     fileprivate static let java$util$stream$Stream_iterate_java$lang$Object_java$util$function$UnaryOperator__java$util$stream$Stream = svoker("iterate", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/UnaryOperator")))
+    fileprivate static let java$util$stream$Stream_iterate_java$lang$Object_java$util$function$Predicate_java$util$function$UnaryOperator__java$util$stream$Stream = svoker("iterate", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/util/function/Predicate"), JObjectType("java/util/function/UnaryOperator")))
     fileprivate static let java$util$stream$Stream_generate_java$util$function$Supplier__java$util$stream$Stream = svoker("generate", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/util/function/Supplier")))
     fileprivate static let java$util$stream$Stream_concat_java$util$stream$Stream_java$util$stream$Stream__java$util$stream$Stream = svoker("concat", returns: JObjectType("java/util/stream/Stream"), arguments: (JObjectType("java/util/stream/Stream"), JObjectType("java/util/stream/Stream")))
 }
@@ -1353,6 +1445,14 @@ public extension java$util$stream$Stream {
 
     func skip(_ a0: jlong) throws -> java$util$stream$Stream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$Stream_skip_J__java$util$stream$Stream(jobj)(a0)) as java$util$stream$Stream$Impl?
+    }
+
+    func takeWhile(_ a0: java$util$function$Predicate?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Stream_takeWhile_java$util$function$Predicate__java$util$stream$Stream(jobj)(a0?.jobj ?? nil)) as java$util$stream$Stream$Impl?
+    }
+
+    func dropWhile(_ a0: java$util$function$Predicate?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Stream_dropWhile_java$util$function$Predicate__java$util$stream$Stream(jobj)(a0?.jobj ?? nil)) as java$util$stream$Stream$Impl?
     }
 
     func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
@@ -1435,12 +1535,20 @@ public extension java$util$stream$Stream {
         return try JVM.sharedJVM.construct(I.java$util$stream$Stream_of_java$lang$Object__java$util$stream$Stream(a0?.jobj ?? nil)) as java$util$stream$Stream$Impl?
     }
 
+    static func ofNullable(_ a0: java$lang$Object?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Stream_ofNullable_java$lang$Object__java$util$stream$Stream(a0?.jobj ?? nil)) as java$util$stream$Stream$Impl?
+    }
+
     static func of(_ a0: [java$lang$Object?]?) throws -> java$util$stream$Stream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$Stream_of_Ajava$lang$Object__java$util$stream$Stream(a0?.map({ java$lang$Object$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil)) as java$util$stream$Stream$Impl?
     }
 
     static func iterate(_ a0: java$lang$Object?, _ a1: java$util$function$UnaryOperator?) throws -> java$util$stream$Stream? {
         return try JVM.sharedJVM.construct(I.java$util$stream$Stream_iterate_java$lang$Object_java$util$function$UnaryOperator__java$util$stream$Stream(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$stream$Stream$Impl?
+    }
+
+    static func iterate(_ a0: java$lang$Object?, _ a1: java$util$function$Predicate?, _ a2: java$util$function$UnaryOperator?) throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$util$stream$Stream_iterate_java$lang$Object_java$util$function$Predicate_java$util$function$UnaryOperator__java$util$stream$Stream(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$stream$Stream$Impl?
     }
 
     static func generate(_ a0: java$util$function$Supplier?) throws -> java$util$stream$Stream? {
@@ -1666,17 +1774,17 @@ public final class java$util$stream$Collector$Characteristics : java$lang$Enum {
 
     fileprivate static let java$util$stream$Collector$Characteristics__CONCURRENT__java$util$stream$Collector$Characteristics = J.saccessor("CONCURRENT", type: JObjectType("java/util/stream/Collector$Characteristics"))
     public static var CONCURRENT: java$util$stream$Collector$Characteristics? {
-        get { return java$util$stream$Collector$Characteristics$Impl(constructor: I.java$util$stream$Collector$Characteristics__CONCURRENT__java$util$stream$Collector$Characteristics.getter()) }
+        get { return java$util$stream$Collector$Characteristics$Impl(reference: I.java$util$stream$Collector$Characteristics__CONCURRENT__java$util$stream$Collector$Characteristics.getter()) }
     }
 
     fileprivate static let java$util$stream$Collector$Characteristics__UNORDERED__java$util$stream$Collector$Characteristics = J.saccessor("UNORDERED", type: JObjectType("java/util/stream/Collector$Characteristics"))
     public static var UNORDERED: java$util$stream$Collector$Characteristics? {
-        get { return java$util$stream$Collector$Characteristics$Impl(constructor: I.java$util$stream$Collector$Characteristics__UNORDERED__java$util$stream$Collector$Characteristics.getter()) }
+        get { return java$util$stream$Collector$Characteristics$Impl(reference: I.java$util$stream$Collector$Characteristics__UNORDERED__java$util$stream$Collector$Characteristics.getter()) }
     }
 
     fileprivate static let java$util$stream$Collector$Characteristics__IDENTITY_FINISH__java$util$stream$Collector$Characteristics = J.saccessor("IDENTITY_FINISH", type: JObjectType("java/util/stream/Collector$Characteristics"))
     public static var IDENTITY_FINISH: java$util$stream$Collector$Characteristics? {
-        get { return java$util$stream$Collector$Characteristics$Impl(constructor: I.java$util$stream$Collector$Characteristics__IDENTITY_FINISH__java$util$stream$Collector$Characteristics.getter()) }
+        get { return java$util$stream$Collector$Characteristics$Impl(reference: I.java$util$stream$Collector$Characteristics__IDENTITY_FINISH__java$util$stream$Collector$Characteristics.getter()) }
     }
 
     fileprivate static let java$util$stream$Collector$Characteristics_values__Ajava$util$stream$Collector$Characteristics = svoker("values", returns: JArray(JObjectType("java/util/stream/Collector$Characteristics")))

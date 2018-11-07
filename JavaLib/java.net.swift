@@ -17,6 +17,11 @@ open class java$net$Authenticator : java$lang$Object {
         return try I.java$net$Authenticator_setDefault_java$net$Authenticator__V(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$net$Authenticator_getDefault__java$net$Authenticator = svoker("getDefault", returns: JObjectType("java/net/Authenticator"))
+    public static func getDefault() throws -> java$net$Authenticator? {
+        return try JVM.sharedJVM.construct(I.java$net$Authenticator_getDefault__java$net$Authenticator()) as java$net$Authenticator$Impl?
+    }
+
     fileprivate static let java$net$Authenticator_requestPasswordAuthentication_java$net$InetAddress_I_java$lang$String_java$lang$String_java$lang$String__java$net$PasswordAuthentication = svoker("requestPasswordAuthentication", returns: JObjectType("java/net/PasswordAuthentication"), arguments: (JObjectType("java/net/InetAddress"), jint.jniType, JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public static func requestPasswordAuthentication(_ a0: java$net$InetAddress?, _ a1: jint, _ a2: java$lang$String?, _ a3: java$lang$String?, _ a4: java$lang$String?) throws -> java$net$PasswordAuthentication? {
         return try JVM.sharedJVM.construct(I.java$net$Authenticator_requestPasswordAuthentication_java$net$InetAddress_I_java$lang$String_java$lang$String_java$lang$String__java$net$PasswordAuthentication(a0?.jobj ?? nil, a1, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil)) as java$net$PasswordAuthentication$Impl?
@@ -30,6 +35,16 @@ open class java$net$Authenticator : java$lang$Object {
     fileprivate static let java$net$Authenticator_requestPasswordAuthentication_java$lang$String_java$net$InetAddress_I_java$lang$String_java$lang$String_java$lang$String_java$net$URL_java$net$Authenticator$RequestorType__java$net$PasswordAuthentication = svoker("requestPasswordAuthentication", returns: JObjectType("java/net/PasswordAuthentication"), arguments: (JObjectType("java/lang/String"), JObjectType("java/net/InetAddress"), jint.jniType, JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/net/URL"), JObjectType("java/net/Authenticator$RequestorType")))
     public static func requestPasswordAuthentication(_ a0: java$lang$String?, _ a1: java$net$InetAddress?, _ a2: jint, _ a3: java$lang$String?, _ a4: java$lang$String?, _ a5: java$lang$String?, _ a6: java$net$URL?, _ a7: java$net$Authenticator$RequestorType?) throws -> java$net$PasswordAuthentication? {
         return try JVM.sharedJVM.construct(I.java$net$Authenticator_requestPasswordAuthentication_java$lang$String_java$net$InetAddress_I_java$lang$String_java$lang$String_java$lang$String_java$net$URL_java$net$Authenticator$RequestorType__java$net$PasswordAuthentication(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil)) as java$net$PasswordAuthentication$Impl?
+    }
+
+    fileprivate static let java$net$Authenticator_requestPasswordAuthentication_java$net$Authenticator_java$lang$String_java$net$InetAddress_I_java$lang$String_java$lang$String_java$lang$String_java$net$URL_java$net$Authenticator$RequestorType__java$net$PasswordAuthentication = svoker("requestPasswordAuthentication", returns: JObjectType("java/net/PasswordAuthentication"), arguments: (JObjectType("java/net/Authenticator"), JObjectType("java/lang/String"), JObjectType("java/net/InetAddress"), jint.jniType, JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/net/URL"), JObjectType("java/net/Authenticator$RequestorType")))
+    public static func requestPasswordAuthentication(_ a0: java$net$Authenticator?, _ a1: java$lang$String?, _ a2: java$net$InetAddress?, _ a3: jint, _ a4: java$lang$String?, _ a5: java$lang$String?, _ a6: java$lang$String?, _ a7: java$net$URL?, _ a8: java$net$Authenticator$RequestorType?) throws -> java$net$PasswordAuthentication? {
+        return try JVM.sharedJVM.construct(I.java$net$Authenticator_requestPasswordAuthentication_java$net$Authenticator_java$lang$String_java$net$InetAddress_I_java$lang$String_java$lang$String_java$lang$String_java$net$URL_java$net$Authenticator$RequestorType__java$net$PasswordAuthentication(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil, a8?.jobj ?? nil)) as java$net$PasswordAuthentication$Impl?
+    }
+
+    fileprivate static let java$net$Authenticator_requestPasswordAuthenticationInstance_java$lang$String_java$net$InetAddress_I_java$lang$String_java$lang$String_java$lang$String_java$net$URL_java$net$Authenticator$RequestorType__java$net$PasswordAuthentication = invoker("requestPasswordAuthenticationInstance", returns: JObjectType("java/net/PasswordAuthentication"), arguments: (JObjectType("java/lang/String"), JObjectType("java/net/InetAddress"), jint.jniType, JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/lang/String"), JObjectType("java/net/URL"), JObjectType("java/net/Authenticator$RequestorType")))
+    public func requestPasswordAuthenticationInstance(_ a0: java$lang$String?, _ a1: java$net$InetAddress?, _ a2: jint, _ a3: java$lang$String?, _ a4: java$lang$String?, _ a5: java$lang$String?, _ a6: java$net$URL?, _ a7: java$net$Authenticator$RequestorType?) throws -> java$net$PasswordAuthentication? {
+        return try JVM.sharedJVM.construct(I.java$net$Authenticator_requestPasswordAuthenticationInstance_java$lang$String_java$net$InetAddress_I_java$lang$String_java$lang$String_java$lang$String_java$net$URL_java$net$Authenticator$RequestorType__java$net$PasswordAuthentication(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil, a6?.jobj ?? nil, a7?.jobj ?? nil)) as java$net$PasswordAuthentication$Impl?
     }
 
 }
@@ -149,6 +164,16 @@ open class java$net$URLClassLoader : java$security$SecureClassLoader, java$io$Cl
     fileprivate static let java$net$URLClassLoader_init_Ajava$net$URL_java$lang$ClassLoader_java$net$URLStreamHandlerFactory__V = constructor((JArray(JObjectType("java/net/URL")), JObjectType("java/lang/ClassLoader"), JObjectType("java/net/URLStreamHandlerFactory")))
     public convenience init(_ a0: [java$net$URL?]?, _ a1: java$lang$ClassLoader?, _ a2: java$net$URLStreamHandlerFactory?) throws {
         try self.init(creator: I.java$net$URLClassLoader_init_Ajava$net$URL_java$lang$ClassLoader_java$net$URLStreamHandlerFactory__V(a0?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil))
+    }
+
+    fileprivate static let java$net$URLClassLoader_init_java$lang$String_Ajava$net$URL_java$lang$ClassLoader__V = constructor((JObjectType("java/lang/String"), JArray(JObjectType("java/net/URL")), JObjectType("java/lang/ClassLoader")))
+    public convenience init(_ a0: java$lang$String?, _ a1: [java$net$URL?]?, _ a2: java$lang$ClassLoader?) throws {
+        try self.init(creator: I.java$net$URLClassLoader_init_java$lang$String_Ajava$net$URL_java$lang$ClassLoader__V(a0?.jobj ?? nil, a1?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a2?.jobj ?? nil))
+    }
+
+    fileprivate static let java$net$URLClassLoader_init_java$lang$String_Ajava$net$URL_java$lang$ClassLoader_java$net$URLStreamHandlerFactory__V = constructor((JObjectType("java/lang/String"), JArray(JObjectType("java/net/URL")), JObjectType("java/lang/ClassLoader"), JObjectType("java/net/URLStreamHandlerFactory")))
+    public convenience init(_ a0: java$lang$String?, _ a1: [java$net$URL?]?, _ a2: java$lang$ClassLoader?, _ a3: java$net$URLStreamHandlerFactory?) throws {
+        try self.init(creator: I.java$net$URLClassLoader_init_java$lang$String_Ajava$net$URL_java$lang$ClassLoader_java$net$URLStreamHandlerFactory__V(a0?.jobj ?? nil, a1?.map({ java$net$URL$Impl(reference: $0?.jobj ?? nil) }).arrayToJArray() ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil))
     }
 
     fileprivate static let java$net$URLClassLoader_getResourceAsStream_java$lang$String__java$io$InputStream = invoker("getResourceAsStream", returns: JObjectType("java/io/InputStream"), arguments: (JObjectType("java/lang/String")))
@@ -559,6 +584,21 @@ open class java$net$DatagramSocket : java$lang$Object, java$io$Closeable {
         return try I.java$net$DatagramSocket_setDatagramSocketImplFactory_java$net$DatagramSocketImplFactory__V(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$net$DatagramSocket_setOption_java$net$SocketOption_java$lang$Object__java$net$DatagramSocket = invoker("setOption", returns: JObjectType("java/net/DatagramSocket"), arguments: (JObjectType("java/net/SocketOption"), JObjectType("java/lang/Object")))
+    public func setOption(_ a0: java$net$SocketOption?, _ a1: java$lang$Object?) throws -> java$net$DatagramSocket? {
+        return try JVM.sharedJVM.construct(I.java$net$DatagramSocket_setOption_java$net$SocketOption_java$lang$Object__java$net$DatagramSocket(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$net$DatagramSocket$Impl?
+    }
+
+    fileprivate static let java$net$DatagramSocket_getOption_java$net$SocketOption__java$lang$Object = invoker("getOption", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/net/SocketOption")))
+    public func getOption(_ a0: java$net$SocketOption?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$net$DatagramSocket_getOption_java$net$SocketOption__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$net$DatagramSocket_supportedOptions__java$util$Set = invoker("supportedOptions", returns: JObjectType("java/util/Set"))
+    public func supportedOptions() throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$net$DatagramSocket_supportedOptions__java$util$Set(jobj)()) as java$util$Set$Impl?
+    }
+
 }
 
 public typealias java$net$DatagramSocket$Impl = java$net$DatagramSocket
@@ -660,6 +700,7 @@ open class java$net$MulticastSocket : java$net$DatagramSocket {
         return try I.java$net$MulticastSocket_send_java$net$DatagramPacket_B__V(jobj)(a0?.jobj ?? nil, a1)
     }
 
+    fileprivate static let java$net$MulticastSocket_supportedOptions__java$util$Set = invoker("supportedOptions", returns: JObjectType("java/util/Set"))
 }
 
 public typealias java$net$MulticastSocket$Impl = java$net$MulticastSocket
@@ -1120,6 +1161,11 @@ public final class java$net$NetworkInterface : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$net$NetworkInterface_getInetAddresses__java$util$Enumeration(jobj)()) as java$util$Enumeration$Impl?
     }
 
+    fileprivate static let java$net$NetworkInterface_inetAddresses__java$util$stream$Stream = invoker("inetAddresses", returns: JObjectType("java/util/stream/Stream"))
+    public func inetAddresses() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$net$NetworkInterface_inetAddresses__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
+    }
+
     fileprivate static let java$net$NetworkInterface_getInterfaceAddresses__java$util$List = invoker("getInterfaceAddresses", returns: JObjectType("java/util/List"))
     public func getInterfaceAddresses() throws -> java$util$List? {
         return try JVM.sharedJVM.construct(I.java$net$NetworkInterface_getInterfaceAddresses__java$util$List(jobj)()) as java$util$List$Impl?
@@ -1128,6 +1174,11 @@ public final class java$net$NetworkInterface : java$lang$Object {
     fileprivate static let java$net$NetworkInterface_getSubInterfaces__java$util$Enumeration = invoker("getSubInterfaces", returns: JObjectType("java/util/Enumeration"))
     public func getSubInterfaces() throws -> java$util$Enumeration? {
         return try JVM.sharedJVM.construct(I.java$net$NetworkInterface_getSubInterfaces__java$util$Enumeration(jobj)()) as java$util$Enumeration$Impl?
+    }
+
+    fileprivate static let java$net$NetworkInterface_subInterfaces__java$util$stream$Stream = invoker("subInterfaces", returns: JObjectType("java/util/stream/Stream"))
+    public func subInterfaces() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$net$NetworkInterface_subInterfaces__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
     }
 
     fileprivate static let java$net$NetworkInterface_getParent__java$net$NetworkInterface = invoker("getParent", returns: JObjectType("java/net/NetworkInterface"))
@@ -1163,6 +1214,11 @@ public final class java$net$NetworkInterface : java$lang$Object {
     fileprivate static let java$net$NetworkInterface_getNetworkInterfaces__java$util$Enumeration = svoker("getNetworkInterfaces", returns: JObjectType("java/util/Enumeration"))
     public static func getNetworkInterfaces() throws -> java$util$Enumeration? {
         return try JVM.sharedJVM.construct(I.java$net$NetworkInterface_getNetworkInterfaces__java$util$Enumeration()) as java$util$Enumeration$Impl?
+    }
+
+    fileprivate static let java$net$NetworkInterface_networkInterfaces__java$util$stream$Stream = svoker("networkInterfaces", returns: JObjectType("java/util/stream/Stream"))
+    public static func networkInterfaces() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$net$NetworkInterface_networkInterfaces__java$util$stream$Stream()) as java$util$stream$Stream$Impl?
     }
 
     fileprivate static let java$net$NetworkInterface_isUp__Z = invoker("isUp", returns: jboolean.jniType)
@@ -1309,7 +1365,7 @@ open class java$net$Proxy : java$lang$Object {
 
     fileprivate static let java$net$Proxy__NO_PROXY__java$net$Proxy = J.saccessor("NO_PROXY", type: JObjectType("java/net/Proxy"))
     public static var NO_PROXY: java$net$Proxy? {
-        get { return java$net$Proxy$Impl(constructor: I.java$net$Proxy__NO_PROXY__java$net$Proxy.getter()) }
+        get { return java$net$Proxy$Impl(reference: I.java$net$Proxy__NO_PROXY__java$net$Proxy.getter()) }
     }
 
     fileprivate static let java$net$Proxy_init_java$net$Proxy$Type_java$net$SocketAddress__V = constructor((JObjectType("java/net/Proxy$Type"), JObjectType("java/net/SocketAddress")))
@@ -1364,6 +1420,11 @@ open class java$net$ProxySelector : java$lang$Object {
     fileprivate static let java$net$ProxySelector_connectFailed_java$net$URI_java$net$SocketAddress_java$io$IOException__V = invoker("connectFailed", returns: JVoid.jniType, arguments: (JObjectType("java/net/URI"), JObjectType("java/net/SocketAddress"), JObjectType("java/io/IOException")))
     public func connectFailed(_ a0: java$net$URI?, _ a1: java$net$SocketAddress?, _ a2: java$io$IOException?) throws -> Void {
         return try I.java$net$ProxySelector_connectFailed_java$net$URI_java$net$SocketAddress_java$io$IOException__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)
+    }
+
+    fileprivate static let java$net$ProxySelector_of_java$net$InetSocketAddress__java$net$ProxySelector = svoker("of", returns: JObjectType("java/net/ProxySelector"), arguments: (JObjectType("java/net/InetSocketAddress")))
+    public static func of(_ a0: java$net$InetSocketAddress?) throws -> java$net$ProxySelector? {
+        return try JVM.sharedJVM.construct(I.java$net$ProxySelector_of_java$net$InetSocketAddress__java$net$ProxySelector(a0?.jobj ?? nil)) as java$net$ProxySelector$Impl?
     }
 
 }
@@ -1522,6 +1583,21 @@ open class java$net$ServerSocket : java$lang$Object, java$io$Closeable {
     fileprivate static let java$net$ServerSocket_setPerformancePreferences_I_I_I__V = invoker("setPerformancePreferences", returns: JVoid.jniType, arguments: (jint.jniType, jint.jniType, jint.jniType))
     public func setPerformancePreferences(_ a0: jint, _ a1: jint, _ a2: jint) throws -> Void {
         return try I.java$net$ServerSocket_setPerformancePreferences_I_I_I__V(jobj)(a0, a1, a2)
+    }
+
+    fileprivate static let java$net$ServerSocket_setOption_java$net$SocketOption_java$lang$Object__java$net$ServerSocket = invoker("setOption", returns: JObjectType("java/net/ServerSocket"), arguments: (JObjectType("java/net/SocketOption"), JObjectType("java/lang/Object")))
+    public func setOption(_ a0: java$net$SocketOption?, _ a1: java$lang$Object?) throws -> java$net$ServerSocket? {
+        return try JVM.sharedJVM.construct(I.java$net$ServerSocket_setOption_java$net$SocketOption_java$lang$Object__java$net$ServerSocket(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$net$ServerSocket$Impl?
+    }
+
+    fileprivate static let java$net$ServerSocket_getOption_java$net$SocketOption__java$lang$Object = invoker("getOption", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/net/SocketOption")))
+    public func getOption(_ a0: java$net$SocketOption?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$net$ServerSocket_getOption_java$net$SocketOption__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$net$ServerSocket_supportedOptions__java$util$Set = invoker("supportedOptions", returns: JObjectType("java/util/Set"))
+    public func supportedOptions() throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$net$ServerSocket_supportedOptions__java$util$Set(jobj)()) as java$util$Set$Impl?
     }
 
 }
@@ -1781,6 +1857,21 @@ open class java$net$Socket : java$lang$Object, java$io$Closeable {
         return try I.java$net$Socket_setPerformancePreferences_I_I_I__V(jobj)(a0, a1, a2)
     }
 
+    fileprivate static let java$net$Socket_setOption_java$net$SocketOption_java$lang$Object__java$net$Socket = invoker("setOption", returns: JObjectType("java/net/Socket"), arguments: (JObjectType("java/net/SocketOption"), JObjectType("java/lang/Object")))
+    public func setOption(_ a0: java$net$SocketOption?, _ a1: java$lang$Object?) throws -> java$net$Socket? {
+        return try JVM.sharedJVM.construct(I.java$net$Socket_setOption_java$net$SocketOption_java$lang$Object__java$net$Socket(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$net$Socket$Impl?
+    }
+
+    fileprivate static let java$net$Socket_getOption_java$net$SocketOption__java$lang$Object = invoker("getOption", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/net/SocketOption")))
+    public func getOption(_ a0: java$net$SocketOption?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.java$net$Socket_getOption_java$net$SocketOption__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
+    fileprivate static let java$net$Socket_supportedOptions__java$util$Set = invoker("supportedOptions", returns: JObjectType("java/util/Set"))
+    public func supportedOptions() throws -> java$util$Set? {
+        return try JVM.sharedJVM.construct(I.java$net$Socket_supportedOptions__java$util$Set(jobj)()) as java$util$Set$Impl?
+    }
+
 }
 
 public typealias java$net$Socket$Impl = java$net$Socket
@@ -1886,57 +1977,62 @@ public final class java$net$StandardSocketOptions : java$lang$Object {
 
     fileprivate static let java$net$StandardSocketOptions__SO_BROADCAST__java$net$SocketOption = J.saccessor("SO_BROADCAST", type: JObjectType("java/net/SocketOption"))
     public static var SO_BROADCAST: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__SO_BROADCAST__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__SO_BROADCAST__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__SO_KEEPALIVE__java$net$SocketOption = J.saccessor("SO_KEEPALIVE", type: JObjectType("java/net/SocketOption"))
     public static var SO_KEEPALIVE: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__SO_KEEPALIVE__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__SO_KEEPALIVE__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__SO_SNDBUF__java$net$SocketOption = J.saccessor("SO_SNDBUF", type: JObjectType("java/net/SocketOption"))
     public static var SO_SNDBUF: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__SO_SNDBUF__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__SO_SNDBUF__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__SO_RCVBUF__java$net$SocketOption = J.saccessor("SO_RCVBUF", type: JObjectType("java/net/SocketOption"))
     public static var SO_RCVBUF: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__SO_RCVBUF__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__SO_RCVBUF__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__SO_REUSEADDR__java$net$SocketOption = J.saccessor("SO_REUSEADDR", type: JObjectType("java/net/SocketOption"))
     public static var SO_REUSEADDR: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__SO_REUSEADDR__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__SO_REUSEADDR__java$net$SocketOption.getter()) }
+    }
+
+    fileprivate static let java$net$StandardSocketOptions__SO_REUSEPORT__java$net$SocketOption = J.saccessor("SO_REUSEPORT", type: JObjectType("java/net/SocketOption"))
+    public static var SO_REUSEPORT: java$net$SocketOption? {
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__SO_REUSEPORT__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__SO_LINGER__java$net$SocketOption = J.saccessor("SO_LINGER", type: JObjectType("java/net/SocketOption"))
     public static var SO_LINGER: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__SO_LINGER__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__SO_LINGER__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__IP_TOS__java$net$SocketOption = J.saccessor("IP_TOS", type: JObjectType("java/net/SocketOption"))
     public static var IP_TOS: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__IP_TOS__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__IP_TOS__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__IP_MULTICAST_IF__java$net$SocketOption = J.saccessor("IP_MULTICAST_IF", type: JObjectType("java/net/SocketOption"))
     public static var IP_MULTICAST_IF: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__IP_MULTICAST_IF__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__IP_MULTICAST_IF__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__IP_MULTICAST_TTL__java$net$SocketOption = J.saccessor("IP_MULTICAST_TTL", type: JObjectType("java/net/SocketOption"))
     public static var IP_MULTICAST_TTL: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__IP_MULTICAST_TTL__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__IP_MULTICAST_TTL__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__IP_MULTICAST_LOOP__java$net$SocketOption = J.saccessor("IP_MULTICAST_LOOP", type: JObjectType("java/net/SocketOption"))
     public static var IP_MULTICAST_LOOP: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__IP_MULTICAST_LOOP__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__IP_MULTICAST_LOOP__java$net$SocketOption.getter()) }
     }
 
     fileprivate static let java$net$StandardSocketOptions__TCP_NODELAY__java$net$SocketOption = J.saccessor("TCP_NODELAY", type: JObjectType("java/net/SocketOption"))
     public static var TCP_NODELAY: java$net$SocketOption? {
-        get { return java$net$SocketOption$Impl(constructor: I.java$net$StandardSocketOptions__TCP_NODELAY__java$net$SocketOption.getter()) }
+        get { return java$net$SocketOption$Impl(reference: I.java$net$StandardSocketOptions__TCP_NODELAY__java$net$SocketOption.getter()) }
     }
 
 }
@@ -2752,6 +2848,16 @@ open class java$net$URLConnection : java$lang$Object {
         return try I.java$net$URLConnection_setDefaultUseCaches_Z__V(jobj)(a0)
     }
 
+    fileprivate static let java$net$URLConnection_setDefaultUseCaches_java$lang$String_Z__V = svoker("setDefaultUseCaches", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), jboolean.jniType))
+    public static func setDefaultUseCaches(_ a0: java$lang$String?, _ a1: jboolean) throws -> Void {
+        return try I.java$net$URLConnection_setDefaultUseCaches_java$lang$String_Z__V(a0?.jobj ?? nil, a1)
+    }
+
+    fileprivate static let java$net$URLConnection_getDefaultUseCaches_java$lang$String__Z = svoker("getDefaultUseCaches", returns: jboolean.jniType, arguments: (JObjectType("java/lang/String")))
+    public static func getDefaultUseCaches(_ a0: java$lang$String?) throws -> jboolean {
+        return try I.java$net$URLConnection_getDefaultUseCaches_java$lang$String__Z(a0?.jobj ?? nil)
+    }
+
     fileprivate static let java$net$URLConnection_setRequestProperty_java$lang$String_java$lang$String__V = invoker("setRequestProperty", returns: JVoid.jniType, arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public func setRequestProperty(_ a0: java$lang$String?, _ a1: java$lang$String?) throws -> Void {
         return try I.java$net$URLConnection_setRequestProperty_java$lang$String_java$lang$String__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
@@ -2988,6 +3094,11 @@ open class java$net$HttpURLConnection : java$net$URLConnection {
         get { return I.java$net$HttpURLConnection__HTTP_VERSION__I.getter() }
     }
 
+    fileprivate static let java$net$HttpURLConnection_setAuthenticator_java$net$Authenticator__V = invoker("setAuthenticator", returns: JVoid.jniType, arguments: (JObjectType("java/net/Authenticator")))
+    public func setAuthenticator(_ a0: java$net$Authenticator?) throws -> Void {
+        return try I.java$net$HttpURLConnection_setAuthenticator_java$net$Authenticator__V(jobj)(a0?.jobj ?? nil)
+    }
+
     fileprivate static let java$net$HttpURLConnection_getHeaderFieldKey_I__java$lang$String = invoker("getHeaderFieldKey", returns: JObjectType("java/lang/String"), arguments: (jint.jniType))
     fileprivate static let java$net$HttpURLConnection_setFixedLengthStreamingMode_I__V = invoker("setFixedLengthStreamingMode", returns: JVoid.jniType, arguments: (jint.jniType))
     public func setFixedLengthStreamingMode(_ a0: jint) throws -> Void {
@@ -3139,6 +3250,11 @@ open class java$net$URLDecoder : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$net$URLDecoder_decode_java$lang$String_java$lang$String__java$lang$String(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$String$Impl?
     }
 
+    fileprivate static let java$net$URLDecoder_decode_java$lang$String_java$nio$charset$Charset__java$lang$String = svoker("decode", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String"), JObjectType("java/nio/charset/Charset")))
+    public static func decode(_ a0: java$lang$String?, _ a1: java$nio$charset$Charset?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$net$URLDecoder_decode_java$lang$String_java$nio$charset$Charset__java$lang$String(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$String$Impl?
+    }
+
 }
 
 public typealias java$net$URLDecoder$Impl = java$net$URLDecoder
@@ -3158,6 +3274,11 @@ open class java$net$URLEncoder : java$lang$Object {
     fileprivate static let java$net$URLEncoder_encode_java$lang$String_java$lang$String__java$lang$String = svoker("encode", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/String")))
     public static func encode(_ a0: java$lang$String?, _ a1: java$lang$String?) throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$net$URLEncoder_encode_java$lang$String_java$lang$String__java$lang$String(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$String$Impl?
+    }
+
+    fileprivate static let java$net$URLEncoder_encode_java$lang$String_java$nio$charset$Charset__java$lang$String = svoker("encode", returns: JObjectType("java/lang/String"), arguments: (JObjectType("java/lang/String"), JObjectType("java/nio/charset/Charset")))
+    public static func encode(_ a0: java$lang$String?, _ a1: java$nio$charset$Charset?) throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$net$URLEncoder_encode_java$lang$String_java$nio$charset$Charset__java$lang$String(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$String$Impl?
     }
 
 }
@@ -3232,15 +3353,15 @@ public extension java$net$CookiePolicy {
     private typealias I = java$net$CookiePolicy$Impl
 
     static var ACCEPT_ALL: java$net$CookiePolicy? {
-        get { return java$net$CookiePolicy$Impl(constructor: I.java$net$CookiePolicy__ACCEPT_ALL__java$net$CookiePolicy.getter()) }
+        get { return java$net$CookiePolicy$Impl(reference: I.java$net$CookiePolicy__ACCEPT_ALL__java$net$CookiePolicy.getter()) }
     }
 
     static var ACCEPT_NONE: java$net$CookiePolicy? {
-        get { return java$net$CookiePolicy$Impl(constructor: I.java$net$CookiePolicy__ACCEPT_NONE__java$net$CookiePolicy.getter()) }
+        get { return java$net$CookiePolicy$Impl(reference: I.java$net$CookiePolicy__ACCEPT_NONE__java$net$CookiePolicy.getter()) }
     }
 
     static var ACCEPT_ORIGINAL_SERVER: java$net$CookiePolicy? {
-        get { return java$net$CookiePolicy$Impl(constructor: I.java$net$CookiePolicy__ACCEPT_ORIGINAL_SERVER__java$net$CookiePolicy.getter()) }
+        get { return java$net$CookiePolicy$Impl(reference: I.java$net$CookiePolicy__ACCEPT_ORIGINAL_SERVER__java$net$CookiePolicy.getter()) }
     }
 
     func shouldAccept(_ a0: java$net$URI?, _ a1: java$net$HttpCookie?) throws -> jboolean {
@@ -3436,6 +3557,8 @@ public protocol java$net$SocketOptions : JavaObject {
 
     static var SO_REUSEADDR: jint { get }
 
+    static var SO_REUSEPORT: jint { get }
+
     static var SO_BROADCAST: jint { get }
 
     static var IP_MULTICAST_IF: jint { get }
@@ -3472,6 +3595,7 @@ open class java$net$SocketOptions$Impl : java$lang$Object, java$net$SocketOption
     fileprivate static let java$net$SocketOptions__TCP_NODELAY__I = J.saccessor("TCP_NODELAY", type: jint.jniType)
     fileprivate static let java$net$SocketOptions__SO_BINDADDR__I = J.saccessor("SO_BINDADDR", type: jint.jniType)
     fileprivate static let java$net$SocketOptions__SO_REUSEADDR__I = J.saccessor("SO_REUSEADDR", type: jint.jniType)
+    fileprivate static let java$net$SocketOptions__SO_REUSEPORT__I = J.saccessor("SO_REUSEPORT", type: jint.jniType)
     fileprivate static let java$net$SocketOptions__SO_BROADCAST__I = J.saccessor("SO_BROADCAST", type: jint.jniType)
     fileprivate static let java$net$SocketOptions__IP_MULTICAST_IF__I = J.saccessor("IP_MULTICAST_IF", type: jint.jniType)
     fileprivate static let java$net$SocketOptions__IP_MULTICAST_IF2__I = J.saccessor("IP_MULTICAST_IF2", type: jint.jniType)
@@ -3501,6 +3625,10 @@ public extension java$net$SocketOptions {
 
     static var SO_REUSEADDR: jint {
         get { return I.java$net$SocketOptions__SO_REUSEADDR__I.getter() }
+    }
+
+    static var SO_REUSEPORT: jint {
+        get { return I.java$net$SocketOptions__SO_REUSEPORT__I.getter() }
     }
 
     static var SO_BROADCAST: jint {
@@ -3590,17 +3718,17 @@ public final class java$net$Proxy$Type : java$lang$Enum {
 
     fileprivate static let java$net$Proxy$Type__DIRECT__java$net$Proxy$Type = J.saccessor("DIRECT", type: JObjectType("java/net/Proxy$Type"))
     public static var DIRECT: java$net$Proxy$Type? {
-        get { return java$net$Proxy$Type$Impl(constructor: I.java$net$Proxy$Type__DIRECT__java$net$Proxy$Type.getter()) }
+        get { return java$net$Proxy$Type$Impl(reference: I.java$net$Proxy$Type__DIRECT__java$net$Proxy$Type.getter()) }
     }
 
     fileprivate static let java$net$Proxy$Type__HTTP__java$net$Proxy$Type = J.saccessor("HTTP", type: JObjectType("java/net/Proxy$Type"))
     public static var HTTP: java$net$Proxy$Type? {
-        get { return java$net$Proxy$Type$Impl(constructor: I.java$net$Proxy$Type__HTTP__java$net$Proxy$Type.getter()) }
+        get { return java$net$Proxy$Type$Impl(reference: I.java$net$Proxy$Type__HTTP__java$net$Proxy$Type.getter()) }
     }
 
     fileprivate static let java$net$Proxy$Type__SOCKS__java$net$Proxy$Type = J.saccessor("SOCKS", type: JObjectType("java/net/Proxy$Type"))
     public static var SOCKS: java$net$Proxy$Type? {
-        get { return java$net$Proxy$Type$Impl(constructor: I.java$net$Proxy$Type__SOCKS__java$net$Proxy$Type.getter()) }
+        get { return java$net$Proxy$Type$Impl(reference: I.java$net$Proxy$Type__SOCKS__java$net$Proxy$Type.getter()) }
     }
 
     fileprivate static let java$net$Proxy$Type_values__Ajava$net$Proxy$Type = svoker("values", returns: JArray(JObjectType("java/net/Proxy$Type")))
@@ -3626,12 +3754,12 @@ public final class java$net$StandardProtocolFamily : java$lang$Enum, java$net$Pr
 
     fileprivate static let java$net$StandardProtocolFamily__INET__java$net$StandardProtocolFamily = J.saccessor("INET", type: JObjectType("java/net/StandardProtocolFamily"))
     public static var INET: java$net$StandardProtocolFamily? {
-        get { return java$net$StandardProtocolFamily$Impl(constructor: I.java$net$StandardProtocolFamily__INET__java$net$StandardProtocolFamily.getter()) }
+        get { return java$net$StandardProtocolFamily$Impl(reference: I.java$net$StandardProtocolFamily__INET__java$net$StandardProtocolFamily.getter()) }
     }
 
     fileprivate static let java$net$StandardProtocolFamily__INET6__java$net$StandardProtocolFamily = J.saccessor("INET6", type: JObjectType("java/net/StandardProtocolFamily"))
     public static var INET6: java$net$StandardProtocolFamily? {
-        get { return java$net$StandardProtocolFamily$Impl(constructor: I.java$net$StandardProtocolFamily__INET6__java$net$StandardProtocolFamily.getter()) }
+        get { return java$net$StandardProtocolFamily$Impl(reference: I.java$net$StandardProtocolFamily__INET6__java$net$StandardProtocolFamily.getter()) }
     }
 
     fileprivate static let java$net$StandardProtocolFamily_values__Ajava$net$StandardProtocolFamily = svoker("values", returns: JArray(JObjectType("java/net/StandardProtocolFamily")))
@@ -3657,12 +3785,12 @@ public final class java$net$Authenticator$RequestorType : java$lang$Enum {
 
     fileprivate static let java$net$Authenticator$RequestorType__PROXY__java$net$Authenticator$RequestorType = J.saccessor("PROXY", type: JObjectType("java/net/Authenticator$RequestorType"))
     public static var PROXY: java$net$Authenticator$RequestorType? {
-        get { return java$net$Authenticator$RequestorType$Impl(constructor: I.java$net$Authenticator$RequestorType__PROXY__java$net$Authenticator$RequestorType.getter()) }
+        get { return java$net$Authenticator$RequestorType$Impl(reference: I.java$net$Authenticator$RequestorType__PROXY__java$net$Authenticator$RequestorType.getter()) }
     }
 
     fileprivate static let java$net$Authenticator$RequestorType__SERVER__java$net$Authenticator$RequestorType = J.saccessor("SERVER", type: JObjectType("java/net/Authenticator$RequestorType"))
     public static var SERVER: java$net$Authenticator$RequestorType? {
-        get { return java$net$Authenticator$RequestorType$Impl(constructor: I.java$net$Authenticator$RequestorType__SERVER__java$net$Authenticator$RequestorType.getter()) }
+        get { return java$net$Authenticator$RequestorType$Impl(reference: I.java$net$Authenticator$RequestorType__SERVER__java$net$Authenticator$RequestorType.getter()) }
     }
 
     fileprivate static let java$net$Authenticator$RequestorType_values__Ajava$net$Authenticator$RequestorType = svoker("values", returns: JArray(JObjectType("java/net/Authenticator$RequestorType")))

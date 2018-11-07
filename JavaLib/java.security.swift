@@ -355,6 +355,16 @@ open class java$security$Provider : java$util$Properties {
     /// Returns the internal JNI name for this class: "java/security/Provider"
     open class override func jniName() -> String { return "java/security/Provider" }
 
+    fileprivate static let java$security$Provider_configure_java$lang$String__java$security$Provider = invoker("configure", returns: JObjectType("java/security/Provider"), arguments: (JObjectType("java/lang/String")))
+    public func configure(_ a0: java$lang$String?) throws -> java$security$Provider? {
+        return try JVM.sharedJVM.construct(I.java$security$Provider_configure_java$lang$String__java$security$Provider(jobj)(a0?.jobj ?? nil)) as java$security$Provider$Impl?
+    }
+
+    fileprivate static let java$security$Provider_isConfigured__Z = invoker("isConfigured", returns: jboolean.jniType)
+    public func isConfigured() throws -> jboolean {
+        return try I.java$security$Provider_isConfigured__Z(jobj)()
+    }
+
     fileprivate static let java$security$Provider_getName__java$lang$String = invoker("getName", returns: JObjectType("java/lang/String"))
     public func getName() throws -> java$lang$String? {
         return try JVM.sharedJVM.construct(I.java$security$Provider_getName__java$lang$String(jobj)()) as java$lang$String$Impl?
@@ -363,6 +373,11 @@ open class java$security$Provider : java$util$Properties {
     fileprivate static let java$security$Provider_getVersion__D = invoker("getVersion", returns: jdouble.jniType)
     public func getVersion() throws -> jdouble {
         return try I.java$security$Provider_getVersion__D(jobj)()
+    }
+
+    fileprivate static let java$security$Provider_getVersionStr__java$lang$String = invoker("getVersionStr", returns: JObjectType("java/lang/String"))
+    public func getVersionStr() throws -> java$lang$String? {
+        return try JVM.sharedJVM.construct(I.java$security$Provider_getVersionStr__java$lang$String(jobj)()) as java$lang$String$Impl?
     }
 
     fileprivate static let java$security$Provider_getInfo__java$lang$String = invoker("getInfo", returns: JObjectType("java/lang/String"))
@@ -1029,6 +1044,16 @@ open class java$security$KeyStore : java$lang$Object {
         return try I.java$security$KeyStore_entryInstanceOf_java$lang$String_java$lang$Class__Z(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
     }
 
+    fileprivate static let java$security$KeyStore_getInstance_java$io$File_AC__java$security$KeyStore = svoker("getInstance", returns: JObjectType("java/security/KeyStore"), arguments: (JObjectType("java/io/File"), JArray(jchar.jniType)))
+    public static func getInstance(_ a0: java$io$File?, _ a1: [jchar]?) throws -> java$security$KeyStore? {
+        return try JVM.sharedJVM.construct(I.java$security$KeyStore_getInstance_java$io$File_AC__java$security$KeyStore(a0?.jobj ?? nil, a1?.arrayToJArray() ?? nil)) as java$security$KeyStore$Impl?
+    }
+
+    fileprivate static let java$security$KeyStore_getInstance_java$io$File_java$security$KeyStore$LoadStoreParameter__java$security$KeyStore = svoker("getInstance", returns: JObjectType("java/security/KeyStore"), arguments: (JObjectType("java/io/File"), JObjectType("java/security/KeyStore$LoadStoreParameter")))
+    public static func getInstance(_ a0: java$io$File?, _ a1: java$security$KeyStore$LoadStoreParameter?) throws -> java$security$KeyStore? {
+        return try JVM.sharedJVM.construct(I.java$security$KeyStore_getInstance_java$io$File_java$security$KeyStore$LoadStoreParameter__java$security$KeyStore(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$security$KeyStore$Impl?
+    }
+
 }
 
 public typealias java$security$KeyStore$Impl = java$security$KeyStore
@@ -1058,6 +1083,11 @@ open class java$security$KeyStore$Builder : java$lang$Object {
     fileprivate static let java$security$KeyStore$Builder_newInstance_java$lang$String_java$security$Provider_java$io$File_java$security$KeyStore$ProtectionParameter__java$security$KeyStore$Builder = svoker("newInstance", returns: JObjectType("java/security/KeyStore$Builder"), arguments: (JObjectType("java/lang/String"), JObjectType("java/security/Provider"), JObjectType("java/io/File"), JObjectType("java/security/KeyStore$ProtectionParameter")))
     public static func newInstance(_ a0: java$lang$String?, _ a1: java$security$Provider?, _ a2: java$io$File?, _ a3: java$security$KeyStore$ProtectionParameter?) throws -> java$security$KeyStore$Builder? {
         return try JVM.sharedJVM.construct(I.java$security$KeyStore$Builder_newInstance_java$lang$String_java$security$Provider_java$io$File_java$security$KeyStore$ProtectionParameter__java$security$KeyStore$Builder(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil)) as java$security$KeyStore$Builder$Impl?
+    }
+
+    fileprivate static let java$security$KeyStore$Builder_newInstance_java$io$File_java$security$KeyStore$ProtectionParameter__java$security$KeyStore$Builder = svoker("newInstance", returns: JObjectType("java/security/KeyStore$Builder"), arguments: (JObjectType("java/io/File"), JObjectType("java/security/KeyStore$ProtectionParameter")))
+    public static func newInstance(_ a0: java$io$File?, _ a1: java$security$KeyStore$ProtectionParameter?) throws -> java$security$KeyStore$Builder? {
+        return try JVM.sharedJVM.construct(I.java$security$KeyStore$Builder_newInstance_java$io$File_java$security$KeyStore$ProtectionParameter__java$security$KeyStore$Builder(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$security$KeyStore$Builder$Impl?
     }
 
     fileprivate static let java$security$KeyStore$Builder_newInstance_java$lang$String_java$security$Provider_java$security$KeyStore$ProtectionParameter__java$security$KeyStore$Builder = svoker("newInstance", returns: JObjectType("java/security/KeyStore$Builder"), arguments: (JObjectType("java/lang/String"), JObjectType("java/security/Provider"), JObjectType("java/security/KeyStore$ProtectionParameter")))
@@ -1357,6 +1387,11 @@ open class java$security$KeyStoreSpi : java$lang$Object {
     fileprivate static let java$security$KeyStoreSpi_engineEntryInstanceOf_java$lang$String_java$lang$Class__Z = invoker("engineEntryInstanceOf", returns: jboolean.jniType, arguments: (JObjectType("java/lang/String"), JObjectType("java/lang/Class")))
     public func engineEntryInstanceOf(_ a0: java$lang$String?, _ a1: java$lang$Class?) throws -> jboolean {
         return try I.java$security$KeyStoreSpi_engineEntryInstanceOf_java$lang$String_java$lang$Class__Z(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
+    fileprivate static let java$security$KeyStoreSpi_engineProbe_java$io$InputStream__Z = invoker("engineProbe", returns: jboolean.jniType, arguments: (JObjectType("java/io/InputStream")))
+    public func engineProbe(_ a0: java$io$InputStream?) throws -> jboolean {
+        return try I.java$security$KeyStoreSpi_engineProbe_java$io$InputStream__Z(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -1692,6 +1727,11 @@ open class java$security$PermissionCollection : java$lang$Object, java$io$Serial
         return try JVM.sharedJVM.construct(I.java$security$PermissionCollection_elements__java$util$Enumeration(jobj)()) as java$util$Enumeration$Impl?
     }
 
+    fileprivate static let java$security$PermissionCollection_elementsAsStream__java$util$stream$Stream = invoker("elementsAsStream", returns: JObjectType("java/util/stream/Stream"))
+    public func elementsAsStream() throws -> java$util$stream$Stream? {
+        return try JVM.sharedJVM.construct(I.java$security$PermissionCollection_elementsAsStream__java$util$stream$Stream(jobj)()) as java$util$stream$Stream$Impl?
+    }
+
     fileprivate static let java$security$PermissionCollection_setReadOnly__V = invoker("setReadOnly", returns: JVoid.jniType)
     public func setReadOnly() throws -> Void {
         return try I.java$security$PermissionCollection_setReadOnly__V(jobj)()
@@ -1774,7 +1814,7 @@ open class java$security$Policy : java$lang$Object {
 
     fileprivate static let java$security$Policy__UNSUPPORTED_EMPTY_COLLECTION__java$security$PermissionCollection = J.saccessor("UNSUPPORTED_EMPTY_COLLECTION", type: JObjectType("java/security/PermissionCollection"))
     public static var UNSUPPORTED_EMPTY_COLLECTION: java$security$PermissionCollection? {
-        get { return java$security$PermissionCollection$Impl(constructor: I.java$security$Policy__UNSUPPORTED_EMPTY_COLLECTION__java$security$PermissionCollection.getter()) }
+        get { return java$security$PermissionCollection$Impl(reference: I.java$security$Policy__UNSUPPORTED_EMPTY_COLLECTION__java$security$PermissionCollection.getter()) }
     }
 
     fileprivate static let java$security$Policy_init__V = constructor()
@@ -1899,6 +1939,11 @@ open class java$security$ProtectionDomain : java$lang$Object {
         return try JVM.sharedJVM.construct(I.java$security$ProtectionDomain_getPermissions__java$security$PermissionCollection(jobj)()) as java$security$PermissionCollection$Impl?
     }
 
+    fileprivate static let java$security$ProtectionDomain_staticPermissionsOnly__Z = invoker("staticPermissionsOnly", returns: jboolean.jniType)
+    public func staticPermissionsOnly() throws -> jboolean {
+        return try I.java$security$ProtectionDomain_staticPermissionsOnly__Z(jobj)()
+    }
+
     fileprivate static let java$security$ProtectionDomain_implies_java$security$Permission__Z = invoker("implies", returns: jboolean.jniType, arguments: (JObjectType("java/security/Permission")))
     public func implies(_ a0: java$security$Permission?) throws -> jboolean {
         return try I.java$security$ProtectionDomain_implies_java$security$Permission__Z(jobj)(a0?.jobj ?? nil)
@@ -1993,6 +2038,21 @@ open class java$security$SecureRandom : java$util$Random {
         return try JVM.sharedJVM.construct(I.java$security$SecureRandom_getInstance_java$lang$String_java$security$Provider__java$security$SecureRandom(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$security$SecureRandom$Impl?
     }
 
+    fileprivate static let java$security$SecureRandom_getInstance_java$lang$String_java$security$SecureRandomParameters__java$security$SecureRandom = svoker("getInstance", returns: JObjectType("java/security/SecureRandom"), arguments: (JObjectType("java/lang/String"), JObjectType("java/security/SecureRandomParameters")))
+    public static func getInstance(_ a0: java$lang$String?, _ a1: java$security$SecureRandomParameters?) throws -> java$security$SecureRandom? {
+        return try JVM.sharedJVM.construct(I.java$security$SecureRandom_getInstance_java$lang$String_java$security$SecureRandomParameters__java$security$SecureRandom(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$security$SecureRandom$Impl?
+    }
+
+    fileprivate static let java$security$SecureRandom_getInstance_java$lang$String_java$security$SecureRandomParameters_java$lang$String__java$security$SecureRandom = svoker("getInstance", returns: JObjectType("java/security/SecureRandom"), arguments: (JObjectType("java/lang/String"), JObjectType("java/security/SecureRandomParameters"), JObjectType("java/lang/String")))
+    public static func getInstance(_ a0: java$lang$String?, _ a1: java$security$SecureRandomParameters?, _ a2: java$lang$String?) throws -> java$security$SecureRandom? {
+        return try JVM.sharedJVM.construct(I.java$security$SecureRandom_getInstance_java$lang$String_java$security$SecureRandomParameters_java$lang$String__java$security$SecureRandom(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$security$SecureRandom$Impl?
+    }
+
+    fileprivate static let java$security$SecureRandom_getInstance_java$lang$String_java$security$SecureRandomParameters_java$security$Provider__java$security$SecureRandom = svoker("getInstance", returns: JObjectType("java/security/SecureRandom"), arguments: (JObjectType("java/lang/String"), JObjectType("java/security/SecureRandomParameters"), JObjectType("java/security/Provider")))
+    public static func getInstance(_ a0: java$lang$String?, _ a1: java$security$SecureRandomParameters?, _ a2: java$security$Provider?) throws -> java$security$SecureRandom? {
+        return try JVM.sharedJVM.construct(I.java$security$SecureRandom_getInstance_java$lang$String_java$security$SecureRandomParameters_java$security$Provider__java$security$SecureRandom(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$security$SecureRandom$Impl?
+    }
+
     fileprivate static let java$security$SecureRandom_getProvider__java$security$Provider = invoker("getProvider", returns: JObjectType("java/security/Provider"))
     public func getProvider() throws -> java$security$Provider? {
         return try JVM.sharedJVM.construct(I.java$security$SecureRandom_getProvider__java$security$Provider(jobj)()) as java$security$Provider$Impl?
@@ -2003,6 +2063,12 @@ open class java$security$SecureRandom : java$util$Random {
         return try JVM.sharedJVM.construct(I.java$security$SecureRandom_getAlgorithm__java$lang$String(jobj)()) as java$lang$String$Impl?
     }
 
+    fileprivate static let java$security$SecureRandom_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$security$SecureRandom_getParameters__java$security$SecureRandomParameters = invoker("getParameters", returns: JObjectType("java/security/SecureRandomParameters"))
+    public func getParameters() throws -> java$security$SecureRandomParameters? {
+        return try JVM.sharedJVM.construct(I.java$security$SecureRandom_getParameters__java$security$SecureRandomParameters(jobj)()) as java$security$SecureRandomParameters$Impl?
+    }
+
     fileprivate static let java$security$SecureRandom_setSeed_AB__V = invoker("setSeed", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType)))
     public func setSeed(_ a0: [jbyte]?) throws -> Void {
         return try I.java$security$SecureRandom_setSeed_AB__V(jobj)(a0?.arrayToJArray() ?? nil)
@@ -2010,6 +2076,11 @@ open class java$security$SecureRandom : java$util$Random {
 
     fileprivate static let java$security$SecureRandom_setSeed_J__V = invoker("setSeed", returns: JVoid.jniType, arguments: (jlong.jniType))
     fileprivate static let java$security$SecureRandom_nextBytes_AB__V = invoker("nextBytes", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType)))
+    fileprivate static let java$security$SecureRandom_nextBytes_AB_java$security$SecureRandomParameters__V = invoker("nextBytes", returns: JVoid.jniType, arguments: (JArray(jbyte.jniType), JObjectType("java/security/SecureRandomParameters")))
+    public func nextBytes(_ a0: [jbyte]?, _ a1: java$security$SecureRandomParameters?) throws -> Void {
+        return try I.java$security$SecureRandom_nextBytes_AB_java$security$SecureRandomParameters__V(jobj)(a0?.arrayToJArray() ?? nil, a1?.jobj ?? nil)
+    }
+
     fileprivate static let java$security$SecureRandom_getSeed_I__AB = svoker("getSeed", returns: JArray(jbyte.jniType), arguments: (jint.jniType))
     public static func getSeed(_ a0: jint) throws -> [jbyte]? {
         return try I.java$security$SecureRandom_getSeed_I__AB(a0)?.jarrayToArray()
@@ -2023,6 +2094,16 @@ open class java$security$SecureRandom : java$util$Random {
     fileprivate static let java$security$SecureRandom_getInstanceStrong__java$security$SecureRandom = svoker("getInstanceStrong", returns: JObjectType("java/security/SecureRandom"))
     public static func getInstanceStrong() throws -> java$security$SecureRandom? {
         return try JVM.sharedJVM.construct(I.java$security$SecureRandom_getInstanceStrong__java$security$SecureRandom()) as java$security$SecureRandom$Impl?
+    }
+
+    fileprivate static let java$security$SecureRandom_reseed__V = invoker("reseed", returns: JVoid.jniType)
+    public func reseed() throws -> Void {
+        return try I.java$security$SecureRandom_reseed__V(jobj)()
+    }
+
+    fileprivate static let java$security$SecureRandom_reseed_java$security$SecureRandomParameters__V = invoker("reseed", returns: JVoid.jniType, arguments: (JObjectType("java/security/SecureRandomParameters")))
+    public func reseed(_ a0: java$security$SecureRandomParameters?) throws -> Void {
+        return try I.java$security$SecureRandom_reseed_java$security$SecureRandomParameters__V(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -2041,6 +2122,7 @@ open class java$security$SecureRandomSpi : java$lang$Object, java$io$Serializabl
         try self.init(creator: I.java$security$SecureRandomSpi_init__V())
     }
 
+    fileprivate static let java$security$SecureRandomSpi_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
 }
 
 public typealias java$security$SecureRandomSpi$Impl = java$security$SecureRandomSpi
@@ -3235,17 +3317,17 @@ public final class java$security$KeyRep$Type : java$lang$Enum {
 
     fileprivate static let java$security$KeyRep$Type__SECRET__java$security$KeyRep$Type = J.saccessor("SECRET", type: JObjectType("java/security/KeyRep$Type"))
     public static var SECRET: java$security$KeyRep$Type? {
-        get { return java$security$KeyRep$Type$Impl(constructor: I.java$security$KeyRep$Type__SECRET__java$security$KeyRep$Type.getter()) }
+        get { return java$security$KeyRep$Type$Impl(reference: I.java$security$KeyRep$Type__SECRET__java$security$KeyRep$Type.getter()) }
     }
 
     fileprivate static let java$security$KeyRep$Type__PUBLIC__java$security$KeyRep$Type = J.saccessor("PUBLIC", type: JObjectType("java/security/KeyRep$Type"))
     public static var PUBLIC: java$security$KeyRep$Type? {
-        get { return java$security$KeyRep$Type$Impl(constructor: I.java$security$KeyRep$Type__PUBLIC__java$security$KeyRep$Type.getter()) }
+        get { return java$security$KeyRep$Type$Impl(reference: I.java$security$KeyRep$Type__PUBLIC__java$security$KeyRep$Type.getter()) }
     }
 
     fileprivate static let java$security$KeyRep$Type__PRIVATE__java$security$KeyRep$Type = J.saccessor("PRIVATE", type: JObjectType("java/security/KeyRep$Type"))
     public static var PRIVATE: java$security$KeyRep$Type? {
-        get { return java$security$KeyRep$Type$Impl(constructor: I.java$security$KeyRep$Type__PRIVATE__java$security$KeyRep$Type.getter()) }
+        get { return java$security$KeyRep$Type$Impl(reference: I.java$security$KeyRep$Type__PRIVATE__java$security$KeyRep$Type.getter()) }
     }
 
     fileprivate static let java$security$KeyRep$Type_values__Ajava$security$KeyRep$Type = svoker("values", returns: JArray(JObjectType("java/security/KeyRep$Type")))
@@ -3271,52 +3353,52 @@ public final class java$security$CryptoPrimitive : java$lang$Enum {
 
     fileprivate static let java$security$CryptoPrimitive__MESSAGE_DIGEST__java$security$CryptoPrimitive = J.saccessor("MESSAGE_DIGEST", type: JObjectType("java/security/CryptoPrimitive"))
     public static var MESSAGE_DIGEST: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__MESSAGE_DIGEST__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__MESSAGE_DIGEST__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__SECURE_RANDOM__java$security$CryptoPrimitive = J.saccessor("SECURE_RANDOM", type: JObjectType("java/security/CryptoPrimitive"))
     public static var SECURE_RANDOM: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__SECURE_RANDOM__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__SECURE_RANDOM__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__BLOCK_CIPHER__java$security$CryptoPrimitive = J.saccessor("BLOCK_CIPHER", type: JObjectType("java/security/CryptoPrimitive"))
     public static var BLOCK_CIPHER: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__BLOCK_CIPHER__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__BLOCK_CIPHER__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__STREAM_CIPHER__java$security$CryptoPrimitive = J.saccessor("STREAM_CIPHER", type: JObjectType("java/security/CryptoPrimitive"))
     public static var STREAM_CIPHER: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__STREAM_CIPHER__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__STREAM_CIPHER__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__MAC__java$security$CryptoPrimitive = J.saccessor("MAC", type: JObjectType("java/security/CryptoPrimitive"))
     public static var MAC: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__MAC__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__MAC__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__KEY_WRAP__java$security$CryptoPrimitive = J.saccessor("KEY_WRAP", type: JObjectType("java/security/CryptoPrimitive"))
     public static var KEY_WRAP: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__KEY_WRAP__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__KEY_WRAP__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__PUBLIC_KEY_ENCRYPTION__java$security$CryptoPrimitive = J.saccessor("PUBLIC_KEY_ENCRYPTION", type: JObjectType("java/security/CryptoPrimitive"))
     public static var PUBLIC_KEY_ENCRYPTION: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__PUBLIC_KEY_ENCRYPTION__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__PUBLIC_KEY_ENCRYPTION__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__SIGNATURE__java$security$CryptoPrimitive = J.saccessor("SIGNATURE", type: JObjectType("java/security/CryptoPrimitive"))
     public static var SIGNATURE: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__SIGNATURE__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__SIGNATURE__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__KEY_ENCAPSULATION__java$security$CryptoPrimitive = J.saccessor("KEY_ENCAPSULATION", type: JObjectType("java/security/CryptoPrimitive"))
     public static var KEY_ENCAPSULATION: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__KEY_ENCAPSULATION__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__KEY_ENCAPSULATION__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive__KEY_AGREEMENT__java$security$CryptoPrimitive = J.saccessor("KEY_AGREEMENT", type: JObjectType("java/security/CryptoPrimitive"))
     public static var KEY_AGREEMENT: java$security$CryptoPrimitive? {
-        get { return java$security$CryptoPrimitive$Impl(constructor: I.java$security$CryptoPrimitive__KEY_AGREEMENT__java$security$CryptoPrimitive.getter()) }
+        get { return java$security$CryptoPrimitive$Impl(reference: I.java$security$CryptoPrimitive__KEY_AGREEMENT__java$security$CryptoPrimitive.getter()) }
     }
 
     fileprivate static let java$security$CryptoPrimitive_values__Ajava$security$CryptoPrimitive = svoker("values", returns: JArray(JObjectType("java/security/CryptoPrimitive")))
@@ -3332,4 +3414,16 @@ public final class java$security$CryptoPrimitive : java$lang$Enum {
 }
 
 public typealias java$security$CryptoPrimitive$Impl = java$security$CryptoPrimitive
+
+public protocol java$security$SecureRandomParameters : JavaObject {
+}
+
+open class java$security$SecureRandomParameters$Impl : java$lang$Object, java$security$SecureRandomParameters {
+    private typealias J = java$security$SecureRandomParameters$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/security/SecureRandomParameters"
+    open class override func jniName() -> String { return "java/security/SecureRandomParameters" }
+
+}
 

@@ -86,6 +86,18 @@ open class java$util$concurrent$ArrayBlockingQueue : java$util$AbstractQueue, ja
         return try JVM.sharedJVM.construct(I.java$util$concurrent$ArrayBlockingQueue_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
     }
 
+    fileprivate static let java$util$concurrent$ArrayBlockingQueue_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
+    public func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
+        return try I.java$util$concurrent$ArrayBlockingQueue_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$ArrayBlockingQueue_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
+    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
+        return try I.java$util$concurrent$ArrayBlockingQueue_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$ArrayBlockingQueue_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$ArrayBlockingQueue_retainAll_java$util$Collection__Z = invoker("retainAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
 }
 
 public typealias java$util$concurrent$ArrayBlockingQueue$Impl = java$util$concurrent$ArrayBlockingQueue
@@ -128,12 +140,26 @@ open class java$util$concurrent$ConcurrentLinkedQueue : java$util$AbstractQueue,
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_contains_java$lang$Object__Z = invoker("contains", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_remove_java$lang$Object__Z = invoker("remove", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_addAll_java$util$Collection__Z = invoker("addAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_toArray__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_toArray_Ajava$lang$Object__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")), arguments: (JArray(JObjectType("java/lang/Object"))))
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_iterator__java$util$Iterator = invoker("iterator", returns: JObjectType("java/util/Iterator"))
     fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
     public func spliterator() throws -> java$util$Spliterator? {
         return try JVM.sharedJVM.construct(I.java$util$concurrent$ConcurrentLinkedQueue_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
+    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
+        return try I.java$util$concurrent$ConcurrentLinkedQueue_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_retainAll_java$util$Collection__Z = invoker("retainAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_clear__V = invoker("clear", returns: JVoid.jniType)
+    fileprivate static let java$util$concurrent$ConcurrentLinkedQueue_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
+    public func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
+        return try I.java$util$concurrent$ConcurrentLinkedQueue_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -456,6 +482,7 @@ open class java$util$concurrent$LinkedBlockingDeque : java$util$AbstractQueue, j
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_remove_java$lang$Object__Z = invoker("remove", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_size__I = invoker("size", returns: jint.jniType)
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_contains_java$lang$Object__Z = invoker("contains", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
+    fileprivate static let java$util$concurrent$LinkedBlockingDeque_addAll_java$util$Collection__Z = invoker("addAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_toArray__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_toArray_Ajava$lang$Object__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")), arguments: (JArray(JObjectType("java/lang/Object"))))
     fileprivate static let java$util$concurrent$LinkedBlockingDeque_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
@@ -471,6 +498,18 @@ open class java$util$concurrent$LinkedBlockingDeque : java$util$AbstractQueue, j
         return try JVM.sharedJVM.construct(I.java$util$concurrent$LinkedBlockingDeque_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
     }
 
+    fileprivate static let java$util$concurrent$LinkedBlockingDeque_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
+    public func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
+        return try I.java$util$concurrent$LinkedBlockingDeque_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$LinkedBlockingDeque_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
+    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
+        return try I.java$util$concurrent$LinkedBlockingDeque_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$LinkedBlockingDeque_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$LinkedBlockingDeque_retainAll_java$util$Collection__Z = invoker("retainAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
 }
 
 public typealias java$util$concurrent$LinkedBlockingDeque$Impl = java$util$concurrent$LinkedBlockingDeque
@@ -560,6 +599,18 @@ open class java$util$concurrent$LinkedBlockingQueue : java$util$AbstractQueue, j
         return try JVM.sharedJVM.construct(I.java$util$concurrent$LinkedBlockingQueue_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
     }
 
+    fileprivate static let java$util$concurrent$LinkedBlockingQueue_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
+    public func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
+        return try I.java$util$concurrent$LinkedBlockingQueue_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$LinkedBlockingQueue_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
+    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
+        return try I.java$util$concurrent$LinkedBlockingQueue_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$LinkedBlockingQueue_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$LinkedBlockingQueue_retainAll_java$util$Collection__Z = invoker("retainAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
 }
 
 public typealias java$util$concurrent$LinkedBlockingQueue$Impl = java$util$concurrent$LinkedBlockingQueue
@@ -571,6 +622,9 @@ open class java$util$concurrent$LinkedTransferQueue : java$util$AbstractQueue, j
     /// Returns the internal JNI name for this class: "java/util/concurrent/LinkedTransferQueue"
     open class override func jniName() -> String { return "java/util/concurrent/LinkedTransferQueue" }
 
+    fileprivate static let java$util$concurrent$LinkedTransferQueue_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
+    fileprivate static let java$util$concurrent$LinkedTransferQueue_toArray__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")))
+    fileprivate static let java$util$concurrent$LinkedTransferQueue_toArray_Ajava$lang$Object__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")), arguments: (JArray(JObjectType("java/lang/Object"))))
     fileprivate static let java$util$concurrent$LinkedTransferQueue_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
     public func spliterator() throws -> java$util$Spliterator? {
         return try JVM.sharedJVM.construct(I.java$util$concurrent$LinkedTransferQueue_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
@@ -667,6 +721,19 @@ open class java$util$concurrent$LinkedTransferQueue : java$util$AbstractQueue, j
         return try I.java$util$concurrent$LinkedTransferQueue_remainingCapacity__I(jobj)()
     }
 
+    fileprivate static let java$util$concurrent$LinkedTransferQueue_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
+    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
+        return try I.java$util$concurrent$LinkedTransferQueue_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$LinkedTransferQueue_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$LinkedTransferQueue_retainAll_java$util$Collection__Z = invoker("retainAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$LinkedTransferQueue_clear__V = invoker("clear", returns: JVoid.jniType)
+    fileprivate static let java$util$concurrent$LinkedTransferQueue_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
+    public func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
+        return try I.java$util$concurrent$LinkedTransferQueue_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
+    }
+
 }
 
 public typealias java$util$concurrent$LinkedTransferQueue$Impl = java$util$concurrent$LinkedTransferQueue
@@ -747,7 +814,6 @@ open class java$util$concurrent$PriorityBlockingQueue : java$util$AbstractQueue,
 
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_remove_java$lang$Object__Z = invoker("remove", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_contains_java$lang$Object__Z = invoker("contains", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
-    fileprivate static let java$util$concurrent$PriorityBlockingQueue_toArray__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_drainTo_java$util$Collection__I = invoker("drainTo", returns: jint.jniType, arguments: (JObjectType("java/util/Collection")))
     public func drainTo(_ a0: java$util$Collection?) throws -> jint {
@@ -760,6 +826,7 @@ open class java$util$concurrent$PriorityBlockingQueue : java$util$AbstractQueue,
     }
 
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_clear__V = invoker("clear", returns: JVoid.jniType)
+    fileprivate static let java$util$concurrent$PriorityBlockingQueue_toArray__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_toArray_Ajava$lang$Object__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")), arguments: (JArray(JObjectType("java/lang/Object"))))
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_iterator__java$util$Iterator = invoker("iterator", returns: JObjectType("java/util/Iterator"))
     fileprivate static let java$util$concurrent$PriorityBlockingQueue_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
@@ -844,6 +911,7 @@ open class java$util$concurrent$SynchronousQueue : java$util$AbstractQueue, java
 
     fileprivate static let java$util$concurrent$SynchronousQueue_toArray__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$SynchronousQueue_toArray_Ajava$lang$Object__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")), arguments: (JArray(JObjectType("java/lang/Object"))))
+    fileprivate static let java$util$concurrent$SynchronousQueue_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
     fileprivate static let java$util$concurrent$SynchronousQueue_drainTo_java$util$Collection__I = invoker("drainTo", returns: jint.jniType, arguments: (JObjectType("java/util/Collection")))
     public func drainTo(_ a0: java$util$Collection?) throws -> jint {
         return try I.java$util$concurrent$SynchronousQueue_drainTo_java$util$Collection__I(jobj)(a0?.jobj ?? nil)
@@ -1192,6 +1260,7 @@ open class java$util$concurrent$ConcurrentLinkedDeque : java$util$AbstractCollec
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_remove_java$lang$Object__Z = invoker("remove", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_addAll_java$util$Collection__Z = invoker("addAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_clear__V = invoker("clear", returns: JVoid.jniType)
+    fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_toArray__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")))
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_toArray_Ajava$lang$Object__Ajava$lang$Object = invoker("toArray", returns: JArray(JObjectType("java/lang/Object")), arguments: (JArray(JObjectType("java/lang/Object"))))
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_iterator__java$util$Iterator = invoker("iterator", returns: JObjectType("java/util/Iterator"))
@@ -1203,6 +1272,18 @@ open class java$util$concurrent$ConcurrentLinkedDeque : java$util$AbstractCollec
     fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_spliterator__java$util$Spliterator = invoker("spliterator", returns: JObjectType("java/util/Spliterator"))
     public func spliterator() throws -> java$util$Spliterator? {
         return try JVM.sharedJVM.construct(I.java$util$concurrent$ConcurrentLinkedDeque_spliterator__java$util$Spliterator(jobj)()) as java$util$Spliterator$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_removeIf_java$util$function$Predicate__Z = invoker("removeIf", returns: jboolean.jniType, arguments: (JObjectType("java/util/function/Predicate")))
+    public func removeIf(_ a0: java$util$function$Predicate?) throws -> jboolean {
+        return try I.java$util$concurrent$ConcurrentLinkedDeque_removeIf_java$util$function$Predicate__Z(jobj)(a0?.jobj ?? nil)
+    }
+
+    fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_retainAll_java$util$Collection__Z = invoker("retainAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
+    fileprivate static let java$util$concurrent$ConcurrentLinkedDeque_forEach_java$util$function$Consumer__V = invoker("forEach", returns: JVoid.jniType, arguments: (JObjectType("java/util/function/Consumer")))
+    public func forEach(_ a0: java$util$function$Consumer?) throws -> Void {
+        return try I.java$util$concurrent$ConcurrentLinkedDeque_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
     }
 
 }
@@ -1269,7 +1350,7 @@ open class java$util$concurrent$ForkJoinPool : java$util$concurrent$AbstractExec
 
     fileprivate static let java$util$concurrent$ForkJoinPool__defaultForkJoinWorkerThreadFactory__java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory = J.saccessor("defaultForkJoinWorkerThreadFactory", type: JObjectType("java/util/concurrent/ForkJoinPool$ForkJoinWorkerThreadFactory"))
     public static var defaultForkJoinWorkerThreadFactory: java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory? {
-        get { return java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory$Impl(constructor: I.java$util$concurrent$ForkJoinPool__defaultForkJoinWorkerThreadFactory__java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory.getter()) }
+        get { return java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory$Impl(reference: I.java$util$concurrent$ForkJoinPool__defaultForkJoinWorkerThreadFactory__java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory.getter()) }
     }
 
     fileprivate static let java$util$concurrent$ForkJoinPool_init__V = constructor()
@@ -1285,6 +1366,11 @@ open class java$util$concurrent$ForkJoinPool : java$util$concurrent$AbstractExec
     fileprivate static let java$util$concurrent$ForkJoinPool_init_I_java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory_java$lang$Thread$UncaughtExceptionHandler_Z__V = constructor((jint.jniType, JObjectType("java/util/concurrent/ForkJoinPool$ForkJoinWorkerThreadFactory"), JObjectType("java/lang/Thread$UncaughtExceptionHandler"), jboolean.jniType))
     public convenience init(_ a0: jint, _ a1: java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory?, _ a2: java$lang$Thread$UncaughtExceptionHandler?, _ a3: jboolean) throws {
         try self.init(creator: I.java$util$concurrent$ForkJoinPool_init_I_java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory_java$lang$Thread$UncaughtExceptionHandler_Z__V(a0, a1?.jobj ?? nil, a2?.jobj ?? nil, a3))
+    }
+
+    fileprivate static let java$util$concurrent$ForkJoinPool_init_I_java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory_java$lang$Thread$UncaughtExceptionHandler_Z_I_I_I_java$util$function$Predicate_J_java$util$concurrent$TimeUnit__V = constructor((jint.jniType, JObjectType("java/util/concurrent/ForkJoinPool$ForkJoinWorkerThreadFactory"), JObjectType("java/lang/Thread$UncaughtExceptionHandler"), jboolean.jniType, jint.jniType, jint.jniType, jint.jniType, JObjectType("java/util/function/Predicate"), jlong.jniType, JObjectType("java/util/concurrent/TimeUnit")))
+    public convenience init(_ a0: jint, _ a1: java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory?, _ a2: java$lang$Thread$UncaughtExceptionHandler?, _ a3: jboolean, _ a4: jint, _ a5: jint, _ a6: jint, _ a7: java$util$function$Predicate?, _ a8: jlong, _ a9: java$util$concurrent$TimeUnit?) throws {
+        try self.init(creator: I.java$util$concurrent$ForkJoinPool_init_I_java$util$concurrent$ForkJoinPool$ForkJoinWorkerThreadFactory_java$lang$Thread$UncaughtExceptionHandler_Z_I_I_I_java$util$function$Predicate_J_java$util$concurrent$TimeUnit__V(a0, a1?.jobj ?? nil, a2?.jobj ?? nil, a3, a4, a5, a6, a7?.jobj ?? nil, a8, a9?.jobj ?? nil))
     }
 
     fileprivate static let java$util$concurrent$ForkJoinPool_commonPool__java$util$concurrent$ForkJoinPool = svoker("commonPool", returns: JObjectType("java/util/concurrent/ForkJoinPool"))
@@ -2558,19 +2644,74 @@ open class java$util$concurrent$CompletableFuture : java$lang$Object, java$util$
     }
 
     fileprivate static let java$util$concurrent$CompletableFuture_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
-    fileprivate static let java$util$concurrent$CompletableFuture_handleAsync_java$util$function$BiFunction_java$util$concurrent$Executor__java$util$concurrent$CompletionStage = invoker("handleAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction"), JObjectType("java/util/concurrent/Executor")))
-    public func handleAsync(_ a0: java$util$function$BiFunction?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletionStage? {
-        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_handleAsync_java$util$function$BiFunction_java$util$concurrent$Executor__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    fileprivate static let java$util$concurrent$CompletableFuture_newIncompleteFuture__java$util$concurrent$CompletableFuture = invoker("newIncompleteFuture", returns: JObjectType("java/util/concurrent/CompletableFuture"))
+    public func newIncompleteFuture() throws -> java$util$concurrent$CompletableFuture? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_newIncompleteFuture__java$util$concurrent$CompletableFuture(jobj)()) as java$util$concurrent$CompletableFuture$Impl?
     }
 
-    fileprivate static let java$util$concurrent$CompletableFuture_handleAsync_java$util$function$BiFunction__java$util$concurrent$CompletionStage = invoker("handleAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction")))
-    public func handleAsync(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage? {
-        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_handleAsync_java$util$function$BiFunction__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    fileprivate static let java$util$concurrent$CompletableFuture_defaultExecutor__java$util$concurrent$Executor = invoker("defaultExecutor", returns: JObjectType("java/util/concurrent/Executor"))
+    public func defaultExecutor() throws -> java$util$concurrent$Executor? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_defaultExecutor__java$util$concurrent$Executor(jobj)()) as java$util$concurrent$Executor$Impl?
     }
 
-    fileprivate static let java$util$concurrent$CompletableFuture_handle_java$util$function$BiFunction__java$util$concurrent$CompletionStage = invoker("handle", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction")))
-    public func handle(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage? {
-        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_handle_java$util$function$BiFunction__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    fileprivate static let java$util$concurrent$CompletableFuture_copy__java$util$concurrent$CompletableFuture = invoker("copy", returns: JObjectType("java/util/concurrent/CompletableFuture"))
+    public func copy() throws -> java$util$concurrent$CompletableFuture? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_copy__java$util$concurrent$CompletableFuture(jobj)()) as java$util$concurrent$CompletableFuture$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_minimalCompletionStage__java$util$concurrent$CompletionStage = invoker("minimalCompletionStage", returns: JObjectType("java/util/concurrent/CompletionStage"))
+    public func minimalCompletionStage() throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_minimalCompletionStage__java$util$concurrent$CompletionStage(jobj)()) as java$util$concurrent$CompletionStage$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_completeAsync_java$util$function$Supplier_java$util$concurrent$Executor__java$util$concurrent$CompletableFuture = invoker("completeAsync", returns: JObjectType("java/util/concurrent/CompletableFuture"), arguments: (JObjectType("java/util/function/Supplier"), JObjectType("java/util/concurrent/Executor")))
+    public func completeAsync(_ a0: java$util$function$Supplier?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletableFuture? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_completeAsync_java$util$function$Supplier_java$util$concurrent$Executor__java$util$concurrent$CompletableFuture(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$concurrent$CompletableFuture$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_completeAsync_java$util$function$Supplier__java$util$concurrent$CompletableFuture = invoker("completeAsync", returns: JObjectType("java/util/concurrent/CompletableFuture"), arguments: (JObjectType("java/util/function/Supplier")))
+    public func completeAsync(_ a0: java$util$function$Supplier?) throws -> java$util$concurrent$CompletableFuture? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_completeAsync_java$util$function$Supplier__java$util$concurrent$CompletableFuture(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletableFuture$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_orTimeout_J_java$util$concurrent$TimeUnit__java$util$concurrent$CompletableFuture = invoker("orTimeout", returns: JObjectType("java/util/concurrent/CompletableFuture"), arguments: (jlong.jniType, JObjectType("java/util/concurrent/TimeUnit")))
+    public func orTimeout(_ a0: jlong, _ a1: java$util$concurrent$TimeUnit?) throws -> java$util$concurrent$CompletableFuture? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_orTimeout_J_java$util$concurrent$TimeUnit__java$util$concurrent$CompletableFuture(jobj)(a0, a1?.jobj ?? nil)) as java$util$concurrent$CompletableFuture$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_completeOnTimeout_java$lang$Object_J_java$util$concurrent$TimeUnit__java$util$concurrent$CompletableFuture = invoker("completeOnTimeout", returns: JObjectType("java/util/concurrent/CompletableFuture"), arguments: (JObjectType("java/lang/Object"), jlong.jniType, JObjectType("java/util/concurrent/TimeUnit")))
+    public func completeOnTimeout(_ a0: java$lang$Object?, _ a1: jlong, _ a2: java$util$concurrent$TimeUnit?) throws -> java$util$concurrent$CompletableFuture? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_completeOnTimeout_java$lang$Object_J_java$util$concurrent$TimeUnit__java$util$concurrent$CompletableFuture(jobj)(a0?.jobj ?? nil, a1, a2?.jobj ?? nil)) as java$util$concurrent$CompletableFuture$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_delayedExecutor_J_java$util$concurrent$TimeUnit_java$util$concurrent$Executor__java$util$concurrent$Executor = svoker("delayedExecutor", returns: JObjectType("java/util/concurrent/Executor"), arguments: (jlong.jniType, JObjectType("java/util/concurrent/TimeUnit"), JObjectType("java/util/concurrent/Executor")))
+    public static func delayedExecutor(_ a0: jlong, _ a1: java$util$concurrent$TimeUnit?, _ a2: java$util$concurrent$Executor?) throws -> java$util$concurrent$Executor? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_delayedExecutor_J_java$util$concurrent$TimeUnit_java$util$concurrent$Executor__java$util$concurrent$Executor(a0, a1?.jobj ?? nil, a2?.jobj ?? nil)) as java$util$concurrent$Executor$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_delayedExecutor_J_java$util$concurrent$TimeUnit__java$util$concurrent$Executor = svoker("delayedExecutor", returns: JObjectType("java/util/concurrent/Executor"), arguments: (jlong.jniType, JObjectType("java/util/concurrent/TimeUnit")))
+    public static func delayedExecutor(_ a0: jlong, _ a1: java$util$concurrent$TimeUnit?) throws -> java$util$concurrent$Executor? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_delayedExecutor_J_java$util$concurrent$TimeUnit__java$util$concurrent$Executor(a0, a1?.jobj ?? nil)) as java$util$concurrent$Executor$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_completedStage_java$lang$Object__java$util$concurrent$CompletionStage = svoker("completedStage", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/lang/Object")))
+    public static func completedStage(_ a0: java$lang$Object?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_completedStage_java$lang$Object__java$util$concurrent$CompletionStage(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_failedFuture_java$lang$Throwable__java$util$concurrent$CompletableFuture = svoker("failedFuture", returns: JObjectType("java/util/concurrent/CompletableFuture"), arguments: (JObjectType("java/lang/Throwable")))
+    public static func failedFuture(_ a0: java$lang$Throwable?) throws -> java$util$concurrent$CompletableFuture? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_failedFuture_java$lang$Throwable__java$util$concurrent$CompletableFuture(a0?.jobj ?? nil)) as java$util$concurrent$CompletableFuture$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_failedStage_java$lang$Throwable__java$util$concurrent$CompletionStage = svoker("failedStage", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/lang/Throwable")))
+    public static func failedStage(_ a0: java$lang$Throwable?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_failedStage_java$lang$Throwable__java$util$concurrent$CompletionStage(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_exceptionally_java$util$function$Function__java$util$concurrent$CompletionStage = invoker("exceptionally", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/Function")))
+    public func exceptionally(_ a0: java$util$function$Function?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_exceptionally_java$util$function$Function__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
     }
 
     fileprivate static let java$util$concurrent$CompletableFuture_whenCompleteAsync_java$util$function$BiConsumer_java$util$concurrent$Executor__java$util$concurrent$CompletionStage = invoker("whenCompleteAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiConsumer"), JObjectType("java/util/concurrent/Executor")))
@@ -2588,9 +2729,19 @@ open class java$util$concurrent$CompletableFuture : java$lang$Object, java$util$
         return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_whenComplete_java$util$function$BiConsumer__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
     }
 
-    fileprivate static let java$util$concurrent$CompletableFuture_exceptionally_java$util$function$Function__java$util$concurrent$CompletionStage = invoker("exceptionally", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/Function")))
-    public func exceptionally(_ a0: java$util$function$Function?) throws -> java$util$concurrent$CompletionStage? {
-        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_exceptionally_java$util$function$Function__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    fileprivate static let java$util$concurrent$CompletableFuture_handleAsync_java$util$function$BiFunction_java$util$concurrent$Executor__java$util$concurrent$CompletionStage = invoker("handleAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction"), JObjectType("java/util/concurrent/Executor")))
+    public func handleAsync(_ a0: java$util$function$BiFunction?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_handleAsync_java$util$function$BiFunction_java$util$concurrent$Executor__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_handleAsync_java$util$function$BiFunction__java$util$concurrent$CompletionStage = invoker("handleAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction")))
+    public func handleAsync(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_handleAsync_java$util$function$BiFunction__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$CompletableFuture_handle_java$util$function$BiFunction__java$util$concurrent$CompletionStage = invoker("handle", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction")))
+    public func handle(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletableFuture_handle_java$util$function$BiFunction__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
     }
 
     fileprivate static let java$util$concurrent$CompletableFuture_thenComposeAsync_java$util$function$Function_java$util$concurrent$Executor__java$util$concurrent$CompletionStage = invoker("thenComposeAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/Function"), JObjectType("java/util/concurrent/Executor")))
@@ -2784,6 +2935,7 @@ open class java$util$concurrent$ConcurrentHashMap$KeySetView : java$util$concurr
         return try I.java$util$concurrent$ConcurrentHashMap$KeySetView_forEach_java$util$function$Consumer__V(jobj)(a0?.jobj ?? nil)
     }
 
+    fileprivate static let java$util$concurrent$ConcurrentHashMap$KeySetView_removeAll_java$util$Collection__Z = invoker("removeAll", returns: jboolean.jniType, arguments: (JObjectType("java/util/Collection")))
     fileprivate static let java$util$concurrent$ConcurrentHashMap$KeySetView_getMap__java$util$concurrent$ConcurrentHashMap = invoker("getMap", returns: JObjectType("java/util/concurrent/ConcurrentHashMap"))
 }
 
@@ -3692,6 +3844,7 @@ open class java$util$concurrent$FutureTask : java$lang$Object, java$util$concurr
         return try I.java$util$concurrent$FutureTask_run__V(jobj)()
     }
 
+    fileprivate static let java$util$concurrent$FutureTask_toString__java$lang$String = invoker("toString", returns: JObjectType("java/lang/String"))
 }
 
 public typealias java$util$concurrent$FutureTask$Impl = java$util$concurrent$FutureTask
@@ -4395,13 +4548,13 @@ public protocol java$util$concurrent$CompletionStage : JavaObject {
     func thenCompose(_ a0: java$util$function$Function?) throws -> java$util$concurrent$CompletionStage?
     func thenComposeAsync(_ a0: java$util$function$Function?) throws -> java$util$concurrent$CompletionStage?
     func thenComposeAsync(_ a0: java$util$function$Function?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletionStage?
-    func exceptionally(_ a0: java$util$function$Function?) throws -> java$util$concurrent$CompletionStage?
-    func whenComplete(_ a0: java$util$function$BiConsumer?) throws -> java$util$concurrent$CompletionStage?
-    func whenCompleteAsync(_ a0: java$util$function$BiConsumer?) throws -> java$util$concurrent$CompletionStage?
-    func whenCompleteAsync(_ a0: java$util$function$BiConsumer?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletionStage?
     func handle(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage?
     func handleAsync(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage?
     func handleAsync(_ a0: java$util$function$BiFunction?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletionStage?
+    func whenComplete(_ a0: java$util$function$BiConsumer?) throws -> java$util$concurrent$CompletionStage?
+    func whenCompleteAsync(_ a0: java$util$function$BiConsumer?) throws -> java$util$concurrent$CompletionStage?
+    func whenCompleteAsync(_ a0: java$util$function$BiConsumer?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletionStage?
+    func exceptionally(_ a0: java$util$function$Function?) throws -> java$util$concurrent$CompletionStage?
     func toCompletableFuture() throws -> java$util$concurrent$CompletableFuture?
 }
 
@@ -4442,13 +4595,13 @@ open class java$util$concurrent$CompletionStage$Impl : java$lang$Object, java$ut
     fileprivate static let java$util$concurrent$CompletionStage_thenCompose_java$util$function$Function__java$util$concurrent$CompletionStage = invoker("thenCompose", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/Function")))
     fileprivate static let java$util$concurrent$CompletionStage_thenComposeAsync_java$util$function$Function__java$util$concurrent$CompletionStage = invoker("thenComposeAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/Function")))
     fileprivate static let java$util$concurrent$CompletionStage_thenComposeAsync_java$util$function$Function_java$util$concurrent$Executor__java$util$concurrent$CompletionStage = invoker("thenComposeAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/Function"), JObjectType("java/util/concurrent/Executor")))
-    fileprivate static let java$util$concurrent$CompletionStage_exceptionally_java$util$function$Function__java$util$concurrent$CompletionStage = invoker("exceptionally", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/Function")))
-    fileprivate static let java$util$concurrent$CompletionStage_whenComplete_java$util$function$BiConsumer__java$util$concurrent$CompletionStage = invoker("whenComplete", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiConsumer")))
-    fileprivate static let java$util$concurrent$CompletionStage_whenCompleteAsync_java$util$function$BiConsumer__java$util$concurrent$CompletionStage = invoker("whenCompleteAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiConsumer")))
-    fileprivate static let java$util$concurrent$CompletionStage_whenCompleteAsync_java$util$function$BiConsumer_java$util$concurrent$Executor__java$util$concurrent$CompletionStage = invoker("whenCompleteAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiConsumer"), JObjectType("java/util/concurrent/Executor")))
     fileprivate static let java$util$concurrent$CompletionStage_handle_java$util$function$BiFunction__java$util$concurrent$CompletionStage = invoker("handle", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction")))
     fileprivate static let java$util$concurrent$CompletionStage_handleAsync_java$util$function$BiFunction__java$util$concurrent$CompletionStage = invoker("handleAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction")))
     fileprivate static let java$util$concurrent$CompletionStage_handleAsync_java$util$function$BiFunction_java$util$concurrent$Executor__java$util$concurrent$CompletionStage = invoker("handleAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiFunction"), JObjectType("java/util/concurrent/Executor")))
+    fileprivate static let java$util$concurrent$CompletionStage_whenComplete_java$util$function$BiConsumer__java$util$concurrent$CompletionStage = invoker("whenComplete", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiConsumer")))
+    fileprivate static let java$util$concurrent$CompletionStage_whenCompleteAsync_java$util$function$BiConsumer__java$util$concurrent$CompletionStage = invoker("whenCompleteAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiConsumer")))
+    fileprivate static let java$util$concurrent$CompletionStage_whenCompleteAsync_java$util$function$BiConsumer_java$util$concurrent$Executor__java$util$concurrent$CompletionStage = invoker("whenCompleteAsync", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/BiConsumer"), JObjectType("java/util/concurrent/Executor")))
+    fileprivate static let java$util$concurrent$CompletionStage_exceptionally_java$util$function$Function__java$util$concurrent$CompletionStage = invoker("exceptionally", returns: JObjectType("java/util/concurrent/CompletionStage"), arguments: (JObjectType("java/util/function/Function")))
     fileprivate static let java$util$concurrent$CompletionStage_toCompletableFuture__java$util$concurrent$CompletableFuture = invoker("toCompletableFuture", returns: JObjectType("java/util/concurrent/CompletableFuture"))
 }
 
@@ -4576,8 +4729,16 @@ public extension java$util$concurrent$CompletionStage {
         return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_thenComposeAsync_java$util$function$Function_java$util$concurrent$Executor__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
     }
 
-    func exceptionally(_ a0: java$util$function$Function?) throws -> java$util$concurrent$CompletionStage? {
-        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_exceptionally_java$util$function$Function__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    func handle(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_handle_java$util$function$BiFunction__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    }
+
+    func handleAsync(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_handleAsync_java$util$function$BiFunction__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    }
+
+    func handleAsync(_ a0: java$util$function$BiFunction?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_handleAsync_java$util$function$BiFunction_java$util$concurrent$Executor__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
     }
 
     func whenComplete(_ a0: java$util$function$BiConsumer?) throws -> java$util$concurrent$CompletionStage? {
@@ -4592,16 +4753,8 @@ public extension java$util$concurrent$CompletionStage {
         return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_whenCompleteAsync_java$util$function$BiConsumer_java$util$concurrent$Executor__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
     }
 
-    func handle(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage? {
-        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_handle_java$util$function$BiFunction__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
-    }
-
-    func handleAsync(_ a0: java$util$function$BiFunction?) throws -> java$util$concurrent$CompletionStage? {
-        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_handleAsync_java$util$function$BiFunction__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
-    }
-
-    func handleAsync(_ a0: java$util$function$BiFunction?, _ a1: java$util$concurrent$Executor?) throws -> java$util$concurrent$CompletionStage? {
-        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_handleAsync_java$util$function$BiFunction_java$util$concurrent$Executor__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
+    func exceptionally(_ a0: java$util$function$Function?) throws -> java$util$concurrent$CompletionStage? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$CompletionStage_exceptionally_java$util$function$Function__java$util$concurrent$CompletionStage(jobj)(a0?.jobj ?? nil)) as java$util$concurrent$CompletionStage$Impl?
     }
 
     func toCompletableFuture() throws -> java$util$concurrent$CompletableFuture? {
@@ -5474,46 +5627,46 @@ public extension java$util$concurrent$ThreadFactory {
 
 }
 
-open class java$util$concurrent$TimeUnit : java$lang$Enum {
+public final class java$util$concurrent$TimeUnit : java$lang$Enum {
     private typealias J = java$util$concurrent$TimeUnit
     private typealias I = java$util$concurrent$TimeUnit$Impl
 
     /// Returns the internal JNI name for this class: "java/util/concurrent/TimeUnit"
-    open class override func jniName() -> String { return "java/util/concurrent/TimeUnit" }
+    public class override func jniName() -> String { return "java/util/concurrent/TimeUnit" }
 
     fileprivate static let java$util$concurrent$TimeUnit__NANOSECONDS__java$util$concurrent$TimeUnit = J.saccessor("NANOSECONDS", type: JObjectType("java/util/concurrent/TimeUnit"))
     public static var NANOSECONDS: java$util$concurrent$TimeUnit? {
-        get { return java$util$concurrent$TimeUnit$Impl(constructor: I.java$util$concurrent$TimeUnit__NANOSECONDS__java$util$concurrent$TimeUnit.getter()) }
+        get { return java$util$concurrent$TimeUnit$Impl(reference: I.java$util$concurrent$TimeUnit__NANOSECONDS__java$util$concurrent$TimeUnit.getter()) }
     }
 
     fileprivate static let java$util$concurrent$TimeUnit__MICROSECONDS__java$util$concurrent$TimeUnit = J.saccessor("MICROSECONDS", type: JObjectType("java/util/concurrent/TimeUnit"))
     public static var MICROSECONDS: java$util$concurrent$TimeUnit? {
-        get { return java$util$concurrent$TimeUnit$Impl(constructor: I.java$util$concurrent$TimeUnit__MICROSECONDS__java$util$concurrent$TimeUnit.getter()) }
+        get { return java$util$concurrent$TimeUnit$Impl(reference: I.java$util$concurrent$TimeUnit__MICROSECONDS__java$util$concurrent$TimeUnit.getter()) }
     }
 
     fileprivate static let java$util$concurrent$TimeUnit__MILLISECONDS__java$util$concurrent$TimeUnit = J.saccessor("MILLISECONDS", type: JObjectType("java/util/concurrent/TimeUnit"))
     public static var MILLISECONDS: java$util$concurrent$TimeUnit? {
-        get { return java$util$concurrent$TimeUnit$Impl(constructor: I.java$util$concurrent$TimeUnit__MILLISECONDS__java$util$concurrent$TimeUnit.getter()) }
+        get { return java$util$concurrent$TimeUnit$Impl(reference: I.java$util$concurrent$TimeUnit__MILLISECONDS__java$util$concurrent$TimeUnit.getter()) }
     }
 
     fileprivate static let java$util$concurrent$TimeUnit__SECONDS__java$util$concurrent$TimeUnit = J.saccessor("SECONDS", type: JObjectType("java/util/concurrent/TimeUnit"))
     public static var SECONDS: java$util$concurrent$TimeUnit? {
-        get { return java$util$concurrent$TimeUnit$Impl(constructor: I.java$util$concurrent$TimeUnit__SECONDS__java$util$concurrent$TimeUnit.getter()) }
+        get { return java$util$concurrent$TimeUnit$Impl(reference: I.java$util$concurrent$TimeUnit__SECONDS__java$util$concurrent$TimeUnit.getter()) }
     }
 
     fileprivate static let java$util$concurrent$TimeUnit__MINUTES__java$util$concurrent$TimeUnit = J.saccessor("MINUTES", type: JObjectType("java/util/concurrent/TimeUnit"))
     public static var MINUTES: java$util$concurrent$TimeUnit? {
-        get { return java$util$concurrent$TimeUnit$Impl(constructor: I.java$util$concurrent$TimeUnit__MINUTES__java$util$concurrent$TimeUnit.getter()) }
+        get { return java$util$concurrent$TimeUnit$Impl(reference: I.java$util$concurrent$TimeUnit__MINUTES__java$util$concurrent$TimeUnit.getter()) }
     }
 
     fileprivate static let java$util$concurrent$TimeUnit__HOURS__java$util$concurrent$TimeUnit = J.saccessor("HOURS", type: JObjectType("java/util/concurrent/TimeUnit"))
     public static var HOURS: java$util$concurrent$TimeUnit? {
-        get { return java$util$concurrent$TimeUnit$Impl(constructor: I.java$util$concurrent$TimeUnit__HOURS__java$util$concurrent$TimeUnit.getter()) }
+        get { return java$util$concurrent$TimeUnit$Impl(reference: I.java$util$concurrent$TimeUnit__HOURS__java$util$concurrent$TimeUnit.getter()) }
     }
 
     fileprivate static let java$util$concurrent$TimeUnit__DAYS__java$util$concurrent$TimeUnit = J.saccessor("DAYS", type: JObjectType("java/util/concurrent/TimeUnit"))
     public static var DAYS: java$util$concurrent$TimeUnit? {
-        get { return java$util$concurrent$TimeUnit$Impl(constructor: I.java$util$concurrent$TimeUnit__DAYS__java$util$concurrent$TimeUnit.getter()) }
+        get { return java$util$concurrent$TimeUnit$Impl(reference: I.java$util$concurrent$TimeUnit__DAYS__java$util$concurrent$TimeUnit.getter()) }
     }
 
     fileprivate static let java$util$concurrent$TimeUnit_values__Ajava$util$concurrent$TimeUnit = svoker("values", returns: JArray(JObjectType("java/util/concurrent/TimeUnit")))
@@ -5579,6 +5732,16 @@ open class java$util$concurrent$TimeUnit : java$lang$Enum {
     fileprivate static let java$util$concurrent$TimeUnit_sleep_J__V = invoker("sleep", returns: JVoid.jniType, arguments: (jlong.jniType))
     public func sleep(_ a0: jlong) throws -> Void {
         return try I.java$util$concurrent$TimeUnit_sleep_J__V(jobj)(a0)
+    }
+
+    fileprivate static let java$util$concurrent$TimeUnit_toChronoUnit__java$time$temporal$ChronoUnit = invoker("toChronoUnit", returns: JObjectType("java/time/temporal/ChronoUnit"))
+    public func toChronoUnit() throws -> java$time$temporal$ChronoUnit? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$TimeUnit_toChronoUnit__java$time$temporal$ChronoUnit(jobj)()) as java$time$temporal$ChronoUnit$Impl?
+    }
+
+    fileprivate static let java$util$concurrent$TimeUnit_of_java$time$temporal$ChronoUnit__java$util$concurrent$TimeUnit = svoker("of", returns: JObjectType("java/util/concurrent/TimeUnit"), arguments: (JObjectType("java/time/temporal/ChronoUnit")))
+    public static func of(_ a0: java$time$temporal$ChronoUnit?) throws -> java$util$concurrent$TimeUnit? {
+        return try JVM.sharedJVM.construct(I.java$util$concurrent$TimeUnit_of_java$time$temporal$ChronoUnit__java$util$concurrent$TimeUnit(a0?.jobj ?? nil)) as java$util$concurrent$TimeUnit$Impl?
     }
 
 }

@@ -70,6 +70,7 @@ public typealias java$lang$instrument$UnmodifiableClassException$Impl = java$lan
 
 public protocol java$lang$instrument$ClassFileTransformer : JavaObject {
     func transform(_ a0: java$lang$ClassLoader?, _ a1: java$lang$String?, _ a2: java$lang$Class?, _ a3: java$security$ProtectionDomain?, _ a4: [jbyte]?) throws -> [jbyte]?
+    func transform(_ a0: java$lang$Module?, _ a1: java$lang$ClassLoader?, _ a2: java$lang$String?, _ a3: java$lang$Class?, _ a4: java$security$ProtectionDomain?, _ a5: [jbyte]?) throws -> [jbyte]?
 }
 
 open class java$lang$instrument$ClassFileTransformer$Impl : java$lang$Object, java$lang$instrument$ClassFileTransformer {
@@ -80,6 +81,7 @@ open class java$lang$instrument$ClassFileTransformer$Impl : java$lang$Object, ja
     open class override func jniName() -> String { return "java/lang/instrument/ClassFileTransformer" }
 
     fileprivate static let java$lang$instrument$ClassFileTransformer_transform_java$lang$ClassLoader_java$lang$String_java$lang$Class_java$security$ProtectionDomain_AB__AB = invoker("transform", returns: JArray(jbyte.jniType), arguments: (JObjectType("java/lang/ClassLoader"), JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JObjectType("java/security/ProtectionDomain"), JArray(jbyte.jniType)))
+    fileprivate static let java$lang$instrument$ClassFileTransformer_transform_java$lang$Module_java$lang$ClassLoader_java$lang$String_java$lang$Class_java$security$ProtectionDomain_AB__AB = invoker("transform", returns: JArray(jbyte.jniType), arguments: (JObjectType("java/lang/Module"), JObjectType("java/lang/ClassLoader"), JObjectType("java/lang/String"), JObjectType("java/lang/Class"), JObjectType("java/security/ProtectionDomain"), JArray(jbyte.jniType)))
 }
 
 public extension java$lang$instrument$ClassFileTransformer {
@@ -88,6 +90,10 @@ public extension java$lang$instrument$ClassFileTransformer {
 
     func transform(_ a0: java$lang$ClassLoader?, _ a1: java$lang$String?, _ a2: java$lang$Class?, _ a3: java$security$ProtectionDomain?, _ a4: [jbyte]?) throws -> [jbyte]? {
         return try I.java$lang$instrument$ClassFileTransformer_transform_java$lang$ClassLoader_java$lang$String_java$lang$Class_java$security$ProtectionDomain_AB__AB(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.arrayToJArray() ?? nil)?.jarrayToArray()
+    }
+
+    func transform(_ a0: java$lang$Module?, _ a1: java$lang$ClassLoader?, _ a2: java$lang$String?, _ a3: java$lang$Class?, _ a4: java$security$ProtectionDomain?, _ a5: [jbyte]?) throws -> [jbyte]? {
+        return try I.java$lang$instrument$ClassFileTransformer_transform_java$lang$Module_java$lang$ClassLoader_java$lang$String_java$lang$Class_java$security$ProtectionDomain_AB__AB(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.arrayToJArray() ?? nil)?.jarrayToArray()
     }
 
 }
@@ -108,6 +114,8 @@ public protocol java$lang$instrument$Instrumentation : JavaObject {
     func appendToSystemClassLoaderSearch(_ a0: java$util$jar$JarFile?) throws -> Void
     func isNativeMethodPrefixSupported() throws -> jboolean
     func setNativeMethodPrefix(_ a0: java$lang$instrument$ClassFileTransformer?, _ a1: java$lang$String?) throws -> Void
+    func redefineModule(_ a0: java$lang$Module?, _ a1: java$util$Set?, _ a2: java$util$Map?, _ a3: java$util$Map?, _ a4: java$util$Set?, _ a5: java$util$Map?) throws -> Void
+    func isModifiableModule(_ a0: java$lang$Module?) throws -> jboolean
 }
 
 open class java$lang$instrument$Instrumentation$Impl : java$lang$Object, java$lang$instrument$Instrumentation {
@@ -132,6 +140,8 @@ open class java$lang$instrument$Instrumentation$Impl : java$lang$Object, java$la
     fileprivate static let java$lang$instrument$Instrumentation_appendToSystemClassLoaderSearch_java$util$jar$JarFile__V = invoker("appendToSystemClassLoaderSearch", returns: JVoid.jniType, arguments: (JObjectType("java/util/jar/JarFile")))
     fileprivate static let java$lang$instrument$Instrumentation_isNativeMethodPrefixSupported__Z = invoker("isNativeMethodPrefixSupported", returns: jboolean.jniType)
     fileprivate static let java$lang$instrument$Instrumentation_setNativeMethodPrefix_java$lang$instrument$ClassFileTransformer_java$lang$String__V = invoker("setNativeMethodPrefix", returns: JVoid.jniType, arguments: (JObjectType("java/lang/instrument/ClassFileTransformer"), JObjectType("java/lang/String")))
+    fileprivate static let java$lang$instrument$Instrumentation_redefineModule_java$lang$Module_java$util$Set_java$util$Map_java$util$Map_java$util$Set_java$util$Map__V = invoker("redefineModule", returns: JVoid.jniType, arguments: (JObjectType("java/lang/Module"), JObjectType("java/util/Set"), JObjectType("java/util/Map"), JObjectType("java/util/Map"), JObjectType("java/util/Set"), JObjectType("java/util/Map")))
+    fileprivate static let java$lang$instrument$Instrumentation_isModifiableModule_java$lang$Module__Z = invoker("isModifiableModule", returns: jboolean.jniType, arguments: (JObjectType("java/lang/Module")))
 }
 
 public extension java$lang$instrument$Instrumentation {
@@ -196,6 +206,14 @@ public extension java$lang$instrument$Instrumentation {
 
     func setNativeMethodPrefix(_ a0: java$lang$instrument$ClassFileTransformer?, _ a1: java$lang$String?) throws -> Void {
         return try I.java$lang$instrument$Instrumentation_setNativeMethodPrefix_java$lang$instrument$ClassFileTransformer_java$lang$String__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)
+    }
+
+    func redefineModule(_ a0: java$lang$Module?, _ a1: java$util$Set?, _ a2: java$util$Map?, _ a3: java$util$Map?, _ a4: java$util$Set?, _ a5: java$util$Map?) throws -> Void {
+        return try I.java$lang$instrument$Instrumentation_redefineModule_java$lang$Module_java$util$Set_java$util$Map_java$util$Map_java$util$Set_java$util$Map__V(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil, a2?.jobj ?? nil, a3?.jobj ?? nil, a4?.jobj ?? nil, a5?.jobj ?? nil)
+    }
+
+    func isModifiableModule(_ a0: java$lang$Module?) throws -> jboolean {
+        return try I.java$lang$instrument$Instrumentation_isModifiableModule_java$lang$Module__Z(jobj)(a0?.jobj ?? nil)
     }
 
 }

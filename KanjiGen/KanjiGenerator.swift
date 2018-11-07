@@ -505,14 +505,14 @@ struct JMethod {
 
         self.constructor = fname.index(of: ".") != nil // initializers have dots: public java.lang.String(char[])
 
-        guard let openParen = desc.index(of: "(") , openParen == desc.startIndex else {
+        guard let openParen = desc.index(of: "("), openParen == desc.startIndex else {
             throw CodegenErrors.parseError("No open paren")
         }
-        guard let closeParen = desc.index(of: ")") else {
+        guard let closeParen = desc.index(of: ")"), closeParen > openParen else {
             throw CodegenErrors.parseError("No close paren")
         }
 
-        let argstr = desc[desc.index(after: openParen)...][...desc.index(before: closeParen)]
+        let argstr = desc[openParen..<closeParen].dropFirst()
         let retstr = desc[desc.index(after: closeParen)...]
 
         var args: [JType] = []
@@ -783,7 +783,7 @@ extension JUnit {
 
             do {
                 code += "    "
-                code += self.mods.contains(.Final) ? "final" : "public"
+                code += self.mods.contains(.Final) ? "public" : "open"
                 code += " class\(over) func jniName() -> String { return \"\(self.jniName)\" }\n\n"
             }
             
@@ -890,7 +890,7 @@ extension JUnit {
                     code += "        get { "
                     code += "return "
                     if field.type.isObject {
-                        code += field.type.typeName + KanjiImplementationSuffix + "(constructor: "
+                        code += field.type.typeName + KanjiImplementationSuffix + "(reference: "
                     }
                     if isStatic {
                         code += "\(implAlias).\(fid).getter()"

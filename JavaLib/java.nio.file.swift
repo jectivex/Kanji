@@ -368,6 +368,11 @@ open class java$nio$file$FileStore : java$lang$Object {
         return try I.java$nio$file$FileStore_getUsableSpace__J(jobj)()
     }
 
+    fileprivate static let java$nio$file$FileStore_getBlockSize__J = invoker("getBlockSize", returns: jlong.jniType)
+    public func getBlockSize() throws -> jlong {
+        return try I.java$nio$file$FileStore_getBlockSize__J(jobj)()
+    }
+
     fileprivate static let java$nio$file$FileStore_getUnallocatedSpace__J = invoker("getUnallocatedSpace", returns: jlong.jniType)
     public func getUnallocatedSpace() throws -> jlong {
         return try I.java$nio$file$FileStore_getUnallocatedSpace__J(jobj)()
@@ -586,22 +591,22 @@ public final class java$nio$file$StandardWatchEventKinds : java$lang$Object {
 
     fileprivate static let java$nio$file$StandardWatchEventKinds__OVERFLOW__java$nio$file$WatchEvent$Kind = J.saccessor("OVERFLOW", type: JObjectType("java/nio/file/WatchEvent$Kind"))
     public static var OVERFLOW: java$nio$file$WatchEvent$Kind? {
-        get { return java$nio$file$WatchEvent$Kind$Impl(constructor: I.java$nio$file$StandardWatchEventKinds__OVERFLOW__java$nio$file$WatchEvent$Kind.getter()) }
+        get { return java$nio$file$WatchEvent$Kind$Impl(reference: I.java$nio$file$StandardWatchEventKinds__OVERFLOW__java$nio$file$WatchEvent$Kind.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardWatchEventKinds__ENTRY_CREATE__java$nio$file$WatchEvent$Kind = J.saccessor("ENTRY_CREATE", type: JObjectType("java/nio/file/WatchEvent$Kind"))
     public static var ENTRY_CREATE: java$nio$file$WatchEvent$Kind? {
-        get { return java$nio$file$WatchEvent$Kind$Impl(constructor: I.java$nio$file$StandardWatchEventKinds__ENTRY_CREATE__java$nio$file$WatchEvent$Kind.getter()) }
+        get { return java$nio$file$WatchEvent$Kind$Impl(reference: I.java$nio$file$StandardWatchEventKinds__ENTRY_CREATE__java$nio$file$WatchEvent$Kind.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardWatchEventKinds__ENTRY_DELETE__java$nio$file$WatchEvent$Kind = J.saccessor("ENTRY_DELETE", type: JObjectType("java/nio/file/WatchEvent$Kind"))
     public static var ENTRY_DELETE: java$nio$file$WatchEvent$Kind? {
-        get { return java$nio$file$WatchEvent$Kind$Impl(constructor: I.java$nio$file$StandardWatchEventKinds__ENTRY_DELETE__java$nio$file$WatchEvent$Kind.getter()) }
+        get { return java$nio$file$WatchEvent$Kind$Impl(reference: I.java$nio$file$StandardWatchEventKinds__ENTRY_DELETE__java$nio$file$WatchEvent$Kind.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardWatchEventKinds__ENTRY_MODIFY__java$nio$file$WatchEvent$Kind = J.saccessor("ENTRY_MODIFY", type: JObjectType("java/nio/file/WatchEvent$Kind"))
     public static var ENTRY_MODIFY: java$nio$file$WatchEvent$Kind? {
-        get { return java$nio$file$WatchEvent$Kind$Impl(constructor: I.java$nio$file$StandardWatchEventKinds__ENTRY_MODIFY__java$nio$file$WatchEvent$Kind.getter()) }
+        get { return java$nio$file$WatchEvent$Kind$Impl(reference: I.java$nio$file$StandardWatchEventKinds__ENTRY_MODIFY__java$nio$file$WatchEvent$Kind.getter()) }
     }
 
 }
@@ -1623,17 +1628,17 @@ public final class java$nio$file$StandardCopyOption : java$lang$Enum, java$nio$f
 
     fileprivate static let java$nio$file$StandardCopyOption__REPLACE_EXISTING__java$nio$file$StandardCopyOption = J.saccessor("REPLACE_EXISTING", type: JObjectType("java/nio/file/StandardCopyOption"))
     public static var REPLACE_EXISTING: java$nio$file$StandardCopyOption? {
-        get { return java$nio$file$StandardCopyOption$Impl(constructor: I.java$nio$file$StandardCopyOption__REPLACE_EXISTING__java$nio$file$StandardCopyOption.getter()) }
+        get { return java$nio$file$StandardCopyOption$Impl(reference: I.java$nio$file$StandardCopyOption__REPLACE_EXISTING__java$nio$file$StandardCopyOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardCopyOption__COPY_ATTRIBUTES__java$nio$file$StandardCopyOption = J.saccessor("COPY_ATTRIBUTES", type: JObjectType("java/nio/file/StandardCopyOption"))
     public static var COPY_ATTRIBUTES: java$nio$file$StandardCopyOption? {
-        get { return java$nio$file$StandardCopyOption$Impl(constructor: I.java$nio$file$StandardCopyOption__COPY_ATTRIBUTES__java$nio$file$StandardCopyOption.getter()) }
+        get { return java$nio$file$StandardCopyOption$Impl(reference: I.java$nio$file$StandardCopyOption__COPY_ATTRIBUTES__java$nio$file$StandardCopyOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardCopyOption__ATOMIC_MOVE__java$nio$file$StandardCopyOption = J.saccessor("ATOMIC_MOVE", type: JObjectType("java/nio/file/StandardCopyOption"))
     public static var ATOMIC_MOVE: java$nio$file$StandardCopyOption? {
-        get { return java$nio$file$StandardCopyOption$Impl(constructor: I.java$nio$file$StandardCopyOption__ATOMIC_MOVE__java$nio$file$StandardCopyOption.getter()) }
+        get { return java$nio$file$StandardCopyOption$Impl(reference: I.java$nio$file$StandardCopyOption__ATOMIC_MOVE__java$nio$file$StandardCopyOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardCopyOption_values__Ajava$nio$file$StandardCopyOption = svoker("values", returns: JArray(JObjectType("java/nio/file/StandardCopyOption")))
@@ -1659,7 +1664,7 @@ public final class java$nio$file$FileVisitOption : java$lang$Enum {
 
     fileprivate static let java$nio$file$FileVisitOption__FOLLOW_LINKS__java$nio$file$FileVisitOption = J.saccessor("FOLLOW_LINKS", type: JObjectType("java/nio/file/FileVisitOption"))
     public static var FOLLOW_LINKS: java$nio$file$FileVisitOption? {
-        get { return java$nio$file$FileVisitOption$Impl(constructor: I.java$nio$file$FileVisitOption__FOLLOW_LINKS__java$nio$file$FileVisitOption.getter()) }
+        get { return java$nio$file$FileVisitOption$Impl(reference: I.java$nio$file$FileVisitOption__FOLLOW_LINKS__java$nio$file$FileVisitOption.getter()) }
     }
 
     fileprivate static let java$nio$file$FileVisitOption_values__Ajava$nio$file$FileVisitOption = svoker("values", returns: JArray(JObjectType("java/nio/file/FileVisitOption")))
@@ -1685,7 +1690,7 @@ public final class java$nio$file$LinkOption : java$lang$Enum, java$nio$file$Open
 
     fileprivate static let java$nio$file$LinkOption__NOFOLLOW_LINKS__java$nio$file$LinkOption = J.saccessor("NOFOLLOW_LINKS", type: JObjectType("java/nio/file/LinkOption"))
     public static var NOFOLLOW_LINKS: java$nio$file$LinkOption? {
-        get { return java$nio$file$LinkOption$Impl(constructor: I.java$nio$file$LinkOption__NOFOLLOW_LINKS__java$nio$file$LinkOption.getter()) }
+        get { return java$nio$file$LinkOption$Impl(reference: I.java$nio$file$LinkOption__NOFOLLOW_LINKS__java$nio$file$LinkOption.getter()) }
     }
 
     fileprivate static let java$nio$file$LinkOption_values__Ajava$nio$file$LinkOption = svoker("values", returns: JArray(JObjectType("java/nio/file/LinkOption")))
@@ -1711,17 +1716,17 @@ public final class java$nio$file$AccessMode : java$lang$Enum {
 
     fileprivate static let java$nio$file$AccessMode__READ__java$nio$file$AccessMode = J.saccessor("READ", type: JObjectType("java/nio/file/AccessMode"))
     public static var READ: java$nio$file$AccessMode? {
-        get { return java$nio$file$AccessMode$Impl(constructor: I.java$nio$file$AccessMode__READ__java$nio$file$AccessMode.getter()) }
+        get { return java$nio$file$AccessMode$Impl(reference: I.java$nio$file$AccessMode__READ__java$nio$file$AccessMode.getter()) }
     }
 
     fileprivate static let java$nio$file$AccessMode__WRITE__java$nio$file$AccessMode = J.saccessor("WRITE", type: JObjectType("java/nio/file/AccessMode"))
     public static var WRITE: java$nio$file$AccessMode? {
-        get { return java$nio$file$AccessMode$Impl(constructor: I.java$nio$file$AccessMode__WRITE__java$nio$file$AccessMode.getter()) }
+        get { return java$nio$file$AccessMode$Impl(reference: I.java$nio$file$AccessMode__WRITE__java$nio$file$AccessMode.getter()) }
     }
 
     fileprivate static let java$nio$file$AccessMode__EXECUTE__java$nio$file$AccessMode = J.saccessor("EXECUTE", type: JObjectType("java/nio/file/AccessMode"))
     public static var EXECUTE: java$nio$file$AccessMode? {
-        get { return java$nio$file$AccessMode$Impl(constructor: I.java$nio$file$AccessMode__EXECUTE__java$nio$file$AccessMode.getter()) }
+        get { return java$nio$file$AccessMode$Impl(reference: I.java$nio$file$AccessMode__EXECUTE__java$nio$file$AccessMode.getter()) }
     }
 
     fileprivate static let java$nio$file$AccessMode_values__Ajava$nio$file$AccessMode = svoker("values", returns: JArray(JObjectType("java/nio/file/AccessMode")))
@@ -1747,52 +1752,52 @@ public final class java$nio$file$StandardOpenOption : java$lang$Enum, java$nio$f
 
     fileprivate static let java$nio$file$StandardOpenOption__READ__java$nio$file$StandardOpenOption = J.saccessor("READ", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var READ: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__READ__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__READ__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__WRITE__java$nio$file$StandardOpenOption = J.saccessor("WRITE", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var WRITE: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__WRITE__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__WRITE__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__APPEND__java$nio$file$StandardOpenOption = J.saccessor("APPEND", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var APPEND: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__APPEND__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__APPEND__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__TRUNCATE_EXISTING__java$nio$file$StandardOpenOption = J.saccessor("TRUNCATE_EXISTING", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var TRUNCATE_EXISTING: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__TRUNCATE_EXISTING__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__TRUNCATE_EXISTING__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__CREATE__java$nio$file$StandardOpenOption = J.saccessor("CREATE", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var CREATE: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__CREATE__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__CREATE__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__CREATE_NEW__java$nio$file$StandardOpenOption = J.saccessor("CREATE_NEW", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var CREATE_NEW: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__CREATE_NEW__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__CREATE_NEW__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__DELETE_ON_CLOSE__java$nio$file$StandardOpenOption = J.saccessor("DELETE_ON_CLOSE", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var DELETE_ON_CLOSE: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__DELETE_ON_CLOSE__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__DELETE_ON_CLOSE__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__SPARSE__java$nio$file$StandardOpenOption = J.saccessor("SPARSE", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var SPARSE: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__SPARSE__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__SPARSE__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__SYNC__java$nio$file$StandardOpenOption = J.saccessor("SYNC", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var SYNC: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__SYNC__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__SYNC__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption__DSYNC__java$nio$file$StandardOpenOption = J.saccessor("DSYNC", type: JObjectType("java/nio/file/StandardOpenOption"))
     public static var DSYNC: java$nio$file$StandardOpenOption? {
-        get { return java$nio$file$StandardOpenOption$Impl(constructor: I.java$nio$file$StandardOpenOption__DSYNC__java$nio$file$StandardOpenOption.getter()) }
+        get { return java$nio$file$StandardOpenOption$Impl(reference: I.java$nio$file$StandardOpenOption__DSYNC__java$nio$file$StandardOpenOption.getter()) }
     }
 
     fileprivate static let java$nio$file$StandardOpenOption_values__Ajava$nio$file$StandardOpenOption = svoker("values", returns: JArray(JObjectType("java/nio/file/StandardOpenOption")))
@@ -1818,22 +1823,22 @@ public final class java$nio$file$FileVisitResult : java$lang$Enum {
 
     fileprivate static let java$nio$file$FileVisitResult__CONTINUE__java$nio$file$FileVisitResult = J.saccessor("CONTINUE", type: JObjectType("java/nio/file/FileVisitResult"))
     public static var CONTINUE: java$nio$file$FileVisitResult? {
-        get { return java$nio$file$FileVisitResult$Impl(constructor: I.java$nio$file$FileVisitResult__CONTINUE__java$nio$file$FileVisitResult.getter()) }
+        get { return java$nio$file$FileVisitResult$Impl(reference: I.java$nio$file$FileVisitResult__CONTINUE__java$nio$file$FileVisitResult.getter()) }
     }
 
     fileprivate static let java$nio$file$FileVisitResult__TERMINATE__java$nio$file$FileVisitResult = J.saccessor("TERMINATE", type: JObjectType("java/nio/file/FileVisitResult"))
     public static var TERMINATE: java$nio$file$FileVisitResult? {
-        get { return java$nio$file$FileVisitResult$Impl(constructor: I.java$nio$file$FileVisitResult__TERMINATE__java$nio$file$FileVisitResult.getter()) }
+        get { return java$nio$file$FileVisitResult$Impl(reference: I.java$nio$file$FileVisitResult__TERMINATE__java$nio$file$FileVisitResult.getter()) }
     }
 
     fileprivate static let java$nio$file$FileVisitResult__SKIP_SUBTREE__java$nio$file$FileVisitResult = J.saccessor("SKIP_SUBTREE", type: JObjectType("java/nio/file/FileVisitResult"))
     public static var SKIP_SUBTREE: java$nio$file$FileVisitResult? {
-        get { return java$nio$file$FileVisitResult$Impl(constructor: I.java$nio$file$FileVisitResult__SKIP_SUBTREE__java$nio$file$FileVisitResult.getter()) }
+        get { return java$nio$file$FileVisitResult$Impl(reference: I.java$nio$file$FileVisitResult__SKIP_SUBTREE__java$nio$file$FileVisitResult.getter()) }
     }
 
     fileprivate static let java$nio$file$FileVisitResult__SKIP_SIBLINGS__java$nio$file$FileVisitResult = J.saccessor("SKIP_SIBLINGS", type: JObjectType("java/nio/file/FileVisitResult"))
     public static var SKIP_SIBLINGS: java$nio$file$FileVisitResult? {
-        get { return java$nio$file$FileVisitResult$Impl(constructor: I.java$nio$file$FileVisitResult__SKIP_SIBLINGS__java$nio$file$FileVisitResult.getter()) }
+        get { return java$nio$file$FileVisitResult$Impl(reference: I.java$nio$file$FileVisitResult__SKIP_SIBLINGS__java$nio$file$FileVisitResult.getter()) }
     }
 
     fileprivate static let java$nio$file$FileVisitResult_values__Ajava$nio$file$FileVisitResult = svoker("values", returns: JArray(JObjectType("java/nio/file/FileVisitResult")))

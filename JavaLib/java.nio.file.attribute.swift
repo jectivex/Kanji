@@ -767,47 +767,47 @@ public final class java$nio$file$attribute$PosixFilePermission : java$lang$Enum 
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__OWNER_READ__java$nio$file$attribute$PosixFilePermission = J.saccessor("OWNER_READ", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var OWNER_READ: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__OWNER_READ__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__OWNER_READ__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__OWNER_WRITE__java$nio$file$attribute$PosixFilePermission = J.saccessor("OWNER_WRITE", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var OWNER_WRITE: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__OWNER_WRITE__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__OWNER_WRITE__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__OWNER_EXECUTE__java$nio$file$attribute$PosixFilePermission = J.saccessor("OWNER_EXECUTE", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var OWNER_EXECUTE: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__OWNER_EXECUTE__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__OWNER_EXECUTE__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__GROUP_READ__java$nio$file$attribute$PosixFilePermission = J.saccessor("GROUP_READ", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var GROUP_READ: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__GROUP_READ__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__GROUP_READ__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__GROUP_WRITE__java$nio$file$attribute$PosixFilePermission = J.saccessor("GROUP_WRITE", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var GROUP_WRITE: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__GROUP_WRITE__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__GROUP_WRITE__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__GROUP_EXECUTE__java$nio$file$attribute$PosixFilePermission = J.saccessor("GROUP_EXECUTE", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var GROUP_EXECUTE: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__GROUP_EXECUTE__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__GROUP_EXECUTE__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__OTHERS_READ__java$nio$file$attribute$PosixFilePermission = J.saccessor("OTHERS_READ", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var OTHERS_READ: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__OTHERS_READ__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__OTHERS_READ__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__OTHERS_WRITE__java$nio$file$attribute$PosixFilePermission = J.saccessor("OTHERS_WRITE", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var OTHERS_WRITE: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__OTHERS_WRITE__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__OTHERS_WRITE__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission__OTHERS_EXECUTE__java$nio$file$attribute$PosixFilePermission = J.saccessor("OTHERS_EXECUTE", type: JObjectType("java/nio/file/attribute/PosixFilePermission"))
     public static var OTHERS_EXECUTE: java$nio$file$attribute$PosixFilePermission? {
-        get { return java$nio$file$attribute$PosixFilePermission$Impl(constructor: I.java$nio$file$attribute$PosixFilePermission__OTHERS_EXECUTE__java$nio$file$attribute$PosixFilePermission.getter()) }
+        get { return java$nio$file$attribute$PosixFilePermission$Impl(reference: I.java$nio$file$attribute$PosixFilePermission__OTHERS_EXECUTE__java$nio$file$attribute$PosixFilePermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$PosixFilePermission_values__Ajava$nio$file$attribute$PosixFilePermission = svoker("values", returns: JArray(JObjectType("java/nio/file/attribute/PosixFilePermission")))
@@ -833,87 +833,87 @@ public final class java$nio$file$attribute$AclEntryPermission : java$lang$Enum {
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__READ_DATA__java$nio$file$attribute$AclEntryPermission = J.saccessor("READ_DATA", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var READ_DATA: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__READ_DATA__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__READ_DATA__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__WRITE_DATA__java$nio$file$attribute$AclEntryPermission = J.saccessor("WRITE_DATA", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var WRITE_DATA: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__WRITE_DATA__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__WRITE_DATA__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__APPEND_DATA__java$nio$file$attribute$AclEntryPermission = J.saccessor("APPEND_DATA", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var APPEND_DATA: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__APPEND_DATA__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__APPEND_DATA__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__READ_NAMED_ATTRS__java$nio$file$attribute$AclEntryPermission = J.saccessor("READ_NAMED_ATTRS", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var READ_NAMED_ATTRS: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__READ_NAMED_ATTRS__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__READ_NAMED_ATTRS__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__WRITE_NAMED_ATTRS__java$nio$file$attribute$AclEntryPermission = J.saccessor("WRITE_NAMED_ATTRS", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var WRITE_NAMED_ATTRS: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__WRITE_NAMED_ATTRS__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__WRITE_NAMED_ATTRS__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__EXECUTE__java$nio$file$attribute$AclEntryPermission = J.saccessor("EXECUTE", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var EXECUTE: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__EXECUTE__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__EXECUTE__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__DELETE_CHILD__java$nio$file$attribute$AclEntryPermission = J.saccessor("DELETE_CHILD", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var DELETE_CHILD: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__DELETE_CHILD__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__DELETE_CHILD__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__READ_ATTRIBUTES__java$nio$file$attribute$AclEntryPermission = J.saccessor("READ_ATTRIBUTES", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var READ_ATTRIBUTES: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__READ_ATTRIBUTES__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__READ_ATTRIBUTES__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__WRITE_ATTRIBUTES__java$nio$file$attribute$AclEntryPermission = J.saccessor("WRITE_ATTRIBUTES", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var WRITE_ATTRIBUTES: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__WRITE_ATTRIBUTES__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__WRITE_ATTRIBUTES__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__DELETE__java$nio$file$attribute$AclEntryPermission = J.saccessor("DELETE", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var DELETE: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__DELETE__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__DELETE__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__READ_ACL__java$nio$file$attribute$AclEntryPermission = J.saccessor("READ_ACL", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var READ_ACL: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__READ_ACL__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__READ_ACL__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__WRITE_ACL__java$nio$file$attribute$AclEntryPermission = J.saccessor("WRITE_ACL", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var WRITE_ACL: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__WRITE_ACL__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__WRITE_ACL__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__WRITE_OWNER__java$nio$file$attribute$AclEntryPermission = J.saccessor("WRITE_OWNER", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var WRITE_OWNER: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__WRITE_OWNER__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__WRITE_OWNER__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__SYNCHRONIZE__java$nio$file$attribute$AclEntryPermission = J.saccessor("SYNCHRONIZE", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var SYNCHRONIZE: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__SYNCHRONIZE__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__SYNCHRONIZE__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__LIST_DIRECTORY__java$nio$file$attribute$AclEntryPermission = J.saccessor("LIST_DIRECTORY", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var LIST_DIRECTORY: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__LIST_DIRECTORY__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__LIST_DIRECTORY__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__ADD_FILE__java$nio$file$attribute$AclEntryPermission = J.saccessor("ADD_FILE", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var ADD_FILE: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__ADD_FILE__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__ADD_FILE__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission__ADD_SUBDIRECTORY__java$nio$file$attribute$AclEntryPermission = J.saccessor("ADD_SUBDIRECTORY", type: JObjectType("java/nio/file/attribute/AclEntryPermission"))
     public static var ADD_SUBDIRECTORY: java$nio$file$attribute$AclEntryPermission? {
-        get { return java$nio$file$attribute$AclEntryPermission$Impl(constructor: I.java$nio$file$attribute$AclEntryPermission__ADD_SUBDIRECTORY__java$nio$file$attribute$AclEntryPermission.getter()) }
+        get { return java$nio$file$attribute$AclEntryPermission$Impl(reference: I.java$nio$file$attribute$AclEntryPermission__ADD_SUBDIRECTORY__java$nio$file$attribute$AclEntryPermission.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryPermission_values__Ajava$nio$file$attribute$AclEntryPermission = svoker("values", returns: JArray(JObjectType("java/nio/file/attribute/AclEntryPermission")))
@@ -939,22 +939,22 @@ public final class java$nio$file$attribute$AclEntryType : java$lang$Enum {
 
     fileprivate static let java$nio$file$attribute$AclEntryType__ALLOW__java$nio$file$attribute$AclEntryType = J.saccessor("ALLOW", type: JObjectType("java/nio/file/attribute/AclEntryType"))
     public static var ALLOW: java$nio$file$attribute$AclEntryType? {
-        get { return java$nio$file$attribute$AclEntryType$Impl(constructor: I.java$nio$file$attribute$AclEntryType__ALLOW__java$nio$file$attribute$AclEntryType.getter()) }
+        get { return java$nio$file$attribute$AclEntryType$Impl(reference: I.java$nio$file$attribute$AclEntryType__ALLOW__java$nio$file$attribute$AclEntryType.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryType__DENY__java$nio$file$attribute$AclEntryType = J.saccessor("DENY", type: JObjectType("java/nio/file/attribute/AclEntryType"))
     public static var DENY: java$nio$file$attribute$AclEntryType? {
-        get { return java$nio$file$attribute$AclEntryType$Impl(constructor: I.java$nio$file$attribute$AclEntryType__DENY__java$nio$file$attribute$AclEntryType.getter()) }
+        get { return java$nio$file$attribute$AclEntryType$Impl(reference: I.java$nio$file$attribute$AclEntryType__DENY__java$nio$file$attribute$AclEntryType.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryType__AUDIT__java$nio$file$attribute$AclEntryType = J.saccessor("AUDIT", type: JObjectType("java/nio/file/attribute/AclEntryType"))
     public static var AUDIT: java$nio$file$attribute$AclEntryType? {
-        get { return java$nio$file$attribute$AclEntryType$Impl(constructor: I.java$nio$file$attribute$AclEntryType__AUDIT__java$nio$file$attribute$AclEntryType.getter()) }
+        get { return java$nio$file$attribute$AclEntryType$Impl(reference: I.java$nio$file$attribute$AclEntryType__AUDIT__java$nio$file$attribute$AclEntryType.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryType__ALARM__java$nio$file$attribute$AclEntryType = J.saccessor("ALARM", type: JObjectType("java/nio/file/attribute/AclEntryType"))
     public static var ALARM: java$nio$file$attribute$AclEntryType? {
-        get { return java$nio$file$attribute$AclEntryType$Impl(constructor: I.java$nio$file$attribute$AclEntryType__ALARM__java$nio$file$attribute$AclEntryType.getter()) }
+        get { return java$nio$file$attribute$AclEntryType$Impl(reference: I.java$nio$file$attribute$AclEntryType__ALARM__java$nio$file$attribute$AclEntryType.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryType_values__Ajava$nio$file$attribute$AclEntryType = svoker("values", returns: JArray(JObjectType("java/nio/file/attribute/AclEntryType")))
@@ -980,22 +980,22 @@ public final class java$nio$file$attribute$AclEntryFlag : java$lang$Enum {
 
     fileprivate static let java$nio$file$attribute$AclEntryFlag__FILE_INHERIT__java$nio$file$attribute$AclEntryFlag = J.saccessor("FILE_INHERIT", type: JObjectType("java/nio/file/attribute/AclEntryFlag"))
     public static var FILE_INHERIT: java$nio$file$attribute$AclEntryFlag? {
-        get { return java$nio$file$attribute$AclEntryFlag$Impl(constructor: I.java$nio$file$attribute$AclEntryFlag__FILE_INHERIT__java$nio$file$attribute$AclEntryFlag.getter()) }
+        get { return java$nio$file$attribute$AclEntryFlag$Impl(reference: I.java$nio$file$attribute$AclEntryFlag__FILE_INHERIT__java$nio$file$attribute$AclEntryFlag.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryFlag__DIRECTORY_INHERIT__java$nio$file$attribute$AclEntryFlag = J.saccessor("DIRECTORY_INHERIT", type: JObjectType("java/nio/file/attribute/AclEntryFlag"))
     public static var DIRECTORY_INHERIT: java$nio$file$attribute$AclEntryFlag? {
-        get { return java$nio$file$attribute$AclEntryFlag$Impl(constructor: I.java$nio$file$attribute$AclEntryFlag__DIRECTORY_INHERIT__java$nio$file$attribute$AclEntryFlag.getter()) }
+        get { return java$nio$file$attribute$AclEntryFlag$Impl(reference: I.java$nio$file$attribute$AclEntryFlag__DIRECTORY_INHERIT__java$nio$file$attribute$AclEntryFlag.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryFlag__NO_PROPAGATE_INHERIT__java$nio$file$attribute$AclEntryFlag = J.saccessor("NO_PROPAGATE_INHERIT", type: JObjectType("java/nio/file/attribute/AclEntryFlag"))
     public static var NO_PROPAGATE_INHERIT: java$nio$file$attribute$AclEntryFlag? {
-        get { return java$nio$file$attribute$AclEntryFlag$Impl(constructor: I.java$nio$file$attribute$AclEntryFlag__NO_PROPAGATE_INHERIT__java$nio$file$attribute$AclEntryFlag.getter()) }
+        get { return java$nio$file$attribute$AclEntryFlag$Impl(reference: I.java$nio$file$attribute$AclEntryFlag__NO_PROPAGATE_INHERIT__java$nio$file$attribute$AclEntryFlag.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryFlag__INHERIT_ONLY__java$nio$file$attribute$AclEntryFlag = J.saccessor("INHERIT_ONLY", type: JObjectType("java/nio/file/attribute/AclEntryFlag"))
     public static var INHERIT_ONLY: java$nio$file$attribute$AclEntryFlag? {
-        get { return java$nio$file$attribute$AclEntryFlag$Impl(constructor: I.java$nio$file$attribute$AclEntryFlag__INHERIT_ONLY__java$nio$file$attribute$AclEntryFlag.getter()) }
+        get { return java$nio$file$attribute$AclEntryFlag$Impl(reference: I.java$nio$file$attribute$AclEntryFlag__INHERIT_ONLY__java$nio$file$attribute$AclEntryFlag.getter()) }
     }
 
     fileprivate static let java$nio$file$attribute$AclEntryFlag_values__Ajava$nio$file$attribute$AclEntryFlag = svoker("values", returns: JArray(JObjectType("java/nio/file/attribute/AclEntryFlag")))

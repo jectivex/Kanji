@@ -9,7 +9,7 @@ open class java$beans$beancontext$BeanContextChildSupport : java$lang$Object, ja
 
     fileprivate static let java$beans$beancontext$BeanContextChildSupport__beanContextChildPeer__java$beans$beancontext$BeanContextChild = J.accessor("beanContextChildPeer", type: JObjectType("java/beans/beancontext/BeanContextChild"))
     public var beanContextChildPeer: java$beans$beancontext$BeanContextChild? {
-        get { return java$beans$beancontext$BeanContextChild$Impl(constructor: I.java$beans$beancontext$BeanContextChildSupport__beanContextChildPeer__java$beans$beancontext$BeanContextChild.getter(jobj)) }
+        get { return java$beans$beancontext$BeanContextChild$Impl(reference: I.java$beans$beancontext$BeanContextChildSupport__beanContextChildPeer__java$beans$beancontext$BeanContextChild.getter(jobj)) }
         set { I.java$beans$beancontext$BeanContextChildSupport__beanContextChildPeer__java$beans$beancontext$BeanContextChild.setter(jobj, newValue?.jobj ?? nil) }
     }
 
@@ -699,7 +699,7 @@ public extension java$beans$beancontext$BeanContext {
     private typealias I = java$beans$beancontext$BeanContext$Impl
 
     static var globalHierarchyLock: java$lang$Object? {
-        get { return java$lang$Object$Impl(constructor: I.java$beans$beancontext$BeanContext__globalHierarchyLock__java$lang$Object.getter()) }
+        get { return java$lang$Object$Impl(reference: I.java$beans$beancontext$BeanContext__globalHierarchyLock__java$lang$Object.getter()) }
     }
 
     func instantiateChild(_ a0: java$lang$String?) throws -> java$lang$Object? {

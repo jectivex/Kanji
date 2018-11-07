@@ -255,17 +255,17 @@ public final class java$lang$annotation$RetentionPolicy : java$lang$Enum {
 
     fileprivate static let java$lang$annotation$RetentionPolicy__SOURCE__java$lang$annotation$RetentionPolicy = J.saccessor("SOURCE", type: JObjectType("java/lang/annotation/RetentionPolicy"))
     public static var SOURCE: java$lang$annotation$RetentionPolicy? {
-        get { return java$lang$annotation$RetentionPolicy$Impl(constructor: I.java$lang$annotation$RetentionPolicy__SOURCE__java$lang$annotation$RetentionPolicy.getter()) }
+        get { return java$lang$annotation$RetentionPolicy$Impl(reference: I.java$lang$annotation$RetentionPolicy__SOURCE__java$lang$annotation$RetentionPolicy.getter()) }
     }
 
     fileprivate static let java$lang$annotation$RetentionPolicy__CLASS__java$lang$annotation$RetentionPolicy = J.saccessor("CLASS", type: JObjectType("java/lang/annotation/RetentionPolicy"))
     public static var CLASS: java$lang$annotation$RetentionPolicy? {
-        get { return java$lang$annotation$RetentionPolicy$Impl(constructor: I.java$lang$annotation$RetentionPolicy__CLASS__java$lang$annotation$RetentionPolicy.getter()) }
+        get { return java$lang$annotation$RetentionPolicy$Impl(reference: I.java$lang$annotation$RetentionPolicy__CLASS__java$lang$annotation$RetentionPolicy.getter()) }
     }
 
     fileprivate static let java$lang$annotation$RetentionPolicy__RUNTIME__java$lang$annotation$RetentionPolicy = J.saccessor("RUNTIME", type: JObjectType("java/lang/annotation/RetentionPolicy"))
     public static var RUNTIME: java$lang$annotation$RetentionPolicy? {
-        get { return java$lang$annotation$RetentionPolicy$Impl(constructor: I.java$lang$annotation$RetentionPolicy__RUNTIME__java$lang$annotation$RetentionPolicy.getter()) }
+        get { return java$lang$annotation$RetentionPolicy$Impl(reference: I.java$lang$annotation$RetentionPolicy__RUNTIME__java$lang$annotation$RetentionPolicy.getter()) }
     }
 
     fileprivate static let java$lang$annotation$RetentionPolicy_values__Ajava$lang$annotation$RetentionPolicy = svoker("values", returns: JArray(JObjectType("java/lang/annotation/RetentionPolicy")))
@@ -291,52 +291,57 @@ public final class java$lang$annotation$ElementType : java$lang$Enum {
 
     fileprivate static let java$lang$annotation$ElementType__TYPE__java$lang$annotation$ElementType = J.saccessor("TYPE", type: JObjectType("java/lang/annotation/ElementType"))
     public static var TYPE: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__TYPE__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__TYPE__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__FIELD__java$lang$annotation$ElementType = J.saccessor("FIELD", type: JObjectType("java/lang/annotation/ElementType"))
     public static var FIELD: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__FIELD__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__FIELD__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__METHOD__java$lang$annotation$ElementType = J.saccessor("METHOD", type: JObjectType("java/lang/annotation/ElementType"))
     public static var METHOD: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__METHOD__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__METHOD__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__PARAMETER__java$lang$annotation$ElementType = J.saccessor("PARAMETER", type: JObjectType("java/lang/annotation/ElementType"))
     public static var PARAMETER: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__PARAMETER__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__PARAMETER__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__CONSTRUCTOR__java$lang$annotation$ElementType = J.saccessor("CONSTRUCTOR", type: JObjectType("java/lang/annotation/ElementType"))
     public static var CONSTRUCTOR: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__CONSTRUCTOR__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__CONSTRUCTOR__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__LOCAL_VARIABLE__java$lang$annotation$ElementType = J.saccessor("LOCAL_VARIABLE", type: JObjectType("java/lang/annotation/ElementType"))
     public static var LOCAL_VARIABLE: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__LOCAL_VARIABLE__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__LOCAL_VARIABLE__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__ANNOTATION_TYPE__java$lang$annotation$ElementType = J.saccessor("ANNOTATION_TYPE", type: JObjectType("java/lang/annotation/ElementType"))
     public static var ANNOTATION_TYPE: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__ANNOTATION_TYPE__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__ANNOTATION_TYPE__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__PACKAGE__java$lang$annotation$ElementType = J.saccessor("PACKAGE", type: JObjectType("java/lang/annotation/ElementType"))
     public static var PACKAGE: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__PACKAGE__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__PACKAGE__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__TYPE_PARAMETER__java$lang$annotation$ElementType = J.saccessor("TYPE_PARAMETER", type: JObjectType("java/lang/annotation/ElementType"))
     public static var TYPE_PARAMETER: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__TYPE_PARAMETER__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__TYPE_PARAMETER__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType__TYPE_USE__java$lang$annotation$ElementType = J.saccessor("TYPE_USE", type: JObjectType("java/lang/annotation/ElementType"))
     public static var TYPE_USE: java$lang$annotation$ElementType? {
-        get { return java$lang$annotation$ElementType$Impl(constructor: I.java$lang$annotation$ElementType__TYPE_USE__java$lang$annotation$ElementType.getter()) }
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__TYPE_USE__java$lang$annotation$ElementType.getter()) }
+    }
+
+    fileprivate static let java$lang$annotation$ElementType__MODULE__java$lang$annotation$ElementType = J.saccessor("MODULE", type: JObjectType("java/lang/annotation/ElementType"))
+    public static var MODULE: java$lang$annotation$ElementType? {
+        get { return java$lang$annotation$ElementType$Impl(reference: I.java$lang$annotation$ElementType__MODULE__java$lang$annotation$ElementType.getter()) }
     }
 
     fileprivate static let java$lang$annotation$ElementType_values__Ajava$lang$annotation$ElementType = svoker("values", returns: JArray(JObjectType("java/lang/annotation/ElementType")))

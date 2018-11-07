@@ -1,26 +1,14 @@
 import KanjiVM
 
-public protocol java$nio$channels$SocketChannel : JavaObject {
+public protocol java$nio$channels$FileChannel : JavaObject {
 }
 
-open class java$nio$channels$SocketChannel$Impl : java$lang$Object, java$nio$channels$SocketChannel {
-    private typealias J = java$nio$channels$SocketChannel$Impl
+open class java$nio$channels$FileChannel$Impl : java$lang$Object, java$nio$channels$FileChannel {
+    private typealias J = java$nio$channels$FileChannel$Impl
     private typealias I = J
 
-    /// Returns the internal JNI name for this class: "java/nio/channels/SocketChannel"
-    open class override func jniName() -> String { return "java/nio/channels/SocketChannel" }
-
-}
-
-public protocol java$nio$channels$DatagramChannel : JavaObject {
-}
-
-open class java$nio$channels$DatagramChannel$Impl : java$lang$Object, java$nio$channels$DatagramChannel {
-    private typealias J = java$nio$channels$DatagramChannel$Impl
-    private typealias I = J
-
-    /// Returns the internal JNI name for this class: "java/nio/channels/DatagramChannel"
-    open class override func jniName() -> String { return "java/nio/channels/DatagramChannel" }
+    /// Returns the internal JNI name for this class: "java/nio/channels/FileChannel"
+    open class override func jniName() -> String { return "java/nio/channels/FileChannel" }
 
 }
 
@@ -36,6 +24,18 @@ open class java$nio$channels$ServerSocketChannel$Impl : java$lang$Object, java$n
 
 }
 
+public protocol java$nio$channels$SocketChannel : JavaObject {
+}
+
+open class java$nio$channels$SocketChannel$Impl : java$lang$Object, java$nio$channels$SocketChannel {
+    private typealias J = java$nio$channels$SocketChannel$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/nio/channels/SocketChannel"
+    open class override func jniName() -> String { return "java/nio/channels/SocketChannel" }
+
+}
+
 public protocol java$nio$channels$SeekableByteChannel : JavaObject {
 }
 
@@ -48,15 +48,15 @@ open class java$nio$channels$SeekableByteChannel$Impl : java$lang$Object, java$n
 
 }
 
-public protocol java$nio$channels$FileChannel : JavaObject {
+public protocol java$nio$channels$DatagramChannel : JavaObject {
 }
 
-open class java$nio$channels$FileChannel$Impl : java$lang$Object, java$nio$channels$FileChannel {
-    private typealias J = java$nio$channels$FileChannel$Impl
+open class java$nio$channels$DatagramChannel$Impl : java$lang$Object, java$nio$channels$DatagramChannel {
+    private typealias J = java$nio$channels$DatagramChannel$Impl
     private typealias I = J
 
-    /// Returns the internal JNI name for this class: "java/nio/channels/FileChannel"
-    open class override func jniName() -> String { return "java/nio/channels/FileChannel" }
+    /// Returns the internal JNI name for this class: "java/nio/channels/DatagramChannel"
+    open class override func jniName() -> String { return "java/nio/channels/DatagramChannel" }
 
 }
 

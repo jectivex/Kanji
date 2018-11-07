@@ -9,22 +9,22 @@ public final class java$math$MathContext : java$lang$Object, java$io$Serializabl
 
     fileprivate static let java$math$MathContext__UNLIMITED__java$math$MathContext = J.saccessor("UNLIMITED", type: JObjectType("java/math/MathContext"))
     public static var UNLIMITED: java$math$MathContext? {
-        get { return java$math$MathContext$Impl(constructor: I.java$math$MathContext__UNLIMITED__java$math$MathContext.getter()) }
+        get { return java$math$MathContext$Impl(reference: I.java$math$MathContext__UNLIMITED__java$math$MathContext.getter()) }
     }
 
     fileprivate static let java$math$MathContext__DECIMAL32__java$math$MathContext = J.saccessor("DECIMAL32", type: JObjectType("java/math/MathContext"))
     public static var DECIMAL32: java$math$MathContext? {
-        get { return java$math$MathContext$Impl(constructor: I.java$math$MathContext__DECIMAL32__java$math$MathContext.getter()) }
+        get { return java$math$MathContext$Impl(reference: I.java$math$MathContext__DECIMAL32__java$math$MathContext.getter()) }
     }
 
     fileprivate static let java$math$MathContext__DECIMAL64__java$math$MathContext = J.saccessor("DECIMAL64", type: JObjectType("java/math/MathContext"))
     public static var DECIMAL64: java$math$MathContext? {
-        get { return java$math$MathContext$Impl(constructor: I.java$math$MathContext__DECIMAL64__java$math$MathContext.getter()) }
+        get { return java$math$MathContext$Impl(reference: I.java$math$MathContext__DECIMAL64__java$math$MathContext.getter()) }
     }
 
     fileprivate static let java$math$MathContext__DECIMAL128__java$math$MathContext = J.saccessor("DECIMAL128", type: JObjectType("java/math/MathContext"))
     public static var DECIMAL128: java$math$MathContext? {
-        get { return java$math$MathContext$Impl(constructor: I.java$math$MathContext__DECIMAL128__java$math$MathContext.getter()) }
+        get { return java$math$MathContext$Impl(reference: I.java$math$MathContext__DECIMAL128__java$math$MathContext.getter()) }
     }
 
     fileprivate static let java$math$MathContext_init_I__V = constructor((jint.jniType))
@@ -68,17 +68,17 @@ open class java$math$BigDecimal : java$lang$Number, java$lang$Comparable {
 
     fileprivate static let java$math$BigDecimal__ZERO__java$math$BigDecimal = J.saccessor("ZERO", type: JObjectType("java/math/BigDecimal"))
     public static var ZERO: java$math$BigDecimal? {
-        get { return java$math$BigDecimal$Impl(constructor: I.java$math$BigDecimal__ZERO__java$math$BigDecimal.getter()) }
+        get { return java$math$BigDecimal$Impl(reference: I.java$math$BigDecimal__ZERO__java$math$BigDecimal.getter()) }
     }
 
     fileprivate static let java$math$BigDecimal__ONE__java$math$BigDecimal = J.saccessor("ONE", type: JObjectType("java/math/BigDecimal"))
     public static var ONE: java$math$BigDecimal? {
-        get { return java$math$BigDecimal$Impl(constructor: I.java$math$BigDecimal__ONE__java$math$BigDecimal.getter()) }
+        get { return java$math$BigDecimal$Impl(reference: I.java$math$BigDecimal__ONE__java$math$BigDecimal.getter()) }
     }
 
     fileprivate static let java$math$BigDecimal__TEN__java$math$BigDecimal = J.saccessor("TEN", type: JObjectType("java/math/BigDecimal"))
     public static var TEN: java$math$BigDecimal? {
-        get { return java$math$BigDecimal$Impl(constructor: I.java$math$BigDecimal__TEN__java$math$BigDecimal.getter()) }
+        get { return java$math$BigDecimal$Impl(reference: I.java$math$BigDecimal__TEN__java$math$BigDecimal.getter()) }
     }
 
     fileprivate static let java$math$BigDecimal__ROUND_UP__I = J.saccessor("ROUND_UP", type: jint.jniType)
@@ -306,6 +306,11 @@ open class java$math$BigDecimal : java$lang$Number, java$lang$Comparable {
         return try I.java$math$BigDecimal_divideAndRemainder_java$math$BigDecimal_java$math$MathContext__Ajava$math$BigDecimal(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)?.jarrayToArray(java$math$BigDecimal$Impl.self)
     }
 
+    fileprivate static let java$math$BigDecimal_sqrt_java$math$MathContext__java$math$BigDecimal = invoker("sqrt", returns: JObjectType("java/math/BigDecimal"), arguments: (JObjectType("java/math/MathContext")))
+    public func sqrt(_ a0: java$math$MathContext?) throws -> java$math$BigDecimal? {
+        return try JVM.sharedJVM.construct(I.java$math$BigDecimal_sqrt_java$math$MathContext__java$math$BigDecimal(jobj)(a0?.jobj ?? nil)) as java$math$BigDecimal$Impl?
+    }
+
     fileprivate static let java$math$BigDecimal_pow_I__java$math$BigDecimal = invoker("pow", returns: JObjectType("java/math/BigDecimal"), arguments: (jint.jniType))
     public func pow(_ a0: jint) throws -> java$math$BigDecimal? {
         return try JVM.sharedJVM.construct(I.java$math$BigDecimal_pow_I__java$math$BigDecimal(jobj)(a0)) as java$math$BigDecimal$Impl?
@@ -491,22 +496,37 @@ open class java$math$BigInteger : java$lang$Number, java$lang$Comparable {
 
     fileprivate static let java$math$BigInteger__ZERO__java$math$BigInteger = J.saccessor("ZERO", type: JObjectType("java/math/BigInteger"))
     public static var ZERO: java$math$BigInteger? {
-        get { return java$math$BigInteger$Impl(constructor: I.java$math$BigInteger__ZERO__java$math$BigInteger.getter()) }
+        get { return java$math$BigInteger$Impl(reference: I.java$math$BigInteger__ZERO__java$math$BigInteger.getter()) }
     }
 
     fileprivate static let java$math$BigInteger__ONE__java$math$BigInteger = J.saccessor("ONE", type: JObjectType("java/math/BigInteger"))
     public static var ONE: java$math$BigInteger? {
-        get { return java$math$BigInteger$Impl(constructor: I.java$math$BigInteger__ONE__java$math$BigInteger.getter()) }
+        get { return java$math$BigInteger$Impl(reference: I.java$math$BigInteger__ONE__java$math$BigInteger.getter()) }
+    }
+
+    fileprivate static let java$math$BigInteger__TWO__java$math$BigInteger = J.saccessor("TWO", type: JObjectType("java/math/BigInteger"))
+    public static var TWO: java$math$BigInteger? {
+        get { return java$math$BigInteger$Impl(reference: I.java$math$BigInteger__TWO__java$math$BigInteger.getter()) }
     }
 
     fileprivate static let java$math$BigInteger__TEN__java$math$BigInteger = J.saccessor("TEN", type: JObjectType("java/math/BigInteger"))
     public static var TEN: java$math$BigInteger? {
-        get { return java$math$BigInteger$Impl(constructor: I.java$math$BigInteger__TEN__java$math$BigInteger.getter()) }
+        get { return java$math$BigInteger$Impl(reference: I.java$math$BigInteger__TEN__java$math$BigInteger.getter()) }
+    }
+
+    fileprivate static let java$math$BigInteger_init_AB_I_I__V = constructor((JArray(jbyte.jniType), jint.jniType, jint.jniType))
+    public convenience init(_ a0: [jbyte]?, _ a1: jint, _ a2: jint) throws {
+        try self.init(creator: I.java$math$BigInteger_init_AB_I_I__V(a0?.arrayToJArray() ?? nil, a1, a2))
     }
 
     fileprivate static let java$math$BigInteger_init_AB__V = constructor((JArray(jbyte.jniType)))
     public convenience init(_ a0: [jbyte]?) throws {
         try self.init(creator: I.java$math$BigInteger_init_AB__V(a0?.arrayToJArray() ?? nil))
+    }
+
+    fileprivate static let java$math$BigInteger_init_I_AB_I_I__V = constructor((jint.jniType, JArray(jbyte.jniType), jint.jniType, jint.jniType))
+    public convenience init(_ a0: jint, _ a1: [jbyte]?, _ a2: jint, _ a3: jint) throws {
+        try self.init(creator: I.java$math$BigInteger_init_I_AB_I_I__V(a0, a1?.arrayToJArray() ?? nil, a2, a3))
     }
 
     fileprivate static let java$math$BigInteger_init_I_AB__V = constructor((jint.jniType, JArray(jbyte.jniType)))
@@ -582,6 +602,16 @@ open class java$math$BigInteger : java$lang$Number, java$lang$Comparable {
     fileprivate static let java$math$BigInteger_pow_I__java$math$BigInteger = invoker("pow", returns: JObjectType("java/math/BigInteger"), arguments: (jint.jniType))
     public func pow(_ a0: jint) throws -> java$math$BigInteger? {
         return try JVM.sharedJVM.construct(I.java$math$BigInteger_pow_I__java$math$BigInteger(jobj)(a0)) as java$math$BigInteger$Impl?
+    }
+
+    fileprivate static let java$math$BigInteger_sqrt__java$math$BigInteger = invoker("sqrt", returns: JObjectType("java/math/BigInteger"))
+    public func sqrt() throws -> java$math$BigInteger? {
+        return try JVM.sharedJVM.construct(I.java$math$BigInteger_sqrt__java$math$BigInteger(jobj)()) as java$math$BigInteger$Impl?
+    }
+
+    fileprivate static let java$math$BigInteger_sqrtAndRemainder__Ajava$math$BigInteger = invoker("sqrtAndRemainder", returns: JArray(JObjectType("java/math/BigInteger")))
+    public func sqrtAndRemainder() throws -> [java$math$BigInteger?]? {
+        return try I.java$math$BigInteger_sqrtAndRemainder__Ajava$math$BigInteger(jobj)()?.jarrayToArray(java$math$BigInteger$Impl.self)
     }
 
     fileprivate static let java$math$BigInteger_gcd_java$math$BigInteger__java$math$BigInteger = invoker("gcd", returns: JObjectType("java/math/BigInteger"), arguments: (JObjectType("java/math/BigInteger")))
@@ -764,42 +794,42 @@ public final class java$math$RoundingMode : java$lang$Enum {
 
     fileprivate static let java$math$RoundingMode__UP__java$math$RoundingMode = J.saccessor("UP", type: JObjectType("java/math/RoundingMode"))
     public static var UP: java$math$RoundingMode? {
-        get { return java$math$RoundingMode$Impl(constructor: I.java$math$RoundingMode__UP__java$math$RoundingMode.getter()) }
+        get { return java$math$RoundingMode$Impl(reference: I.java$math$RoundingMode__UP__java$math$RoundingMode.getter()) }
     }
 
     fileprivate static let java$math$RoundingMode__DOWN__java$math$RoundingMode = J.saccessor("DOWN", type: JObjectType("java/math/RoundingMode"))
     public static var DOWN: java$math$RoundingMode? {
-        get { return java$math$RoundingMode$Impl(constructor: I.java$math$RoundingMode__DOWN__java$math$RoundingMode.getter()) }
+        get { return java$math$RoundingMode$Impl(reference: I.java$math$RoundingMode__DOWN__java$math$RoundingMode.getter()) }
     }
 
     fileprivate static let java$math$RoundingMode__CEILING__java$math$RoundingMode = J.saccessor("CEILING", type: JObjectType("java/math/RoundingMode"))
     public static var CEILING: java$math$RoundingMode? {
-        get { return java$math$RoundingMode$Impl(constructor: I.java$math$RoundingMode__CEILING__java$math$RoundingMode.getter()) }
+        get { return java$math$RoundingMode$Impl(reference: I.java$math$RoundingMode__CEILING__java$math$RoundingMode.getter()) }
     }
 
     fileprivate static let java$math$RoundingMode__FLOOR__java$math$RoundingMode = J.saccessor("FLOOR", type: JObjectType("java/math/RoundingMode"))
     public static var FLOOR: java$math$RoundingMode? {
-        get { return java$math$RoundingMode$Impl(constructor: I.java$math$RoundingMode__FLOOR__java$math$RoundingMode.getter()) }
+        get { return java$math$RoundingMode$Impl(reference: I.java$math$RoundingMode__FLOOR__java$math$RoundingMode.getter()) }
     }
 
     fileprivate static let java$math$RoundingMode__HALF_UP__java$math$RoundingMode = J.saccessor("HALF_UP", type: JObjectType("java/math/RoundingMode"))
     public static var HALF_UP: java$math$RoundingMode? {
-        get { return java$math$RoundingMode$Impl(constructor: I.java$math$RoundingMode__HALF_UP__java$math$RoundingMode.getter()) }
+        get { return java$math$RoundingMode$Impl(reference: I.java$math$RoundingMode__HALF_UP__java$math$RoundingMode.getter()) }
     }
 
     fileprivate static let java$math$RoundingMode__HALF_DOWN__java$math$RoundingMode = J.saccessor("HALF_DOWN", type: JObjectType("java/math/RoundingMode"))
     public static var HALF_DOWN: java$math$RoundingMode? {
-        get { return java$math$RoundingMode$Impl(constructor: I.java$math$RoundingMode__HALF_DOWN__java$math$RoundingMode.getter()) }
+        get { return java$math$RoundingMode$Impl(reference: I.java$math$RoundingMode__HALF_DOWN__java$math$RoundingMode.getter()) }
     }
 
     fileprivate static let java$math$RoundingMode__HALF_EVEN__java$math$RoundingMode = J.saccessor("HALF_EVEN", type: JObjectType("java/math/RoundingMode"))
     public static var HALF_EVEN: java$math$RoundingMode? {
-        get { return java$math$RoundingMode$Impl(constructor: I.java$math$RoundingMode__HALF_EVEN__java$math$RoundingMode.getter()) }
+        get { return java$math$RoundingMode$Impl(reference: I.java$math$RoundingMode__HALF_EVEN__java$math$RoundingMode.getter()) }
     }
 
     fileprivate static let java$math$RoundingMode__UNNECESSARY__java$math$RoundingMode = J.saccessor("UNNECESSARY", type: JObjectType("java/math/RoundingMode"))
     public static var UNNECESSARY: java$math$RoundingMode? {
-        get { return java$math$RoundingMode$Impl(constructor: I.java$math$RoundingMode__UNNECESSARY__java$math$RoundingMode.getter()) }
+        get { return java$math$RoundingMode$Impl(reference: I.java$math$RoundingMode__UNNECESSARY__java$math$RoundingMode.getter()) }
     }
 
     fileprivate static let java$math$RoundingMode_values__Ajava$math$RoundingMode = svoker("values", returns: JArray(JObjectType("java/math/RoundingMode")))

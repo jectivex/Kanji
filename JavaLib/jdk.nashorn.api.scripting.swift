@@ -20,6 +20,7 @@ public protocol jdk$nashorn$api$scripting$JSObject : JavaObject {
     func isStrictFunction() throws -> jboolean
     func isArray() throws -> jboolean
     func toNumber() throws -> jdouble
+    func getDefaultValue(_ a0: java$lang$Class?) throws -> java$lang$Object?
 }
 
 open class jdk$nashorn$api$scripting$JSObject$Impl : java$lang$Object, jdk$nashorn$api$scripting$JSObject {
@@ -48,6 +49,7 @@ open class jdk$nashorn$api$scripting$JSObject$Impl : java$lang$Object, jdk$nasho
     fileprivate static let jdk$nashorn$api$scripting$JSObject_isStrictFunction__Z = invoker("isStrictFunction", returns: jboolean.jniType)
     fileprivate static let jdk$nashorn$api$scripting$JSObject_isArray__Z = invoker("isArray", returns: jboolean.jniType)
     fileprivate static let jdk$nashorn$api$scripting$JSObject_toNumber__D = invoker("toNumber", returns: jdouble.jniType)
+    fileprivate static let jdk$nashorn$api$scripting$JSObject_getDefaultValue_java$lang$Class__java$lang$Object = invoker("getDefaultValue", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Class")))
 }
 
 public extension jdk$nashorn$api$scripting$JSObject {
@@ -128,6 +130,10 @@ public extension jdk$nashorn$api$scripting$JSObject {
 
     func toNumber() throws -> jdouble {
         return try I.jdk$nashorn$api$scripting$JSObject_toNumber__D(jobj)()
+    }
+
+    func getDefaultValue(_ a0: java$lang$Class?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$JSObject_getDefaultValue_java$lang$Class__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
     }
 
 }
@@ -237,11 +243,6 @@ open class jdk$nashorn$api$scripting$AbstractJSObject : java$lang$Object, jdk$na
     fileprivate static let jdk$nashorn$api$scripting$AbstractJSObject_toNumber__D = invoker("toNumber", returns: jdouble.jniType)
     public func toNumber() throws -> jdouble {
         return try I.jdk$nashorn$api$scripting$AbstractJSObject_toNumber__D(jobj)()
-    }
-
-    fileprivate static let jdk$nashorn$api$scripting$AbstractJSObject_getDefaultValue_java$lang$Class__java$lang$Object = invoker("getDefaultValue", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Class")))
-    public func getDefaultValue(_ a0: java$lang$Class?) throws -> java$lang$Object? {
-        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$AbstractJSObject_getDefaultValue_java$lang$Class__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
     }
 
     fileprivate static let jdk$nashorn$api$scripting$AbstractJSObject_getDefaultValue_jdk$nashorn$api$scripting$JSObject_java$lang$Class__java$lang$Object = svoker("getDefaultValue", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("jdk/nashorn/api/scripting/JSObject"), JObjectType("java/lang/Class")))
@@ -437,6 +438,10 @@ public final class jdk$nashorn$api$scripting$ScriptObjectMirror : jdk$nashorn$ap
 
     fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_toNumber__D = invoker("toNumber", returns: jdouble.jniType)
     fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_getDefaultValue_java$lang$Class__java$lang$Object = invoker("getDefaultValue", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Class")))
+    public func getDefaultValue(_ a0: java$lang$Class?) throws -> java$lang$Object? {
+        return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptObjectMirror_getDefaultValue_java$lang$Class__java$lang$Object(jobj)(a0?.jobj ?? nil)) as java$lang$Object$Impl?
+    }
+
     fileprivate static let jdk$nashorn$api$scripting$ScriptObjectMirror_put_java$lang$Object_java$lang$Object__java$lang$Object = invoker("put", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/lang/Object"), JObjectType("java/lang/Object")))
     public func put(_ a0: java$lang$Object?, _ a1: java$lang$Object?) throws -> java$lang$Object? {
         return try JVM.sharedJVM.construct(I.jdk$nashorn$api$scripting$ScriptObjectMirror_put_java$lang$Object_java$lang$Object__java$lang$Object(jobj)(a0?.jobj ?? nil, a1?.jobj ?? nil)) as java$lang$Object$Impl?
@@ -551,7 +556,7 @@ public final class jdk$nashorn$api$scripting$NashornScriptEngine : javax$script$
 
     fileprivate static let jdk$nashorn$api$scripting$NashornScriptEngine__NASHORN_GLOBAL__java$lang$String = J.saccessor("NASHORN_GLOBAL", type: JObjectType("java/lang/String"))
     public static var NASHORN_GLOBAL: java$lang$String? {
-        get { return java$lang$String$Impl(constructor: I.jdk$nashorn$api$scripting$NashornScriptEngine__NASHORN_GLOBAL__java$lang$String.getter()) }
+        get { return java$lang$String$Impl(reference: I.jdk$nashorn$api$scripting$NashornScriptEngine__NASHORN_GLOBAL__java$lang$String.getter()) }
     }
 
     fileprivate static let jdk$nashorn$api$scripting$NashornScriptEngine_eval_java$io$Reader_javax$script$ScriptContext__java$lang$Object = invoker("eval", returns: JObjectType("java/lang/Object"), arguments: (JObjectType("java/io/Reader"), JObjectType("javax/script/ScriptContext")))
