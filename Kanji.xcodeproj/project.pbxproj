@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		498D30852193939000CB6446 /* javax.sql.rowset.spi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D30812193939000CB6446 /* javax.sql.rowset.spi.swift */; };
+		498D30862193939000CB6446 /* javax.transaction.xa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D30822193939000CB6446 /* javax.transaction.xa.swift */; };
+		498D30872193939000CB6446 /* javax.sql.rowset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D30832193939000CB6446 /* javax.sql.rowset.swift */; };
+		498D30882193939000CB6446 /* javax.sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D30842193939000CB6446 /* javax.sql.swift */; };
 		7E0E8C271B6FA7170003FEC6 /* KanjiLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E8C261B6FA7170003FEC6 /* KanjiLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E0E8C2E1B6FA7170003FEC6 /* KanjiLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0E8C241B6FA7170003FEC6 /* KanjiLib.framework */; };
 		7E0E8C331B6FA7170003FEC6 /* KanjiLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E8C321B6FA7170003FEC6 /* KanjiLibTests.swift */; };
@@ -231,6 +235,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		498D30812193939000CB6446 /* javax.sql.rowset.spi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.sql.rowset.spi.swift; sourceTree = "<group>"; };
+		498D30822193939000CB6446 /* javax.transaction.xa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.transaction.xa.swift; sourceTree = "<group>"; };
+		498D30832193939000CB6446 /* javax.sql.rowset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.sql.rowset.swift; sourceTree = "<group>"; };
+		498D30842193939000CB6446 /* javax.sql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.sql.swift; sourceTree = "<group>"; };
 		7E0E8C241B6FA7170003FEC6 /* KanjiLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0E8C261B6FA7170003FEC6 /* KanjiLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiLib.h; sourceTree = "<group>"; };
 		7E0E8C281B6FA7170003FEC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -525,6 +533,10 @@
 				7E920C811D4001D90044386F /* javax.security.auth.login.swift */,
 				7E920C821D4001D90044386F /* javax.security.auth.swift */,
 				7E920C831D4001D90044386F /* javax.security.auth.x500.swift */,
+				498D30812193939000CB6446 /* javax.sql.rowset.spi.swift */,
+				498D30832193939000CB6446 /* javax.sql.rowset.swift */,
+				498D30842193939000CB6446 /* javax.sql.swift */,
+				498D30822193939000CB6446 /* javax.transaction.xa.swift */,
 				7E920C841D4001D90044386F /* javax.xml.bind.swift */,
 				7E920C851D4001D90044386F /* javax.xml.namespace.swift */,
 				7E920C861D4001D90044386F /* javax.xml.swift */,
@@ -1170,6 +1182,7 @@
 				7E920CB31D4001D90044386F /* java.util.function.swift in Sources */,
 				7E920CA91D4001D90044386F /* java.sql.swift in Sources */,
 				7E920CBA1D4001D90044386F /* java.util.zip.swift in Sources */,
+				498D30862193939000CB6446 /* javax.transaction.xa.swift in Sources */,
 				7E920CA51D4001D90044386F /* java.security.cert.swift in Sources */,
 				7E920C9D1D4001D90044386F /* java.net.swift in Sources */,
 				7E920C931D4001D90044386F /* java.beans.swift in Sources */,
@@ -1180,6 +1193,7 @@
 				7E920C921D4001D90044386F /* java.beans.beancontext.swift in Sources */,
 				7E920C951D4001D90044386F /* java.lang.annotation.swift in Sources */,
 				7E920CCE1D4001D90044386F /* org.xml.sax.swift in Sources */,
+				498D30872193939000CB6446 /* javax.sql.rowset.swift in Sources */,
 				7E920CCB1D4001D90044386F /* org.ietf.jgss.swift in Sources */,
 				7E920CB01D4001D90044386F /* java.util.concurrent.atomic.swift in Sources */,
 				7E920C991D4001D90044386F /* java.lang.ref.swift in Sources */,
@@ -1191,6 +1205,7 @@
 				7E920C941D4001D90044386F /* java.io.swift in Sources */,
 				7E920CC81D4001D90044386F /* javax.xml.xpath.swift in Sources */,
 				7E920C981D4001D90044386F /* java.lang.management.swift in Sources */,
+				498D30852193939000CB6446 /* javax.sql.rowset.spi.swift in Sources */,
 				7E920CB21D4001D90044386F /* java.util.concurrent.swift in Sources */,
 				7E920C901D4001D90044386F /* java.applet.swift in Sources */,
 				7E920CC01D4001D90044386F /* javax.security.auth.login.swift in Sources */,
@@ -1206,6 +1221,7 @@
 				7E920C911D4001D90044386F /* java.awt.swift in Sources */,
 				7E920CB51D4001D90044386F /* java.util.logging.swift in Sources */,
 				7E920CBE1D4001D90044386F /* javax.script.swift in Sources */,
+				498D30882193939000CB6446 /* javax.sql.swift in Sources */,
 				7E920CAD1D4001D90044386F /* java.time.swift in Sources */,
 				7E920CCD1D4001D90044386F /* org.xml.sax.helpers.swift in Sources */,
 				7E920CCA1D4001D90044386F /* jdk.nashorn.internal.runtime.swift in Sources */,

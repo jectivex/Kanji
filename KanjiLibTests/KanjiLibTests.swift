@@ -237,7 +237,7 @@ class KanjiLibTests: XCTestCase {
             func kanjiCast<T>(_ x: T) -> UnsafeMutableRawPointer { return unsafeBitCast(x, to: UnsafeMutableRawPointer.self) }
 
             do {
-                // demonstration of subclassing a base Object with custo native methods
+                // demonstration of subclassing a base Object with custom native methods
 
                 // static hashCode
                 let hashCode: @convention(c) (UnsafePointer<JNIEnv>, jobject) -> (jint) = { _,_  in

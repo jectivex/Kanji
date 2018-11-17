@@ -25,7 +25,9 @@ jlink \
   --module-path $JAVA_HOME/jmods \
   --no-header-files \
   --no-man-pages \
+  --strip-debug \
   --add-modules java.sql \
+  --add-modules java.sql.rowset \
   --add-modules java.scripting \
   --add-modules jdk.scripting.nashorn \
   --add-modules java.rmi \
@@ -35,8 +37,9 @@ jlink \
   --add-modules java.security.jgss \
   --add-modules java.management \
   --add-modules jdk.jshell \
+  --strip-native-commands \
   --compress 2 \
   --output macos.jre
 
 # need to delete the binaries for embedding in sandboxed apps
-rm -r macos.jre/bin macos.jre/lib/jspawnhelper
+#rm -r macos.jre/bin macos.jre/lib/jspawnhelper
