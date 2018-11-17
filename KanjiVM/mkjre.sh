@@ -42,4 +42,4 @@ jlink \
   --output macos.jre
 
 # need to delete the binaries for embedding in sandboxed apps
-#rm -r macos.jre/bin macos.jre/lib/jspawnhelper
+rm -r macos.jre/lib/jspawnhelper
