@@ -9769,6 +9769,18 @@ public final class java$lang$ProcessBuilder$Redirect$Type : java$lang$Enum {
 
 public typealias java$lang$ProcessBuilder$Redirect$Type$Impl = java$lang$ProcessBuilder$Redirect$Type
 
+public protocol java$lang$ProcessHandle : JavaObject {
+}
+
+open class java$lang$ProcessHandle$Impl : java$lang$Object, java$lang$ProcessHandle {
+    private typealias J = java$lang$ProcessHandle$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/ProcessHandle"
+    open class override func jniName() -> String { return "java/lang/ProcessHandle" }
+
+}
+
 public protocol java$lang$ProcessHandle$Info : JavaObject {
 }
 
@@ -9805,30 +9817,6 @@ open class java$lang$System$Logger$Impl : java$lang$Object, java$lang$System$Log
 
 }
 
-public protocol java$lang$Runtime$Version : JavaObject {
-}
-
-open class java$lang$Runtime$Version$Impl : java$lang$Object, java$lang$Runtime$Version {
-    private typealias J = java$lang$Runtime$Version$Impl
-    private typealias I = J
-
-    /// Returns the internal JNI name for this class: "java/lang/Runtime$Version"
-    open class override func jniName() -> String { return "java/lang/Runtime$Version" }
-
-}
-
-public protocol java$lang$ProcessHandle : JavaObject {
-}
-
-open class java$lang$ProcessHandle$Impl : java$lang$Object, java$lang$ProcessHandle {
-    private typealias J = java$lang$ProcessHandle$Impl
-    private typealias I = J
-
-    /// Returns the internal JNI name for this class: "java/lang/ProcessHandle"
-    open class override func jniName() -> String { return "java/lang/ProcessHandle" }
-
-}
-
 public protocol java$lang$Module : JavaObject {
 }
 
@@ -9838,6 +9826,18 @@ open class java$lang$Module$Impl : java$lang$Object, java$lang$Module {
 
     /// Returns the internal JNI name for this class: "java/lang/Module"
     open class override func jniName() -> String { return "java/lang/Module" }
+
+}
+
+public protocol java$lang$Runtime$Version : JavaObject {
+}
+
+open class java$lang$Runtime$Version$Impl : java$lang$Object, java$lang$Runtime$Version {
+    private typealias J = java$lang$Runtime$Version$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/Runtime$Version"
+    open class override func jniName() -> String { return "java/lang/Runtime$Version" }
 
 }
 

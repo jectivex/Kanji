@@ -273,37 +273,48 @@ private func nextNativeClosureIndex() -> UInt64 {
     return nativeClosureSync.sync(execute: { nativeClosureIndex += 1; return nativeClosureIndex })
 }
 
-private var java$util$function$Function$closures: [jlong : java$util$function$Function$Impl.FunctionalClosure] = [:]
 
+/// The base protocol for a functional interface implementation. Swift can generate functional interfaces
+/// with non-capturing semantics (i.e., @convention(c)) fairly easily by generating the bytecode using ASM.
+/// Creating a capturing functional interface requires more work, since we need to maintain a bookkeeping
+/// list of all the assigned closures.
+///
+/// Implementations are currently provided only for java$util$function$Consumer and java$util$function$Function;
+/// other implementations can be added without too much work, but it requires quite a bit of boilerplate
+/// due to the inability to treat C-style blocks generically.
 public protocol FunctionalInterface : JavaObject {
-    associatedtype AO1 : JSig
-    associatedtype RO : JSig
+    associatedtype A1 : JType
+    associatedtype R : JType
 
-    associatedtype A1 : JNominal
-    associatedtype R : JNominal
-    
-//    associatedtype FunctionalBlock
-//    // ### for some reason we cannot conform to types that use @convention(c) types
-////    static func fromBlock(_ native: FunctionalBlock) throws -> Self
-//    
-//    associatedtype FunctionalClosure
-//    static func fromClosure(_ f: FunctionalClosure) throws -> Self
+    /// The type signature for the given non-capturing block
+    associatedtype FunctionalBlock
+
+    // we'd like use this, but: '(UnsafePointer<JNIEnv>, jobject, Self.A1.JNIType) -> Self.R.JNIType' (aka '(UnsafePointer<UnsafePointer<JNINativeInterface_>>, OpaquePointer, Self.A1.JNIType) -> Self.R.JNIType') is not representable in Objective-C, so it cannot be used with '@convention(c)'
+    //public typealias FunctionalBlock = @convention(c) (UnsafePointer<JNIEnv>, jobject, A1.JNIType) -> R.JNIType
+
+    static func fromBlock(_ native: FunctionalBlock) throws -> Impl
+
+
+    /// The type signature for the given functional closure
+    associatedtype FunctionalClosure
+
+    /// The imeplementation type for this protocol
+    associatedtype Impl
+
+    /// Creates an instance of this functional interface from the given capturing closure
+    static func fromClosure(_ f: FunctionalClosure) throws -> Impl
 }
 
 extension java$util$function$Function$Impl : FunctionalInterface {
-    public typealias AO1 = java$lang$Object
-    public typealias RO = java$lang$Object
+    /// The static map of assigned pointers to the closure instances
+    fileprivate static var closures: [jlong : FunctionalClosure] = [:]
+}
 
+extension java$util$function$Function  {
     public typealias A1 = JObjectType
     public typealias R = JObjectType
-    
-    
-    public typealias Slf = java$util$function$Function$Impl
-//}
-//
-//
-//public extension FunctionalInterface {
-//    public typealias Slf = Self
+
+    public typealias Impl = java$util$function$Function$Impl
 
     /// The non-capturing form of dynamic function creation
     public typealias FunctionalBlock = @convention(c) (UnsafePointer<JNIEnv>, jobject, A1.JNIType) -> R.JNIType
@@ -319,18 +330,19 @@ extension java$util$function$Function$Impl : FunctionalInterface {
     }
     
     /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: FunctionalBlock) throws -> Slf {
-        return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [functionalMethod(native)]).constructor() as Slf
+    public static func fromBlock(_ native: FunctionalBlock) throws -> Impl {
+        return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [functionalMethod(native)]).constructor()
     }
 
-    public static func fromClosure(_ f: @escaping FunctionalClosure) throws -> Slf {
+    /// Generates a Function from a closure that can capture local variables
+    public static func fromClosure(_ f: @escaping FunctionalClosure) throws -> Impl {
 
         let native: FunctionalBlock = { env, obj, arg in
             guard let address = JVM.sharedJVM.nativeAddress(obj) else {
                 print("Kanji Warning: unable to find native address")
                 return R.empty()
             }
-            guard let f = java$util$function$Function$closures[address] else {
+            guard let f = Impl.closures[address] else {
                 print("Kanji Warning: unable to find native implementation for address: \(address)")
                 return R.empty()
             }
@@ -360,28 +372,83 @@ extension java$util$function$Function$Impl : FunctionalInterface {
         let ret = try JVM.sharedJVM.createNativeAddressableClass(interfaces: [self.jniName()], methods: [functionalMethod(native)],
             finalizer: { env, cls, address in
                 // drop the closure when the java object is garbage collected
-                nativeClosureSync.async {
-                    java$util$function$Function$closures.removeValue(forKey: address)
-                }
-        }).constructor(address) as Slf
+                nativeClosureSync.async { Impl.closures.removeValue(forKey: address) }
+        }).constructor(address) as Impl
 
-        nativeClosureSync.sync {
-            java$util$function$Function$closures[address] = f // remember the closure for later use
-        }
-
+        nativeClosureSync.sync { Impl.closures[address] = f } // remember the closure for later use
         return ret
     }
 
 }
 
+extension java$util$function$Consumer$Impl : FunctionalInterface {
+    /// The static map of assigned pointers to the closure instances
+    fileprivate static var closures: [jlong : FunctionalClosure] = [:]
+}
+
 public extension java$util$function$Consumer {
-    /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
-    public static func fromBlock(_ native: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> Void) throws -> Self {
-        let sig = JVM.jsig(JVoid.jniType, args: [JObjectType()])
-        return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [
-            ("accept", sig, withoutActuallyEscaping(native, do: castFunction))
-            ]).constructor()
+    public typealias A1 = JObjectType
+    public typealias R = JVoid
+
+
+    public typealias Impl = java$util$function$Consumer$Impl
+
+    /// The non-capturing form of dynamic function creation
+    public typealias FunctionalBlock = @convention(c) (UnsafePointer<JNIEnv>, jobject, A1.JNIType) -> R.JNIType
+
+    /// The capturing form of dynamic consumer creation
+    public typealias FunctionalClosure = (java$lang$Object?) throws -> ()
+
+    private static var FunctionalSig : String { return JVM.jsig(R.jniType, args: [A1()]) }
+
+    /// Returns the native signature of the method for generating the native stub
+    fileprivate static func functionalMethod(_ f: FunctionalBlock) -> JVM.MethodSignature {
+        return ("accept", FunctionalSig, withoutActuallyEscaping(f, do: castFunction))
     }
+
+    /// Returns an instance of this type where the FunctionalInterface is implemented by a non-capturing C block
+    public static func fromBlock(_ native: FunctionalBlock) throws -> Impl {
+        return try JVM.sharedJVM.createNativeClass(interfaces: [self.jniName()], methods: [functionalMethod(native)]).constructor()
+    }
+
+    /// Generates a Consumer from a closure that can capture local variables
+    public static func fromClosure(_ f: @escaping FunctionalClosure) throws -> Impl {
+
+        let native: FunctionalBlock = { env, obj, arg in
+            guard let address = JVM.sharedJVM.nativeAddress(obj) else {
+                print("Kanji Warning: unable to find native address")
+                return R.empty()
+            }
+            guard let f = Impl.closures[address] else {
+                print("Kanji Warning: unable to find native implementation for address: \(address)")
+                return R.empty()
+            }
+
+            do {
+                try f(java$lang$Object(reference: arg))
+                return R.empty() // Consumer returns ampty
+            } catch let jerr as java$lang$Throwable { // re-throw throwable instances directly
+                JVM.sharedJVM.throwException(jerr.jobj)
+                return R.empty()
+            } catch { // throws all other exceptions via a runtime exception
+                _ = String(describing: error).withCString({ msg in
+                    JVM.sharedJVM.throwNew(java$lang$RuntimeException.javaClass, msg: msg)
+                })
+                return R.empty()
+            }
+        }
+
+        let address = jlong(nextNativeClosureIndex())
+        let ret = try JVM.sharedJVM.createNativeAddressableClass(interfaces: [self.jniName()], methods: [functionalMethod(native)],
+                                                                 finalizer: { env, cls, address in
+                                                                    // drop the closure when the java object is garbage collected
+                                                                    nativeClosureSync.async { Impl.closures.removeValue(forKey: address) }
+        }).constructor(address) as Impl
+
+        nativeClosureSync.sync { Impl.closures[address] = f } // remember the closure for later use
+        return ret
+    }
+
 }
 
 /// MARK: IntLambda Functions

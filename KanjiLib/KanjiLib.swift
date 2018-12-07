@@ -197,6 +197,20 @@ public extension String {
     }
 }
 
+public extension java$util$Collection {
+    /// Converts this Java collection to a Swift array; casting failures are silently excluded
+    public func toSwiftArray<T: JavaObject>(_ ofType: T.Type) throws -> [T] {
+        return try self.toArray()?.compactMap({ $0?.cast() }) ?? []
+    }
+}
+
+public extension java$util$stream$Stream {
+    /// Converts this Java stream to a Swift array; casting failures are silently excluded
+    public func toSwiftArray<T: JavaObject>(_ ofType: T.Type) throws -> [T] {
+        return try self.toArray()?.compactMap({ $0?.cast() }) ?? []
+    }
+}
+
 public extension java$net$URLClassLoader {
     /// Creates a URLClassLoader from the list if URLs with the optional parent classloader
     public static func fromURLs(_ urls: [URL], parent: java$lang$ClassLoader? = nil) throws -> java$net$URLClassLoader {

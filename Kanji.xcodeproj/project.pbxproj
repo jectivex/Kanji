@@ -11,6 +11,8 @@
 		498D30862193939000CB6446 /* javax.transaction.xa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D30822193939000CB6446 /* javax.transaction.xa.swift */; };
 		498D30872193939000CB6446 /* javax.sql.rowset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D30832193939000CB6446 /* javax.sql.rowset.swift */; };
 		498D30882193939000CB6446 /* javax.sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D30842193939000CB6446 /* javax.sql.swift */; };
+		4994A89221BAEFE700502A8E /* jdk.jshell.spi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994A89021BAEFE600502A8E /* jdk.jshell.spi.swift */; };
+		4994A89321BAEFE700502A8E /* jdk.jshell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994A89121BAEFE600502A8E /* jdk.jshell.swift */; };
 		7E0E8C271B6FA7170003FEC6 /* KanjiLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E8C261B6FA7170003FEC6 /* KanjiLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E0E8C2E1B6FA7170003FEC6 /* KanjiLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0E8C241B6FA7170003FEC6 /* KanjiLib.framework */; };
 		7E0E8C331B6FA7170003FEC6 /* KanjiLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E8C321B6FA7170003FEC6 /* KanjiLibTests.swift */; };
@@ -239,6 +241,8 @@
 		498D30822193939000CB6446 /* javax.transaction.xa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.transaction.xa.swift; sourceTree = "<group>"; };
 		498D30832193939000CB6446 /* javax.sql.rowset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.sql.rowset.swift; sourceTree = "<group>"; };
 		498D30842193939000CB6446 /* javax.sql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.sql.swift; sourceTree = "<group>"; };
+		4994A89021BAEFE600502A8E /* jdk.jshell.spi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jdk.jshell.spi.swift; sourceTree = "<group>"; };
+		4994A89121BAEFE600502A8E /* jdk.jshell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jdk.jshell.swift; sourceTree = "<group>"; };
 		7E0E8C241B6FA7170003FEC6 /* KanjiLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0E8C261B6FA7170003FEC6 /* KanjiLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiLib.h; sourceTree = "<group>"; };
 		7E0E8C281B6FA7170003FEC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -533,6 +537,8 @@
 				7E920C811D4001D90044386F /* javax.security.auth.login.swift */,
 				7E920C821D4001D90044386F /* javax.security.auth.swift */,
 				7E920C831D4001D90044386F /* javax.security.auth.x500.swift */,
+				4994A89021BAEFE600502A8E /* jdk.jshell.spi.swift */,
+				4994A89121BAEFE600502A8E /* jdk.jshell.swift */,
 				498D30812193939000CB6446 /* javax.sql.rowset.spi.swift */,
 				498D30832193939000CB6446 /* javax.sql.rowset.swift */,
 				498D30842193939000CB6446 /* javax.sql.swift */,
@@ -1192,6 +1198,7 @@
 				7E920CAA1D4001D90044386F /* java.text.swift in Sources */,
 				7E920C921D4001D90044386F /* java.beans.beancontext.swift in Sources */,
 				7E920C951D4001D90044386F /* java.lang.annotation.swift in Sources */,
+				4994A89221BAEFE700502A8E /* jdk.jshell.spi.swift in Sources */,
 				7E920CCE1D4001D90044386F /* org.xml.sax.swift in Sources */,
 				498D30872193939000CB6446 /* javax.sql.rowset.swift in Sources */,
 				7E920CCB1D4001D90044386F /* org.ietf.jgss.swift in Sources */,
@@ -1227,6 +1234,7 @@
 				7E920CCA1D4001D90044386F /* jdk.nashorn.internal.runtime.swift in Sources */,
 				7E920CAB1D4001D90044386F /* java.time.chrono.swift in Sources */,
 				7E920CBD1D4001D90044386F /* javax.management.swift in Sources */,
+				4994A89321BAEFE700502A8E /* jdk.jshell.swift in Sources */,
 				7E920CB61D4001D90044386F /* java.util.prefs.swift in Sources */,
 				7E920CAC1D4001D90044386F /* java.time.format.swift in Sources */,
 				7E920CB81D4001D90044386F /* java.util.stream.swift in Sources */,

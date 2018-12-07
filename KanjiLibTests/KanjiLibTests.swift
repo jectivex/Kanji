@@ -348,6 +348,28 @@ class KanjiLibTests: XCTestCase {
                 XCTAssertEqual(abc, "abc".javaString)
             }
 
+
+            // we run this concurrently to ensure that the native mathod locking works
+            DispatchQueue.concurrentPerform(iterations: 100) { _ in
+                // this demonstrates using a capturing consumer
+                do {
+                    var strs: [String] = []
+                    let fun = try java$util$function$Consumer$Impl.fromClosure {
+                        guard let str = $0?.cast() as java$lang$String? else { return }
+                        strs.append(str.toSwiftString() ?? "") // store the argument in the local variable
+                    }
+
+                    let demos = ["foo", "bar"]
+                    for demo in demos {
+                        try fun.accept(demo.javaString)
+                    }
+                    XCTAssertEqual(demos, strs)
+                } catch {
+                    XCTFail("\(error)")
+                }
+            }
+
+
             for i in 1...10 {
                 // this demonstrates using a capturing closure
                 let fun = try java$util$function$Function$Impl.fromClosure {

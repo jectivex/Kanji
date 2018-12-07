@@ -1405,18 +1405,6 @@ open class javax$sql$StatementEvent : java$util$EventObject {
 
 public typealias javax$sql$StatementEvent$Impl = javax$sql$StatementEvent
 
-public protocol javax$sql$PooledConnectionBuilder : JavaObject {
-}
-
-open class javax$sql$PooledConnectionBuilder$Impl : java$lang$Object, javax$sql$PooledConnectionBuilder {
-    private typealias J = javax$sql$PooledConnectionBuilder$Impl
-    private typealias I = J
-
-    /// Returns the internal JNI name for this class: "javax/sql/PooledConnectionBuilder"
-    open class override func jniName() -> String { return "javax/sql/PooledConnectionBuilder" }
-
-}
-
 public protocol javax$sql$XAConnectionBuilder : JavaObject {
 }
 
@@ -1426,6 +1414,18 @@ open class javax$sql$XAConnectionBuilder$Impl : java$lang$Object, javax$sql$XACo
 
     /// Returns the internal JNI name for this class: "javax/sql/XAConnectionBuilder"
     open class override func jniName() -> String { return "javax/sql/XAConnectionBuilder" }
+
+}
+
+public protocol javax$sql$PooledConnectionBuilder : JavaObject {
+}
+
+open class javax$sql$PooledConnectionBuilder$Impl : java$lang$Object, javax$sql$PooledConnectionBuilder {
+    private typealias J = javax$sql$PooledConnectionBuilder$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "javax/sql/PooledConnectionBuilder"
+    open class override func jniName() -> String { return "javax/sql/PooledConnectionBuilder" }
 
 }
 

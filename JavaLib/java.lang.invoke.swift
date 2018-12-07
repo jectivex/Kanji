@@ -1094,18 +1094,6 @@ public extension java$lang$invoke$MethodHandleInfo {
 
 }
 
-public protocol java$lang$invoke$VarHandle$AccessMode : JavaObject {
-}
-
-open class java$lang$invoke$VarHandle$AccessMode$Impl : java$lang$Object, java$lang$invoke$VarHandle$AccessMode {
-    private typealias J = java$lang$invoke$VarHandle$AccessMode$Impl
-    private typealias I = J
-
-    /// Returns the internal JNI name for this class: "java/lang/invoke/VarHandle$AccessMode"
-    open class override func jniName() -> String { return "java/lang/invoke/VarHandle$AccessMode" }
-
-}
-
 public protocol java$lang$invoke$VarHandle : JavaObject {
 }
 
@@ -1115,6 +1103,18 @@ open class java$lang$invoke$VarHandle$Impl : java$lang$Object, java$lang$invoke$
 
     /// Returns the internal JNI name for this class: "java/lang/invoke/VarHandle"
     open class override func jniName() -> String { return "java/lang/invoke/VarHandle" }
+
+}
+
+public protocol java$lang$invoke$VarHandle$AccessMode : JavaObject {
+}
+
+open class java$lang$invoke$VarHandle$AccessMode$Impl : java$lang$Object, java$lang$invoke$VarHandle$AccessMode {
+    private typealias J = java$lang$invoke$VarHandle$AccessMode$Impl
+    private typealias I = J
+
+    /// Returns the internal JNI name for this class: "java/lang/invoke/VarHandle$AccessMode"
+    open class override func jniName() -> String { return "java/lang/invoke/VarHandle$AccessMode" }
 
 }
 

@@ -114,15 +114,15 @@ public extension javax$xml$xpath$XPath {
 
 }
 
-public protocol javax$xml$xpath$XPathEvaluationResult : JavaObject {
+public protocol javax$xml$xpath$XPathExpression : JavaObject {
 }
 
-open class javax$xml$xpath$XPathEvaluationResult$Impl : java$lang$Object, javax$xml$xpath$XPathEvaluationResult {
-    private typealias J = javax$xml$xpath$XPathEvaluationResult$Impl
+open class javax$xml$xpath$XPathExpression$Impl : java$lang$Object, javax$xml$xpath$XPathExpression {
+    private typealias J = javax$xml$xpath$XPathExpression$Impl
     private typealias I = J
 
-    /// Returns the internal JNI name for this class: "javax/xml/xpath/XPathEvaluationResult"
-    open class override func jniName() -> String { return "javax/xml/xpath/XPathEvaluationResult" }
+    /// Returns the internal JNI name for this class: "javax/xml/xpath/XPathExpression"
+    open class override func jniName() -> String { return "javax/xml/xpath/XPathExpression" }
 
 }
 
@@ -150,15 +150,15 @@ open class javax$xml$xpath$XPathVariableResolver$Impl : java$lang$Object, javax$
 
 }
 
-public protocol javax$xml$xpath$XPathExpression : JavaObject {
+public protocol javax$xml$xpath$XPathEvaluationResult : JavaObject {
 }
 
-open class javax$xml$xpath$XPathExpression$Impl : java$lang$Object, javax$xml$xpath$XPathExpression {
-    private typealias J = javax$xml$xpath$XPathExpression$Impl
+open class javax$xml$xpath$XPathEvaluationResult$Impl : java$lang$Object, javax$xml$xpath$XPathEvaluationResult {
+    private typealias J = javax$xml$xpath$XPathEvaluationResult$Impl
     private typealias I = J
 
-    /// Returns the internal JNI name for this class: "javax/xml/xpath/XPathExpression"
-    open class override func jniName() -> String { return "javax/xml/xpath/XPathExpression" }
+    /// Returns the internal JNI name for this class: "javax/xml/xpath/XPathEvaluationResult"
+    open class override func jniName() -> String { return "javax/xml/xpath/XPathEvaluationResult" }
 
 }
 

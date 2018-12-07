@@ -89,6 +89,23 @@ public class ScalaContext : KanjiScriptContext {
     }
 }
 
+func setupKanjiScriptTests() {
+    let dir = "/opt/src/scala/scala-2.12.6/lib/"
+    let cp: [String] = (try? FileManager.default.contentsOfDirectory(atPath: dir).map({ dir + $0 })) ?? []
+    // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
+    if JVM.sharedJVM == nil {
+        do {
+            JVM.sharedJVM = try JVM(classpath: cp)
+        } catch {
+            XCTFail("error creating JVM: " + error.localizedDescription)
+        }
+    }
+
+    if FileManager.default.fileExists(atPath: dir) == false {
+        return XCTFail("scala not installed at \(dir)") // make sure we know when scala is missing
+    }
+}
+
 class KanjiScriptTests: XCTestCase {
 
     override func invokeTest() {
@@ -97,21 +114,7 @@ class KanjiScriptTests: XCTestCase {
     }
 
     override func setUp() {
-        let dir = "/opt/src/scala/scala-2.12.6/lib/"
-        let cp: [String] = (try? FileManager.default.contentsOfDirectory(atPath: dir).map({ dir + $0 })) ?? []
-        // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
-        if JVM.sharedJVM == nil {
-            do {
-                JVM.sharedJVM = try JVM(classpath: cp)
-            } catch {
-                XCTFail("error creating JVM: " + error.localizedDescription)
-            }
-        }
-        
-        if FileManager.default.fileExists(atPath: dir) == false {
-            return XCTFail("scala not installed at \(dir)") // make sure we know when scala is missing
-        }
-
+        setupKanjiScriptTests()
     }
 
     func testKanjiConversions() {
@@ -600,3 +603,190 @@ class KanjiScriptTests: XCTestCase {
 }
 
 var testScriptCallbacksLastString: String? = nil
+
+class JShellTests: XCTestCase {
+    override func setUp() {
+        setupKanjiScriptTests()
+    }
+
+    func testJShell() {
+        do {
+            guard let jshell = try jdk$jshell$JShell.create() else { return XCTFail("unable to create") }
+            defer { do { try jshell.close() } catch { } } // always close at the end
+
+            var snippets: [jdk$jshell$Snippet] = []
+
+            func recordSnippets(_ events: [jdk$jshell$SnippetEvent]) throws -> [jdk$jshell$SnippetEvent] {
+                snippets.append(contentsOf: try events.compactMap({ try $0.snippet() }))
+                return events
+            }
+            func eval(code: String) throws -> [jdk$jshell$SnippetEvent] {
+                return try recordSnippets(jshell.eval(code.javaString)?.toSwiftArray(jdk$jshell$SnippetEvent.self) ?? [])
+            }
+
+            func lastVariable() throws -> String? {
+                return try jshell.varValue(jshell.variables()?.toSwiftArray(jdk$jshell$VarSnippet.self).last)?.toSwiftString()
+            }
+
+            func lastDiagnostics() throws -> [jdk$jshell$Diag] {
+                return try jshell.diagnostics(snippets.last)?.toArray()?.compactMap({ $0?.cast() }) ?? []
+            }
+
+            var jShellShutdowns = 0
+            let _ = try jshell.onShutdown(java$util$function$Consumer$Impl.fromClosure({ _ in jShellShutdowns += 1 }))
+
+            var events: [jdk$jshell$SnippetEvent?] = []
+            let _ = try jshell.onSnippetEvent(java$util$function$Consumer$Impl.fromClosure({ events.append($0?.cast()) }))
+
+            XCTAssertEqual(0, events.count)
+
+            XCTAssertEqual([.VALID], try eval(code: "\"Hello!\";").map { try $0.status() })
+            XCTAssertEqual(.VAR, try snippets.last?.kind())
+            XCTAssertEqual(.TEMP_VAR_EXPRESSION_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertGreaterThan(events.count, 0)
+            XCTAssertEqual(try events.last??.snippet(), snippets.last)
+
+            XCTAssertEqual([.REJECTED], try eval(code: "x;").map { try $0.status() })
+            XCTAssertEqual(.ERRONEOUS, try snippets.last?.kind())
+            XCTAssertEqual(.UNKNOWN_SUBKIND, try snippets.last?.subKind())
+            XCTAssertEqual("x;", try snippets.last?.source())
+            XCTAssertEqual(true, try lastDiagnostics().last?.isError())
+            XCTAssertEqual(0, try lastDiagnostics().last?.getPosition())
+            XCTAssertEqual(0, try lastDiagnostics().last?.getStartPosition())
+            XCTAssertEqual("compiler.err.cant.resolve.location", try lastDiagnostics().last?.getCode())
+            XCTAssertEqual("cannot find symbol\n  symbol:   variable x\n  location: class ", try lastDiagnostics().last?.getMessage(java$util$Locale.ENGLISH))
+            XCTAssertEqual("cannot find symbol\n  symbol:   variable x\n  location: class ", try lastDiagnostics().last?.getMessage(java$util$Locale.CHINESE))
+
+            XCTAssertEqual([.VALID], try eval(code: "var x = 1;").map { try $0.status() })
+            XCTAssertEqual(.VAR, try snippets.last?.kind())
+            XCTAssertEqual(.VAR_DECLARATION_WITH_INITIALIZER_SUBKIND, try snippets.last?.subKind())
+            XCTAssertEqual(snippets.count, try jshell.snippets()?.toArray()?.count)
+
+            XCTAssertEqual([.VALID, .OVERWRITTEN], try eval(code: "var x = 1;").map { try $0.status() })
+            XCTAssertEqual(.VAR, try snippets.last?.kind())
+            XCTAssertEqual(.VAR_DECLARATION_WITH_INITIALIZER_SUBKIND, try snippets.last?.subKind())
+            XCTAssertEqual(snippets.count - 1, try jshell.snippets()?.toArray()?.count) // overwritten snippet
+
+            XCTAssertEqual([.VALID], try eval(code: "x;").map { try $0.status() })
+            XCTAssertEqual(.EXPRESSION, try snippets.last?.kind())
+            XCTAssertEqual(.VAR_VALUE_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual([.VALID], try eval(code: "x").map { try $0.status() })
+            XCTAssertEqual(.EXPRESSION, try snippets.last?.kind())
+            XCTAssertEqual(.VAR_VALUE_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual([.REJECTED], try eval(code: "x = 1.23;").map { try $0.status() }) // cannot change type
+            XCTAssertEqual(.ERRONEOUS, try snippets.last?.kind())
+            XCTAssertEqual(.UNKNOWN_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual([.VALID], try eval(code: "x++; x++;").map { try $0.status() })
+            XCTAssertEqual(.STATEMENT, try snippets.last?.kind())
+            XCTAssertEqual(.STATEMENT_SUBKIND, try snippets.last?.subKind())
+            XCTAssertEqual("x++; x++;", try snippets.last?.source())
+
+            XCTAssertEqual([.REJECTED], try eval(code: "out.println(\"Hello JShell\")").map { try $0.status() })
+            XCTAssertEqual(.ERRONEOUS, try snippets.last?.kind())
+            XCTAssertEqual(.UNKNOWN_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual([.VALID], try eval(code: "import static java.lang.System.out;").map { try $0.status() })
+            XCTAssertEqual(.IMPORT, try snippets.last?.kind())
+            XCTAssertEqual(.SINGLE_STATIC_IMPORT_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual([.VALID], try eval(code: "out.println(\"Hello JShell\")").map { try $0.status() })
+            XCTAssertEqual(.STATEMENT, try snippets.last?.kind())
+            XCTAssertEqual(.STATEMENT_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual([.VALID], try eval(code: "void addToX() { x++; }").map { try $0.status() })
+            XCTAssertEqual(.METHOD, try snippets.last?.kind())
+            XCTAssertEqual(.METHOD_SUBKIND, try snippets.last?.subKind())
+            XCTAssertEqual("()void", try snippets.last?.castTo(jdk$jshell$MethodSnippet.self)?.signature())
+
+
+            XCTAssertEqual([.VALID], try eval(code: "addToX();").map { try $0.status() })
+            XCTAssertEqual(.STATEMENT, try snippets.last?.kind())
+            XCTAssertEqual(.STATEMENT_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual([.VALID, .OVERWRITTEN], try eval(code: "int addToX() { x++; return x; }").map { try $0.status() })
+            XCTAssertEqual(.METHOD, try snippets.last?.kind())
+            XCTAssertEqual(.METHOD_SUBKIND, try snippets.last?.subKind())
+            XCTAssertEqual("()void", try snippets.last?.castTo(jdk$jshell$MethodSnippet.self)?.signature()) // this seems wrong: it should be ()int?
+
+            XCTAssertEqual([.VALID], try eval(code: "addToX();").map { try $0.status() })
+            XCTAssertEqual(.VAR, try snippets.last?.kind())
+            XCTAssertEqual(.TEMP_VAR_EXPRESSION_SUBKIND, try snippets.last?.subKind())
+
+            let typeCount = try jshell.types()?.toArray()?.count ?? 0
+            XCTAssertEqual([.VALID], try eval(code: "class Foo { }").map { try $0.status() })
+            XCTAssertEqual(.TYPE_DECL, try snippets.last?.kind())
+            XCTAssertEqual(.CLASS_SUBKIND, try snippets.last?.subKind())
+            XCTAssertEqual(typeCount + 1, try jshell.types()?.toArray()?.count) // the type we just created
+
+            XCTAssertEqual([.RECOVERABLE_NOT_DEFINED], try eval(code: "Int y;").map { try $0.status() })
+            XCTAssertEqual(.VAR, try snippets.last?.kind())
+            XCTAssertEqual(.VAR_DECLARATION_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual([.REJECTED], try eval(code: "y = 10;").map { try $0.status() })
+            XCTAssertEqual(.ERRONEOUS, try snippets.last?.kind())
+            XCTAssertEqual(.UNKNOWN_SUBKIND, try snippets.last?.subKind())
+
+            XCTAssertEqual(snippets.count - 2, try jshell.snippets()?.toArray()?.count) // minus overwritten snippet
+
+            XCTAssertThrowsError(try lastVariable()) // "Snippet parameter of varValue() Snippet:VariableKey(y)#14-Int y; must be VALID, it is: RECOVERABLE_NOT_DEFINED"
+            XCTAssertEqual([.VALID], try eval(code: "final var z =  5.6 + 5.8;").map { try $0.status() })
+            XCTAssertEqual("11.399999999999999", try lastVariable()) // good times
+
+            do {
+                XCTAssertEqual(5, try jshell.variables()?.toArray()?.count) // all the variables we have created
+                XCTAssertEqual(1, try jshell.imports()?.toArray()?.count) // all the imports we have created
+                XCTAssertEqual(1, try jshell.methods()?.toArray()?.count) // all the methods we have created
+                XCTAssertEqual(1, try jshell.types()?.toArray()?.count) // all the types we have created
+            }
+
+            do {
+                guard let analysis = try jshell.sourceCodeAnalysis() else { return XCTFail("cannot create source code analysis") }
+                XCTAssertEqual("int", try analysis.analyzeType("x", 0))
+                XCTAssertEqual(nil, try analysis.analyzeType("y", 0))
+                XCTAssertEqual("double", try analysis.analyzeType("z", 0))
+                XCTAssertEqual(0, try analysis.listQualifiedNames("blah", 3)?.isResolvable())
+                XCTAssertEqual(1, try analysis.listQualifiedNames("out", 3)?.isResolvable())
+
+
+                // probably not yet indexed
+                XCTAssertEqual(nil, try analysis.listQualifiedNames("System", 6)?.getNames()?.toSwiftArray(java$lang$String.self).last)
+
+                // this is a hack to wait for indexing:
+                // https://github.com/AdoptOpenJDK/openjdk-jdk10u/blob/master/src/jdk.jshell/share/classes/jdk/jshell/SourceCodeAnalysisImpl.java#L1789
+                let _ = try analysis.getClass()?.getDeclaredMethod("waitBackgroundTaskFinished", nil)?.invoke(analysis, nil)
+
+                // now we can see the qualified name!
+                XCTAssertEqual("java.lang.System", try analysis.listQualifiedNames("System", 6)?.getNames()?.toSwiftArray(java$lang$String.self).last)
+                XCTAssertEqual("java.lang.System", try analysis.documentation("System", 6, true)?.toSwiftArray(jdk$jshell$SourceCodeAnalysis$Documentation$Impl.self).last?.signature())
+
+                // this is failing, probably because we don't have the javadoc or source jars available; appears to be a known issue:
+                // https://bugs.openjdk.java.net/browse/JDK-8186876
+                // It appears we might be able to make it accessible by hacking together our own src.zip:
+                // https://github.com/AdoptOpenJDK/openjdk-jdk10u/blob/master/test/langtools/jdk/jshell/JavadocTest.java
+                XCTAssertEqual(nil, try analysis.documentation("java.lang.System", 16, true)?.toSwiftArray(jdk$jshell$SourceCodeAnalysis$Documentation$Impl.self).last?.javadoc())
+            }
+
+            XCTAssertGreaterThan(events.count, 20)
+            XCTAssertEqual(try events.last??.snippet(), snippets.last)
+
+            do { // Calling System.exit() will close the shell, but not exit the VM
+                XCTAssertNoThrow(try eval(code: "x"))
+
+                XCTAssertEqual(0, jShellShutdowns)
+                XCTAssertEqual([.VALID], try eval(code: "System.exit(123);").map { try $0.status() })
+                XCTAssertEqual(1, jShellShutdowns)
+                XCTAssertEqual(.STATEMENT, try snippets.last?.kind())
+                XCTAssertEqual(.STATEMENT_SUBKIND, try snippets.last?.subKind())
+
+                XCTAssertThrowsError(try eval(code: "x")) // "JShell (jdk.jshell.JShell@618c5d94) has been closed."
+            }
+
+        } catch {
+            XCTFail(String(describing: error))
+        }
+    }
+}
