@@ -37,9 +37,10 @@ jlink \
   --add-modules java.security.jgss \
   --add-modules java.management \
   --add-modules jdk.jshell \
-  --strip-native-commands \
   --compress 2 \
   --output macos.jre
 
+# JShell doesn't work if we remove the native commands…
 # need to delete the binaries for embedding in sandboxed apps
-rm -r macos.jre/lib/jspawnhelper
+#  --strip-native-commands \
+#rm -r macos.jre/lib/jspawnhelper
