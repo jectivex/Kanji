@@ -90,7 +90,7 @@ public class ScalaContext : KanjiScriptContext {
 }
 
 func setupKanjiScriptTests() {
-    let dir = "/opt/src/scala/scala-2.12.6/lib/"
+    let dir = "/usr/local/Cellar/scala/2.12.8/libexec/lib" // location for "brew install scala"
     let cp: [String] = (try? FileManager.default.contentsOfDirectory(atPath: dir).map({ dir + $0 })) ?? []
     // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
     if JVM.sharedJVM == nil {

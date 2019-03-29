@@ -250,10 +250,10 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
         }
     }
 
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         switch self {
-        case .val(let x): return x.hashValue
-        case .ref(let x, _): return x.jobj.hashValue
+        case .val(let x): return x.hash(into: &hasher)
+        case .ref(let x, _): return x.jobj.hash(into: &hasher)
         }
     }
 
@@ -313,7 +313,7 @@ public extension Bric {
     /// .Num->java.lang.Double
     /// .Arr->java.util.List
     /// .Obj->java.util.Map
-    public func toKanji(_ vm: JVM = JVM.sharedJVM) throws -> java$lang$Object? {
+    func toKanji(_ vm: JVM = JVM.sharedJVM) throws -> java$lang$Object? {
         switch self {
         case .nul:
             return nil
@@ -357,7 +357,7 @@ public extension JavaObject {
     /// 
     /// Note that JavaObject does not conform to `Bricable` because it can throw an error, whereas `bric()`
     /// must always succeed.
-    public func toBric(dropCycles: Bool = false) throws -> Bric {
+    func toBric(dropCycles: Bool = false) throws -> Bric {
         return try createBric(dropCycles, seen: [])
     }
 

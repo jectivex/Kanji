@@ -1186,7 +1186,7 @@ extension JVM {
 
 public extension JVM {
     /// Create a KanjiException wrapping the current Java exception if it exists and then clear it
-    public func popException(file: String, line: Int, function: String) -> KanjiException? {
+    func popException(file: String, line: Int, function: String) -> KanjiException? {
         if exceptionCheck() != true { return nil }
         defer { exceptionClear() } // always clear the exception after we pop it
         guard let throwable = exceptionOccurred() else { return nil }
@@ -1244,28 +1244,28 @@ public extension JVM {
         return exception
     }
 
-    public func throwException(file: String = #file, line: Int = #line, function: String = #function) throws {
+    func throwException(file: String = #file, line: Int = #line, function: String = #function) throws {
         if let ex = popException(file: file, line: line, function: function) {
             throw ex
         }
     }
 
     /// Call the given function, throwing an exception if any occurred
-    public func checked<T>(_ f: @autoclosure () throws -> T, file: String = #file, line: Int = #line, function: String = #function) throws -> T {
+    func checked<T>(_ f: @autoclosure () throws -> T, file: String = #file, line: Int = #line, function: String = #function) throws -> T {
         try throwException(file: file, line: line, function: function)
         let x = try f()
         try throwException(file: file, line: line, function: function)
         return x
     }
 
-    public func printStackTrace() {
+    func printStackTrace() {
         exceptionDescribe() // simply an alias
     }
 
     /// Wraps the given function invocation in a local frame, which allows for more local references
     /// to be created and cleared; this is useful when creating many local instances in a tight loop
     /// in order to avoid `OutOfMemoryError`s
-    public func withLocalFrame<T: JRef>(size: jint, f: () throws -> T?) rethrows -> T? {
+    func withLocalFrame<T: JRef>(size: jint, f: () throws -> T?) rethrows -> T? {
         JVM.sharedJVM.pushLocalFrame(size)
         var value: T?
         defer { JVM.sharedJVM.popLocalFrame(value?.jobj ?? nil) }
@@ -1276,7 +1276,7 @@ public extension JVM {
     /// Wraps the given function invocation in a local frame, which allows for more local references
     /// to be created and cleared; this is useful when creating many local instances in a tight loop
     /// in order to avoid `OutOfMemoryError`s
-    public func withLocalFrame<T>(size: jint = 0, f: () throws -> T) rethrows -> T {
+    func withLocalFrame<T>(size: jint = 0, f: () throws -> T) rethrows -> T {
         JVM.sharedJVM.pushLocalFrame(size)
         defer { JVM.sharedJVM.popLocalFrame(nil) }
         return try f()
@@ -1614,7 +1614,7 @@ public protocol JPrimitive: JNominal where JNIType: CVarArg {
 }
 
 public extension JPrimitive where Self == JNIType {
-    public static func empty() -> JNIType {
+    static func empty() -> JNIType {
         return Self.init()
     }
 }
@@ -2492,7 +2492,7 @@ extension JRef {
 public extension JVM {
 
     /// Constructs this instance with the most-derived known Swift wrapper class
-    public func construct<T: JavaObject>(_ jobj: jobject?) -> T? {
+    func construct<T: JavaObject>(_ jobj: jobject?) -> T? {
 
         guard let jobj = jobj else { return nil }
 
@@ -2621,7 +2621,7 @@ internal func methodName(_ name: String) -> String {
     while chars.last == "_" {
         chars = String(name.dropLast())
     }
-    if let paren = chars.index(of: "(") {
+    if let paren = chars.firstIndex(of: "(") {
         chars = String(chars[chars.startIndex..<paren])
     }
 
@@ -2651,11 +2651,11 @@ public protocol JavaObject: class, JSig, JRef, JInvocable {
 }
 
 public extension JavaObject {
-    public static var jvm: JVM { return JVM.sharedJVM }
-    public var jcls: jclass { return JVM.sharedJVM.getObjectClass(jobj)! }
+    static var jvm: JVM { return JVM.sharedJVM }
+    var jcls: jclass { return JVM.sharedJVM.getObjectClass(jobj)! }
 
     //    @available(*, deprecated=1.0, message="Ignores exception, replace this method")
-    public static var javaClass: jclass! {
+    static var javaClass: jclass! {
         //        defer { JVM.sharedJVM.exceptionClear() }
         let cname = javaClassName
         let cls = JVM.sharedJVM.findClass(cname)
@@ -2665,9 +2665,9 @@ public extension JavaObject {
         return cls!
     }
 
-    public static var jniType: JObjectType { return JObjectType(jniName()) }
+    static var jniType: JObjectType { return JObjectType(jniName()) }
 
-    public var jsig: String { return JObjectType(type(of: self).jniName()).jsig }
+    var jsig: String { return JObjectType(type(of: self).jniName()).jsig }
 
     // Need a non-static func invoker() to be able to statically call invoker() for bug #21677702
 //    func invoker(_ nothing: Void) { fatalError() }
@@ -2731,17 +2731,17 @@ public extension JavaObject {
 
 public extension JavaObject {
     /// The Java class name for the type (e.g., “java/lang/Object”)
-    public static var javaClassName: String {
+    static var javaClassName: String {
         return self.jniName()
     }
 
     /// Cast this instance to another type, returning nil if the cast could not be performed
-    public func castTo<T: JavaObject>(_ type: T.Type) -> T? {
+    func castTo<T: JavaObject>(_ type: T.Type) -> T? {
         return cast()
     }
     
     /// Cast this instance to another type, returning nil if the cast could not be performed
-    public func cast<T: JavaObject>() -> T? {
+    func cast<T: JavaObject>() -> T? {
         if let t = self as? T { return t } // we are already the correct instance
         guard let jvm = JVM.sharedJVM else { return nil }
         let jsup = jvm.findClass(T.javaClassName)
@@ -2854,7 +2854,7 @@ extension JVM {
 //}
 
 public extension JavaObject {
-    public static func createArray(_ jvm: JVM) -> (_ elements: [Self?]) -> jobjectArray? {
+    static func createArray(_ jvm: JVM) -> (_ elements: [Self?]) -> jobjectArray? {
         return { elements in
             if let jarr = jvm.newObjectArray(jsize(elements.count), clazz: javaClass, init: nil) {
                 for (i, e) in elements.enumerated() {
@@ -2882,25 +2882,25 @@ public extension JavaObject {
 }
 
 public extension jarray {
-    public func jarrayToArray<T: JPrimitive>() -> [T]? {
+    func jarrayToArray<T: JPrimitive>() -> [T]? {
         return T.getArray(JVM.sharedJVM.env)(self)
     }
 }
 
 public extension jobject {
-    public func jarrayToArray<T: JavaObject>(_ type: T.Type) -> [T?]? {
+    func jarrayToArray<T: JavaObject>(_ type: T.Type) -> [T?]? {
         return T.getArray(JVM.sharedJVM)(self)
     }
 }
 
 public extension Sequence where Self.Iterator.Element : JPrimitive {
-    public func arrayToJArray() -> Self.Iterator.Element.ArrayType? {
+    func arrayToJArray() -> Self.Iterator.Element.ArrayType? {
         return Self.Iterator.Element.createArray(JVM.sharedJVM.env)(Array(self))
     }
 }
 
 public extension Sequence where Self.Iterator.Element : JavaObject {
-    public func arrayToJArray() -> jobjectArray? {
+    func arrayToJArray() -> jobjectArray? {
         return Self.Iterator.Element.createArray(JVM.sharedJVM)(Array(self).map({ $0 as Self.Iterator.Element? }))
     }
 }
@@ -2913,7 +2913,7 @@ public protocol FlatMappable {
 extension Optional : FlatMappable { }
 
 public extension Sequence where Self.Iterator.Element : FlatMappable, Self.Iterator.Element.Wrapped : JavaObject {
-    public func arrayToJArray() -> jobjectArray? {
+    func arrayToJArray() -> jobjectArray? {
         let elements = Array(self).map({ $0.flatMap({ $0 as Self.Iterator.Element.Wrapped }) })
         return Self.Iterator.Element.Wrapped.createArray(JVM.sharedJVM)(elements)
     }
@@ -2921,7 +2921,7 @@ public extension Sequence where Self.Iterator.Element : FlatMappable, Self.Itera
 
 public extension Sequence where Iterator.Element: JavaObject {
     /// Downcast the array to the given element types
-    public func casts<T: JavaObject>() -> [T] {
+    func casts<T: JavaObject>() -> [T] {
         var arr: [T] = []
         for x in self {
             if let v: T = x.cast() {
@@ -2933,7 +2933,7 @@ public extension Sequence where Iterator.Element: JavaObject {
 }
 
 public extension Collection where Iterator.Element: JavaObject, Index == Int {
-    public func toJArray(_ jvm: JVM) -> jobjectArray? {
+    func toJArray(_ jvm: JVM) -> jobjectArray? {
         if let array = jvm.newObjectArray(jsize(count), clazz: Iterator.Element.javaClass, init: nil) {
             for (i, x) in self.enumerated() {
                 jvm.setObjectArrayElement(array, index: jsize(i), val: x.jobj)
@@ -2947,7 +2947,7 @@ public extension Collection where Iterator.Element: JavaObject, Index == Int {
 
 public extension Sequence where Iterator.Element == Optional<JavaObject> {
     /// Downcast the array to the given element types
-    public func casts<T: JavaObject>() -> [T] {
+    func casts<T: JavaObject>() -> [T] {
         var arr: [T] = []
         for x in self {
             if let x = x {

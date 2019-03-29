@@ -172,17 +172,9 @@ struct JName: Hashable, Equatable, CustomDebugStringConvertible {
         return parts.joined(separator: "$")
     }
 
-    var hashValue: Int {
-        return javaInternalName.hashValue
-    }
-
     var debugDescription: String {
         return parts.debugDescription
     }
-}
-
-func == (n1: JName, n2: JName) -> Bool {
-    return n1.parts == n2.parts
 }
 
 enum JType: Hashable, Equatable, CustomDebugStringConvertible {
@@ -197,22 +189,6 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
     case double
     case object(JName)
     indirect case array(JType)
-
-    var hashValue: Swift.Int {
-        switch self {
-        case .void: return 1
-        case .boolean: return 2
-        case .byte: return 3
-        case .char: return 4
-        case .short: return 5
-        case .int: return 6
-        case .long: return 7
-        case .float: return 8
-        case .double: return 9
-        case .object(let type): return type.hashValue
-        case .array: return 10
-        }
-    }
 
     var debugDescription: String {
         switch self {
@@ -368,23 +344,6 @@ enum JType: Hashable, Equatable, CustomDebugStringConvertible {
     }
 }
 
-func == (t1: JType, t2: JType) -> Bool {
-    switch (t1, t2) {
-    case (.void, .void): return true
-    case (.boolean, .boolean): return true
-    case (.byte, .byte): return true
-    case (.char, .char): return true
-    case (.short, .short): return true
-    case (.int, .int): return true
-    case (.long, .long): return true
-    case (.float, .float): return true
-    case (.double, .double): return true
-    case (.object(let o1), .object(let o2)): return o1 == o2
-    case (.array(let a1), .array(let a2)): return a1 == a2
-    default: return false
-    }
-}
-
 //public func replaceString(str: String, find: String, replacement: String = "", regex: Bool = false) -> String {
 //    return str.stringByReplacingOccurrencesOfString(find, withString: replacement, options: regex ? NSStringCompareOptions.RegularExpressionSearch : NSStringCompareOptions(), range: Range(start: str.startIndex, end: str.endIndex))
 //}
@@ -457,12 +416,12 @@ struct JField {
     init?(decl: String, desc: String, mods: JMod) throws {
         self.mods = mods
 
-        guard let semicolon = decl.index(of: ";") else {
+        guard let semicolon = decl.firstIndex(of: ";") else {
             return nil
         }
 
         let declReverse = decl[decl.startIndex..<semicolon].reversed()
-        let fieldEndIndex = declReverse.index(of: " ") ?? declReverse.endIndex
+        let fieldEndIndex = declReverse.firstIndex(of: " ") ?? declReverse.endIndex
         self.fname = String(declReverse[declReverse.startIndex..<fieldEndIndex].reversed())
 
         var dgen = desc.makeIterator()
@@ -495,20 +454,20 @@ struct JMethod {
     init?(decl: String, desc: String, mods: JMod) throws {
         self.mods = mods
 
-        guard let paren = decl.index(of: "(") else {
+        guard let paren = decl.firstIndex(of: "(") else {
             return nil // otherwise it is a field, which we don't yet support
         }
 
         let declReverse = decl[decl.startIndex..<paren].reversed()
-        let funcEndIndex = declReverse.index(of: " ") ?? declReverse.endIndex
+        let funcEndIndex = declReverse.firstIndex(of: " ") ?? declReverse.endIndex
         self.fname = String(declReverse[declReverse.startIndex..<funcEndIndex].reversed())
 
-        self.constructor = fname.index(of: ".") != nil // initializers have dots: public java.lang.String(char[])
+        self.constructor = fname.firstIndex(of: ".") != nil // initializers have dots: public java.lang.String(char[])
 
-        guard let openParen = desc.index(of: "("), openParen == desc.startIndex else {
+        guard let openParen = desc.firstIndex(of: "("), openParen == desc.startIndex else {
             throw CodegenErrors.parseError("No open paren")
         }
-        guard let closeParen = desc.index(of: ")"), closeParen > openParen else {
+        guard let closeParen = desc.firstIndex(of: ")"), closeParen > openParen else {
             throw CodegenErrors.parseError("No close paren")
         }
 
@@ -537,20 +496,6 @@ struct JMethod {
             }
         }
         return types
-    }
-
-    /// Inserts a deferred retain arguments statement so arguments are not released before the end of the statement,
-    /// which can cause a memory crash (especially noted with initializers that throw exceptions)
-    func retainArgumentsStatement() -> String {
-        var code = ""
-        if arguments.isEmpty { return code }
-        code += "        defer { JVM.retainArguments("
-        for (i, _) in arguments.enumerated() {
-            if i > 0 { code += ", " }
-            code += "a\(i)"
-        }
-        code += ") }\n"
-        return code
     }
 }
 
@@ -1096,9 +1041,6 @@ extension JUnit {
 
                 if mimp {
                     code += " {\n"
-
-                    // doesn't seem to help
-                    // code += method.retainArgumentsStatement()
 
                     code += "        "
                     if method.constructor {

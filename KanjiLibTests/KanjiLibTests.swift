@@ -441,7 +441,7 @@ class KanjiLibTests: XCTestCase {
                 return (globalRet?.jobj ?? nil)!
             })
             let ret = try? block.get()
-            XCTAssertEqual("3489732", ret??.description)
+            XCTAssertEqual("3489732", ret?.description)
         }
 
         // Predicate<T>
@@ -490,7 +490,7 @@ class KanjiLibTests: XCTestCase {
                 let str2 = java$lang$String(reference: $3)
                 let str3 = try? str2?.concat(str1?.toUpperCase())
                 globalRet = str3 ?? nil
-                return (str3??.jobj ?? nil)!
+                return (str3?.jobj ?? nil)!
             })
             _ = try block.apply("abc".javaString, "xyz".javaString)
             XCTAssertEqual("xyzABC", globalRet?.description)
