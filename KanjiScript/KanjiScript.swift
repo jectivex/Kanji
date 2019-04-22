@@ -19,7 +19,7 @@ open class KanjiScriptContext : ScriptContext {
     public typealias InstanceType = KanjiScriptType
 
     public init(engine name: String, jars: [URL] = []) throws {
-        if JVM.sharedJVM == nil { JVM.sharedJVM = try JVM() }
+        // if JVM.sharedJVM == nil { JVM.sharedJVM = try JVM() }
         
         // set and restore the current class loader; when we specify a URL class loader,
         // script engines like Nashorn will cache the current loader when the initialize
@@ -420,7 +420,7 @@ public extension JavaObject {
             }
             return .arr(arr)
         } else if let amp: java$util$Map$Impl = ob.cast() { // any map converts to an object
-            var dict: [String: Bric] = [:]
+            var dict: Bric.ObjType = [:]
             for key in try amp.keySet()?.toArray([]) ?? [] {
                 if let stringKey : java$lang$String = key?.cast() {
                     if let value = try amp.get(stringKey) {

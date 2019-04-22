@@ -72,24 +72,7 @@ class KanjiLibTests: XCTestCase {
     }
 
     override func setUp() {
-        if JVM.sharedJVM == nil {
-
-            NSLog("KanjiVMTests: adding KanjiVMTests to module loaders")
-
-//        JVM.moduleLoaders += [self as AnyClass] // no need since we automatically add in generic wrappers?
-
-//        let extpath: [String]? = [
-//            "/opt/src/glimpse/ext/drivers/sqlline",
-//            "/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/jre/lib/ext",
-//            "/Library/Java/JavaVirtualMachines/jdk1.8.0_40.jdk/Contents/Home/db/lib",
-//        ]
-//        JVM.sharedJVM = try! JVM(extpath: extpath)
-
-//        JVM.sharedJVM = try! JVM(verbose: (gc: true, jni: true, classload: true))
-
-//            JVM.sharedJVM = try! JVM()
-            JVM.sharedJVM = try! JVM(classpath: ["/tmp/jni"]) // for JNI testing
-        }
+        JVM.sharedJVMCreator = { try JVM(classpath: ["/tmp/jni"]) } // for JNI testing
     }
 
     func testIllegalConstructor() throws {

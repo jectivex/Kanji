@@ -113,21 +113,17 @@ private var JNI: JVM { return JVM.sharedJVM }
 public typealias JNIEnvPointer = UnsafeMutablePointer<JNIEnv?>?
 
 public final class JVM {
+    /// The constructor that will be used to lazily create the shared JVM
+    public static var sharedJVMCreator: () throws -> (JVM) = { try JVM() }
+
+    private static var singletonJVM: JVM?
+
     /// The singleton shared JVM: it must be manually set once and only once for a process, as JNI does not support mutliple JVMs
     public static var sharedJVM: JVM! {
-        willSet {
-            if sharedJVM != nil {
-                fatalError("Attempt the set shared JVM once it has been created; multiple JVMs are not supported by JNI")
-            }
-        }
-
-        didSet {
-            // eagerly lookup the essential lazy classes
-            assert(sharedJVM.classClass != nil, "unable to lookup java/lang/Class")
-            assert(sharedJVM.stringClass != nil, "unable to lookup java/lang/String")
-            assert(sharedJVM.throwableClass != nil, "unable to lookup java/lang/Throwable")
-            assert(sharedJVM.classGetName != nil, "unable to lookup java/lang/Class.getName")
-        }
+        if let jvm = singletonJVM { return jvm }
+        let newJVM = try! sharedJVMCreator()
+        singletonJVM = newJVM
+        return jvm
     }
 
     var jvm: UnsafeMutablePointer<JavaVM?>
@@ -310,7 +306,7 @@ public final class JVM {
 
         let end = CFAbsoluteTimeGetCurrent()
 
-        log("created JVM version \(self.api.GetVersion(env)) with options \(opts) in \(end-start)sec", file: file, line: line, function: function)
+        log("created JVM version \(self.api.GetVersion(env)) with options \(opts) in \(end-start)sec classpath=\(classpath ?? [])", file: file, line: line, function: function)
     }
 
     //    deinit {
@@ -2594,7 +2590,7 @@ public extension JVM {
 /// JNI Invocation helpers
 public extension JVM {
     /// Returns the JNI method signature for the given return type and argument types
-    static func jsig<T: JType>(_ returns: T, args: [JSig])->String {
+    @inlinable static func jsig<T: JType>(_ returns: T, args: [JSig])->String {
         return "(" + args.reduce("", { $0 + $1.jsig }) + ")" + returns.jsig
     }
 
@@ -2768,7 +2764,7 @@ public extension JavaObject {
 
 extension JVM {
     /// Converts the given JNI jstring to a Swift string
-    public func fromJavaString(_ jstr: jstring?) -> String? {
+    @inlinable public func fromJavaString(_ jstr: jstring?) -> String? {
         guard let jstr = jstr else { return nil }
         let len = getStringLength(jstr)
         if len <= 0 { return "" } // https://bugs.openjdk.java.net/browse/JDK-8145015
@@ -2779,9 +2775,11 @@ extension JVM {
     }
 
     /// Converts the given Swift string to a JNI jstring
-    public func toJString(_ string: String) -> jstring? {
+    @inlinable public func toJString(_ string: String) -> jstring? {
         // in theory this should be the fastest way, because we might be able to share string pointers without copying
         // Unicode.UTF16.CodeUnit == jchar == UInt16
+
+        // #warning("zero-termination may no longer needed as of Swift 5: https://swift.org/blog/utf8-string/#c-interoperability")
         return string.withCString(encodedAs: Unicode.UTF16.self) { (ptr: UnsafePointer<Unicode.UTF16.CodeUnit>) in
             // string is null-terminated, so we need to walk the pointers to find the length
             var len: jsize = 0

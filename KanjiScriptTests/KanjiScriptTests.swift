@@ -93,13 +93,7 @@ func setupKanjiScriptTests() {
     let dir = "/usr/local/Cellar/scala/2.12.8/libexec/lib" // location for "brew install scala"
     let cp: [String] = (try? FileManager.default.contentsOfDirectory(atPath: dir).map({ dir + $0 })) ?? []
     // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
-    if JVM.sharedJVM == nil {
-        do {
-            JVM.sharedJVM = try JVM(classpath: cp)
-        } catch {
-            XCTFail("error creating JVM: " + error.localizedDescription)
-        }
-    }
+    JVM.sharedJVMCreator = { try JVM(classpath: cp) }
 
     if FileManager.default.fileExists(atPath: dir) == false {
         return XCTFail("scala not installed at \(dir)") // make sure we know when scala is missing

@@ -12,17 +12,24 @@ import JavaLib
 
 
 public extension JVM {
+//    /// Attaches the system class loader as the current thread's context class loader if it is not already set
+//    func initializeThreadLoader() throws {
+//        let _ = try withContextLoader()
+//    }
+
     /// Attaches the system class loader as the current thread's context class loader if it is not already set
-    func initializeThreadLoader() throws {
+    func withContextLoader(_ loader: @escaping () throws -> (java$lang$ClassLoader?) = { try java$lang$ClassLoader.getSystemClassLoader() }) throws -> JVM {
         // “Java threads created from JNI code in a non-java thread have null ContextClassloader unless the creator explicitly sets it”; if this is null and we are initializing scala, we will get an NPE or other error
         if let thread = try java$lang$Thread.currentThread() {
             if try thread.getContextClassLoader() == nil {
-                if let syscl = try java$lang$ClassLoader.getSystemClassLoader() {
+                if let syscl = try loader() {
                     print("initializing context class loader for \(Thread.current)")
                     try thread.setContextClassLoader(syscl)
                 }
             }
         }
+
+        return self
     }
 
     /// Returns a tuple of the classes that have been loaded by this VM
