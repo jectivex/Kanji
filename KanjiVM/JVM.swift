@@ -112,6 +112,7 @@ private var JNI: JVM { return JVM.sharedJVM }
 
 public typealias JNIEnvPointer = UnsafeMutablePointer<JNIEnv?>?
 
+
 public final class JVM {
     /// The constructor that will be used to lazily create the shared JVM
     public static var sharedJVMCreator: () throws -> (JVM) = { try JVM() }
@@ -121,9 +122,13 @@ public final class JVM {
     /// The singleton shared JVM: it must be manually set once and only once for a process, as JNI does not support mutliple JVMs
     public static var sharedJVM: JVM! {
         if let jvm = singletonJVM { return jvm }
-        let newJVM = try! sharedJVMCreator()
-        singletonJVM = newJVM
-        return jvm
+        do {
+            let newJVM = try sharedJVMCreator()
+            singletonJVM = newJVM
+            return jvm
+        } catch {
+            fatalError("error loading JVM \(error)")
+        }
     }
 
     var jvm: UnsafeMutablePointer<JavaVM?>

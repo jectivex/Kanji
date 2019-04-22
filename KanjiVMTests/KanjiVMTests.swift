@@ -12,9 +12,7 @@ import KanjiVM
 
 class KanjiVMTests: XCTestCase {
     override func setUp() {
-        if JVM.sharedJVM == nil {
-            JVM.sharedJVM = try! JVM()
-        }
+        assert(JVM.sharedJVM != nil)
     }
 
     func testStringBridging() {

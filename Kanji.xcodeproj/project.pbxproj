@@ -13,6 +13,7 @@
 		498D30882193939000CB6446 /* javax.sql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498D30842193939000CB6446 /* javax.sql.swift */; };
 		4994A89221BAEFE700502A8E /* jdk.jshell.spi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994A89021BAEFE600502A8E /* jdk.jshell.spi.swift */; };
 		4994A89321BAEFE700502A8E /* jdk.jshell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4994A89121BAEFE600502A8E /* jdk.jshell.swift */; };
+		49C2D4CE226E16B7008ECF23 /* libraries in Resources */ = {isa = PBXBuildFile; fileRef = 49C2D4CD226E16B7008ECF23 /* libraries */; };
 		7E0E8C271B6FA7170003FEC6 /* KanjiLib.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E0E8C261B6FA7170003FEC6 /* KanjiLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E0E8C2E1B6FA7170003FEC6 /* KanjiLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0E8C241B6FA7170003FEC6 /* KanjiLib.framework */; };
 		7E0E8C331B6FA7170003FEC6 /* KanjiLibTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0E8C321B6FA7170003FEC6 /* KanjiLibTests.swift */; };
@@ -243,6 +244,7 @@
 		498D30842193939000CB6446 /* javax.sql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = javax.sql.swift; sourceTree = "<group>"; };
 		4994A89021BAEFE600502A8E /* jdk.jshell.spi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jdk.jshell.spi.swift; sourceTree = "<group>"; };
 		4994A89121BAEFE600502A8E /* jdk.jshell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jdk.jshell.swift; sourceTree = "<group>"; };
+		49C2D4CD226E16B7008ECF23 /* libraries */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libraries; sourceTree = "<group>"; };
 		7E0E8C241B6FA7170003FEC6 /* KanjiLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KanjiLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E0E8C261B6FA7170003FEC6 /* KanjiLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KanjiLib.h; sourceTree = "<group>"; };
 		7E0E8C281B6FA7170003FEC6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 				7EA4CF0E1D58FAC300E0D57B /* rel2.js */,
 				7EA4CF0F1D58FAC300E0D57B /* rel3.js */,
 				7E5ABDA41B60483C00F11C77 /* Info.plist */,
+				49C2D4CD226E16B7008ECF23 /* libraries */,
 			);
 			path = KanjiScriptTests;
 			sourceTree = "<group>";
@@ -1112,6 +1115,7 @@
 			files = (
 				7EA4CF121D58FAC300E0D57B /* rel3.js in Resources */,
 				7EA4CF101D58FAC300E0D57B /* rel1.js in Resources */,
+				49C2D4CE226E16B7008ECF23 /* libraries in Resources */,
 				7EA4CF111D58FAC300E0D57B /* rel2.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
