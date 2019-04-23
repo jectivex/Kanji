@@ -20,6 +20,8 @@
 # • Apache commons & logging relies on java.beans in java.desktop
 # • SQL Server JDBC Driver requires org/ietf/jgss/
 # • Orade JDBC Driver requires javax.management
+# • JShell doesn't work if we remove the native commands…
+# • …but we need to delete the binaries for embedding in sandboxed apps
 jlink \
   -v \
   --module-path $JAVA_HOME/jmods \
@@ -37,10 +39,8 @@ jlink \
   --add-modules java.security.jgss \
   --add-modules java.management \
   --add-modules jdk.jshell \
+  --strip-native-commands \
   --compress 2 \
   --output macos.jre
 
-# JShell doesn't work if we remove the native commands…
-# need to delete the binaries for embedding in sandboxed apps
-#  --strip-native-commands \
-#rm -r macos.jre/lib/jspawnhelper
+rm -r macos.jre/lib/jspawnhelper

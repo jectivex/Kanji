@@ -199,7 +199,26 @@ class KanjiScriptTests: XCTestCase {
             checkeq(["X", "Y", "Z"], f: try ctx.val(ctx.eval("let result = ['x', 'y', 'z'].map(str => str.toUpperCase()); result;")))
         }
     }
-    
+
+    func testNashornPerformance() throws {
+        let ctx = try KanjiScriptContext(engine: "nashorn")
+        let _ = try ctx.eval("function fibonacci(n) { return n > 1 ? fibonacci(n - 1) + fibonacci(n - 2) : n; }")
+
+        func checkfib(_ n: Int) {
+            checkeq(.num(Double(fibN(n))), f: try ctx.val(ctx.eval(.val(.str("fibonacci(\(n))")))))
+        }
+
+        // do a warmup run
+        for i in 1...10 { checkfib(i) }
+
+        measure {
+            DispatchQueue.concurrentPerform(iterations: 100) { i in
+                checkfib((i % 10) + 25)
+            }
+        }
+    }
+
+
     func testNashornFunctionReferences() throws {
         let ctx = try KanjiScriptContext(engine: "nashorn")
         
@@ -345,7 +364,9 @@ class JShellTests: XCTestCase {
         setupKanjiScriptTests()
     }
 
-    func testJShell() {
+    /// Disabled because we need to remove the native jshell commands when we are distributing, or else:
+    /// App sandbox not enabled. The following executables must include the "com.apple.security.app-sandbox" entitlement with a Boolean value of true in the entitlements property list: [( "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/appletviewer", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/java", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/javac", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jdb", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jrunscript", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jshell", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/keytool", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/rmid", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/rmiregistry", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/serialver", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/lib/jspawnhelper" )] Refer to App Sandbox page at https://developer.apple.com/devcenter/mac/app-sandbox/ for more information on sandboxing your app.
+    func XXXtestJShell() {
         do {
             guard let jshell = try jdk$jshell$JShell.create() else { return XCTFail("unable to create") }
             defer { do { try jshell.close() } catch { } } // always close at the end
@@ -525,25 +546,6 @@ class JShellTests: XCTestCase {
             XCTFail(String(describing: error))
         }
     }
-
-    func testNashornPerformance() throws {
-        let ctx = try KanjiScriptContext(engine: "nashorn")
-        let _ = try ctx.eval("function fibonacci(n) { return n > 1 ? fibonacci(n - 1) + fibonacci(n - 2) : n; }")
-
-        func checkfib(_ n: Int) {
-            checkeq(.num(Double(fibN(n))), f: try ctx.val(ctx.eval(.val(.str("fibonacci(\(n))")))))
-        }
-
-        // do a warmup run
-        for i in 1...10 { checkfib(i) }
-
-        var i = 10
-        measure { // average: 0.004, relative standard deviation: 21.522%
-            i += 1
-            checkfib(i)
-        }
-    }
-
 }
 
 
