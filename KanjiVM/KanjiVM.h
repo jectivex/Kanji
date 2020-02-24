@@ -3,7 +3,7 @@
 //  Kanji
 //
 //  Created by Marc Prud'hommeaux on 10/4/16.
-//  Copyright © 2016 io.glimpse. All rights reserved.
+//  Copyright © 2010-2020 io.glimpse. All rights reserved.
 //
 
 #ifndef KanjiVM_h
