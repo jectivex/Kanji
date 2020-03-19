@@ -739,10 +739,10 @@ class KanjiScriptScalaTests: XCTestCase {
             XCTAssertEqual(.str(s.lowercased()), try lower(.str(s)))
         }
 
-        measure { // average: 0.137, relative standard deviation: 10.847%
+        // measure { // average: 0.137, relative standard deviation: 10.847%
             invokePowClosure(5.0)
             invokeLowerClosure("FOO")
-        }
+        // }
     }
 
     /// Test the scenario where a Scala closure is recursively created from the execution of another closure
