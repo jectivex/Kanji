@@ -118,6 +118,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		493F7AD42423A4E1001035C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7EA887FC1AAAB6DF00C6DBB3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E0E8C231B6FA7170003FEC6;
+			remoteInfo = KanjiLib;
+		};
 		7E0E8C2F1B6FA7170003FEC6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7EA887FC1AAAB6DF00C6DBB3 /* Project object */;
@@ -858,6 +865,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				493F7AD52423A4E1001035C7 /* PBXTargetDependency */,
 				7E5ABDA01B60483C00F11C77 /* PBXTargetDependency */,
 			);
 			name = KanjiScriptTests;
@@ -1338,6 +1346,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		493F7AD52423A4E1001035C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E0E8C231B6FA7170003FEC6 /* KanjiLib */;
+			targetProxy = 493F7AD42423A4E1001035C7 /* PBXContainerItemProxy */;
+		};
 		7E0E8C301B6FA7170003FEC6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7E0E8C231B6FA7170003FEC6 /* KanjiLib */;
