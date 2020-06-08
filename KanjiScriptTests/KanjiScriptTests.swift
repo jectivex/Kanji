@@ -211,11 +211,11 @@ class KanjiScriptTests: XCTestCase {
         // do a warmup run
         for i in 1...10 { checkfib(i) }
 
-        measure {
+//        measure { // performance is too unstable to be able to measure
             DispatchQueue.concurrentPerform(iterations: 100) { i in
                 checkfib((i % 10) + 25)
             }
-        }
+//        }
     }
 
 
