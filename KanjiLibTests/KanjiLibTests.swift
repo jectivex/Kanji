@@ -142,7 +142,9 @@ class KanjiLibTests: XCTestCase {
         }
     }
 
-    func XXXtestDirectByteBuffers() throws {
+    func testDirectByteBuffers() throws {
+        throw XCTSkip()
+
         // this started failing after the 10.15.3 -> 10.15.4 upgrade: random numbers (e.g., -120, -6, -46, 114) are being returned.
         var bytes: [jbyte] = [1,5,9,3]
 
@@ -872,7 +874,9 @@ class KanjiLibTests: XCTestCase {
         }
     }
 
-    func XXXtestManagement() throws {
+    func testManagement() throws {
+        throw XCTSkip()
+
         // disabled for testing Java 9 module support with minimal modules
         do {
             guard let _ = try java$lang$management$ManagementFactory.getClassLoadingMXBean() else { return XCTFail() }
@@ -915,7 +919,9 @@ class KanjiLibTests: XCTestCase {
     }
 
     /// Ensure that there is no more than a minimal overhead for Java string creation
-    func XXXtestStringMemory() throws {
+    func testStringMemory() throws {
+        throw XCTSkip()
+
         // disabled for testing Java 9 module support with minimal modules
         do {
             for c: Character in ["x", "€", "🐶"] {

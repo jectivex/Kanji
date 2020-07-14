@@ -339,7 +339,9 @@ class KanjiScriptTests: XCTestCase {
         _ = try ctx.eval("new (Java.type('Foo'))();") // Foo is defined in the test jar
     }
 
-    func XXXtestScriptRelativeFiles() throws {
+    func testScriptRelativeFiles() throws {
+        throw XCTSkip()
+
         guard let url = NSURL(fileURLWithPath: #file).deletingLastPathComponent?.appendingPathComponent("rel1.js") else {
             return XCTFail("could not load test jar")
         }
@@ -366,7 +368,9 @@ class JShellTests: XCTestCase {
 
     /// Disabled because we need to remove the native jshell commands when we are distributing, or else:
     /// App sandbox not enabled. The following executables must include the "com.apple.security.app-sandbox" entitlement with a Boolean value of true in the entitlements property list: [( "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/appletviewer", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/java", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/javac", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jdb", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jrunscript", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jshell", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/keytool", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/rmid", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/rmiregistry", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/serialver", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/lib/jspawnhelper" )] Refer to App Sandbox page at https://developer.apple.com/devcenter/mac/app-sandbox/ for more information on sandboxing your app.
-    func XXXtestJShell() {
+    func testJShell() {
+        throw XCTSkip()
+
         do {
             guard let jshell = try jdk$jshell$JShell.create() else { return XCTFail("unable to create") }
             defer { do { try jshell.close() } catch { } } // always close at the end
