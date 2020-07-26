@@ -63,9 +63,7 @@ class KanjiVMTests: XCTestCase {
     }
 
     /// Generated the boilerplate for the curried method and constructor invocation methods in the JVM extension
-    func testInvokerGenerator() throws {
-        if this(true) { throw XCTSkip() }
-
+    func DISABLEDtestInvokerGenerator() throws {
         print("public extension JInvocable {")
 
         for fname in ["invoker", "svoker", "constructor"] {
