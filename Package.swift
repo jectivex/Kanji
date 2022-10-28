@@ -1,6 +1,9 @@
 // swift-tools-version:5.6
 import PackageDescription
 
+// on macOS 12 with brew install, tests can be run like:
+// swift test -Xlinker -L/opt/homebrew/Cellar/openjdk@11/11.0.16.1_1/libexec/openjdk.jdk/Contents/Home/lib/jli -Xlinker -ljli
+
 let package = Package(
     name: "Kanji",
     defaultLocalization: "en",
@@ -10,9 +13,9 @@ let package = Package(
     products: [
         .library(name: "CJNI", targets: ["CJNI"]),
         .library(name: "KanjiVM", targets: ["KanjiVM"]),
-//        .library(name: "JavaLib", targets: ["JavaLib"]),
+        .library(name: "JavaLib", targets: ["JavaLib"]),
 //        .library(name: "KanjiGen", targets: ["KanjiGen"]),
-//        .library(name: "KanjiLib", targets: ["KanjiLib"]),
+        .library(name: "KanjiLib", targets: ["KanjiLib"]),
 //        .library(name: "KanjiScript", targets: ["KanjiScript"]),
 //        .library(name: "KanjiTool", targets: ["KanjiTool"]),
     ],
@@ -22,16 +25,16 @@ let package = Package(
         .target(name: "CJNI"),
 
         .target(name: "KanjiVM", dependencies: ["CJNI"], resources: [.process("Resources")], cSettings: [.define("_GNU_SOURCE", to: "1")]),
-//        .target(name: "JavaLib", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
+        .target(name: "JavaLib", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
 //        .target(name: "KanjiGen", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
-//        .target(name: "KanjiLib", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
+        .target(name: "KanjiLib", dependencies: ["JavaLib"], resources: [.process("Resources")]),
 //        .target(name: "KanjiScript", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
         
 //        .executableTarget(name: "KanjiTool", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
 
         .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
 //        .testTarget(name: "KanjiGenTests", dependencies: ["KanjiGen"], resources: [.process("Resources")]),
-//        .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")]),
+        .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")]),
 //        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources")]),
     ]
 )

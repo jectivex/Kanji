@@ -66,8 +66,7 @@ jobs:
             --disable-indexing \
             --transform-for-static-hosting \
             --hosting-base-path KanjiVM \
-            --output-path docs \
-            -Xlinker -L${JAVA_HOME}/jre/lib/jli -Xlinker -ljli
+            --output-path docs
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

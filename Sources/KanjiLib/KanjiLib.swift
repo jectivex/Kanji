@@ -7,8 +7,10 @@
 
 import KanjiVM
 import JavaLib
-
-
+import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public extension JVM {
 //    /// Attaches the system class loader as the current thread's context class loader if it is not already set
