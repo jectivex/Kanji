@@ -24,8 +24,7 @@ jobs:
         run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
 
       - name: Test (Release)
-        if: false
-        run: swift test XXX
+        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration release -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
 
   macos:
     runs-on: macos-12
@@ -44,8 +43,7 @@ jobs:
         run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
 
       - name: Test (Release)
-        if: false
-        run: swift test XXX
+        run: swift test -v --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
 
   api-doc:
     runs-on: macos-12
