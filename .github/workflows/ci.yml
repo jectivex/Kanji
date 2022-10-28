@@ -12,44 +12,18 @@ on:
 jobs:
   linux:
     runs-on: ubuntu-latest
-    if: true
     steps:
       - run: sudo apt-get update
       - run: |
           which java
           java --version
           echo "JAVA_HOME: ${JAVA_HOME}"
+          find "${JAVA_HOME}" -type f
       - uses: actions/checkout@v2
       - name: Test (Debug)
         run: swift test -v --configuration debug
       - name: Test (Release)
         run: swift test -v --configuration release -Xswiftc -enable-testing
-
-  ios:
-    runs-on: macos-12
-    if: false
-    steps:
-      - uses: actions/checkout@v2
-      - run: |
-            xcodebuild clean test \
-              -configuration Release \
-              -scheme "Kanji" \
-              -sdk "iphonesimulator" \
-              -destination "platform=iOS Simulator,name=iPhone 14" \
-              ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
-
-  tvos:
-    runs-on: macos-12
-    if: false
-    steps:
-      - uses: actions/checkout@v2
-      - run: |
-            xcodebuild clean test \
-              -configuration Release \
-              -scheme "Kanji" \
-              -sdk "appletvsimulator" \
-              -destination "platform=tvOS Simulator,name=Apple TV" \
-              ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
 
   macos:
     runs-on: macos-12
@@ -66,7 +40,7 @@ jobs:
 
       - name: Test (Debug)
         run: |
-          swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli -Xlinker -ljli
+          swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli -Xlinker -ljli
 
       - name: Test (Release)
         run: |
