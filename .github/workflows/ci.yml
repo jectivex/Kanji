@@ -27,7 +27,7 @@ jobs:
 
   ios:
     runs-on: macos-12
-    id: false
+    if: false
     steps:
       - uses: actions/checkout@v2
       - run: |
@@ -89,5 +89,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: '.'
-
 
