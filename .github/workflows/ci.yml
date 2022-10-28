@@ -21,7 +21,7 @@ jobs:
           find "${JAVA_HOME}" -type f
       - uses: actions/checkout@v2
       - name: Test (Debug)
-        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -ljvm
+        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
 
       - name: Test (Release)
         if: false
@@ -41,7 +41,7 @@ jobs:
           find "${JAVA_HOME}" -type f
 
       - name: Test (Debug)
-        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli/  -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/server/ -Xlinker -ljli 
+        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
 
       - name: Test (Release)
         if: false
