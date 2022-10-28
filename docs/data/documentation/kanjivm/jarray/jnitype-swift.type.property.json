@@ -1,20 +1,42 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "JType.jniType",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/KanjiVM\/documentation\/KanjiVM",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/elementType"
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/jniType-swift.type.property"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:7KanjiVM6JArrayV11elementTypeAA4JSig_pvp",
+    "externalID" : "s:7KanjiVM6JArrayV7jniTypeACvpZ",
     "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "static"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
       {
         "kind" : "keyword",
         "text" : "let"
@@ -25,7 +47,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "elementType"
+        "text" : "jniType"
       },
       {
         "kind" : "text",
@@ -33,8 +55,8 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7KanjiVM4JSigP",
-        "text" : "JSig"
+        "preciseIdentifier" : "s:7KanjiVM6JArrayV",
+        "text" : "JArray"
       }
     ],
     "modules" : [
@@ -43,9 +65,9 @@
       }
     ],
     "role" : "symbol",
-    "roleHeading" : "Instance Property",
+    "roleHeading" : "Type Property",
     "symbolKind" : "property",
-    "title" : "elementType"
+    "title" : "jniType"
   },
   "primaryContentSections" : [
     {
@@ -60,6 +82,14 @@
           "tokens" : [
             {
               "kind" : "keyword",
+              "text" : "static"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
               "text" : "let"
             },
             {
@@ -68,17 +98,17 @@
             },
             {
               "kind" : "identifier",
-              "text" : "elementType"
+              "text" : "jniType"
             },
             {
               "kind" : "text",
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JSig",
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7KanjiVM4JSigP",
-              "text" : "JSig"
+              "preciseIdentifier" : "s:7KanjiVM6JArrayV",
+              "text" : "JArray"
             }
           ]
         }
@@ -97,7 +127,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/kanjivm\/jarray-swift.struct\/elementtype"
+        "\/documentation\/kanjivm\/jarray\/jnitype-swift.type.property"
       ],
       "traits" : [
         {
@@ -119,7 +149,7 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
   "abstract" : [
     {
       "text" : "A JNI array that contains other elements",
@@ -140,7 +170,7 @@
       "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -151,13 +181,21 @@
   "role" : "symbol",
   "title" : "JArray",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct"
+  "url" : "\/documentation\/kanjivm\/jarray"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/elementType": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/jniType-swift.type.property": {
   "abstract" : [
 
   ],
   "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
     {
       "kind" : "keyword",
       "text" : "let"
@@ -168,7 +206,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "elementType"
+      "text" : "jniType"
     },
     {
       "kind" : "text",
@@ -176,50 +214,16 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7KanjiVM4JSigP",
-      "text" : "JSig"
+      "preciseIdentifier" : "s:7KanjiVM6JArrayV",
+      "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/elementType",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/jniType-swift.type.property",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "elementType",
+  "title" : "jniType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/elementtype"
-},
-"doc://KanjiVM/documentation/KanjiVM/JSig": {
-  "abstract" : [
-    {
-      "text" : "A non-generic JNI type that can identify its signature",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "protocol"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "JSig"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JSig",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "JSig"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "JSig",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jsig"
+  "url" : "\/documentation\/kanjivm\/jarray\/jnitype-swift.type.property"
 }
 }
 }

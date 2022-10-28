@@ -1,19 +1,33 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNominal.empty()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
         "doc:\/\/KanjiVM\/documentation\/KanjiVM",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JPrimitive"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JPrimitive\/getArray(_:)"
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/empty()"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:7KanjiVM10JPrimitiveP8getArrayySayxGSgs13OpaquePointerVcSpySPySo19JNINativeInterface_VGSgGSgFZ",
+    "externalID" : "s:7KanjiVM6JArrayV5emptys13OpaquePointerVSgyFZ",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -33,37 +47,25 @@
       },
       {
         "kind" : "identifier",
-        "text" : "getArray"
+        "text" : "empty"
       },
       {
         "kind" : "text",
-        "text" : "("
+        "text" : "() -> "
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
-        "text" : "JNIEnvPointer"
+        "preciseIdentifier" : "s:7KanjiVM6JArrayV",
+        "text" : "JArray"
       },
       {
         "kind" : "text",
-        "text" : ") -> ("
+        "text" : "."
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:@T@jarray",
-        "text" : "jarray"
-      },
-      {
-        "kind" : "text",
-        "text" : ") -> ["
-      },
-      {
-        "kind" : "typeIdentifier",
-        "text" : "Self"
-      },
-      {
-        "kind" : "text",
-        "text" : "]?"
+        "preciseIdentifier" : "s:7KanjiVM6JArrayV7JNITypea",
+        "text" : "JNIType"
       }
     ],
     "modules" : [
@@ -71,11 +73,10 @@
         "name" : "KanjiVM"
       }
     ],
-    "required" : true,
     "role" : "symbol",
     "roleHeading" : "Type Method",
     "symbolKind" : "method",
-    "title" : "getArray(_:)"
+    "title" : "empty()"
   },
   "primaryContentSections" : [
     {
@@ -106,54 +107,27 @@
             },
             {
               "kind" : "identifier",
-              "text" : "getArray"
+              "text" : "empty"
             },
             {
               "kind" : "text",
-              "text" : "("
+              "text" : "() -> "
             },
             {
-              "kind" : "externalParam",
-              "text" : "_"
-            },
-            {
-              "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "internalParam",
-              "text" : "env"
-            },
-            {
-              "kind" : "text",
-              "text" : ": "
-            },
-            {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNIEnvPointer",
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
-              "text" : "JNIEnvPointer"
+              "preciseIdentifier" : "s:7KanjiVM6JArrayV",
+              "text" : "JArray"
             },
             {
               "kind" : "text",
-              "text" : ") -> ("
+              "text" : "."
             },
             {
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIType-swift.typealias",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jarray",
-              "text" : "jarray"
-            },
-            {
-              "kind" : "text",
-              "text" : ") -> ["
-            },
-            {
-              "kind" : "typeIdentifier",
-              "text" : "Self"
-            },
-            {
-              "kind" : "text",
-              "text" : "]?"
+              "preciseIdentifier" : "s:7KanjiVM6JArrayV7JNITypea",
+              "text" : "JNIType"
             }
           ]
         }
@@ -172,7 +146,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/kanjivm\/jprimitive\/getarray(_:)"
+        "\/documentation\/kanjivm\/jarray\/empty()"
       ],
       "traits" : [
         {
@@ -194,7 +168,41 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm"
 },
-"doc://KanjiVM/documentation/KanjiVM/JNIEnvPointer": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
+  "abstract" : [
+    {
+      "text" : "A JNI array that contains other elements",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JArray"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JArray"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JArray",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jarray"
+},
+"doc://KanjiVM/documentation/KanjiVM/JArray/JNIType-swift.typealias": {
   "abstract" : [
 
   ],
@@ -209,57 +217,23 @@
     },
     {
       "kind" : "identifier",
-      "text" : "JNIEnvPointer"
+      "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNIEnvPointer",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIType-swift.typealias",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "JNIEnvPointer"
+      "text" : "JNIType"
     }
   ],
   "role" : "symbol",
-  "title" : "JNIEnvPointer",
+  "title" : "JArray.JNIType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jnienvpointer"
+  "url" : "\/documentation\/kanjivm\/jarray\/jnitype-swift.typealias"
 },
-"doc://KanjiVM/documentation/KanjiVM/JPrimitive": {
-  "abstract" : [
-    {
-      "text" : "A primitive that can be used as a JNI return value; the protocol will be implemented by extending the native return values themselves",
-      "type" : "text"
-    }
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "protocol"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "JPrimitive"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JPrimitive",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "JPrimitive"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "JPrimitive",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jprimitive"
-},
-"doc://KanjiVM/documentation/KanjiVM/JPrimitive/getArray(_:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/empty()": {
   "abstract" : [
 
   ],
@@ -282,46 +256,33 @@
     },
     {
       "kind" : "identifier",
-      "text" : "getArray"
+      "text" : "empty"
     },
     {
       "kind" : "text",
-      "text" : "("
+      "text" : "() -> "
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
-      "text" : "JNIEnvPointer"
+      "preciseIdentifier" : "s:7KanjiVM6JArrayV",
+      "text" : "JArray"
     },
     {
       "kind" : "text",
-      "text" : ") -> ("
+      "text" : "."
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jarray",
-      "text" : "jarray"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> ["
-    },
-    {
-      "kind" : "typeIdentifier",
-      "text" : "Self"
-    },
-    {
-      "kind" : "text",
-      "text" : "]?"
+      "preciseIdentifier" : "s:7KanjiVM6JArrayV7JNITypea",
+      "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JPrimitive\/getArray(_:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/empty()",
   "kind" : "symbol",
-  "required" : true,
   "role" : "symbol",
-  "title" : "getArray(_:)",
+  "title" : "empty()",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jprimitive\/getarray(_:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/empty()"
 }
 }
 }

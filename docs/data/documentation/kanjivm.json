@@ -54,7 +54,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JObjectType",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException"
@@ -73,26 +73,16 @@
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNIEnv",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNIEnvPointer",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNINativeMethod",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jarray-swift.typealias",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jboolean",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbooleanArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbyte",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbyteArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jchar",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jcharArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jclass",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jdouble",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jdoubleArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jfloat",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jfloatArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jint",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jintArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jlong",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jlongArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jobject",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jobjectArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jshort",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jshortArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jsize",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jstring",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jthrowable",
@@ -164,7 +154,7 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/flatmappable"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
   "abstract" : [
     {
       "text" : "A JNI array that contains other elements",
@@ -185,7 +175,7 @@
       "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -196,7 +186,7 @@
   "role" : "symbol",
   "title" : "JArray",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct"
+  "url" : "\/documentation\/kanjivm\/jarray"
 },
 "doc://KanjiVM/documentation/KanjiVM/JInvocable": {
   "abstract" : [
@@ -813,37 +803,6 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/nullterminatedcstring"
 },
-"doc://KanjiVM/documentation/KanjiVM/jarray-swift.typealias": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jarray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jarray-swift.typealias",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jarray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jarray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.typealias"
-},
 "doc://KanjiVM/documentation/KanjiVM/jboolean": {
   "abstract" : [
 
@@ -874,37 +833,6 @@
   "title" : "jboolean",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jboolean"
-},
-"doc://KanjiVM/documentation/KanjiVM/jbooleanArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jbooleanArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbooleanArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jbooleanArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jbooleanArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jbooleanarray"
 },
 "doc://KanjiVM/documentation/KanjiVM/jbyte": {
   "abstract" : [
@@ -937,37 +865,6 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jbyte"
 },
-"doc://KanjiVM/documentation/KanjiVM/jbyteArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jbyteArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbyteArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jbyteArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jbyteArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jbytearray"
-},
 "doc://KanjiVM/documentation/KanjiVM/jchar": {
   "abstract" : [
 
@@ -998,37 +895,6 @@
   "title" : "jchar",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jchar"
-},
-"doc://KanjiVM/documentation/KanjiVM/jcharArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jcharArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jcharArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jcharArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jcharArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jchararray"
 },
 "doc://KanjiVM/documentation/KanjiVM/jclass": {
   "abstract" : [
@@ -1092,37 +958,6 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jdouble"
 },
-"doc://KanjiVM/documentation/KanjiVM/jdoubleArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jdoubleArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jdoubleArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jdoubleArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jdoubleArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jdoublearray"
-},
 "doc://KanjiVM/documentation/KanjiVM/jfloat": {
   "abstract" : [
 
@@ -1153,37 +988,6 @@
   "title" : "jfloat",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jfloat"
-},
-"doc://KanjiVM/documentation/KanjiVM/jfloatArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jfloatArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jfloatArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jfloatArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jfloatArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jfloatarray"
 },
 "doc://KanjiVM/documentation/KanjiVM/jint": {
   "abstract" : [
@@ -1216,37 +1020,6 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jint"
 },
-"doc://KanjiVM/documentation/KanjiVM/jintArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jintArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jintArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jintArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jintArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jintarray"
-},
 "doc://KanjiVM/documentation/KanjiVM/jlong": {
   "abstract" : [
 
@@ -1277,37 +1050,6 @@
   "title" : "jlong",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jlong"
-},
-"doc://KanjiVM/documentation/KanjiVM/jlongArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jlongArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jlongArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jlongArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jlongArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jlongarray"
 },
 "doc://KanjiVM/documentation/KanjiVM/jobject": {
   "abstract" : [
@@ -1340,37 +1082,6 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jobject"
 },
-"doc://KanjiVM/documentation/KanjiVM/jobjectArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jobjectArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jobjectArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jobjectArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jobjectArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jobjectarray"
-},
 "doc://KanjiVM/documentation/KanjiVM/jshort": {
   "abstract" : [
 
@@ -1401,37 +1112,6 @@
   "title" : "jshort",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jshort"
-},
-"doc://KanjiVM/documentation/KanjiVM/jshortArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jshortArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jshortArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jshortArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jshortArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jshortarray"
 },
 "doc://KanjiVM/documentation/KanjiVM/jsize": {
   "abstract" : [

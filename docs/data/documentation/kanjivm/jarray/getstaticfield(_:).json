@@ -5,7 +5,7 @@
       "type" : "text"
     },
     {
-      "code" : "JType.jvalueOf(_:)",
+      "code" : "JNominal.getStaticField(_:)",
       "type" : "codeVoice"
     },
     {
@@ -17,17 +17,17 @@
     "paths" : [
       [
         "doc:\/\/KanjiVM\/documentation\/KanjiVM",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/jvalueOf(_:)"
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/getStaticField(_:)"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:7KanjiVM6JArrayV8jvalueOfySo0D0Vs13OpaquePointerVSgFZ",
+    "externalID" : "s:7KanjiVM6JArrayV14getStaticFieldys13OpaquePointerVSgAFcAFcSpySPySo19JNINativeInterface_VGSgGSgFZ",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -47,11 +47,38 @@
       },
       {
         "kind" : "identifier",
-        "text" : "jvalueOf"
+        "text" : "getStaticField"
       },
       {
         "kind" : "text",
         "text" : "("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
+        "text" : "JNIEnvPointer"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> ("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "c:@T@jfieldID",
+        "text" : "jfieldID"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> ("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:7KanjiVM6jclassa",
+        "text" : "jclass"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
       },
       {
         "kind" : "typeIdentifier",
@@ -66,15 +93,6 @@
         "kind" : "typeIdentifier",
         "preciseIdentifier" : "s:7KanjiVM6JArrayV7JNITypea",
         "text" : "JNIType"
-      },
-      {
-        "kind" : "text",
-        "text" : ") -> "
-      },
-      {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7KanjiVM6jvaluea",
-        "text" : "jvalue"
       }
     ],
     "modules" : [
@@ -85,7 +103,7 @@
     "role" : "symbol",
     "roleHeading" : "Type Method",
     "symbolKind" : "method",
-    "title" : "jvalueOf(_:)"
+    "title" : "getStaticField(_:)"
   },
   "primaryContentSections" : [
     {
@@ -116,7 +134,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "jvalueOf"
+              "text" : "getStaticField"
             },
             {
               "kind" : "text",
@@ -132,14 +150,43 @@
             },
             {
               "kind" : "internalParam",
-              "text" : "inst"
+              "text" : "env"
             },
             {
               "kind" : "text",
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNIEnvPointer",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
+              "text" : "JNIEnvPointer"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> ("
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "c:@T@jfieldID",
+              "text" : "jfieldID"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> ("
+            },
+            {
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jclass",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:7KanjiVM6jclassa",
+              "text" : "jclass"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
               "kind" : "typeIdentifier",
               "preciseIdentifier" : "s:7KanjiVM6JArrayV",
               "text" : "JArray"
@@ -149,20 +196,10 @@
               "text" : "."
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/JNIType-swift.typealias",
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIType-swift.typealias",
               "kind" : "typeIdentifier",
               "preciseIdentifier" : "s:7KanjiVM6JArrayV7JNITypea",
               "text" : "JNIType"
-            },
-            {
-              "kind" : "text",
-              "text" : ") -> "
-            },
-            {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jvalue",
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7KanjiVM6jvaluea",
-              "text" : "jvalue"
             }
           ]
         }
@@ -181,7 +218,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/kanjivm\/jarray-swift.struct\/jvalueof(_:)"
+        "\/documentation\/kanjivm\/jarray\/getstaticfield(_:)"
       ],
       "traits" : [
         {
@@ -203,7 +240,7 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
   "abstract" : [
     {
       "text" : "A JNI array that contains other elements",
@@ -224,7 +261,7 @@
       "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -235,9 +272,9 @@
   "role" : "symbol",
   "title" : "JArray",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct"
+  "url" : "\/documentation\/kanjivm\/jarray"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/JNIType-swift.typealias": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/JNIType-swift.typealias": {
   "abstract" : [
 
   ],
@@ -255,7 +292,7 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/JNIType-swift.typealias",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIType-swift.typealias",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -266,9 +303,9 @@
   "role" : "symbol",
   "title" : "JArray.JNIType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/jnitype-swift.typealias"
+  "url" : "\/documentation\/kanjivm\/jarray\/jnitype-swift.typealias"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/jvalueOf(_:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/getStaticField(_:)": {
   "abstract" : [
 
   ],
@@ -291,11 +328,38 @@
     },
     {
       "kind" : "identifier",
-      "text" : "jvalueOf"
+      "text" : "getStaticField"
     },
     {
       "kind" : "text",
       "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
+      "text" : "JNIEnvPointer"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jfieldID",
+      "text" : "jfieldID"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7KanjiVM6jclassa",
+      "text" : "jclass"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
     },
     {
       "kind" : "typeIdentifier",
@@ -310,25 +374,16 @@
       "kind" : "typeIdentifier",
       "preciseIdentifier" : "s:7KanjiVM6JArrayV7JNITypea",
       "text" : "JNIType"
-    },
-    {
-      "kind" : "text",
-      "text" : ") -> "
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7KanjiVM6jvaluea",
-      "text" : "jvalue"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/jvalueOf(_:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/getStaticField(_:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "jvalueOf(_:)",
+  "title" : "getStaticField(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/jvalueof(_:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/getstaticfield(_:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/jvalue": {
+"doc://KanjiVM/documentation/KanjiVM/JNIEnvPointer": {
   "abstract" : [
 
   ],
@@ -343,21 +398,52 @@
     },
     {
       "kind" : "identifier",
-      "text" : "jvalue"
+      "text" : "JNIEnvPointer"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jvalue",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNIEnvPointer",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "jvalue"
+      "text" : "JNIEnvPointer"
     }
   ],
   "role" : "symbol",
-  "title" : "jvalue",
+  "title" : "JNIEnvPointer",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jvalue"
+  "url" : "\/documentation\/kanjivm\/jnienvpointer"
+},
+"doc://KanjiVM/documentation/KanjiVM/jclass": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "jclass"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jclass",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "jclass"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "jclass",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jclass"
 }
 }
 }

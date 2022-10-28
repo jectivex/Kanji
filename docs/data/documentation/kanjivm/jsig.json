@@ -92,7 +92,7 @@
     },
     {
       "identifiers" : [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JObjectType",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid"
       ],
@@ -142,7 +142,7 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
   "abstract" : [
     {
       "text" : "A JNI array that contains other elements",
@@ -163,7 +163,7 @@
       "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -174,7 +174,7 @@
   "role" : "symbol",
   "title" : "JArray",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct"
+  "url" : "\/documentation\/kanjivm\/jarray"
 },
 "doc://KanjiVM/documentation/KanjiVM/JNominal": {
   "abstract" : [

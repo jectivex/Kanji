@@ -21,54 +21,66 @@ public typealias jweak = CJNI.jweak // = jobject
 //@available(*, deprecated, renamed: "KJValue")
 public typealias jvalue = CJNI.jvalue // = struct
 
-//@available(*, deprecated, renamed: "KJInt")
-public typealias jint = CJNI.jint
-//@available(*, deprecated, renamed: "KJLong")
+//@available(*, deprecated, renamed: "Int32")
+public typealias jint = CJNI.jint // = Int32
+
+//@available(*, deprecated, renamed: "Int64")
 public typealias jlong = CJNI.jlong // = Int64
-//@available(*, deprecated, renamed: "KJByte")
+
+//@available(*, deprecated, renamed: "Int8")
 public typealias jbyte = CJNI.jbyte // = Int8
-//@available(*, deprecated, renamed: "KJBoolean")
+
+//@available(*, deprecated, renamed: "UInt8")
 public typealias jboolean = CJNI.jboolean // = UInt8
-//@available(*, deprecated, renamed: "KJChar")
+
+//@available(*, deprecated, renamed: "UInt16")
 public typealias jchar = CJNI.jchar // = UInt16
-//@available(*, deprecated, renamed: "KJShort")
+
+//@available(*, deprecated, renamed: "Int16")
 public typealias jshort = CJNI.jshort // = Int16
-//@available(*, deprecated, renamed: "KJFloat")
+
+//@available(*, deprecated, renamed: "Float")
 public typealias jfloat = CJNI.jfloat // = Float
-//@available(*, deprecated, renamed: "KJDouble")
+
+//@available(*, deprecated, renamed: "Double")
 public typealias jdouble = CJNI.jdouble // = Double
 
-//@available(*, deprecated, renamed: "KJSize")
-public typealias jsize = CJNI.jsize // = jint
+//@available(*, deprecated, renamed: "Int32")
+public typealias jsize = CJNI.jsize // = Int32
 
 //@available(*, deprecated, renamed: "KJObject")
 public typealias jobject = CJNI.jobject // = OpaquePointer
 //@available(*, deprecated, renamed: "KJClass")
+
 public typealias jclass = CJNI.jclass // = jobject
 //@available(*, deprecated, renamed: "KJThrowable")
+
 public typealias jthrowable = CJNI.jthrowable // = jobject
 //@available(*, deprecated, renamed: "KJString")
+
 public typealias jstring = CJNI.jstring // = jobject
 //@available(*, deprecated, renamed: "KJArray")
-public typealias jarray = CJNI.jarray // = jobject
-//@available(*, deprecated, renamed: "KJBooleanArray")
-public typealias jbooleanArray = CJNI.jbooleanArray // = jarray
-//@available(*, deprecated, renamed: "KJByteArray")
-public typealias jbyteArray = CJNI.jbyteArray // = jarray
-//@available(*, deprecated, renamed: "KJCharArray")
-public typealias jcharArray = CJNI.jcharArray // = jarray
-//@available(*, deprecated, renamed: "KJShortArray")
-public typealias jshortArray = CJNI.jshortArray // = jarray
-//@available(*, deprecated, renamed: "KJIntArray")
-public typealias jintArray = CJNI.jintArray // = jarray
-//@available(*, deprecated, renamed: "KJLongArray")
-public typealias jlongArray = CJNI.jlongArray // = jarray
-//@available(*, deprecated, renamed: "KJFloatArray")
-public typealias jfloatArray = CJNI.jfloatArray // = jarray
-//@available(*, deprecated, renamed: "KJDoubleArray")
-public typealias jdoubleArray = CJNI.jdoubleArray // = jarray
-//@available(*, deprecated, renamed: "KJObjectArray")
-public typealias jobjectArray = CJNI.jobjectArray // = jarray
+
+//public typealias jarray = CJNI.jarray // = jobject
+////@available(*, deprecated, renamed: "KJBooleanArray")
+//
+//public typealias jbooleanArray = CJNI.jbooleanArray // = jarray
+////@available(*, deprecated, renamed: "KJByteArray")
+//public typealias jbyteArray = CJNI.jbyteArray // = jarray
+////@available(*, deprecated, renamed: "KJCharArray")
+//public typealias jcharArray = CJNI.jcharArray // = jarray
+////@available(*, deprecated, renamed: "KJShortArray")
+//public typealias jshortArray = CJNI.jshortArray // = jarray
+////@available(*, deprecated, renamed: "KJIntArray")
+//public typealias jintArray = CJNI.jintArray // = jarray
+////@available(*, deprecated, renamed: "KJLongArray")
+//public typealias jlongArray = CJNI.jlongArray // = jarray
+////@available(*, deprecated, renamed: "KJFloatArray")
+//public typealias jfloatArray = CJNI.jfloatArray // = jarray
+////@available(*, deprecated, renamed: "KJDoubleArray")
+//public typealias jdoubleArray = CJNI.jdoubleArray // = jarray
+////@available(*, deprecated, renamed: "KJObjectArray")
+//public typealias jobjectArray = CJNI.jobjectArray // = jarray
 
 
 

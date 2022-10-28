@@ -34,7 +34,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7KanjiVM12jdoubleArraya",
+        "preciseIdentifier" : "c:@T@jdoubleArray",
         "text" : "jdoubleArray"
       },
       {
@@ -156,9 +156,8 @@
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jdoubleArray",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7KanjiVM12jdoubleArraya",
+              "preciseIdentifier" : "c:@T@jdoubleArray",
               "text" : "jdoubleArray"
             },
             {
@@ -321,7 +320,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7KanjiVM12jdoubleArraya",
+      "preciseIdentifier" : "c:@T@jdoubleArray",
       "text" : "jdoubleArray"
     },
     {
@@ -426,37 +425,6 @@
   "title" : "jdouble",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jdouble"
-},
-"doc://KanjiVM/documentation/KanjiVM/jdoubleArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jdoubleArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jdoubleArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jdoubleArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jdoubleArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jdoublearray"
 },
 "doc://KanjiVM/documentation/KanjiVM/jsize": {
   "abstract" : [

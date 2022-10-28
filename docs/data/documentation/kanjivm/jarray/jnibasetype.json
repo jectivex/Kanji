@@ -1,18 +1,33 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNominal.JNIBaseType",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbooleanArray"
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIBaseType"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:7KanjiVM13jbooleanArraya",
+    "externalID" : "s:7KanjiVM6JArrayV11JNIBaseTypea",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -24,7 +39,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "jbooleanArray"
+        "text" : "JNIBaseType"
       }
     ],
     "modules" : [
@@ -35,13 +50,13 @@
     "navigatorTitle" : [
       {
         "kind" : "identifier",
-        "text" : "jbooleanArray"
+        "text" : "JNIBaseType"
       }
     ],
     "role" : "symbol",
     "roleHeading" : "Type Alias",
     "symbolKind" : "typealias",
-    "title" : "jbooleanArray"
+    "title" : "JArray.JNIBaseType"
   },
   "primaryContentSections" : [
     {
@@ -64,7 +79,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "jbooleanArray"
+              "text" : "JNIBaseType"
             },
             {
               "kind" : "text",
@@ -72,8 +87,8 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jbooleanArray",
-              "text" : "jbooleanArray"
+              "preciseIdentifier" : "c:@T@jarray",
+              "text" : "jarray"
             }
           ]
         }
@@ -92,7 +107,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/kanjivm\/jbooleanarray"
+        "\/documentation\/kanjivm\/jarray\/jnibasetype"
       ],
       "traits" : [
         {
@@ -114,7 +129,41 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm"
 },
-"doc://KanjiVM/documentation/KanjiVM/jbooleanArray": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
+  "abstract" : [
+    {
+      "text" : "A JNI array that contains other elements",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JArray"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JArray"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JArray",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jarray"
+},
+"doc://KanjiVM/documentation/KanjiVM/JArray/JNIBaseType": {
   "abstract" : [
 
   ],
@@ -129,21 +178,21 @@
     },
     {
       "kind" : "identifier",
-      "text" : "jbooleanArray"
+      "text" : "JNIBaseType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbooleanArray",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIBaseType",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "jbooleanArray"
+      "text" : "JNIBaseType"
     }
   ],
   "role" : "symbol",
-  "title" : "jbooleanArray",
+  "title" : "JArray.JNIBaseType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jbooleanarray"
+  "url" : "\/documentation\/kanjivm\/jarray\/jnibasetype"
 }
 }
 }

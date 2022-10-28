@@ -14,7 +14,7 @@
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct"
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray"
   },
   "kind" : "symbol",
   "metadata" : {
@@ -101,42 +101,42 @@
   "topicSections" : [
     {
       "identifiers" : [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/init()",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/init(_:)"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/init()",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/init(_:)"
       ],
       "title" : "Initializers"
     },
     {
       "identifiers" : [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/elementType",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/jsig"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/elementType",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/jsig"
       ],
       "title" : "Instance Properties"
     },
     {
       "identifiers" : [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/JNIBaseType",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/JNIType-swift.typealias"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIBaseType",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIType-swift.typealias"
       ],
       "title" : "Type Aliases"
     },
     {
       "identifiers" : [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/jniType-swift.type.property"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/jniType-swift.type.property"
       ],
       "title" : "Type Properties"
     },
     {
       "identifiers" : [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/call(_:file:line:function:)",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/callNonvirtual(_:file:line:function:)",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/callStatic(_:file:line:function:)",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/empty()",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/getField(_:)",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/getStaticField(_:)",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/jvalueOf(_:)",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/setField(_:)",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/setStaticField(_:)"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/call(_:file:line:function:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/callNonvirtual(_:file:line:function:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/callStatic(_:file:line:function:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/empty()",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/getField(_:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/getStaticField(_:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/jvalueOf(_:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/setField(_:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/setStaticField(_:)"
       ],
       "title" : "Type Methods"
     }
@@ -144,7 +144,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/kanjivm\/jarray-swift.struct"
+        "\/documentation\/kanjivm\/jarray"
       ],
       "traits" : [
         {
@@ -166,7 +166,7 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
   "abstract" : [
     {
       "text" : "A JNI array that contains other elements",
@@ -187,7 +187,7 @@
       "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -198,9 +198,9 @@
   "role" : "symbol",
   "title" : "JArray",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct"
+  "url" : "\/documentation\/kanjivm\/jarray"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/JNIBaseType": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/JNIBaseType": {
   "abstract" : [
 
   ],
@@ -218,7 +218,7 @@
       "text" : "JNIBaseType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/JNIBaseType",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIBaseType",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -229,9 +229,9 @@
   "role" : "symbol",
   "title" : "JArray.JNIBaseType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/jnibasetype"
+  "url" : "\/documentation\/kanjivm\/jarray\/jnibasetype"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/JNIType-swift.typealias": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/JNIType-swift.typealias": {
   "abstract" : [
 
   ],
@@ -249,7 +249,7 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/JNIType-swift.typealias",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIType-swift.typealias",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -260,9 +260,9 @@
   "role" : "symbol",
   "title" : "JArray.JNIType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/jnitype-swift.typealias"
+  "url" : "\/documentation\/kanjivm\/jarray\/jnitype-swift.typealias"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/call(_:file:line:function:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/call(_:file:line:function:)": {
   "abstract" : [
 
   ],
@@ -401,14 +401,14 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/call(_:file:line:function:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/call(_:file:line:function:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "call(_:file:line:function:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/call(_:file:line:function:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/call(_:file:line:function:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/callNonvirtual(_:file:line:function:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/callNonvirtual(_:file:line:function:)": {
   "abstract" : [
 
   ],
@@ -556,14 +556,14 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/callNonvirtual(_:file:line:function:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/callNonvirtual(_:file:line:function:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "callNonvirtual(_:file:line:function:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/callnonvirtual(_:file:line:function:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/callnonvirtual(_:file:line:function:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/callStatic(_:file:line:function:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/callStatic(_:file:line:function:)": {
   "abstract" : [
 
   ],
@@ -702,14 +702,14 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/callStatic(_:file:line:function:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/callStatic(_:file:line:function:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "callStatic(_:file:line:function:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/callstatic(_:file:line:function:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/callstatic(_:file:line:function:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/elementType": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/elementType": {
   "abstract" : [
 
   ],
@@ -736,14 +736,14 @@
       "text" : "JSig"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/elementType",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/elementType",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "elementType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/elementtype"
+  "url" : "\/documentation\/kanjivm\/jarray\/elementtype"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/empty()": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/empty()": {
   "abstract" : [
 
   ],
@@ -787,14 +787,14 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/empty()",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/empty()",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "empty()",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/empty()"
+  "url" : "\/documentation\/kanjivm\/jarray\/empty()"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/getField(_:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/getField(_:)": {
   "abstract" : [
 
   ],
@@ -865,14 +865,14 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/getField(_:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/getField(_:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "getField(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/getfield(_:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/getfield(_:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/getStaticField(_:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/getStaticField(_:)": {
   "abstract" : [
 
   ],
@@ -943,14 +943,14 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/getStaticField(_:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/getStaticField(_:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "getStaticField(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/getstaticfield(_:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/getstaticfield(_:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/init()": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/init()": {
   "abstract" : [
 
   ],
@@ -964,14 +964,14 @@
       "text" : "()"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/init()",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/init()",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "init()",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/init()"
+  "url" : "\/documentation\/kanjivm\/jarray\/init()"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/init(_:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/init(_:)": {
   "abstract" : [
 
   ],
@@ -994,14 +994,14 @@
       "text" : ")"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/init(_:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/init(_:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "init(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/init(_:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/init(_:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/jniType-swift.type.property": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/jniType-swift.type.property": {
   "abstract" : [
 
   ],
@@ -1036,14 +1036,14 @@
       "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/jniType-swift.type.property",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/jniType-swift.type.property",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "jniType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/jnitype-swift.type.property"
+  "url" : "\/documentation\/kanjivm\/jarray\/jnitype-swift.type.property"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/jsig": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/jsig": {
   "abstract" : [
 
   ],
@@ -1070,14 +1070,14 @@
       "text" : "String"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/jsig",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/jsig",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "jsig",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/jsig"
+  "url" : "\/documentation\/kanjivm\/jarray\/jsig"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/jvalueOf(_:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/jvalueOf(_:)": {
   "abstract" : [
 
   ],
@@ -1130,14 +1130,14 @@
       "text" : "jvalue"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/jvalueOf(_:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/jvalueOf(_:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "jvalueOf(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/jvalueof(_:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/jvalueof(_:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/setField(_:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/setField(_:)": {
   "abstract" : [
 
   ],
@@ -1217,14 +1217,14 @@
       "text" : "Void"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/setField(_:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/setField(_:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "setField(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/setfield(_:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/setfield(_:)"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/setStaticField(_:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/setStaticField(_:)": {
   "abstract" : [
 
   ],
@@ -1304,12 +1304,12 @@
       "text" : "Void"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/setStaticField(_:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/setStaticField(_:)",
   "kind" : "symbol",
   "role" : "symbol",
   "title" : "setStaticField(_:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/setstaticfield(_:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/setstaticfield(_:)"
 },
 "doc://KanjiVM/documentation/KanjiVM/JNominal": {
   "abstract" : [

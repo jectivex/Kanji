@@ -34,7 +34,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7KanjiVM6jarraya",
+        "preciseIdentifier" : "c:@T@jarray",
         "text" : "jarray"
       },
       {
@@ -130,9 +130,8 @@
               "text" : ": "
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jarray-swift.typealias",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7KanjiVM6jarraya",
+              "preciseIdentifier" : "c:@T@jarray",
               "text" : "jarray"
             },
             {
@@ -267,7 +266,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7KanjiVM6jarraya",
+      "preciseIdentifier" : "c:@T@jarray",
       "text" : "jarray"
     },
     {
@@ -315,37 +314,6 @@
   "title" : "releasePrimitiveArrayCritical(_:carray:mode:)",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jvm\/releaseprimitivearraycritical(_:carray:mode:)"
-},
-"doc://KanjiVM/documentation/KanjiVM/jarray-swift.typealias": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jarray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jarray-swift.typealias",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jarray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jarray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.typealias"
 },
 "doc://KanjiVM/documentation/KanjiVM/jint": {
   "abstract" : [

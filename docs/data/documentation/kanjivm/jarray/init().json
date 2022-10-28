@@ -1,30 +1,41 @@
 {
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNominal.init()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jintArray"
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/init()"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:7KanjiVM9jintArraya",
+    "externalID" : "s:7KanjiVM6JArrayVACycfc",
     "fragments" : [
       {
-        "kind" : "keyword",
-        "text" : "typealias"
+        "kind" : "identifier",
+        "text" : "init"
       },
       {
         "kind" : "text",
-        "text" : " "
-      },
-      {
-        "kind" : "identifier",
-        "text" : "jintArray"
+        "text" : "()"
       }
     ],
     "modules" : [
@@ -32,16 +43,10 @@
         "name" : "KanjiVM"
       }
     ],
-    "navigatorTitle" : [
-      {
-        "kind" : "identifier",
-        "text" : "jintArray"
-      }
-    ],
     "role" : "symbol",
-    "roleHeading" : "Type Alias",
-    "symbolKind" : "typealias",
-    "title" : "jintArray"
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init()"
   },
   "primaryContentSections" : [
     {
@@ -56,24 +61,11 @@
           "tokens" : [
             {
               "kind" : "keyword",
-              "text" : "typealias"
+              "text" : "init"
             },
             {
               "kind" : "text",
-              "text" : " "
-            },
-            {
-              "kind" : "identifier",
-              "text" : "jintArray"
-            },
-            {
-              "kind" : "text",
-              "text" : " = "
-            },
-            {
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jintArray",
-              "text" : "jintArray"
+              "text" : "()"
             }
           ]
         }
@@ -92,7 +84,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/kanjivm\/jintarray"
+        "\/documentation\/kanjivm\/jarray\/init()"
       ],
       "traits" : [
         {
@@ -114,14 +106,17 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm"
 },
-"doc://KanjiVM/documentation/KanjiVM/jintArray": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
   "abstract" : [
-
+    {
+      "text" : "A JNI array that contains other elements",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
       "kind" : "keyword",
-      "text" : "typealias"
+      "text" : "struct"
     },
     {
       "kind" : "text",
@@ -129,21 +124,42 @@
     },
     {
       "kind" : "identifier",
-      "text" : "jintArray"
+      "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jintArray",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
       "kind" : "identifier",
-      "text" : "jintArray"
+      "text" : "JArray"
     }
   ],
   "role" : "symbol",
-  "title" : "jintArray",
+  "title" : "JArray",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jintarray"
+  "url" : "\/documentation\/kanjivm\/jarray"
+},
+"doc://KanjiVM/documentation/KanjiVM/JArray/init()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jarray\/init()"
 }
 }
 }

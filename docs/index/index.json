@@ -2339,12 +2339,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/init()",
+                "path" : "\/documentation\/kanjivm\/jarray\/init()",
                 "title" : "init()",
                 "type" : "init"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/init(_:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/init(_:)",
                 "title" : "init(JSig)",
                 "type" : "init"
               },
@@ -2353,12 +2353,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/elementtype",
+                "path" : "\/documentation\/kanjivm\/jarray\/elementtype",
                 "title" : "let elementType: JSig",
                 "type" : "property"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/jsig",
+                "path" : "\/documentation\/kanjivm\/jarray\/jsig",
                 "title" : "var jsig: String",
                 "type" : "property"
               },
@@ -2367,12 +2367,12 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/jnibasetype",
+                "path" : "\/documentation\/kanjivm\/jarray\/jnibasetype",
                 "title" : "JArray.JNIBaseType",
                 "type" : "typealias"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/jnitype-swift.typealias",
+                "path" : "\/documentation\/kanjivm\/jarray\/jnitype-swift.typealias",
                 "title" : "JArray.JNIType",
                 "type" : "typealias"
               },
@@ -2381,7 +2381,7 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/jnitype-swift.type.property",
+                "path" : "\/documentation\/kanjivm\/jarray\/jnitype-swift.type.property",
                 "title" : "static let jniType: JArray",
                 "type" : "property"
               },
@@ -2390,52 +2390,52 @@
                 "type" : "groupMarker"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/call(_:file:line:function:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/call(_:file:line:function:)",
                 "title" : "static func call(jmethodID?, file: String, line: Int, function: String) -> (JNIEnvPointer) -> (jobject) -> ([jvalue]) throws -> JArray.JNIType",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/callnonvirtual(_:file:line:function:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/callnonvirtual(_:file:line:function:)",
                 "title" : "static func callNonvirtual(jmethodID?, file: String, line: Int, function: String) -> (JNIEnvPointer) -> (jclass) -> (jobject) -> ([jvalue]) throws -> JArray.JNIType",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/callstatic(_:file:line:function:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/callstatic(_:file:line:function:)",
                 "title" : "static func callStatic(jmethodID?, file: String, line: Int, function: String) -> (JNIEnvPointer) -> (jclass) -> ([jvalue]) throws -> JArray.JNIType",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/empty()",
+                "path" : "\/documentation\/kanjivm\/jarray\/empty()",
                 "title" : "static func empty() -> JArray.JNIType",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/getfield(_:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/getfield(_:)",
                 "title" : "static func getField(JNIEnvPointer) -> (jfieldID) -> (jobject) -> JArray.JNIType",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/getstaticfield(_:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/getstaticfield(_:)",
                 "title" : "static func getStaticField(JNIEnvPointer) -> (jfieldID) -> (jclass) -> JArray.JNIType",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/jvalueof(_:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/jvalueof(_:)",
                 "title" : "static func jvalueOf(JArray.JNIType) -> jvalue",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/setfield(_:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/setfield(_:)",
                 "title" : "static func setField(JNIEnvPointer) -> (jfieldID) -> (jobject) -> (JArray.JNIType) -> Void",
                 "type" : "method"
               },
               {
-                "path" : "\/documentation\/kanjivm\/jarray-swift.struct\/setstaticfield(_:)",
+                "path" : "\/documentation\/kanjivm\/jarray\/setstaticfield(_:)",
                 "title" : "static func setStaticField(JNIEnvPointer) -> (jfieldID) -> (jclass) -> (JArray.JNIType) -> Void",
                 "type" : "method"
               }
             ],
-            "path" : "\/documentation\/kanjivm\/jarray-swift.struct",
+            "path" : "\/documentation\/kanjivm\/jarray",
             "title" : "JArray",
             "type" : "struct"
           },
@@ -2783,18 +2783,8 @@
             "type" : "typealias"
           },
           {
-            "path" : "\/documentation\/kanjivm\/jarray-swift.typealias",
-            "title" : "jarray",
-            "type" : "typealias"
-          },
-          {
             "path" : "\/documentation\/kanjivm\/jboolean",
             "title" : "jboolean",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/kanjivm\/jbooleanarray",
-            "title" : "jbooleanArray",
             "type" : "typealias"
           },
           {
@@ -2803,18 +2793,8 @@
             "type" : "typealias"
           },
           {
-            "path" : "\/documentation\/kanjivm\/jbytearray",
-            "title" : "jbyteArray",
-            "type" : "typealias"
-          },
-          {
             "path" : "\/documentation\/kanjivm\/jchar",
             "title" : "jchar",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/kanjivm\/jchararray",
-            "title" : "jcharArray",
             "type" : "typealias"
           },
           {
@@ -2828,18 +2808,8 @@
             "type" : "typealias"
           },
           {
-            "path" : "\/documentation\/kanjivm\/jdoublearray",
-            "title" : "jdoubleArray",
-            "type" : "typealias"
-          },
-          {
             "path" : "\/documentation\/kanjivm\/jfloat",
             "title" : "jfloat",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/kanjivm\/jfloatarray",
-            "title" : "jfloatArray",
             "type" : "typealias"
           },
           {
@@ -2848,18 +2818,8 @@
             "type" : "typealias"
           },
           {
-            "path" : "\/documentation\/kanjivm\/jintarray",
-            "title" : "jintArray",
-            "type" : "typealias"
-          },
-          {
             "path" : "\/documentation\/kanjivm\/jlong",
             "title" : "jlong",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/kanjivm\/jlongarray",
-            "title" : "jlongArray",
             "type" : "typealias"
           },
           {
@@ -2868,18 +2828,8 @@
             "type" : "typealias"
           },
           {
-            "path" : "\/documentation\/kanjivm\/jobjectarray",
-            "title" : "jobjectArray",
-            "type" : "typealias"
-          },
-          {
             "path" : "\/documentation\/kanjivm\/jshort",
             "title" : "jshort",
-            "type" : "typealias"
-          },
-          {
-            "path" : "\/documentation\/kanjivm\/jshortarray",
-            "title" : "jshortArray",
             "type" : "typealias"
           },
           {

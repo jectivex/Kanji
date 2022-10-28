@@ -43,7 +43,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7KanjiVM13jbooleanArraya",
+        "preciseIdentifier" : "c:@T@jbooleanArray",
         "text" : "jbooleanArray"
       },
       {
@@ -115,9 +115,8 @@
               "text" : ") -> "
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbooleanArray",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7KanjiVM13jbooleanArraya",
+              "preciseIdentifier" : "c:@T@jbooleanArray",
               "text" : "jbooleanArray"
             },
             {
@@ -226,7 +225,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7KanjiVM13jbooleanArraya",
+      "preciseIdentifier" : "c:@T@jbooleanArray",
       "text" : "jbooleanArray"
     },
     {
@@ -240,37 +239,6 @@
   "title" : "newBooleanArray(_:)",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jvm\/newbooleanarray(_:)"
-},
-"doc://KanjiVM/documentation/KanjiVM/jbooleanArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jbooleanArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jbooleanArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jbooleanArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jbooleanArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jbooleanarray"
 },
 "doc://KanjiVM/documentation/KanjiVM/jsize": {
   "abstract" : [

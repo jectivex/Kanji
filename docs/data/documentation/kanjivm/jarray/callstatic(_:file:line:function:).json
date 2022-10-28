@@ -5,7 +5,7 @@
       "type" : "text"
     },
     {
-      "code" : "JType.callNonvirtual(_:file:line:function:)",
+      "code" : "JType.callStatic(_:file:line:function:)",
       "type" : "codeVoice"
     },
     {
@@ -17,17 +17,17 @@
     "paths" : [
       [
         "doc:\/\/KanjiVM\/documentation\/KanjiVM",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray"
       ]
     ]
   },
   "identifier" : {
     "interfaceLanguage" : "swift",
-    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/callNonvirtual(_:file:line:function:)"
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/callStatic(_:file:line:function:)"
   },
   "kind" : "symbol",
   "metadata" : {
-    "externalID" : "s:7KanjiVM6JArrayV14callNonvirtual_4file4line8functions13OpaquePointerVSgSaySo6jvalueVGKcAIcAIcSpySPySo19JNINativeInterface_VGSgGSgcAJ_SSSiSStFZ",
+    "externalID" : "s:7KanjiVM6JArrayV10callStatic_4file4line8functions13OpaquePointerVSgSaySo6jvalueVGKcAIcSpySPySo19JNINativeInterface_VGSgGSgcAJ_SSSiSStFZ",
     "fragments" : [
       {
         "kind" : "keyword",
@@ -47,7 +47,7 @@
       },
       {
         "kind" : "identifier",
-        "text" : "callNonvirtual"
+        "text" : "callStatic"
       },
       {
         "kind" : "text",
@@ -129,15 +129,6 @@
       },
       {
         "kind" : "text",
-        "text" : ") -> ("
-      },
-      {
-        "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7KanjiVM7jobjecta",
-        "text" : "jobject"
-      },
-      {
-        "kind" : "text",
         "text" : ") -> (["
       },
       {
@@ -180,7 +171,7 @@
     "role" : "symbol",
     "roleHeading" : "Type Method",
     "symbolKind" : "method",
-    "title" : "callNonvirtual(_:file:line:function:)"
+    "title" : "callStatic(_:file:line:function:)"
   },
   "primaryContentSections" : [
     {
@@ -211,7 +202,7 @@
             },
             {
               "kind" : "identifier",
-              "text" : "callNonvirtual"
+              "text" : "callStatic"
             },
             {
               "kind" : "text",
@@ -335,16 +326,6 @@
             },
             {
               "kind" : "text",
-              "text" : ") -> ("
-            },
-            {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jobject",
-              "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7KanjiVM7jobjecta",
-              "text" : "jobject"
-            },
-            {
-              "kind" : "text",
               "text" : ") -> (["
             },
             {
@@ -366,7 +347,7 @@
               "text" : " -> "
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
               "kind" : "typeIdentifier",
               "preciseIdentifier" : "s:7KanjiVM6JArrayV",
               "text" : "JArray"
@@ -376,7 +357,7 @@
               "text" : "."
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/JNIType-swift.typealias",
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIType-swift.typealias",
               "kind" : "typeIdentifier",
               "preciseIdentifier" : "s:7KanjiVM6JArrayV7JNITypea",
               "text" : "JNIType"
@@ -398,7 +379,7 @@
   "variants" : [
     {
       "paths" : [
-        "\/documentation\/kanjivm\/jarray-swift.struct\/callnonvirtual(_:file:line:function:)"
+        "\/documentation\/kanjivm\/jarray\/callstatic(_:file:line:function:)"
       ],
       "traits" : [
         {
@@ -420,7 +401,7 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct": {
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
   "abstract" : [
     {
       "text" : "A JNI array that contains other elements",
@@ -441,7 +422,7 @@
       "text" : "JArray"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -452,9 +433,9 @@
   "role" : "symbol",
   "title" : "JArray",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct"
+  "url" : "\/documentation\/kanjivm\/jarray"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/JNIType-swift.typealias": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/JNIType-swift.typealias": {
   "abstract" : [
 
   ],
@@ -472,7 +453,7 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/JNIType-swift.typealias",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/JNIType-swift.typealias",
   "kind" : "symbol",
   "navigatorTitle" : [
     {
@@ -483,9 +464,9 @@
   "role" : "symbol",
   "title" : "JArray.JNIType",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/jnitype-swift.typealias"
+  "url" : "\/documentation\/kanjivm\/jarray\/jnitype-swift.typealias"
 },
-"doc://KanjiVM/documentation/KanjiVM/JArray-swift.struct/callNonvirtual(_:file:line:function:)": {
+"doc://KanjiVM/documentation/KanjiVM/JArray/callStatic(_:file:line:function:)": {
   "abstract" : [
 
   ],
@@ -508,7 +489,7 @@
     },
     {
       "kind" : "identifier",
-      "text" : "callNonvirtual"
+      "text" : "callStatic"
     },
     {
       "kind" : "text",
@@ -590,15 +571,6 @@
     },
     {
       "kind" : "text",
-      "text" : ") -> ("
-    },
-    {
-      "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7KanjiVM7jobjecta",
-      "text" : "jobject"
-    },
-    {
-      "kind" : "text",
       "text" : ") -> (["
     },
     {
@@ -633,12 +605,12 @@
       "text" : "JNIType"
     }
   ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray-swift.struct\/callNonvirtual(_:file:line:function:)",
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray\/callStatic(_:file:line:function:)",
   "kind" : "symbol",
   "role" : "symbol",
-  "title" : "callNonvirtual(_:file:line:function:)",
+  "title" : "callStatic(_:file:line:function:)",
   "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jarray-swift.struct\/callnonvirtual(_:file:line:function:)"
+  "url" : "\/documentation\/kanjivm\/jarray\/callstatic(_:file:line:function:)"
 },
 "doc://KanjiVM/documentation/KanjiVM/JNIEnvPointer": {
   "abstract" : [
@@ -701,37 +673,6 @@
   "title" : "jclass",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jclass"
-},
-"doc://KanjiVM/documentation/KanjiVM/jobject": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jobject"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jobject",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jobject"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jobject",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jobject"
 },
 "doc://KanjiVM/documentation/KanjiVM/jvalue": {
   "abstract" : [

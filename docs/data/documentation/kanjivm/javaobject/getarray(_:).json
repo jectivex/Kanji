@@ -51,7 +51,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:7KanjiVM12jobjectArraya",
+        "preciseIdentifier" : "c:@T@jobjectArray",
         "text" : "jobjectArray"
       },
       {
@@ -139,9 +139,8 @@
               "text" : ") -> ("
             },
             {
-              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jobjectArray",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:7KanjiVM12jobjectArraya",
+              "preciseIdentifier" : "c:@T@jobjectArray",
               "text" : "jobjectArray"
             },
             {
@@ -300,7 +299,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:7KanjiVM12jobjectArraya",
+      "preciseIdentifier" : "c:@T@jobjectArray",
       "text" : "jobjectArray"
     },
     {
@@ -322,37 +321,6 @@
   "title" : "getArray(_:)",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/javaobject\/getarray(_:)"
-},
-"doc://KanjiVM/documentation/KanjiVM/jobjectArray": {
-  "abstract" : [
-
-  ],
-  "fragments" : [
-    {
-      "kind" : "keyword",
-      "text" : "typealias"
-    },
-    {
-      "kind" : "text",
-      "text" : " "
-    },
-    {
-      "kind" : "identifier",
-      "text" : "jobjectArray"
-    }
-  ],
-  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jobjectArray",
-  "kind" : "symbol",
-  "navigatorTitle" : [
-    {
-      "kind" : "identifier",
-      "text" : "jobjectArray"
-    }
-  ],
-  "role" : "symbol",
-  "title" : "jobjectArray",
-  "type" : "topic",
-  "url" : "\/documentation\/kanjivm\/jobjectarray"
 }
 }
 }
