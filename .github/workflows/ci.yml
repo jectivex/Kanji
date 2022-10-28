@@ -12,7 +12,7 @@ on:
 jobs:
   linux:
     runs-on: ubuntu-latest
-    if: false
+    if: true
     steps:
       - run: sudo apt-get update
       - run: |
@@ -61,10 +61,12 @@ jobs:
           which java
           java -version
           echo "JAVA_HOME: ${JAVA_HOME}"
+          ls ${JAVA_HOME}
+          find ${JAVA_HOME}
 
       - name: Test (Debug)
         #run: swift test -v --configuration debug
-        run: swift test -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/server/ -Xlinker -ljvm
+        run: swift test -Xlinker -L${JAVA_HOME}/lib -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib -Xlinker -ljvm
       #- name: Test (Release)
         #run: swift test -v --configuration release -Xswiftc -enable-testing
 
