@@ -7,25 +7,70 @@
 //
 import Foundation
 import CoreFoundation
-import CJNI
+import CJNI // we don't use @_exported because we re-alias some types
 
-private func dbg(_ items: Any..., functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: UInt = #line) {
-    let msg = items.map({ String(describing: $0) }).joined(separator: " ")
-    let truncatedFunctionName = String(describing: functionName).components(separatedBy: "(").first ?? String(describing: functionName)
-    let truncatedFileName = URL(fileURLWithPath: String(describing: fileName)).lastPathComponent
-    let calendar = Calendar.current
-    let comp = calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: Date())
-    print("\(comp.hour ?? 0):\(comp.minute ?? 0):\(comp.second ?? 0).\(comp.nanosecond ?? 0) \(truncatedFileName):\(lineNumber) \(truncatedFunctionName): \(msg)")
-}
+//@available(*, deprecated, renamed: "KJNIEnv")
+public typealias JNIEnv = CJNI.JNIEnv
+
+//@available(*, deprecated, renamed: "KJNINativeMethod")
+public typealias JNINativeMethod = CJNI.JNINativeMethod
+
+//@available(*, deprecated, renamed: "KJWeak")
+public typealias jweak = CJNI.jweak // = jobject
+
+//@available(*, deprecated, renamed: "KJValue")
+public typealias jvalue = CJNI.jvalue // = struct
+
+//@available(*, deprecated, renamed: "KJInt")
+public typealias jint = CJNI.jint
+//@available(*, deprecated, renamed: "KJLong")
+public typealias jlong = CJNI.jlong // = Int64
+//@available(*, deprecated, renamed: "KJByte")
+public typealias jbyte = CJNI.jbyte // = Int8
+//@available(*, deprecated, renamed: "KJBoolean")
+public typealias jboolean = CJNI.jboolean // = UInt8
+//@available(*, deprecated, renamed: "KJChar")
+public typealias jchar = CJNI.jchar // = UInt16
+//@available(*, deprecated, renamed: "KJShort")
+public typealias jshort = CJNI.jshort // = Int16
+//@available(*, deprecated, renamed: "KJFloat")
+public typealias jfloat = CJNI.jfloat // = Float
+//@available(*, deprecated, renamed: "KJDouble")
+public typealias jdouble = CJNI.jdouble // = Double
+
+//@available(*, deprecated, renamed: "KJSize")
+public typealias jsize = CJNI.jsize // = jint
+
+//@available(*, deprecated, renamed: "KJObject")
+public typealias jobject = CJNI.jobject // = OpaquePointer
+//@available(*, deprecated, renamed: "KJClass")
+public typealias jclass = CJNI.jclass // = jobject
+//@available(*, deprecated, renamed: "KJThrowable")
+public typealias jthrowable = CJNI.jthrowable // = jobject
+//@available(*, deprecated, renamed: "KJString")
+public typealias jstring = CJNI.jstring // = jobject
+//@available(*, deprecated, renamed: "KJArray")
+public typealias jarray = CJNI.jarray // = jobject
+//@available(*, deprecated, renamed: "KJBooleanArray")
+public typealias jbooleanArray = CJNI.jbooleanArray // = jarray
+//@available(*, deprecated, renamed: "KJByteArray")
+public typealias jbyteArray = CJNI.jbyteArray // = jarray
+//@available(*, deprecated, renamed: "KJCharArray")
+public typealias jcharArray = CJNI.jcharArray // = jarray
+//@available(*, deprecated, renamed: "KJShortArray")
+public typealias jshortArray = CJNI.jshortArray // = jarray
+//@available(*, deprecated, renamed: "KJIntArray")
+public typealias jintArray = CJNI.jintArray // = jarray
+//@available(*, deprecated, renamed: "KJLongArray")
+public typealias jlongArray = CJNI.jlongArray // = jarray
+//@available(*, deprecated, renamed: "KJFloatArray")
+public typealias jfloatArray = CJNI.jfloatArray // = jarray
+//@available(*, deprecated, renamed: "KJDoubleArray")
+public typealias jdoubleArray = CJNI.jdoubleArray // = jarray
+//@available(*, deprecated, renamed: "KJObjectArray")
+public typealias jobjectArray = CJNI.jobjectArray // = jarray
 
 
-private func warn(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
-    dbg("Kanji Warning:", message, functionName: function, fileName: file, lineNumber: line)
-}
-
-private func log(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
-    dbg("Kanji Log:", message, functionName: function, fileName: file, lineNumber: line)
-}
 
 @_silgen_name("JNI_OnLoad")
 public func JNI_OnLoad(_ vm: UnsafeMutablePointer<JavaVM?>!, _ reserved: UnsafeMutableRawPointer!) -> jint {
@@ -2963,6 +3008,25 @@ public extension Sequence where Iterator.Element == Optional<JavaObject> {
         }
         return arr
     }
+}
+
+
+private func dbg(_ items: Any..., functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: UInt = #line) {
+    let msg = items.map({ String(describing: $0) }).joined(separator: " ")
+    let truncatedFunctionName = String(describing: functionName).components(separatedBy: "(").first ?? String(describing: functionName)
+    let truncatedFileName = URL(fileURLWithPath: String(describing: fileName)).lastPathComponent
+    let calendar = Calendar.current
+    let comp = calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: Date())
+    print("\(comp.hour ?? 0):\(comp.minute ?? 0):\(comp.second ?? 0).\(comp.nanosecond ?? 0) \(truncatedFileName):\(lineNumber) \(truncatedFunctionName): \(msg)")
+}
+
+
+private func warn(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
+    dbg("Kanji Warning:", message, functionName: function, fileName: file, lineNumber: line)
+}
+
+private func log(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
+    dbg("Kanji Log:", message, functionName: function, fileName: file, lineNumber: line)
 }
 
 

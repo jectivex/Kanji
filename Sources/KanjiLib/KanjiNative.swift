@@ -7,6 +7,10 @@
 
 import KanjiVM
 import JavaLib
+#if canImport(Dispatch)
+import Dispatch
+#endif
+
 
 // MARK Dynamic native Java interface implementations
 
