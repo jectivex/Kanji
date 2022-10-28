@@ -11,6 +11,10 @@ To run tests on macOS 12, install an JDK (e.g., with `brew install openjdk@11`) 
 swift test -Xlinker -L${JAVA_HOME}/lib/jli -Xlinker -ljli
 ```
 
-On Linux, 
+On Linux, run:
+
+```shell
+LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration release -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
+```
 
 See the [ci.yml](blob/main/.github/workflows/ci.yml) workflow to see how this is done on the CI runners.
