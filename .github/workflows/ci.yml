@@ -37,10 +37,10 @@ jobs:
           java -version
           # /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.345-1/x64/Contents/Home
           echo "JAVA_HOME: ${JAVA_HOME}"
-          echo "JRE_HOME: ${JRE_HOME}"
+          find "${JAVA_HOME}" -type f
 
       - name: Test (Debug)
-        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jre/jli/ -Xlinker -ljli
+        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli -Xlinker -L${JAVA_HOME}/jre/lib/
 
       - name: Test (Release)
         if: false
