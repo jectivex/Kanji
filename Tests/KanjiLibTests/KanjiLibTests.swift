@@ -10,7 +10,7 @@ import KanjiLib
 import KanjiVM
 import JavaLib
 import Dispatch
-
+import CoreFoundation
 
 /// See usage in testJNI
 let abcstring = "abc".javaString
@@ -142,7 +142,7 @@ class KanjiLibTests: XCTestCase {
     }
 
     func testDirectByteBuffers() throws {
-        throw XCTSkip()
+        //throw XCTSkip()
 
         // this started failing after the 10.15.3 -> 10.15.4 upgrade: random numbers (e.g., -120, -6, -46, 114) are being returned.
         var bytes: [jbyte] = [1,5,9,3]
