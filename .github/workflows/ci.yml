@@ -19,12 +19,20 @@ jobs:
           java --version
           echo "JAVA_HOME: ${JAVA_HOME}"
           find "${JAVA_HOME}" -type f
+
+        # notable locations on GH runner:
+        # /usr/lib/jvm/temurin-11-jdk-amd64/lib/libjava.so
+        # /usr/lib/jvm/temurin-11-jdk-amd64/lib/jli/libjli.so
+        # /usr/lib/jvm/temurin-11-jdk-amd64/lib/server/libjvm.so
+        # /usr/lib/jvm/temurin-11-jdk-amd64/lib/server/libjsig.so
+
       - uses: actions/checkout@v2
+
       - name: Test (Debug)
-        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${LD_LIBRARY_PATH} swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
+        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
 
       - name: Test (Release)
-        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${LD_LIBRARY_PATH} swift test -v --configuration release -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
+        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration release -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
 
   macos:
     runs-on: macos-12
