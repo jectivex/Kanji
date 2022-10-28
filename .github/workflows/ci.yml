@@ -62,7 +62,7 @@ jobs:
       - name: Check JVM
         run: |
           which java
-          java --version
+          java -version
           echo "JAVA_HOME: ${JAVA_HOME}"
           ls -la /Library/Java/JavaVirtualMachines/
           ls -la /Library/Java/JavaVirtualMachines/temurin-18.jdk/
