@@ -21,10 +21,10 @@ jobs:
           find "${JAVA_HOME}" -type f
       - uses: actions/checkout@v2
       - name: Test (Debug)
-        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli/ -Xlinker -ljli
+        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli/ -Xlinker -ljli
       - name: Test (Release)
         if: false
-        run: swift test -v --configuration release -Xswiftc -enable-testing -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli/ -Xlinker -ljli
+        run: swift test -v --configuration release -Xswiftc -enable-testing -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli/ -Xlinker -ljli
 
   macos:
     runs-on: macos-12
@@ -40,11 +40,11 @@ jobs:
           echo "JRE_HOME: ${JRE_HOME}"
 
       - name: Test (Debug)
-        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli/ -Xlinker -ljli
+        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jre/jli/ -Xlinker -ljli
 
       - name: Test (Release)
         if: false
-        run: swift test -v --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/jli -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli/ -Xlinker -ljli
+        run: swift test -v --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/jli -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jre/jli/ -Xlinker -ljli
 
   api-doc:
     runs-on: macos-12
