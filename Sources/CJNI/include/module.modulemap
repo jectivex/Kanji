@@ -1,0 +1,7 @@
+module CJNI [system] {
+    //header "jni.h"
+    //header "jni_md.h"
+    header "/Library/Java/JavaVirtualMachines/temurin-18.jdk/Contents/Home/include/jni.h"
+    link "jvm"
+    export *
+}

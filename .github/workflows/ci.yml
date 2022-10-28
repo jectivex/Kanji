@@ -1,0 +1,93 @@
+name: Kanji CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches:
+      - '*'
+  schedule:
+    - cron:  '30 11,23 * * *'
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    if: false
+    steps:
+      - run: sudo apt-get update
+      - run: |
+        which java
+        java --version
+        echo "JAVA_HOME: ${JAVA_HOME}"
+      - uses: actions/checkout@v2
+      - name: Test (Debug)
+        run: swift test -v --configuration debug
+      - name: Test (Release)
+        run: swift test -v --configuration release -Xswiftc -enable-testing
+
+  ios:
+    runs-on: macos-12
+    id: false
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+            xcodebuild clean test \
+              -configuration Release \
+              -scheme "Kanji" \
+              -sdk "iphonesimulator" \
+              -destination "platform=iOS Simulator,name=iPhone 14" \
+              ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+
+  tvos:
+    runs-on: macos-12
+    if: false
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+            xcodebuild clean test \
+              -configuration Release \
+              -scheme "Kanji" \
+              -sdk "appletvsimulator" \
+              -destination "platform=tvOS Simulator,name=Apple TV" \
+              ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+
+  macos:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup JVM
+        run: brew install temurin
+      - name: Test (Debug)
+        #run: swift test -v --configuration debug
+        run: swift test -Xlinker -L/Library/Java/JavaVirtualMachines/temurin-18.jdk/Contents/Home/lib/server/ -Xlinker -rpath -Xlinker /Library/Java/JavaVirtualMachines/temurin-18.jdk/Contents/Home/lib/server/ -Xlinker -ljvm
+      #- name: Test (Release)
+        #run: swift test -v --configuration release -Xswiftc -enable-testing
+
+  api-doc:
+    runs-on: macos-12
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build documentation
+        run: |
+          swift -version
+          export SWIFTPM_ENABLE_COMMAND_PLUGINS=1
+          export DOCC_JSON_PRETTYPRINT="YES"
+
+          # insert the docc dependency
+          sed -I "" 's;^    dependencies: \[;    dependencies: [ .package(name: "swift-docc-plugin", url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"), ;1' Package.swift
+
+          swift package --allow-writing-to-directory docs \
+            generate-documentation --target KanjiVM \
+            --disable-indexing \
+            --transform-for-static-hosting \
+            --hosting-base-path KanjiVM \
+            --output-path docs
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: '.'
+
+
