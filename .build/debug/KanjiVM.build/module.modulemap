@@ -1,0 +1,4 @@
+module KanjiVM {
+    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiVM.build/KanjiVM-Swift.h"
+    requires objc
+}

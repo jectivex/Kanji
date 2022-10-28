@@ -20,9 +20,5 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2010-2020-2019 Glimpse I/O. All rights reserved.</string>
-	<key>NSPrincipalClass</key>
-	<string></string>
 </dict>
 </plist>
