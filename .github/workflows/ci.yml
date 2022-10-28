@@ -55,9 +55,6 @@ jobs:
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v2
-      - name: Setup JVM
-        run: |
-          brew install temurin
 
       - name: Check JVM
         run: |
