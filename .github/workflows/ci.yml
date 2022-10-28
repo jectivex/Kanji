@@ -64,9 +64,23 @@ jobs:
           ls ${JAVA_HOME}
           find ${JAVA_HOME}
 
+          brew install openjdk@11 
+
+      - name: Check JVM 2
+        run: |
+          which java
+          java -version
+          echo "JAVA_HOME: ${JAVA_HOME}"
+          ls ${JAVA_HOME}
+          find ${JAVA_HOME}
+
+
       - name: Test (Debug)
         #run: swift test -v --configuration debug
-        run: swift test -Xlinker -L${JAVA_HOME}/lib -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib -Xlinker -ljvm
+        run: |
+          export JAVA_HOME=${HOMEBREW_CELLAR}/openjdk@11/11.0.16.1_1/libexec/openjdk.jdk/Contents/Home/ 
+          swift test -Xlinker -L${JAVA_HOME}/lib/jli -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli -Xlinker -ljli
+
       #- name: Test (Release)
         #run: swift test -v --configuration release -Xswiftc -enable-testing
 
