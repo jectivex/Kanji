@@ -61,13 +61,10 @@ jobs:
           which java
           java -version
           echo "JAVA_HOME: ${JAVA_HOME}"
-          ls -la /Library/Java/JavaVirtualMachines/
-          ls -la /Library/Java/JavaVirtualMachines/temurin-18.jdk/
-          ls -la /Library/Java/JavaVirtualMachines/temurin-18.jdk/Contents/Home/lib/server/
 
       - name: Test (Debug)
         #run: swift test -v --configuration debug
-        run: swift test -Xlinker -L/Library/Java/JavaVirtualMachines/temurin-18.jdk/Contents/Home/lib/server/ -Xlinker -rpath -Xlinker /Library/Java/JavaVirtualMachines/temurin-18.jdk/Contents/Home/lib/server/ -Xlinker -ljvm
+        run: swift test -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/server/ -Xlinker -ljvm
       #- name: Test (Release)
         #run: swift test -v --configuration release -Xswiftc -enable-testing
 
