@@ -60,29 +60,17 @@ jobs:
         run: |
           which java
           java -version
+          # /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.345-1/x64/Contents/Home
           echo "JAVA_HOME: ${JAVA_HOME}"
-          ls ${JAVA_HOME}
-          find ${JAVA_HOME}
-
-          brew install openjdk@11 
-
-      - name: Check JVM 2
-        run: |
-          which java
-          java -version
-          echo "JAVA_HOME: ${JAVA_HOME}"
-          ls ${JAVA_HOME}
-          find ${JAVA_HOME}
-
+          echo "JRE_HOME: ${JRE_HOME}"
 
       - name: Test (Debug)
-        #run: swift test -v --configuration debug
         run: |
-          export JAVA_HOME=${HOMEBREW_CELLAR}/openjdk@11/11.0.16.1_1/libexec/openjdk.jdk/Contents/Home/ 
-          swift test -Xlinker -L${JAVA_HOME}/lib/jli -Xlinker -rpath -Xlinker ${JAVA_HOME}/lib/jli -Xlinker -ljli
+          swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli -Xlinker -ljli
 
-      #- name: Test (Release)
-        #run: swift test -v --configuration release -Xswiftc -enable-testing
+      - name: Test (Release)
+        run: |
+          swift test -v --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/jli -Xlinker -ljli
 
   api-doc:
     runs-on: macos-12
@@ -103,7 +91,8 @@ jobs:
             --disable-indexing \
             --transform-for-static-hosting \
             --hosting-base-path KanjiVM \
-            --output-path docs
+            --output-path docs \
+            -Xlinker -L${JAVA_HOME}/jre/lib/jli -Xlinker -ljli
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

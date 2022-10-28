@@ -3,7 +3,6 @@
 //  KanjiTool
 //
 //  Created by Marc Prud'hommeaux on 10/14/15.
-//  Copyright © 2010-2020 io.glimpse. All rights reserved.
 //
 
 // usage: cat /opt/src/glimpse/glimpse/Glean/Glean/glean-schema.json | /Users/mprudhom/Library/Developer/Xcode/DerivedData/Glimpse-akzmpxhsvpypdxbqqszohlbdbwzm/Build/Products/Debug/CurioTool | xcrun -sdk macosx swiftc -parse -

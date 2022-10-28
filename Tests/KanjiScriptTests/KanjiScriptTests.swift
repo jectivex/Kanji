@@ -3,7 +3,6 @@
 //  KanjiScriptTests
 //
 //  Created by Marc Prud'hommeaux on 7/22/15.
-//  Copyright © 2010-2020 io.glimpse. All rights reserved.
 //
 
 import XCTest
