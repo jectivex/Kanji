@@ -3,10 +3,8 @@
 //  KanjiVMTests
 //
 //  Created by Marc Prud'hommeaux on 3/6/15.
-//  Copyright (c) 2015 io.glimpse. All rights reserved.
 //
 
-import AppKit
 import XCTest
 import KanjiVM
 
@@ -203,48 +201,6 @@ class StringPerformanceTests: XCTestCase {
         XCTAssertEqual(Array(str.utf16), utf16Array)
     }
 }
-
-// Extensions from https://www.mikeash.com/pyblog/friday-qa-2015-11-06-why-is-swifts-string-api-so-hard.html
-//extension String {
-//    init?<Seq: Sequence>(utf16: Seq) where Seq.Iterator.Element == UInt16 {
-//        self.init()
-//
-//        guard transcode(UTF16.self,
-//            UTF32.self,
-//            utf16.makeIterator(),
-//            { self.append(String(describing: UnicodeScalar($0))) },
-//            stopOnError: true)
-//            == false else { return nil }
-//    }
-//
-//    init?<Seq: Sequence>(utf8: Seq) where Seq.Iterator.Element == UInt8 {
-//        self.init()
-//
-//        guard transcode(UTF8.self,
-//            UTF32.self,
-//            utf8.makeIterator(),
-//            { self.append(String(describing: UnicodeScalar($0))) },
-//            stopOnError: true)
-//            == false else { return nil }
-//    }
-//}
-//
-
-//private protocol SomeKajiInterface : JavaObject {
-//
-//}
-//
-//private class SomeKajiClass : SomeKajiInterface {
-//    let jobj: jobject = nil
-//    static func jniName() -> String { return "" }
-//    required init(reference: jobject) { }
-//}
-//
-//private func make() throws -> SomeKajiInterface? {
-//    let job: jobject = nil
-//    let makr =  JVM.sharedJVM.construct(job, stub: { SomeKajiClass(reference: job) })
-//    return makr
-//}
 
 
 public protocol KanjiClass {

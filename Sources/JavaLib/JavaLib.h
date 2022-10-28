@@ -3,7 +3,6 @@
 //  JavaLib
 //
 //  Created by Marc Prud'hommeaux on 10/21/15.
-//  Copyright © 2010-2020 io.glimpse. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

@@ -3,7 +3,6 @@
 //  Kanji
 //
 //  Created by Marc Prud'hommeaux on 11/7/15.
-//  Copyright © 2010-2020 io.glimpse. All rights reserved.
 //
 import CJNI
 

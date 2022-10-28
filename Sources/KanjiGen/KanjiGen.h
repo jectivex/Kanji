@@ -3,7 +3,6 @@
 //  KanjiGen
 //
 //  Created by Marc Prud'hommeaux on 7/28/15.
-//  Copyright © 2010-2020 io.glimpse. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
