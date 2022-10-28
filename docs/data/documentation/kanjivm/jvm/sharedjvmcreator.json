@@ -1,0 +1,257 @@
+{
+  "abstract" : [
+    {
+      "text" : "The constructor that will be used to lazily create the shared JVM",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/sharedJVMCreator"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:7KanjiVM3JVMC16sharedJVMCreatorACyKcvpZ",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "static"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "var"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "sharedJVMCreator"
+      },
+      {
+        "kind" : "text",
+        "text" : ": () "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "throws"
+      },
+      {
+        "kind" : "text",
+        "text" : " -> ("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:7KanjiVM3JVMC",
+        "text" : "JVM"
+      },
+      {
+        "kind" : "text",
+        "text" : ")"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "KanjiVM"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Type Property",
+    "symbolKind" : "property",
+    "title" : "sharedJVMCreator"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "static"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "var"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "sharedJVMCreator"
+            },
+            {
+              "kind" : "text",
+              "text" : ": () "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "throws"
+            },
+            {
+              "kind" : "text",
+              "text" : " -> ("
+            },
+            {
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:7KanjiVM3JVMC",
+              "text" : "JVM"
+            },
+            {
+              "kind" : "text",
+              "text" : ")"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/kanjivm\/jvm\/sharedjvmcreator"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://KanjiVM/documentation/KanjiVM": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "KanjiVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVM": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JVM"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JVM"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvm"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVM/sharedJVMCreator": {
+  "abstract" : [
+    {
+      "text" : "The constructor that will be used to lazily create the shared JVM",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "sharedJVMCreator"
+    },
+    {
+      "kind" : "text",
+      "text" : ": () "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "throws"
+    },
+    {
+      "kind" : "text",
+      "text" : " -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7KanjiVM3JVMC",
+      "text" : "JVM"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/sharedJVMCreator",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "sharedJVMCreator",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvm\/sharedjvmcreator"
+}
+}
+}

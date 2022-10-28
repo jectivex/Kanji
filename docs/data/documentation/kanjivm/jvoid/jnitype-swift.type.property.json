@@ -1,0 +1,229 @@
+{
+  "abstract" : [
+    {
+      "text" : "Inherited from ",
+      "type" : "text"
+    },
+    {
+      "code" : "JType.jniType",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid\/jniType-swift.type.property"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:7KanjiVM5JVoidV7jniTypeACvpZ",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "static"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "let"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "jniType"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "s:7KanjiVM5JVoidV",
+        "text" : "JVoid"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "KanjiVM"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Type Property",
+    "symbolKind" : "property",
+    "title" : "jniType"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "static"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "let"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "jniType"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:7KanjiVM5JVoidV",
+              "text" : "JVoid"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/kanjivm\/jvoid\/jnitype-swift.type.property"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://KanjiVM/documentation/KanjiVM": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "KanjiVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVoid": {
+  "abstract" : [
+    {
+      "text" : "JVoid return type; unlike other primitives (like jboolean), Void cannot be extended",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JVoid"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JVoid"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JVoid",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvoid"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVoid/jniType-swift.type.property": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "jniType"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7KanjiVM5JVoidV",
+      "text" : "JVoid"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid\/jniType-swift.type.property",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "jniType",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvoid\/jnitype-swift.type.property"
+}
+}
+}

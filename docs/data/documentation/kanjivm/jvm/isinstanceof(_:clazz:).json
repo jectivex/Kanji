@@ -1,0 +1,282 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/isInstanceOf(_:clazz:)"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "extendedModule" : "KanjiVM",
+    "externalID" : "s:7KanjiVM3JVMC12isInstanceOf_5clazzs5UInt8Vs13OpaquePointerVSg_AItF",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "func"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "isInstanceOf"
+      },
+      {
+        "kind" : "text",
+        "text" : "("
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "c:@T@jobject",
+        "text" : "jobject"
+      },
+      {
+        "kind" : "text",
+        "text" : "?, "
+      },
+      {
+        "kind" : "externalParam",
+        "text" : "clazz"
+      },
+      {
+        "kind" : "text",
+        "text" : ": "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "c:@T@jclass",
+        "text" : "jclass"
+      },
+      {
+        "kind" : "text",
+        "text" : ") -> "
+      },
+      {
+        "kind" : "typeIdentifier",
+        "preciseIdentifier" : "c:@T@jboolean",
+        "text" : "jboolean"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "KanjiVM"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Instance Method",
+    "symbolKind" : "method",
+    "title" : "isInstanceOf(_:clazz:)"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "func"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "isInstanceOf"
+            },
+            {
+              "kind" : "text",
+              "text" : "("
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "_"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "internalParam",
+              "text" : "obj"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "c:@T@jobject",
+              "text" : "jobject"
+            },
+            {
+              "kind" : "text",
+              "text" : "?, "
+            },
+            {
+              "kind" : "externalParam",
+              "text" : "clazz"
+            },
+            {
+              "kind" : "text",
+              "text" : ": "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "c:@T@jclass",
+              "text" : "jclass"
+            },
+            {
+              "kind" : "text",
+              "text" : ") -> "
+            },
+            {
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "c:@T@jboolean",
+              "text" : "jboolean"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/kanjivm\/jvm\/isinstanceof(_:clazz:)"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://KanjiVM/documentation/KanjiVM": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "KanjiVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVM": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JVM"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JVM"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvm"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVM/isInstanceOf(_:clazz:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "isInstanceOf"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jobject",
+      "text" : "jobject"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "clazz"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jclass",
+      "text" : "jclass"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jboolean",
+      "text" : "jboolean"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/isInstanceOf(_:clazz:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "isInstanceOf(_:clazz:)",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvm\/isinstanceof(_:clazz:)"
+}
+}
+}

@@ -1,0 +1,728 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "KanjiVM",
+    "modules" : [
+      {
+        "name" : "KanjiVM"
+      }
+    ],
+    "role" : "collection",
+    "roleHeading" : "Framework",
+    "symbolKind" : "module",
+    "title" : "KanjiVM"
+  },
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/NullTerminatedCString"
+      ],
+      "title" : "Classes"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/FlatMappable",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JInvocable",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNominal",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JPrimitive",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JRef",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JSig",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JavaObject"
+      ],
+      "title" : "Protocols"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JObjectType",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException"
+      ],
+      "title" : "Structures"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNI_DetachCurrentThread()",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNI_OnLoad(_:_:)"
+      ],
+      "title" : "Functions"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNIEnvPointer"
+      ],
+      "title" : "Type Aliases"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiErrors"
+      ],
+      "title" : "Enumerations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/kanjivm"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://KanjiVM/documentation/KanjiVM": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "KanjiVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm"
+},
+"doc://KanjiVM/documentation/KanjiVM/FlatMappable": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "FlatMappable"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/FlatMappable",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "FlatMappable"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "FlatMappable",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/flatmappable"
+},
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
+  "abstract" : [
+    {
+      "text" : "A JNI array that contains other elements",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JArray"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JArray"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JArray",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jarray"
+},
+"doc://KanjiVM/documentation/KanjiVM/JInvocable": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JInvocable"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JInvocable",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JInvocable"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JInvocable",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jinvocable"
+},
+"doc://KanjiVM/documentation/KanjiVM/JNIEnvPointer": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JNIEnvPointer"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNIEnvPointer",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JNIEnvPointer"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JNIEnvPointer",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jnienvpointer"
+},
+"doc://KanjiVM/documentation/KanjiVM/JNI_DetachCurrentThread()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JNI_DetachCurrentThread"
+    },
+    {
+      "kind" : "text",
+      "text" : "()"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNI_DetachCurrentThread()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "JNI_DetachCurrentThread()",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jni_detachcurrentthread()"
+},
+"doc://KanjiVM/documentation/KanjiVM/JNI_OnLoad(_:_:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JNI_OnLoad"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sp",
+      "text" : "UnsafeMutablePointer"
+    },
+    {
+      "kind" : "text",
+      "text" : "<"
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@JavaVM",
+      "text" : "JavaVM"
+    },
+    {
+      "kind" : "text",
+      "text" : "?>!, "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sv",
+      "text" : "UnsafeMutableRawPointer"
+    },
+    {
+      "kind" : "text",
+      "text" : "!) -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jint",
+      "text" : "jint"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNI_OnLoad(_:_:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "JNI_OnLoad(_:_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jni_onload(_:_:)"
+},
+"doc://KanjiVM/documentation/KanjiVM/JNominal": {
+  "abstract" : [
+    {
+      "text" : "A JType that can exist (i.e., a non-void type)",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JNominal"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNominal",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JNominal"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JNominal",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jnominal"
+},
+"doc://KanjiVM/documentation/KanjiVM/JObjectType": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JObjectType"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JObjectType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JObjectType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JObjectType",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jobjecttype"
+},
+"doc://KanjiVM/documentation/KanjiVM/JPrimitive": {
+  "abstract" : [
+    {
+      "text" : "A primitive that can be used as a JNI return value; the protocol will be implemented by extending the native return values themselves",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JPrimitive"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JPrimitive",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JPrimitive"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JPrimitive",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jprimitive"
+},
+"doc://KanjiVM/documentation/KanjiVM/JRef": {
+  "abstract" : [
+    {
+      "text" : "A holder for an underlying ",
+      "type" : "text"
+    },
+    {
+      "code" : "jobject",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " instance",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JRef"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JRef",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JRef"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JRef",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jref"
+},
+"doc://KanjiVM/documentation/KanjiVM/JSig": {
+  "abstract" : [
+    {
+      "text" : "A non-generic JNI type that can identify its signature",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JSig"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JSig",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JSig"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JSig",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jsig"
+},
+"doc://KanjiVM/documentation/KanjiVM/JType": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JType"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JType",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jtype"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVM": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JVM"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JVM"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvm"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVoid": {
+  "abstract" : [
+    {
+      "text" : "JVoid return type; unlike other primitives (like jboolean), Void cannot be extended",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JVoid"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JVoid"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JVoid",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvoid"
+},
+"doc://KanjiVM/documentation/KanjiVM/JavaObject": {
+  "abstract" : [
+    {
+      "text" : "Marker interface for all Java objects",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JavaObject"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JavaObject",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JavaObject"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JavaObject",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/javaobject"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiErrors": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "enum"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "KanjiErrors"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiErrors",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "KanjiErrors"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "KanjiErrors",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjierrors"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "KanjiException"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "KanjiException"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "KanjiException",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception"
+},
+"doc://KanjiVM/documentation/KanjiVM/NullTerminatedCString": {
+  "abstract" : [
+    {
+      "text" : "A little helper class for creating CStrings with null-termination",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "NullTerminatedCString"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/NullTerminatedCString",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "NullTerminatedCString"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "NullTerminatedCString",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/nullterminatedcstring"
+}
+}
+}

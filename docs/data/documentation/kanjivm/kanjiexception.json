@@ -1,0 +1,630 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:7KanjiVM0A9ExceptionV",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "struct"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "KanjiException"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "KanjiVM"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "KanjiException"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Structure",
+    "symbolKind" : "struct",
+    "title" : "KanjiException"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "struct"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "KanjiException"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/10Foundation13CustomNSErrorP",
+        "doc:\/\/KanjiVM\/s28CustomDebugStringConvertibleP",
+        "doc:\/\/KanjiVM\/s23CustomStringConvertibleP",
+        "doc:\/\/KanjiVM\/s5ErrorP",
+        "doc:\/\/KanjiVM\/s8SendableP"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforms To",
+      "type" : "conformsTo"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/causes",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/className",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/debugDescription",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/description",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/file",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/function",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/line",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/message",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/throwable"
+      ],
+      "title" : "Instance Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/asNSError()",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/createUserInfo()"
+      ],
+      "title" : "Instance Methods"
+    },
+    {
+      "generated" : true,
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/CustomNSError-Implementations",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/Error-Implementations"
+      ],
+      "title" : "Default Implementations"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/kanjivm\/kanjiexception"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://KanjiVM/10Foundation13CustomNSErrorP": {
+  "identifier" : "doc:\/\/KanjiVM\/10Foundation13CustomNSErrorP",
+  "title" : "Foundation.CustomNSError",
+  "type" : "unresolvable"
+},
+"doc://KanjiVM/documentation/KanjiVM": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "KanjiVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "KanjiException"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "KanjiException"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "KanjiException",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/CustomNSError-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/CustomNSError-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "CustomNSError Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/customnserror-implementations"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/Error-Implementations": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/Error-Implementations",
+  "kind" : "article",
+  "role" : "collectionGroup",
+  "title" : "Error Implementations",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/error-implementations"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/asNSError()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "asNSError"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:objc(cs)NSError",
+      "text" : "NSError"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/asNSError()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "asNSError()",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/asnserror()"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/causes": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "causes"
+    },
+    {
+      "kind" : "text",
+      "text" : ": ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7KanjiVM0A9ExceptionV",
+      "text" : "KanjiException"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/causes",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "causes",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/causes"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/className": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "className"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/className",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "className",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/classname"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/createUserInfo()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "createUserInfo"
+    },
+    {
+      "kind" : "text",
+      "text" : "() -> ["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : " : "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "]"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/createUserInfo()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "createUserInfo()",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/createuserinfo()"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/debugDescription": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "debugDescription"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/debugDescription",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "debugDescription",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/debugdescription"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/description": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "description"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/description",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "description",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/description"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/file": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "file"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/file",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "file",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/file"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/function": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "function"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/function",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "function",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/function"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/line": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "line"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/line",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "line",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/line"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/message": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "message"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/message",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "message",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/message"
+},
+"doc://KanjiVM/documentation/KanjiVM/KanjiException/throwable": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "throwable"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jthrowable",
+      "text" : "jthrowable"
+    },
+    {
+      "kind" : "text",
+      "text" : "?"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/KanjiException\/throwable",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "throwable",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/kanjiexception\/throwable"
+},
+"doc://KanjiVM/s23CustomStringConvertibleP": {
+  "identifier" : "doc:\/\/KanjiVM\/s23CustomStringConvertibleP",
+  "title" : "Swift.CustomStringConvertible",
+  "type" : "unresolvable"
+},
+"doc://KanjiVM/s28CustomDebugStringConvertibleP": {
+  "identifier" : "doc:\/\/KanjiVM\/s28CustomDebugStringConvertibleP",
+  "title" : "Swift.CustomDebugStringConvertible",
+  "type" : "unresolvable"
+},
+"doc://KanjiVM/s5ErrorP": {
+  "identifier" : "doc:\/\/KanjiVM\/s5ErrorP",
+  "title" : "Swift.Error",
+  "type" : "unresolvable"
+},
+"doc://KanjiVM/s8SendableP": {
+  "identifier" : "doc:\/\/KanjiVM\/s8SendableP",
+  "title" : "Swift.Sendable",
+  "type" : "unresolvable"
+}
+}
+}

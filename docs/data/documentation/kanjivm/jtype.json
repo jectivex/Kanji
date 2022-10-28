@@ -1,0 +1,977 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:7KanjiVM5JTypeP",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "protocol"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "JType"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "KanjiVM"
+      }
+    ],
+    "navigatorTitle" : [
+      {
+        "kind" : "identifier",
+        "text" : "JType"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Protocol",
+    "symbolKind" : "protocol",
+    "title" : "JType"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "protocol"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "identifier",
+              "text" : "JType"
+            },
+            {
+              "kind" : "text",
+              "text" : " : "
+            },
+            {
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JSig",
+              "kind" : "typeIdentifier",
+              "preciseIdentifier" : "s:7KanjiVM4JSigP",
+              "text" : "JSig"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "relationshipsSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JSig"
+      ],
+      "kind" : "relationships",
+      "title" : "Inherits From",
+      "type" : "inheritsFrom"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNominal",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JPrimitive"
+      ],
+      "kind" : "relationships",
+      "title" : "Inherited By",
+      "type" : "inheritedBy"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JObjectType",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid"
+      ],
+      "kind" : "relationships",
+      "title" : "Conforming Types",
+      "type" : "conformingTypes"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/JNIType-swift.associatedtype"
+      ],
+      "title" : "Associated Types"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/jniType-swift.type.property"
+      ],
+      "title" : "Type Properties"
+    },
+    {
+      "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/call(_:file:line:function:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/callNonvirtual(_:file:line:function:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/callStatic(_:file:line:function:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/jvalueOf(_:)"
+      ],
+      "title" : "Type Methods"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/kanjivm\/jtype"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://KanjiVM/documentation/KanjiVM": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "KanjiVM",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm"
+},
+"doc://KanjiVM/documentation/KanjiVM/JArray": {
+  "abstract" : [
+    {
+      "text" : "A JNI array that contains other elements",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JArray"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JArray",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JArray"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JArray",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jarray"
+},
+"doc://KanjiVM/documentation/KanjiVM/JNominal": {
+  "abstract" : [
+    {
+      "text" : "A JType that can exist (i.e., a non-void type)",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JNominal"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNominal",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JNominal"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JNominal",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jnominal"
+},
+"doc://KanjiVM/documentation/KanjiVM/JObjectType": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JObjectType"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JObjectType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JObjectType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JObjectType",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jobjecttype"
+},
+"doc://KanjiVM/documentation/KanjiVM/JPrimitive": {
+  "abstract" : [
+    {
+      "text" : "A primitive that can be used as a JNI return value; the protocol will be implemented by extending the native return values themselves",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JPrimitive"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JPrimitive",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JPrimitive"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JPrimitive",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jprimitive"
+},
+"doc://KanjiVM/documentation/KanjiVM/JSig": {
+  "abstract" : [
+    {
+      "text" : "A non-generic JNI type that can identify its signature",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JSig"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JSig",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JSig"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JSig",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jsig"
+},
+"doc://KanjiVM/documentation/KanjiVM/JType": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "protocol"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JType"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JType"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JType",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jtype"
+},
+"doc://KanjiVM/documentation/KanjiVM/JType/JNIType-swift.associatedtype": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "associatedtype"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JNIType"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/JNIType-swift.associatedtype",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "JNIType",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jtype\/jnitype-swift.associatedtype"
+},
+"doc://KanjiVM/documentation/KanjiVM/JType/call(_:file:line:function:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "call"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jmethodID",
+      "text" : "jmethodID"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "file"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "line"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "function"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
+      "text" : "JNIEnvPointer"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jobject",
+      "text" : "jobject"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> (["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@U@jvalue",
+      "text" : "jvalue"
+    },
+    {
+      "kind" : "text",
+      "text" : "]) "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "throws"
+    },
+    {
+      "kind" : "text",
+      "text" : " -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "JNIType"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/call(_:file:line:function:)",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "call(_:file:line:function:)",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jtype\/call(_:file:line:function:)"
+},
+"doc://KanjiVM/documentation/KanjiVM/JType/callNonvirtual(_:file:line:function:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "callNonvirtual"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jmethodID",
+      "text" : "jmethodID"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "file"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "line"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "function"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
+      "text" : "JNIEnvPointer"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jclass",
+      "text" : "jclass"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jobject",
+      "text" : "jobject"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> (["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@U@jvalue",
+      "text" : "jvalue"
+    },
+    {
+      "kind" : "text",
+      "text" : "]) "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "throws"
+    },
+    {
+      "kind" : "text",
+      "text" : " -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "JNIType"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/callNonvirtual(_:file:line:function:)",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "callNonvirtual(_:file:line:function:)",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jtype\/callnonvirtual(_:file:line:function:)"
+},
+"doc://KanjiVM/documentation/KanjiVM/JType/callStatic(_:file:line:function:)": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "callStatic"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jmethodID",
+      "text" : "jmethodID"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "file"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "line"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "function"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:SS",
+      "text" : "String"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:7KanjiVM13JNIEnvPointera",
+      "text" : "JNIEnvPointer"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> ("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@T@jclass",
+      "text" : "jclass"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> (["
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@U@jvalue",
+      "text" : "jvalue"
+    },
+    {
+      "kind" : "text",
+      "text" : "]) "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "throws"
+    },
+    {
+      "kind" : "text",
+      "text" : " -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "JNIType"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/callStatic(_:file:line:function:)",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "callStatic(_:file:line:function:)",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jtype\/callstatic(_:file:line:function:)"
+},
+"doc://KanjiVM/documentation/KanjiVM/JType/jniType-swift.type.property": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "var"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "jniType"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/jniType-swift.type.property",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "jniType",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jtype\/jnitype-swift.type.property"
+},
+"doc://KanjiVM/documentation/KanjiVM/JType/jvalueOf(_:)": {
+  "abstract" : [
+    {
+      "text" : "Convert the given JNI type to a jvalue",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "jvalueOf"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "Self"
+    },
+    {
+      "kind" : "text",
+      "text" : "."
+    },
+    {
+      "kind" : "typeIdentifier",
+      "text" : "JNIType"
+    },
+    {
+      "kind" : "text",
+      "text" : ") -> "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "c:@U@jvalue",
+      "text" : "jvalue"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JType\/jvalueOf(_:)",
+  "kind" : "symbol",
+  "required" : true,
+  "role" : "symbol",
+  "title" : "jvalueOf(_:)",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jtype\/jvalueof(_:)"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVoid": {
+  "abstract" : [
+    {
+      "text" : "JVoid return type; unlike other primitives (like jboolean), Void cannot be extended",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "struct"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JVoid"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVoid",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JVoid"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JVoid",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvoid"
+}
+}
+}
