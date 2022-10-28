@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 io.glimpse. All rights reserved.
 //
 import Foundation
+import CoreFoundation
 import CJNI
 
 private func dbg(_ items: Any..., functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: UInt = #line) {
