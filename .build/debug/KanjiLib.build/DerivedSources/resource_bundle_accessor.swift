@@ -1,7 +1,7 @@
 import class Foundation.Bundle
 
 extension Foundation.Bundle {
-    static var module: Bundle = {
+    static let module: Bundle = {
         let mainPath = Bundle.main.bundleURL.appendingPathComponent("Kanji_KanjiLib.bundle").path
         let buildPath = "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/Kanji_KanjiLib.bundle"
 
