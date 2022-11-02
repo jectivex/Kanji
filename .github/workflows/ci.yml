@@ -9,11 +9,13 @@ on:
   schedule:
     - cron:  '30 11,23 * * *'
 
+env:
+  DEVELOPER_DIR: /Applications/Xcode_14.1.app/Contents/Developer
+
 jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
-      - run: sudo apt-get update
       - run: |
           which java
           java --version
@@ -46,6 +48,13 @@ jobs:
           # /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.345-1/x64/Contents/Home
           echo "JAVA_HOME: ${JAVA_HOME}"
           find "${JAVA_HOME}" -type f
+
+          # Notable locations on macOS GH Runner:
+          #
+          # ${JAVA_HOME}/jre/lib/jvm.cfg
+          # ${JAVA_HOME}/jre/lib/libnet.dylib
+          # ${JAVA_HOME}/jre/lib/jli/libjli.dylib
+          # ${JAVA_HOME}/jre/lib/libjava.dylib
 
       - name: Test (Debug)
         run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
