@@ -1,4 +1,4 @@
-Kanji
+Swift Kotlin Android Native Java Interface (Kanji)
 =====
 
 A cross-platform (macOS / Android / Linux) bridge from Swift to Java.
