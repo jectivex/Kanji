@@ -84,12 +84,6 @@ public typealias jstring = JNI.jstring // = jobject
 
 
 
-@_silgen_name("JNI_OnLoad")
-public func JNI_OnLoad(_ vm: UnsafeMutablePointer<JavaVM?>!, _ reserved: UnsafeMutableRawPointer!) -> jint {
-    log("JNI_OnLoad")
-    return jint(JVM.jniversion)
-}
-
 public enum KanjiErrors : Error, CustomDebugStringConvertible {
     case system
     case notFound(String)
@@ -171,12 +165,21 @@ private var JNI: JVM { return JVM.sharedJVM }
 
 public typealias JNIEnvPointer = UnsafeMutablePointer<JNIEnv?>?
 
+@_silgen_name("JNI_OnLoad")
+public func JNI_OnLoad(_ vm: UnsafeMutablePointer<JavaVM?>!, _ reserved: UnsafeMutableRawPointer!) -> jint {
+    log("JNI_OnLoad")
+    // this should be called on platforms like Android to use the existing VM
+    assert(JVM.singletonJVM == nil, "shared JVM should not have been set")
+    JVM.singletonJVM = JVM(jvm: vm)
+    return jint(JVM.jniversion)
+}
+
 
 public final class JVM {
     /// The constructor that will be used to lazily create the shared JVM
     public static var sharedJVMCreator: () throws -> (JVM) = { try JVM() }
 
-    private static var singletonJVM: JVM?
+    fileprivate static var singletonJVM: JVM?
 
     /// The singleton shared JVM: it must be manually set once and only once for a process, as JNI does not support mutliple JVMs
     public static var sharedJVM: JVM! {
@@ -199,7 +202,7 @@ public final class JVM {
     /// Global variable indicating whether we should dump all stack traces to stdout when they are converted into KanjiExceptions
     public var printStackTraces: Bool = true
 
-    fileprivate static let jniversion = JNI_VERSION_1_8
+    fileprivate static let jniversion = JNI_VERSION_1_6
 
     /// Whether or not to attempt to load dynamic peer subclasses matching the subclass of jobjects returned from methods
     public var virtualConstruction = false
@@ -262,6 +265,14 @@ public final class JVM {
 
     /// The static list of module loaders against which dynamic loading will be attempted
     public var moduleLoaders: [String] = ["JavaLib"]
+
+
+    fileprivate init(jvm: UnsafeMutablePointer<JavaVM?>) {
+        self.jvm = jvm
+        let env = self.GetEnv()
+        self.envCache[pthread_self()] = env
+        self.api = env!.pointee!.pointee
+    }
 
     public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (false, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], compiler: String? = nil, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
 
@@ -349,7 +360,7 @@ public final class JVM {
         jargs.options = jopts
 
         var pargs: UnsafePointer<JavaVMInitArgs> = withUnsafePointer(to: &jargs, { $0 })
-        _ = JNI_GetDefaultJavaVMInitArgs(&pargs)
+        // _ = JNI_GetDefaultJavaVMInitArgs(&pargs)
 
         var pvm: UnsafeMutablePointer<JavaVM?>?
         var penv: UnsafeMutableRawPointer?
@@ -364,6 +375,7 @@ public final class JVM {
         }
 
         self.jvm = vm
+
         let env = self.GetEnv()
         self.envCache[pthread_self()] = env
         self.api = env!.pointee!.pointee

@@ -401,6 +401,7 @@ class KanjiLibTests: XCTestCase {
                 let str = java$lang$String(reference: jarg)
                 globalFobs = [str]
                 let ret = try? str?.concat(str?.toUpperCase()) ?? ""
+                #warning("return values get cleaned up if we don't hold a global reference")
                 globalRet = ret // FIXME: return values get deleted if we don't keep a reference
                 return ret?.jobj ?? nil
             })
