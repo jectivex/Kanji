@@ -292,7 +292,7 @@ public protocol FunctionalInterface : JavaObject {
     /// The type signature for the given non-capturing block
     associatedtype FunctionalBlock
 
-    // we'd like use this, but: '(UnsafePointer<JNIEnv>, jobject, Self.A1.JNIType) -> Self.R.JNIType' (aka '(UnsafePointer<UnsafePointer<JNINativeInterface_>>, OpaquePointer, Self.A1.JNIType) -> Self.R.JNIType') is not representable in Objective-C, so it cannot be used with '@convention(c)'
+    // we'd like use this, but: '(UnsafePointer<JNIEnv>, jobject, Self.A1.JNIType) -> Self.R.JNIType' (aka '(UnsafePointer<UnsafePointer<JNINativeInterface>>, OpaquePointer, Self.A1.JNIType) -> Self.R.JNIType') is not representable in Objective-C, so it cannot be used with '@convention(c)'
     //public typealias FunctionalBlock = @convention(c) (UnsafePointer<JNIEnv>, jobject, A1.JNIType) -> R.JNIType
 
     static func fromBlock(_ native: FunctionalBlock) throws -> Impl
