@@ -57,10 +57,10 @@ jobs:
           # ${JAVA_HOME}/jre/lib/libjava.dylib
 
       - name: Test (Debug)
-        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
+        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/server
 
       - name: Test (Release)
-        run: swift test -v --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
+        run: swift test -v --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/server
 
   api-doc:
     runs-on: macos-12
