@@ -1,4 +1,4 @@
-module CJNI [system] {
+module JNI {
     header "jni.h"
     header "jni_md.h"
     link "jvm"
