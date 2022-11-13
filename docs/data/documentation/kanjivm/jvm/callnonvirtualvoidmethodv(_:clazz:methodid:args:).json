@@ -68,7 +68,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:@T@jmethodID",
+        "preciseIdentifier" : "c:jni.h@T@jmethodID",
         "text" : "jmethodID"
       },
       {
@@ -184,7 +184,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jmethodID",
+              "preciseIdentifier" : "c:jni.h@T@jmethodID",
               "text" : "jmethodID"
             },
             {
@@ -335,7 +335,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jmethodID",
+      "preciseIdentifier" : "c:jni.h@T@jmethodID",
       "text" : "jmethodID"
     },
     {

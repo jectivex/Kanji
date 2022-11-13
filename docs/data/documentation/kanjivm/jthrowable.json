@@ -72,7 +72,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jthrowable",
+              "preciseIdentifier" : "c:jni.h@T@jthrowable",
               "text" : "jthrowable"
             }
           ]

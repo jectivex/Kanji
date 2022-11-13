@@ -34,7 +34,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:@T@jarray",
+        "preciseIdentifier" : "c:jni.h@T@jarray",
         "text" : "jarray"
       },
       {
@@ -131,7 +131,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jarray",
+              "preciseIdentifier" : "c:jni.h@T@jarray",
               "text" : "jarray"
             },
             {
@@ -266,7 +266,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jarray",
+      "preciseIdentifier" : "c:jni.h@T@jarray",
       "text" : "jarray"
     },
     {

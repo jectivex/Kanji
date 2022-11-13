@@ -72,7 +72,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jboolean",
+              "preciseIdentifier" : "c:jni.h@T@jboolean",
               "text" : "jboolean"
             }
           ]

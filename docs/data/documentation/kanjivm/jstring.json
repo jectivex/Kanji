@@ -72,7 +72,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jstring",
+              "preciseIdentifier" : "c:jni.h@T@jstring",
               "text" : "jstring"
             }
           ]

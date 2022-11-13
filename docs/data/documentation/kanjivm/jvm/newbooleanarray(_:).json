@@ -43,7 +43,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:@T@jbooleanArray",
+        "preciseIdentifier" : "c:jni.h@T@jbooleanArray",
         "text" : "jbooleanArray"
       },
       {
@@ -116,7 +116,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jbooleanArray",
+              "preciseIdentifier" : "c:jni.h@T@jbooleanArray",
               "text" : "jbooleanArray"
             },
             {
@@ -225,7 +225,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jbooleanArray",
+      "preciseIdentifier" : "c:jni.h@T@jbooleanArray",
       "text" : "jbooleanArray"
     },
     {

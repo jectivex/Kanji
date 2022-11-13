@@ -7,80 +7,80 @@
 //
 import Foundation
 import CoreFoundation
-import CJNI // we don't use @_exported because we re-alias some types
+import JNI
 
 //@available(*, deprecated, renamed: "KJNIEnv")
-public typealias JNIEnv = CJNI.JNIEnv
+public typealias JNIEnv = JNI.JNIEnv
 
 //@available(*, deprecated, renamed: "KJNINativeMethod")
-public typealias JNINativeMethod = CJNI.JNINativeMethod
+public typealias JNINativeMethod = JNI.JNINativeMethod
 
 //@available(*, deprecated, renamed: "KJWeak")
-public typealias jweak = CJNI.jweak // = jobject
+public typealias jweak = JNI.jweak // = jobject
 
 //@available(*, deprecated, renamed: "KJValue")
-public typealias jvalue = CJNI.jvalue // = struct
+public typealias jvalue = JNI.jvalue // = struct
 
 //@available(*, deprecated, renamed: "Int32")
-public typealias jint = CJNI.jint // = Int32
+public typealias jint = JNI.jint // = Int32
 
 //@available(*, deprecated, renamed: "Int64")
-public typealias jlong = CJNI.jlong // = Int64
+public typealias jlong = JNI.jlong // = Int64
 
 //@available(*, deprecated, renamed: "Int8")
-public typealias jbyte = CJNI.jbyte // = Int8
+public typealias jbyte = JNI.jbyte // = Int8
 
 //@available(*, deprecated, renamed: "UInt8")
-public typealias jboolean = CJNI.jboolean // = UInt8
+public typealias jboolean = JNI.jboolean // = UInt8
 
 //@available(*, deprecated, renamed: "UInt16")
-public typealias jchar = CJNI.jchar // = UInt16
+public typealias jchar = JNI.jchar // = UInt16
 
 //@available(*, deprecated, renamed: "Int16")
-public typealias jshort = CJNI.jshort // = Int16
+public typealias jshort = JNI.jshort // = Int16
 
 //@available(*, deprecated, renamed: "Float")
-public typealias jfloat = CJNI.jfloat // = Float
+public typealias jfloat = JNI.jfloat // = Float
 
 //@available(*, deprecated, renamed: "Double")
-public typealias jdouble = CJNI.jdouble // = Double
+public typealias jdouble = JNI.jdouble // = Double
 
 //@available(*, deprecated, renamed: "Int32")
-public typealias jsize = CJNI.jsize // = Int32
+public typealias jsize = JNI.jsize // = Int32
 
 //@available(*, deprecated, renamed: "KJObject")
-public typealias jobject = CJNI.jobject // = OpaquePointer
+public typealias jobject = JNI.jobject // = OpaquePointer
 //@available(*, deprecated, renamed: "KJClass")
 
-public typealias jclass = CJNI.jclass // = jobject
+public typealias jclass = JNI.jclass // = jobject
 //@available(*, deprecated, renamed: "KJThrowable")
 
-public typealias jthrowable = CJNI.jthrowable // = jobject
+public typealias jthrowable = JNI.jthrowable // = jobject
 //@available(*, deprecated, renamed: "KJString")
 
-public typealias jstring = CJNI.jstring // = jobject
+public typealias jstring = JNI.jstring // = jobject
 //@available(*, deprecated, renamed: "KJArray")
 
-//public typealias jarray = CJNI.jarray // = jobject
+//public typealias jarray = JNI.jarray // = jobject
 ////@available(*, deprecated, renamed: "KJBooleanArray")
 //
-//public typealias jbooleanArray = CJNI.jbooleanArray // = jarray
+//public typealias jbooleanArray = JNI.jbooleanArray // = jarray
 ////@available(*, deprecated, renamed: "KJByteArray")
-//public typealias jbyteArray = CJNI.jbyteArray // = jarray
+//public typealias jbyteArray = JNI.jbyteArray // = jarray
 ////@available(*, deprecated, renamed: "KJCharArray")
-//public typealias jcharArray = CJNI.jcharArray // = jarray
+//public typealias jcharArray = JNI.jcharArray // = jarray
 ////@available(*, deprecated, renamed: "KJShortArray")
-//public typealias jshortArray = CJNI.jshortArray // = jarray
+//public typealias jshortArray = JNI.jshortArray // = jarray
 ////@available(*, deprecated, renamed: "KJIntArray")
-//public typealias jintArray = CJNI.jintArray // = jarray
+//public typealias jintArray = JNI.jintArray // = jarray
 ////@available(*, deprecated, renamed: "KJLongArray")
-//public typealias jlongArray = CJNI.jlongArray // = jarray
+//public typealias jlongArray = JNI.jlongArray // = jarray
 ////@available(*, deprecated, renamed: "KJFloatArray")
-//public typealias jfloatArray = CJNI.jfloatArray // = jarray
+//public typealias jfloatArray = JNI.jfloatArray // = jarray
 ////@available(*, deprecated, renamed: "KJDoubleArray")
-//public typealias jdoubleArray = CJNI.jdoubleArray // = jarray
+//public typealias jdoubleArray = JNI.jdoubleArray // = jarray
 ////@available(*, deprecated, renamed: "KJObjectArray")
-//public typealias jobjectArray = CJNI.jobjectArray // = jarray
+//public typealias jobjectArray = JNI.jobjectArray // = jarray
 
 
 

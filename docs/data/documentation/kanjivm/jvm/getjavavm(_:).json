@@ -52,7 +52,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:@T@JavaVM",
+        "preciseIdentifier" : "c:jni.h@T@JavaVM",
         "text" : "JavaVM"
       },
       {
@@ -138,7 +138,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@JavaVM",
+              "preciseIdentifier" : "c:jni.h@T@JavaVM",
               "text" : "JavaVM"
             },
             {
@@ -262,7 +262,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@JavaVM",
+      "preciseIdentifier" : "c:jni.h@T@JavaVM",
       "text" : "JavaVM"
     },
     {

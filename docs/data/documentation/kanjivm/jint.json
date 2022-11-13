@@ -72,7 +72,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jint",
+              "preciseIdentifier" : "c:jni_md.h@T@jint",
               "text" : "jint"
             }
           ]

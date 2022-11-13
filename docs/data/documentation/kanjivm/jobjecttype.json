@@ -319,7 +319,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jmethodID",
+      "preciseIdentifier" : "c:jni.h@T@jmethodID",
       "text" : "jmethodID"
     },
     {
@@ -465,7 +465,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jmethodID",
+      "preciseIdentifier" : "c:jni.h@T@jmethodID",
       "text" : "jmethodID"
     },
     {
@@ -602,7 +602,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jmethodID",
+      "preciseIdentifier" : "c:jni.h@T@jmethodID",
       "text" : "jmethodID"
     },
     {
@@ -757,7 +757,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jmethodID",
+      "preciseIdentifier" : "c:jni.h@T@jmethodID",
       "text" : "jmethodID"
     },
     {
@@ -997,7 +997,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jfieldID",
+      "preciseIdentifier" : "c:jni.h@T@jfieldID",
       "text" : "jfieldID"
     },
     {
@@ -1075,7 +1075,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jfieldID",
+      "preciseIdentifier" : "c:jni.h@T@jfieldID",
       "text" : "jfieldID"
     },
     {
@@ -1340,7 +1340,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jfieldID",
+      "preciseIdentifier" : "c:jni.h@T@jfieldID",
       "text" : "jfieldID"
     },
     {
@@ -1427,7 +1427,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jfieldID",
+      "preciseIdentifier" : "c:jni.h@T@jfieldID",
       "text" : "jfieldID"
     },
     {

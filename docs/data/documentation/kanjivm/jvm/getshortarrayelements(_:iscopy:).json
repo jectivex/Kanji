@@ -34,7 +34,7 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:@T@jshortArray",
+        "preciseIdentifier" : "c:jni.h@T@jshortArray",
         "text" : "jshortArray"
       },
       {
@@ -141,7 +141,7 @@
             },
             {
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:@T@jshortArray",
+              "preciseIdentifier" : "c:jni.h@T@jshortArray",
               "text" : "jshortArray"
             },
             {
@@ -287,7 +287,7 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:@T@jshortArray",
+      "preciseIdentifier" : "c:jni.h@T@jshortArray",
       "text" : "jshortArray"
     },
     {
