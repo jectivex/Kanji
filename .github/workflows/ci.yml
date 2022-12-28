@@ -31,10 +31,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Test (Debug)
-        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
+        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test --configuration debug -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
 
       - name: Test (Release)
-        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test -v --configuration release -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
+        run: LD_LIBRARY_PATH=${JAVA_HOME}/lib/:${JAVA_HOME}/lib/server/:${JAVA_HOME}/lib/jli/:${LD_LIBRARY_PATH} swift test --configuration release -Xlinker -L${JAVA_HOME}/lib/ -Xlinker -L${JAVA_HOME}/lib/server/ -Xlinker -L${JAVA_HOME}/lib/jli/ -Xlinker -ljli -Xlinker -ljvm
 
   macos:
     runs-on: macos-12
@@ -57,10 +57,10 @@ jobs:
           # ${JAVA_HOME}/jre/lib/libjava.dylib
 
       - name: Test (Debug)
-        run: swift test -v --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
+        run: swift test --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
 
       - name: Test (Release)
-        run: swift test -v --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
+        run: swift test --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
 
   api-doc:
     runs-on: macos-12
