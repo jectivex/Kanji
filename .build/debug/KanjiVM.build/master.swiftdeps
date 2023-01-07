@@ -1,8 +1,8 @@
 version: "Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)"
 options: "3aad997dd3c02056092317526951bce4bfc9b17c24b4d104f977a1cee8f1a610"
-build_start_time: [1673048112, 114928960]
-build_end_time: [1673048129, 697484016]
+build_start_time: [1673091245, 446951866]
+build_end_time: [1673091256, 505336999]
 inputs:
-  "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiVM.build/DerivedSources/resource_bundle_accessor.swift": [1673048111, 744465351]
-  "/Users/runner/work/Kanji/Kanji/Sources/KanjiVM/JVM+Invokers.swift": [1673048037, 753341913]
-  "/Users/runner/work/Kanji/Kanji/Sources/KanjiVM/JVM.swift": [1673048037, 754126071]
+  "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiVM.build/DerivedSources/resource_bundle_accessor.swift": [1673091245, 105856180]
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiVM/JVM+Invokers.swift": [1673091187, 106730937]
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiVM/JVM.swift": [1673091187, 107659578]
