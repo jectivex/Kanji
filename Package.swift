@@ -13,7 +13,8 @@ import PackageDescription
 #if os(macOS)
 let testLinkerSettings: [LinkerSetting] = [
     .unsafeFlags([
-        "-L/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib", // Homebrew macOS
+        "-L/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib", // Homebrew macOS ARM
+        "-L/usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib", // Homebrew macOS Intel
     ]),
     .linkedLibrary("jsig"),
     .linkedLibrary("jli"),
