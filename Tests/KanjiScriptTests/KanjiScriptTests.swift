@@ -701,7 +701,9 @@ class KanjiScriptScalaTests: XCTestCase {
         func checkValues() {
             XCTAssertEqual(25, try c2(["x": 5])?.toJSum())
         }
-        measure(checkValues) // average: 0.142, relative standard deviation: 38.472%
+        measure {
+            checkValues() // average: 0.142, relative standard deviation: 38.472%
+        }
     }
 
     func testScalaClosurePassthroughs() throws {
