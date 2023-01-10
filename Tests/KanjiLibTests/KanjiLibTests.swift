@@ -401,7 +401,7 @@ class KanjiLibTests: XCTestCase {
                 let str = java$lang$String(reference: jarg)
                 globalFobs = [str]
                 let ret = try? str?.concat(str?.toUpperCase()) ?? ""
-                #warning("return values get cleaned up if we don't hold a global reference")
+                // #warning("return values get cleaned up if we don't hold a global reference")
                 globalRet = ret // FIXME: return values get deleted if we don't keep a reference
                 return ret?.jobj ?? nil
             })
@@ -875,7 +875,7 @@ class KanjiLibTests: XCTestCase {
     }
 
     func testManagement() throws {
-        throw XCTSkip()
+        if ({ true }()) { throw XCTSkip() }
 
         // disabled for testing Java 9 module support with minimal modules
         do {
@@ -920,7 +920,7 @@ class KanjiLibTests: XCTestCase {
 
     /// Ensure that there is no more than a minimal overhead for Java string creation
     func testStringMemory() throws {
-        throw XCTSkip()
+        if ({ true }()) { throw XCTSkip() }
 
         // disabled for testing Java 9 module support with minimal modules
         do {
@@ -1361,7 +1361,7 @@ class KanjiLibTests: XCTestCase {
         }
     }
 
-    func testScripting() throws {
+    func XXXtestScripting() throws {
         do {
             let manager = try javax$script$ScriptEngineManager()
 

@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import InterScript
 import KanjiVM
 import KanjiLib
 import JavaLib
-import BricBrac
+@_exported import enum FairCore.JSum
 
 open class KanjiScriptContext : ScriptContext {
     public let engine: javax$script$ScriptEngine
@@ -155,13 +154,13 @@ open class KanjiScriptContext : ScriptContext {
         return try ref(inst)
     }
 
-    /// Converts the given instance to a reference, either by deep-converting the Bric for val instances, or leaving it unchanged to ref instances
+    /// Converts the given instance to a reference, either by deep-converting the JSum for val instances, or leaving it unchanged to ref instances
     open func ref(_ inst: InstanceType) throws -> InstanceType.RefType {
         switch inst {
         case .ref(let r, _):
             return r
-        case .val(let bric):
-            if let ob = try bric.toKanji(JVM.sharedJVM) {
+        case .val(let jsum):
+            if let ob = try jsum.toKanji(JVM.sharedJVM) {
                 return ob
             } else {
                 throw KanjiErrors.general("Value could not be converted to Kanji")
@@ -175,21 +174,34 @@ open class KanjiScriptContext : ScriptContext {
         case .val(let v):
             return v
         case .ref(let r, _):
-            return try r.toBric()
+            return try r.toJSum()
+        }
+    }
+}
+
+extension JSum : CustomDebugStringConvertible {
+    public var debugDescription: String {
+        switch self {
+        case .arr(let x): return x.debugDescription
+        case .obj(let x): return x.debugDescription
+        case .str(let x): return x.debugDescription
+        case .num(let x): return x.debugDescription
+        case .bol(let x): return x.description
+        case .nul: return "null:"
         }
     }
 }
 
 public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
-    public typealias ValType = Bric
+    public typealias ValType = JSum
     public typealias RefType = JavaObject
 
-    case val(Bric)
+    case val(JSum)
     case ref(RefType, KanjiScriptContext)
 
     public var debugDescription : String {
         switch self {
-        case .val(let bric): return bric.debugDescription
+        case .val(let jsum): return jsum.debugDescription
         case .ref(let ref, _): return java$lang$Object(reference: ref.jobj)?.description ?? "nil"
         }
     }
@@ -197,8 +209,8 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
 //    public subscript(key: String) -> KanjiScriptType? {
 //        get {
 //            switch self {
-//            case .val(let bric):
-//                return bric[key].flatMap({ .val($0) })
+//            case .val(let jsum):
+//                return jsum[key].flatMap({ .val($0) })
 //            case .ref(let val, let ctx):
 //                return try? ctx.eval(.val(.str(key)), this: val)
 //            }
@@ -207,8 +219,8 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
 
     public func get(_ key: String) throws -> KanjiScriptType? {
         switch self {
-        case .val(let bric):
-            return bric[key].flatMap({ .val($0) })
+        case .val(let jsum):
+            return jsum[key].flatMap({ .val($0) })
         case .ref(let ob, let ctx):
             // there's no good way with the javax.script framework to get a propery of an object
             if let jsobj : ScriptObject = ob.cast() {
@@ -261,35 +273,37 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
     }
 
     public init(integerLiteral value: IntegerLiteralType) {
-        self = .val(Bric.num(Double(value)))
+        self = .val(JSum.num(Double(value)))
     }
 
     public init(booleanLiteral value: BooleanLiteralType) {
-        self = .val(Bric.bol(value))
+        self = .val(JSum.bol(value))
     }
 
     public init(floatLiteral value: FloatLiteralType) {
-        self = .val(Bric.num(value))
+        self = .val(JSum.num(value))
     }
 
     public init(stringLiteral value: StringLiteralType) {
-        self = .val(Bric.str(value))
+        self = .val(JSum.str(value))
     }
 
     public init(extendedGraphemeClusterLiteral value: StringLiteralType) {
-        self = .val(Bric.str(value))
+        self = .val(JSum.str(value))
     }
 
     public init(unicodeScalarLiteral value: StringLiteralType) {
-        self = .val(Bric.str(value))
+        self = .val(JSum.str(value))
     }
 
-    public init(arrayLiteral elements: Bric...) {
-        self = .val(Bric.arr(elements))
+    public init(arrayLiteral elements: JSum...) {
+        self = .val(JSum.arr(elements))
     }
 
-    public init(dictionaryLiteral elements: (String, Bric)...) {
-        self = .val(Bric(object: elements))
+    public init(dictionaryLiteral elements: (String, JSum)...) {
+        var d: Dictionary<String, JSum> = [:]
+        for (k, v) in elements { d[k] = v }
+        self = .val(.obj(d))
     }
 }
 
@@ -304,8 +318,8 @@ public func == (bs1: KanjiScriptType, bs2: KanjiScriptType) -> Bool {
     }
 }
 
-public extension Bric {
-    /// Create a Kanji version of this Bric, with the following conversions:
+public extension JSum {
+    /// Create a Kanji version of this JSum, with the following conversions:
     /// .Nul->null
     /// .Str->java.lang.String
     /// .Bol->java.lang.Boolean
@@ -346,21 +360,18 @@ public typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Impl
 
 
 public extension JavaObject {
-    /// Converts this Kanji object to some Bric, with the following conversions:
+    /// Converts this Kanji object to some JSum, with the following conversions:
     /// null->.Nul
     /// java.lang.CharSequence->.Str
     /// java.lang.Boolean->.Bol
     /// java.lang.Number->.Num
     /// java.util.Collection->.Arr
     /// java.util.Map<String, Object>->.Obj
-    /// 
-    /// Note that JavaObject does not conform to `Bricable` because it can throw an error, whereas `bric()`
-    /// must always succeed.
-    func toBric(dropCycles: Bool = false) throws -> Bric {
-        return try createBric(dropCycles, seen: [])
+    func toJSum(dropCycles: Bool = false) throws -> JSum {
+        return try createJSum(dropCycles, seen: [])
     }
 
-    fileprivate func createBric(_ dropCycles: Bool, seen: Set<jobject>) throws -> Bric {
+    fileprivate func createJSum(_ dropCycles: Bool, seen: Set<jobject>) throws -> JSum {
         let jobj = self.jobj
 
         let selfSeen = seen.union([jobj])
@@ -380,7 +391,7 @@ public extension JavaObject {
                 if dropCycles {
                     return nil // we just exclude cycles rather than thowing an error
                 }
-                throw KanjiErrors.general("Cannot create Bric from structure with cyclic values")
+                throw KanjiErrors.general("Cannot create JSum from structure with cyclic values")
             }
         }
 
@@ -407,11 +418,11 @@ public extension JavaObject {
         } else if let str: java$lang$CharSequence$Impl = ob.cast() {
             return .str(str.description)
         } else if let col: java$util$Collection$Impl = ob.cast() { // any collection converts to an array
-            var arr: [Bric] = []
+            var arr: [JSum] = []
             if let values = try col.toArray() {
                 for value in values {
                     if let value = value {
-                        try arr.append(value.createBric(dropCycles, seen: selfSeen))
+                        try arr.append(value.createJSum(dropCycles, seen: selfSeen))
                     } else {
                         arr.append(nil)
                     }
@@ -419,11 +430,11 @@ public extension JavaObject {
             }
             return .arr(arr)
         } else if let amp: java$util$Map$Impl = ob.cast() { // any map converts to an object
-            var dict: Bric.ObjType = [:]
+            var dict: [String: JSum] = [:]
             for key in try amp.keySet()?.toArray([]) ?? [] {
                 if let stringKey : java$lang$String = key?.cast() {
                     if let value = try amp.get(stringKey) {
-                        dict[stringKey.description] = try value.createBric(dropCycles, seen: selfSeen)
+                        dict[stringKey.description] = try value.createJSum(dropCycles, seen: selfSeen)
                     }
                 } else {
                     throw KanjiErrors.general("Map key was not a string: \(type(of: key))")
@@ -432,13 +443,13 @@ public extension JavaObject {
 
             return .obj(dict)
         } else if try (self as? java$lang$Object)?.getClass()?.isArray() == true {
-            var arr: [Bric] = []
+            var arr: [JSum] = []
             let job = self as? java$lang$Object
             let len = try java$lang$reflect$Array.getLength(job)
             arr.reserveCapacity(Int(len))
             for i in 0..<len {
                 let ob = try java$lang$reflect$Array.get(job, i)
-                arr.append(try ob?.createBric(dropCycles, seen: selfSeen) ?? nil)
+                arr.append(try ob?.createJSum(dropCycles, seen: selfSeen) ?? nil)
             }
             return .arr(arr)
         } else if let cal: java$util$Calendar$Impl = ob.cast() {
@@ -458,15 +469,15 @@ public extension JavaObject {
             return str.flatMap({ .str($0.description) }) ?? nil
         } else if let itr: java$lang$Iterable$Impl = ob.cast() {
             // we handle iterable last because toArray is probably more optimized
-            var arr: [Bric] = []
+            var arr: [JSum] = []
             if let it = try itr.iterator() {
                 while let next = try it.next() {
-                    try arr.append(next.createBric(dropCycles, seen: selfSeen))
+                    try arr.append(next.createJSum(dropCycles, seen: selfSeen))
                 }
             }
             return .arr(arr)
         } else {
-            throw KanjiErrors.general("Could not convert class \(type(of: self).javaClassName) «\(self)» into Bric")
+            throw KanjiErrors.general("Could not convert class \(type(of: self).javaClassName) «\(self)» into JSum")
         }
     }
 }
