@@ -56,11 +56,15 @@ jobs:
           # ${JAVA_HOME}/jre/lib/jli/libjli.dylib
           # ${JAVA_HOME}/jre/lib/libjava.dylib
 
+          brew install openjdk@11
+          which java
+          java -version
+
       - name: Test (Debug)
-        run: swift test --configuration debug -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
+        run: swift test --configuration debug
 
       - name: Test (Release)
-        run: swift test --configuration release -Xlinker -L${JAVA_HOME}/jre/lib/jli/ -Xlinker -L${JAVA_HOME}/jre/lib/ -Xlinker -rpath -Xlinker ${JAVA_HOME}/jre/lib/jli/ -Xlinker -ljli 
+        run: swift test --configuration release
 
   api-doc:
     runs-on: macos-12
