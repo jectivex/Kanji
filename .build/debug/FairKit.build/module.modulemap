@@ -1,0 +1,4 @@
+module FairKit {
+    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairKit.build/FairKit-Swift.h"
+    requires objc
+}

@@ -1,0 +1,4 @@
+module KanjiScript {
+    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/KanjiScript-Swift.h"
+    requires objc
+}

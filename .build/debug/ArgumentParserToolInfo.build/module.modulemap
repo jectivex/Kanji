@@ -1,0 +1,4 @@
+module ArgumentParserToolInfo {
+    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/ArgumentParserToolInfo.build/ArgumentParserToolInfo-Swift.h"
+    requires objc
+}

@@ -359,7 +359,7 @@ public final class JVM {
 
         jargs.options = jopts
 
-        var pargs: UnsafePointer<JavaVMInitArgs> = withUnsafePointer(to: &jargs, { $0 })
+        //var pargs: UnsafePointer<JavaVMInitArgs> = withUnsafePointer(to: &jargs, { $0 })
         // _ = JNI_GetDefaultJavaVMInitArgs(&pargs)
 
         var pvm: UnsafeMutablePointer<JavaVM?>?

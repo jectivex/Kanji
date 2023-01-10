@@ -1,6 +1,24 @@
 {
   "pins" : [
     {
+      "identity" : "fair",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/fair-ground/Fair",
+      "state" : {
+        "revision" : "7daccdf7c866c7ec6f9aed670ca796bacc8886b8",
+        "version" : "0.8.37"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "fddd1c00396eed152c45a46bea9f47b98e59301d",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "swift-docc-plugin",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-docc-plugin",

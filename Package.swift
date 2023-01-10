@@ -10,6 +10,16 @@ import PackageDescription
 // On macOS, `brew install openjdk@11`, then tests can be run like:
 // swift test -Xlinker -L${JAVA_HOME}/lib/server
 
+let testLinkerSettings: [LinkerSetting] = [
+    .unsafeFlags([
+        "-L/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib", // Homebrew macOS
+        "-L/usr/lib/jvm/temurin-11-jdk-amd64/lib/jli", // GH Runner
+        "-L/usr/lib/jvm/temurin-11-jdk-amd64/lib/server", // GH Runner
+    ]),
+    .linkedLibrary("jsig"),
+    .linkedLibrary("jli"),
+]
+
 let package = Package(
     name: "Kanji",
     defaultLocalization: "en",
@@ -21,23 +31,19 @@ let package = Package(
         .library(name: "KanjiVM", targets: ["KanjiVM"]),
         .library(name: "JavaLib", targets: ["JavaLib"]),
         .library(name: "KanjiLib", targets: ["KanjiLib"]),
-        //.library(name: "KanjiGen", targets: ["KanjiGen"]),
-        //.library(name: "KanjiScript", targets: ["KanjiScript"]),
-        //.library(name: "KanjiTool", targets: ["KanjiTool"]),
+        .library(name: "KanjiScript", targets: ["KanjiScript"]),
     ],
     dependencies: [ .package(name: "swift-docc-plugin", url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"), 
+        .package(url: "https://github.com/fair-ground/Fair", from: "0.6.0"), // must be first
     ],
     targets: [
         .systemLibrary(name: "JNI", providers: [.apt(["openjdk"]), .brew(["openjdk"])]),
         .target(name: "KanjiVM", dependencies: ["JNI"], resources: [.process("Resources")]),
         .target(name: "JavaLib", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
         .target(name: "KanjiLib", dependencies: ["JavaLib"], resources: [.process("Resources")]),
-        .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
-        .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")]),
-        //.target(name: "KanjiGen", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
-        //.target(name: "KanjiScript", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
-        //.executableTarget(name: "KanjiTool", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
-        //.testTarget(name: "KanjiGenTests", dependencies: ["KanjiGen"], resources: [.process("Resources")]),
-        //.testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources")]),
+        .target(name: "KanjiScript", dependencies: ["KanjiLib", .product(name: "FairApp", package: "Fair")], resources: [.process("Resources")]),
+        .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
+        .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
+        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
     ]
 )

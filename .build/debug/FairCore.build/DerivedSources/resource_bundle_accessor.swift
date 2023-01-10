@@ -2,8 +2,8 @@ import class Foundation.Bundle
 
 extension Foundation.Bundle {
     static let module: Bundle = {
-        let mainPath = Bundle.main.bundleURL.appendingPathComponent("Kanji_KanjiLibTests.bundle").path
-        let buildPath = "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/Kanji_KanjiLibTests.bundle"
+        let mainPath = Bundle.main.bundleURL.appendingPathComponent("Fair_FairCore.bundle").path
+        let buildPath = "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/Fair_FairCore.bundle"
 
         let preferredBundle = Bundle(path: mainPath)
 

@@ -1,0 +1,4 @@
+module CZLib {
+    umbrella "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/CZLib/include"
+    export *
+}
