@@ -10,15 +10,25 @@ import PackageDescription
 // On macOS, `brew install openjdk@11`, then tests can be run like:
 // swift test -Xlinker -L${JAVA_HOME}/lib/server
 
+#if os(macOS)
 let testLinkerSettings: [LinkerSetting] = [
     .unsafeFlags([
         "-L/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib", // Homebrew macOS
+    ]),
+    .linkedLibrary("jsig"),
+    .linkedLibrary("jli"),
+]
+#endif
+#if os(Linux)
+let testLinkerSettings: [LinkerSetting] = [
+    .unsafeFlags([
         "-L/usr/lib/jvm/temurin-11-jdk-amd64/lib/jli", // GH Runner
         "-L/usr/lib/jvm/temurin-11-jdk-amd64/lib/server", // GH Runner
     ]),
     .linkedLibrary("jsig"),
     .linkedLibrary("jli"),
 ]
+#endif
 
 let package = Package(
     name: "Kanji",

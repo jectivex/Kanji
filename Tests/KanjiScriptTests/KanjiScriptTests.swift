@@ -202,7 +202,9 @@ class KanjiScriptTests: XCTestCase {
             XCTAssertEqual(10, try c2(["x": 5])?.toJSum())
             XCTAssertEqual("abcabc", try c2(["x": "abc"])?.toJSum())
         }
-        measure(checkValues) // average: 0.010, relative standard deviation: 52.199%
+        measure {
+            checkValues() // average: 0.010, relative standard deviation: 52.199%
+        }
     }
     
 
@@ -266,7 +268,7 @@ class KanjiScriptTests: XCTestCase {
             do {
                 let str = NSUUID().uuidString
                 // randomly use either the Consumer or Function instance
-                let cbref = arc4random() % 2 == 1 ? consumerRef : functionRef
+                let cbref = Bool.random() == true ? consumerRef : functionRef
                 _ = try ctx.eval("callback", args: [cbref, .ref(str.javaString, ctx)])
                 KanjiScriptTests.testScriptCallbacksQueue.async() {
                     callbackStrings.insert(str)
