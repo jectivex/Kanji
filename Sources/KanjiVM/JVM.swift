@@ -275,13 +275,14 @@ public final class JVM {
     }
 
     #if DEBUG
-//    public static let checkJNIDefault = true
-    public static let checkJNIDefault = false // very slow
+    public static let checkJNIDefault = false // -Xcheck:jni (very slow)
+    public static let useJIT = false // -Djava.compiler=none (slow, but helps when Xcode intercepts signals during debugging)
     #else
     public static let checkJNIDefault = false
+    public static let useJIT = true
     #endif
 
-    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (gc: false, jni: checkJNIDefault, classload: false), checkJNI: Bool = JVM.checkJNIDefault, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], compiler: String? = nil, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
+    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (gc: false, jni: checkJNIDefault, classload: false), checkJNI: Bool = JVM.checkJNIDefault, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], compiler: String? = useJIT ? nil : "none", file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
 
         let start = CFAbsoluteTimeGetCurrent()
 
