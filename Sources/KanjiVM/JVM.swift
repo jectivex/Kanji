@@ -274,7 +274,14 @@ public final class JVM {
         self.api = env!.pointee!.pointee
     }
 
-    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (false, false, false), checkJNI: Bool = false, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], compiler: String? = nil, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
+    #if DEBUG
+//    public static let checkJNIDefault = true
+    public static let checkJNIDefault = false // very slow
+    #else
+    public static let checkJNIDefault = false
+    #endif
+
+    public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (gc: false, jni: checkJNIDefault, classload: false), checkJNI: Bool = JVM.checkJNIDefault, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], compiler: String? = nil, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
 
         let start = CFAbsoluteTimeGetCurrent()
 
@@ -412,47 +419,65 @@ extension JVM {
     public typealias cstr = UnsafePointer<Int8>
     public typealias jvaluelist = UnsafePointer<jvalue>?
 
+    /// Determines if an exception is being thrown. The exception stays being thrown until either the native code calls `ExceptionClear()`, or the Java code handles the exception.
     public func exceptionOccurred() -> jthrowable? {
         //return env.memory.memory.ExceptionOccurred(env) // also works
         return api.ExceptionOccurred(env)
     }
 
+    /// Prints an exception and a backtrace of the stack to a system error-reporting channel, such as stderr. This is a convenience routine provided for debugging.
     public func exceptionDescribe() -> Void {
         api.ExceptionDescribe(env)
     }
 
+    /// Clears any exception that is currently being thrown. If no exception is currently being thrown, this routine has no effect.
     public func exceptionClear() -> Void {
         api.ExceptionClear(env)
     }
 
+    /// We introduce a convenience function to check for pending exceptions without creating a local reference to the exception object.
     public func exceptionCheck() -> jboolean {
         return api.ExceptionCheck(env)
     }
 
-
+    /// Returns the version of the native method interface.
     public func getVersion() -> jint {
         return api.GetVersion(env)
     }
 
-
+    /// Constructs a new java.lang.String object from an array of characters in modified UTF-8 encoding.
     public func newStringUTF(_ utf: cstr) -> jstring? {
         return api.NewStringUTF(env, utf)
     }
 
+    /// Causes a java.lang.Throwable object to be thrown.
     @discardableResult
     public func throwException(_ obj: jthrowable) -> jint {
         return api.Throw(env, obj)
     }
 
-
+    /// Loads a class from a buffer of raw class data. The buffer containing the raw class data is not referenced by the VM after the DefineClass call returns, and it may be discarded if desired.
     public func defineClass(_ name: cstr, loader: jobject?, buf: UnsafePointer<jbyte>, len: jsize) -> jclass? {
         return api.DefineClass(env, name, loader, buf, len)
     }
+
+    /// `FindClass` locates the class loader associated with the current native method; that is, the class loader of the class that declared the native method. If the native method belongs to a system class, no class loader will be involved. Otherwise, the proper class loader will be invoked to load and link the named class.
+    ///
+    /// When `FindClass` is called through the Invocation Interface, there is no current native method or its associated class loader. In that case, the result of `ClassLoader.getSystemClassLoader` is used. This is the class loader the virtual machine creates for applications, and is able to locate classes listed in the `java.class.path` property.
+    ///
+    /// The name argument is a fully-qualified class name or an array type signature . For example, the fully-qualified class name for the java.lang.String class is:
+    ///
+    /// `"java/lang/String"`
+    ///
+    /// The array type signature of the array class java.lang.Object[] is:
+    ///
+    /// `"[Ljava/lang/Object;"`
 
     public func findClass(_ name: cstr) -> jclass? {
         return api.FindClass(env, name)
     }
 
+    /// Constructs an exception object from the specified class with the message specified by message and causes that exception to be thrown.
     @discardableResult
     public func throwNew(_ clazz: jclass, msg: cstr) -> jint {
         return api.ThrowNew(env, clazz, msg)
@@ -463,93 +488,129 @@ extension JVM {
     //        Swift.fatalError("\(msg)")
     //    }
 
+    /// Converts a java.lang.reflect.Method or java.lang.reflect.Constructor object to a method ID.
     public func fromReflectedMethod(_ method: jobject?) -> jmethodID? {
         return api.FromReflectedMethod(env, method)
     }
 
+    /// Converts a java.lang.reflect.Field to a field ID.
     public func fromReflectedField(_ field: jobject?) -> jfieldID? {
         return api.FromReflectedField(env, field)
     }
 
-
+    /// Converts a method ID derived from cls to a `java.lang.reflect.Method` or `java.lang.reflect.Constructor` object. isStatic must be set to `JNI_TRUE` if the method ID refers to a static field, and `JNI_FALSE` otherwise.
+    ///
+    /// Throws OutOfMemoryError and returns 0 if fails.
     public func toReflectedMethod(_ cls: jclass, methodID: jmethodID, isStatic: jboolean) -> jobject? {
         return api.ToReflectedMethod(env, cls, methodID, isStatic)
     }
 
-
+    /// If clazz represents any class other than the class Object, then this function returns the object that represents the superclass of the class specified by clazz.
+    ///
+    /// If clazz specifies the class Object, or clazz represents an interface, this function returns NULL.
     public func getSuperclass(_ sub: jclass) -> jclass? {
         return api.GetSuperclass(env, sub)
     }
 
+    /// Determines whether an object of `clazz1` can be safely cast to `clazz2`.
     public func isAssignableFrom(_ sub: jclass, sup: jclass) -> jboolean {
         return api.IsAssignableFrom(env, sub, sup)
     }
 
-
+    /// Converts a field ID derived from cls to a `java.lang.reflect.Field` object. `isStatic` must be set to `JNI_TRUE` if fieldID refers to a static field, and `JNI_FALSE` otherwise.
+    ///
+    /// Throws `OutOfMemoryError` and returns 0 if fails.
     public func toReflectedField(_ cls: jclass, fieldID: jfieldID, isStatic: jboolean) -> jobject? {
         return api.ToReflectedField(env, cls, fieldID, isStatic)
     }
 
-
+    /// Creates a new local reference frame, in which at least a given number of local references can be created. Returns 0 on success, a negative number and a pending OutOfMemoryError on failure.
+    ///
+    /// Note that local references already created in previous local frames are still valid in the current local frame.
     @discardableResult
     public func pushLocalFrame(_ capacity: jint) -> jint {
         return api.PushLocalFrame(env, capacity)
     }
 
+    /// Pops off the current local reference frame, frees all the local references, and returns a local reference in the previous local reference frame for the given result object.
+    ///
+    /// Pass `NULL` as result if you do not need to return a reference to the previous frame.
     @discardableResult
     public func popLocalFrame(_ result: jobject?) -> jobject? {
         return api.PopLocalFrame(env, result)
     }
 
+    /// Creates a new global reference to the object referred to by the obj argument. The obj argument may be a global or local reference. Global references must be explicitly disposed of by calling `DeleteGlobalRef()`.
     public func newGlobalRef(_ lobj: jobject?) -> jobject? {
         return api.NewGlobalRef(env, lobj)
     }
 
+    /// Deletes the global reference pointed to by `globalRef`.
     public func deleteGlobalRef(_ gref: jobject?) -> Void {
         api.DeleteGlobalRef(env, gref)
     }
 
+    /// Deletes the local reference pointed to by `localRef`.
     public func deleteLocalRef(_ obj: jobject?) -> Void {
         api.DeleteLocalRef(env, obj)
     }
 
+    /// Returns `JNI_TRUE` if obj can be cast to `clazz`; otherwise, returns `JNI_FALSE`. A `NULL` object can be cast to any class.
     public func isSameObject(_ obj1: jobject?, _ obj2: jobject?) -> jboolean {
         return api.IsSameObject(env, obj1, obj2)
     }
 
+    /// Creates a new local reference that refers to the same object as ref. The given ref may be a global or local reference. Returns `NULL` if ref refers to null.
     public func newLocalRef(_ ref: jobject?) -> jobject? {
         return api.NewLocalRef(env, ref)
     }
 
+    /// Ensures that at least a given number of local references can be created in the current thread. Returns 0 on success; otherwise returns a negative number and throws an `OutOfMemoryError`.
+    ///
+    /// Before it enters a native method, the VM automatically ensures that at least 16 local references can be created.
+    ///
+    /// For backward compatibility, the VM allocates local references beyond the ensured capacity. (As a debugging support, the VM may give the user warnings that too many local references are being created. In the JDK, the programmer can supply the -verbose:jni command line option to turn on these messages.) The VM calls FatalError if no more local references can be created beyond the ensured capacity.
     @discardableResult
     public func ensureLocalCapacity(_ capacity: jint) -> jint {
         return api.EnsureLocalCapacity(env, capacity)
     }
 
+    /// Allocates a new Java object without invoking any of the constructors for the object. Returns a reference to the object.
+    ///
+    /// The clazz argument must not refer to an array class.
     public func allocObject(_ clazz: jclass) -> jobject? {
         return api.AllocObject(env, clazz)
     }
 
-
-
+    /// Constructs a new Java object. The method ID indicates which constructor method to invoke. This ID must be obtained by calling `GetMethodID()` with `<init>` as the method name and void (`V`) as the return type.
+    ///
+    /// The `clazz` argument must not refer to an array class.
     public func newObjectV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jobject? {
         return api.NewObjectV(env, clazz, methodID, args)
     }
 
+    /// Constructs a new Java object. The method ID indicates which constructor method to invoke. This ID must be obtained by calling `GetMethodID()` with `<init>` as the method name and void (`V`) as the return type.
+    ///
+    /// The `clazz` argument must not refer to an array class.
     public func newObjectA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jobject? {
         return api.NewObjectA(env, clazz, methodID, args)
     }
 
-
-
+    /// Returns the class of an object.
     public func getObjectClass(_ obj: jobject?) -> jclass? {
         return api.GetObjectClass(env, obj)
     }
 
+    /// Tests whether an object is an instance of a class.
     public func isInstanceOf(_ obj: jobject?, clazz: jclass) -> jboolean {
         return api.IsInstanceOf(env, obj, clazz)
     }
 
+    /// Returns the method ID for an instance (nonstatic) method of a class or interface. The method may be defined in one of the `clazz`’s superclasses and inherited by `clazz`. The method is determined by its name and signature.
+    ///
+    /// `GetMethodID()` causes an uninitialized class to be initialized.
+    ///
+    /// To obtain the method ID of a constructor, supply `<init>` as the method name and void (V) as the return type.
     public func getMethodID(_ clazz: jclass, name: cstr, sig: cstr) -> jmethodID? {
         return api.GetMethodID(env, clazz, name, sig)
     }
@@ -3052,5 +3113,3 @@ private func warn(_ message: String, file: StaticString = #file, line: UInt = #l
 private func log(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
     dbg("Kanji Log:", message, functionName: function, fileName: file, lineNumber: line)
 }
-
-

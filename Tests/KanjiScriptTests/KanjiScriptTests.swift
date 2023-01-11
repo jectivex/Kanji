@@ -19,10 +19,6 @@ class KanjiScriptTests: XCTestCase {
         return super.invokeTest()
     }
 
-    override func setUp() {
-        //setupKanjiScriptTests()
-    }
-
     func testKanjiConversions() {
         for jsum: JSum in [
             1,
@@ -333,10 +329,6 @@ class KanjiScriptTests: XCTestCase {
 var testScriptCallbacksLastString: String? = nil
 
 class JShellTests: XCTestCase {
-    override func setUp() {
-        //setupKanjiScriptTests()
-    }
-
     /// Disabled because we need to remove the native jshell commands when we are distributing, or else:
     /// App sandbox not enabled. The following executables must include the "com.apple.security.app-sandbox" entitlement with a Boolean value of true in the entitlements property list: [( "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/appletviewer", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/java", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/javac", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jdb", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jrunscript", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/jshell", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/keytool", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/rmid", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/rmiregistry", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/bin/serialver", "…/KanjiVM.framework/Versions/A/Resources/macos.jre/lib/jspawnhelper" )] Refer to App Sandbox page at https://developer.apple.com/devcenter/mac/app-sandbox/ for more information on sandboxing your app.
     func testJShell() throws {
@@ -524,6 +516,24 @@ class JShellTests: XCTestCase {
     }
 }
 
+class KanjiScriptKotlinTests: XCTestCase {
+    private class KotlinContext : KanjiScriptContext {
+        convenience init() throws {
+            try self.init(engine: "kotlin", jarsIn: Bundle.module.url(forResource: "kotlin/1.8.0", withExtension: nil, subdirectory: "libraries"))
+        }
+    }
+
+    func testKotlin() throws {
+        let ctx = try KotlinContext()
+
+        XCTAssertThrowsError(try ctx.eval("XYZ")) { error in
+            XCTAssertTrue(error.localizedDescription.hasPrefix("ERROR Unresolved reference: XYZ"), "unexpected error: \(error)")
+        }
+
+//        checkeq(1, f: try ctx.val(ctx.eval("1")))
+//        checkeq("", f: try ctx.val(ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#)))
+    }
+}
 
 class KanjiScriptScalaTests: XCTestCase {
 
@@ -531,19 +541,11 @@ class KanjiScriptScalaTests: XCTestCase {
         static var scalaClosureIndex: UInt64 = 0
         static var scalaClosureCountQ = DispatchQueue(label: "scalaClosureCountQ")
 
-        init(jars: [URL] = []) throws {
+        convenience init() throws {
             // scala not currently working
             if ({ true }()) { throw XCTSkip() }
 
-            try super.init(engine: "scala", jars: jars)
-
-            // now ensure that the context really is scala
-            let names = try engine.getFactory()?.getNames()?.toArray()?.compactMap({ $0?.description }) ?? []
-
-            if !names.contains("scala") {
-                throw KanjiErrors.general("Script engine was not Scala: \(names)")
-            }
-
+            try self.init(engine: "scala", jarsIn: Bundle.module.url(forResource: "scala/2.12.8/libexec/lib", withExtension: nil, subdirectory: "libraries"))
         }
 
         static func nextScalaClosureIndex() -> UInt64 {
@@ -603,11 +605,6 @@ class KanjiScriptScalaTests: XCTestCase {
                 }
             }
         }
-    }
-
-
-    override func setUp() {
-        //setupKanjiScriptTests()
     }
 
     func testEngineFactories() {
@@ -789,26 +786,33 @@ class KanjiScriptScalaTests: XCTestCase {
 
 }
 
-@available(*, deprecated)
-func setupKanjiScriptTests() {
-    //let dir = "/usr/local/Cellar/scala/2.12.8/libexec/lib/" // location for "brew install scala"
-    guard let dir = Bundle(for: KanjiScriptScalaTests.self).url(forResource: "lib", withExtension: nil, subdirectory: "libraries/scala/2.12.8/libexec") else {
-        return XCTFail("no scala folder")
-    }
-
-    do {
-        let cp: [String] = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: []).map({ $0.path })
-        // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
-        JVM.sharedJVMCreator = { try JVM(classpath: cp) }
-
-        var isDir: ObjCBool = false
-        if FileManager.default.fileExists(atPath: dir.path, isDirectory: &isDir) == false || isDir.boolValue == false {
-            return XCTFail("scala not installed at \(dir)") // make sure we know when scala is missing
-        }
-    } catch {
-        return XCTFail("error \(error)")
-    }
-}
+//@available(*, deprecated)
+//func setupKanjiScriptTests() {
+//    //let dir = "/usr/local/Cellar/scala/2.12.8/libexec/lib/" // location for "brew install scala"
+////    guard let dir = Bundle(for: KanjiScriptScalaTests.self).url(forResource: "lib", withExtension: nil, subdirectory: "libraries/scala/2.12.8/libexec") else {
+////        return XCTFail("no scala folder")
+////    }
+//
+//    return
+//
+//
+//    guard let dir = Bundle.module.url(forResource: "kotlin/1.8.0", withExtension: nil, subdirectory: "libraries") else {
+//        return XCTFail("no kotlin folder")
+//    }
+//
+//    do {
+//        let cp: [String] = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: []).map({ $0.path })
+//        // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
+//        JVM.sharedJVMCreator = { try JVM(classpath: cp) }
+//
+//        var isDir: ObjCBool = false
+//        if FileManager.default.fileExists(atPath: dir.path, isDirectory: &isDir) == false || isDir.boolValue == false {
+//            return XCTFail("scala not installed at \(dir)") // make sure we know when scala is missing
+//        }
+//    } catch {
+//        return XCTFail("error \(error)")
+//    }
+//}
 
 private extension XCTestCase {
     func checkeq(_ value: JSum, file: StaticString = #file, line: UInt = #line, f: @autoclosure () throws -> JSum) {
