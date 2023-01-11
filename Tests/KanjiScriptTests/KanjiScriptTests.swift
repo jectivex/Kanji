@@ -99,23 +99,23 @@ class KanjiScriptTests: XCTestCase {
         do {
             let ctx = try scriptContext(engine: "javascript")
 
-            checkeq(1, f: try ctx.val(ctx.eval("1")))
-            checkeq("a", f: try ctx.val(ctx.eval("'a'")))
-            checkeq("0.6000000000000001", f: try ctx.val(ctx.eval(".4+.2+''")))
-            checkeq([1, 2, 3], f: try ctx.val(ctx.eval("Java.to([1,2,3])")))
+            XCTAssertEqual(1, try ctx.val(ctx.eval("1")))
+            XCTAssertEqual("a", try ctx.val(ctx.eval("'a'")))
+            XCTAssertEqual("0.6000000000000001", try ctx.val(ctx.eval(".4+.2+''")))
+            XCTAssertEqual([1, 2, 3], try ctx.val(ctx.eval("Java.to([1,2,3])")))
             // not true: ~/Library/Developer/Xcode/DerivedData/GIO-testrun/Build/Products/Debug/XYZ"
-            //checkeq("/private/tmp/XYZ", f: try ctx.val(ctx.eval("new Packages.java.io.File('XYZ').getAbsolutePath()")))
-            checkeq([2,1,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3])")))
-            checkeq([1,2,3], f: try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3]).stream().sorted().toArray()")))
+            //XCTAssertEqual("/private/tmp/XYZ", try ctx.val(ctx.eval("new Packages.java.io.File('XYZ').getAbsolutePath()")))
+            XCTAssertEqual([2,1,3], try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3])")))
+            XCTAssertEqual([1,2,3], try ctx.val(ctx.eval("Packages.java.util.Arrays.asList([2,1,3]).stream().sorted().toArray()")))
 
-            checkeq("10.0.2", f: try ctx.val(ctx.eval("Packages.java.lang.System.getProperty('java.version')")))
+            XCTAssertEqual("10.0.2", try ctx.val(ctx.eval("Packages.java.lang.System.getProperty('java.version')")))
 
-            checkeq([1, 2, 3], f: try ctx.val(ctx.eval("[1,2,3]")))
+            XCTAssertEqual([1, 2, 3], try ctx.val(ctx.eval("[1,2,3]")))
 
-            checkeq([["a": true], 1, [2, 3.3, false], 3], f: try ctx.val(ctx.eval("[{a: true}, 1, [2, 3.3, false], 3]")))
+            XCTAssertEqual([["a": true], 1, [2, 3.3, false], 3], try ctx.val(ctx.eval("[{a: true}, 1, [2, 3.3, false], 3]")))
 
-            //checkeq(["a": 1, "b": true], f: try ctx.val(ctx.eval("Java.to({ 'a': 1, 'b': true })")))
-            checkeq(1.1, f: try ctx.val(ctx.eval("eval", args: [1.1])))
+            //XCTAssertEqual(["a": 1, "b": true], try ctx.val(ctx.eval("Java.to({ 'a': 1, 'b': true })")))
+            XCTAssertEqual(1.1, try ctx.val(ctx.eval("eval", args: [1.1])))
 
             let inst = try ctx.eval("var x = {}; x['a'] = 1; x.x = x; x")
 
@@ -163,7 +163,7 @@ class KanjiScriptTests: XCTestCase {
             }
 
             // check for ES6 arrow functions & let constants
-            checkeq(["X", "Y", "Z"], f: try ctx.val(ctx.eval("let result = ['x', 'y', 'z'].map(str => str.toUpperCase()); result;")))
+            XCTAssertEqual(["X", "Y", "Z"], try ctx.val(ctx.eval("let result = ['x', 'y', 'z'].map(str => str.toUpperCase()); result;")))
         }
     }
 
@@ -172,7 +172,7 @@ class KanjiScriptTests: XCTestCase {
         let _ = try ctx.eval("function fibonacci(n) { return n > 1 ? fibonacci(n - 1) + fibonacci(n - 2) : n; }")
 
         func checkfib(_ n: Int) {
-            checkeq(.num(Double(fibN(n))), f: try ctx.val(ctx.eval(.val(.str("fibonacci(\(n))")))))
+            XCTAssertEqual(.num(Double(fibN(n))), try ctx.val(ctx.eval(.val(.str("fibonacci(\(n))")))))
         }
 
         // do a warmup run
@@ -296,16 +296,6 @@ class KanjiScriptTests: XCTestCase {
             XCTAssertEqual(err.message, "example exception message")
             XCTAssertEqual(err.className, "java.lang.IllegalArgumentException")
         }
-    }
-
-    func testScriptClassloader() throws {
-//        guard let jar = NSURL(fileURLWithPath: #file).deletingLastPathComponent?.appendingPathComponent("test.jar") else {
-//            return XCTFail("could not load test jar")
-//        }
-//
-//        let ctx = try scriptContext(engine: "nashorn", jars: [jar])
-//        _ = try ctx.eval("new (Java.type('java.util.ArrayList'))();")
-//        _ = try ctx.eval("new (Java.type('Foo'))();") // Foo is defined in the test jar
     }
 
     func testScriptRelativeFiles() throws {
@@ -519,304 +509,23 @@ class JShellTests: XCTestCase {
 class KanjiScriptKotlinTests: XCTestCase {
     private class KotlinContext : KanjiScriptContext {
         convenience init() throws {
-            try self.init(engine: "kotlin", jars: Bundle.module.urls(forResourcesWithExtension: "jar", subdirectory: "libraries/kotlin/1.8.0"))
+            try self.init(engine: "kotlin", jars: Bundle.module.urls(forResourcesWithExtension: "jar", subdirectory: "libraries/kotlin/1.8.0")?.map({ $0 as URL }))
         }
     }
 
     func testKotlin() throws {
-        //try setupKanjiScriptTests()
-
         let ctx = try KotlinContext()
 
         XCTAssertThrowsError(try ctx.eval("XYZ")) { error in
             XCTAssertTrue(error.localizedDescription.hasPrefix("ERROR Unresolved reference: XYZ"), "unexpected error: \(error)")
         }
 
-        checkeq(1, f: try ctx.val(ctx.eval("1")))
-        checkeq(3, f: try ctx.val(ctx.eval("1 + 2")))
-        checkeq("three", f: try ctx.val(ctx.eval(#""th" + "ree""#)))
+        XCTAssertEqual(1, try ctx.val(ctx.eval("1")))
+        XCTAssertEqual(3, try ctx.val(ctx.eval("1 + 2")))
+        XCTAssertEqual("three", try ctx.val(ctx.eval(#""th" + "ree""#)))
 
-        // checkeq("Homebrew", f: try ctx.val(ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#)))
+        // XCTAssertEqual("Homebrew", try ctx.val(ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#)))
     }
-}
-
-class KanjiScriptScalaTests: XCTestCase {
-
-    private class ScalaContext : KanjiScriptContext {
-        static var scalaClosureIndex: UInt64 = 0
-        static var scalaClosureCountQ = DispatchQueue(label: "scalaClosureCountQ")
-
-        convenience init() throws {
-            // scala not currently working
-            if ({ true }()) { throw XCTSkip() }
-
-            try self.init(engine: "scala", jars: Bundle.module.urls(forResourcesWithExtension: "jar", subdirectory: "scala/2.12.8/libexec/lib"))
-        }
-
-        static func nextScalaClosureIndex() -> UInt64 {
-            return scalaClosureCountQ.sync(execute: { scalaClosureIndex += 1; return scalaClosureIndex })
-        }
-
-        /// Compiles a reference to an executor for an Object->Object function; the compiled executor
-        /// can then be dynamically executed as a scala lambda provided the parameter and function names are bound
-        func compileFunctionExecutor(fname: String? = nil, pname: String? = nil, cname: String? = nil) throws -> (compiled: CompiledScript, funcName: String, paramName: String, closureName: String) {
-
-            let prefix = "_kanjiScala_" + String(ScalaContext.nextScalaClosureIndex())
-            let funcName = fname ?? (prefix + "func") // the name of the function
-            let paramName = pname ?? (prefix + "param") // the name of the parameter
-            let closureName = cname ?? (prefix + "closure") // the name of the function
-
-            // the scala interpreter needs to have a cast for the closure before it can execute it
-            let applicator = "\(closureName).asInstanceOf[java.util.function.Function[Object, Object]].apply(\(paramName))"
-            //        let applicator = """
-            //        def \(funcName)(): Object = {
-            //            require(\(closureName) != null, "could not find \(closureName)")
-            //            val finst = \(closureName).asInstanceOf[java.util.function.Function[Object, Object]]
-            //            require(finst != null, "could not convert \(closureName)")
-            //            finst.apply(\(paramName))
-            //        }
-            //        """
-
-            // we can compile the closure and later execute it with bindings, as seen at:
-            // https://github.com/scala/scala/blob/2.12.x/test/junit/scala/tools/nsc/interpreter/ScriptedTest.scala#L35
-            let compiled = try compile(applicator, bindings: [paramName: nil, closureName: nil])
-
-            return (compiled, funcName, paramName, closureName)
-        }
-
-        func createPassthroughClosure(f: @escaping (JSum) throws -> JSum) throws -> (JSum) throws -> JSum {
-            let (compiled, _, paramName, closureName) = try compileFunctionExecutor()
-
-            typealias F = java$util$function$Function$Impl
-
-            let closure: F.FunctionalClosure = { arg in
-                let jsumin = try arg?.toJSum() ?? .nul
-                let ret = try f(jsumin)
-                let jsumout = try ret.toKanji()
-                return jsumout
-            }
-
-            // put the compiled native function into the bindings
-            let baseFun = try F.fromClosure(closure)
-
-            return { [unowned self] param in
-                // in theory we shouldn't have to re-bind the funcName, but scala's implementation of compiled
-                // script invocation seems to not fall back from the parameter values to the engine's bindings
-                let ret = try compiled([paramName: .val(param), closureName: .ref(baseFun, self)])
-                if let ret = ret {
-                    return try self.val(.ref(ret, self))
-                } else {
-                    return nil
-                }
-            }
-        }
-    }
-
-    func testEngineFactories() {
-        do {
-            let manager = try javax$script$ScriptEngineManager()
-            guard let factories = try manager.getEngineFactories()?.toArray() else {
-                return XCTFail("could not get factory list")
-            }
-
-            let names = try factories.compactMap({ try $0?.castTo(javax$script$ScriptEngineFactory$Impl.self)?.getLanguageName() }).compactMap({ $0.toSwiftString() })
-
-            dbg("script names: \(names)")
-            //XCTAssertTrue(names.contains("ECMAScript"))
-            //XCTAssertTrue(names.contains("Scala"))
-
-            //let scala = try manager.getEngineByName("scala")
-            //XCTAssertNotNil(scala)
-
-            //let _ = try scala?.eval("1+2")
-        } catch {
-            return XCTFail("\(error)")
-        }
-    }
-
-    func testScala() throws {
-        let ctx = try ScalaContext()
-        do {
-            checkeq(1, f: try ctx.val(ctx.eval("1")))
-            checkeq(0.6000000000000001, f: try ctx.val(ctx.eval("0.4+0.2")))
-            checkeq([2,1,3], f: try ctx.val(ctx.eval("List(2,1,3).toArray")))
-            checkeq(["X", "Z"], f: try ctx.val(ctx.eval("List(\"z\", \"y\", \"x\").sorted.filter(_ != \"y\").map(_.toUpperCase).toArray")))
-            _ = try ctx.eval("var x = 123")
-            _ = try ctx.eval("x = x + 1")
-            checkeq(124, f: try ctx.val(ctx.eval("x")))
-
-            //        do {
-            //            let val = try ctx.eval("def tfunX(x: String) : String = { \"XYZ\" }")
-            //            try ctx.bind("tfun", value: ctx.ref(val))
-            //            checkeq("XYZ", f: try ctx.val(ctx.eval("tfunX(null)")))
-            //        } catch {
-            //            XCTFail(error.localizedDescription)
-            //        }
-
-            do {
-                let _ = try ctx.eval("val sfun = new Object() { def apply(x: Object) : String = { x.toString().toUpperCase } }")
-                checkeq("XYZ", f: try ctx.val(ctx.eval("sfun.apply(\"xyz\")")))
-            } catch {
-                XCTFail(error.localizedDescription)
-            }
-
-            //        do {
-            //            let function = try ctx.eval("new Object() { def apply(x: Object) : String = { x.toString().toUpperCase } }")
-            //            try ctx.bind("vfun", value: ctx.ref(function))
-            //            checkeq("XYZ", f: try ctx.val(ctx.eval("vfun.apply(\"xyz\")")))
-            //        } catch {
-            //            XCTFail(error.localizedDescription)
-            //        }
-
-            do {
-                let function = try java$util$function$Function$Impl.fromClosure({ arg in java$lang$String(arg?.description.localizedUppercase ?? "null") })
-                try ctx.bind("nfun", value: function)
-
-                checkeq("XYZ", f: try ctx.val(ctx.eval("nfun.asInstanceOf[java.util.function.Function[String, Object]].apply(\"xyz\")")))
-                checkeq("ABC", f: try ctx.val(ctx.eval("nfun.asInstanceOf[java.util.function.Function[String, String]](\"abc\")")))
-                //            checkeq("XYZ", f: try ctx.val(ctx.eval("nfun.apply(\"xyz\")"))) // “value apply is not a member of Object in vfun.apply("xyz") at line number 16 at column number 13”
-
-                let _ = try ctx.eval("val qfun : String => String = nfun.asInstanceOf[java.util.function.Function[String, String]].apply")
-                //            let _ = try ctx.eval("val qfun : String => String = nfun.asInstanceOf[String => String].apply") // not working
-                checkeq("QRS", f: try ctx.val(ctx.eval("qfun(\"qrs\")")))
-
-            } catch {
-                XCTFail(error.localizedDescription)
-            }
-        } catch {
-            XCTFail("\(error)")
-
-        }
-    }
-
-    func testScalaFunctionReferences() throws {
-        let ctx = try ScalaContext()
-
-        let c1 = try ctx.compile("1 + 1")
-        XCTAssertEqual(2, try c1([:])?.toJSum())
-
-        // cast is needed, or else the cryptic error:
-        // javax.script.ScriptException: type mismatch;
-        // found   : Int(1)
-        // required: String in x + 1 at line number 16 at column number 5
-        let c2 = try ctx.compile("x.asInstanceOf[Double] * x.asInstanceOf[Double]", bindings: ["x": nil])
-        func checkValues() {
-            XCTAssertEqual(25, try c2(["x": 5])?.toJSum())
-        }
-        measure {
-            checkValues() // average: 0.142, relative standard deviation: 38.472%
-        }
-    }
-
-    func testScalaClosurePassthroughs() throws {
-        let ctx = try ScalaContext()
-
-        let pow: (JSum) throws -> JSum = try ctx.createPassthroughClosure { .num(($0.num ?? 0.0) * ($0.num ?? 0.0)) }
-        let lower: (JSum) throws -> JSum = try ctx.createPassthroughClosure { .str($0.str?.lowercased() ?? "") }
-
-        func invokePowClosure(_ n: Double) {
-            XCTAssertEqual(.num(n * n), try pow(.num(n)))
-        }
-
-        func invokeLowerClosure(_ s: String) {
-            XCTAssertEqual(.str(s.lowercased()), try lower(.str(s)))
-        }
-
-        // measure { // average: 0.137, relative standard deviation: 10.847%
-            invokePowClosure(5.0)
-            invokeLowerClosure("FOO")
-        // }
-    }
-
-    /// Test the scenario where a Scala closure is recursively created from the execution of another closure
-    func testScalaRecursiveClosures() throws {
-        let ctx = try ScalaContext()
-
-        func recurse(_ num: JSum) throws -> JSum {
-            let closure = try ctx.createPassthroughClosure {
-                let num = $0.num ?? 0
-                //dbg("### recursing level: \(num)")
-                if num > 0 {
-                    return try recurse(.num(num - 1))
-                } else {
-                    return true
-                }
-            }
-
-            return try closure(num)
-        }
-
-
-        // 5 levels: average: 1.193, relative standard deviation: 36.373%
-        // 10 levels: average: 1.695, relative standard deviation: 18.772%
-        // 15 levels: average: 2.576, relative standard deviation: 32.592%
-        // 20 levels: average: 3.129, relative standard deviation: 28.295%
-        // 25 levels: average: 3.991, relative standard deviation: 26.305%
-        // 30 levels: average: 4.513, relative standard deviation: 24.914%
-        measure {
-            XCTAssertEqual(true, try? recurse(2))
-        }
-    }
-
-    //    /// Tests creating and using scala futures & promises
-    //    func testScalaFutures() throws {
-    //        let ctx = try ScalaContext()
-    //
-    //    }
-
-    func testScalaPerformance() throws {
-        //        let fib = """
-        //@scala.annotation.tailrec
-        //def fib (cnt: Int, low: BigInt=0, high: BigInt=1, sofar: List[BigInt]=Nil): List[BigInt] = {
-        //    if (cnt == 0) (low :: sofar).reverse else fib (cnt - 1, high, low + high, low :: sofar)
-        //}
-        //"""
-
-        let ctx = try ScalaContext()
-        let _ = try ctx.eval("def fibonacci(n: Int): Int = if (n > 1) fibonacci(n - 1) + fibonacci(n - 2) else n")
-
-        func checkfib(_ n: Int) {
-            checkeq(.num(Double(fibN(n))), f: try ctx.val(ctx.eval(.val(.str("fibonacci(\(n))")))))
-        }
-
-        // do a warmup run
-        for i in 1...10 { checkfib(i) }
-
-        var i = 10
-        measure { // average: 0.086, relative standard deviation: 10.789%
-            i += 1
-            checkfib(i)
-        }
-    }
-
-}
-
-func setupKanjiScriptTests() throws {
-    guard let dir = Bundle.module.url(forResource: "kotlin/1.8.0", withExtension: nil, subdirectory: "libraries") else {
-        return XCTFail("no kotlin folder")
-    }
-
-    let cp: [String] = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: []).map({ $0.path })
-
-    JVM.sharedJVMCreator = { try JVM(classpath: cp) }
-
-//    let jars = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: [])
-//        .filter({ extensions.contains($0.pathExtension) })
-//
-//    JVM.sharedJVM.addClasspath(urls: jars)
-
-}
-
-private extension XCTestCase {
-    func checkeq(_ value: JSum, file: StaticString = #file, line: UInt = #line, f: @autoclosure () throws -> JSum) {
-        do {
-            let x = try f()
-            XCTAssertEqual(value, x, file: file, line: line)
-        } catch {
-            XCTFail("Error evaluating expression: \(error)", file: file, line: line)
-        }
-    }
-
 }
 
 func fibN(_ num: Int) -> Int { return num > 1 ? fibN(num - 1) + fibN(num - 2) : num }
