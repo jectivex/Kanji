@@ -43,6 +43,7 @@ let package = Package(
         .library(name: "JavaLib", targets: ["JavaLib"]),
         .library(name: "KanjiLib", targets: ["KanjiLib"]),
         .library(name: "KanjiScript", targets: ["KanjiScript"]),
+        .library(name: "KotlinKanji", targets: ["KotlinKanji"]),
     ],
     dependencies: [
         .package(url: "https://github.com/fair-ground/Fair", from: "0.6.0"), // must be first
@@ -53,8 +54,10 @@ let package = Package(
         .target(name: "JavaLib", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
         .target(name: "KanjiLib", dependencies: ["JavaLib"], resources: [.process("Resources")]),
         .target(name: "KanjiScript", dependencies: ["KanjiLib", .product(name: "FairApp", package: "Fair")], resources: [.process("Resources")]),
+        .target(name: "KotlinKanji", dependencies: ["KanjiScript"], resources: [.process("Resources"), .copy("libraries")]),
         .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
         .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
-        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources"), .copy("libraries")], linkerSettings: testLinkerSettings),
+        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
+        .testTarget(name: "KotlinKanjiTests", dependencies: ["KotlinKanji"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
     ]
 )

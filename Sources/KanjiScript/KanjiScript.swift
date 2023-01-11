@@ -11,6 +11,9 @@ import KanjiLib
 import JavaLib
 @_exported import enum FairCore.JSum
 
+/// A context that wraps a certain script engine.
+///
+/// The classes implementing the script engine do not need to be in the system class path. The initializer that accepts jars will create and cache a `URLClassLoader` that will be set (and unset) as the current thread's class loader. Note, however, that this may cause issued with asynchronous callbacks.
 open class KanjiScriptContext : ScriptContext {
     public let engine: javax$script$ScriptEngine
     public let classLoader: java$net$URLClassLoader?
@@ -223,12 +226,12 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
     }
 
 //    public subscript(key: String) -> KanjiScriptType? {
-//        get {
+//        get throws {
 //            switch self {
 //            case .val(let jsum):
 //                return jsum[key].flatMap({ .val($0) })
 //            case .ref(let val, let ctx):
-//                return try? ctx.eval(.val(.str(key)), this: val)
+//                return try ctx.eval(.val(.str(key)), this: val)
 //            }
 //        }
 //    }
@@ -239,13 +242,21 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
             return jsum[key].flatMap({ .val($0) })
         case .ref(let ob, let ctx):
             // there's no good way with the javax.script framework to get a propery of an object
-            if let jsobj : ScriptObject = ob.cast() {
-                return try jsobj.getMember(key.javaString).flatMap({ .ref($0, ctx) })
-            } else {
+//            if let jsobj : ScriptObject = ob.cast() { // nashorn only
+//                return try jsobj.getMember(key.javaString).flatMap({ .ref($0, ctx) })
+//            } else {
                 return nil
-            }
+//            }
 //            try ctx.eval("function ___extractPropertyFromObject(ob, key) { return ob[key]; };")
 //            return try ctx.eval("___extractPropertyFromObject", args: [.ref(ob, ctx), .val(.str(key))])
+        }
+    }
+
+    /// Returns this instance as a `JSum`, either the value directly or by attempting to convert the reference instance.
+    public func jsum() throws -> JSum {
+        switch self {
+        case .val(let jsum): return jsum
+        case .ref(let ref, _): return try ref.toJSum()
         }
     }
 
