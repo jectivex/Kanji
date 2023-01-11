@@ -336,7 +336,8 @@
       "identifiers" : [
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/checkJNIDefault",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/sharedJVM",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/sharedJVMCreator"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/sharedJVMCreator",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/useJIT"
       ],
       "title" : "Type Properties"
     },
@@ -16582,6 +16583,48 @@
   "title" : "unregisterNatives(_:)",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jvm\/unregisternatives(_:)"
+},
+"doc://KanjiVM/documentation/KanjiVM/JVM/useJIT": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "useJIT"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/useJIT",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "useJIT",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvm\/usejit"
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/virtualConstruction": {
   "abstract" : [

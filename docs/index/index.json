@@ -1110,6 +1110,11 @@
                 "type" : "property"
               },
               {
+                "path" : "\/documentation\/kanjivm\/jvm\/usejit",
+                "title" : "static let useJIT: Bool",
+                "type" : "property"
+              },
+              {
                 "title" : "Type Methods",
                 "type" : "groupMarker"
               },

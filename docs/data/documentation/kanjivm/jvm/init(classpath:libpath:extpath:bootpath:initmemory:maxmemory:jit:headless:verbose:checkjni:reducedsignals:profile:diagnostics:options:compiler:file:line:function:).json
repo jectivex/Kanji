@@ -710,7 +710,7 @@
             },
             {
               "kind" : "text",
-              "text" : "? = nil, "
+              "text" : "? = useJIT ? nil : \"none\", "
             },
             {
               "kind" : "externalParam",
