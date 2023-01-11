@@ -538,7 +538,7 @@
               },
               {
                 "path" : "\/documentation\/kanjivm\/jvm\/getjavavm(_:)",
-                "title" : "func getJavaVM(UnsafeMutablePointer<UnsafeMutablePointer<JavaVM?>?>!) -> jint",
+                "title" : "func getJavaVM(UnsafeMutablePointer<JVM.JavaVMPtr?>!) -> jint",
                 "type" : "method"
               },
               {
@@ -1079,6 +1079,11 @@
               {
                 "title" : "Type Aliases",
                 "type" : "groupMarker"
+              },
+              {
+                "path" : "\/documentation\/kanjivm\/jvm\/javavmptr",
+                "title" : "JVM.JavaVMPtr",
+                "type" : "typealias"
               },
               {
                 "path" : "\/documentation\/kanjivm\/jvm\/cstr",

@@ -1,7 +1,7 @@
 {
   "abstract" : [
     {
-      "text" : "The constructor that will be used to lazily create the shared JVM",
+      "text" : "The constructor that will be used to lazily create the shared JVM.",
       "type" : "text"
     }
   ],
@@ -130,6 +130,26 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "This can be used to override the default arguments for the JVM, such as memory size or initial classpat",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -199,7 +219,7 @@
 "doc://KanjiVM/documentation/KanjiVM/JVM/sharedJVMCreator": {
   "abstract" : [
     {
-      "text" : "The constructor that will be used to lazily create the shared JVM",
+      "text" : "The constructor that will be used to lazily create the shared JVM.",
       "type" : "text"
     }
   ],

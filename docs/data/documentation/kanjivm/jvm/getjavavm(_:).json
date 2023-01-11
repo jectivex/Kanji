@@ -43,21 +43,21 @@
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "s:Sp",
-        "text" : "UnsafeMutablePointer"
+        "preciseIdentifier" : "s:7KanjiVM3JVMC",
+        "text" : "JVM"
       },
       {
         "kind" : "text",
-        "text" : "<"
+        "text" : "."
       },
       {
         "kind" : "typeIdentifier",
-        "preciseIdentifier" : "c:jni.h@T@JavaVM",
-        "text" : "JavaVM"
+        "preciseIdentifier" : "s:7KanjiVM3JVMC9JavaVMPtra",
+        "text" : "JavaVMPtr"
       },
       {
         "kind" : "text",
-        "text" : "?>?>!) -> "
+        "text" : "?>!) -> "
       },
       {
         "kind" : "typeIdentifier",
@@ -128,22 +128,24 @@
               "text" : "<"
             },
             {
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "s:Sp",
-              "text" : "UnsafeMutablePointer"
+              "preciseIdentifier" : "s:7KanjiVM3JVMC",
+              "text" : "JVM"
             },
             {
               "kind" : "text",
-              "text" : "<"
+              "text" : "."
             },
             {
+              "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/JavaVMPtr",
               "kind" : "typeIdentifier",
-              "preciseIdentifier" : "c:jni.h@T@JavaVM",
-              "text" : "JavaVM"
+              "preciseIdentifier" : "s:7KanjiVM3JVMC9JavaVMPtra",
+              "text" : "JavaVMPtr"
             },
             {
               "kind" : "text",
-              "text" : "?>?>!) -> "
+              "text" : "?>!) -> "
             },
             {
               "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/jint",
@@ -221,6 +223,37 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jvm"
 },
+"doc://KanjiVM/documentation/KanjiVM/JVM/JavaVMPtr": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "typealias"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "JavaVMPtr"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/JavaVMPtr",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "JavaVMPtr"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "JVM.JavaVMPtr",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvm\/javavmptr"
+},
 "doc://KanjiVM/documentation/KanjiVM/JVM/getJavaVM(_:)": {
   "abstract" : [
 
@@ -253,21 +286,21 @@
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "s:Sp",
-      "text" : "UnsafeMutablePointer"
+      "preciseIdentifier" : "s:7KanjiVM3JVMC",
+      "text" : "JVM"
     },
     {
       "kind" : "text",
-      "text" : "<"
+      "text" : "."
     },
     {
       "kind" : "typeIdentifier",
-      "preciseIdentifier" : "c:jni.h@T@JavaVM",
-      "text" : "JavaVM"
+      "preciseIdentifier" : "s:7KanjiVM3JVMC9JavaVMPtra",
+      "text" : "JavaVMPtr"
     },
     {
       "kind" : "text",
-      "text" : "?>?>!) -> "
+      "text" : "?>!) -> "
     },
     {
       "kind" : "typeIdentifier",
