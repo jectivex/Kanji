@@ -530,8 +530,8 @@ class KanjiScriptKotlinTests: XCTestCase {
             XCTAssertTrue(error.localizedDescription.hasPrefix("ERROR Unresolved reference: XYZ"), "unexpected error: \(error)")
         }
 
-//        checkeq(1, f: try ctx.val(ctx.eval("1")))
-//        checkeq("", f: try ctx.val(ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#)))
+        checkeq(1, f: try ctx.val(ctx.eval("1")))
+        checkeq("", f: try ctx.val(ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#)))
     }
 }
 
