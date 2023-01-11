@@ -240,7 +240,7 @@ public enum KanjiScriptType : ScriptType, CustomDebugStringConvertible {
         switch self {
         case .val(let jsum):
             return jsum[key].flatMap({ .val($0) })
-        case .ref(let ob, let ctx):
+        case .ref: // (let ob, let ctx):
             // there's no good way with the javax.script framework to get a propery of an object
 //            if let jsobj : ScriptObject = ob.cast() { // nashorn only
 //                return try jsobj.getMember(key.javaString).flatMap({ .ref($0, ctx) })

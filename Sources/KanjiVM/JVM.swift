@@ -176,10 +176,14 @@ public func JNI_OnLoad(_ vm: UnsafeMutablePointer<JavaVM?>!, _ reserved: UnsafeM
 
 
 public final class JVM {
-    /// The constructor that will be used to lazily create the shared JVM
+    /// The constructor that will be used to lazily create the shared JVM.
+    ///
+    /// This can be used to override the default arguments for the JVM, such as memory size or initial classpat
     public static var sharedJVMCreator: () throws -> (JVM) = { try JVM() }
 
     fileprivate static var singletonJVM: JVM?
+
+    public typealias JavaVMPtr = UnsafeMutablePointer<JavaVM?>
 
     /// The singleton shared JVM: it must be manually set once and only once for a process, as JNI does not support mutliple JVMs
     public static var sharedJVM: JVM! {
@@ -193,7 +197,7 @@ public final class JVM {
         }
     }
 
-    var jvm: UnsafeMutablePointer<JavaVM?>
+    var jvm: JavaVMPtr
     var api: JNINativeInterface_!
 
     var envCache = [pthread_t : JNIEnvPointer]()
@@ -267,7 +271,7 @@ public final class JVM {
     public var moduleLoaders: [String] = ["JavaLib"]
 
 
-    fileprivate init(jvm: UnsafeMutablePointer<JavaVM?>) {
+    fileprivate init(jvm: JavaVMPtr) {
         self.jvm = jvm
         let env = self.GetEnv()
         self.envCache[pthread_self()] = env
@@ -370,16 +374,63 @@ public final class JVM {
         //var pargs: UnsafePointer<JavaVMInitArgs> = withUnsafePointer(to: &jargs, { $0 })
         // _ = JNI_GetDefaultJavaVMInitArgs(&pargs)
 
-        var pvm: UnsafeMutablePointer<JavaVM?>?
+        var pvm: JavaVMPtr?
         var penv: UnsafeMutableRawPointer?
 
-        let success: jint = JNI_CreateJavaVM(&pvm, &penv, &jargs)
+
+        let home: String
+        if let JAVA_HOME = getenv("JAVA_HOME"), let jhome = String(validatingUTF8: JAVA_HOME) {
+            home = jhome
+        } else {
+            //#warning("TODO: use common guesses for macOS & Linux")
+            // guess some common places
+            //home = "/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+            throw KanjiErrors.general("JAVA_HOME must be set to create JVM")
+        }
+
+        let ext: String
+        #if os(Windows)
+        ext = "dll"
+        #elseif os(Linux) || os(Android)
+        ext = "so"
+        #elseif os(macOS) || os(iOS) || os(tvOS)
+        ext = "dylib"
+        #endif
+
+        // check some common relative paths
+        // e.g. /usr/lib/jvm/temurin-11-jdk-amd64/lib/server
+        // e.g. /opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server // Homebrew macOS ARM
+        // e.g. /usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server // Homebrew macOS Intel
+        let lib = URL(fileURLWithPath: "lib/server/libjvm", relativeTo: URL(fileURLWithPath: home, isDirectory: true))
+            .appendingPathExtension(ext)
+
+        if FileManager.default.isReadableFile(atPath: lib.path) == false {
+            throw KanjiErrors.general("Could not find libjvm: \(lib.path)")
+        }
+
+        // TODO: on macOS, reduce signal interception debugging issues by locating libjsig.dylib and adding it to DYLD_INSERT_LIBRARIES
+        guard let dylib = dlopen(lib.path, RTLD_NOW) else {
+            if let error = dlerror() {
+                throw KanjiErrors.general("dlopen error: \(String(cString: error))")
+            } else {
+                throw KanjiErrors.general("Unknown dlopen error")
+            }
+        }
+
+        typealias CreateJavaVM = @convention(c) (_ pvm: UnsafeMutablePointer<JavaVMPtr?>, _ penv: UnsafeMutablePointer<UnsafeMutableRawPointer?>, _ args: UnsafeMutableRawPointer) -> jint
+
+        let createJavaVM = dlsym(dylib, "JNI_CreateJavaVM").map({ unsafeBitCast($0, to: (CreateJavaVM).self) })
+        guard let createJavaVM = createJavaVM else {
+            throw KanjiErrors.general("Unable to dlsym JNI_CreateJavaVM")
+        }
+
+        let success: jint = createJavaVM(&pvm, &penv, &jargs)
         if success != JNI_OK {
             throw KanjiErrors.system
         }
 
         guard let vm = pvm else {
-            throw KanjiErrors.system
+            throw KanjiErrors.general("No vm created")
         }
 
         self.jvm = vm
@@ -1263,7 +1314,7 @@ extension JVM {
 
 
 
-    public func getJavaVM(_ vm: UnsafeMutablePointer<UnsafeMutablePointer<JavaVM?>?>!) -> jint {
+    public func getJavaVM(_ vm: UnsafeMutablePointer<JavaVMPtr?>!) -> jint {
         return api.GetJavaVM(env, vm)
     }
 
@@ -1400,9 +1451,9 @@ public extension JVM {
     /// to be created and cleared; this is useful when creating many local instances in a tight loop
     /// in order to avoid `OutOfMemoryError`s
     func withLocalFrame<T: JRef>(size: jint, f: () throws -> T?) rethrows -> T? {
-        JVM.sharedJVM.pushLocalFrame(size)
+        pushLocalFrame(size)
         var value: T?
-        defer { JVM.sharedJVM.popLocalFrame(value?.jobj ?? nil) }
+        defer { popLocalFrame(value?.jobj ?? nil) }
         value = try f()
         return value
     }
@@ -1411,8 +1462,8 @@ public extension JVM {
     /// to be created and cleared; this is useful when creating many local instances in a tight loop
     /// in order to avoid `OutOfMemoryError`s
     func withLocalFrame<T>(size: jint = 0, f: () throws -> T) rethrows -> T {
-        JVM.sharedJVM.pushLocalFrame(size)
-        defer { JVM.sharedJVM.popLocalFrame(nil) }
+        pushLocalFrame(size)
+        defer { popLocalFrame(nil) }
         return try f()
     }
 }
