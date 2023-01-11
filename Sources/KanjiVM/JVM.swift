@@ -397,15 +397,20 @@ public final class JVM {
         ext = "dylib"
         #endif
 
+        let javaHome = URL(fileURLWithPath: home, isDirectory: true)
+
         // check some common relative paths
-        // e.g. /usr/lib/jvm/temurin-11-jdk-amd64/lib/server
+        // e.g. /usr/lib/jvm/temurin-11-jdk-amd64/lib/server // Linux GH
+        // e.g. /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.352-8/x64/Contents/Home/lib/server/libjvm.dylib // macOS GH
         // e.g. /opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server // Homebrew macOS ARM
         // e.g. /usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server // Homebrew macOS Intel
-        let lib = URL(fileURLWithPath: "lib/server/libjvm", relativeTo: URL(fileURLWithPath: home, isDirectory: true))
-            .appendingPathExtension(ext)
+        let libs = [
+            URL(fileURLWithPath: "lib/server/libjvm", relativeTo: javaHome).appendingPathExtension(ext),
+            URL(fileURLWithPath: "lib/libjvm", relativeTo: javaHome).appendingPathExtension(ext),
+        ]
 
-        if FileManager.default.isReadableFile(atPath: lib.path) == false {
-            throw KanjiErrors.general("Could not find libjvm: \(lib.path)")
+        guard let lib = libs.first(where: { FileManager.default.isReadableFile(atPath: $0.path) }) else {
+            throw KanjiErrors.general("Could not find libjvm in: \(libs.map(\.path))")
         }
 
         // TODO: on macOS, reduce signal interception debugging issues by locating libjsig.dylib and adding it to DYLD_INSERT_LIBRARIES
