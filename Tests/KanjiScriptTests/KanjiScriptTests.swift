@@ -524,14 +524,19 @@ class KanjiScriptKotlinTests: XCTestCase {
     }
 
     func testKotlin() throws {
+        try setupKanjiScriptTests()
+
         let ctx = try KotlinContext()
 
         XCTAssertThrowsError(try ctx.eval("XYZ")) { error in
             XCTAssertTrue(error.localizedDescription.hasPrefix("ERROR Unresolved reference: XYZ"), "unexpected error: \(error)")
         }
 
-        //checkeq(1, f: try ctx.val(ctx.eval("1")))
-        //checkeq("", f: try ctx.val(ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#)))
+        checkeq(1, f: try ctx.val(ctx.eval("1")))
+        checkeq(3, f: try ctx.val(ctx.eval("1 + 2")))
+        checkeq("three", f: try ctx.val(ctx.eval(#""th" + "ree""#)))
+
+        // checkeq("Homebrew", f: try ctx.val(ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#)))
     }
 }
 
@@ -786,33 +791,15 @@ class KanjiScriptScalaTests: XCTestCase {
 
 }
 
-//@available(*, deprecated)
-//func setupKanjiScriptTests() {
-//    //let dir = "/usr/local/Cellar/scala/2.12.8/libexec/lib/" // location for "brew install scala"
-////    guard let dir = Bundle(for: KanjiScriptScalaTests.self).url(forResource: "lib", withExtension: nil, subdirectory: "libraries/scala/2.12.8/libexec") else {
-////        return XCTFail("no scala folder")
-////    }
-//
-//    return
-//
-//
-//    guard let dir = Bundle.module.url(forResource: "kotlin/1.8.0", withExtension: nil, subdirectory: "libraries") else {
-//        return XCTFail("no kotlin folder")
-//    }
-//
-//    do {
-//        let cp: [String] = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: []).map({ $0.path })
-//        // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
-//        JVM.sharedJVMCreator = { try JVM(classpath: cp) }
-//
-//        var isDir: ObjCBool = false
-//        if FileManager.default.fileExists(atPath: dir.path, isDirectory: &isDir) == false || isDir.boolValue == false {
-//            return XCTFail("scala not installed at \(dir)") // make sure we know when scala is missing
-//        }
-//    } catch {
-//        return XCTFail("error \(error)")
-//    }
-//}
+func setupKanjiScriptTests() throws {
+    guard let dir = Bundle.module.url(forResource: "kotlin/1.8.0", withExtension: nil, subdirectory: "libraries") else {
+        return XCTFail("no kotlin folder")
+    }
+
+    let cp: [String] = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: []).map({ $0.path })
+    // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
+    JVM.sharedJVMCreator = { try JVM(classpath: cp) }
+}
 
 private extension XCTestCase {
     func checkeq(_ value: JSum, file: StaticString = #file, line: UInt = #line, f: @autoclosure () throws -> JSum) {
