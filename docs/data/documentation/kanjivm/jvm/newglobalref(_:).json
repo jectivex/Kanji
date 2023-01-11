@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a new global reference to the object referred to by the obj argument. The obj argument may be a global or local reference. Global references must be explicitly disposed of by calling ",
+      "type" : "text"
+    },
+    {
+      "code" : "DeleteGlobalRef()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -196,7 +210,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newGlobalRef(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a new global reference to the object referred to by the obj argument. The obj argument may be a global or local reference. Global references must be explicitly disposed of by calling ",
+      "type" : "text"
+    },
+    {
+      "code" : "DeleteGlobalRef()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

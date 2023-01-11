@@ -1,4 +1,34 @@
 {
+  "abstract" : [
+    {
+      "text" : "Constructs a new Java object. The method ID indicates which constructor method to invoke. This ID must be obtained by calling ",
+      "type" : "text"
+    },
+    {
+      "code" : "GetMethodID()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " with ",
+      "type" : "text"
+    },
+    {
+      "code" : "<init>",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " as the method name and void (",
+      "type" : "text"
+    },
+    {
+      "code" : "V",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ") as the return type.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -216,6 +246,34 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The ",
+              "type" : "text"
+            },
+            {
+              "code" : "clazz",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " argument must not refer to an array class.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -315,7 +373,34 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newObjectA(_:methodID:args:)": {
   "abstract" : [
-
+    {
+      "text" : "Constructs a new Java object. The method ID indicates which constructor method to invoke. This ID must be obtained by calling ",
+      "type" : "text"
+    },
+    {
+      "code" : "GetMethodID()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " with ",
+      "type" : "text"
+    },
+    {
+      "code" : "<init>",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " as the method name and void (",
+      "type" : "text"
+    },
+    {
+      "code" : "V",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ") as the return type.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

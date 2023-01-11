@@ -334,6 +334,7 @@
     },
     {
       "identifiers" : [
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/checkJNIDefault",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/sharedJVM",
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/sharedJVMCreator"
       ],
@@ -453,7 +454,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/allocObject(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Allocates a new Java object without invoking any of the constructors for the object. Returns a reference to the object.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -5756,6 +5760,48 @@
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/jvm\/callvoidmethodv(_:methodid:args:)"
 },
+"doc://KanjiVM/documentation/KanjiVM/JVM/checkJNIDefault": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "static"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "let"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "checkJNIDefault"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Sb",
+      "text" : "Bool"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JVM\/checkJNIDefault",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "checkJNIDefault",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/jvm\/checkjnidefault"
+},
 "doc://KanjiVM/documentation/KanjiVM/JVM/checked(_:file:line:function:)": {
   "abstract" : [
     {
@@ -5965,7 +6011,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/defineClass(_:loader:buf:len:)": {
   "abstract" : [
-
+    {
+      "text" : "Loads a class from a buffer of raw class data. The buffer containing the raw class data is not referenced by the VM after the DefineClass call returns, and it may be discarded if desired.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6081,7 +6130,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/deleteGlobalRef(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Deletes the global reference pointed to by ",
+      "type" : "text"
+    },
+    {
+      "code" : "globalRef",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6119,7 +6179,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/deleteLocalRef(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Deletes the local reference pointed to by ",
+      "type" : "text"
+    },
+    {
+      "code" : "localRef",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6195,7 +6266,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/ensureLocalCapacity(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Ensures that at least a given number of local references can be created in the current thread. Returns 0 on success; otherwise returns a negative number and throws an ",
+      "type" : "text"
+    },
+    {
+      "code" : "OutOfMemoryError",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6238,7 +6320,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/exceptionCheck()": {
   "abstract" : [
-
+    {
+      "text" : "We introduce a convenience function to check for pending exceptions without creating a local reference to the exception object.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6272,7 +6357,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/exceptionClear()": {
   "abstract" : [
-
+    {
+      "text" : "Clears any exception that is currently being thrown. If no exception is currently being thrown, this routine has no effect.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6301,7 +6389,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/exceptionDescribe()": {
   "abstract" : [
-
+    {
+      "text" : "Prints an exception and a backtrace of the stack to a system error-reporting channel, such as stderr. This is a convenience routine provided for debugging.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6330,7 +6421,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/exceptionOccurred()": {
   "abstract" : [
-
+    {
+      "text" : "Determines if an exception is being thrown. The exception stays being thrown until either the native code calls ",
+      "type" : "text"
+    },
+    {
+      "code" : "ExceptionClear()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", or the Java code handles the exception.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6368,7 +6470,14 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/findClass(_:)": {
   "abstract" : [
-
+    {
+      "code" : "FindClass",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " locates the class loader associated with the current native method; that is, the class loader of the class that declared the native method. If the native method belongs to a system class, no class loader will be involved. Otherwise, the proper class loader will be invoked to load and link the named class.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6474,7 +6583,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/fromReflectedField(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Converts a java.lang.reflect.Field to a field ID.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -6521,7 +6633,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/fromReflectedMethod(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Converts a java.lang.reflect.Method or java.lang.reflect.Constructor object to a method ID.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -8541,7 +8656,26 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/getMethodID(_:name:sig:)": {
   "abstract" : [
-
+    {
+      "text" : "Returns the method ID for an instance (nonstatic) method of a class or interface. The method may be defined in one of the ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : "’s superclasses and inherited by ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ". The method is determined by its name and signature.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -8704,7 +8838,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/getObjectClass(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Returns the class of an object.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -10440,7 +10577,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/getSuperclass(_:)": {
   "abstract" : [
-
+    {
+      "text" : "If clazz represents any class other than the class Object, then this function returns the object that represents the superclass of the class specified by clazz.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -10487,7 +10627,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/getVersion()": {
   "abstract" : [
-
+    {
+      "text" : "Returns the version of the native method interface.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -10899,7 +11042,26 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/isAssignableFrom(_:sup:)": {
   "abstract" : [
-
+    {
+      "text" : "Determines whether an object of ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz1",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " can be safely cast to ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz2",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -10959,7 +11121,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/isInstanceOf(_:clazz:)": {
   "abstract" : [
-
+    {
+      "text" : "Tests whether an object is an instance of a class.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -11019,7 +11184,42 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/isSameObject(_:_:)": {
   "abstract" : [
-
+    {
+      "text" : "Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if obj can be cast to ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : "; otherwise, returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ". A ",
+      "type" : "text"
+    },
+    {
+      "code" : "NULL",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object can be cast to any class.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -11606,7 +11806,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newGlobalRef(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a new global reference to the object referred to by the obj argument. The obj argument may be a global or local reference. Global references must be explicitly disposed of by calling ",
+      "type" : "text"
+    },
+    {
+      "code" : "DeleteGlobalRef()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -11700,7 +11911,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newLocalRef(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a new local reference that refers to the same object as ref. The given ref may be a global or local reference. Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "NULL",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if ref refers to null.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -11794,7 +12016,34 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newObjectA(_:methodID:args:)": {
   "abstract" : [
-
+    {
+      "text" : "Constructs a new Java object. The method ID indicates which constructor method to invoke. This ID must be obtained by calling ",
+      "type" : "text"
+    },
+    {
+      "code" : "GetMethodID()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " with ",
+      "type" : "text"
+    },
+    {
+      "code" : "<init>",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " as the method name and void (",
+      "type" : "text"
+    },
+    {
+      "code" : "V",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ") as the return type.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -11965,7 +12214,34 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newObjectV(_:methodID:args:)": {
   "abstract" : [
-
+    {
+      "text" : "Constructs a new Java object. The method ID indicates which constructor method to invoke. This ID must be obtained by calling ",
+      "type" : "text"
+    },
+    {
+      "code" : "GetMethodID()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " with ",
+      "type" : "text"
+    },
+    {
+      "code" : "<init>",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " as the method name and void (",
+      "type" : "text"
+    },
+    {
+      "code" : "V",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ") as the return type.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -12166,7 +12442,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newStringUTF(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Constructs a new java.lang.String object from an array of characters in modified UTF-8 encoding.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -12361,7 +12640,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/popLocalFrame(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Pops off the current local reference frame, frees all the local references, and returns a local reference in the previous local reference frame for the given result object.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -12474,7 +12756,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/pushLocalFrame(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a new local reference frame, in which at least a given number of local references can be created. Returns 0 on success, a negative number and a pending OutOfMemoryError on failure.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -15773,7 +16058,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/throwException(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Causes a java.lang.Throwable object to be thrown.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -15900,7 +16188,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/throwNew(_:msg:)": {
   "abstract" : [
-
+    {
+      "text" : "Constructs an exception object from the specified class with the message specified by message and causes that exception to be thrown.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -16019,7 +16310,42 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/toReflectedField(_:fieldID:isStatic:)": {
   "abstract" : [
-
+    {
+      "text" : "Converts a field ID derived from cls to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Field",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object. ",
+      "type" : "text"
+    },
+    {
+      "code" : "isStatic",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " must be set to ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if fieldID refers to a static field, and ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " otherwise.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
@@ -16100,7 +16426,42 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/toReflectedMethod(_:methodID:isStatic:)": {
   "abstract" : [
-
+    {
+      "text" : "Converts a method ID derived from cls to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Method",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " or ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Constructor",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object. isStatic must be set to ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the method ID refers to a static field, and ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " otherwise.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

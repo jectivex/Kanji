@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Constructs a new java.lang.String object from an array of characters in modified UTF-8 encoding.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -246,7 +252,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newStringUTF(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Constructs a new java.lang.String object from an array of characters in modified UTF-8 encoding.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

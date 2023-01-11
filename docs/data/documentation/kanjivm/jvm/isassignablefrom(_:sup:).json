@@ -1,4 +1,26 @@
 {
+  "abstract" : [
+    {
+      "text" : "Determines whether an object of ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz1",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " can be safely cast to ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz2",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -223,7 +245,26 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/isAssignableFrom(_:sup:)": {
   "abstract" : [
-
+    {
+      "text" : "Determines whether an object of ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz1",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " can be safely cast to ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz2",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

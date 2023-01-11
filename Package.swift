@@ -55,6 +55,6 @@ let package = Package(
         .target(name: "KanjiScript", dependencies: ["KanjiLib", .product(name: "FairApp", package: "Fair")], resources: [.process("Resources")]),
         .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
         .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
-        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
+        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources"), .copy("libraries")], linkerSettings: testLinkerSettings),
     ]
 )

@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Prints an exception and a backtrace of the stack to a system error-reporting channel, such as stderr. This is a convenience routine provided for debugging.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -142,7 +148,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/exceptionDescribe()": {
   "abstract" : [
-
+    {
+      "text" : "Prints an exception and a backtrace of the stack to a system error-reporting channel, such as stderr. This is a convenience routine provided for debugging.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

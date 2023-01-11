@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Loads a class from a buffer of raw class data. The buffer containing the raw class data is not referenced by the VM after the DefineClass call returns, and it may be discarded if desired.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -369,7 +375,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/defineClass(_:loader:buf:len:)": {
   "abstract" : [
-
+    {
+      "text" : "Loads a class from a buffer of raw class data. The buffer containing the raw class data is not referenced by the VM after the DefineClass call returns, and it may be discarded if desired.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

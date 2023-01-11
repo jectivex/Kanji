@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Returns the class of an object.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -196,7 +202,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/getObjectClass(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Returns the class of an object.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

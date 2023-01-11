@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Allocates a new Java object without invoking any of the constructors for the object. Returns a reference to the object.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -128,6 +134,26 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The clazz argument must not refer to an array class.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -196,7 +222,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/allocObject(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Allocates a new Java object without invoking any of the constructors for the object. Returns a reference to the object.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

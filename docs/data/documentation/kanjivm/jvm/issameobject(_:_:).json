@@ -1,4 +1,42 @@
 {
+  "abstract" : [
+    {
+      "text" : "Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if obj can be cast to ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : "; otherwise, returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ". A ",
+      "type" : "text"
+    },
+    {
+      "code" : "NULL",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object can be cast to any class.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -223,7 +261,42 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/isSameObject(_:_:)": {
   "abstract" : [
-
+    {
+      "text" : "Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if obj can be cast to ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : "; otherwise, returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ". A ",
+      "type" : "text"
+    },
+    {
+      "code" : "NULL",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object can be cast to any class.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

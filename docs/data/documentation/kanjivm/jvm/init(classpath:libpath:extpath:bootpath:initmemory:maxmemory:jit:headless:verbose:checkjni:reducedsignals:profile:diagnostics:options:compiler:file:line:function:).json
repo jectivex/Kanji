@@ -608,7 +608,7 @@
             },
             {
               "kind" : "text",
-              "text" : ") = (false, false, false), "
+              "text" : ") = (gc: false, jni: checkJNIDefault, classload: false), "
             },
             {
               "kind" : "externalParam",
@@ -625,7 +625,7 @@
             },
             {
               "kind" : "text",
-              "text" : " = false, "
+              "text" : " = JVM.checkJNIDefault, "
             },
             {
               "kind" : "externalParam",

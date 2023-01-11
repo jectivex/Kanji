@@ -1,4 +1,42 @@
 {
+  "abstract" : [
+    {
+      "text" : "Converts a method ID derived from cls to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Method",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " or ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Constructor",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object. isStatic must be set to ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the method ID refers to a static field, and ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " otherwise.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -197,6 +235,26 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Throws OutOfMemoryError and returns 0 if fails.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -265,7 +323,42 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/toReflectedMethod(_:methodID:isStatic:)": {
   "abstract" : [
-
+    {
+      "text" : "Converts a method ID derived from cls to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Method",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " or ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Constructor",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object. isStatic must be set to ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if the method ID refers to a static field, and ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " otherwise.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

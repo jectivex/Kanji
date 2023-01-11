@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Pops off the current local reference frame, frees all the local references, and returns a local reference in the previous local reference frame for the given result object.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -136,6 +142,34 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Pass ",
+              "type" : "text"
+            },
+            {
+              "code" : "NULL",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " as result if you do not need to return a reference to the previous frame.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -204,7 +238,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/popLocalFrame(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Pops off the current local reference frame, frees all the local references, and returns a local reference in the previous local reference frame for the given result object.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Returns the version of the native method interface.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -153,7 +159,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/getVersion()": {
   "abstract" : [
-
+    {
+      "text" : "Returns the version of the native method interface.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

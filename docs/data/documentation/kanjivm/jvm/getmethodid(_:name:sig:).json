@@ -1,4 +1,26 @@
 {
+  "abstract" : [
+    {
+      "text" : "Returns the method ID for an instance (nonstatic) method of a class or interface. The method may be defined in one of the ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : "’s superclasses and inherited by ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ". The method is determined by its name and signature.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -235,6 +257,47 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "code" : "GetMethodID()",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " causes an uninitialized class to be initialized.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "To obtain the method ID of a constructor, supply ",
+              "type" : "text"
+            },
+            {
+              "code" : "<init>",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " as the method name and void (V) as the return type.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -334,7 +397,26 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/getMethodID(_:name:sig:)": {
   "abstract" : [
-
+    {
+      "text" : "Returns the method ID for an instance (nonstatic) method of a class or interface. The method may be defined in one of the ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : "’s superclasses and inherited by ",
+      "type" : "text"
+    },
+    {
+      "code" : "clazz",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ". The method is determined by its name and signature.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

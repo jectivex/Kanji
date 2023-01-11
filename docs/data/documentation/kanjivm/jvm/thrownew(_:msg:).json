@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Constructs an exception object from the specified class with the message specified by message and causes that exception to be thrown.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -281,7 +287,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/throwNew(_:msg:)": {
   "abstract" : [
-
+    {
+      "text" : "Constructs an exception object from the specified class with the message specified by message and causes that exception to be thrown.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

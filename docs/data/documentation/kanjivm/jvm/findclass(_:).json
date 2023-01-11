@@ -1,4 +1,14 @@
 {
+  "abstract" : [
+    {
+      "code" : "FindClass",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " locates the class loader associated with the current native method; that is, the class loader of the class that declared the native method. If the native method belongs to a system class, no class loader will be involved. Otherwise, the proper class loader will be invoked to load and link the named class.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -147,6 +157,86 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "When ",
+              "type" : "text"
+            },
+            {
+              "code" : "FindClass",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " is called through the Invocation Interface, there is no current native method or its associated class loader. In that case, the result of ",
+              "type" : "text"
+            },
+            {
+              "code" : "ClassLoader.getSystemClassLoader",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " is used. This is the class loader the virtual machine creates for applications, and is able to locate classes listed in the ",
+              "type" : "text"
+            },
+            {
+              "code" : "java.class.path",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " property.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The name argument is a fully-qualified class name or an array type signature . For example, the fully-qualified class name for the java.lang.String class is:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "code" : "\"java\/lang\/String\"",
+              "type" : "codeVoice"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The array type signature of the array class java.lang.Object[] is:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "code" : "\"[Ljava\/lang\/Object;\"",
+              "type" : "codeVoice"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -246,7 +336,14 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/findClass(_:)": {
   "abstract" : [
-
+    {
+      "code" : "FindClass",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " locates the class loader associated with the current native method; that is, the class loader of the class that declared the native method. If the native method belongs to a system class, no class loader will be involved. Otherwise, the proper class loader will be invoked to load and link the named class.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

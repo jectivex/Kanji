@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Converts a java.lang.reflect.Field to a field ID.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -195,7 +201,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/fromReflectedField(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Converts a java.lang.reflect.Field to a field ID.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

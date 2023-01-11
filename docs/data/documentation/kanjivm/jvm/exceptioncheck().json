@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "We introduce a convenience function to check for pending exceptions without creating a local reference to the exception object.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -153,7 +159,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/exceptionCheck()": {
   "abstract" : [
-
+    {
+      "text" : "We introduce a convenience function to check for pending exceptions without creating a local reference to the exception object.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Clears any exception that is currently being thrown. If no exception is currently being thrown, this routine has no effect.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -142,7 +148,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/exceptionClear()": {
   "abstract" : [
-
+    {
+      "text" : "Clears any exception that is currently being thrown. If no exception is currently being thrown, this routine has no effect.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

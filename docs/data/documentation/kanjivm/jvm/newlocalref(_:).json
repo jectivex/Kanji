@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Creates a new local reference that refers to the same object as ref. The given ref may be a global or local reference. Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "NULL",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if ref refers to null.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -196,7 +210,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/newLocalRef(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Creates a new local reference that refers to the same object as ref. The given ref may be a global or local reference. Returns ",
+      "type" : "text"
+    },
+    {
+      "code" : "NULL",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if ref refers to null.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

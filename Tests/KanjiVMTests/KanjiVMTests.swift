@@ -8,6 +8,34 @@
 import XCTest
 import KanjiVM
 
+extension JVM {
+    /// Returns the value of the system property `java.home`.
+    public var javaHome: String? {
+        get throws {
+            try getProperty("java.home")
+        }
+    }
+
+    /// Returns the value of the system property
+    public func getProperty(_ property: String) throws -> String? {
+        try throwException()
+        guard let syscls = findClass("java/lang/System") else {
+            return nil
+        }
+
+        try throwException()
+        guard let mid = getStaticMethodID(syscls, name: "getProperty", sig: "(Ljava/lang/String;)Ljava/lang/String;") else {
+            return nil
+        }
+
+        try throwException()
+        let value = callStaticObjectMethodA(syscls, methodID: mid, args: [jvalue.init(l: toJString(property))])
+
+        try throwException()
+        return fromJavaString(value)
+    }
+}
+
 class KanjiVMTests: XCTestCase {
     override func setUp() {
         assert(JVM.sharedJVM != nil)
@@ -29,6 +57,13 @@ class KanjiVMTests: XCTestCase {
 //                XCTAssertEqual(ptr == ptr2)
             }
         }
+    }
+
+    func testProperties() throws {
+        let prop = { try JVM.jvm.getProperty($0) }
+        XCTAssertEqual("Homebrew", try prop("java.vendor.version"))
+        XCTAssertEqual("19", try prop("java.specification.version"))
+
     }
 
     func testSimpleClass() {

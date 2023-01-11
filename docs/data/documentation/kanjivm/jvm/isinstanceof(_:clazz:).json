@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Tests whether an object is an instance of a class.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -223,7 +229,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/isInstanceOf(_:clazz:)": {
   "abstract" : [
-
+    {
+      "text" : "Tests whether an object is an instance of a class.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

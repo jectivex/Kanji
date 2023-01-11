@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Determines if an exception is being thrown. The exception stays being thrown until either the native code calls ",
+      "type" : "text"
+    },
+    {
+      "code" : "ExceptionClear()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", or the Java code handles the exception.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -161,7 +175,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/exceptionOccurred()": {
   "abstract" : [
-
+    {
+      "text" : "Determines if an exception is being thrown. The exception stays being thrown until either the native code calls ",
+      "type" : "text"
+    },
+    {
+      "code" : "ExceptionClear()",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ", or the Java code handles the exception.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

@@ -1,4 +1,42 @@
 {
+  "abstract" : [
+    {
+      "text" : "Converts a field ID derived from cls to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Field",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object. ",
+      "type" : "text"
+    },
+    {
+      "code" : "isStatic",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " must be set to ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if fieldID refers to a static field, and ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " otherwise.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -197,6 +235,34 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "discussion",
+          "level" : 2,
+          "text" : "Discussion",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Throws ",
+              "type" : "text"
+            },
+            {
+              "code" : "OutOfMemoryError",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " and returns 0 if fails.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "schemaVersion" : {
@@ -265,7 +331,42 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/toReflectedField(_:fieldID:isStatic:)": {
   "abstract" : [
-
+    {
+      "text" : "Converts a field ID derived from cls to a ",
+      "type" : "text"
+    },
+    {
+      "code" : "java.lang.reflect.Field",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " object. ",
+      "type" : "text"
+    },
+    {
+      "code" : "isStatic",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " must be set to ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_TRUE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if fieldID refers to a static field, and ",
+      "type" : "text"
+    },
+    {
+      "code" : "JNI_FALSE",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " otherwise.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

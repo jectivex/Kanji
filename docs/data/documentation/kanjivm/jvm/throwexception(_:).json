@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Causes a java.lang.Throwable object to be thrown.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -196,7 +202,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/throwException(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Causes a java.lang.Throwable object to be thrown.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

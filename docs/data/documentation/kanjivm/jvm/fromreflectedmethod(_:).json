@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "Converts a java.lang.reflect.Method or java.lang.reflect.Constructor object to a method ID.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -195,7 +201,10 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/fromReflectedMethod(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Converts a java.lang.reflect.Method or java.lang.reflect.Constructor object to a method ID.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

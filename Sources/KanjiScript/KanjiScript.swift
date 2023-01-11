@@ -16,6 +16,24 @@ open class KanjiScriptContext : ScriptContext {
 
     public typealias InstanceType = KanjiScriptType
 
+    public convenience init(engine engineName: String, jarsIn root: URL?, extensions: Set<String> = ["jar"]) throws {
+        guard let root = root else {
+            throw CocoaError(.fileReadNoSuchFile)
+        }
+
+        let jars = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil)
+            .filter({ extensions.isEmpty || extensions.contains($0.pathExtension) })
+
+        try self.init(engine: engineName, jars: jars)
+
+        // now ensure that the context really is scala
+        let names = try engine.getFactory()?.getNames()?.toArray()?.compactMap({ $0?.description }) ?? []
+
+        if !names.contains(engineName) {
+            throw KanjiErrors.general("Script engine \(engineName) was not loaded from: \(names)")
+        }
+    }
+
     public init(engine name: String, jars: [URL] = []) throws {
         // if JVM.sharedJVM == nil { JVM.sharedJVM = try JVM() }
         

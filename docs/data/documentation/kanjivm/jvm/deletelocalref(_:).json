@@ -1,4 +1,18 @@
 {
+  "abstract" : [
+    {
+      "text" : "Deletes the local reference pointed to by ",
+      "type" : "text"
+    },
+    {
+      "code" : "localRef",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -177,7 +191,18 @@
 },
 "doc://KanjiVM/documentation/KanjiVM/JVM/deleteLocalRef(_:)": {
   "abstract" : [
-
+    {
+      "text" : "Deletes the local reference pointed to by ",
+      "type" : "text"
+    },
+    {
+      "code" : "localRef",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : ".",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {

@@ -1095,6 +1095,11 @@
                 "type" : "groupMarker"
               },
               {
+                "path" : "\/documentation\/kanjivm\/jvm\/checkjnidefault",
+                "title" : "static let checkJNIDefault: Bool",
+                "type" : "property"
+              },
+              {
                 "path" : "\/documentation\/kanjivm\/jvm\/sharedjvm",
                 "title" : "static var sharedJVM: JVM!",
                 "type" : "property"
