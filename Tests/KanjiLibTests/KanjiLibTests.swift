@@ -178,12 +178,12 @@ class KanjiLibTests: XCTestCase {
 
 //            guard let doubleClass = try java$lang$Double(0).getClass() else { return XCTFail() }
             guard let doubleClass = java$lang$Double.TYPE else { return XCTFail() }
-            print("doubleClass", doubleClass)
+            dbg("doubleClass", doubleClass)
             guard let type = try java$lang$invoke$MethodType.methodType(doubleClass, [doubleClass, doubleClass]) else { return XCTFail() }
 
 //            guard let mathClass = try java$lang$Math().getClass() else { return XCTFail() }
             guard let mathClass = java$lang$Math.CLASS else { return XCTFail() }
-            print("mathClass", mathClass)
+            dbg("mathClass", mathClass)
             guard let mh = try lookup.findStatic(mathClass, "pow", type) else { return XCTFail() }
 
             do {
@@ -265,7 +265,7 @@ class KanjiLibTests: XCTestCase {
 //                            kanjify("hashCode") { jint(rnd) }
 //                            ],
 //                            finalizer: { env, cls, address in
-//                                print("finalizing: \(address)")
+//                                dbg("finalizing: \(address)")
 //                                nativeInstances -= 1
 //                        }).constructor(address)
 //
@@ -289,10 +289,10 @@ class KanjiLibTests: XCTestCase {
             }
 
             do {
-                print("\(#function): starting from \(Thread.current)")
-                let runnable = try java$lang$Runnable$Impl.fromBlock { _,_  in print("\(#function): running from \(Thread.current)") }
+                dbg("\(#function): starting from \(Thread.current)")
+                let runnable = try java$lang$Runnable$Impl.fromBlock { _,_  in dbg("\(#function): running from \(Thread.current)") }
                 try java$lang$Thread(runnable).start()
-                print("\(#function): ending from \(Thread.current)")
+                dbg("\(#function): ending from \(Thread.current)")
             }
 
             do {
@@ -838,7 +838,7 @@ class KanjiLibTests: XCTestCase {
 
         for n in 1...20 {
             if !keepgoing { break }
-            print("memory run #\(n)") // only makes it to 14 with the memory leak
+            dbg("memory run #\(n)") // only makes it to 14 with the memory leak
 
 //            _ = autoreleasepool {
                 // No longer needed since we added the constructor: argument to clean up local refs
@@ -928,7 +928,7 @@ class KanjiLibTests: XCTestCase {
                 let count = 1024 * 1024 * 2 // 2mb string length
                 let str = String(repeating: String(c), count: count)
                 let len = str.utf16.count
-                // print("checking string len \(len)")
+                // dbg("checking string len \(len)")
                 guard let pre = try JVM.sharedJVM.memoryUsage(true) else { return XCTFail() }
                 let jstr = java$lang$String(str)
                 guard let post = try JVM.sharedJVM.memoryUsage(true) else { return XCTFail() }
@@ -973,7 +973,7 @@ class KanjiLibTests: XCTestCase {
                 sstrs.append(sstr!)
             }
             let end = CFAbsoluteTimeGetCurrent()
-            print("string roundtrip: \(end-start)")
+            dbg("string roundtrip: \(end-start)")
             XCTAssertTrue(Array(repeating: str, count: n) == sstrs)
         }
     }
@@ -1303,7 +1303,7 @@ class KanjiLibTests: XCTestCase {
             llsize = try ll.size()
             XCTAssertEqual(llsize, 0)
 
-            debugPrint("list: \(ll)")
+            dbg("list: \(ll)")
         }
     }
 
@@ -1319,7 +1319,7 @@ class KanjiLibTests: XCTestCase {
 
             let date2 = try java$util$Date()
 
-            dump(date.description)
+            //dbg(date.description)
 
             let time = try date.getTime()
             // make sure the Java clock agrees with the Cocoa clock
@@ -1332,7 +1332,7 @@ class KanjiLibTests: XCTestCase {
             let ms: jlong = 1_425_780_721_000
 
             try date.setTime(ms)
-            dump(date.description)
+            //dbg(date.description)
 
             let date3 = try java$util$Date(ms)
             XCTAssertTrue(date == date3)

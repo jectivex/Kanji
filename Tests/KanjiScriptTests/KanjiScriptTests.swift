@@ -15,7 +15,7 @@ import KanjiScript
 class KanjiScriptTests: XCTestCase {
 
     override func invokeTest() {
-//        return invocation?.selector == #selector(KanjiScriptTests.testScriptClassloader) ? super.invokeTest() : print("skipping test", name)
+//        return invocation?.selector == #selector(KanjiScriptTests.testScriptClassloader) ? super.invokeTest() : dbg("skipping test", name)
         return super.invokeTest()
     }
 
@@ -35,7 +35,7 @@ class KanjiScriptTests: XCTestCase {
             ] as [JSum] {
             do {
                 if let obj = try jsum.toKanji(JVM.sharedJVM) {
-//                    print("Kanji-ized \(jsum) to: \(obj)")
+//                    dbg("Kanji-ized \(jsum) to: \(obj)")
 
                     // now convert back to jsum and assert equality
                     let rejsum = try obj.toJSum()
@@ -67,7 +67,7 @@ class KanjiScriptTests: XCTestCase {
 
     func XXXtestNashornOnMultipleThreads() throws {
         (Array(1...10) as NSArray).enumerateObjects(options: NSEnumerationOptions.concurrent) { _, i, _ in
-            print("iterating: \(i) on: \(Thread.current)")
+            dbg("iterating: \(i) on: \(Thread.current)")
             do {
                 try testNashorn()
             } catch {
@@ -519,12 +519,12 @@ class JShellTests: XCTestCase {
 class KanjiScriptKotlinTests: XCTestCase {
     private class KotlinContext : KanjiScriptContext {
         convenience init() throws {
-            try self.init(engine: "kotlin", jarsIn: Bundle.module.url(forResource: "kotlin/1.8.0", withExtension: nil, subdirectory: "libraries"))
+            try self.init(engine: "kotlin", jars: Bundle.module.urls(forResourcesWithExtension: "jar", subdirectory: "libraries/kotlin/1.8.0"))
         }
     }
 
     func testKotlin() throws {
-        try setupKanjiScriptTests()
+        //try setupKanjiScriptTests()
 
         let ctx = try KotlinContext()
 
@@ -550,7 +550,7 @@ class KanjiScriptScalaTests: XCTestCase {
             // scala not currently working
             if ({ true }()) { throw XCTSkip() }
 
-            try self.init(engine: "scala", jarsIn: Bundle.module.url(forResource: "scala/2.12.8/libexec/lib", withExtension: nil, subdirectory: "libraries"))
+            try self.init(engine: "scala", jars: Bundle.module.urls(forResourcesWithExtension: "jar", subdirectory: "scala/2.12.8/libexec/lib"))
         }
 
         static func nextScalaClosureIndex() -> UInt64 {
@@ -621,7 +621,7 @@ class KanjiScriptScalaTests: XCTestCase {
 
             let names = try factories.compactMap({ try $0?.castTo(javax$script$ScriptEngineFactory$Impl.self)?.getLanguageName() }).compactMap({ $0.toSwiftString() })
 
-            print("script names: \(names)")
+            dbg("script names: \(names)")
             //XCTAssertTrue(names.contains("ECMAScript"))
             //XCTAssertTrue(names.contains("Scala"))
 
@@ -735,7 +735,7 @@ class KanjiScriptScalaTests: XCTestCase {
         func recurse(_ num: JSum) throws -> JSum {
             let closure = try ctx.createPassthroughClosure {
                 let num = $0.num ?? 0
-                //                print("### recursing level: \(num)")
+                //dbg("### recursing level: \(num)")
                 if num > 0 {
                     return try recurse(.num(num - 1))
                 } else {
@@ -797,8 +797,14 @@ func setupKanjiScriptTests() throws {
     }
 
     let cp: [String] = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: []).map({ $0.path })
-    // needs to be boot; classpath scala beaks with: "Failed to initialize compiler: object scala in compiler mirror not found."
+
     JVM.sharedJVMCreator = { try JVM(classpath: cp) }
+
+//    let jars = try FileManager.default.contentsOfDirectory(at: dir, includingPropertiesForKeys: nil, options: [])
+//        .filter({ extensions.contains($0.pathExtension) })
+//
+//    JVM.sharedJVM.addClasspath(urls: jars)
+
 }
 
 private extension XCTestCase {
