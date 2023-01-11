@@ -24,7 +24,7 @@ public extension JVM {
         if let thread = try java$lang$Thread.currentThread() {
             if try thread.getContextClassLoader() == nil {
                 if let syscl = try loader() {
-                    print("initializing context class loader for \(Thread.current)")
+                    dbg("initializing context class loader for \(Thread.current)")
                     try thread.setContextClassLoader(syscl)
                 }
             }

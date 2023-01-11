@@ -40,12 +40,12 @@ public extension JInvocable {
     /// Consumes the current exception (used when throwing an exception is not viable, such as field accessors)
     static func swallow<T>(_ ex: KanjiException?, _ f: @autoclosure () -> T, _ fallback: T, file: String = #file, line: Int = #line, function: String = #function) -> T {
         if let ex = ex {
-            print("Kanji Warning: swallowing exception", ex)
+            dbg("Kanji Warning: swallowing exception", ex)
             return fallback
         }
         let val = f()
         if let ex = jvm.popException(file: file, line: line, function: function) {
-            print("Kanji Warning: swallowing exception", ex)
+            dbg("Kanji Warning: swallowing exception", ex)
         }
         return val
     }

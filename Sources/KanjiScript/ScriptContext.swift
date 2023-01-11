@@ -10,7 +10,7 @@ public protocol ScriptContext : AnyObject {
     associatedtype InstanceType : ScriptType
 
     /// Returns the root global object for this script on which properties can be added and removed
-    var root: InstanceType { get }
+    var root: InstanceType { get throws }
 
     /// Evaluates the given code in the context of a `this` object with the given arguments
     /// If the instance is a string, then it will be dynamically evaluated, otherwise it is expected that

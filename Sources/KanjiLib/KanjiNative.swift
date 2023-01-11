@@ -126,7 +126,7 @@ public extension JVM {
         guard let bytes = try generateClassBytes() else { throw KanjiErrors.general("Could not create class bytes for dynamic method") }
 
         let loader = try java$lang$Thread.currentThread()?.getContextClassLoader()
-        //print("loading native class \(className): \(try? loadedClasses())")
+        //dbg("loading native class \(className): \(try? loadedClasses())")
         
         let cname = NullTerminatedCString(className)
         return try withExtendedLifetime(cname) {
@@ -342,11 +342,11 @@ extension java$util$function$Function  {
 
         let native: FunctionalBlock = { env, obj, arg in
             guard let address = JVM.sharedJVM.nativeAddress(obj) else {
-                print("Kanji Warning: unable to find native address")
+                dbg("Kanji Warning: unable to find native address")
                 return R.empty()
             }
             guard let f = nativeClosureSync.sync(execute: { Impl.closures[address] }) else {
-                print("Kanji Warning: unable to find native implementation for address: \(address)")
+                dbg("Kanji Warning: unable to find native implementation for address: \(address)")
                 return R.empty()
             }
 
@@ -419,11 +419,11 @@ public extension java$util$function$Consumer {
 
         let native: FunctionalBlock = { env, obj, arg in
             guard let address = JVM.sharedJVM.nativeAddress(obj) else {
-                print("Kanji Warning: unable to find native address")
+                dbg("Kanji Warning: unable to find native address")
                 return R.empty()
             }
             guard let f = nativeClosureSync.sync(execute: { Impl.closures[address] }) else {
-                print("Kanji Warning: unable to find native implementation for address: \(address)")
+                dbg("Kanji Warning: unable to find native implementation for address: \(address)")
                 return R.empty()
             }
 

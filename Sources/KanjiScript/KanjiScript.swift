@@ -13,28 +13,14 @@ import JavaLib
 
 open class KanjiScriptContext : ScriptContext {
     public let engine: javax$script$ScriptEngine
-
+    public let classLoader: java$net$URLClassLoader?
     public typealias InstanceType = KanjiScriptType
 
-    public convenience init(engine engineName: String, jarsIn root: URL?, extensions: Set<String> = ["jar"]) throws {
-        guard let root = root else {
-            throw CocoaError(.fileReadNoSuchFile)
-        }
-
-        let jars = try FileManager.default.contentsOfDirectory(at: root, includingPropertiesForKeys: nil)
-            .filter({ extensions.isEmpty || extensions.contains($0.pathExtension) })
-
-        try self.init(engine: engineName, jars: jars)
-
-        // now ensure that the context really is scala
-        let names = try engine.getFactory()?.getNames()?.toArray()?.compactMap({ $0?.description }) ?? []
-
-        if !names.contains(engineName) {
-            throw KanjiErrors.general("Script engine \(engineName) was not loaded from: \(names)")
-        }
-    }
-
-    public init(engine name: String, jars: [URL] = []) throws {
+    /// Creates the given script engine using the specified jar URLs for class loading.
+    /// - Parameters:
+    ///   - name: the name of the script engine to use
+    ///   - jars: the jars that will be used for the classpath
+    public init(engine name: String, jars: [URL]? = nil) throws {
         // if JVM.sharedJVM == nil { JVM.sharedJVM = try JVM() }
         
         // set and restore the current class loader; when we specify a URL class loader,
@@ -43,38 +29,49 @@ open class KanjiScriptContext : ScriptContext {
         let prevcl = try java$lang$Thread.currentThread()?.getContextClassLoader()
         defer { _ = try? java$lang$Thread.currentThread()?.setContextClassLoader(prevcl) }
 
-        var loader: java$lang$ClassLoader? = nil
-        if !jars.isEmpty {
-            loader = try java$net$URLClassLoader.fromURLs(jars, parent: prevcl)
+        if jars?.isEmpty != false {
+            self.classLoader = nil
+        } else {
+            let loader = try java$net$URLClassLoader.fromURLs(jars ?? [], parent: prevcl)
             try java$lang$Thread.currentThread()?.setContextClassLoader(loader)
+            self.classLoader = loader
         }
 
-
-        // the only way to tell nashorn to use ES6 mode as a default without calling NashornScriptEngineFactory-specific functions,
-        // which lets us use arrow functions
-        // https://stackoverflow.com/questions/48911937/can-i-run-ecmascript-6-from-java-9-nashorn-engine
-        let _ = try java$lang$System.setProperty("nashorn.args", "--language=es6")
-        //self.engine = try jdk$nashorn$api$scripting$NashornScriptEngineFactory().getScriptEngine(["--language=es6"], loader) // this also works, but requires that we use the Nashorn API
-
-        let manager = loader == nil ? try javax$script$ScriptEngineManager() : try javax$script$ScriptEngineManager(loader)
+        let manager = classLoader == nil ? try javax$script$ScriptEngineManager() : try javax$script$ScriptEngineManager(classLoader)
         guard let engine = try manager.getEngineByName(java$lang$String(stringLiteral: name)) else {
             throw KanjiErrors.general("Could not get engine named \(name)")
         }
         self.engine = engine
     }
 
-    open var root: InstanceType {
-        return (try? eval("this")) ?? .val(.nul)
+    /// Performs the given block using the context's class loader, which will be used for resolving scripts, etc.
+    func withClassLoader<T>(block: () throws -> T) rethrows -> T {
+        if let classLoader = classLoader {
+            let prevcl = try? java$lang$Thread.currentThread()?.getContextClassLoader()
+            try? java$lang$Thread.currentThread()?.setContextClassLoader(classLoader)
+            defer {
+                if prevcl != nil {
+                    try? java$lang$Thread.currentThread()?.setContextClassLoader(prevcl)
+                }
+            }
+            return try block()
+        } else {
+            return try block()
+        }
     }
 
-    // TODO: swap out the context?
-//    public func reset() {
-//    }
+    open var root: InstanceType {
+        get throws {
+            try withClassLoader {
+                try eval("this")
+            }
+        }
+    }
 
     open func bind(_ key: String, value: InstanceType.RefType) throws {
-        //try self.engine.put(java$lang$String(key), value as? java$lang$Object)
-        let _ = try self.engine.getBindings(javax$script$ScriptContext$Impl.ENGINE_SCOPE)?.put(java$lang$String(key), value.cast())
-        
+        try withClassLoader {
+            let _ = try self.engine.getBindings(javax$script$ScriptContext$Impl.ENGINE_SCOPE)?.put(java$lang$String(key), value.cast())
+        }
     }
 
 //    /// Evaluate the code at the given URL; differs from evaluating as a string in that it permits
@@ -89,32 +86,34 @@ open class KanjiScriptContext : ScriptContext {
     
     /// Compiles the given code for later execution, returning an execution closure
     open func compile(_ code: String, bindings: CompiledArgs = [:]) throws -> CompiledScript {
-        guard let compiler: javax$script$Compilable = engine.cast() as javax$script$Compilable$Impl? else {
-            throw KanjiErrors.general("Script engine was not compilable")
-        }
-
-        // set the initial bindings in the engine context; some engines (like scala) require them to be declated before they will allow blocks that reference parameter names be compiled
-        for (key, value) in bindings {
-            let _ = try engine.put(key.javaString, value.flatMap(self.ref)?.cast())
-        }
-
-        guard let compiled = try compiler.compile(code.javaString) else {
-            throw KanjiErrors.general("Unable to compile script")
-        }
-        
-        let execute: CompiledScript = { bindings in
-            if bindings.isEmpty {
-                return try compiled.eval()
-            } else {
-                let binds = try javax$script$SimpleBindings()
-                for (key, value) in bindings {
-                    let _ = try binds.put(key.javaString, value.flatMap(self.ref)?.cast())
-                }
-                return try compiled.eval(binds)
+        try withClassLoader {
+            guard let compiler: javax$script$Compilable = engine.cast() as javax$script$Compilable$Impl? else {
+                throw KanjiErrors.general("Script engine was not compilable")
             }
+
+            // set the initial bindings in the engine context; some engines (like scala) require them to be declated before they will allow blocks that reference parameter names be compiled
+            for (key, value) in bindings {
+                let _ = try engine.put(key.javaString, value.flatMap(self.ref)?.cast())
+            }
+
+            guard let compiled = try compiler.compile(code.javaString) else {
+                throw KanjiErrors.general("Unable to compile script")
+            }
+
+            let execute: CompiledScript = { bindings in
+                if bindings.isEmpty {
+                    return try compiled.eval()
+                } else {
+                    let binds = try javax$script$SimpleBindings()
+                    for (key, value) in bindings {
+                        let _ = try binds.put(key.javaString, value.flatMap(self.ref)?.cast())
+                    }
+                    return try compiled.eval(binds)
+                }
+            }
+
+            return execute
         }
-        
-        return execute
     }
     
     open func eval(_ code: InstanceType, this: InstanceType.RefType? = nil, args: [InstanceType] = []) throws -> InstanceType {
@@ -124,7 +123,7 @@ open class KanjiScriptContext : ScriptContext {
         default: throw KanjiErrors.general("Script can only be a string literal") // TODO: function references
         }
 
-        
+
         let refargs: [InstanceType.RefType] = try args.map(ref) // convert all arguments to references
 
         if let ref = try evaluate(script, this: this, args: refargs) {
@@ -136,40 +135,39 @@ open class KanjiScriptContext : ScriptContext {
 
     /// Evaluates the script at the given source URL
     open func read(_ url: URL) throws -> InstanceType {
-        let script = try String(contentsOf: url, encoding: String.Encoding.utf8)
+        try withClassLoader {
+            let script = try String(contentsOf: url, encoding: String.Encoding.utf8)
 
-        // set the filename in the script context so that relative URLs can be loaded
-        try engine.getContext()?.setAttribute(javax$script$ScriptEngine$Impl.FILENAME, url.path.javaString, javax$script$ScriptContext$Impl.ENGINE_SCOPE)
-        //try engine.put(javax$script$ScriptEngine$Impl.FILENAME, (url.path ?? "").javaString)
+            // set the filename in the script context so that relative URLs can be loaded
+            try engine.getContext()?.setAttribute(javax$script$ScriptEngine$Impl.FILENAME, url.path.javaString, javax$script$ScriptContext$Impl.ENGINE_SCOPE)
+            //try engine.put(javax$script$ScriptEngine$Impl.FILENAME, (url.path ?? "").javaString)
 
-        return try eval(.val(.str(script)))
+            return try eval(.val(.str(script)))
+        }
     }
 
     fileprivate func evaluate(_ script: String, this: InstanceType.RefType? = nil, args: [InstanceType.RefType]) throws -> InstanceType.RefType? {
-        let str = script.javaString
+        try withClassLoader {
+            let str = script.javaString
 
-        // functions can only be invoked on invocale subclases
-        if let invocable: javax$script$Invocable$Impl = engine.cast() , !args.isEmpty || this != nil {
-            // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
-            let args2: [java$lang$Object?]? = args.map({ $0.cast() })
+            // functions can only be invoked on invocale subclases
+            if let invocable: javax$script$Invocable$Impl = engine.cast() , !args.isEmpty || this != nil {
+                // without this, we crash with: "fatal error: array cannot be bridged from Objective-C"
+                let args2: [java$lang$Object?]? = args.map({ $0.cast() })
 
-            if let this = this { // invoke a method on this argument
-                return try invocable.invokeMethod(this.cast(), java$lang$String(script), args2)
-            } else {
-                return try invocable.invokeFunction(java$lang$String(script), args2)
+                if let this = this { // invoke a method on this argument
+                    return try invocable.invokeMethod(this.cast(), java$lang$String(script), args2)
+                } else {
+                    return try invocable.invokeFunction(java$lang$String(script), args2)
+                }
             }
+
+            if !args.isEmpty {
+                throw KanjiErrors.general("Unable to invoke method/function with arguments on a non-invocable script")
+            }
+
+            return try engine.eval(str) ?? nil
         }
-
-        if !args.isEmpty {
-            throw KanjiErrors.general("Unable to invoke method/function with arguments on a non-invocable script")
-        }
-
-        return try engine.eval(str) ?? nil
-    }
-
-    @available(*, deprecated, message: "change over to ref")
-    open func deref(_ inst: InstanceType) throws -> InstanceType.RefType {
-        return try ref(inst)
     }
 
     /// Converts the given instance to a reference, either by deep-converting the JSum for val instances, or leaving it unchanged to ref instances
@@ -426,7 +424,7 @@ public extension JavaObject {
             }
         } else {
             JVM.sharedJVM.exceptionClear()
-            print("Warning: unable to locate script object: \(ScriptObject.javaClassName)")
+            dbg("warning: unable to locate script object: \(ScriptObject.javaClassName)")
         }
 
         if let bol : java$lang$Boolean = ob.cast() {

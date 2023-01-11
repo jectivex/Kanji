@@ -3096,21 +3096,53 @@ public extension Sequence where Iterator.Element == Optional<JavaObject> {
     }
 }
 
-
-private func dbg(_ items: Any..., functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: UInt = #line) {
-    let msg = items.map({ String(describing: $0) }).joined(separator: " ")
-    let truncatedFunctionName = String(describing: functionName).components(separatedBy: "(").first ?? String(describing: functionName)
-    let truncatedFileName = URL(fileURLWithPath: String(describing: fileName)).lastPathComponent
-    let calendar = Calendar.current
-    let comp = calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: Date())
-    print("\(comp.hour ?? 0):\(comp.minute ?? 0):\(comp.second ?? 0).\(comp.nanosecond ?? 0) \(truncatedFileName):\(lineNumber) \(truncatedFunctionName): \(msg)")
-}
-
-
 private func warn(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
-    dbg("Kanji Warning:", message, functionName: function, fileName: file, lineNumber: line)
+    dbg(level: 2, message, functionName: function, fileName: file, lineNumber: .init(line))
 }
 
 private func log(_ message: String, file: StaticString = #file, line: UInt = #line, function: StaticString = #function) {
-    dbg("Kanji Log:", message, functionName: function, fileName: file, lineNumber: line)
+    dbg(level: 1, message, functionName: function, fileName: file, lineNumber: .init(line))
+}
+
+#if canImport(OSLog)
+import OSLog
+#endif
+
+/// `true` if assertions are enabled for the current build
+@usableFromInline let assertionsEnabled: Bool = {
+    var enabled = false
+    assert({
+        enabled = true
+        return enabled
+    }())
+    return enabled
+}()
+
+/// Logs the given items to `os_log` if `DEBUG` is set
+/// - Parameters:
+///   - level: the level: 0 for default, 1 for debug, 2 for info, 3 for error, 4+ for fault
+@inlinable public func dbg(level: UInt8 = 0, _ arg1: @autoclosure () -> Any? = nil, _ arg2: @autoclosure () -> Any? = nil, _ arg3: @autoclosure () -> Any? = nil, _ arg4: @autoclosure () -> Any? = nil, _ arg5: @autoclosure () -> Any? = nil, _ arg6: @autoclosure () -> Any? = nil, _ arg7: @autoclosure () -> Any? = nil, _ arg8: @autoclosure () -> Any? = nil, _ arg9: @autoclosure () -> Any? = nil, _ arg10: @autoclosure () -> Any? = nil, _ arg11: @autoclosure () -> Any? = nil, _ arg12: @autoclosure () -> Any? = nil, functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: Int = #line) {
+    //#if DEBUG
+    // log .debug level only in debug mode
+    let logit: Bool = assertionsEnabled || (level > 1)
+    if logit {
+        let items = [arg1(), arg2(), arg3(), arg4(), arg5(), arg6(), arg7(), arg8(), arg9(), arg10(), arg11(), arg12()]
+        let msg = items.compactMap({ $0 }).map(String.init(describing:)).joined(separator: " ")
+
+        let funcName = functionName.description.split(separator: "(").first?.description ?? functionName.description
+
+        // use just the last path component
+        let filePath = fileName.description
+            .split(separator: "/").last?.description
+            .split(separator: ".").first?.description
+            ?? fileName.description
+
+        let message = "\(filePath):\(lineNumber) \(funcName): \(msg)"
+        #if canImport(OSLog)
+        os_log(level == 0 ? .debug : level == 1 ? .default : level == 2 ? .info : level == 3 ? .error : .fault, "%{public}@", message)
+        #else
+        print(level == 0 ? "debug" : level == 1 ? "default" : level == 2 ? "info" : level == 3 ? "error" : "fault", message) // , to: &StdioOutputStream.stderr)
+        #endif
+    }
+    //#endif
 }

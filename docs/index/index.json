@@ -2774,6 +2774,11 @@
             "type" : "func"
           },
           {
+            "path" : "\/documentation\/kanjivm\/dbg(level:_:_:_:_:_:_:_:_:_:_:_:_:functionname:filename:linenumber:)",
+            "title" : "func dbg(level: UInt8, () -> Any?, () -> Any?, () -> Any?, () -> Any?, () -> Any?, () -> Any?, () -> Any?, () -> Any?, () -> Any?, () -> Any?, () -> Any?, () -> Any?, functionName: StaticString, fileName: StaticString, lineNumber: Int)",
+            "type" : "func"
+          },
+          {
             "title" : "Type Aliases",
             "type" : "groupMarker"
           },

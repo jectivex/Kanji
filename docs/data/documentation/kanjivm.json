@@ -64,7 +64,8 @@
     {
       "identifiers" : [
         "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNI_DetachCurrentThread()",
-        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNI_OnLoad(_:_:)"
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/JNI_OnLoad(_:_:)",
+        "doc:\/\/KanjiVM\/documentation\/KanjiVM\/dbg(level:_:_:_:_:_:_:_:_:_:_:_:_:functionName:fileName:lineNumber:)"
       ],
       "title" : "Functions"
     },
@@ -802,6 +803,218 @@
   "title" : "NullTerminatedCString",
   "type" : "topic",
   "url" : "\/documentation\/kanjivm\/nullterminatedcstring"
+},
+"doc://KanjiVM/documentation/KanjiVM/dbg(level:_:_:_:_:_:_:_:_:_:_:_:_:functionName:fileName:lineNumber:)": {
+  "abstract" : [
+    {
+      "text" : "Logs the given items to ",
+      "type" : "text"
+    },
+    {
+      "code" : "os_log",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " if ",
+      "type" : "text"
+    },
+    {
+      "code" : "DEBUG",
+      "type" : "codeVoice"
+    },
+    {
+      "text" : " is set",
+      "type" : "text"
+    }
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "func"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "dbg"
+    },
+    {
+      "kind" : "text",
+      "text" : "("
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "level"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s5UInt8V",
+      "text" : "UInt8"
+    },
+    {
+      "kind" : "text",
+      "text" : ", () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, () -> "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "Any"
+    },
+    {
+      "kind" : "text",
+      "text" : "?, "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "functionName"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s12StaticStringV",
+      "text" : "StaticString"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "fileName"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:s12StaticStringV",
+      "text" : "StaticString"
+    },
+    {
+      "kind" : "text",
+      "text" : ", "
+    },
+    {
+      "kind" : "externalParam",
+      "text" : "lineNumber"
+    },
+    {
+      "kind" : "text",
+      "text" : ": "
+    },
+    {
+      "kind" : "typeIdentifier",
+      "preciseIdentifier" : "s:Si",
+      "text" : "Int"
+    },
+    {
+      "kind" : "text",
+      "text" : ")"
+    }
+  ],
+  "identifier" : "doc:\/\/KanjiVM\/documentation\/KanjiVM\/dbg(level:_:_:_:_:_:_:_:_:_:_:_:_:functionName:fileName:lineNumber:)",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "dbg(level:_:_:_:_:_:_:_:_:_:_:_:_:functionName:fileName:lineNumber:)",
+  "type" : "topic",
+  "url" : "\/documentation\/kanjivm\/dbg(level:_:_:_:_:_:_:_:_:_:_:_:_:functionname:filename:linenumber:)"
 },
 "doc://KanjiVM/documentation/KanjiVM/jboolean": {
   "abstract" : [
