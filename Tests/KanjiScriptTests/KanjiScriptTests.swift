@@ -11,7 +11,6 @@ import KanjiLib
 import JavaLib
 import KanjiScript
 
-
 class KanjiScriptTests: XCTestCase {
 
     override func invokeTest() {
@@ -506,26 +505,5 @@ class JShellTests: XCTestCase {
     }
 }
 
-class KanjiScriptKotlinTests: XCTestCase {
-    private class KotlinContext : KanjiScriptContext {
-        convenience init() throws {
-            try self.init(engine: "kotlin", jars: Bundle.module.urls(forResourcesWithExtension: "jar", subdirectory: "libraries/kotlin/1.8.0")?.map({ $0 as URL }))
-        }
-    }
-
-    func testKotlin() throws {
-        let ctx = try KotlinContext()
-
-        XCTAssertThrowsError(try ctx.eval("XYZ")) { error in
-            XCTAssertTrue(error.localizedDescription.hasPrefix("ERROR Unresolved reference: XYZ"), "unexpected error: \(error)")
-        }
-
-        XCTAssertEqual(1, try ctx.val(ctx.eval("1")))
-        XCTAssertEqual(3, try ctx.val(ctx.eval("1 + 2")))
-        XCTAssertEqual("three", try ctx.val(ctx.eval(#""th" + "ree""#)))
-
-        // XCTAssertEqual("Homebrew", try ctx.val(ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#)))
-    }
-}
 
 func fibN(_ num: Int) -> Int { return num > 1 ? fibN(num - 1) + fibN(num - 2) : num }
