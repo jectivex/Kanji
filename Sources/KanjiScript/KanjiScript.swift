@@ -422,22 +422,9 @@ public extension JavaObject {
             }
         }
 
-        var ob: JavaObject = self
+        try JVM.sharedJVM.throwException()
 
-        if JVM.sharedJVM.findClass(ScriptObject.javaClassName) != nil {
-            if let jsobj : ScriptObject = ob.cast() {
-                // “With jdk8u40 onwards, script objects are converted to ScriptObjectMirror whenever script objects are passed to Java layer - even with Object type params or assigned to a Object[] element. Such wrapped mirror instances are automatically unwrapped when execution crosses to script boundary. i.e., say a Java method returns Object type value which happens to be ScriptObjectMirror object, then script caller will see it a ScriptObject instance” -- https://wiki.openjdk.java.net/display/Nashorn/Nashorn+jsr223+engine+notes#Nashornjsr223enginenotes-ScriptObjectMirrorconversion
-                if try jsobj.isArray() == true {
-                    if let collection = try jsobj.values() {
-                        ob = collection
-                    }
-                }
-            }
-        } else {
-            JVM.sharedJVM.exceptionClear()
-            dbg("warning: unable to locate script object: \(ScriptObject.javaClassName)")
-        }
-
+        let ob: JavaObject = self
         if let bol : java$lang$Boolean = ob.cast() {
             return .bol(try bol.booleanValue() == 0 ? false : true)
         } else if let num : java$lang$Number = ob.cast() {
@@ -451,7 +438,7 @@ public extension JavaObject {
                     if let value = value {
                         try arr.append(value.createJSum(dropCycles, seen: selfSeen))
                     } else {
-                        arr.append(nil)
+                        arr.append(.nul)
                     }
                 }
             }
@@ -469,9 +456,8 @@ public extension JavaObject {
             }
 
             return .obj(dict)
-        } else if try (self as? java$lang$Object)?.getClass()?.isArray() == true {
+        } else if let job: java$lang$Object = self.cast(), try job.getClass()?.isArray() == true {
             var arr: [JSum] = []
-            let job = self as? java$lang$Object
             let len = try java$lang$reflect$Array.getLength(job)
             arr.reserveCapacity(Int(len))
             for i in 0..<len {
