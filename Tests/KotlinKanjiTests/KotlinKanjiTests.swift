@@ -18,6 +18,14 @@ class KotlinKanjiTests: XCTestCase {
         XCTAssertEqual("three", try ctx.eval(#""th" + "ree""#).jsum())
         XCTAssertEqual("nullnull", try ctx.eval("null + null").jsum()) // WAT
 
+        for i in 1...100 {
+            let start = CFAbsoluteTimeGetCurrent()
+            let _ = try ctx.eval("1 + 2").jsum()
+            _ = i
+            let end = CFAbsoluteTimeGetCurrent()
+            //print("run \(i):", end-start) // DEBUG: 0.2 RELEASE: 0.02
+        }
+
         XCTAssertEqual([3, 6, 9, 12, 15], try ctx.eval("listOf(1,2,3,4,5).map { it * 3 }").jsum())
 
         XCTAssertEqual(["KEY3": 3, "KEY1": 1, "KEY2": 2, "KEY11": 11], try ctx.eval(#"mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key11" to 11).mapKeys { it.key.uppercase() } "#).jsum())
