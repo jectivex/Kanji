@@ -28,7 +28,7 @@ jobs:
         run: swift test --configuration debug
 
       - name: Test (Release)
-        run: swift test --configuration release
+        run: swift test --configuration release --parallel
 
   macos:
     runs-on: macos-12
@@ -43,22 +43,11 @@ jobs:
           echo "JAVA_HOME: ${JAVA_HOME}"
           find "${JAVA_HOME}" -type f
 
-          # Notable locations on macOS GH Runner:
-          #
-          # ${JAVA_HOME}/jre/lib/jvm.cfg
-          # ${JAVA_HOME}/jre/lib/libnet.dylib
-          # ${JAVA_HOME}/jre/lib/jli/libjli.dylib
-          # ${JAVA_HOME}/jre/lib/libjava.dylib
-
-          brew install openjdk@11
-          which java
-          java -version
-
       - name: Test (Debug)
         run: swift test --configuration debug
 
       - name: Test (Release)
-        run: swift test --configuration release
+        run: swift test --configuration release --parallel
 
   api-doc:
     #if: false
