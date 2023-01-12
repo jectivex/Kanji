@@ -4,6 +4,7 @@
 
 import XCTest
 import KotlinKanji
+import CoreFoundation
 
 class KotlinKanjiTests: XCTestCase {
     func testKotlin() throws {
