@@ -1,7 +1,7 @@
 version: "Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)"
 options: "ec8dd22436ba9187e6a01ea3273679e95c4db961fab2294d76e525d00114a82e"
-build_start_time: [1673553179, 481302976]
-build_end_time: [1673553180, 462777137]
+build_start_time: [1673555034, 795338153]
+build_end_time: [1673555035, 787598133]
 inputs:
-  "/Users/runner/work/Kanji/Kanji/Sources/KanjiScript/KanjiScript.swift": [1673552688, 295944213]
-  "/Users/runner/work/Kanji/Kanji/Sources/KanjiScript/ScriptContext.swift": [1673552688, 296163558]
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiScript/KanjiScript.swift": [1673554626, 634645223]
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiScript/ScriptContext.swift": [1673554626, 634924411]
