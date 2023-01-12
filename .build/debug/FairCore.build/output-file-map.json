@@ -1,0 +1,89 @@
+{
+  "": {
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/master.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Async.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Async.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Async.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Async~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Async.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Bundles.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Bundles.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Bundles.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Bundles~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Bundles.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Crypto.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Crypto.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Crypto.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Crypto~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Crypto.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Fair.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Fair.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Fair.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Fair~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Fair.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Info.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Info.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Info.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Info~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Info.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/JSum.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/JSum.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/JSum.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/JSum~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/JSum.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Net.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Net.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Net.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Net~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Net.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/SeekableData.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/SeekableData.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/SeekableData.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/SeekableData~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/SeekableData.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Trees.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Trees.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Trees.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Trees~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Trees.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/XML.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/XML.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/XML.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/XML~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/XML.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/XOr.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/XOr.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/XOr.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/XOr~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/XOr.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Yaml.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Yaml.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Yaml.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Yaml~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Yaml.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairCore/Zip.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Zip.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Zip.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Zip~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/Zip.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/DerivedSources/resource_bundle_accessor.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/resource_bundle_accessor.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/resource_bundle_accessor.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/resource_bundle_accessor~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/resource_bundle_accessor.swiftdeps"
+  }
+}

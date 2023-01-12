@@ -1,0 +1,17 @@
+{
+  "": {
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/master.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiScript/KanjiScript.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/KanjiScript.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/KanjiScript.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/KanjiScript~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/KanjiScript.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiScript/ScriptContext.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/ScriptContext.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/ScriptContext.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/ScriptContext~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiScript.build/ScriptContext.swiftdeps"
+  }
+}

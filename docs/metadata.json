@@ -1,6 +1,6 @@
 {
-  "bundleDisplayName" : "KanjiVM",
-  "bundleIdentifier" : "KanjiVM",
+  "bundleDisplayName" : "KotlinKanji",
+  "bundleIdentifier" : "KotlinKanji",
   "schemaVersion" : {
     "major" : 0,
     "minor" : 1,

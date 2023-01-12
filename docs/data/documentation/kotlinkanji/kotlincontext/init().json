@@ -1,0 +1,184 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+        "doc:\/\/KotlinKanji\/documentation\/KotlinKanji",
+        "doc:\/\/KotlinKanji\/documentation\/KotlinKanji\/KotlinContext"
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/KotlinKanji\/documentation\/KotlinKanji\/KotlinContext\/init()"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "s:11KotlinKanji0A7ContextCACyKcfc",
+    "fragments" : [
+      {
+        "kind" : "keyword",
+        "text" : "convenience"
+      },
+      {
+        "kind" : "text",
+        "text" : " "
+      },
+      {
+        "kind" : "identifier",
+        "text" : "init"
+      },
+      {
+        "kind" : "text",
+        "text" : "() "
+      },
+      {
+        "kind" : "keyword",
+        "text" : "throws"
+      }
+    ],
+    "modules" : [
+      {
+        "name" : "KotlinKanji"
+      }
+    ],
+    "role" : "symbol",
+    "roleHeading" : "Initializer",
+    "symbolKind" : "init",
+    "title" : "init()"
+  },
+  "primaryContentSections" : [
+    {
+      "declarations" : [
+        {
+          "languages" : [
+            "swift"
+          ],
+          "platforms" : [
+            "macOS"
+          ],
+          "tokens" : [
+            {
+              "kind" : "keyword",
+              "text" : "convenience"
+            },
+            {
+              "kind" : "text",
+              "text" : " "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "init"
+            },
+            {
+              "kind" : "text",
+              "text" : "() "
+            },
+            {
+              "kind" : "keyword",
+              "text" : "throws"
+            }
+          ]
+        }
+      ],
+      "kind" : "declarations"
+    }
+  ],
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/kotlinkanji\/kotlincontext\/init()"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://KotlinKanji/documentation/KotlinKanji": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KotlinKanji\/documentation\/KotlinKanji",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "KotlinKanji",
+  "type" : "topic",
+  "url" : "\/documentation\/kotlinkanji"
+},
+"doc://KotlinKanji/documentation/KotlinKanji/KotlinContext": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "KotlinContext"
+    }
+  ],
+  "identifier" : "doc:\/\/KotlinKanji\/documentation\/KotlinKanji\/KotlinContext",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "KotlinContext"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "KotlinContext",
+  "type" : "topic",
+  "url" : "\/documentation\/kotlinkanji\/kotlincontext"
+},
+"doc://KotlinKanji/documentation/KotlinKanji/KotlinContext/init()": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "convenience"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "init"
+    },
+    {
+      "kind" : "text",
+      "text" : "() "
+    },
+    {
+      "kind" : "keyword",
+      "text" : "throws"
+    }
+  ],
+  "identifier" : "doc:\/\/KotlinKanji\/documentation\/KotlinKanji\/KotlinContext\/init()",
+  "kind" : "symbol",
+  "role" : "symbol",
+  "title" : "init()",
+  "type" : "topic",
+  "url" : "\/documentation\/kotlinkanji\/kotlincontext\/init()"
+}
+}
+}

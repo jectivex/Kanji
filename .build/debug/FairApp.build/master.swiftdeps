@@ -1,0 +1,19 @@
+version: "Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)"
+options: "3cd378b6f081e4a604839ca6395c1da48d0e5f281710d56595afbb5fbb41172b"
+build_start_time: [1673533588, 578925132]
+build_end_time: [1673533744, 752802848]
+inputs:
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/AppBundle.swift": [1673533288, 972737789]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/AppCatalog.swift": [1673533288, 973701477]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/AppPermission.swift": [1673533288, 974644660]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/CardBoard.swift": [1673533288, 974934577]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/Facet.swift": [1673533288, 976876258]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/FairApp.swift": [1673533288, 977765083]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/FairIcon.swift": [1673533288, 978185415]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/FairSymbol.swift": [1673533288, 978612184]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/Process.swift": [1673533288, 978962898]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/SVGPath.swift": [1673533289, 9269952]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/Snapshots.swift": [1673533289, 9688854]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/TextTranslations.swift": [1673533289, 9932041]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/Fair/Sources/FairApp/UXAdaptor.swift": [1673533289, 10258197]
+  "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairApp.build/DerivedSources/resource_bundle_accessor.swift": [1673533305, 156565189]

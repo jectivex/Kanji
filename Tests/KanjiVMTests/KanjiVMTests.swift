@@ -70,7 +70,6 @@ class KanjiVMTests: XCTestCase {
         //XCTAssertEqual("Homebrew", try prop("java.vendor.version"))
         //XCTAssertEqual("19", try prop("java.specification.version"))
         #endif
-
     }
 
     func testSimpleClass() {

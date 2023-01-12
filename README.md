@@ -3,7 +3,13 @@ Swift Kotlin Android Native Java Interface (Kanji)
 
 A cross-platform (macOS / Android / Linux) bridge from Swift to Java.
 
-See the API documentation at: https://www.jective.org/Kanji/documentation/kanjivm/
+See the API documentation: 
+
+  - KanjiVM: https://www.jective.org/Kanji/documentation/kanjivm/
+  - JavaLib: https://www.jective.org/Kanji/documentation/javalib/
+  - KanjiLib: https://www.jective.org/Kanji/documentation/kanjilib/
+  - KanjiScript: https://www.jective.org/Kanji/documentation/kanjiscript/
+  - KotlinKanji: https://www.jective.org/Kanji/documentation/kotlinkanji/
 
 To run tests on macOS 12, install a JDK (e.g., with `brew install openjdk@11`) and ensure that `$JAVA_HOME` exists, then run:
 

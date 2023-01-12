@@ -1,0 +1,99 @@
+{
+  "hierarchy" : {
+    "paths" : [
+      [
+
+      ]
+    ]
+  },
+  "identifier" : {
+    "interfaceLanguage" : "swift",
+    "url" : "doc:\/\/KotlinKanji\/documentation\/KotlinKanji"
+  },
+  "kind" : "symbol",
+  "metadata" : {
+    "externalID" : "KotlinKanji",
+    "modules" : [
+      {
+        "name" : "KotlinKanji"
+      }
+    ],
+    "role" : "collection",
+    "roleHeading" : "Framework",
+    "symbolKind" : "module",
+    "title" : "KotlinKanji"
+  },
+  "schemaVersion" : {
+    "major" : 0,
+    "minor" : 3,
+    "patch" : 0
+  },
+  "sections" : [
+
+  ],
+  "topicSections" : [
+    {
+      "identifiers" : [
+        "doc:\/\/KotlinKanji\/documentation\/KotlinKanji\/KotlinContext"
+      ],
+      "title" : "Classes"
+    }
+  ],
+  "variants" : [
+    {
+      "paths" : [
+        "\/documentation\/kotlinkanji"
+      ],
+      "traits" : [
+        {
+          "interfaceLanguage" : "swift"
+        }
+      ]
+    }
+  ]
+, 
+"references": {
+"doc://KotlinKanji/documentation/KotlinKanji": {
+  "abstract" : [
+
+  ],
+  "identifier" : "doc:\/\/KotlinKanji\/documentation\/KotlinKanji",
+  "kind" : "symbol",
+  "role" : "collection",
+  "title" : "KotlinKanji",
+  "type" : "topic",
+  "url" : "\/documentation\/kotlinkanji"
+},
+"doc://KotlinKanji/documentation/KotlinKanji/KotlinContext": {
+  "abstract" : [
+
+  ],
+  "fragments" : [
+    {
+      "kind" : "keyword",
+      "text" : "class"
+    },
+    {
+      "kind" : "text",
+      "text" : " "
+    },
+    {
+      "kind" : "identifier",
+      "text" : "KotlinContext"
+    }
+  ],
+  "identifier" : "doc:\/\/KotlinKanji\/documentation\/KotlinKanji\/KotlinContext",
+  "kind" : "symbol",
+  "navigatorTitle" : [
+    {
+      "kind" : "identifier",
+      "text" : "KotlinContext"
+    }
+  ],
+  "role" : "symbol",
+  "title" : "KotlinContext",
+  "type" : "topic",
+  "url" : "\/documentation\/kotlinkanji\/kotlincontext"
+}
+}
+}

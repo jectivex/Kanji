@@ -1,0 +1,431 @@
+{
+  "": {
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/master.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/com.sun.jdi.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/com.sun.jdi.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/com.sun.jdi.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/com.sun.jdi~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/com.sun.jdi.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.applet.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.applet.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.applet.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.applet~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.applet.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.awt.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.awt.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.awt.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.awt~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.awt.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.beans.beancontext.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans.beancontext.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans.beancontext.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans.beancontext~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans.beancontext.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.beans.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.io.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.io.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.io.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.io~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.io.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.lang.annotation.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.annotation.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.annotation.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.annotation~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.annotation.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.lang.instrument.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.instrument.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.instrument.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.instrument~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.instrument.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.lang.invoke.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.invoke.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.invoke.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.invoke~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.invoke.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.lang.management.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.management.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.management.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.management~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.management.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.lang.ref.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.ref.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.ref.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.ref~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.ref.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.lang.reflect.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.reflect.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.reflect.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.reflect~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.reflect.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.lang.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.math.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.math.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.math.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.math~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.math.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.net.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.net.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.net.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.net~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.net.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.nio.channels.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.channels.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.channels.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.channels~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.channels.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.nio.charset.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.charset.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.charset.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.charset~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.charset.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.nio.file.attribute.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.attribute.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.attribute.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.attribute~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.attribute.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.nio.file.spi.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.spi.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.spi.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.spi~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.spi.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.nio.file.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.file.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.nio.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.nio.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.security.acl.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.acl.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.acl.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.acl~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.acl.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.security.cert.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.cert.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.cert.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.cert~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.cert.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.security.interfaces.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.interfaces.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.interfaces.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.interfaces~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.interfaces.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.security.spec.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.spec.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.spec.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.spec~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.spec.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.security.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.security.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.sql.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.sql.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.sql.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.sql~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.sql.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.text.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.text.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.text.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.text~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.text.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.time.chrono.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.chrono.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.chrono.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.chrono~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.chrono.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.time.format.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.format.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.format.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.format~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.format.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.time.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.time.temporal.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.temporal.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.temporal.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.temporal~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.temporal.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.time.zone.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.zone.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.zone.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.zone~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.time.zone.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.concurrent.atomic.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.atomic.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.atomic.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.atomic~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.atomic.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.concurrent.locks.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.locks.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.locks.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.locks~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.locks.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.concurrent.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.concurrent.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.function.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.function.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.function.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.function~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.function.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.jar.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.jar.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.jar.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.jar~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.jar.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.logging.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.logging.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.logging.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.logging~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.logging.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.prefs.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.prefs.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.prefs.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.prefs~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.prefs.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.regex.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.regex.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.regex.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.regex~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.regex.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.stream.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.stream.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.stream.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.stream~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.stream.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/java.util.zip.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.zip.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.zip.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.zip~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.zip.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.crypto.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.crypto.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.crypto.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.crypto~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.crypto.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.management.openmbean.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.management.openmbean.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.management.openmbean.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.management.openmbean~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.management.openmbean.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.management.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.management.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.management.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.management~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.management.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.script.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.script.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.script.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.script~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.script.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.security.auth.callback.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.callback.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.callback.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.callback~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.callback.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.security.auth.login.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.login.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.login.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.login~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.login.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.security.auth.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.security.auth.x500.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.x500.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.x500.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.x500~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.security.auth.x500.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.sql.rowset.spi.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.rowset.spi.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.rowset.spi.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.rowset.spi~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.rowset.spi.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.sql.rowset.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.rowset.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.rowset.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.rowset~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.rowset.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.sql.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.sql.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.transaction.xa.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.transaction.xa.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.transaction.xa.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.transaction.xa~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.transaction.xa.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.xml.bind.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.bind.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.bind.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.bind~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.bind.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.xml.namespace.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.namespace.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.namespace.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.namespace~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.namespace.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.xml.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.xml.transform.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.transform.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.transform.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.transform~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.transform.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.xml.validation.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.validation.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.validation.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.validation~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.validation.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/javax.xml.xpath.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.xpath.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.xpath.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.xpath~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/javax.xml.xpath.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/jdk.jshell.execution.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.execution.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.execution.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.execution~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.execution.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/jdk.jshell.spi.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.spi.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.spi.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.spi~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.spi.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/jdk.jshell.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.jshell.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/jdk.nashorn.api.scripting.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.nashorn.api.scripting.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.nashorn.api.scripting.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.nashorn.api.scripting~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.nashorn.api.scripting.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/jdk.nashorn.internal.runtime.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.nashorn.internal.runtime.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.nashorn.internal.runtime.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.nashorn.internal.runtime~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/jdk.nashorn.internal.runtime.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/org.ietf.jgss.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.ietf.jgss.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.ietf.jgss.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.ietf.jgss~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.ietf.jgss.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/org.xml.sax.ext.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.ext.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.ext.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.ext~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.ext.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/org.xml.sax.helpers.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.helpers.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.helpers.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.helpers~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.helpers.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/Sources/JavaLib/org.xml.sax.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.swiftdeps"
+  }
+}
