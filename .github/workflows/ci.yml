@@ -61,6 +61,7 @@ jobs:
         run: swift test --configuration release
 
   api-doc:
+    if: false
     runs-on: macos-12
     timeout-minutes: 20
     steps:
