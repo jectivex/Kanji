@@ -1,36 +1,7 @@
 // swift-tools-version:5.6
 import PackageDescription
 
-// Note that we cannot auto-detect the libjvm.dylib/libjvm.so because
-// java installations don't use pkg-config (and so SPM's systemLibray
-// cannot auto-detect pkgConfig can't be used to identify linker parameters).
-//
-// So they need to be specified manually.
-//
-// On macOS, `brew install openjdk@11`, then tests can be run like:
-// swift test -Xlinker -L${JAVA_HOME}/lib/server
-
-#if os(macOS)
-let testLinkerSettings: [LinkerSetting] = [
-//    .unsafeFlags([
-//        "-L/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server", // Homebrew macOS ARM
-//        "-L/usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server", // Homebrew macOS Intel
-//    ]),
-//    .linkedLibrary("jsig"),
-//    .linkedLibrary("jli"),
-//    .linkedLibrary("jvm"),
-]
-#endif
-#if os(Linux)
-let testLinkerSettings: [LinkerSetting] = [
-    .unsafeFlags([
-        "-L/usr/lib/jvm/temurin-11-jdk-amd64/lib/jli", // GH Runner
-        "-L/usr/lib/jvm/temurin-11-jdk-amd64/lib/server", // GH Runner
-    ]),
-    .linkedLibrary("jsig"),
-    .linkedLibrary("jli"),
-]
-#endif
+// Note: JAVA_HOME must be set to a valid Java installation
 
 let package = Package(
     name: "Kanji",
@@ -56,9 +27,9 @@ let package = Package(
         .target(name: "KanjiLib", dependencies: ["JavaLib"], resources: [.process("Resources")]),
         .target(name: "KanjiScript", dependencies: ["KanjiLib", .product(name: "FairApp", package: "Fair")], resources: [.process("Resources")]),
         .target(name: "KotlinKanji", dependencies: ["KanjiScript"], resources: [.process("Resources"), .copy("libraries")]),
-        .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
-        .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
-        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
-        .testTarget(name: "KotlinKanjiTests", dependencies: ["KotlinKanji"], resources: [.process("Resources")], linkerSettings: testLinkerSettings),
+        .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
+        .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")]),
+        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript"], resources: [.process("Resources")]),
+        .testTarget(name: "KotlinKanjiTests", dependencies: ["KotlinKanji"], resources: [.process("Resources")]),
     ]
 )

@@ -411,9 +411,9 @@ public final class JVM {
         // /opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server // Homebrew macOS ARM
         // /usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server // Homebrew macOS Intel
         let libs = [
-            URL(fileURLWithPath: "jre/lib/server/libjvm", relativeTo: javaHome).appendingPathExtension(ext),
-            URL(fileURLWithPath: "lib/server/libjvm", relativeTo: javaHome).appendingPathExtension(ext),
-            URL(fileURLWithPath: "lib/libjvm", relativeTo: javaHome).appendingPathExtension(ext),
+            URL(fileURLWithPath: "jre/lib/server/libjvm.\(ext)", relativeTo: javaHome),
+            URL(fileURLWithPath: "lib/server/libjvm.\(ext)", relativeTo: javaHome),
+            URL(fileURLWithPath: "lib/libjvm.\(ext)", relativeTo: javaHome),
         ]
 
         guard let lib = libs.first(where: { FileManager.default.isReadableFile(atPath: $0.path) }) else {
