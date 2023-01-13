@@ -20,10 +20,10 @@ class KotlinKanjiTests: XCTestCase {
         XCTAssertEqual("nullnull", try ctx.eval("null + null").jsum()) // WAT
 
         for i in 1...100 {
-            let start = CFAbsoluteTimeGetCurrent()
+            //let start = CFAbsoluteTimeGetCurrent()
             let _ = try ctx.eval("1 + 2").jsum()
             _ = i
-            let end = CFAbsoluteTimeGetCurrent()
+            //let end = CFAbsoluteTimeGetCurrent()
             //print("run \(i):", end-start) // DEBUG: 0.2 RELEASE: 0.02
         }
 
@@ -37,5 +37,25 @@ class KotlinKanjiTests: XCTestCase {
 
 
         // XCTAssertEqual("Homebrew", try ctx.eval(#"java.lang.System.getProperties()["java.vendor.version"]"#).jsum())
+    }
+
+    func testKotlinContext() throws {
+        let ctx = try KotlinContext()
+        let r1 = try ctx.eval("listOf(1, 2, 3).map({ it + 1 })").jsum()
+        XCTAssertEqual([2, 3, 4], r1)
+    }
+
+    func XXXtestKotlinSerialization() throws {
+        // TODO: import kotlinx JSON serialization and return a struct and try to parse it
+        let ctx = try KotlinContext()
+        let result = try ctx.eval("""
+        val format = Json { prettyPrint = true }
+        @Serializable
+        data class Project(val name: String, val language: String)
+
+        val data = Project("kotlinx.serialization", "Kotlin")
+        println(format.encodeToString(data))
+        """) // .jsum()
+        //XCTAssertEqual([2, 3, 4], r1)
     }
 }

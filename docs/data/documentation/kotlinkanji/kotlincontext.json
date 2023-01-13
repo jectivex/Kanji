@@ -1,4 +1,10 @@
 {
+  "abstract" : [
+    {
+      "text" : "A context for evaluating Kotlin scripts.",
+      "type" : "text"
+    }
+  ],
   "hierarchy" : {
     "paths" : [
       [
@@ -70,6 +76,52 @@
         }
       ],
       "kind" : "declarations"
+    },
+    {
+      "content" : [
+        {
+          "anchor" : "overview",
+          "level" : 2,
+          "text" : "Overview",
+          "type" : "heading"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "The context sets up a ",
+              "type" : "text"
+            },
+            {
+              "code" : "KanjiVM",
+              "type" : "codeVoice"
+            },
+            {
+              "text" : " with a uses the Java Scripting API (JSR 223) to load the Kotlin compiler and provide the ability to compile and evaluate Kotlin scripts.",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "inlineContent" : [
+            {
+              "text" : "Example usage:",
+              "type" : "text"
+            }
+          ],
+          "type" : "paragraph"
+        },
+        {
+          "code" : [
+            "let ctx = try KotlinContext()",
+            "let result = try ctx.eval(\"listOf(1, 2, 3).map({ it + 1 })\").jsum()",
+            "assert(result == [2, 3, 4])"
+          ],
+          "syntax" : null,
+          "type" : "codeListing"
+        }
+      ],
+      "kind" : "content"
     }
   ],
   "relationshipsSections" : [
@@ -143,7 +195,10 @@
 },
 "doc://KotlinKanji/documentation/KotlinKanji/KotlinContext": {
   "abstract" : [
-
+    {
+      "text" : "A context for evaluating Kotlin scripts.",
+      "type" : "text"
+    }
   ],
   "fragments" : [
     {
