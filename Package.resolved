@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/marcprux/BricBrac",
       "state" : {
-        "revision" : "1bf4ebb7d2ddabaf94173cbd8e50b3fae379b219",
-        "version" : "4.0.0"
+        "revision" : "6d533b439337692b3d501ddb72989a2ce58514d3",
+        "version" : "4.1.0"
       }
     },
     {
