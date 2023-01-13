@@ -9,7 +9,7 @@ import Foundation
 import KanjiVM
 import KanjiLib
 import JavaLib
-@_exported import enum FairCore.JSum
+@_exported import JSum
 
 /// A context that wraps a certain script engine.
 ///

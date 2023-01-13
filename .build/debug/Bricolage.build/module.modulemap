@@ -1,0 +1,4 @@
+module Bricolage {
+    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/Bricolage.build/Bricolage-Swift.h"
+    requires objc
+}

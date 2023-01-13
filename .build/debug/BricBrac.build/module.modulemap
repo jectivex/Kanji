@@ -1,0 +1,4 @@
+module BricBrac {
+    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/BricBrac.build/BricBrac-Swift.h"
+    requires objc
+}

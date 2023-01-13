@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JSum.build/master.swiftdeps"
+  },
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/BricBrac/Sources/JSum/JSum.swift": {
+    "dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JSum.build/JSum.d",
+    "object": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JSum.build/JSum.swift.o",
+    "swiftmodule": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JSum.build/JSum~partial.swiftmodule",
+    "swift-dependencies": "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JSum.build/JSum.swiftdeps"
+  }
+}

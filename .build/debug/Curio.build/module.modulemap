@@ -1,0 +1,4 @@
+module Curio {
+    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/Curio.build/Curio-Swift.h"
+    requires objc
+}

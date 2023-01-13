@@ -1,21 +1,12 @@
 {
   "pins" : [
     {
-      "identity" : "fair",
+      "identity" : "bricbrac",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/fair-ground/Fair",
+      "location" : "https://github.com/marcprux/BricBrac",
       "state" : {
-        "revision" : "7daccdf7c866c7ec6f9aed670ca796bacc8886b8",
-        "version" : "0.8.37"
-      }
-    },
-    {
-      "identity" : "swift-argument-parser",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/apple/swift-argument-parser.git",
-      "state" : {
-        "revision" : "fddd1c00396eed152c45a46bea9f47b98e59301d",
-        "version" : "1.2.0"
+        "revision" : "1bf4ebb7d2ddabaf94173cbd8e50b3fae379b219",
+        "version" : "4.0.0"
       }
     },
     {

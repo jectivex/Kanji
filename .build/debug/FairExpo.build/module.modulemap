@@ -1,4 +1,0 @@
-module FairExpo {
-    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairExpo.build/FairExpo-Swift.h"
-    requires objc
-}

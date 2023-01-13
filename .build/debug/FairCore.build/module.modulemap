@@ -1,4 +1,0 @@
-module FairCore {
-    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/FairCore.build/FairCore-Swift.h"
-    requires objc
-}

@@ -385,6 +385,14 @@ public final class JVM {
             //#warning("TODO: use common guesses for macOS & Linux")
             // guess some common places
             //home = "/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+
+            // check some common relative paths
+            // /usr/lib/jvm/temurin-11-jdk-amd64/lib/server // Linux GH
+            // /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.352-8/x64/Contents/Home/lib/server/libjvm.dylib // macOS GH
+            // /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.352-8/x64/Contents/Home/jre/lib/server/libjvm.dylib // macOS GH
+            // /opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server // Homebrew macOS ARM
+            // /usr/local/opt/openjdk/libexec/openjdk.jdk/Contents/Home/lib/server // Homebrew macOS Intel
+
             throw KanjiErrors.general("JAVA_HOME must be set to create JVM")
         }
 
