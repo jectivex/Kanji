@@ -12,7 +12,7 @@ open class java$lang$Object : JavaObject {
     /// Wraps an existing JNI reference in the given type with a new global reference
     public required init?(reference: jobject?) {
         guard let reference = reference else { return nil }
-        guard let ref = JVM.sharedJVM.newGlobalRef(reference) else { return nil }
+        guard let ref = try? JVM.sharedJVM.newGlobalRef(reference) else { return nil }
         self.jobj = ref
     }
 
@@ -20,18 +20,18 @@ open class java$lang$Object : JavaObject {
     public convenience init?(constructor: @autoclosure () throws -> jobject?) rethrows {
         guard let ref = try constructor() else { return nil }
         self.init(reference: ref)
-        JVM.sharedJVM.deleteLocalRef(ref) // local ref is no longer needed
+        try? JVM.sharedJVM.deleteLocalRef(ref) // local ref is no longer needed
     }
 
     /// Creates this instance by attempting the required autoclosure constructor function
     public convenience init(creator: @autoclosure () throws -> jobject) rethrows {
         let ref = try creator()
         self.init(reference: ref)!
-        JVM.sharedJVM.deleteLocalRef(ref) // local ref is no longer needed
+        try? JVM.sharedJVM.deleteLocalRef(ref) // local ref is no longer needed
     }
 
     deinit { 
-        JVM.sharedJVM.deleteGlobalRef(self.jobj)
+        try? JVM.sharedJVM.deleteGlobalRef(self.jobj)
     }
 
     fileprivate static let java$lang$Object_init__V = constructor()

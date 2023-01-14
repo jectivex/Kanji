@@ -129,7 +129,7 @@ extension java$lang$Object : Hashable {
 extension java$lang$Object : CustomStringConvertible {
     public var description : String {
         if let str = try? toString() {
-            return str.toSwiftString() ?? ""
+            return (try? str.toSwiftString()) ?? ""
         } else {
             return ""
         }
@@ -172,33 +172,22 @@ extension java$lang$Throwable : Error {
 //    }
 //}
 
-extension java$lang$String : ExpressibleByStringLiteral {
-    public convenience init!(_ string: String) {
-        self.init(constructor: JVM.sharedJVM.toJString(string))
+extension java$lang$String {
+    public convenience init?(_ string: String) throws {
+        try self.init(constructor: JVM.sharedJVM.toJString(string))
     }
 
-    public convenience init(stringLiteral value: String) {
-        self.init(value)
-    }
-
-    public convenience init(extendedGraphemeClusterLiteral value: String) {
-        self.init(value)
-    }
-
-    public convenience init(unicodeScalarLiteral value: String) {
-        self.init(value)
-    }
-
-    public func toSwiftString() -> String? {
-        return JVM.sharedJVM.fromJavaString(jobj)
-
+    public func toSwiftString() throws -> String {
+        try JVM.sharedJVM.fromJavaString(jobj) ?? ""
     }
 }
 
 public extension String {
     /// Returns the current Swift string as a Java string
     var javaString: java$lang$String {
-        return java$lang$String(reference: JVM.sharedJVM.toJString(self))!
+        get throws {
+            try java$lang$String(reference: JVM.sharedJVM.toJString(self))!
+        }
     }
 }
 
