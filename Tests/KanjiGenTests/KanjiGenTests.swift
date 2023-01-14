@@ -94,7 +94,11 @@ class KanjiGenTests: XCTestCase {
         if status == 0 {
             if loccode != code { // if the code has changed, then write it to the test
                 if FileManager.default.fileExists(atPath: locpath) {
+                    #if os(Linux)
+                    try! FileManager.default.removeItem(at: URL(fileURLWithPath: locpath))
+                    #else
                     try! FileManager.default.trashItem(at: URL(fileURLWithPath: locpath), resultingItemURL: nil)
+                    #endif
                 }
                 try code.write(toFile: locpath, atomically: true, encoding: String.Encoding.utf8)
             }
