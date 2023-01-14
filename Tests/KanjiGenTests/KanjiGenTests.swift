@@ -10,14 +10,10 @@ import XCTest
 import KanjiVM
 
 class KanjiGenTests: XCTestCase {
-    func testGeneration() {
-        do {
-            // see JavaLib.knj for class list and generation info
-            let classes = try String(contentsOf: Bundle(for: type(of: self)).url(forResource: "JavaLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
-            try gencode(classes)
-        } catch {
-            XCTFail("error generating code: \(error)")
-        }
+    func testGeneration() throws {
+        // see JavaLib.knj for class list and generation info
+        let classes = try String(contentsOf: Bundle.module.url(forResource: "JavaLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
+        try gencode(classes)
     }
 
     func gencode(_ classes: [String]) throws {
@@ -38,7 +34,12 @@ class KanjiGenTests: XCTestCase {
             packages[packname] = packcode
         }
 
-        try compilePackages(packages, dir: ((#file as NSString).deletingLastPathComponent as NSString).appendingPathComponent("../JavaLib/"))
+        // this overwrites the JavaLib with code that doesn't quite match
+        //try compilePackages(packages, dir: ((#file as NSString).deletingLastPathComponent as NSString).appendingPathComponent("../../Sources/JavaLib/"))
+
+        let tmpdir = "/tmp/" + UUID().uuidString
+        try FileManager.default.createDirectory(atPath: tmpdir, withIntermediateDirectories: true)
+        try compilePackages(packages, dir: tmpdir)
     }
 
     func compilePackages(_ packages: [String : String], dir: String) throws {

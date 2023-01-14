@@ -6,6 +6,8 @@
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.beans.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.io.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.annotation.swift.o
+/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.constant.swift.o
+/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.foreign.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.instrument.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.invoke.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.lang.management.swift.o
@@ -39,6 +41,7 @@
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.jar.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.logging.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.prefs.swift.o
+/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.random.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.regex.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.stream.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/java.util.swift.o
@@ -70,6 +73,9 @@
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.ext.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.helpers.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/JavaLib.build/org.xml.sax.swift.o
+/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiGen.build/KanjiGenerator.swift.o
+/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiGenTests.build/KanjiGenTests.swift.o
+/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiGenTests.build/resource_bundle_accessor.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiLib.build/ASMLib.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiLib.build/KanjiLib.swift.o
 /Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/KanjiLib.build/KanjiNative.swift.o
