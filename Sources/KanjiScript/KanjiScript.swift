@@ -382,7 +382,7 @@ public extension JSum {
 
 /// This interface can be implemented by an arbitrary Java class. Nashorn will treat objects of such classes just like nashorn script objects.
 /// Usual nashorn operations like obj[i], obj.foo, obj.func(), delete obj.foo will be delegated to appropriate method call of this interface.
-public typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Impl
+//public typealias ScriptObject = jdk$nashorn$api$scripting$JSObject$Impl
 //        typealias ScriptObject = jdk$nashorn$api$scripting$AbstractJSObject
 //        typealias ScriptObject = jdk$nashorn$api$scripting$ScriptObjectMirror
 

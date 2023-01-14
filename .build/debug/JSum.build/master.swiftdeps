@@ -1,6 +1,6 @@
 version: "Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)"
 options: "2e9ec3c5592a80e446b7cfe5b0807eb1249b4a5077b1bf89f4ab383a47fce70d"
-build_start_time: [1673665598, 705140113]
-build_end_time: [1673665608, 171288013]
+build_start_time: [1673666268, 595067024]
+build_end_time: [1673666277, 804291009]
 inputs:
-  "/Users/runner/work/Kanji/Kanji/.build/checkouts/BricBrac/Sources/JSum/JSum.swift": [1673665341, 837915420]
+  "/Users/runner/work/Kanji/Kanji/.build/checkouts/BricBrac/Sources/JSum/JSum.swift": [1673666014, 448590278]

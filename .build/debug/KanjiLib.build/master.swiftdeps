@@ -1,8 +1,8 @@
 version: "Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)"
 options: "aca71b4e86d6c1c5d6298204c703bbef48189fe6da7805e7760387eca2658c4c"
-build_start_time: [1673665563, 542451858]
-build_end_time: [1673665571, 814567089]
+build_start_time: [1673666232, 537871837]
+build_end_time: [1673666240, 141099929]
 inputs:
-  "/Users/runner/work/Kanji/Kanji/Sources/KanjiLib/ASMLib.swift": [1673665294, 538043022]
-  "/Users/runner/work/Kanji/Kanji/Sources/KanjiLib/KanjiLib.swift": [1673665294, 538512706]
-  "/Users/runner/work/Kanji/Kanji/Sources/KanjiLib/KanjiNative.swift": [1673665294, 538893461]
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiLib/ASMLib.swift": [1673665966, 179744482]
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiLib/KanjiLib.swift": [1673665966, 180306434]
+  "/Users/runner/work/Kanji/Kanji/Sources/KanjiLib/KanjiNative.swift": [1673665966, 180654048]
