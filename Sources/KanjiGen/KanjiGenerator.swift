@@ -125,7 +125,11 @@ extension Scanner {
     }
 
     fileprivate func scanUntil(_ str: String, consume: Bool = true) throws -> String {
+        #if os(Linux)
+        var out: String?
+        #else
         var out: NSString?
+        #endif
         if !scanUpTo(str, into: &out) {
             throw CodegenErrors.parseError("Expected string not found: “\(str)” in \(remainingDesc)")
         }
@@ -1344,18 +1348,24 @@ public enum KanjiGen {
         }
     }
 
-    /// Launched javap and returns the output java type disassembly
+    /// Launches javap and returns the output java type disassembly
     public static func launchDisassembler(_ types: [String]) throws -> String {
         // TODO: when the list of types is too long, launch it multiple times and concatinate the results
 
         let task = Process() // .launchedTaskWithLaunchPath("/usr/bin/javap", arguments: ["-p"] + types)
-        //task.launchPath = "/usr/bin/javap"
+
+        #if os(Linux)
         task.launchPath = "/usr/bin/env"
+        task.arguments = ["javap", "-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
+        #else
+        task.launchPath = "/usr/bin/javap"
+        task.arguments = ["-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
+        #endif
+
         // we always include java.lang.Object even if we might skip the generation
         if !types.contains("java.lang.Object") {
 
         }
-        task.arguments = ["javap", "-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
 
         let pipe = Pipe()
         task.standardOutput = pipe
