@@ -98,7 +98,11 @@ extension Scanner {
     func scanTo(_ chars: [Character], consume: Bool = false) throws -> String {
         let str: String = String(chars)
         let set = CharacterSet(charactersIn: str)
+        #if os(Linux)
+        var out: String?
+        #else
         var out: NSString?
+        #endif
         if !scanUpToCharacters(from: set, into: &out) {
             throw CodegenErrors.parseError("Expected tokens not found: \(chars) in \(remainingDesc)")
         }
@@ -1345,12 +1349,13 @@ public enum KanjiGen {
         // TODO: when the list of types is too long, launch it multiple times and concatinate the results
 
         let task = Process() // .launchedTaskWithLaunchPath("/usr/bin/javap", arguments: ["-p"] + types)
-        task.launchPath = "/usr/bin/javap"
+        //task.launchPath = "/usr/bin/javap"
+        task.launchPath = "/usr/bin/env"
         // we always include java.lang.Object even if we might skip the generation
         if !types.contains("java.lang.Object") {
 
         }
-        task.arguments = ["-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
+        task.arguments = ["javap", "-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
 
         let pipe = Pipe()
         task.standardOutput = pipe
