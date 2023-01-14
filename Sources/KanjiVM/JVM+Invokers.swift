@@ -10,7 +10,7 @@ public extension JInvocable {
 
     /// Locates the method with the mangled name, preserving class not found exception
     static func findMethod(_ cls: jclass, name: String, sig: String) -> jmethodID? {
-        guard let jvm = JVM.sharedJVM else { return nil }
+        let jvm = try! JVM.sharedJVM
         if (jvm.exceptionCheck() == true) {
             return nil  // class not found
         }
@@ -20,7 +20,7 @@ public extension JInvocable {
 
     /// Locates the method with the mangled name, preserving class not found exception
     static func findStaticMethod(_ cls: jclass, name: String, sig: String) -> jmethodID? {
-        guard let jvm = JVM.sharedJVM else { return nil }
+        let jvm = try! JVM.sharedJVM
         if (jvm.exceptionCheck() == true) {
             return nil // class not found
         }

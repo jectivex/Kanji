@@ -235,20 +235,20 @@ class KanjiScriptTests: XCTestCase {
         // uses a capturing closure-based callback
         let capturedUUID = NSUUID().uuidString // just to verify that capturing working
 
-        XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("jdk/nashorn/api/scripting/JSObject"))
-        JVM.sharedJVM.exceptionClear()
+        XCTAssertNotEqual(nil, try JVM.sharedJVM.findClass("jdk/nashorn/api/scripting/JSObject"))
+        try JVM.sharedJVM.exceptionClear()
 
         let function = try java$util$function$Function$Impl.fromClosure { arg in
 
-            XCTAssertNotEqual(nil, JVM.sharedJVM.findClass("jdk/nashorn/api/scripting/JSObject"))
-            JVM.sharedJVM.exceptionClear()
+            XCTAssertNotEqual(nil, try JVM.sharedJVM.findClass("jdk/nashorn/api/scripting/JSObject"))
+            try JVM.sharedJVM.exceptionClear()
 
             if let desc = arg?.description {
                 KanjiScriptTests.testScriptCallbacksQueue.async() {
                     KanjiScriptTests.testScriptCallbacksValue.insert(desc)
                 }
             }
-            return capturedUUID.javaString
+            return try capturedUUID.javaString
         }
 
         XCTAssertEqual((try? function.apply(nil))??.description, capturedUUID)
@@ -363,13 +363,13 @@ class JShellTests: XCTestCase {
             XCTAssertEqual([.REJECTED], try eval(code: "x;").map { try $0.status() })
             XCTAssertEqual(.ERRONEOUS, try snippets.last?.kind())
             XCTAssertEqual(.UNKNOWN_SUBKIND, try snippets.last?.subKind())
-            XCTAssertEqual("x;", try snippets.last?.source())
+            XCTAssertEqual("x;", try snippets.last?.source()?.toSwiftString())
             XCTAssertEqual(true, try lastDiagnostics().last?.isError())
             XCTAssertEqual(0, try lastDiagnostics().last?.getPosition())
             XCTAssertEqual(0, try lastDiagnostics().last?.getStartPosition())
-            XCTAssertEqual("compiler.err.cant.resolve.location", try lastDiagnostics().last?.getCode())
-            XCTAssertEqual("cannot find symbol\n  symbol:   variable x\n  location: class ", try lastDiagnostics().last?.getMessage(java$util$Locale.ENGLISH))
-            XCTAssertEqual("cannot find symbol\n  symbol:   variable x\n  location: class ", try lastDiagnostics().last?.getMessage(java$util$Locale.CHINESE))
+            XCTAssertEqual("compiler.err.cant.resolve.location", try lastDiagnostics().last?.getCode()?.toSwiftString())
+            XCTAssertEqual("cannot find symbol\n  symbol:   variable x\n  location: class ", try lastDiagnostics().last?.getMessage(java$util$Locale.ENGLISH)?.toSwiftString())
+            XCTAssertEqual("cannot find symbol\n  symbol:   variable x\n  location: class ", try lastDiagnostics().last?.getMessage(java$util$Locale.CHINESE)?.toSwiftString())
 
             XCTAssertEqual([.VALID], try eval(code: "var x = 1;").map { try $0.status() })
             XCTAssertEqual(.VAR, try snippets.last?.kind())
@@ -396,7 +396,7 @@ class JShellTests: XCTestCase {
             XCTAssertEqual([.VALID], try eval(code: "x++; x++;").map { try $0.status() })
             XCTAssertEqual(.STATEMENT, try snippets.last?.kind())
             XCTAssertEqual(.STATEMENT_SUBKIND, try snippets.last?.subKind())
-            XCTAssertEqual("x++; x++;", try snippets.last?.source())
+            XCTAssertEqual("x++; x++;", try snippets.last?.source()?.toSwiftString())
 
             XCTAssertEqual([.REJECTED], try eval(code: "out.println(\"Hello JShell\")").map { try $0.status() })
             XCTAssertEqual(.ERRONEOUS, try snippets.last?.kind())
@@ -413,7 +413,7 @@ class JShellTests: XCTestCase {
             XCTAssertEqual([.VALID], try eval(code: "void addToX() { x++; }").map { try $0.status() })
             XCTAssertEqual(.METHOD, try snippets.last?.kind())
             XCTAssertEqual(.METHOD_SUBKIND, try snippets.last?.subKind())
-            XCTAssertEqual("()void", try snippets.last?.castTo(jdk$jshell$MethodSnippet.self)?.signature())
+            XCTAssertEqual("()void", try snippets.last?.castTo(jdk$jshell$MethodSnippet.self)?.signature()?.toSwiftString())
 
 
             XCTAssertEqual([.VALID], try eval(code: "addToX();").map { try $0.status() })
@@ -423,7 +423,7 @@ class JShellTests: XCTestCase {
             XCTAssertEqual([.VALID, .OVERWRITTEN], try eval(code: "int addToX() { x++; return x; }").map { try $0.status() })
             XCTAssertEqual(.METHOD, try snippets.last?.kind())
             XCTAssertEqual(.METHOD_SUBKIND, try snippets.last?.subKind())
-            XCTAssertEqual("()void", try snippets.last?.castTo(jdk$jshell$MethodSnippet.self)?.signature()) // this seems wrong: it should be ()int?
+            XCTAssertEqual("()void", try snippets.last?.castTo(jdk$jshell$MethodSnippet.self)?.signature()?.toSwiftString()) // this seems wrong: it should be ()int?
 
             XCTAssertEqual([.VALID], try eval(code: "addToX();").map { try $0.status() })
             XCTAssertEqual(.VAR, try snippets.last?.kind())

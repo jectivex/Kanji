@@ -157,11 +157,11 @@ extension KanjiException : CustomNSError {
 }
 
 public func JNI_DetachCurrentThread() {
-    _ = JNI.jvm.pointee?.pointee.DetachCurrentThread( JNI.jvm )
+    _ = try? JVM.sharedJVM.jvm.pointee?.pointee.DetachCurrentThread( JNI.jvm )
     JNI.envCache[pthread_self()] = nil
 }
 
-private var JNI: JVM { return JVM.sharedJVM }
+private var JNI: JVM { return try! JVM.sharedJVM }
 
 public typealias JNIEnvPointer = UnsafeMutablePointer<JNIEnv?>?
 
@@ -169,8 +169,8 @@ public typealias JNIEnvPointer = UnsafeMutablePointer<JNIEnv?>?
 public func JNI_OnLoad(_ vm: UnsafeMutablePointer<JavaVM?>!, _ reserved: UnsafeMutableRawPointer!) -> jint {
     log("JNI_OnLoad")
     // this should be called on platforms like Android to use the existing VM
-    assert(JVM.singletonJVM == nil, "shared JVM should not have been set")
-    JVM.singletonJVM = JVM(jvm: vm)
+    //assert(JVM.singletonJVM == nil, "shared JVM should not have been set")
+    //JVM.singletonJVM = JVM(jvm: vm)
     return jint(JVM.jniversion)
 }
 
@@ -181,19 +181,16 @@ public final class JVM {
     /// This can be used to override the default arguments for the JVM, such as memory size or initial classpat
     public static var sharedJVMCreator: () throws -> (JVM) = { try JVM() }
 
-    fileprivate static var singletonJVM: JVM?
+    fileprivate static var singletonJVM = Result {
+        try sharedJVMCreator()
+    }
 
     public typealias JavaVMPtr = UnsafeMutablePointer<JavaVM?>
 
     /// The singleton shared JVM: it must be manually set once and only once for a process, as JNI does not support mutliple JVMs
-    public static var sharedJVM: JVM! {
-        if let jvm = singletonJVM { return jvm }
-        do {
-            let newJVM = try sharedJVMCreator()
-            singletonJVM = newJVM
-            return jvm
-        } catch {
-            fatalError("error loading JVM \(error)")
+    public static var sharedJVM: JVM {
+        get throws {
+            try singletonJVM.get()
         }
     }
 
@@ -481,7 +478,7 @@ public protocol JInvocable {
 
 extension JVM : JInvocable {
     public static var javaClass: jclass! { return nil }
-    public static var jvm: JVM { return sharedJVM }
+    public static var jvm: JVM { get { try! sharedJVM } }
 }
 
 
@@ -2672,13 +2669,13 @@ extension jobject : JRef {
 extension jobject {
 
     /// Deletes the given local or global reference
-    public func deleteReference(_ jvm: JVM = JVM.sharedJVM) {
+    public func deleteReference(_ jvm: JVM? = try? JVM.sharedJVM) {
         // it would probaby be much faster to avoid calling getObjectRefType in the
         // init(constructor:) since it is almost always a local ref, but it seems that
         // when the constructor throws an error, the reference is a global for some reason
-        let type = jvm.getObjectRefType(self)
-        if type == JNILocalRefType { jvm.deleteLocalRef(self) }
-        if type == JNIGlobalRefType { jvm.deleteGlobalRef(self) }
+        let type = jvm?.getObjectRefType(self)
+        if type == JNILocalRefType { jvm?.deleteLocalRef(self) }
+        if type == JNIGlobalRefType { jvm?.deleteGlobalRef(self) }
     }
 }
 
@@ -2686,7 +2683,7 @@ extension JRef {
 
     /// Perform an operation within a monitor enter/exit block
     public func synchronized<T>(f: () throws -> T) rethrows -> T {
-        let jvm = JVM.sharedJVM
+        let jvm = try? JVM.sharedJVM
         jvm?.monitorEnter(jobj)
         defer { jvm?.monitorExit(jobj) }
         return try f()
@@ -2852,22 +2849,24 @@ public protocol JavaObject: AnyObject, JSig, JRef, JInvocable {
     init?(reference: jobject?)
 
     /// Returns the underlying JNI jclass instance
-    var jcls: jclass { get }
+    var jcls: jclass { get throws }
 }
 
 public extension JavaObject {
-    static var jvm: JVM { return JVM.sharedJVM }
-    var jcls: jclass { return JVM.sharedJVM.getObjectClass(jobj)! }
+    static var jvm: JVM { get { try! JVM.sharedJVM } }
+    var jcls: jclass { get throws { try JVM.sharedJVM.getObjectClass(jobj)! } }
 
     //    @available(*, deprecated=1.0, message="Ignores exception, replace this method")
     static var javaClass: jclass! {
-        //        defer { JVM.sharedJVM.exceptionClear() }
-        let cname = javaClassName
-        let cls = JVM.sharedJVM.findClass(cname)
-        if cls == nil {
-            warn("could not find class for «\(cname)»")
+        get {
+            //        defer { JVM.sharedJVM.exceptionClear() }
+            let cname = javaClassName
+            let cls = try? JVM.sharedJVM.findClass(cname)
+            if cls == nil {
+                warn("could not find class for «\(cname)»")
+            }
+            return cls!
         }
-        return cls!
     }
 
     static var jniType: JObjectType { return JObjectType(jniName()) }
@@ -2937,18 +2936,22 @@ public extension JavaObject {
 public extension JavaObject {
     /// The Java class name for the type (e.g., “java/lang/Object”)
     static var javaClassName: String {
-        return self.jniName()
+        self.jniName()
     }
 
     /// Cast this instance to another type, returning nil if the cast could not be performed
     func castTo<T: JavaObject>(_ type: T.Type) -> T? {
-        return cast()
+        cast()
     }
 
     /// Cast this instance to another type, returning nil if the cast could not be performed
     func cast<T: JavaObject>() -> T? {
-        if let t = self as? T { return t } // we are already the correct instance
-        guard let jvm = JVM.sharedJVM else { return nil }
+        if let t = self as? T {
+            return t // we are already the correct instance
+        }
+        guard let jvm = try? JVM.sharedJVM else {
+            return nil
+        }
         let jsup = jvm.findClass(T.javaClassName)
         if (jvm.exceptionCheck() == true) {
             jvm.printStackTrace()
@@ -2961,7 +2964,7 @@ public extension JavaObject {
             return nil
         }
 
-        if jvm.isAssignableFrom(jcls, sup: jsup2) == true {
+        if (try? jvm.isAssignableFrom(jcls, sup: jsup2)) == true {
             return T(reference: jobj)
         } else {
             return nil
@@ -3061,8 +3064,8 @@ extension JVM {
 //}
 
 public extension JavaObject {
-    static func createArray(_ jvm: JVM) -> (_ elements: [Self?]) -> jobjectArray? {
-        return { elements in
+    static func createArray(_ jvm: JVM) -> (_ elements: [Self?]) throws -> jobjectArray? {
+        { elements in
             if let jarr = jvm.newObjectArray(jsize(elements.count), clazz: javaClass, init: nil) {
                 for (i, e) in elements.enumerated() {
                     jvm.setObjectArrayElement(jarr, index: jsize(i), val: e?.jobj ?? nil)
@@ -3090,25 +3093,25 @@ public extension JavaObject {
 
 public extension jarray {
     func jarrayToArray<T: JPrimitive>() -> [T]? {
-        return T.getArray(JVM.sharedJVM.env)(self)
+        try? T.getArray(JVM.sharedJVM.env)(self)
     }
 }
 
 public extension jobject {
     func jarrayToArray<T: JavaObject>(_ type: T.Type) -> [T?]? {
-        return T.getArray(JVM.sharedJVM)(self)
+        try? T.getArray(JVM.sharedJVM)(self)
     }
 }
 
 public extension Sequence where Self.Iterator.Element : JPrimitive {
-    func arrayToJArray() -> Self.Iterator.Element.ArrayType? {
-        return Self.Iterator.Element.createArray(JVM.sharedJVM.env)(Array(self))
+    func arrayToJArray() throws -> Self.Iterator.Element.ArrayType? {
+        try Self.Iterator.Element.createArray(JVM.sharedJVM.env)(Array(self))
     }
 }
 
 public extension Sequence where Self.Iterator.Element : JavaObject {
-    func arrayToJArray() -> jobjectArray? {
-        return Self.Iterator.Element.createArray(JVM.sharedJVM)(Array(self).map({ $0 as Self.Iterator.Element? }))
+    func arrayToJArray() throws -> jobjectArray? {
+        try Self.Iterator.Element.createArray(JVM.sharedJVM)(Array(self).map({ $0 as Self.Iterator.Element? }))
     }
 }
 
@@ -3122,13 +3125,13 @@ extension Optional : FlatMappable { }
 public extension Sequence where Self.Iterator.Element : FlatMappable, Self.Iterator.Element.Wrapped : JavaObject {
     func arrayToJArray() -> jobjectArray? {
         let elements = Array(self).map({ $0.flatMap({ $0 as Self.Iterator.Element.Wrapped }) })
-        return Self.Iterator.Element.Wrapped.createArray(JVM.sharedJVM)(elements)
+        return try? Self.Iterator.Element.Wrapped.createArray(JVM.sharedJVM)(elements)
     }
 }
 
 public extension Sequence where Iterator.Element: JavaObject {
     /// Downcast the array to the given element types
-    func casts<T: JavaObject>() -> [T] {
+    func casts<T: JavaObject>() throws -> [T] {
         var arr: [T] = []
         for x in self {
             if let v: T = x.cast() {
@@ -3140,7 +3143,7 @@ public extension Sequence where Iterator.Element: JavaObject {
 }
 
 public extension Collection where Iterator.Element: JavaObject, Index == Int {
-    func toJArray(_ jvm: JVM) -> jobjectArray? {
+    func toJArray(_ jvm: JVM) throws -> jobjectArray? {
         if let array = jvm.newObjectArray(jsize(count), clazz: Iterator.Element.javaClass, init: nil) {
             for (i, x) in self.enumerated() {
                 jvm.setObjectArrayElement(array, index: jsize(i), val: x.jobj)
@@ -3154,7 +3157,7 @@ public extension Collection where Iterator.Element: JavaObject, Index == Int {
 
 public extension Sequence where Iterator.Element == Optional<JavaObject> {
     /// Downcast the array to the given element types
-    func casts<T: JavaObject>() -> [T] {
+    func casts<T: JavaObject>() throws -> [T] {
         var arr: [T] = []
         for x in self {
             if let x = x {

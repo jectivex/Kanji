@@ -41,7 +41,7 @@ open class KanjiScriptContext : ScriptContext {
         }
 
         let manager = classLoader == nil ? try javax$script$ScriptEngineManager() : try javax$script$ScriptEngineManager(classLoader)
-        guard let engine = try manager.getEngineByName(java$lang$String(stringLiteral: name)) else {
+        guard let engine = try manager.getEngineByName(java$lang$String(name)) else {
             throw KanjiErrors.general("Could not get engine named \(name)")
         }
         self.engine = engine
@@ -151,7 +151,7 @@ open class KanjiScriptContext : ScriptContext {
 
     fileprivate func evaluate(_ script: String, this: InstanceType.RefType? = nil, args: [InstanceType.RefType]) throws -> InstanceType.RefType? {
         try withClassLoader {
-            let str = script.javaString
+            let str = try script.javaString
 
             // functions can only be invoked on invocale subclases
             if let invocable: javax$script$Invocable$Impl = engine.cast() , !args.isEmpty || this != nil {
@@ -339,7 +339,7 @@ public func == (bs1: KanjiScriptType, bs2: KanjiScriptType) -> Bool {
     case (.val(let v1), .val(let v2)):
         return v1 == v2
     case (.ref(let r1, let ctx1), .ref(let r2, let ctx2)):
-        return JVM.sharedJVM.isSameObject(ctx1.engine.jobj, ctx2.engine.jobj) == true && JVM.sharedJVM.isSameObject(r1.jobj, r2.jobj) == true ? true : false
+        return (try? JVM.sharedJVM)?.isSameObject(ctx1.engine.jobj, ctx2.engine.jobj) == true && (try? JVM.sharedJVM)?.isSameObject(r1.jobj, r2.jobj) == true ? true : false
     default:
         return false
     }
@@ -353,14 +353,15 @@ public extension JSum {
     /// .Num->java.lang.Double
     /// .Arr->java.util.List
     /// .Obj->java.util.Map
-    func toKanji(_ vm: JVM = JVM.sharedJVM) throws -> java$lang$Object? {
+    func toKanji(_ vm: JVM? = nil) throws -> java$lang$Object? {
+        let vm = try vm ?? JVM.sharedJVM
         switch self {
         case .nul:
             return nil
         case .num(let n):
             return try java$lang$Double.valueOf(n) ?? java$lang$Double(n)
         case .str(let s):
-            return s.javaString
+            return try s.javaString
         case .bol(let b):
             return try java$lang$Boolean.valueOf(b ? true : false) ?? java$lang$Boolean(b ? true : false)
         case .arr(let a):
@@ -368,9 +369,9 @@ public extension JSum {
             let jarr = try java$util$Arrays.asList(karr)
             return jarr as? java$lang$Object
         case .obj(let o):
-            let obj = try java$util$LinkedHashMap()
+            let obj = try java$util$HashMap()
             for (k, v) in o {
-                let kk = k.javaString
+                let kk = try k.javaString
                 let kv = try v.toKanji(vm)
                 _ = try obj.put(kk, kv)
             }

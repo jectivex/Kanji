@@ -38,7 +38,7 @@ extension JVM {
 
 class KanjiVMTests: XCTestCase {
     override func setUp() {
-        assert(JVM.sharedJVM != nil)
+        assert(try! JVM.sharedJVM != nil)
     }
 
     func testStringBridging() {
