@@ -22,6 +22,7 @@ class KanjiGenTests: XCTestCase {
         // see AndroidLib.knj for class list and generation info
         let classes = try String(contentsOf: Bundle.module.url(forResource: "AndroidLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
         let jar = (((#file as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent + "/Sources/AndroidLib/Resources/" + "android-4.1.1.4.jar"
+        XCTAssertTrue(FileManager.default.isReadableFile(atPath: jar), "no file at: \(jar)")
         let packages = try gencode(classes, classpath: [jar])
         print("packages:", packages.keys.sorted())
         XCTAssertNotNil(packages["android"])
