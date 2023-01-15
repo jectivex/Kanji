@@ -1,5 +1,0 @@
-module JNI {
-    header "jni.h"
-    header "jni_md.h"
-    export *
-}

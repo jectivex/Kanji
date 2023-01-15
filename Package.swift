@@ -23,7 +23,7 @@ let package = Package(
         .package(url: "https://github.com/marcprux/BricBrac", from: "4.0.0"),
     ],
     targets: [
-        .systemLibrary(name: "JNI"),
+        .target(name: "JNI", linkerSettings: [ .linkedLibrary("z") ]),
         .target(name: "KanjiVM", dependencies: ["JNI"], resources: [.process("Resources")]),
         .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
         .target(name: "KanjiLib", dependencies: ["JavaLib"], resources: [.process("Resources")]),
