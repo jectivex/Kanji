@@ -10,19 +10,29 @@ import XCTest
 import KanjiVM
 
 class KanjiGenTests: XCTestCase {
-    func XXXtestJavaLibGeneration() throws {
+    func testJavaLibGeneration() throws {
         // see JavaLib.knj for class list and generation info
         let classes = try String(contentsOf: Bundle.module.url(forResource: "JavaLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
-        try gencode(classes, classpath: [])
+        let packages = try gencode(classes, classpath: [])
+        XCTAssertNotNil(packages["java.lang"])
+        XCTAssertNotNil(packages["java.sql"])
     }
 
-    func XXXtestAndroidLibGeneration() throws {
+    func testAndroidLibGeneration() throws {
         // see AndroidLib.knj for class list and generation info
         let classes = try String(contentsOf: Bundle.module.url(forResource: "AndroidLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
-        try gencode(classes, classpath: ["/Users/marc/Desktop/android-4.1.1.4.jar"])
+        let jar = (((#file as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent + "/Sources/AndroidLib/Resources/" + "android-4.1.1.4.jar"
+        let packages = try gencode(classes, classpath: [jar])
+        print("packages:", packages.keys.sorted())
+        XCTAssertNotNil(packages["android"])
+        XCTAssertNotNil(packages["android.app"])
+        XCTAssertNotNil(packages["android.database.sqlite"])
+        XCTAssertNotNil(packages["android.widget"])
     }
 
-    func gencode(_ classes: [String], classpath: [String]? = nil) throws {
+    /// Generates Java stubs for the given classes with the specified classpath.
+    /// - Returns: a map of the source locations to the contents of the generated classes
+    func gencode(_ classes: [String], classpath: [String]? = nil) throws -> [String: String] {
         // de-dupe classes but maintain specified order
         let uniqueClasses = classes.reduce([], { arr, e in arr.contains(e) ? arr : (arr + [e]) })
 
@@ -47,6 +57,7 @@ class KanjiGenTests: XCTestCase {
         try FileManager.default.createDirectory(atPath: tmpdir, withIntermediateDirectories: true)
         print("Writing swift to:", tmpdir)
         try compilePackages(packages, dir: tmpdir)
+        return packages
     }
 
     func compilePackages(_ packages: [String : String], dir: String) throws {

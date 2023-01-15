@@ -50,7 +50,7 @@ jobs:
         run: swift test --configuration release --parallel
 
   api-doc:
-    #if: false
+    if: false
     runs-on: macos-12
     timeout-minutes: 20
     steps:
@@ -64,7 +64,7 @@ jobs:
           # insert the docc dependency
           sed -I "" 's;^    dependencies: \[;    dependencies: [ .package(name: "swift-docc-plugin", url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"), ;1' Package.swift
 
-          for module in KanjiVM JavaLib KanjiLib KanjiScript KotlinKanji; do
+          for module in KanjiVM KanjiLib KanjiScript KotlinKanji JavaLib AndroidLib; do
             echo "Building documentation for module: ${module}"
             swift package --allow-writing-to-directory docs \
               generate-documentation --target ${module} \

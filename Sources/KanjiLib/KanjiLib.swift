@@ -13,10 +13,15 @@ import FoundationNetworking
 #endif
 
 public extension JVM {
-//    /// Attaches the system class loader as the current thread's context class loader if it is not already set
-//    func initializeThreadLoader() throws {
-//        let _ = try withContextLoader()
-//    }
+    /// Executes the block by first setting the current classloader to the given jars, appending to any existing URLClassLoader in the process
+    func withClassLoader<T>(jars: [URL], block: () throws -> T) throws -> T {
+        let prevcl = try java$lang$Thread.currentThread()?.getContextClassLoader()
+        defer { _ = try? java$lang$Thread.currentThread()?.setContextClassLoader(prevcl) }
+
+        let loader = try java$net$URLClassLoader.fromURLs(jars, parent: prevcl)
+        try java$lang$Thread.currentThread()?.setContextClassLoader(loader)
+        return try block()
+    }
 
     /// Attaches the system class loader as the current thread's context class loader if it is not already set
     func withContextLoader(_ loader: @escaping () throws -> (java$lang$ClassLoader?) = { try java$lang$ClassLoader.getSystemClassLoader() }) throws -> JVM {
