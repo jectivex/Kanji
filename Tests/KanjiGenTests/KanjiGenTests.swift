@@ -10,17 +10,23 @@ import XCTest
 import KanjiVM
 
 class KanjiGenTests: XCTestCase {
-    func testGeneration() throws {
+    func testJavaLibGeneration() throws {
         // see JavaLib.knj for class list and generation info
         let classes = try String(contentsOf: Bundle.module.url(forResource: "JavaLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
-        try gencode(classes)
+        try gencode(classes, classpath: [])
     }
 
-    func gencode(_ classes: [String]) throws {
+    func testAndroidLibGeneration() throws {
+        // see AndroidLib.knj for class list and generation info
+        let classes = try String(contentsOf: Bundle.module.url(forResource: "AndroidLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
+        try gencode(classes, classpath: ["/Users/marc/Desktop/android-4.1.1.4.jar"])
+    }
+
+    func gencode(_ classes: [String], classpath: [String]? = nil) throws {
         // de-dupe classes but maintain specified order
         let uniqueClasses = classes.reduce([], { arr, e in arr.contains(e) ? arr : (arr + [e]) })
 
-        let disassembly = try KanjiGen.launchDisassembler(uniqueClasses)
+        let disassembly = try KanjiGen.launchDisassembler(uniqueClasses, classpath: classpath)
 //        let code = try KanjiGen.generateWrappers(disassembly)
 //        try compile(code, name: file, dir: ((#file as NSString).stringByDeletingLastPathComponent as NSString).stringByAppendingPathComponent("../JavaLib/"))
 
@@ -39,6 +45,7 @@ class KanjiGenTests: XCTestCase {
 
         let tmpdir = "/tmp/" + UUID().uuidString
         try FileManager.default.createDirectory(atPath: tmpdir, withIntermediateDirectories: true)
+        print("Writing swift to:", tmpdir)
         try compilePackages(packages, dir: tmpdir)
     }
 

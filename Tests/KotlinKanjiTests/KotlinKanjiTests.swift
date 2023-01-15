@@ -57,7 +57,7 @@ class KotlinKanjiTests: XCTestCase {
         val data = Project("kotlinx.serialization", "Kotlin")
         println(format.encodeToString(data))
         """) // .jsum()
-        //XCTAssertEqual([2, 3, 4], r1)
+        XCTAssertEqual(nil, result)
     }
 
     func testScriptRoundTrip() throws {
@@ -75,7 +75,7 @@ class KotlinKanjiTests: XCTestCase {
         let ctx = try KotlinContext()
 
         // TODO: was working on Nashorn, need to figure out correct signature in Kotlin
-        
+
         // _ = try ctx.eval("function callback(func, value) { func(value); }") // JS
         _ = try ctx.eval("fun callback(func: (Any) -> Void, value: Any) { func(value) }")
 

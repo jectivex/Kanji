@@ -1349,22 +1349,31 @@ public enum KanjiGen {
     }
 
     /// Launches javap and returns the output java type disassembly
-    public static func launchDisassembler(_ types: [String]) throws -> String {
+    public static func launchDisassembler(_ types: [String], classpath: [String]? = nil) throws -> String {
         // TODO: when the list of types is too long, launch it multiple times and concatinate the results
 
         let task = Process() // .launchedTaskWithLaunchPath("/usr/bin/javap", arguments: ["-p"] + types)
 
         #if os(Linux)
         task.launchPath = "/usr/bin/env"
-        task.arguments = ["javap", "-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
+        task.arguments = ["javap"]
         #else
         task.launchPath = "/usr/bin/javap"
-        task.arguments = ["-s", "-public"] + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
+        task.arguments = []
         #endif
+
+        // add in the classpath
+        if let classpath = classpath, !classpath.isEmpty {
+            task.arguments = ["-cp", classpath.joined(separator: ":")] + (task.arguments ?? [])
+        }
+
+        task.arguments = (task.arguments ?? [])
+            + ["-s", "-public"]
+            + (!types.contains("java.lang.Object") ? ["java.lang.Object"] : []) + types
+
 
         // we always include java.lang.Object even if we might skip the generation
         if !types.contains("java.lang.Object") {
-
         }
 
         let pipe = Pipe()
