@@ -9,6 +9,7 @@ import XCTest
 import KanjiVM
 import KanjiLib
 import JavaLib
+import AndroidLib
 import KanjiScript
 
 class KanjiScriptTests: XCTestCase {
@@ -82,7 +83,10 @@ class KanjiScriptTests: XCTestCase {
         XCTAssertEqual(retval, ["rel1": true, "rel2": true, "rel3": true])
     }
 
-
+    func testAndroid() throws {
+//        let path = try android$os$Environment.getDataDirectory()?.getPath()
+//        XCTAssertEqual("", try path?.toSwiftString())
+    }
 }
 
 func fibN(_ num: Int) -> Int { return num > 1 ? fibN(num - 1) + fibN(num - 2) : num }

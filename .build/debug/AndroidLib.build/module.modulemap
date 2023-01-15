@@ -1,0 +1,4 @@
+module AndroidLib {
+    header "/Users/runner/work/Kanji/Kanji/.build/x86_64-apple-macosx/debug/AndroidLib.build/AndroidLib-Swift.h"
+    requires objc
+}

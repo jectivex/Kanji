@@ -3103,14 +3103,14 @@ public extension jobject {
 }
 
 public extension Sequence where Self.Iterator.Element : JPrimitive {
-    func arrayToJArray() throws -> Self.Iterator.Element.ArrayType? {
-        try Self.Iterator.Element.createArray(JVM.sharedJVM.env)(Array(self))
+    func arrayToJArray() -> Self.Iterator.Element.ArrayType? {
+        try? Self.Iterator.Element.createArray(JVM.sharedJVM.env)(Array(self))
     }
 }
 
 public extension Sequence where Self.Iterator.Element : JavaObject {
-    func arrayToJArray() throws -> jobjectArray? {
-        try Self.Iterator.Element.createArray(JVM.sharedJVM)(Array(self).map({ $0 as Self.Iterator.Element? }))
+    func arrayToJArray() -> jobjectArray? {
+        try? Self.Iterator.Element.createArray(JVM.sharedJVM)(Array(self).map({ $0 as Self.Iterator.Element? }))
     }
 }
 
