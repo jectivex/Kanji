@@ -469,14 +469,18 @@ public final class JVM {
 
 public protocol JInvocable {
     /// The class this invokable represents; can be nil if invocation methods will require a class paramete
-    static var javaClass: jclass! { get }
+    static var javaClass: jclass { get throws }
 
     /// The Java Virtual Machine associated with this nistance
     static var jvm: JVM { get }
 }
 
 extension JVM : JInvocable {
-    public static var javaClass: jclass! { return nil }
+    public static var javaClass: jclass {
+        get throws {
+            throw KanjiErrors.general("jvm has no javaClass")
+        }
+    }
     public static var jvm: JVM { get { try! sharedJVM } }
 }
 
@@ -2842,7 +2846,7 @@ public protocol JavaObject: AnyObject, JSig, JRef, JInvocable {
     /// The JNI name for this class
     static func jniName() -> String
 
-    static var javaClass: jclass! { get }
+    static var javaClass: jclass { get throws }
 
     /// Instantiate this object by wrapping a pre-existing JNI jobject; if the JNI object is nil, the initializer will fail
     init?(reference: jobject?)
@@ -2856,15 +2860,15 @@ public extension JavaObject {
     var jcls: jclass { get throws { try JVM.sharedJVM.getObjectClass(jobj)! } }
 
     //    @available(*, deprecated=1.0, message="Ignores exception, replace this method")
-    static var javaClass: jclass! {
-        get {
-            //        defer { JVM.sharedJVM.exceptionClear() }
+    static var javaClass: jclass {
+        get throws {
+            // defer { JVM.sharedJVM.exceptionClear() }
             let cname = javaClassName
-            let cls = try? JVM.sharedJVM.findClass(cname)
-            if cls == nil {
-                warn("could not find class for «\(cname)»")
+            let cls = try JVM.sharedJVM.findClass(cname)
+            guard let cls = cls else {
+                throw KanjiErrors.notFound(cname)
             }
-            return cls!
+            return cls
         }
     }
 
@@ -3065,7 +3069,7 @@ extension JVM {
 public extension JavaObject {
     static func createArray(_ jvm: JVM) -> (_ elements: [Self?]) throws -> jobjectArray? {
         { elements in
-            if let jarr = jvm.newObjectArray(jsize(elements.count), clazz: javaClass, init: nil) {
+            if let jarr = try jvm.newObjectArray(jsize(elements.count), clazz: javaClass, init: nil) {
                 for (i, e) in elements.enumerated() {
                     jvm.setObjectArrayElement(jarr, index: jsize(i), val: e?.jobj ?? nil)
                 }
@@ -3143,7 +3147,7 @@ public extension Sequence where Iterator.Element: JavaObject {
 
 public extension Collection where Iterator.Element: JavaObject, Index == Int {
     func toJArray(_ jvm: JVM) throws -> jobjectArray? {
-        if let array = jvm.newObjectArray(jsize(count), clazz: Iterator.Element.javaClass, init: nil) {
+        if let array = try jvm.newObjectArray(jsize(count), clazz: Iterator.Element.javaClass, init: nil) {
             for (i, x) in self.enumerated() {
                 jvm.setObjectArrayElement(array, index: jsize(i), val: x.jobj)
             }

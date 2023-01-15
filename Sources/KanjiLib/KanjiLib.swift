@@ -144,7 +144,7 @@ extension java$lang$Object : CustomStringConvertible {
 public extension java$lang$Object {
     /// The equivalent of the `.class` java field, but capitalized to not conflict with the Swift keyword
     static var CLASS: java$lang$Class? {
-        return java$lang$Class(reference: javaClass)
+        java$lang$Class(reference: try! javaClass)
     }
 }
 
