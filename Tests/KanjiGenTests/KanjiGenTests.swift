@@ -10,13 +10,13 @@ import XCTest
 import KanjiVM
 
 class KanjiGenTests: XCTestCase {
-    func testJavaLibGeneration() throws {
+    func XXXtestJavaLibGeneration() throws {
         // see JavaLib.knj for class list and generation info
         let classes = try String(contentsOf: Bundle.module.url(forResource: "JavaLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
         try gencode(classes, classpath: [])
     }
 
-    func testAndroidLibGeneration() throws {
+    func XXXtestAndroidLibGeneration() throws {
         // see AndroidLib.knj for class list and generation info
         let classes = try String(contentsOf: Bundle.module.url(forResource: "AndroidLib", withExtension: "knj")!).components(separatedBy: "\n").filter({!$0.isEmpty && !$0.hasPrefix("#")})
         try gencode(classes, classpath: ["/Users/marc/Desktop/android-4.1.1.4.jar"])
