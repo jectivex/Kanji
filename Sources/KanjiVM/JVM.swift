@@ -418,6 +418,7 @@ public final class JVM {
             URL(fileURLWithPath: "jre/lib/server/libjvm.\(ext)", relativeTo: javaHome),
             URL(fileURLWithPath: "lib/server/libjvm.\(ext)", relativeTo: javaHome),
             URL(fileURLWithPath: "lib/libjvm.\(ext)", relativeTo: javaHome),
+            URL(fileURLWithPath: "libexec/openjdk.jdk/Contents/Home/lib/server/libjvm.\(ext)", relativeTo: javaHome), // Homebrew
         ]
 
         guard let lib = libs.first(where: { FileManager.default.isReadableFile(atPath: $0.path) }) else {
