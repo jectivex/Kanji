@@ -11,7 +11,7 @@ See the API documentation:
   - KanjiScript: https://www.jective.org/Kanji/documentation/kanjiscript/
   - KotlinKanji: https://www.jective.org/Kanji/documentation/kotlinkanji/
 
-To run tests on macOS 12, install a JDK (e.g., with `brew install openjdk@11`) and ensure that `$JAVA_HOME` exists, then run:
+To run tests on macOS, install a JDK (e.g., with `brew install openjdk`) and ensure that `$JAVA_HOME` exists, then run:
 
 ```shell
 swift test -Xlinker -L${JAVA_HOME}/lib/jli -Xlinker -ljli

@@ -5,6 +5,22 @@ import JavaLib
 import AndroidLib
 
 class AndroidLibTests: XCTestCase {
+    func testAndroidSQLite() throws {
+        let dbpath = "/tmp/test.db"
+        let android = try XCTUnwrap(Bundle.androidLibJar)
+        JVM.sharedJVMCreator = { try JVM(classpath: [android.path]) }
+        try JVM.sharedJVM.withClassLoader(jars: [android]) {
+            let db: android$database$sqlite$SQLiteDatabase = try XCTUnwrap(android$database$sqlite$SQLiteDatabase.openOrCreateDatabase(java$lang$String(dbpath), nil, nil))
+            defer { try? db.close() }
+            let cursor: android$database$Cursor = try XCTUnwrap(db.rawQuery(java$lang$String("select * from android_metadata"), nil))
+            defer { try? cursor.close() }
+            while try cursor.moveToNext() == true {
+                let value = try XCTUnwrap(cursor.getString(1))
+                XCTAssertEqual("en_US", try value.toSwiftString())
+            }
+        }
+    }
+
     func testAndroid() throws {
         let android = try XCTUnwrap(Bundle.androidLibJar)
 

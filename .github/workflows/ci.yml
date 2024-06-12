@@ -22,7 +22,7 @@ jobs:
           echo "JAVA_HOME: ${JAVA_HOME}"
           find "${JAVA_HOME}" -type f
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Test (Debug)
         run: swift test --configuration debug
@@ -31,15 +31,14 @@ jobs:
         run: swift test --configuration release --parallel
 
   macos:
-    runs-on: macos-12
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Check JVM
         run: |
           which java
           java -version
-          # /Users/runner/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.345-1/x64/Contents/Home
           echo "JAVA_HOME: ${JAVA_HOME}"
           find "${JAVA_HOME}" -type f
 
@@ -48,36 +47,4 @@ jobs:
 
       - name: Test (Release)
         run: swift test --configuration release --parallel
-
-  api-doc:
-    if: false
-    runs-on: macos-12
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build documentation
-        run: |
-          swift -version
-          export SWIFTPM_ENABLE_COMMAND_PLUGINS=1
-          export DOCC_JSON_PRETTYPRINT="YES"
-
-          # insert the docc dependency
-          sed -I "" 's;^    dependencies: \[;    dependencies: [ .package(name: "swift-docc-plugin", url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"), ;1' Package.swift
-
-          for module in KanjiVM KanjiLib KanjiScript KotlinKanji JavaLib AndroidLib; do
-            echo "Building documentation for module: ${module}"
-            swift package --allow-writing-to-directory docs \
-              generate-documentation --target ${module} \
-              --disable-indexing \
-              --transform-for-static-hosting \
-              --hosting-base-path ${module} \
-              --output-path docs
-          done
-
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: '.'
 
