@@ -221,7 +221,7 @@ public final class JVM {
         return getName
     }()
 
-    func GetEnv() -> JNIEnvPointer {
+    public func GetEnv() -> JNIEnvPointer {
         var tenv: UnsafeMutableRawPointer?
 
         if self.jvm.pointee?.pointee.GetEnv(self.jvm, &tenv, jint(JVM.jniversion) ) != jint(JNI_OK) {
@@ -437,20 +437,40 @@ public final class JVM {
         typealias CreateJavaVM = @convention(c) (_ pvm: UnsafeMutablePointer<JavaVMPtr?>, _ penv: UnsafeMutablePointer<UnsafeMutableRawPointer?>, _ args: UnsafeMutableRawPointer) -> jint
 
         let createJavaVM = dlsym(dylib, "JNI_CreateJavaVM").map({ unsafeBitCast($0, to: (CreateJavaVM).self) })
+
         guard let createJavaVM = createJavaVM else {
             throw KanjiErrors.general("Unable to dlsym JNI_CreateJavaVM")
         }
 
-        let success: jint = createJavaVM(&pvm, &penv, &jargs)
-        if success != JNI_OK {
-            throw KanjiErrors.system
+        typealias GetCreatedJavaVMs = @convention(c) (_ pvm: UnsafeMutablePointer<JavaVMPtr?>, _ count: Int32, _ num: UnsafeMutablePointer<Int32>) -> jint
+
+        let getCreatedJavaVMs = dlsym(dylib, "JNI_GetCreatedJavaVMs").map({ unsafeBitCast($0, to: (GetCreatedJavaVMs).self) })
+
+        guard let getCreatedJavaVMs = getCreatedJavaVMs else {
+            throw KanjiErrors.general("Unable to dlsym JNI_GetCreatedJavaVMs")
         }
 
-        guard let vm = pvm else {
-            throw KanjiErrors.general("No vm created")
-        }
+        // check to see if we are already running inside of a VM; if so, return the existing VM
+        var runningVM: JavaVMPtr?
+        var runningCount: Int32 = 0
+        let existing: jint = getCreatedJavaVMs(&runningVM, 1, &runningCount)
 
-        self.jvm = vm
+        if existing == JNI_OK, let runningVM = runningVM {
+            log("attaching to existing Java VM: \(runningVM)")
+            self.jvm = runningVM
+        } else {
+            let success: jint = createJavaVM(&pvm, &penv, &jargs)
+            log("launching new Java VM: \(success)")
+            if success != JNI_OK {
+                throw KanjiErrors.general("JNI_CreateJavaVM failed with code: \(success)")
+            }
+
+            guard let vm = pvm else {
+                throw KanjiErrors.general("Could not create VM")
+            }
+
+            self.jvm = vm
+        }
 
         let env = self.GetEnv()
         self.envCache[pthread_self()] = env
@@ -458,7 +478,7 @@ public final class JVM {
 
         let end = CFAbsoluteTimeGetCurrent()
 
-        log("created JVM version \(self.api.GetVersion(env)) with options \(opts) in \(end-start)sec classpath=\(classpath ?? [])", file: file, line: line, function: function)
+        log(((existing == JNI_OK) ? "attached to" : "created") + " JVM version \(self.api.GetVersion(env)) with options \(opts) in \(end-start)sec classpath=\(classpath ?? [])", file: file, line: line, function: function)
     }
 
     //    deinit {
@@ -2990,6 +3010,11 @@ extension JVM {
         return String(utf16CodeUnits: ptr, count: Int(len))
     }
 
+    @inlinable public func toCStringPointer(_ jstr: jstring) -> UnsafePointer<Int8>? {
+        var isCopy: jboolean = false
+        return getStringUTFChars(jstr, isCopy: &isCopy)
+    }
+
     /// Converts the given Swift string to a JNI jstring
     @inlinable public func toJString(_ string: String) -> jstring? {
         // in theory this should be the fastest way, because we might be able to share string pointers without copying
@@ -3202,7 +3227,7 @@ import OSLog
 @inlinable public func dbg(level: UInt8 = 0, _ arg1: @autoclosure () -> Any? = nil, _ arg2: @autoclosure () -> Any? = nil, _ arg3: @autoclosure () -> Any? = nil, _ arg4: @autoclosure () -> Any? = nil, _ arg5: @autoclosure () -> Any? = nil, _ arg6: @autoclosure () -> Any? = nil, _ arg7: @autoclosure () -> Any? = nil, _ arg8: @autoclosure () -> Any? = nil, _ arg9: @autoclosure () -> Any? = nil, _ arg10: @autoclosure () -> Any? = nil, _ arg11: @autoclosure () -> Any? = nil, _ arg12: @autoclosure () -> Any? = nil, functionName: StaticString = #function, fileName: StaticString = #file, lineNumber: Int = #line) {
     //#if DEBUG
     // log .debug level only in debug mode
-    let logit: Bool = assertionsEnabled || (level > 1)
+    let logit: Bool = assertionsEnabled || (level > 0)
     if logit {
         let items = [arg1(), arg2(), arg3(), arg4(), arg5(), arg6(), arg7(), arg8(), arg9(), arg10(), arg11(), arg12()]
         let msg = items.compactMap({ $0 }).map(String.init(describing:)).joined(separator: " ")
@@ -3216,11 +3241,11 @@ import OSLog
             ?? fileName.description
 
         let message = "\(filePath):\(lineNumber) \(funcName): \(msg)"
-        #if canImport(OSLog)
-        os_log(level == 0 ? .debug : level == 1 ? .default : level == 2 ? .info : level == 3 ? .error : .fault, "%{public}@", message)
-        #else
+//        #if canImport(OSLog)
+//        os_log(level == 0 ? .debug : level == 1 ? .default : level == 2 ? .info : level == 3 ? .error : .fault, "%{public}@", message)
+//        #else
         print(level == 0 ? "debug" : level == 1 ? "default" : level == 2 ? "info" : level == 3 ? "error" : "fault", message) // , to: &StdioOutputStream.stderr)
-        #endif
+//        #endif
     }
     //#endif
 }

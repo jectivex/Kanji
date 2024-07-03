@@ -16,11 +16,11 @@ let package = Package(
         .library(name: "JavaLib", targets: ["JavaLib"]),
         .library(name: "AndroidLib", targets: ["AndroidLib"]),
         .library(name: "KanjiGen", targets: ["KanjiGen"]),
-        .library(name: "KanjiScript", targets: ["KanjiScript"]),
-        .library(name: "KotlinKanji", targets: ["KotlinKanji"]),
+        //.library(name: "KanjiScript", targets: ["KanjiScript"]),
+        //.library(name: "KotlinKanji", targets: ["KotlinKanji"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/marcprux/BricBrac", from: "4.0.0"),
+        //.package(url: "https://github.com/marcprux/BricBrac", from: "4.0.0"),
     ],
     targets: [
         .target(name: "JNI", linkerSettings: [ .linkedLibrary("z") ]),
@@ -34,9 +34,9 @@ let package = Package(
         .testTarget(name: "AndroidLibTests", dependencies: ["AndroidLib", "KanjiLib"], resources: [.process("Resources")]),
         .target(name: "KanjiGen", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
         .testTarget(name: "KanjiGenTests", dependencies: ["KanjiGen"], resources: [.process("Resources")]),
-        .target(name: "KanjiScript", dependencies: ["KanjiLib", .product(name: "JSum", package: "BricBrac")], resources: [.process("Resources")]),
-        .testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript", "AndroidLib"], resources: [.process("Resources")]),
-        .target(name: "KotlinKanji", dependencies: ["KanjiScript"], resources: [.process("Resources"), .copy("libraries")]),
-        .testTarget(name: "KotlinKanjiTests", dependencies: ["KotlinKanji"], resources: [.process("Resources")]),
+        //.target(name: "KanjiScript", dependencies: ["KanjiLib", .product(name: "JSum", package: "BricBrac")], resources: [.process("Resources")]),
+        //.testTarget(name: "KanjiScriptTests", dependencies: ["KanjiScript", "AndroidLib"], resources: [.process("Resources")]),
+        //.target(name: "KotlinKanji", dependencies: ["KanjiScript"], resources: [.process("Resources"), .copy("libraries")]),
+        //.testTarget(name: "KotlinKanjiTests", dependencies: ["KotlinKanji"], resources: [.process("Resources")]),
     ]
 )

@@ -185,6 +185,10 @@ extension java$lang$String {
     public func toSwiftString() throws -> String {
         try JVM.sharedJVM.fromJavaString(jobj) ?? ""
     }
+
+    public func toCString() throws -> UnsafePointer<Int8>? {
+        try JVM.sharedJVM.toCStringPointer(jobj)
+    }
 }
 
 public extension String {
