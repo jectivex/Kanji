@@ -20,7 +20,6 @@ let package = Package(
         //.library(name: "KotlinKanji", targets: ["KotlinKanji"]),
     ],
     dependencies: [
-        //.package(url: "https://github.com/marcprux/BricBrac", from: "4.0.0"),
     ],
     targets: [
         .target(name: "KJNI", linkerSettings: [ .linkedLibrary("z") ]),
