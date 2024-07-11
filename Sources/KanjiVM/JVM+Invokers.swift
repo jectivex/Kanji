@@ -4,7 +4,7 @@
 //
 //  Created by Marc Prud'hommeaux on 11/7/15.
 //
-import JNI
+import KJNI
 
 public extension JInvocable {
 

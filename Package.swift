@@ -10,7 +10,7 @@ let package = Package(
         .macOS(.v12), .iOS(.v15), .tvOS(.v15), .watchOS(.v8)
     ],
     products: [
-        .library(name: "JNI", targets: ["JNI"]),
+        .library(name: "KJNI", targets: ["KJNI"]),
         .library(name: "KanjiVM", targets: ["KanjiVM"]),
         .library(name: "KanjiLib", targets: ["KanjiLib"]),
         .library(name: "JavaLib", targets: ["JavaLib"]),
@@ -23,8 +23,8 @@ let package = Package(
         //.package(url: "https://github.com/marcprux/BricBrac", from: "4.0.0"),
     ],
     targets: [
-        .target(name: "JNI", linkerSettings: [ .linkedLibrary("z") ]),
-        .target(name: "KanjiVM", dependencies: ["JNI"], resources: [.process("Resources")]),
+        .target(name: "KJNI", linkerSettings: [ .linkedLibrary("z") ]),
+        .target(name: "KanjiVM", dependencies: ["KJNI"], resources: [.process("Resources")]),
         .testTarget(name: "KanjiVMTests", dependencies: ["KanjiVM"], resources: [.process("Resources")]),
         .target(name: "KanjiLib", dependencies: ["JavaLib"], resources: [.process("Resources")]),
         .testTarget(name: "KanjiLibTests", dependencies: ["KanjiLib"], resources: [.process("Resources")]),
