@@ -708,81 +708,81 @@ extension JVM {
         return api.GetMethodID(env, clazz, name, sig)
     }
 
-    public func callObjectMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jobject? {
-        return api.CallObjectMethodV(env, obj, methodID, args)
-    }
+//    public func callObjectMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jobject? {
+//        return api.CallObjectMethodV(env, obj, methodID, args)
+//    }
 
     public func callObjectMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jobject? {
         return api.CallObjectMethodA(env, obj, methodID, args)
     }
 
-    public func callBooleanMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jboolean {
-        return api.CallBooleanMethodV(env, obj, methodID, args)
-    }
+//    public func callBooleanMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jboolean {
+//        return api.CallBooleanMethodV(env, obj, methodID, args)
+//    }
 
     public func callBooleanMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jboolean {
         return api.CallBooleanMethodA(env, obj, methodID, args)
     }
 
-    public func callByteMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jbyte {
-        return api.CallByteMethodV(env, obj, methodID, args)
-    }
+//    public func callByteMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jbyte {
+//        return api.CallByteMethodV(env, obj, methodID, args)
+//    }
 
     public func callByteMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jbyte {
         return api.CallByteMethodA(env, obj, methodID, args)
     }
 
-    public func callCharMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jchar {
-        return api.CallCharMethodV(env, obj, methodID, args)
-    }
+//    public func callCharMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jchar {
+//        return api.CallCharMethodV(env, obj, methodID, args)
+//    }
 
     public func callCharMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jchar {
         return api.CallCharMethodA(env, obj, methodID, args)
     }
 
-    public func callShortMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jshort {
-        return api.CallShortMethodV(env, obj, methodID, args)
-    }
+//    public func callShortMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jshort {
+//        return api.CallShortMethodV(env, obj, methodID, args)
+//    }
 
     public func callShortMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jshort {
         return api.CallShortMethodA(env, obj, methodID, args)
     }
 
-    public func callIntMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jint {
-        return api.CallIntMethodV(env, obj, methodID, args)
-    }
+//    public func callIntMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jint {
+//        return api.CallIntMethodV(env, obj, methodID, args)
+//    }
 
     public func callIntMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jint {
         return api.CallIntMethodA(env, obj, methodID, args)
     }
 
-    public func callLongMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jlong {
-        return api.CallLongMethodV(env, obj, methodID, args)
-    }
+//    public func callLongMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jlong {
+//        return api.CallLongMethodV(env, obj, methodID, args)
+//    }
 
     public func callLongMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jlong {
         return api.CallLongMethodA(env, obj, methodID, args)
     }
 
-    public func callFloatMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jfloat {
-        return api.CallFloatMethodV(env, obj, methodID, args)
-    }
+//    public func callFloatMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jfloat {
+//        return api.CallFloatMethodV(env, obj, methodID, args)
+//    }
 
     public func callFloatMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jfloat {
         return api.CallFloatMethodA(env, obj, methodID, args)
     }
 
-    public func callDoubleMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jdouble {
-        return api.CallDoubleMethodV(env, obj, methodID, args)
-    }
+//    public func callDoubleMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> jdouble {
+//        return api.CallDoubleMethodV(env, obj, methodID, args)
+//    }
 
     public func callDoubleMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> jdouble {
         return api.CallDoubleMethodA(env, obj, methodID, args)
     }
 
-    public func callVoidMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> Void {
-        api.CallVoidMethodV(env, obj, methodID, args)
-    }
+//    public func callVoidMethodV(_ obj: jobject?, methodID: jmethodID, args: CVaListPointer) -> Void {
+//        api.CallVoidMethodV(env, obj, methodID, args)
+//    }
 
     public func callVoidMethodA(_ obj: jobject?, methodID: jmethodID, args: jvaluelist) -> Void {
         api.CallVoidMethodA(env, obj, methodID, args)
@@ -790,81 +790,81 @@ extension JVM {
 
 
 
-    public func callNonvirtualObjectMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jobject? {
-        return api.CallNonvirtualObjectMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualObjectMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jobject? {
+//        return api.CallNonvirtualObjectMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualObjectMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jobject? {
         return api.CallNonvirtualObjectMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualBooleanMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jboolean {
-        return api.CallNonvirtualBooleanMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualBooleanMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jboolean {
+//        return api.CallNonvirtualBooleanMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualBooleanMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jboolean {
         return api.CallNonvirtualBooleanMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualByteMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jbyte {
-        return api.CallNonvirtualByteMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualByteMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jbyte {
+//        return api.CallNonvirtualByteMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualByteMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jbyte {
         return api.CallNonvirtualByteMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualCharMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jchar {
-        return api.CallNonvirtualCharMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualCharMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jchar {
+//        return api.CallNonvirtualCharMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualCharMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jchar {
         return api.CallNonvirtualCharMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualShortMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jshort {
-        return api.CallNonvirtualShortMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualShortMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jshort {
+//        return api.CallNonvirtualShortMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualShortMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jshort {
         return api.CallNonvirtualShortMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualIntMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jint {
-        return api.CallNonvirtualIntMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualIntMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jint {
+//        return api.CallNonvirtualIntMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualIntMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jint {
         return api.CallNonvirtualIntMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualLongMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jlong {
-        return api.CallNonvirtualLongMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualLongMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jlong {
+//        return api.CallNonvirtualLongMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualLongMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jlong {
         return api.CallNonvirtualLongMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualFloatMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jfloat {
-        return api.CallNonvirtualFloatMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualFloatMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jfloat {
+//        return api.CallNonvirtualFloatMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualFloatMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jfloat {
         return api.CallNonvirtualFloatMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualDoubleMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jdouble {
-        return api.CallNonvirtualDoubleMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualDoubleMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jdouble {
+//        return api.CallNonvirtualDoubleMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualDoubleMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jdouble {
         return api.CallNonvirtualDoubleMethodA(env, obj, clazz, methodID, args)
     }
 
-    public func callNonvirtualVoidMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> Void {
-        api.CallNonvirtualVoidMethodV(env, obj, clazz, methodID, args)
-    }
+//    public func callNonvirtualVoidMethodV(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> Void {
+//        api.CallNonvirtualVoidMethodV(env, obj, clazz, methodID, args)
+//    }
 
     public func callNonvirtualVoidMethodA(_ obj: jobject?, clazz: jclass, methodID: jmethodID, args: jvaluelist) -> Void {
         api.CallNonvirtualVoidMethodA(env, obj, clazz, methodID, args)
@@ -956,81 +956,81 @@ extension JVM {
         return api.GetStaticMethodID(env, clazz, name, sig)
     }
 
-    public func callStaticObjectMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jobject? {
-        return api.CallStaticObjectMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticObjectMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jobject? {
+//        return api.CallStaticObjectMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticObjectMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jobject? {
         return api.CallStaticObjectMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticBooleanMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jboolean {
-        return api.CallStaticBooleanMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticBooleanMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jboolean {
+//        return api.CallStaticBooleanMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticBooleanMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jboolean {
         return api.CallStaticBooleanMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticByteMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jbyte {
-        return api.CallStaticByteMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticByteMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jbyte {
+//        return api.CallStaticByteMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticByteMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jbyte {
         return api.CallStaticByteMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticCharMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jchar {
-        return api.CallStaticCharMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticCharMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jchar {
+//        return api.CallStaticCharMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticCharMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jchar {
         return api.CallStaticCharMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticShortMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jshort {
-        return api.CallStaticShortMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticShortMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jshort {
+//        return api.CallStaticShortMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticShortMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jshort {
         return api.CallStaticShortMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticIntMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jint {
-        return api.CallStaticIntMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticIntMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jint {
+//        return api.CallStaticIntMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticIntMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jint {
         return api.CallStaticIntMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticLongMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jlong {
-        return api.CallStaticLongMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticLongMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jlong {
+//        return api.CallStaticLongMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticLongMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jlong {
         return api.CallStaticLongMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticFloatMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jfloat {
-        return api.CallStaticFloatMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticFloatMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jfloat {
+//        return api.CallStaticFloatMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticFloatMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jfloat {
         return api.CallStaticFloatMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticDoubleMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jdouble {
-        return api.CallStaticDoubleMethodV(env, clazz, methodID, args)
-    }
+//    public func callStaticDoubleMethodV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jdouble {
+//        return api.CallStaticDoubleMethodV(env, clazz, methodID, args)
+//    }
 
     public func callStaticDoubleMethodA(_ clazz: jclass, methodID: jmethodID, args: jvaluelist) -> jdouble {
         return api.CallStaticDoubleMethodA(env, clazz, methodID, args)
     }
 
-    public func callStaticVoidMethodV(_ cls: jclass, methodID: jmethodID, args: CVaListPointer) -> Void {
-        api.CallStaticVoidMethodV(env, cls, methodID, args)
-    }
+//    public func callStaticVoidMethodV(_ cls: jclass, methodID: jmethodID, args: CVaListPointer) -> Void {
+//        api.CallStaticVoidMethodV(env, cls, methodID, args)
+//    }
 
     public func callStaticVoidMethodA(_ cls: jclass, methodID: jmethodID, args: jvaluelist) -> Void {
         api.CallStaticVoidMethodA(env, cls, methodID, args)
