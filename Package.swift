@@ -10,14 +10,14 @@ let package = Package(
         .macOS(.v12), .iOS(.v15), .tvOS(.v15), .watchOS(.v8)
     ],
     products: [
-        .library(name: "KJNI", targets: ["KJNI"]),
-        .library(name: "KanjiVM", targets: ["KanjiVM"]),
-        .library(name: "KanjiLib", targets: ["KanjiLib"]),
-        .library(name: "JavaLib", targets: ["JavaLib"]),
-        .library(name: "AndroidLib", targets: ["AndroidLib"]),
-        .library(name: "KanjiGen", targets: ["KanjiGen"]),
-        //.library(name: "KanjiScript", targets: ["KanjiScript"]),
-        //.library(name: "KotlinKanji", targets: ["KotlinKanji"]),
+        .library(name: "KJNI", type: .dynamic, targets: ["KJNI"]),
+        .library(name: "KanjiVM", type: .dynamic, targets: ["KanjiVM"]),
+        .library(name: "KanjiLib", type: .dynamic, targets: ["KanjiLib"]),
+        .library(name: "JavaLib", type: .dynamic, targets: ["JavaLib"]),
+        .library(name: "AndroidLib", type: .dynamic, targets: ["AndroidLib"]),
+        .library(name: "KanjiGen", type: .dynamic, targets: ["KanjiGen"]),
+        //.library(name: "KanjiScript", type: .dynamic, targets: ["KanjiScript"]),
+        //.library(name: "KotlinKanji", type: .dynamic, targets: ["KotlinKanji"]),
     ],
     dependencies: [
     ],
