@@ -14,7 +14,7 @@ class AndroidLibTests: XCTestCase {
             defer { try? db.close() }
             let cursor: android$database$Cursor = try XCTUnwrap(db.rawQuery(java$lang$String("select * from android_metadata"), nil))
             defer { try? cursor.close() }
-            while try cursor.moveToNext() == true {
+            while try cursor.moveToNext() == 1 {
                 let value = try XCTUnwrap(cursor.getString(1))
                 XCTAssertEqual("en_US", try value.toSwiftString())
             }
@@ -44,7 +44,7 @@ class AndroidLibTests: XCTestCase {
         XCTAssertEqual(14, android$os$Build$VERSION_CODES.ICE_CREAM_SANDWICH)
         XCTAssertEqual(16, android$os$Build$VERSION_CODES.JELLY_BEAN)
 
-        XCTAssertEqual(true, try java$lang$Double(.nan).isNaN())
+        XCTAssertEqual(1, try java$lang$Double(.nan).isNaN())
         XCTAssertEqual(nil, try android$os$Build.DEVICE?.toSwiftString())
         XCTAssertEqual(nil, try android$os$Build.ID?.toSwiftString())
 
