@@ -125,11 +125,11 @@ class KanjiLibTests: XCTestCase {
             XCTAssertEqual(try props.name?.toSwiftString(), "foo")
             XCTAssertEqual(try props.value?.toSwiftString(), "bar")
 
-            XCTAssertEqual(props.required, false)
-            props.required = true
-            XCTAssertEqual(props.required, true)
-            props.required = false
-            XCTAssertEqual(props.required, false)
+            XCTAssertEqual(props.required, 0)
+            props.required = 1
+            XCTAssertEqual(props.required, 1)
+            props.required = 0
+            XCTAssertEqual(props.required, 0)
 
             props.name = try .init("FooBar")
             XCTAssertEqual(try props.name?.toSwiftString(), "FooBar")
@@ -232,7 +232,7 @@ class KanjiLibTests: XCTestCase {
 
                 // all instances are unequal
                 let equals: @convention(c) (UnsafePointer<JNIEnv>, jobject, jobject) -> (jboolean) = {
-                    try! JVM.sharedJVM.isSameObject($1, $2).boolValue ? false : true // the opposite
+                    try! JVM.sharedJVM.isSameObject($1, $2) == 1 ? 0 : 1 // the opposite
                 }
 
                 // toString always returns "abc"
@@ -249,8 +249,8 @@ class KanjiLibTests: XCTestCase {
                 XCTAssertEqual("MyKanjiClass", try subob.getClass()?.getName()?.toSwiftString())
                 XCTAssertEqual(123, subob.hashValue) // hashValue defers to hashCode()
                 XCTAssertEqual("abc", subob.description) // description defers to toString()
-                XCTAssertEqual(false, try? subob.equals(subob))
-                XCTAssertEqual(true, try? subob.equals("xxx".javaString)) // opposite of what you would expect
+                XCTAssertEqual(0, try? subob.equals(subob))
+                XCTAssertEqual(1, try? subob.equals("xxx".javaString)) // opposite of what you would expect
             }
 
 //            for address in 1...2 {
@@ -436,14 +436,14 @@ class KanjiLibTests: XCTestCase {
         do {
             let block = try java$util$function$Predicate$Impl.fromBlock({
                 let str = java$lang$String(reference: $2)
-                return try! str?.toSwiftString() == "fwehuifwe" ? true : false
+                return try! str?.toSwiftString() == "fwehuifwe" ? 1 : 0
             })
-            XCTAssertEqual(false, try? block.test("".javaString))
-            XCTAssertEqual(true, try? block.test("fwehuifwe".javaString))
+            XCTAssertEqual(0, try? block.test("".javaString))
+            XCTAssertEqual(1, try? block.test("fwehuifwe".javaString))
 
             // tests that the default implementations of `or` and `and` work
-            XCTAssertEqual(false, (try? block.or(block)?.or(block)?.test("".javaString)) ?? nil ?? nil)
-            XCTAssertEqual(true, (try? block.and(block)?.and(block)?.test("fwehuifwe".javaString)) ?? nil ?? nil)
+            XCTAssertEqual(0, (try? block.or(block)?.or(block)?.test("".javaString)) ?? nil ?? nil)
+            XCTAssertEqual(1, (try? block.and(block)?.and(block)?.test("fwehuifwe".javaString)) ?? nil ?? nil)
         }
 
         // BiPredicate<T,U>
@@ -452,10 +452,10 @@ class KanjiLibTests: XCTestCase {
             let block = try java$util$function$BiPredicate$Impl.fromBlock({
                 let str1 = java$lang$String(reference: $2)
                 let str2 = java$lang$String(reference: $3)
-                return try! str1?.toSwiftString() == "abc" && str2?.toSwiftString() == "xyz" ? true : false
+                return try! str1?.toSwiftString() == "abc" && str2?.toSwiftString() == "xyz" ? 1 : 0
             })
-            XCTAssertEqual(false, try? block.test("abc".javaString, "abc".javaString))
-            XCTAssertEqual(true, try? block.test("abc".javaString, "xyz".javaString))
+            XCTAssertEqual(0, try? block.test("abc".javaString, "abc".javaString))
+            XCTAssertEqual(1, try? block.test("abc".javaString, "xyz".javaString))
         }
 
         // BiConsumer<T,U>
@@ -491,9 +491,9 @@ class KanjiLibTests: XCTestCase {
         // Represents a supplier of boolean-valued results.
         do {
             let block = try java$util$function$BooleanSupplier$Impl.fromBlock({ (jenv, jthis) -> jboolean in
-                true
+                1
             })
-            XCTAssertEqual(true, try? block.getAsBoolean())
+            XCTAssertEqual(1, try? block.getAsBoolean())
         }
 
 
@@ -536,12 +536,12 @@ class KanjiLibTests: XCTestCase {
         // Represents a predicate (boolean-valued function) of one int-valued argument.
         do {
             let block = try java$util$function$IntPredicate$Impl.fromBlock({ (jenv, jthis, jarg) -> jboolean in
-                return jarg >= 12 ? true : false
+                return jarg >= 12 ? 1 : 0
             })
-            XCTAssertEqual(false, try? block.test(10))
-            XCTAssertEqual(false, try? block.test(11))
-            XCTAssertEqual(true, try? block.test(12))
-            XCTAssertEqual(true, try? block.test(13))
+            XCTAssertEqual(0, try? block.test(10))
+            XCTAssertEqual(0, try? block.test(11))
+            XCTAssertEqual(1, try? block.test(12))
+            XCTAssertEqual(1, try? block.test(13))
         }
 
         // IntSupplier
@@ -648,12 +648,12 @@ class KanjiLibTests: XCTestCase {
         // Represents a predicate (boolean-valued function) of one long-valued argument.
         do {
             let block = try java$util$function$LongPredicate$Impl.fromBlock({ (jenv, jthis, jarg) -> jboolean in
-                return jarg >= 12 ? true : false
+                return jarg >= 12 ? 1 : 0
             })
-            XCTAssertEqual(false, try? block.test(10))
-            XCTAssertEqual(false, try? block.test(11))
-            XCTAssertEqual(true, try? block.test(12))
-            XCTAssertEqual(true, try? block.test(13))
+            XCTAssertEqual(0, try? block.test(10))
+            XCTAssertEqual(0, try? block.test(11))
+            XCTAssertEqual(1, try? block.test(12))
+            XCTAssertEqual(1, try? block.test(13))
         }
 
         // LongSupplier
@@ -760,12 +760,12 @@ class KanjiLibTests: XCTestCase {
         // Represents a predicate (boolean-valued function) of one double-valued argument.
         do {
             let block = try java$util$function$DoublePredicate$Impl.fromBlock({ (jenv, jthis, jarg) -> jboolean in
-                return jarg >= 12.0 ? true : false
+                return jarg >= 12.0 ? 1 : 0
             })
-            XCTAssertEqual(false, try? block.test(10))
-            XCTAssertEqual(false, try? block.test(11))
-            XCTAssertEqual(true, try? block.test(12))
-            XCTAssertEqual(true, try? block.test(13))
+            XCTAssertEqual(0, try? block.test(10))
+            XCTAssertEqual(0, try? block.test(11))
+            XCTAssertEqual(1, try? block.test(12))
+            XCTAssertEqual(1, try? block.test(13))
         }
 
         // DoubleSupplier
@@ -914,7 +914,7 @@ class KanjiLibTests: XCTestCase {
             // This is just demonstrating that we do not currently guarantee that the same peer will be returned for the same java object
             XCTAssertFalse(ref1 === ref2)
             XCTAssertFalse(ref1?.jobj == ref2?.jobj) // different newGlobalRefs as well
-            XCTAssertTrue(try JVM.sharedJVM.isSameObject(ref1?.jobj ?? nil, ref2?.jobj ?? nil) == true) // but they do point to the same object
+            XCTAssertTrue(try JVM.sharedJVM.isSameObject(ref1?.jobj ?? nil, ref2?.jobj ?? nil) == 1) // but they do point to the same object
         }
     }
 

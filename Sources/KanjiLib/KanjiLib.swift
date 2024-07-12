@@ -151,7 +151,7 @@ public extension java$lang$Object {
 public extension java$lang$Object {
     /// Returns the object as an array, provided the underlying object actually is an array of the given type
     func asArray<T: java$lang$Object>() throws -> [T?]? {
-        guard try getClass()?.isArray() == true else { return nil }
+        guard try getClass()?.isArray() == 1 else { return nil }
         var ret = Array<T?>()
         let len = try java$lang$reflect$Array.getLength(self)
         ret.reserveCapacity(Int(len))

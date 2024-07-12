@@ -215,9 +215,9 @@ public final class JVM {
     /// Cached Class.getName call; we use this a lot for dynamic object instantiation
     fileprivate lazy var classGetName: jmethodID? = {
         guard let clscls = self.classClass else { return nil }
-        if self.exceptionCheck().boolValue { self.printStackTrace(); fatalError("could not load java.lang.Class") }
+        if self.exceptionCheck() != 0 { self.printStackTrace(); fatalError("could not load java.lang.Class") }
         let getName: jmethodID? = self.getMethodID(clscls, name: "getName", sig: "()Ljava/lang/String;")
-        if self.exceptionCheck().boolValue { self.printStackTrace(); fatalError("failed to find method id for class name") }
+        if self.exceptionCheck() != 0 { self.printStackTrace(); fatalError("failed to find method id for class name") }
         return getName
     }()
 
@@ -1413,7 +1413,7 @@ extension JVM {
 public extension JVM {
     /// Create a KanjiException wrapping the current Java exception if it exists and then clear it
     func popException(file: String, line: Int, function: String) -> KanjiException? {
-        if exceptionCheck() != true { return nil }
+        if exceptionCheck() == 0 { return nil }
         defer { exceptionClear() } // always clear the exception after we pop it
         guard let throwable = exceptionOccurred() else { return nil }
         if printStackTraces { exceptionDescribe() }
@@ -1427,7 +1427,7 @@ public extension JVM {
             return KanjiException(message: "Could not find throwable class", className: "java.lang.Throwable", throwable: .none, causes: [], file: file, line: line, function: function)
         }
 
-        if exceptionCheck() == true {
+        if exceptionCheck() == 1 {
             return KanjiException(message: "Exception occurred while throwing exception", className: "java.lang.Throwable", throwable: .none, causes: [], file: file, line: line, function: function)
         }
 
@@ -1447,7 +1447,7 @@ public extension JVM {
         }
 
         let cclass = self.classClass
-        if exceptionCheck() == true || cclass == nil {
+        if exceptionCheck() == 1 || cclass == nil {
             // TODO: could not find Throwble; need to short-circut
             exceptionClear()
         }
@@ -1510,15 +1510,15 @@ public extension JVM {
 }
 
 /// Extension on jboolean (i.e., UInt8) that allows it to be treated like a regular bool
-extension jboolean: ExpressibleByBooleanLiteral {
-    public init(booleanLiteral value: Bool) {
-        self = value ? 1 : 0
-    }
-
-    public var boolValue: Bool {
-        return self != 0
-    }
-}
+//extension jboolean: ExpressibleByBooleanLiteral {
+//    public init(booleanLiteral value: Bool) {
+//        self = value ? 1 : 0
+//    }
+//
+//    public var boolValue: Bool {
+//        return self != 0
+//    }
+//}
 
 /// A little helper class for creating CStrings with null-termination
 public final class NullTerminatedCString {
@@ -2740,10 +2740,10 @@ public extension JVM {
             while jc != nil {
                 defer { jc = getSuperclass(jc!) }
 
-                if exceptionCheck().boolValue { printStackTrace(); fatalError("failed to access class") }
+                if exceptionCheck() != 0 { printStackTrace(); fatalError("failed to access class") }
 
                 let clsName = callObjectMethodA(jc, methodID: classGetName, args: nil)
-                if exceptionCheck().boolValue { printStackTrace(); fatalError("could not call Class.getName()") }
+                if exceptionCheck() != 0 { printStackTrace(); fatalError("could not call Class.getName()") }
 
                 if let className = fromJavaString(clsName) {
 
@@ -2856,9 +2856,9 @@ internal func methodName(_ name: String) -> String {
 
 /// Performs the given block, checking for JNI exceptions and translating them into Swift exceptions
 private func checked<T>(_ env: JNIEnvPointer, _ f: @autoclosure () throws -> T, file: String = #file, line: Int = #line, function: String = #function) throws -> T {
-    if JNI.api.ExceptionCheck(env) == true { try JVM.sharedJVM.throwException(file: file, line: line, function: function) }
+    if JNI.api.ExceptionCheck(env) == 1 { try JVM.sharedJVM.throwException(file: file, line: line, function: function) }
     let result = try f()
-    if JNI.api.ExceptionCheck(env) == true { try JVM.sharedJVM.throwException(file: file, line: line, function: function) }
+    if JNI.api.ExceptionCheck(env) == 1 { try JVM.sharedJVM.throwException(file: file, line: line, function: function) }
     return result
 }
 
@@ -2977,7 +2977,7 @@ public extension JavaObject {
             return nil
         }
         let jsup = jvm.findClass(T.javaClassName)
-        if (jvm.exceptionCheck() == true) {
+        if (jvm.exceptionCheck() == 1) {
             jvm.printStackTrace()
             warn("cast() to \(T.self) could not find class \(T.javaClassName)")
             jvm.exceptionClear()
@@ -2988,7 +2988,7 @@ public extension JavaObject {
             return nil
         }
 
-        if (try? jvm.isAssignableFrom(jcls, sup: jsup2)) == true {
+        if (try? jvm.isAssignableFrom(jcls, sup: jsup2)) == 1 {
             return T(reference: jobj)
         } else {
             return nil
@@ -3004,14 +3004,14 @@ extension JVM {
         guard let jstr = jstr else { return nil }
         let len = getStringLength(jstr)
         if len <= 0 { return "" } // https://bugs.openjdk.java.net/browse/JDK-8145015
-        var isCopy: jboolean = false
+        var isCopy: jboolean = 0
         guard let ptr = getStringCritical(jstr, isCopy: &isCopy) else { return nil }
         defer { releaseStringCritical(jstr, cstring: ptr) }
         return String(utf16CodeUnits: ptr, count: Int(len))
     }
 
     @inlinable public func toCStringPointer(_ jstr: jstring) -> UnsafePointer<Int8>? {
-        var isCopy: jboolean = false
+        var isCopy: jboolean = 0
         return getStringUTFChars(jstr, isCopy: &isCopy)
     }
 
