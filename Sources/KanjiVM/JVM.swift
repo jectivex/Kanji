@@ -284,6 +284,34 @@ public final class JVM {
 
     public init(classpath: [String]? = nil, libpath: [String]? = nil, extpath: [String]? = nil, bootpath: (path: [String], prepend: Bool?)? = nil, initmemory: String? = nil, maxmemory: String? = nil, jit: Bool = true, headless: Bool = true, verbose: (gc: Bool, jni: Bool, classload: Bool) = (gc: false, jni: checkJNIDefault, classload: false), checkJNI: Bool = JVM.checkJNIDefault, reducedSignals: Bool = true, profile: Bool = false, diagnostics: Bool = true, options: [String] = [], compiler: String? = useJIT ? nil : "none", file: StaticString = #file, line: UInt = #line, function: StaticString = #function) throws {
 
+        #if os(Android)
+        // we need to get the host JVM using JNI_GetCreatedJavaVMs, but it is not exported in jni.h,
+        // so we need to dlsym it from some library, which has changed over various Android APIs
+        // libnativehelper.so added in API 31 (https://github.com/android/ndk/issues/1320) to work around "libart.so" no longer being allowed to load
+        for libname in ["libnativehelper.so", "libart.so", "libdvm.so"] {
+            if let lib = dlopen(libname, RTLD_NOW) {
+                typealias GetCreatedJavaVMs = @convention(c) (_ pvm: UnsafeMutablePointer<UnsafeMutablePointer<JavaVM>?>, _ count: Int32, _ num: UnsafeMutablePointer<Int32>) -> JavaInt
+                guard let getCreatedJavaVMs = dlsym(lib, "JNI_GetCreatedJavaVMs").map({ unsafeBitCast($0, to: (GetCreatedJavaVMs).self) }) else {
+                    continue
+                }
+
+                // check to see if we are already running inside of a VM; if so, return the existing VM
+                var runningCount: Int32 = 0
+                var jvm: UnsafeMutablePointer<JavaVM>? = nil
+                if getCreatedJavaVMs(&jvm, 1, &runningCount) == JNI_OK, let jvm = jvm {
+                    print("attaching to existing Java VM: \(jvm)")
+                    self.jvm = jvm
+                    let env = self.GetEnv()
+                    self.envCache[pthread_self()] = env
+                    self.api = env!.pointee!.pointee
+                } else {
+                    fatalError("unable to invoke getCreatedJavaVMs for lib: \(libname)")
+                }
+            }
+        }
+
+        fatalError("Unable to dlopen libdvm.so or libart.so or libnativehelper.so")
+        #else
         let start = CFAbsoluteTimeGetCurrent()
 
         // signal disabling is accomplished by setting the following for the scheme:
@@ -479,6 +507,7 @@ public final class JVM {
         let end = CFAbsoluteTimeGetCurrent()
 
         log(((existing == JNI_OK) ? "attached to" : "created") + " JVM version \(self.api.GetVersion(env)) with options \(opts) in \(end-start)sec classpath=\(classpath ?? [])", file: file, line: line, function: function)
+        #endif
     }
 
     //    deinit {
