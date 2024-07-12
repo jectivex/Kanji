@@ -9,7 +9,7 @@ class JavaLibTests: XCTestCase {
         XCTAssertEqual(.max, java$lang$Long.MAX_VALUE)
         XCTAssertEqual(.min, java$lang$Long.MIN_VALUE)
 
-        XCTAssertEqual(true, try java$lang$Double(.nan).isNaN())
-        XCTAssertEqual(true, try java$lang$Double(.infinity).isInfinite())
+        XCTAssertEqual(1, try java$lang$Double(.nan).isNaN())
+        XCTAssertEqual(1, try java$lang$Double(.infinity).isInfinite())
     }
 }
