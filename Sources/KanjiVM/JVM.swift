@@ -290,20 +290,23 @@ public final class JVM {
         // libnativehelper.so added in API 31 (https://github.com/android/ndk/issues/1320) to work around "libart.so" no longer being allowed to load
         for libname in ["libnativehelper.so", "libart.so", "libdvm.so"] {
             if let lib = dlopen(libname, RTLD_NOW) {
-                typealias GetCreatedJavaVMs = @convention(c) (_ pvm: UnsafeMutablePointer<UnsafeMutablePointer<JavaVM>?>, _ count: Int32, _ num: UnsafeMutablePointer<Int32>) -> JavaInt
+                //typealias GetCreatedJavaVMs = @convention(c) (_ pvm: UnsafeMutablePointer<UnsafeMutablePointer<JavaVM>?>, _ count: Int32, _ num: UnsafeMutablePointer<Int32>) -> jint
+                typealias GetCreatedJavaVMs = @convention(c) (_ pvm: UnsafeMutablePointer<JavaVMPtr?>, _ count: Int32, _ num: UnsafeMutablePointer<Int32>) -> jint
+
                 guard let getCreatedJavaVMs = dlsym(lib, "JNI_GetCreatedJavaVMs").map({ unsafeBitCast($0, to: (GetCreatedJavaVMs).self) }) else {
                     continue
                 }
 
                 // check to see if we are already running inside of a VM; if so, return the existing VM
                 var runningCount: Int32 = 0
-                var jvm: UnsafeMutablePointer<JavaVM>? = nil
+                var jvm: JavaVMPtr?
                 if getCreatedJavaVMs(&jvm, 1, &runningCount) == JNI_OK, let jvm = jvm {
                     print("attaching to existing Java VM: \(jvm)")
                     self.jvm = jvm
                     let env = self.GetEnv()
                     self.envCache[pthread_self()] = env
                     self.api = env!.pointee!.pointee
+                    return
                 } else {
                     fatalError("unable to invoke getCreatedJavaVMs for lib: \(libname)")
                 }
