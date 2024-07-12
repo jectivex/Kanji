@@ -678,9 +678,9 @@ extension JVM {
     /// Constructs a new Java object. The method ID indicates which constructor method to invoke. This ID must be obtained by calling `GetMethodID()` with `<init>` as the method name and void (`V`) as the return type.
     ///
     /// The `clazz` argument must not refer to an array class.
-    public func newObjectV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jobject? {
-        return api.NewObjectV(env, clazz, methodID, args)
-    }
+//    public func newObjectV(_ clazz: jclass, methodID: jmethodID, args: CVaListPointer) -> jobject? {
+//        return api.NewObjectV(env, clazz, methodID, args)
+//    }
 
     /// Constructs a new Java object. The method ID indicates which constructor method to invoke. This ID must be obtained by calling `GetMethodID()` with `<init>` as the method name and void (`V`) as the return type.
     ///
